@@ -20,6 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return [Auth::user(), Auth::user()->tokens()];
 });
 
+Route::middleware('auth:sanctum')->get('/user/posts', function (Request $request) {
+    // Al utilizar eloquent y devolver json necesitas usar "get()" al final para realizar la colección.ó
+    return Auth::user()->posts()->get();
+});
+
 Route::match(['get', 'post'], '/auth', function (Request $request) {
     try {
         $credentials = $request->validate([

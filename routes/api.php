@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PersonaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,35 +23,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/user/posts', function (Request $request) {
-    // Al utilizar eloquent y devolver json necesitas usar "get()" al final para realizar la colección.ó
+    // Al utilizar eloquent y devolver json necesitas usar "get()" al final para realizar la colección.
+    // Mira los modelos de User y Posts, asi como la migracion de posts para mas detalles.
     return Auth::user()->posts()->get();
 });
 
-Route::match(['get', 'post'], '/auth', function (Request $request) {
-    try {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
-        $token_name = $request->validate(['token_name' => ['required']])['token_name'];
-    }
-    catch (ValidationException $ex) {
-        return response()->json([
-            'estatus' => 'llamada incorrecta: '.$ex->getMessage()
-        ], 400);
-    }
-    
-    if (Auth::attempt($credentials)) {
-        return Auth::user()->createToken($token_name);
-    }
-    else {
-        return response()->json([
-            'estatus' => 'usuario o contraseña incorrectos'
-        ], 401);
-    }
-    
-    return response()->json([
-        'estatus' => 'autenticacion fallida'
-    ], 406);
+Route::middleware('auth:sanctum')->group(function() {
+    Route::controller(PersonaController::class)->group(function() {
+
+    });
 });
+
+Route::controller(AuthController::class)->group(function() {
+    Route::match(['get', 'post'], '/issue-token', 'issue_token');
+});
+
 

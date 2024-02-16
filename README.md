@@ -1,4 +1,8 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+    </a>
+</p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -6,61 +10,91 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+<p align="center">
+    <img src="https://iupac.org/wp-content/uploads/2021/02/ITSX-Logo.png" height="120">
+</p>
 
-## About Laravel
+# API para la Comisión Estatal de Busqueda del estado de Veracruz.
+## Descripción breve.
+Esta es una API que prestara servicios a una aplicacion de escritorio y a una aplicacion movil para la Comision Estatal de Busqueda del estado de Veracruz, cuya finalidad es buscar y encontrar personas desaparecidas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Cómo correr el proyecto.
+Para cualquiera de los casos descritos debajo, el desarrollador debe tener su propio archivo `.env` en la raíz del proyecto. Este archivo es privado entre los desarrolladores y sus entornos de desarrollo. El proyecto incluye el archivo `.env.example` que brinda una configuración de ejemplo.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Docker.
+Se recomienda utilizar docker ya que está compartimentalizado del sistema operativo del desarrollador, permitiéndole trabajar en un entorno funcional de manera muy rápida.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Archivo `.env`.
+De utilizarse docker, se recomienda crear el siguiente archivo mínimo de configuración en la raiz del proyecto:
+``` conf
+APP_NAME="API de la Comision Estatal de Busqueda y del estado de Veracruz"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
 
-## Learning Laravel
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+DB_CONNECTION=mysql
+DB_HOST=mariadb
+DB_PORT=3306
+DB_DATABASE=api_cebr
+DB_USERNAME=sail
+DB_PASSWORD=password
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### Inicializar el entorno de desarrollo.
+Si se utiliza windows, se debe instalar [wsl](https://learn.microsoft.com/en-us/windows/wsl/install) (seguir **TODO** el proceso de instalación hasta el final, generando un usuario y contraseña) y posteriormente [docker](https://docs.docker.com/get-docker/). En caso de utilizar Windows y WSL, se recomienda clonar el proyecto dentro del sistema de archivos de WSL y no en las carpetas de Windows:
+```bash
+peloponeso@desktop:/mnt/c/Users/tanil$ cd #aqui no
+peloponeso@desktop:~$ #aqui
+```
 
-## Laravel Sponsors
+Usualmente no se menciona, pero en caso de WSL y Windows, al instalarse docker, hay que asegurarse que la casilla ubicada en `Settings > Resources > WSL Integration > Enable integration with my default WSL distro` esté marcada.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Se recomienda también agregar el alias de la herramienta `sail` para interactuar con docker y el proyecto de manera más fácil. Se dará por hecho que este alias existe en lo que resta de este documento. Este alias solo funciona dentro de la carpeta del proyecto. En caso de bash:
+```bash
+echo "alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'" >> ~/.bashrc
+```
 
-### Premium Partners
+Una vez clonado el proyecto, y con una terminal abierta dentro del directorio del proyecto clonado, se da el siguiente comando:
+```bash
+docker run --rm \
+	-u "$(id -u):$(id -g)" \
+	-v "$(pwd):/var/www/html" \
+	-w /var/www/html \
+	laravelsail/php82-composer:latest \
+	composer install --ignore-platform-reqs
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Una vez este clonado el proyecto, exista un archivo `.env`, este el alias del sail configurado correctamente, y se haya terminado de ejecutar el anterior comando, se da el comando desde la raiz del proyecto:
+```sh
+sail up
+```
 
-## Contributing
+Los dos anteriores comandos tardan un poco de tiempo en ejecutarse.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Cuando el anterior termina de ejecutarse (empiezan a salir logs de sistema), quiere decir que la aplicación se está ejecutando de manera exitosa.
 
-## Code of Conduct
+Se genera una llave para la aplicacion:
+```sh
+sail artisan generate:key
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Se ejecutan las migraciones:
+```sh
+sail artisan migrate:fresh --seed
+```
+Refiérase a la documentación de [sail](https://laravel.com/docs/10.x/sail) para saber mas al respecto sobre el proceso de replicacion del proyecto.
 
-## Security Vulnerabilities
+Y el proyecto estara listo para el desarrollo y prueba, puede generar una api key en la ruta `localhost/api/issue-token`, ya sea por metodo GET o POST con los siguentes parametros:
+|campo|valor|
+|-|-|
+|email|test@example.com|
+|password|password|
+|token_name|Arbitrario, puede utilizar cualquier cadena de texto|
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+El valor del campo `plainTextToken` debera ser enviado por el header HTTP de `Authorization` como un `Bearer` token para realizar llamadas autenticadas a la API.

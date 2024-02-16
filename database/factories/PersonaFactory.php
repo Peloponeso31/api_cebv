@@ -25,8 +25,8 @@ class PersonaFactory extends Factory
                 'fecha_nacimiento' => fake()->date(),
                 'ocupacion' => fake()->jobTitle(),
                 'curp' => 'CURP'.Str::random(14),
-                'sexo' => 'hombre',
-                'genero' => fake()->boolean(95) ? 'heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
+                'sexo_al_nacer' => 'hombre',
+                'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
             ];
         }
         return [
@@ -36,8 +36,8 @@ class PersonaFactory extends Factory
             'fecha_nacimiento' => fake()->date(),
             'ocupacion' => fake()->jobTitle(),
             'curp' => 'CURP'.Str::random(14),
-            'sexo' => 'mujer',
-            'genero' => fake()->boolean(95) ? 'heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
+            'sexo_al_nacer' => 'mujer',
+            'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
         ];
     }
 }

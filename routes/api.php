@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\ReporteController;
 
 
 /*
@@ -18,24 +19,22 @@ use App\Http\Controllers\PersonaController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return [Auth::user(), Auth::user()->tokens()];
-});
-
-Route::middleware('auth:sanctum')->get('/user/posts', function (Request $request) {
-    // Al utilizar eloquent y devolver json necesitas usar "get()" al final para realizar la colección.
-    // Mira los modelos de User y Posts, asi como la migracion de posts para mas detalles.
-    return Auth::user()->posts()->get();
-});
-
 Route::middleware('auth:sanctum')->group(function() {
     Route::controller(PersonaController::class)->group(function() {
+        // Singular
+        Route::get('/persona', 'obtener');
+        Route::post('/persona', 'crear');
+        Route::delete('/persona', 'borrar');
+        // Plural
+        Route::get('/personas', 'consultar');
+        Route::post('/personas', 'crearVarios');
+    });
 
+    Route::controller(ReporteController::class)->group(function() {
+        Route::get('/reportes', 'obtener');
     });
 });
 
 Route::controller(AuthController::class)->group(function() {
     Route::match(['get', 'post'], '/issue-token', 'issue_token');
 });
-
-

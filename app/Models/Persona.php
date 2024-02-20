@@ -12,6 +12,8 @@ class Persona extends Model
 {
     use HasFactory;
 
+    protected $table = 'personas';
+
     protected $fillable = [
         'nombre',
         'apellido_paterno',
@@ -33,5 +35,10 @@ class Persona extends Model
 
     public function reportada(): HasOne {
         return $this->hasOne(Reporte::class, 'reportada_id');
+    }
+
+    public function desapariciones(): HasMany
+    {
+        return $this->hasMany(Desaparicion::class);
     }
 }

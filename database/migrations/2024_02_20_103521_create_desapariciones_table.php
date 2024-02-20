@@ -9,13 +9,17 @@ return new class extends Migration {
     {
         Schema::create('desapariciones', function (Blueprint $table) {
             $table->id();
-            $table->integer('persona_id');
-            $table->integer('dependencia_id');
-            $table->integer('ubicacion_id');
+            $table->foreignId('persona_id')
+                ->constrained(table: 'personas', indexName: 'idx_desapariciones_persona');
+            $table->foreignId('dependencia_id')
+                ->constrained(table: 'dependencias', indexName: 'idx_desapariciones_dependencia');
+            $table->foreignId('ubicacion_id')
+                ->constrained(table: 'municipios', indexName: 'idx_desapariciones_ubicacion');
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->dateTime('fecha_percato')->nullable();
-            $table->string('zona_estado');
-            $table->integer('area_id');
+            $table->string('zona_estado');  // Centro, Norte, Sur
+            $table->foreignId('area_id')
+                ->constrained(table: 'areas', indexName: 'idx_desapariciones_area');
             $table->boolean('fue_amenazado');
             $table->text('descripcion_amenaza')->nullable();
             $table->integer('contador_desaparicion');

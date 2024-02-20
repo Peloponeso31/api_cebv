@@ -38,3 +38,8 @@ Route::middleware('auth:sanctum')->group(function() {
 Route::controller(AuthController::class)->group(function() {
     Route::match(['get', 'post'], '/issue-token', 'issue_token');
 });
+
+Route::group(['prefix' => 'dev', 'namespace' => 'App\Http\Controllers'], function() {
+    Route::apiResource('estados', 'EstadoController');
+    Route::apiResource('municipios', 'MunicipioController');
+});

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\MunicipioSeeders;
 
+use App\Models\Estado;
 use App\Models\Municipio;
 use Illuminate\Database\Seeder;
 
@@ -10,14 +11,16 @@ class VeracruzSeeder extends Seeder
     public function run(): void
     {
         $municipios = [
-            'coatepec',
-            'xalapa',
-            'veracruz',
+            'Coatepec',
+            'Xalapa',
+            'Veracruz',
         ];
+
+        $estado = Estado::where('nombre', 'Veracruz de Ignacio de la Llave')->first()->id;
 
         foreach ($municipios as $municipio) {
             Municipio::firstOrCreate([
-                'estado_id' => 30,
+                'estado_id' => $estado,
                 'nombre' => $municipio
             ]);
         }

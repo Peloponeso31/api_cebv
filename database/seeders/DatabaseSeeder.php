@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\MunicipioSeeders\AguascalientesSeeder;
 use Database\Seeders\MunicipioSeeders\VeracruzSeeder;
 use Illuminate\Database\Seeder;
 
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EstadoSeeder::class,
             VeracruzSeeder::class,
+            AguascalientesSeeder::class,
         ]);
     }
 }

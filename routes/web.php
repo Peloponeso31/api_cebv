@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,35 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/setup', function () {
+    $credentials = [
+        'email' => 'admin@localhost.com',
+        'password' => 'admin'
+    ];
+
+    if (!Auth::attempt($credentials)) {
+        $user = new User();
+
+        $user->name = 'Admin';
+        $user->email = $credentials['email'];
+        $user->password = Hash::make($credentials['password']);
+
+        $user->save();
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+
+            $adminToken = $user->createToken('admin');
+            $updateToken = $user->createToken('update', ['create', 'update', 'read']);
+            $basicToken = $user->createToken('basic', ['read']);
+
+            return [
+                'admin' => $adminToken->plainTextToken,
+                'update' => $updateToken->plainTextToken,
+                'basic' => $basicToken->plainTextToken
+            ];
+        }
+    }
 });

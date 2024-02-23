@@ -2,8 +2,8 @@
 
 namespace Database\Seeders\MunicipioSeeders;
 
-use App\Models\Estado;
-use App\Models\Municipio;
+use App\Models\Ubicaciones\Estado;
+use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Seeder;
 
 class VeracruzSeeder extends Seeder

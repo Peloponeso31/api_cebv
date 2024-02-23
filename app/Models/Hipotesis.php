@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Dependencia extends Model
+class Hipotesis extends Model
 {
-    protected $table = 'dependencias';
+    protected $table = 'hipotesis';
 
     public $timestamps = false;
 

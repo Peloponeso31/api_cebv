@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Ubicaciones;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Municipio extends Model
+class Asentamiento extends Model
 {
-    protected $table = 'municipios';
+    use HasFactory;
+
+    protected $table = 'asentamientos';
 
     public $timestamps = false;
 
@@ -17,8 +20,8 @@ class Municipio extends Model
         return $this->belongsTo(Estado::class, 'estado_id');
     }
 
-    public function desapariciones(): HasMany
+    public function direcciones(): HasMany
     {
-        return $this->hasMany(Desaparicion::class);
+        return $this->hasMany(Direccion::class);
     }
 }

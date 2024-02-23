@@ -1,12 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ReporteController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +36,23 @@ Route::controller(AuthController::class)->group(function() {
     Route::match(['get', 'post'], '/issue-token', 'issue_token');
 });
 
-Route::group(['prefix' => 'dev', 'namespace' => 'App\Http\Controllers'], function() {
-    Route::apiResource('estados', 'EstadoController');
-    Route::apiResource('municipios', 'MunicipioController');
+Route::group(['prefix' => 'dev', 'namespace' => 'App\Http\Controllers', 'middleware' => 'auth:sanctum'], function() {
+    /**
+     * Rutas de ubicaciones
+     */
+    Route::apiResource('estados', 'Ubicaciones\EstadoController');
+    Route::apiResource('municipios', 'Ubicaciones\MunicipioController');
+    Route::apiResource('asentamientos', 'Ubicaciones\AsentamientoController');
+    Route::apiResource('direcciones', 'Ubicaciones\DireccionController');
+
+    /**
+     * Rutas sobre los Catálogos de las Desapariciones
+     */
+    Route::apiResource('areas', 'AreaController');
+    Route::apiResource('hipotesis', 'HipotesisController');
+
+    /**
+     * Rutas sobre la desaparición de personas
+     */
+    Route::apiResource('desapariciones', 'DesaparicionController');
 });

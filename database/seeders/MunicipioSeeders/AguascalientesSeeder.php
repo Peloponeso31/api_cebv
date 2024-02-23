@@ -2,9 +2,9 @@
 
 namespace Database\Seeders\MunicipioSeeders;
 
+use App\Models\Ubicaciones\Estado;
+use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Seeder;
-use App\Models\Estado;
-use App\Models\Municipio;
 
 class AguascalientesSeeder extends Seeder
 {

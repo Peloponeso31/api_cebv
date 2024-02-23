@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ubicaciones\Estado;
+use Database\Seeders\MunicipioSeeders\AguascalientesSeeder;
+use Database\Seeders\MunicipioSeeders\MunicipioSeeder;
+use Database\Seeders\MunicipioSeeders\VeracruzSeeder;
 use Illuminate\Database\Seeder;
-use App\Models\Estado;
 
 class EstadoSeeder extends Seeder
 {
@@ -47,5 +50,10 @@ class EstadoSeeder extends Seeder
         foreach ($estados as $estado) {
             Estado::firstOrCreate(['nombre' => $estado]);
         }
+
+        $this->call([
+            AguascalientesSeeder::class,
+            VeracruzSeeder::class
+        ]);
     }
 }

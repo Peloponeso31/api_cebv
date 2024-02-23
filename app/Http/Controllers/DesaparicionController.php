@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDesaparicionRequest;
+use App\Http\Requests\UpdateDesaparicionRequest;
+use App\Http\Resources\DesaparicionResource;
 use App\Models\Desaparicion;
 use Illuminate\Http\Request;
 
@@ -9,60 +12,38 @@ class DesaparicionController extends Controller
 {
     public function index()
     {
-        return Desaparicion::all();
+        return DesaparicionResource::collection(Desaparicion::all());
     }
 
-    public function store(Request $request)
+    public function store(StoreDesaparicionRequest $request)
     {
-        $data = $request->validate([
-            'persona_id' => ['required', 'integer'],
-            'dependencia_id' => ['required', 'integer'],
-            'ubicacion_id' => ['required', 'integer'],
-            'fecha_desaparicion' => ['nullable', 'date'],
-            'fecha_percato' => ['nullable', 'date'],
-            'zona_estado' => ['required'],
-            'area_id' => ['required', 'integer'],
-            'fue_amenazado' => ['boolean'],
-            'descripcion_amenaza' => ['nullable'],
-            'contador_desaparicion' => ['required', 'integer'],
-            'hechos_desaparicion' => ['nullable'],
-            'sintesis_desaparicion' => ['nullable'],
-        ]);
-
-        return Desaparicion::create($data);
+        return new DesaparicionResource(Desaparicion::create($request->all()));
     }
 
-    public function show(Desaparicion $desaparicion)
+    public function show($id)
     {
-        return $desaparicion;
+        $model = Desaparicion::findOrFail($id);
+
+        return new DesaparicionResource($model);
     }
 
-    public function update(Request $request, Desaparicion $desaparicion)
+    public function update($id, UpdateDesaparicionRequest $request)
     {
-        $data = $request->validate([
-            'persona_id' => ['required', 'integer'],
-            'dependencia_id' => ['required', 'integer'],
-            'ubicacion_id' => ['required', 'integer'],
-            'fecha_desaparicion' => ['nullable', 'date'],
-            'fecha_percato' => ['nullable', 'date'],
-            'zona_estado' => ['required'],
-            'area_id' => ['required', 'integer'],
-            'fue_amenazado' => ['boolean'],
-            'descripcion_amenaza' => ['nullable'],
-            'contador_desaparicion' => ['required', 'integer'],
-            'hechos_desaparicion' => ['nullable'],
-            'sintesis_desaparicion' => ['nullable'],
-        ]);
+        $model = Desaparicion::findOrFail($id);
 
-        $desaparicion->update($data);
-
-        return $desaparicion;
+        $model->update($request->all());
     }
 
-    public function destroy(Desaparicion $desaparicion)
+    public function destroy(Request $request, $id)
     {
-        $desaparicion->delete();
+        if ($request->user()->tokenCan('delete')) {
+            $model = Desaparicion::findOrFail($id);
 
-        return response()->json();
+            $model->delete();
+
+            return response()->json(['message' => 'Deleted']);
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
     }
 }

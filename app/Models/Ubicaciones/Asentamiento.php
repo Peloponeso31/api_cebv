@@ -15,9 +15,9 @@ class Asentamiento extends Model
 
     public $timestamps = false;
 
-    public function estado(): BelongsTo
+    public function municipio(): BelongsTo
     {
-        return $this->belongsTo(Estado::class, 'estado_id');
+        return $this->belongsTo(Municipio::class, 'municipio_id');
     }
 
     public function direcciones(): HasMany

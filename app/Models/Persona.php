@@ -25,16 +25,24 @@ class Persona extends Model
         'genero',
     ];
 
-    public function domicilio(): HasOne {
+    public function domicilio(): HasOne
+    {
         return $this->hasOne(Domicilio::class);
     }
 
-    public function reporto(): HasMany {
+    public function reporto(): HasMany
+    {
         return $this->hasMany(Reporte::class, 'reportante_id');
     }
 
-    public function reportada(): HasOne {
+    public function reportada(): HasOne
+    {
         return $this->hasOne(Reporte::class, 'reportada_id');
+    }
+
+    public function contexto_economico(): HasOne
+    {
+        return $this->hasOne(ContextoEconomico::class);
     }
 
     public function desapariciones(): HasMany

@@ -9,6 +9,7 @@ use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\HipotesisController;
 use App\Http\Controllers\DesaparicionController;
 
@@ -56,6 +57,9 @@ Route::middleware('auth:sanctum')->group(function() {
      * Rutas sobre la desaparición de personas
      */
     Route::apiResource('/desapariciones', DesaparicionController::class);
+
+
+    Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
 });
 
 Route::controller(AuthController::class)->group(function() {

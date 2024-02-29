@@ -23,16 +23,11 @@ use App\Http\Controllers\DesaparicionController;
 |
 */
 
+/**
+ * Rutas protegidas por autenticacion.
+ */
 Route::middleware('auth:sanctum')->group(function() {
-    Route::controller(PersonaController::class)->group(function() {
-        // Singular
-        Route::get('/persona', 'obtener');
-        Route::post('/persona', 'crear');
-        Route::delete('/persona', 'borrar');
-        // Plural
-        Route::get('/personas', 'consultar');
-        Route::post('/personas', 'crearVarios');
-    });
+    Route::apiResource("/persona", PersonaController::class);
 
     Route::controller(ReporteController::class)->group(function() {
         Route::get('/reportes', 'obtener');

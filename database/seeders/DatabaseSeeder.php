@@ -17,5 +17,10 @@ class DatabaseSeeder extends Seeder
             DireccionSeeder::class,
             DesaparicionSeeder::class
         ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
     }
 }

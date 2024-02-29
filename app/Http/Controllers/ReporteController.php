@@ -9,6 +9,7 @@ class ReporteController extends Controller
 {
     #TODO: Esto es una prueba
     public function obtener(Request $request) {
+        Reporte::where();
         return response()->json(Reporte::with(['reportante', 'reportada'])->get());
     }
 }

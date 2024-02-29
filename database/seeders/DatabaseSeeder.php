@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\MunicipioSeeders\MunicipioSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,9 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             AreaSeeder::class,
-            EstadoSeeder::class,
             HipotesisSeeder::class,
-            AsentamientoSeeder::class,
             DireccionSeeder::class,
             DesaparicionSeeder::class
         ]);

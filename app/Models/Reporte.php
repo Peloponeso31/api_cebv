@@ -23,4 +23,12 @@ class Reporte extends Model
     public function reportada(): BelongsTo {
         return $this->belongsTo(Persona::class);
     }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->number = Reporte::where('type_id', $model->type_id)->max('number') + 1;
+        });
+    }
 }

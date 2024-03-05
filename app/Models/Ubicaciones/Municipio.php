@@ -11,6 +11,12 @@ class Municipio extends Model
 {
     protected $table = 'municipios';
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    protected $guarded = [];
+
     public $timestamps = false;
 
     public function estado(): BelongsTo

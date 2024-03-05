@@ -9,6 +9,12 @@ class Estado extends Model
 {
     protected $table = 'estados';
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    protected $guarded = [];
+
     public $timestamps = false;
 
     public function municipios(): HasMany

@@ -9,9 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Asentamiento extends Model
 {
-    use HasFactory;
-
     protected $table = 'asentamientos';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    protected $guarded = [];
 
     public $timestamps = false;
 

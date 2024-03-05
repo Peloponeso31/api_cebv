@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DesaparicionController;
+use App\Http\Controllers\HipotesisController;
 use App\Http\Controllers\PersonaController;
-use App\Http\Controllers\ReporteController;
-use App\Http\Controllers\Ubicaciones\EstadoController;
-use App\Http\Controllers\Ubicaciones\MunicipioController;
+use App\Http\Controllers\Reportes\ReporteController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
-use App\Http\Controllers\AreaController;
-use App\Http\Controllers\HipotesisController;
-use App\Http\Controllers\DesaparicionController;
+use App\Http\Controllers\Ubicaciones\EstadoController;
+use App\Http\Controllers\Ubicaciones\MunicipioController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::controller(ReporteController::class)->group(function() {
         Route::get('/reportes', 'obtener');
     });
-    
+
     /**
      * Rutas de ubicaciones
      */
@@ -45,13 +45,13 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('/municipios', MunicipioController::class);
     Route::apiResource('/asentamientos', AsentamientoController::class);
     Route::apiResource('/direcciones', DireccionController::class);
-    
+
     /**
      * Rutas sobre los Catálogos de las Desapariciones
      */
     Route::apiResource('/areas', AreaController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
-    
+
     /**
      * Rutas sobre la desaparición de personas
      */

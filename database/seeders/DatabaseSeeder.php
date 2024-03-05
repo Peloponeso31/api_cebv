@@ -12,10 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            AreaSeeder::class,
-            HipotesisSeeder::class,
-            DireccionSeeder::class,
-            DesaparicionSeeder::class
+            //AreaSeeder::class,
+            //HipotesisSeeder::class,
+            //MedioSeeder::class,
+            UbicacionSeeder::class
         ]);
 
         \App\Models\User::factory()->create([

@@ -47,7 +47,7 @@ class PersonaController extends Controller
 
     public function show($id)
     {
-        return Persona::findOrFail($id);
+        return new PersonaResource(Persona::findOrFail($id));
     }
 
     public function update($id, UpdatePersonaRequest $request)

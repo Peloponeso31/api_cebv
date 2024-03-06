@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use Database\Factories\PersonaFactory;
 use Database\Seeders\MunicipioSeeders\MunicipioSeeder;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,12 +20,15 @@ class DatabaseSeeder extends Seeder
             HipotesisSeeder::class,
             AsentamientoSeeder::class,
             DireccionSeeder::class,
-            DesaparicionSeeder::class
+            DesaparicionSeeder::class,
+            PersonaFactory::class,
         ]);
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if (App::environment('local')) {
+            \App\Models\User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
     }
 }

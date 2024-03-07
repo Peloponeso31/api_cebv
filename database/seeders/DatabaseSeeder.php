@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             AsentamientoSeeder::class,
             DireccionSeeder::class,
             DesaparicionSeeder::class,
-            PersonaFactory::class,
+            PersonaSeeder::class,
         ]);
 
         if (App::environment('local')) {

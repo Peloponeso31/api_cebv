@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
                     'causa' => get_class($e),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
-                    'campos' => $e->validator->errors(),
+                    'campos_faltantes' => $e->validator->errors(),
                     'request' => $request->all()
                 ], 422);
             }

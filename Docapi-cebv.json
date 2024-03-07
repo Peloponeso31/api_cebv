@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://locallhost/api"
+      "url": "http://187.188.213.206:18085/"
     }
   ],
   "paths": {

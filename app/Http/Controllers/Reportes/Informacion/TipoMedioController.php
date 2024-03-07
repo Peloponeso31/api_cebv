@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Reportes;
+namespace App\Http\Controllers\Reportes\Informacion;
 
 use App\Http\Controllers\Controller;
-use App\Models\Reportes\TipoMedio;
+use App\Models\Reportes\Informacion\TipoMedio;
 use Illuminate\Http\Request;
 
 class TipoMedioController extends Controller

@@ -7,6 +7,8 @@ use Generator;
 class ArrayHelpers
 {
     /**
+     * Chunk an array into smaller arrays for optimization
+     *
      * @param string $path
      * @param callable $generator
      * @param int $chunkSize

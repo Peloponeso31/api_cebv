@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Reportes;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreDesaparicionRequest extends FormRequest
+class StoreHechoDesaparicionRequest extends FormRequest
 {
     public function rules(): array
     {
@@ -37,7 +37,7 @@ class StoreDesaparicionRequest extends FormRequest
     }
 
     /**
-     * Ejemplo del merge de datos recibidos en DesaparicionResource.php
+     * Ejemplo del merge de datos recibidos en HechoDesaparicionResource.php
      * para su correcta inserción en la base de datos.
     /*
     protected function prepareForValidation()

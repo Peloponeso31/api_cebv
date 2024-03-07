@@ -2,17 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\Area;
-use App\Models\Desaparicion;
-use App\Models\Hipotesis;
 use App\Models\Persona;
+use App\Models\Reportes\Area;
+use App\Models\Reportes\Informacion\HechoDesaparicion;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
-class DesaparicionFactory extends Factory
+class HechoDesaparicionFactory extends Factory
 {
-    protected $model = Desaparicion::class;
+    protected $model = HechoDesaparicion::class;
 
     public function definition(): array
     {

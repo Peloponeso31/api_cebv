@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reportes;
 
-use App\Models\Area;
+use App\Http\Controllers\Controller;
+use App\Models\Reportes\Area;
 
 class AreaController extends Controller
 {

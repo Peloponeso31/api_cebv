@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Reportes\Medio;
-use App\Models\Reportes\TipoMedio;
+use App\Models\Reportes\Informacion\Medio;
+use App\Models\Reportes\Informacion\TipoMedio;
 use Illuminate\Database\Seeder;
 
 class MedioSeeder extends Seeder
@@ -15,6 +15,8 @@ class MedioSeeder extends Seeder
             'Reporte',
             'Denuncia'
         ];
+
+        sort($tiposMedios);
 
         foreach ($tiposMedios as $tipoMedio) {
             TipoMedio::firstOrCreate([
@@ -56,6 +58,17 @@ class MedioSeeder extends Seeder
             'Alerta Amber',
         ];
 
+        sort($noticias);
+        sort($reportes);
+        sort($denuncias);
+
+        foreach ($denuncias as $denuncia) {
+            Medio::firstOrCreate([
+                'tipo_medio_id' => $denunciaId,
+                'nombre' => $denuncia
+            ]);
+        }
+
         foreach ($noticias as $noticia) {
             Medio::firstOrCreate([
                 'tipo_medio_id' => $noticiaId,
@@ -70,11 +83,5 @@ class MedioSeeder extends Seeder
             ]);
         }
 
-        foreach ($denuncias as $denuncia) {
-            Medio::firstOrCreate([
-                'tipo_medio_id' => $denunciaId,
-                'nombre' => $denuncia
-            ]);
-        }
     }
 }

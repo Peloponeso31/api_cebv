@@ -12,15 +12,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            UserSeeder::class, // TODO: Remove this line before deploying to production
+            UbicacionSeeder::class,
             //AreaSeeder::class,
             //HipotesisSeeder::class,
             //MedioSeeder::class,
-            UbicacionSeeder::class
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            //TipoReporteSeeder::class
+            TipoHipotesisSeeder::class
         ]);
     }
 }

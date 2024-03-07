@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Reportes;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateDesaparicionRequest extends FormRequest
+class UpdateHechoDesaparicionRequest extends FormRequest
 {
     public function rules(): array
     {

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reportes\Hipotesis;
 
-use App\Models\Hipotesis;
+use App\Http\Controllers\Controller;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use Illuminate\Http\Request;
 
 class HipotesisController extends Controller
@@ -14,12 +15,7 @@ class HipotesisController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'circunstancia' => ['required', 'integer'],
-            'nombre' => ['required'],
-        ]);
-
-        return Hipotesis::create($data);
+        // TODO implementar el metodo store
     }
 
     public function show(Hipotesis $hipotesis)
@@ -29,14 +25,7 @@ class HipotesisController extends Controller
 
     public function update(Request $request, Hipotesis $hipotesis)
     {
-        $data = $request->validate([
-            'circunstancia' => ['required', 'integer'],
-            'nombre' => ['required'],
-        ]);
-
-        $hipotesis->update($data);
-
-        return $hipotesis;
+        // TODO implementar el metodo update
     }
 
     public function destroy(Hipotesis $hipotesis)

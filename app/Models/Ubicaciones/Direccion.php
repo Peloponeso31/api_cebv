@@ -2,7 +2,7 @@
 
 namespace App\Models\Ubicaciones;
 
-use App\Models\Desaparicion;
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,19 +10,30 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Direccion extends Model
 {
+    // TODO Remove this line in production
     use HasFactory;
 
     protected $table = 'direcciones';
 
     public $timestamps = false;
 
+    /**
+     * Get the asentamiento that owns the direccion.
+     *
+     * @return BelongsTo
+     */
     public function asentamiento(): BelongsTo
     {
         return $this->belongsTo(Asentamiento::class, 'asentamiento_id');
     }
 
-    public function desapariciones(): HasMany
+    /**
+     * Get the reportes for the direccion.
+     *
+     * @return HasMany
+     */
+    public function reportes(): HasMany
     {
-        return $this->hasMany(Desaparicion::class);
+        return $this->hasMany(Reporte::class);
     }
 }

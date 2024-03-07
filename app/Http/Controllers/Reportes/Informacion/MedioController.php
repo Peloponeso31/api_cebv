@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Reportes;
+namespace App\Http\Controllers\Reportes\Informacion;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\MedioRequest;
-use App\Models\Reportes\Medio;
+use App\Models\Reportes\Informacion\Medio;
 
 class MedioController extends Controller
 {

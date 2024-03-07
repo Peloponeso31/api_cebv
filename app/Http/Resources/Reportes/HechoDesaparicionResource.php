@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Reportes;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DesaparicionResource extends JsonResource
+class HechoDesaparicionResource extends JsonResource
 {
     public function toArray(Request $request): array
     {

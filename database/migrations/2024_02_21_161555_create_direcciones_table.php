@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('numero_interior')->nullable();
             $table->string('calle_1')->nullable();
             $table->string('calle_2')->nullable();
-            $table->float('tramo_carretero')->nullable();
+            $table->double('tramo_carretero')->nullable();
             $table->integer('codigo_postal');
             $table->string('referencia')->nullable();
 

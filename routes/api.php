@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DesaparicionController;
-use App\Http\Controllers\HipotesisController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\Reportes\AreaController;
+use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
+use App\Http\Controllers\Reportes\Informacion\HechoDesaparicionController;
+use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\ReporteController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
@@ -47,15 +48,21 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::apiResource('/direcciones', DireccionController::class);
 
     /**
-     * Rutas sobre los Catálogos de las Desapariciones
+     * Routes for the reportes module
      */
     Route::apiResource('/areas', AreaController::class);
-    Route::apiResource('/hipotesis', HipotesisController::class);
 
     /**
-     * Rutas sobre la desaparición de personas
+     * Routes for the hechos de desaparicion module
      */
-    Route::apiResource('/desapariciones', DesaparicionController::class);
+    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
+
+    /*
+     * Routes for the hipotesis module
+     */
+    Route::apiResource('/circunstancias', CircunstanciaController::class);
+    Route::apiResource('/hipotesis', HipotesisController::class);
+
 });
 
 Route::controller(AuthController::class)->group(function() {

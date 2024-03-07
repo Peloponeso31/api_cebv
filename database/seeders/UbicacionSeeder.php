@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Helpers\ArrayHelpers;
 use App\Models\Ubicaciones\Asentamiento;
+use App\Models\Ubicaciones\Direccion;
 use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Seeder;
@@ -65,5 +66,12 @@ class UbicacionSeeder extends Seeder
         foreach (ArrayHelpers::chunkFile($asentamientosPath, $asentamientoGenerator) as $chunk) {
             Asentamiento::Insert($chunk);
         }
+
+        /**
+         * Create 20 random addresses for testing purposes
+         *
+         * TODO Remove this line in production
+         */
+        Direccion::factory()->count(20)->create();
     }
 }

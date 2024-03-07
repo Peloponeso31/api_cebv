@@ -7,15 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('hipotesis', function (Blueprint $table) {
+        Schema::create('medios', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->foreignId('tipo_medio_id')
+                ->constrained(table: 'tipos_medios',indexName: 'idx_medios_tipo_medio');
             $table->string('nombre');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('hipotesis');
+        Schema::dropIfExists('medios');
     }
 };

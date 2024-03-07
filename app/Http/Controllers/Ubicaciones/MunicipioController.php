@@ -12,4 +12,9 @@ class MunicipioController extends Controller
     {
         return MunicipioResource::collection(Municipio::all());
     }
+
+    public function show($id)
+    {
+        return new MunicipioResource(Municipio::findOrFail($id));
+    }
 }

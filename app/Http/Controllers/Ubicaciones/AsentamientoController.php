@@ -10,7 +10,7 @@ class AsentamientoController extends Controller
 {
     public function index()
     {
-        return Asentamiento::all();
+        return Asentamiento::paginate();
     }
 
     public function store(Request $request)
@@ -24,9 +24,9 @@ class AsentamientoController extends Controller
         return Asentamiento::create($data);
     }
 
-    public function show(Asentamiento $asentamiento)
+    public function show($id)
     {
-        return $asentamiento;
+        return Asentamiento::findOrFail($id);
     }
 
     public function update(Request $request, Asentamiento $asentamiento)

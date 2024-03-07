@@ -549,11 +549,145 @@
       },
       "StoreDesaparicionRequest": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "persona_id": {
+            "type": "integer",
+            "description": "Identificador de la persona relacionada a la desaparicion"
+          },
+          "direccion_id": {
+            "type": "integer",
+            "description": "Identificador de la direccion relacionada con la desaparicion."
+          },
+          "zona_estado": {
+            "type": "string",
+            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
+          },
+          "area_id": {
+            "type": "string",
+            "description": "El nombre del area."
+          },
+          "dependencia": {
+            "type": "string",
+            "description": "El nombre de la dependencia si es el caso."
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de desaparicion de la persona."
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Percato de la desaparicion de la persona."
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desaparicion": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "hipotesis_id": {
+            "type": "integer",
+            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
       },
       "UpdateDesaparicionRequest": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "persona_id": {
+            "type": "integer",
+            "description": "Identificador de la persona relacionada a la desaparicion"
+          },
+          "direccion_id": {
+            "type": "integer",
+            "description": "Identificador de la direccion relacionada con la desaparicion."
+          },
+          "zona_estado": {
+            "type": "string",
+            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
+          },
+          "area_id": {
+            "type": "string",
+            "description": "El nombre del area."
+          },
+          "dependencia": {
+            "type": "string",
+            "description": "El nombre de la dependencia si es el caso."
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de desaparicion de la persona."
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Percato de la desaparicion de la persona."
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desaparicion": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "hipotesis_id": {
+            "type": "integer",
+            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
       }
     },
     "securitySchemes": {

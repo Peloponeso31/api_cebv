@@ -36,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
         return Auth::user();
     });
 
-    /**
+    /*
      * Funcionamiento de los API resources:
      * Verbo         Ruta                        Acción     Nombre de la ruta
      * GET           /users                      index      users.index
@@ -70,5 +70,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::match(['get', 'post'], '/issue-token', 'issue_token')->name('login');
+    Route::match(['get', 'post'], '/token', 'token');
 });

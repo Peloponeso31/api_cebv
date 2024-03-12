@@ -16,6 +16,7 @@ class SenasParticularesResource extends JsonResource
     {
         return [
             "region_cuerpo" => $this->region_cuerpo->nombre,
+            "region_cuerpo_rnpdno" => $this->region_cuerpo_rnpdno->nombre,
             "descripcion" => $this->descripcion,
             "foto" => $this->foto
         ];

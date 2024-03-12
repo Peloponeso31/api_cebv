@@ -12,6 +12,7 @@ use App\Http\Controllers\AreaController;
 use App\Http\Controllers\HipotesisController;
 use App\Http\Controllers\DesaparicionController;
 use App\Http\Controllers\RegionCuerpoController;
+use App\Http\Controllers\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\UserAdminController;
 
@@ -72,6 +73,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
+    Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('senas_particulares', function (Blueprint $table) {
+        Schema::create('region_cuerpo_rnpdno', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("region_cuerpo_id");
-            $table->foreignId("region_cuerpo_rnpdno_id")->nullable();
-            $table->string("descripcion");
-            $table->string("foto");
-            $table->timestamps();
+            $table->string("nombre");
         });
     }
 
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('senas_particulares');
+        Schema::dropIfExists('region_cuerpo_rnpdno');
     }
 };

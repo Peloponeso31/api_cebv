@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
+            PruebaSeeder::class ,
+            UbicacionSeeder::class,
             AreaSeeder::class,
             MedioSeeder::class,
             TipoReporteSeeder::class,

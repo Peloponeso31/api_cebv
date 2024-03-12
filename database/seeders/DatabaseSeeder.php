@@ -22,7 +22,15 @@ class DatabaseSeeder extends Seeder
             DireccionSeeder::class,
             DesaparicionSeeder::class,
             PersonaSeeder::class,
+            CatalogosSeeder::class,
         ]);
+
+        \App\Models\SenasParticulares::create([
+            "region_cuerpo_id" => 3,
+            "descripcion" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam harum maiores iste repellendus, sit assumenda odit officia nam eligendi reprehenderit at voluptatem laboriosam, itaque ad omnis quaerat voluptas facilis neque.",
+            "foto" => "https://randomurl.com/jaja.si"
+        ]);
+        
 
         if (App::environment('local')) {
             \App\Models\User::factory()->create([

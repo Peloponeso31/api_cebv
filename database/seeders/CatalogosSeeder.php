@@ -1,0 +1,97 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class CatalogosSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        \App\Models\Catalogos\RegionCuerpo::insert([
+            ["nombre" => "NO ESPECIFICA"],
+            ["nombre" => "BORDE INTERNO DEL PIE"],
+            ["nombre" => "BORDE EXTERNO DEL PIE"],
+            ["nombre" => "CARA DORSAL DE LA MANO"],
+            ["nombre" => "CARA INTERNA DEL MUSLO"],
+            ["nombre" => "CARA PLANTAR O PLANTA DEL PIE"],
+            ["nombre" => "CARA POSTERIOR DE LA MUÑECA"],
+            ["nombre" => "CARA POSTERIOR DE LA PIERNA"],
+            ["nombre" => "CARA POSTERIOR DEL ANTEBRAZO"],
+            ["nombre" => "CARA POSTERIOR DEL BRAZO"],
+            ["nombre" => "CARA POSTERIOR DEL CODO"],
+            ["nombre" => "CARA POSTERIOR DEL MUSLO"],
+            ["nombre" => "DEDOS DE LA MANO"],
+            ["nombre" => "HUECO POPLITEO"],
+            ["nombre" => "PARED POSTERIOR DE LA AXILA"],
+            ["nombre" => "REGION DEL TRAPECIO"],
+            ["nombre" => "REGION GLUTEA"],
+            ["nombre" => "REGION LUMBAR"],
+            ["nombre" => "REGION LUMBAR EXTERNA FLANCO"],
+            ["nombre" => "REGION MASTOIDEA"],
+            ["nombre" => "REGION OCCIPITAL"],
+            ["nombre" => "REGION POSTERIOR DEL CUELLO"],
+            ["nombre" => "REGION SACRA"],
+            ["nombre" => "TALON"],
+            ["nombre" => "TENDON DE AQUILES"],
+            ["nombre" => "CARA PALMAR DE LA 2A. FALANGE"],
+            ["nombre" => "CARA PALMAR DE LA 3A. FALANGE"],
+            ["nombre" => "CARA PALMAR DE LA 1A. FALANGE"],
+            ["nombre" => "TOBILLO"],
+            ["nombre" => "DORSO DEL PIE"],
+            ["nombre" => "EPIGASTRO"],
+            ["nombre" => "FLANCO"],
+            ["nombre" => "FOSA ILIACA"],
+            ["nombre" => "HIPOCONDRIO"],
+            ["nombre" => "MALEOLO EXTERNO"],
+            ["nombre" => "MALEOLO INTERNO"],
+            ["nombre" => "MASETERINA"],
+            ["nombre" => "MENTON O BARBILLA"],
+            ["nombre" => "PARED ANTERIOR DE LA AXILA"],
+            ["nombre" => "REGION CLAVICULAR"],
+            ["nombre" => "REGION ESTERNAL"],
+            ["nombre" => "REGION FRONTAL"],
+            ["nombre" => "REGION INGUINAL  O INGLE"],
+            ["nombre" => "REGION LATERAL DEL CUELLO"],
+            ["nombre" => "REGION MALAR O POMULO"],
+            ["nombre" => "REGION MAMILAR O TETILLA"],
+            ["nombre" => "REGION METATARZO"],
+            ["nombre" => "REGION NASAL"],
+            ["nombre" => "REGION ORBITARIA"],
+            ["nombre" => "REGION PALMAR"],
+            ["nombre" => "REGION PECTORAL"],
+            ["nombre" => "REGION PERIBUCAL"],
+            ["nombre" => "REGION PUBIANA"],
+            ["nombre" => "REGION TORULEANA O ROTULA"],
+            ["nombre" => "REGION SUPRACLAVICULAR"],
+            ["nombre" => "REGION XIFOIDEA"],
+            ["nombre" => "REGION  MANO"],
+            ["nombre" => "REGION PIE"],
+            ["nombre" => "REGION HOMBRO"],
+            ["nombre" => "REGION TIBIA"],
+            ["nombre" => "REGION ABDOMEN INFERIOR"],
+            ["nombre" => "REGION ABDOMEN SUPERIOR"],
+            ["nombre" => "REGION BOCA"],
+            ["nombre" => "REGION NARIZ"],
+            ["nombre" => "REGION OREJA"],
+            ["nombre" => "REGION FRENTE"],
+            ["nombre" => "REGION CARA"],
+            ["nombre" => "REGION ESPALDA INFERIOR"],
+            ["nombre" => "REGION ESPALDA SUPERIOR"],
+            ["nombre" => "REGION CABEZA"],
+            ["nombre" => "REGION NUCA"],
+            ["nombre" => "REGION ANTEBRAZO"],
+            ["nombre" => "REGION BRAZO"],
+            ["nombre" => "REGION CODO"],
+            ["nombre" => "REGION CUELLO"],
+            ["nombre" => "REGIOL MUSLO"],
+            ["nombre" => "REGION MUÑECA"],
+            ["nombre" => "REGION OMOPLATO"],
+            ["nombre" => "REGION RODILLA"],
+        ]);
+    }
+}

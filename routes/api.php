@@ -11,6 +11,8 @@ use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\HipotesisController;
 use App\Http\Controllers\DesaparicionController;
+use App\Http\Controllers\RegionCuerpoController;
+use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\UserAdminController;
 
 /*
@@ -67,6 +69,9 @@ Route::middleware('auth:sanctum')->group(function () {
      * Rutas sobre la desaparición de personas
      */
     Route::apiResource('/desapariciones', DesaparicionController::class);
+    
+    Route::apiResource('/senas_particulares', SenasParticularesController::class);
+    Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

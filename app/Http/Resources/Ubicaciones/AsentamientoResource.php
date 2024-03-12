@@ -5,17 +5,18 @@ namespace App\Http\Resources\Ubicaciones;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Ubicaciones\Estado */
-class EstadoResource extends JsonResource
+/** @mixin \App\Models\Ubicaciones\Asentamiento */
+class AsentamientoResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
-            'abreviatura_inegi' => $this->abreviatura_inegi,
-            'abreviatura_cebv' => $this->abreviatura_cebv,
-            'municipios_count' => $this->whenCounted('municipios')
+            'ambito' => $this->ambito,
+            'latitud' => $this->latitud,
+            'longitud' => $this->longitud,
+            'altitud' => $this->altitud,
         ];
     }
 }

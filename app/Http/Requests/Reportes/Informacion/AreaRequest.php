@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Reportes;
+namespace App\Http\Requests\Reportes\Informacion;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TipoReporteRequest extends FormRequest
+class AreaRequest extends FormRequest
 {
     public function rules(): array
     {

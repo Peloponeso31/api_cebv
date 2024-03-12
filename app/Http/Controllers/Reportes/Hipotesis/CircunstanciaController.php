@@ -3,36 +3,36 @@
 namespace App\Http\Controllers\Reportes\Hipotesis;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Reportes\Hipotesis\CircunstanciaRequest as FormRequest;
-use App\Models\Reportes\Hipotesis\Circunstancia as Model;
+use App\Http\Requests\Reportes\Hipotesis\CircunstanciaRequest;
+use App\Models\Reportes\Hipotesis\Circunstancia;
 
 class CircunstanciaController extends Controller
 {
     public function index()
     {
-        return Model::all();
+        return Circunstancia::all();
     }
 
-    public function store(FormRequest $request)
+    public function store(CircunstanciaRequest $request)
     {
-        return Model::create($request->all());
+        return Circunstancia::create($request->all());
     }
 
     public function show($id)
     {
-        return Model::findOrFail($id);
+        return Circunstancia::findOrFail($id);
     }
 
-    public function update($id, FormRequest $request)
+    public function update($id, CircunstanciaRequest $request)
     {
-        $model = Model::findOrFail($id);
+        $model = Circunstancia::findOrFail($id);
 
-        $model->update($request->all());
+        return $model->update($request->all());
     }
 
     public function destroy($id)
     {
-        $model = Model::findOrFail($id);
+        $model = Circunstancia::findOrFail($id);
 
         $model->delete();
 

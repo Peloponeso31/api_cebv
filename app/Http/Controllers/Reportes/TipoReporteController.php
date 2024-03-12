@@ -10,30 +10,34 @@ class TipoReporteController extends Controller
 {
     public function index()
     {
-        return TipoReporte::all();
+        $query = TipoReporte::query();
+
+        if (request()->has('search')) {
+            $query = TipoReporte::search(request('search'));
+        }
+
+        return $query->get();
     }
 
     public function store(TipoReporteRequest $request)
     {
-        return TipoReporte::create($request->validated());
+        return TipoReporte::create($request->all());
     }
 
-    public function show(TipoReporte $tipoReporte)
+    public function show($id)
     {
-        return $tipoReporte;
+        return TipoReporte::findOrFail($id);
     }
 
-    public function update(TipoReporteRequest $request, TipoReporte $tipoReporte)
+    public function update($id, TipoReporteRequest $request)
     {
-        $tipoReporte->update($request->validated());
+        $tipoReporte = TipoReporte::findOrFail($id);
 
-        return $tipoReporte;
+        return $tipoReporte->update($request->all());
     }
 
-    public function destroy(TipoReporte $tipoReporte)
+    public function destroy($id)
     {
-        $tipoReporte->delete();
-
-        return response()->json();
+        return TipoReporte::destroy($id);
     }
 }

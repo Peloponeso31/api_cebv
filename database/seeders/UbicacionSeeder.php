@@ -66,12 +66,5 @@ class UbicacionSeeder extends Seeder
         foreach (ArrayHelpers::chunkFile($asentamientosPath, $asentamientoGenerator) as $chunk) {
             Asentamiento::Insert($chunk);
         }
-
-        /**
-         * Create 20 random addresses for testing purposes
-         *
-         * TODO Remove this line in production
-         */
-        Direccion::factory()->count(20)->create();
     }
 }

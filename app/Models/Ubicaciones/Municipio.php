@@ -5,9 +5,15 @@ namespace App\Models\Ubicaciones;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Municipio extends Model
 {
+    /*
+     * We want to use the Searchable trait from Laravel Scout
+     */
+    use Searchable;
+
     protected $table = 'municipios';
 
     /*
@@ -45,5 +51,14 @@ class Municipio extends Model
     public function asentamientos(): HasMany
     {
         return $this->hasMany(Asentamiento::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'estado_id' => $this->estado_id,
+            'nombre' => $this->nombre,
+        ];
     }
 }

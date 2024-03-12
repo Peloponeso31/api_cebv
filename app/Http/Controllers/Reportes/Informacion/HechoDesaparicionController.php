@@ -3,48 +3,41 @@
 namespace App\Http\Controllers\Reportes\Informacion;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Reportes\StoreHechoDesaparicionRequest;
-use App\Http\Requests\Reportes\UpdateHechoDesaparicionRequest;
-use App\Http\Resources\Reportes\HechoDesaparicionResource;
+use App\Http\Requests\Reportes\Informacion\HechoDesaparicionRequest;
 use App\Models\Reportes\Informacion\HechoDesaparicion;
-use Illuminate\Http\Request;
 
 class HechoDesaparicionController extends Controller
 {
     public function index()
     {
-        return HechoDesaparicionResource::collection(HechoDesaparicion::all());
+        $query = HechoDesaparicion::query();
+
+        if (request()->has('search')) {
+            $query = HechoDesaparicion::search(request('search'));
+        }
+
+        return $query->get();
     }
 
-    public function store(StoreHechoDesaparicionRequest $request)
+    public function store(HechoDesaparicionRequest $request)
     {
-        return new HechoDesaparicionResource(HechoDesaparicion::create($request->all()));
+        return HechoDesaparicion::create($request->all());
     }
 
     public function show($id)
     {
-        $model = HechoDesaparicion::findOrFail($id);
-
-        return new HechoDesaparicionResource($model);
+        return HechoDesaparicion::findOrFail($id);
     }
 
-    public function update($id, UpdateHechoDesaparicionRequest $request)
+    public function update($id, HechoDesaparicionRequest $request)
     {
         $model = HechoDesaparicion::findOrFail($id);
 
-        $model->update($request->all());
+        return $model->update($request->all());
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        if ($request->user()->tokenCan('delete')) {
-            $model = HechoDesaparicion::findOrFail($id);
-
-            $model->delete();
-
-            return response()->json(['message' => 'Deleted']);
-        } else {
-            return response()->json(['message' => 'Unauthorized'], 401);
-        }
+        return HechoDesaparicion::destroy($id);
     }
 }

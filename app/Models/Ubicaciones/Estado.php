@@ -4,9 +4,15 @@ namespace App\Models\Ubicaciones;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Estado extends Model
 {
+    /**
+     * Add the Searchable trait to the model for full text search
+     */
+    use Searchable;
+
     protected $table = 'estados';
 
     /*
@@ -34,5 +40,20 @@ class Estado extends Model
     public function municipios(): HasMany
     {
         return $this->hasMany(Municipio::class);
+    }
+
+    /**
+     * Customize the data that is indexed by Scout for the full text search
+     *
+     * @return array<string, mixed>
+     */
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'abreviatura_inegi' => $this->abreviatura_inegi,
+            'abreviatura_cebv' => $this->abreviatura_cebv,
+        ];
     }
 }

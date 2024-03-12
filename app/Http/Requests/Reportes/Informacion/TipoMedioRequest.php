@@ -1,20 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Reportes;
+namespace App\Http\Requests\Reportes\Informacion;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MedioRequest extends FormRequest
+class TipoMedioRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
             'nombre' => ['required'],
         ];
-    }
-
-    public function authorize(): bool
-    {
-        return true;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Reportes\Informacion;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Reportes\Informacion\TipoMedioRequest;
 use App\Models\Reportes\Informacion\TipoMedio;
 use Illuminate\Http\Request;
 
@@ -13,35 +14,25 @@ class TipoMedioController extends Controller
         return TipoMedio::all();
     }
 
-    public function store(Request $request)
+    public function store(TipoMedioRequest $request)
     {
-        $data = $request->validate([
-            'nombre' => ['required'],
-        ]);
-
-        return TipoMedio::create($data);
+        return TipoMedio::create($request->all());
     }
 
-    public function show(TipoMedio $tipoReporte)
+    public function show($id)
     {
-        return $tipoReporte;
+        return TipoMedio::findOrFail($id);
     }
 
-    public function update(Request $request, TipoMedio $tipoReporte)
+    public function update($id, TipoMedioRequest $request)
     {
-        $data = $request->validate([
-            'nombre' => ['required'],
-        ]);
+        $tipoMedio = TipoMedio::findOrFail($id);
 
-        $tipoReporte->update($data);
-
-        return $tipoReporte;
+        return $tipoMedio->update($request->all());
     }
 
-    public function destroy(TipoMedio $tipoReporte)
+    public function destroy($id)
     {
-        $tipoReporte->delete();
-
-        return response()->json();
+        return TipoMedio::destroy($id);
     }
 }

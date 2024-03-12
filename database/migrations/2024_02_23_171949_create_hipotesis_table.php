@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('reporte_id')
                 ->constrained(table: 'reportes', indexName: 'idx_hipotesis_reporte');
 
-            $table->foreignId('area_registra_id')
+            $table->foreignId('area_id')
                 ->nullable()
                 ->constrained(table: 'areas', indexName: 'idx_hipotesis_area');
 

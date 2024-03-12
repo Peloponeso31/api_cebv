@@ -25,8 +25,8 @@ return new class extends Migration {
                 ->constrained(table: 'direcciones', indexName: 'idx_reportes_direccion');
 
             $table->enum('zona_estado', ['Norte', 'Centro', 'Sur', 'Sin zona']); // TODO check if this is the correct enum
-            $table->enum('tipo_desaparicon', ['U', 'M']);
-            $table->enum('estatus', ['Localizada con vida', 'Localizada sin vida', 'No localizada']);
+            $table->enum('tipo_desaparicion', ['U', 'M']);
+            $table->enum('estatus', ['Localizada con vida', 'Localizada sin vida', 'No localizada']); //TODO Make this a catalog
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->dateTime('fecha_percato')->nullable();
             $table->string('folio', 20)->nullable();

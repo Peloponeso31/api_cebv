@@ -3,49 +3,41 @@
 namespace App\Http\Controllers\Reportes\Hipotesis;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Reportes\Hipotesis\TipoHipotesisRequest;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
-use Illuminate\Http\Request;
 
 class TipoHipotesisController extends Controller
 {
     public function index()
     {
-        return TipoHipotesis::all();
+        $query = TipoHipotesis::query();
+
+        if (request()->has('search')) {
+            $query = TipoHipotesis::search(request('search'));
+        }
+
+        return $query->get();
     }
 
-    public function store(Request $request)
+    public function store(TipoHipotesisRequest $request)
     {
-        $data = $request->validate([
-            'circunstancia_id' => ['required', 'integer'],
-            'abreviatura' => ['required'],
-            'descripcion' => ['required'],
-        ]);
-
-        return TipoHipotesis::create($data);
+        return TipoHipotesis::create($request->all());
     }
 
-    public function show(TipoHipotesis $tipoHipotesis)
+    public function show($id)
     {
-        return $tipoHipotesis;
+        return TipoHipotesis::findOrFail($id);
     }
 
-    public function update(Request $request, TipoHipotesis $tipoHipotesis)
+    public function update($id, TipoHipotesisRequest $request)
     {
-        $data = $request->validate([
-            'circunstancia_id' => ['sometimes', 'integer'],
-            'abreviatura' => ['sometimes'],
-            'descripcion' => ['sometimes'],
-        ]);
+        $tipoHipotesis = TipoHipotesis::findOrFail($id);
 
-        $tipoHipotesis->update($data);
-
-        return $tipoHipotesis;
+        return $tipoHipotesis->update($request->all());
     }
 
-    public function destroy(TipoHipotesis $tipoHipotesis)
+    public function destroy($id)
     {
-        $tipoHipotesis->delete();
-
-        return response()->json();
+        return TipoHipotesis::findOrFail($id)->delete();
     }
 }

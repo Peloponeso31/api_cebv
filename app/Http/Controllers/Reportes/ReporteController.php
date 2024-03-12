@@ -3,33 +3,41 @@
 namespace App\Http\Controllers\Reportes;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Reportes\ReporteRequest;
 use App\Models\Reportes\Reporte;
-use Illuminate\Http\Request;
 
 class ReporteController extends Controller
 {
     public function index()
     {
-        return Reporte::all();
+        $query = Reporte::query();
+
+        if (request()->has('search')) {
+            $query = Reporte::search(request('search'));
+        }
+
+        return $query->get();
     }
 
-    public function store(Request $request)
+    public function store(ReporteRequest $request)
     {
-        // TODO: Implement store method
+        return Reporte::create($request->all());
     }
 
     public function show($id)
     {
-        // TODO: Implement show method
+        return Reporte::findOrFail($id);
     }
 
-    public function update(Request $request, $id)
+    public function update($id, ReporteRequest $request)
     {
-        // TODO: Implement update method
+        $reporte = Reporte::findOrFail($id);
+
+        return $reporte->update($request->all());
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        // TODO: Implement destroy method
+        return Reporte::destroy($id);
     }
 }

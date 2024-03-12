@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Reportes\Area;
+use App\Models\Reportes\Informacion\Area;
 use Illuminate\Database\Seeder;
 
 class AreaSeeder extends Seeder

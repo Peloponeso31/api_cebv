@@ -10,7 +10,15 @@ class MunicipioController extends Controller
 {
     public function index()
     {
-        return MunicipioResource::collection(Municipio::all());
+        $query = Municipio::query();
+
+        if (request()->has('search')) {
+            $query = Municipio::search(request('search'));
+        }
+
+        $municipios = $query->paginate(); // Check appropriate number of items per page
+
+        return MunicipioResource::collection($municipios);
     }
 
     public function show($id)

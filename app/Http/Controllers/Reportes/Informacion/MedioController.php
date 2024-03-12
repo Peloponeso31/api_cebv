@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\Reportes\Informacion;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Reportes\MedioRequest;
+use App\Http\Requests\Reportes\Informacion\MedioRequest;
 use App\Models\Reportes\Informacion\Medio;
 
 class MedioController extends Controller
 {
     public function index()
     {
-        return Medio::all();
+        $query = Medio::query();
+
+        if (request()->has('search')) {
+            $query = Medio::search(request('search'));
+        }
+
+        return $query->get();
     }
 
     public function store(MedioRequest $request)
@@ -18,20 +24,24 @@ class MedioController extends Controller
         return Medio::create($request->validated());
     }
 
-    public function show(Medio $medio)
+    public function show($id)
     {
-        return $medio;
+        return Medio::findOrFail($id);
     }
 
-    public function update(MedioRequest $request, Medio $medio)
+    public function update($id, MedioRequest $request)
     {
+        $medio = Medio::findOrFail($id);
+
         $medio->update($request->validated());
 
         return $medio;
     }
 
-    public function destroy(Medio $medio)
+    public function destroy($id)
     {
+        $medio = Medio::findOrFail($id);
+
         $medio->delete();
 
         return response()->json();

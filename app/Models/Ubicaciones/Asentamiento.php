@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Asentamiento extends Model
 {
+    /*
+     * Add the Searchable trait to the model for full text search
+     */
+    use Searchable;
+
     protected $table = 'asentamientos';
 
     /*
@@ -46,5 +52,18 @@ class Asentamiento extends Model
     public function direcciones(): HasMany
     {
         return $this->hasMany(Direccion::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'municipio_id' => $this->municipio_id,
+            'nombre' => $this->nombre,
+            'ambito' => $this->ambito,
+            'latitud' => $this->latitud,
+            'longitud' => $this->longitud,
+            'altitud' => $this->altitud,
+        ];
     }
 }

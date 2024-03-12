@@ -5,10 +5,19 @@ namespace App\Models\Reportes\Hipotesis;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class TipoHipotesis extends Model
 {
+    use Searchable;
+
     protected $table = 'tipos_hipotesis';
+
+    protected $fillable = [
+        'circunstancia_id',
+        'abreviatura',
+        'descripcion',
+    ];
 
     public $timestamps = false;
 
@@ -30,5 +39,15 @@ class TipoHipotesis extends Model
     public function hipotesis(): HasMany
     {
         return $this->hasMany(Hipotesis::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'circunstancia_id' => $this->circunstancia_id,
+            'abreviatura' => $this->abreviatura,
+            'descripcion' => $this->descripcion,
+        ];
     }
 }

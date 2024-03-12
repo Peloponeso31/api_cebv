@@ -6,10 +6,18 @@ use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Medio extends Model
 {
+    use Searchable;
+
     protected $table = 'medios';
+
+    protected $fillable = [
+        'nombre',
+        'tipo_medio_id',
+    ];
 
     public $timestamps = false;
 
@@ -31,5 +39,14 @@ class Medio extends Model
     public function reportes(): HasMany
     {
         return $this->hasMany(Reporte::class, 'medio_id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'tipo_medio_id' => $this->tipo_medio_id,
+        ];
     }
 }

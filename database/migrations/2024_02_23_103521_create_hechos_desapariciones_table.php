@@ -12,11 +12,11 @@ return new class extends Migration {
             $table->foreignId('reporte_id')
                 ->constrained(table: 'reportes', indexName: 'idx_desapariciones_reporte');
 
-            $table->boolean('cambio_comportamiento');
+            $table->boolean('cambio_comportamiento')->nullable();
             $table->text('descripcion_cambio_comportamiento')->nullable();
             $table->boolean('fue_amenazado')->nullable();
             $table->text('descripcion_amenaza')->nullable();
-            $table->integer('contador_desapariciones');
+            $table->integer('contador_desapariciones')->nullable();
             $table->text('situacion_previa')->nullable();
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();

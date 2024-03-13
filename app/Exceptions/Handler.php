@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\RelationNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -50,7 +51,7 @@ class Handler extends ExceptionHandler
                     'causa' => get_class($e),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
-                    'campos' => $e->validator->errors(),
+                    'campos_faltantes' => $e->validator->errors(),
                     'request' => $request->all()
                 ], 422);
             }
@@ -80,10 +81,23 @@ class Handler extends ExceptionHandler
             }
         });
 
+        $this->renderable(function(AuthenticationException $e, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'error' => 'Error de autenticación.',
+                    'causa' => get_class($e),
+                    'info_excepcion_interno' => $e->getMessage(),
+                    'mensaje_excepcion_interno' => $e->getMessage(),
+                    'ir_a' => $e->redirectTo(),
+                    'request' => $request->all()
+                ], 401);
+            }
+        });
+
         $this->renderable(function(Throwable $e, Request $request) {
             if ($request->is('api/*')) {
                 return response()->json([
-                    'error' => 'Error general',
+                    'error' => 'Error general.',
                     'causa' => get_class($e),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),

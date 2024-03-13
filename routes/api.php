@@ -16,6 +16,7 @@ use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,20 +29,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::controller(PersonaController::class)->group(function () {
-        // Singular
-        Route::get('/persona', 'obtener');
-        Route::post('/persona', 'crear');
-        Route::delete('/persona', 'borrar');
-        // Plural
-        Route::get('/personas', 'consultar');
-        Route::post('/personas', 'crearVarios');
-    });
 
+/**
+ * Rutas protegidas por autenticacion.
+ */
+Route::middleware('auth:sanctum')->group(function () {
     Route::controller(ReporteController::class)->group(function () {
         Route::get('/reportes', 'obtener');
     });
+
+    Route::get('/user', function() {
+        return Auth::user();
+    });
+
+    /*
+     * Funcionamiento de los API resources:
+     * Verbo         Ruta                        Acción     Nombre de la ruta
+     * GET           /users                      index      users.index
+     * POST          /users                      store      users.store
+     * GET           /users/{user}               show       users.show
+     * PUT|PATCH     /users/{user}               update     users.update
+     * DELETE        /users/{user}               destroy    users.destroy
+     */
+
+    Route::apiResource('/usuario', UserAdminController::class);
+    Route::apiResource("/persona", PersonaController::class);
 
     /**
      * Routes for ubicaciones module
@@ -56,7 +68,6 @@ Route::middleware('auth:sanctum')->group(function () {
      */
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
     Route::apiResource('/reportes', ReporteController::class);
-
 
     /**
      * Routes for the informacion module
@@ -76,6 +87,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::controller(AuthController::class)->group(function () {
-    Route::match(['get', 'post'], '/issue-token', 'issue_token');
+    Route::match(['get', 'post'], '/token', 'token');
 });
-

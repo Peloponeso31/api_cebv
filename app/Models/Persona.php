@@ -27,10 +27,11 @@ class Persona extends Model
         'genero',
     ];
 
-    public function domicilio(): HasOne {
+    public function domicilio(): HasOne
+    {
         return $this->hasOne(Domicilio::class);
     }
-
+  
     /**
      * The reportes that belong to the persona.
      *

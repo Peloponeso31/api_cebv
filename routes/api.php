@@ -17,6 +17,8 @@ use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAdminController;
+use App\Models\Reportes\Reporte;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', function() {
         return Auth::user();
+    });
+
+    Route::get("/pdf", function () {
+        return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => Reporte::find(1)])->stream();
     });
 
     /*

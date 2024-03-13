@@ -1,0 +1,701 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api Comision Estatal de Busqueda de Veracruz",
+    "version": "v2",
+    "description": "Esta API proporciona la estructura de las operacones que se realizaran."
+  },
+  "servers": [
+    {
+      "url": "http://187.188.213.206:18085/"
+    }
+  ],
+  "paths": {
+    "/personas": {
+      "get": {
+        "summary": "Obtiene una lista de personas desaparecidas registradas",
+        "tags": [
+          "Personas"
+        ],
+        "parameters": [
+          {
+            "name": "campos",
+            "in": "query",
+            "description": "Campos a buscar (separados por coma).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "paginacion",
+            "in": "query",
+            "description": "Número de resultados por página.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "devolver_con, ",
+            "in": "query",
+            "description": "Relaciones a incluir (separadas por coma).",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Persona"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea el registro de varias personas a la vez.",
+        "tags": [
+          "Personas"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Persona"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/persona/{id}": {
+      "get": {
+        "summary": "Obtiene los datos de una personas desaparecida registrada",
+        "tags": [
+          "Personas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "description": "El ID de la persona."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Persona"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensaje": {
+                      "type": "string",
+                      "example": "No se ha encontrado el recurso solicitado"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno SQL.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensaje": {
+                      "type": "string",
+                      "example": "No se conecta"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina el registro de persona por su ID.",
+        "tags": [
+          "Personas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "El ID de la persona a eliminar.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Borrado correcto.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensaje": {
+                      "type": "string",
+                      "example": "Borrado correcto"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Persona no encontrada."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      }
+    },
+    "/persona": {
+      "post": {
+        "summary": "Crea el registro de una sola personas",
+        "tags": [
+          "Personas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PersonaInput"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Persona"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/desapariciones": {
+      "get": {
+        "summary": "Obtener todos los registros de las desapariciones",
+        "tags": [
+          "Desaparicion"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de desapariciones",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DesaparicionResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear una nueva desaparición",
+        "tags": [
+          "Desaparicion"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreDesaparicionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Desaparición creada exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparicionResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/desapariciones/{id}": {
+      "get": {
+        "summary": "Obtener una desaparición por su ID",
+        "tags": [
+          "Desaparicion"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Desaparición encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparicionResource"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Desaparición no encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar una desaparición existente",
+        "tags": [
+          "Desaparicion"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDesaparicionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Desaparición actualizada exitosamente"
+          },
+          "404": {
+            "description": "Desaparición no encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar una desaparición existente",
+        "tags": [
+          "Desaparicion"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Desaparición eliminada exitosamente"
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "404": {
+            "description": "Desaparición no encontrada"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Persona": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "El ID de la persona."
+          },
+          "nombre": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "apellido paterno": {
+            "type": "string",
+            "description": "El apellido paterno de la persona."
+          },
+          "apellido materno": {
+            "type": "string",
+            "description": "El apellido materno de la persona."
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de nacimiento de la persona (formato YYYY-MM-DD)."
+          },
+          "curp ": {
+            "type": "string",
+            "description": "El curp de la persona."
+          },
+          "ocupacion": {
+            "type": "string",
+            "description": "La ocupacion de la persona."
+          },
+          "genero": {
+            "type": "string",
+            "description": "El genero de la persona."
+          },
+          "sexo_al_nacer": {
+            "type": "string",
+            "description": "El sexo de la persona."
+          }
+        }
+      },
+      "PersonaInput": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "apellido paterno": {
+            "type": "string",
+            "description": "El apellido paterno de la persona."
+          },
+          "apellido materno": {
+            "type": "string",
+            "description": "El apellido materno de la persona."
+          },
+          "fecha_nacimiento": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de nacimiento de la persona (formato YYYY-MM-DD)."
+          },
+          "curp ": {
+            "type": "string",
+            "description": "El curp de la persona."
+          },
+          "ocupacion": {
+            "type": "string",
+            "description": "La ocupacion de la persona."
+          },
+          "genero": {
+            "type": "string",
+            "description": "El genero de la persona."
+          },
+          "sexo": {
+            "type": "string",
+            "description": "El sexo de la persona."
+          }
+        }
+      },
+      "DesaparicionResource": {
+        "type": "object",
+        "properties": {
+          "persona_id": {
+            "type": "integer",
+            "description": "Identificador de la persona relacionada a la desaparicion"
+          },
+          "direccion_id": {
+            "type": "integer",
+            "description": "Identificador de la direccion relacionada con la desaparicion."
+          },
+          "zona_estado": {
+            "type": "string",
+            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
+          },
+          "area_id": {
+            "type": "string",
+            "description": "El nombre del area."
+          },
+          "dependencia": {
+            "type": "string",
+            "description": "El nombre de la dependencia si es el caso."
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de desaparicion de la persona."
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Percato de la desaparicion de la persona."
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desaparicion": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "hipotesis_id": {
+            "type": "integer",
+            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
+      },
+      "StoreDesaparicionRequest": {
+        "type": "object",
+        "properties": {
+          "persona_id": {
+            "type": "integer",
+            "description": "Identificador de la persona relacionada a la desaparicion"
+          },
+          "direccion_id": {
+            "type": "integer",
+            "description": "Identificador de la direccion relacionada con la desaparicion."
+          },
+          "zona_estado": {
+            "type": "string",
+            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
+          },
+          "area_id": {
+            "type": "string",
+            "description": "El nombre del area."
+          },
+          "dependencia": {
+            "type": "string",
+            "description": "El nombre de la dependencia si es el caso."
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de desaparicion de la persona."
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Percato de la desaparicion de la persona."
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desaparicion": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "hipotesis_id": {
+            "type": "integer",
+            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
+      },
+      "UpdateDesaparicionRequest": {
+        "type": "object",
+        "properties": {
+          "persona_id": {
+            "type": "integer",
+            "description": "Identificador de la persona relacionada a la desaparicion"
+          },
+          "direccion_id": {
+            "type": "integer",
+            "description": "Identificador de la direccion relacionada con la desaparicion."
+          },
+          "zona_estado": {
+            "type": "string",
+            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
+          },
+          "area_id": {
+            "type": "string",
+            "description": "El nombre del area."
+          },
+          "dependencia": {
+            "type": "string",
+            "description": "El nombre de la dependencia si es el caso."
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "La fecha de desaparicion de la persona."
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Percato de la desaparicion de la persona."
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desaparicion": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "hipotesis_id": {
+            "type": "integer",
+            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

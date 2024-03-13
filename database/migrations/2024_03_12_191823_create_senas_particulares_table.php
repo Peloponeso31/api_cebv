@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId("region_cuerpo_id");
             $table->foreignId("region_cuerpo_rnpdno_id")->nullable();
+            $table->foreignId("vista_id");
+            $table->foreignId("lado_id");
+            $table->foreignId("tipo_id");
+            $table->integer("cantidad");
             $table->string("descripcion");
             $table->string("foto");
             $table->timestamps();

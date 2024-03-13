@@ -12,7 +12,7 @@ class LadoController extends Controller
      */
     public function index()
     {
-        //
+        return Lado::all();
     }
 
     /**

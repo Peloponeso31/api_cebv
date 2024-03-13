@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\SenasParticulares::create([
             "region_cuerpo_id" => 3,
+            "vista_id" => 5,
+            "lado_id" => 5,
+            "tipo_id" => 10,
+            "cantidad" => 2,
             "descripcion" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam harum maiores iste repellendus, sit assumenda odit officia nam eligendi reprehenderit at voluptatem laboriosam, itaque ad omnis quaerat voluptas facilis neque.",
             "foto" => "https://randomurl.com/jaja.si"
         ]);

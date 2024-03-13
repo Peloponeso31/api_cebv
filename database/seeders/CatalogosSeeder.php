@@ -191,5 +191,35 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "REGION CABEZA"],
             ["nombre" => "REGION NUCA"],
         ]);
+
+        \App\Models\Catalogos\Vista::insert([
+            ["nomvista" => "DORSAL"],
+            ["nomvista" => "FRONTAL"],
+            ["nomvista" => "NO ESPECIFICA"],
+            ["nomvista" => "INTERNO"],
+            ["nomvista" => "EXTERNO"],
+        ]);
+
+        \App\Models\Catalogos\Lado::insert([
+            ["nomlado" => "DERECHO"],
+            ["nomlado" => "IZQUIERDO"],
+            ["nomlado" => "NO ESPECIFICA"],
+            ["nomlado" => "UNICO"],
+            ["nomlado" => "ANTERIOR"],
+            ["nomlado" => "POSTERIOR"],
+        ]);
+
+        \App\Models\Catalogos\Tipo::insert([
+            ["nomtipo" => "ARETE/PERFORACIONES"],
+            ["nomtipo" => "CICATRIZ"],
+            ["nomtipo" => "CIRCUNCISION"],
+            ["nomtipo" => "CORTES DECORATIVOS"],
+            ["nomtipo" => "GEFECTO FISICO"],
+            ["nomtipo" => "LUNARES O MANCHAS"],
+            ["nomtipo" => "MARCAS TEMPORALES"],
+            ["nomtipo" => "OTRO"],
+            ["nomtipo" => "PROTESIS"],
+            ["nomtipo" => "TATUAJE"],
+        ]);
     }
 }

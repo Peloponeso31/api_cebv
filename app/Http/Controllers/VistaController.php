@@ -12,7 +12,7 @@ class VistaController extends Controller
      */
     public function index()
     {
-        //
+        return Vista::all();
     }
 
     /**

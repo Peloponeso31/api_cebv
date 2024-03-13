@@ -12,7 +12,7 @@ class TipoController extends Controller
      */
     public function index()
     {
-        //
+        return Tipo::all();
     }
 
     /**

@@ -160,5 +160,10 @@ class PruebaSeeder extends Seeder
 
         DB::statement('ALTER TABLE hipotesis ENABLE KEYS');
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        foreach (Reporte::all() as $reporte) {
+            $reporte->personas()->attach(Persona::all()->random()->id, ['tipo_relacion' => 'Reportante']);
+            $reporte->personas()->attach(Persona::all()->random()->id, ['tipo_relacion' => 'Desaparecido']);
+        }
     }
 }

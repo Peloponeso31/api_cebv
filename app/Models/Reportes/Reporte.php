@@ -44,6 +44,14 @@ class Reporte extends Model
         return $this->belongsToMany(Persona::class);
     }
 
+    public function reportante() {
+        return $this->personas()->wherePivot("tipo_relacion", "Reportante");
+    }
+    
+    public function desaparecidos() {
+        return $this->personas()->wherePivot("tipo_relacion", "Desaparecido");
+    }
+
     /**
      * Get the tipo de reporte that owns the reporte.
      *

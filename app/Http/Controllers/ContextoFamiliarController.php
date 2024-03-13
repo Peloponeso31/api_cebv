@@ -2,46 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreContextoEconomicoRequest;
-use App\Http\Requests\UpdateContextoEconomicoRequest;
-use App\Http\Resources\ContextoEconomicoResource;
-use App\Models\ContextoEconomico;
+use App\Http\Requests\StoreContextoFamiliarRequest;
+use App\Http\Requests\UpdateContextoFamiliarRequest;
+use App\Http\Resources\ContextoFamiliarResource;
+use App\Models\ContextoFamiliar;
 use Illuminate\Http\Request;
 
-class ContextoEconomicoController extends Controller
+class ContextoFamiliarController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return ContextoEconomicoResource::collection(ContextoEconomico::all());
+        return ContextoFamiliarResource::collection(ContextoFamiliar::all());
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreContextoEconomicoRequest $request)
+    public function store(StoreContextoFamiliarRequest $request)
     {
-        return new ContextoEconomicoResource(ContextoEconomico::create($request->all()));
+        return new ContextoFamiliarResource(ContextoFamiliar::create($request->all()));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $model = ContextoEconomico::findOrFail($id);
+        $model = ContextoFamiliar::findOrFail($id);
 
-        return new ContextoEconomicoResource($model);
+        return new ContextoFamiliarResource($model);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update($id, UpdateContextoEconomicoRequest $request)
+    public function update($id, UpdateContextoFamiliarRequest $request)
     {
-        $model = ContextoEconomico::findOrFail($id);
+        $model = ContextoFamiliar::findOrFail($id);
 
         $model->update($request->all());
     }
@@ -52,7 +52,7 @@ class ContextoEconomicoController extends Controller
     public function destroy(Request $request, $id)
     {
         if ($request->user()->tokenCan('delete')) {
-            $model = ContextoEconomico::findOrFail($id);
+            $model = ContextoFamiliar::findOrFail($id);
 
             $model->delete();
 

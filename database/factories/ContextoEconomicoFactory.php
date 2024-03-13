@@ -19,7 +19,7 @@ class ContextoEconomicoFactory extends Factory
     public function definition(): array
     {
         return [
-            "empresa" => fake()->company(),
+            "empresa"  => fake()-> company(),
             "puesto" => fake()->jobTitle(),
             "fecha_ingreso" => fake()->date(),
             "relacion_colegas" => fake()-> randomElement(['Sí', 'No']),

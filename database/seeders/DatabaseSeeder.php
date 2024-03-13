@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\PersonaFactory;
-use Database\Seeders\MunicipioSeeders\MunicipioSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\App;
 
@@ -15,20 +13,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
+            UserSeeder::class, // TODO: Remove this line before deploying to production
+            PruebaSeeder::class ,
+            UbicacionSeeder::class,
             AreaSeeder::class,
-            EstadoSeeder::class,
-            HipotesisSeeder::class,
-            AsentamientoSeeder::class,
-            DireccionSeeder::class,
-            DesaparicionSeeder::class,
-            PersonaSeeder::class,
+            MedioSeeder::class,
+            TipoReporteSeeder::class,
+            TipoHipotesisSeeder::class,
         ]);
-
-        if (App::environment('local')) {
-            \App\Models\User::factory()->create([
-                'name' => 'Test User',
-                'email' => 'test@example.com',
-            ]);
-        }
     }
 }

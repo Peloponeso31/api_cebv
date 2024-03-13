@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Reportes\Informacion\HechoDesaparicion;
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use App\Models\Reporte;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -29,19 +31,14 @@ class Persona extends Model
     {
         return $this->hasOne(Domicilio::class);
     }
-
-    public function reporto(): HasMany
+  
+    /**
+     * The reportes that belong to the persona.
+     *
+     * @return BelongsToMany
+     */
+    public function reportes(): BelongsToMany
     {
-        return $this->hasMany(Reporte::class, 'reportante_id');
-    }
-
-    public function reportada(): HasOne
-    {
-        return $this->hasOne(Reporte::class, 'reportada_id');
-    }
-
-    public function desaparicion(): HasMany
-    {
-        return $this->hasMany(Desaparicion::class);
+        return $this->belongsToMany(Reporte::class);
     }
 }

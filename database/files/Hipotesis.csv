@@ -1,0 +1,37 @@
+﻿circunstancia,abreviacion,descripcion
+1,AA,Ausencia por consumo de alcohol u otras sustancias psicoactivas
+1,ACC,Accidente
+1,AM,Ausencia por razones de salud mental
+1,AM(SUI),Ausencia por razones de salud mental - Suicidio
+1,ANG,Ausencia no grave
+1,AS,Ausencia por otras razones de salud
+1,AVOL,Ausencia voluntaria o deliberada
+1,ACAT,Catástrofe
+1,ADET,Detención legal
+1,AFAM,Desacuerdos familiares
+1,AEXT,Extravío
+1,AFMC,Falta de medios de comunicación
+1,AOSV,Otra situación involuntaria
+1,AOSV(DEL),Otra situación involuntaria - Ausencia por la comisión de un delito
+1,AFAL,Reporte falso
+1,OSI,Otra situación involuntaria - La persona no es víctima de ningún delito
+2,DF,Desaparición forzada
+2,DP,Desaparición por particulares
+3,DVF,Desaparición por violencia familiar
+3,DVM,Desaparición por violencia hacia las mujeres
+3,DVSO,Desaparición por violencia social
+3,DVAP,Desaparición por violencia en razón de su actividad o pertenencia grupal
+3,DVDS,Discriminación y violencia hacia las personas de la diversidad sexual
+3,DLSS,Delitos sexuales
+3,DR,Desaparición por ser víctima de robo o atraco
+3,DFEM,Feminicidio
+3,DHOM,Homicidio
+3,DLES,Lesiones
+3,DOMI,Omisión de cuidados
+3,DPRIV,Privación ilegal de la libertad
+3,DSEC,Secuestro
+3,DSUS,Sustracción de menores
+3,DTRATA,Trata de personas
+3,DRVD,Desaparición que conlleva riesgo de ser víctima de un delito a determinar
+3,OSID,Otra situación involuntaria - La persona es víctima de un delito diverso
+4,SD,Se desconoce

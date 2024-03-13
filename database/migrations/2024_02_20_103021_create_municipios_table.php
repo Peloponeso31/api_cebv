@@ -8,10 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('municipios', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('estado_id')
-                ->constrained(table: 'estados', indexName: 'idx_municipios_estado');
-            $table->string('nombre');
+            $table->string('id', 5)->primary();
+            $table->string('estado_id', 2);
+            $table->string('nombre', 100);
+
+            $table->foreign('estado_id')
+                ->references('id')->on('estados');
         });
     }
 

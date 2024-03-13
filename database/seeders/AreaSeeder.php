@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Area;
+use App\Models\Reportes\Informacion\Area;
 use Illuminate\Database\Seeder;
 
 class AreaSeeder extends Seeder
@@ -15,7 +15,10 @@ class AreaSeeder extends Seeder
             'Celula Sur',
             'Búsqueda Inmediata',
             'Larga Data',
+            'OGPI'
         ];
+
+        sort($areas);
 
         foreach ($areas as $area) {
             Area::firstOrCreate(['nombre' => $area]);

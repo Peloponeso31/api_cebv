@@ -90,7 +90,7 @@ sail artisan migrate:fresh --seed
 ```
 Refiérase a la documentación de [sail](https://laravel.com/docs/10.x/sail) para saber mas al respecto sobre el proceso de replicacion del proyecto.
 
-Y el proyecto estara listo para el desarrollo y prueba, puede generar una api key en la ruta `localhost/api/issue-token`, ya sea por metodo GET o POST con los siguentes parametros:
+Y el proyecto estara listo para el desarrollo y prueba, puede generar una api key en la ruta `localhost/api/token`, ya sea por metodo GET o POST con los siguentes parametros:
 |campo|valor|
 |-|-|
 |email|test@example.com|

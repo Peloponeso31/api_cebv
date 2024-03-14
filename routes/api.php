@@ -11,10 +11,16 @@ use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\HipotesisController;
 use App\Http\Controllers\DesaparicionController;
+use App\Http\Controllers\LadoController;
+use App\Http\Controllers\LadoRnpdnoController;
 use App\Http\Controllers\RegionCuerpoController;
 use App\Http\Controllers\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\SenasParticularesController;
+use App\Http\Controllers\TipoController;
 use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\VistaController;
+use App\Http\Controllers\VistaRnpdnoController;
+use App\Models\Catalogos\VistaRnpdno;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +79,11 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
+    Route::apiResource('/catalogos/tipo',TipoController::class);
+    Route::apiResource('/catalogos/vista',VistaController::class);
+    Route::apiResource('/catalogos/lado',LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 });
 

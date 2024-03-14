@@ -200,6 +200,12 @@ class CatalogosSeeder extends Seeder
             ["nomvista" => "EXTERNO"],
         ]);
 
+        \App\Models\Catalogos\VistaRnpdno::insert([
+            ["nomvistarpndno" => "DORSAL"],
+            ["nomvistarpndno" => "FRONTAL"],
+            ["nomvistarpndno" => "NO ESPECIFICA"],
+        ]);
+
         \App\Models\Catalogos\Lado::insert([
             ["nomlado" => "DERECHO"],
             ["nomlado" => "IZQUIERDO"],
@@ -207,6 +213,13 @@ class CatalogosSeeder extends Seeder
             ["nomlado" => "UNICO"],
             ["nomlado" => "ANTERIOR"],
             ["nomlado" => "POSTERIOR"],
+        ]);
+
+        \App\Models\Catalogos\LadoRnpdno::insert([
+            ["nomladorpndno" => "DERECHO"],
+            ["nomladorpndno" => "IZQUIERDO"],
+            ["nomladorpndno" => "NO ESPECIFICA"],
+            ["nomladorpndno" => "UNICO"],
         ]);
 
         \App\Models\Catalogos\Tipo::insert([

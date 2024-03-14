@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Reportes\Informacion\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 class Persona extends Model
 {
@@ -26,7 +24,7 @@ class Persona extends Model
         'sexo',
         'genero',
     ];
-  
+
     /**
      * The reportes that belong to the persona.
      *
@@ -35,5 +33,15 @@ class Persona extends Model
     public function reportes(): BelongsToMany
     {
         return $this->belongsToMany(Reporte::class);
+    }
+
+    public function edad_anos()
+    {
+        return Carbon::parse($this->attributes['fecha_nacimiento'])->age;
+    }
+
+    public function fecha_nacimiento_legible()
+    {
+        return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
 }

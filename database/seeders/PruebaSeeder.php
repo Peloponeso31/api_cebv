@@ -67,7 +67,7 @@ class PruebaSeeder extends Seeder
                 'fecha_desaparicion' => $row[7],
                 'fecha_percato' => $row[8],
                 'folio' => $row[9],
-
+                'created_at' => now()
             ];
         };
 

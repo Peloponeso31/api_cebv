@@ -44,4 +44,9 @@ class Persona extends Model
     {
         return $this->hasMany(Desaparicion::class);
     }
+
+    public function senasparticulares(): HasMany
+    {
+        return $this->hasMany(SenasParticulares::class);
+    }
 }

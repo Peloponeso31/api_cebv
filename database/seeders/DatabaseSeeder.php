@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\SenasParticulares::create([
+            "persona_id" => 1,
             "region_cuerpo_id" => 3,
             "vista_id" => 5,
             "lado_id" => 5,

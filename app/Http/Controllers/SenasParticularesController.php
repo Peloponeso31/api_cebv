@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSenasParticularesRequest;
 use App\Http\Resources\SenasParticularesResource;
 use App\Models\SenasParticulares;
 use Illuminate\Http\Request;
@@ -21,15 +22,15 @@ class SenasParticularesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSenasParticularesRequest $request)
     {
-        //
+        return new SenasParticularesResource(SenasParticulares::create($request->all()));
     }
 
     /**

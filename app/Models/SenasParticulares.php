@@ -19,8 +19,10 @@ class SenasParticulares extends Model
         "tipo_id",
         "lado_id",
         "vista_id",
+        "persona_id",
         "region_cuerpo_id",
         "region_cuerpo_rnpdno_id",
+        "cantidad",
         "descripcion",
         "foto"
     ];
@@ -43,5 +45,9 @@ class SenasParticulares extends Model
 
     public function tipo(): BelongsTo {
         return $this->belongsTo(Tipo::class);
+    }
+
+    public function persona(): BelongsTo {
+        return $this->belongsTo(Persona::class);
     }
 }

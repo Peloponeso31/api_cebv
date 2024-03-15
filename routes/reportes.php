@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon;
 Route::middleware('auth:sanctum')->group(function() {
 
     Route::get("/informe_de_inicio/{id}", function ($id) {
-        return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => Reporte::findOrFail($id)])->stream();
+        $reporte = Reporte::findOrFail($id);
+        return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => $reporte])->stream($reporte->folio.".pdf");
     });
 });

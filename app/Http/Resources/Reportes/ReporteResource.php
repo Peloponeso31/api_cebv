@@ -21,8 +21,10 @@ class ReporteResource extends JsonResource
             'fecha_desaparicion' => $this->fecha_desaparicion,
             'fecha_percato' => $this->fecha_percato,
             'folio' => $this->folio,
-            'reportante' => PersonaResource::collection($this->personas()->wherePivot('tipo_relacion', 'Reportante')->get()),
-            'desaparecido' => PersonaResource::collection($this->personas()->wherePivot('tipo_relacion', 'Desaparecido')->get()),
+            'hechos_desaparicion_id' => $this->hechoDesaparicion->id,
+            'creado' => $this->created_at,
+            'reportante' => PersonaResource::collection($this->reportante()->get()),
+            'desaparecido' => PersonaResource::collection($this->desaparecidos()->get()),
         ];
     }
 }

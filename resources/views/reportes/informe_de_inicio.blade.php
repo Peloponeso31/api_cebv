@@ -8,15 +8,29 @@
 </head>
 <style>
     @page { margin: 100px 50px; }
-    #header { position: fixed; left: 0px; top: -100px; right: 0px; height: 100px; background-color: orange; text-align: center; }
+    #header { 
+        position: fixed; left: 0px; 
+        top: -100px; 
+        right: 0px; 
+        height: 100px; 
+        text-align: center; 
+    }
     #footer { 
         position: fixed; 
         left: 0px; bottom: -100px; 
-        right: 0px; height: 100px; 
-        background-color: lightblue; 
+        right: 0px; height: 100px;  
         display: inline-block; 
     }
     #footer .page:after { content: counter(page, upper-roman); }
+    p {
+        text-align: justify;
+        font-weight: bold;
+    }
+    h1 {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bolder;
+    }
 </style>
 <body>
     <div id="header">
@@ -41,7 +55,7 @@
         <h1> 
             {{ $reporte->desaparecidos->first()->nombre }} 
             {{ $reporte->desaparecidos->first()->apellido_paterno }} 
-            {{ $reporte->desaparecidos->first()->apellido_paterno }} - {{$reporte->folio}} 
+            {{ $reporte->desaparecidos->first()->apellido_materno }} - {{$reporte->folio}} 
         </h1>
     
         <p>
@@ -67,7 +81,7 @@
             {{ $reporte->desaparecidos->first()->genero == "MASCULINO" ? "del" : "de la"}} C. 
             {{ $reporte->desaparecidos->first()->nombre }} 
             {{ $reporte->desaparecidos->first()->apellido_paterno }} 
-            {{ $reporte->desaparecidos->first()->apellido_paterno }}, 
+            {{ $reporte->desaparecidos->first()->apellido_materno }}, 
             {{ $reporte->reportante->first()->genero == "MASCULINO" ? "el" : "la"}} 
             reportante cuenta con {{ $reporte->reportante->first()->edad_anos() }} años de edad por haber nacido el 
             {{ $reporte->reportante->first()->fecha_nacimiento_legible() }}, 
@@ -87,17 +101,17 @@
             {{ $reporte->desaparecidos->first()->genero == "MASCULINO" ? "del" : "de la"}} C.
             {{ $reporte->desaparecidos->first()->nombre }} 
             {{ $reporte->desaparecidos->first()->apellido_paterno }} 
-            {{ $reporte->desaparecidos->first()->apellido_paterno }}
+            {{ $reporte->desaparecidos->first()->apellido_materno }}
             
         </p>
-        <h2> Despliegue Operativo </h2>
+        <h1><u>Despliegue Operativo</u></h1>
 
         <p>
             El mismo día que inició la presente, se alertó a la Secretaría de Seguridad Pública (SSP), sobre la No localización 
             {{ $reporte->desaparecidos->first()->genero == "MASCULINO" ? "del" : "de la"}} C.
             {{ $reporte->desaparecidos->first()->nombre }} 
             {{ $reporte->desaparecidos->first()->apellido_paterno }} 
-            {{ $reporte->desaparecidos->first()->apellido_paterno }}, 
+            {{ $reporte->desaparecidos->first()->apellido_materno }}, 
             a través del grupo habilitado para la comunicación con el Centro Estatal de Control, Comando, Comunicaciones y 
             Cómputo (C4), solicitando el despliegue de elementos policiales próximos al lugar de No Localización.
         </p>

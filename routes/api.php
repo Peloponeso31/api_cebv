@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CaracteristicasFisicasController;
@@ -27,9 +28,8 @@ use App\Http\Controllers\TipoCabelloController;
 use App\Http\Controllers\TipoLabiosController;
 use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
-use App\Http\Controllers\Ubicaciones\DireccionController
+use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
-use App\Http\Controllers\DesaparicionController;
 use App\Http\Controllers\LadoController;
 use App\Http\Controllers\LadoRnpdnoController;
 use App\Http\Controllers\RegionCuerpoController;
@@ -38,10 +38,10 @@ use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TipoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VistaController;
 use App\Http\Controllers\VistaRnpdnoController;
+use App\Http\Controllers\VestimentaController;
 use App\Models\Catalogos\VistaRnpdno;
 
 /*
@@ -105,13 +105,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
-    
-
-    /**
-     * Rutas sobre la desaparición de personas
-     */
-    Route::apiResource('/desapariciones', DesaparicionController::class);
-
     
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);

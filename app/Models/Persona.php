@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Carbon;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Persona extends Model
 {

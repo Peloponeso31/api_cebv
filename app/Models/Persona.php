@@ -68,4 +68,9 @@ class Persona extends Model
     {
         return $this->hasOne(Etnia::class);
     }
+
+    public function senasparticulares(): HasMany
+    {
+        return $this->hasMany(SenasParticulares::class);
+    }
 }

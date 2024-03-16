@@ -51,16 +51,8 @@ use App\Http\Controllers\UserAdminController;
  * Rutas protegidas por autenticacion.
  */
 Route::middleware('auth:sanctum')->group(function () {
-    Route::controller(ReporteController::class)->group(function () {
-        Route::get('/reportes', 'obtener');
-    });
-
     Route::get('/user', function() {
         return Auth::user();
-    });
-
-    Route::get("/pdf", function () {
-        return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => Reporte::find(1)])->stream();
     });
 
     /*

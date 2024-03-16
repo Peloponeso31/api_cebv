@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Carbon;
 
 class Reporte extends Model
 {
@@ -50,6 +51,10 @@ class Reporte extends Model
     
     public function desaparecidos() {
         return $this->personas()->wherePivot("tipo_relacion", "Desaparecido");
+    }
+
+    public function fecha_creacion_legible() {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat("d \d\\e F \d\\e Y");
     }
 
     /**

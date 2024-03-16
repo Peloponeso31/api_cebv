@@ -17,7 +17,8 @@ class ReporteController extends Controller
             $query = Reporte::search(request('search'));
         }
 
-        return ReporteResource::collection($query->paginate());
+        // TODO: Volver a paginar esta query
+        return ReporteResource::collection($query->get());
     }
 
     public function store(ReporteRequest $request)

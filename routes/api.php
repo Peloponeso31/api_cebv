@@ -1,15 +1,34 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CaracteristicasFisicasController;
+use App\Http\Controllers\ColorCabelloController;
+use App\Http\Controllers\ColorOjosController;
+use App\Http\Controllers\ColorPielController;
+use App\Http\Controllers\ComplexionController;
+use App\Http\Controllers\EtniaController;
+use App\Http\Controllers\GrupoEtnicoController;
+use App\Http\Controllers\LenguaController;
 use App\Http\Controllers\PersonaController;
-use App\Http\Controllers\ReporteController;
-use App\Http\Controllers\Ubicaciones\EstadoController;
-use App\Http\Controllers\Ubicaciones\MunicipioController;
+use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
+use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
+use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;
+use App\Http\Controllers\Reportes\Informacion\AreaController;
+use App\Http\Controllers\Reportes\Informacion\HechoDesaparicionController;
+use App\Http\Controllers\Reportes\Informacion\MedioController;
+use App\Http\Controllers\Reportes\Informacion\TipoMedioController;
+use App\Http\Controllers\Reportes\ReporteController;
+use App\Http\Controllers\Reportes\TipoReporteController;
+use App\Http\Controllers\TamanoOjosController;
+use App\Http\Controllers\TamanoOrejasController;
+use App\Http\Controllers\TipoCabelloController;
+use App\Http\Controllers\TipoLabiosController;
+use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
-use App\Http\Controllers\Ubicaciones\DireccionController;
-use App\Http\Controllers\AreaController;
-use App\Http\Controllers\HipotesisController;
+use App\Http\Controllers\Ubicaciones\DireccionController
+use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\DesaparicionController;
 use App\Http\Controllers\LadoController;
 use App\Http\Controllers\LadoRnpdnoController;
@@ -17,6 +36,9 @@ use App\Http\Controllers\RegionCuerpoController;
 use App\Http\Controllers\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TipoController;
+use App\Http\Controllers\Ubicaciones\EstadoController;
+use App\Http\Controllers\Ubicaciones\MunicipioController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VistaController;
 use App\Http\Controllers\VistaRnpdnoController;
@@ -33,14 +55,11 @@ use App\Models\Catalogos\VistaRnpdno;
 |
 */
 
+
 /**
  * Rutas protegidas por autenticacion.
  */
 Route::middleware('auth:sanctum')->group(function () {
-    Route::controller(ReporteController::class)->group(function () {
-        Route::get('/reportes', 'obtener');
-    });
-
     Route::get('/user', function() {
         return Auth::user();
     });
@@ -59,7 +78,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/persona", PersonaController::class);
 
     /**
-     * Rutas de ubicaciones
+     * Routes for ubicaciones module
      */
     Route::apiResource('/estados', EstadoController::class);
     Route::apiResource('/municipios', MunicipioController::class);
@@ -67,15 +86,32 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/direcciones', DireccionController::class);
 
     /**
-     * Rutas sobre los Catálogos de las Desapariciones
+     * Routes for the reportes module
+     */
+    Route::apiResource('/tipos-reportes', TipoReporteController::class);
+    Route::apiResource('/reportes', ReporteController::class);
+
+    /**
+     * Routes for the informacion module
      */
     Route::apiResource('/areas', AreaController::class);
+    Route::apiResource('/tipos-medios', TipoMedioController::class);
+    Route::apiResource('/medios', MedioController::class);
+    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
+
+    /*
+     * Routes for the hipotesis module
+     */
+    Route::apiResource('/circunstancias', CircunstanciaController::class);
+    Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
+    
 
     /**
      * Rutas sobre la desaparición de personas
      */
     Route::apiResource('/desapariciones', DesaparicionController::class);
+
     
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
@@ -85,6 +121,28 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
     Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
+
+
+    Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
+
+    Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
+    Route::apiResource('/color_cabello', ColorCabelloController::class);
+    Route::apiResource('/color_ojos', ColorOjosController::class);
+    Route::apiResource('/tamano_ojos', TamanoOjosController::class);
+    Route::apiResource('/color_piel', ColorPielController::class);
+    Route::apiResource('/tipo_cabello', TipoCabelloController::class);
+    Route::apiResource('/tipo_labios', TipoLabiosController::class);
+    Route::apiResource('/tipo_nariz', TipoNarizController::class);
+    Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
+    Route::apiResource('/complexion', ComplexionController::class);
+
+
+    Route::apiResource("etnia", EtniaController::class);
+    Route::apiResource("/religion", ReligionController::class);
+    Route::apiResource("/lengua", LenguaController::class);
+    Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
+    Route::apiResource("/vestimenta", VestimentaController::class);
+    Route::apiResource("/ascendencia", AscendenciaController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

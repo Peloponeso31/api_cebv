@@ -9,14 +9,18 @@ return new class extends Migration {
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('asentamiento_id')
-                ->constrained(table: 'asentamientos', indexName: 'idx_direcciones_asentamiento');
+            $table->string('asentamiento_id', 9);
             $table->string('calle');
-            $table->string('numero_exterior');
-            $table->string('numero_interior')->nullable();
+            $table->string('numero_exterior', 10)->nullable();
+            $table->string('numero_interior', 10)->nullable();
             $table->string('calle_1')->nullable();
             $table->string('calle_2')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->string('tramo_carretero', 100)->nullable();
+            $table->string('codigo_postal', 5)->nullable();
+            $table->text('referencia')->nullable();
+
+            $table->foreign('asentamiento_id')
+                ->references('id')->on('asentamientos');
         });
     }
 

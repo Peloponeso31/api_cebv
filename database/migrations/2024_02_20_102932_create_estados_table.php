@@ -8,8 +8,10 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('estados', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
+            $table->string('id', 2)->primary();
+            $table->string('nombre', 100);
+            $table->string('abreviatura_inegi', 10);
+            $table->string('abreviatura_cebv', 2);
         });
     }
 

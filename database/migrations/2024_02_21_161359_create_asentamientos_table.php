@@ -8,11 +8,18 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('asentamientos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('municipio_id')
-                ->constrained(table: 'municipios', indexName: 'idx_asentamientos_municipio');
-            $table->integer('codigo_postal');
+            $table->string('id', 9)->primary();
+            $table->string('municipio_id', 5);
+
             $table->string('nombre');
+            $table->enum('ambito', ['U', 'R']);
+            $table->double('latitud', 10, 6);
+            $table->double('longitud', 11, 6);
+            $table->integer('altitud');
+
+            $table->foreign('municipio_id')
+                ->references('id')->on('municipios');
+
         });
     }
 

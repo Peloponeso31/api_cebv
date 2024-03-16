@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             MedioSeeder::class,
             TipoReporteSeeder::class,
             TipoHipotesisSeeder::class,
-            PruebaSeeder::class ,
+            CatalogosSeeder::class,
+            PruebaSeeder::class,
         ]);
     }
 }

@@ -25,6 +25,16 @@ class Persona extends Model
         'genero',
     ];
 
+    public function reporto(): HasMany
+    {
+        return $this->hasMany(Reporte::class, 'reportante_id');
+    }
+
+    public function reportada(): HasOne
+    {
+        return $this->hasOne(Reporte::class, 'reportada_id');
+    }
+  
     /**
      * The reportes that belong to the persona.
      *
@@ -43,5 +53,19 @@ class Persona extends Model
     public function fecha_nacimiento_legible()
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
+    }
+  
+    public function contexto_economico(): HasOne
+    {
+        return $this->hasOne(ContextoEconomico::class);
+    }
+
+    public function caracteristicasfisicas(): HasOne
+    {
+        return $this->hasOne(CaracteristicasFisicas::class);
+    }
+    public function etnia(): HasOne
+    {
+        return $this->hasOne(Etnia::class);
     }
 }

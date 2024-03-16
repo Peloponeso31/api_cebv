@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string  ('apellido_paterno')->nullable();
             $table->string  ('apellido_materno')->nullable();
             $table->date    ('fecha_nacimiento')->nullable();
-            $table->string  ('curp')->nullable()->unique();
+            $table->string  ('curp')->nullable();
             $table->string  ('ocupacion')->nullable();
             $table->string  ('sexo_al_nacer')->nullable();
             $table->string  ('genero')->nullable();

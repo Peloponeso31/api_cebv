@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            AreaSeeder::class,
             TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
             UbicacionSeeder::class,

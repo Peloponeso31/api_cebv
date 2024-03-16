@@ -27,7 +27,9 @@ use App\Http\Controllers\TipoCabelloController;
 use App\Http\Controllers\TipoLabiosController;
 use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
-use App\Http\Controllers\Ubicaciones\DireccionController;
+use App\Http\Controllers\Ubicaciones\DireccionController
+use App\Http\Controllers\ContextoEconomicoController;
+use App\Http\Controllers\DesaparicionController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use Illuminate\Support\Facades\Route;
@@ -103,6 +105,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
     
+
+    /**
+     * Rutas sobre la desaparición de personas
+     */
+    Route::apiResource('/desapariciones', DesaparicionController::class);
+
+    Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
+
     Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);
     Route::apiResource('/color_ojos', ColorOjosController::class);
@@ -113,6 +123,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/tipo_nariz', TipoNarizController::class);
     Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
     Route::apiResource('/complexion', ComplexionController::class);
+
 
     Route::apiResource("etnia", EtniaController::class);
     Route::apiResource("/religion", ReligionController::class);

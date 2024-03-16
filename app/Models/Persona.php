@@ -26,7 +26,7 @@ class Persona extends Model
         'sexo',
         'genero',
     ];
-   
+
     public function reporto(): HasMany
     {
         return $this->hasMany(Reporte::class, 'reportante_id');
@@ -45,6 +45,11 @@ class Persona extends Model
     public function reportes(): BelongsToMany
     {
         return $this->belongsToMany(Reporte::class);
+    }
+
+    public function contexto_economico(): HasOne
+    {
+        return $this->hasOne(ContextoEconomico::class);
     }
 
     public function caracteristicasfisicas(): HasOne

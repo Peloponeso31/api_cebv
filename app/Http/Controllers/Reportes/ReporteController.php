@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reportes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
+use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Reportes\Reporte;
 
 class ReporteController extends Controller
@@ -16,7 +17,7 @@ class ReporteController extends Controller
             $query = Reporte::search(request('search'));
         }
 
-        return $query->get();
+        return ReporteResource::collection($query->paginate());
     }
 
     public function store(ReporteRequest $request)

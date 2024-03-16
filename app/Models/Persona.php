@@ -26,9 +26,7 @@ class Persona extends Model
         'sexo',
         'genero',
     ];
-
    
-
     public function reporto(): HasMany
     {
         return $this->hasMany(Reporte::class, 'reportante_id');
@@ -38,8 +36,12 @@ class Persona extends Model
     {
         return $this->hasOne(Reporte::class, 'reportada_id');
     }
-
-   
+  
+    /**
+     * The reportes that belong to the persona.
+     *
+     * @return BelongsToMany
+     */
     public function reportes(): BelongsToMany
     {
         return $this->belongsToMany(Reporte::class);

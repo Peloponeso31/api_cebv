@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\InformacionConyugalController;
 
 
 /*
@@ -36,5 +37,9 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 Route::controller(AuthController::class)->group(function() {
+    Route::match(['get', 'post'], '/issue-token', 'issue_token');
+});
+
+Route::controller(InformacionConyugalController::class)->group(function() {
     Route::match(['get', 'post'], '/issue-token', 'issue_token');
 });

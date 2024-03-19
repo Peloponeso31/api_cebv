@@ -3,7 +3,7 @@
   "info": {
     "title": "Api Comision Estatal de Busqueda de Veracruz",
     "version": "v2",
-    "description": "Esta API proporciona la estructura de las operacones que se realizaran."
+    "description": "Esta API proporciona la estructura de las operaciones que se realizaran."
   },
   "servers": [
     {

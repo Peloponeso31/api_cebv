@@ -16,13 +16,7 @@ class EstadoController extends Controller
             $query = Estado::search(request('search'));
         }
 
-        $estados = $query->get();
-
-        if (request()->boolean('detail')) {
-            $estados = $estados->loadCount('municipios');
-        }
-
-        return EstadoResource::collection($estados);
+        return EstadoResource::collection($query->get());
     }
 
     public function show($id)

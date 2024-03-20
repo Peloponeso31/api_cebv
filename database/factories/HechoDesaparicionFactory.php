@@ -2,10 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Persona;
+use App\Models\Oficialidades\Area;
+use App\Models\Personas\Persona;
 use App\Models\Reportes\Hipotesis\Hipotesis;
-use App\Models\Reportes\Informacion\Area;
-use App\Models\Reportes\Informacion\HechoDesaparicion;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

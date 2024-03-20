@@ -2,7 +2,8 @@
 
 namespace App\Models\Reportes\Hipotesis;
 
-use App\Models\Reportes\Informacion\Area;
+use App\Models\Informaciones\Sitio;
+use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,16 +17,11 @@ class Hipotesis extends Model
 
     protected $fillable = [
         'reporte_id',
-        'area_id',
-        'fecha_localizacion',
-        'sintesis_localizacion',
-        'circunstancia_uno_id',
-        'hipotesis_uno',
-        'circunstancia_dos_id',
-        'hipotesis_dos',
-        'sitio_final',
         'tipo_hipotesis_id',
-        'observaciones',
+        'sitio_id',
+        'area_asigna_sitio_id',
+        'etapa',
+        'descripcion',
     ];
 
     protected $casts = [
@@ -39,59 +35,21 @@ class Hipotesis extends Model
      */
     public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class, 'reporte_id');
+        return $this->belongsTo(Reporte::class);
     }
 
-    /**
-     * Get the area que codifica la informacion that owns the hipotesis.
-     *
-     * @return BelongsTo
-     */
-    public function area(): BelongsTo
-    {
-        return $this->belongsTo(Area::class, 'area_id');
-    }
-
-    /**
-     * Get the circunstancia that owns the hipotesis.
-     *
-     * @return BelongsTo
-     */
-    public function circunstanciaUno(): BelongsTo
-    {
-        return $this->belongsTo(Circunstancia::class, 'circunstancia_uno_id');
-    }
-
-    public function circunstanciaDos(): BelongsTo
-    {
-        return $this->belongsTo(Circunstancia::class, 'circunstancia_dos_id');
-    }
-
-    /**
-     * Get the tipo de hipotesis that owns the hipotesis.
-     *
-     * @return BelongsTo
-     */
     public function tipoHipotesis(): BelongsTo
     {
-        return $this->belongsTo(TipoHipotesis::class, 'tipo_hipotesis_id');
+        return $this->belongsTo(TipoHipotesis::class);
     }
 
-    public function toSearchableArray(): array
+    public function sitio(): BelongsTo
     {
-        return [
-            'id' => $this->id,
-            'reporte_id' => $this->reporte_id,
-            'area_id' => $this->area_id,
-            'fecha_localizacion' => $this->fecha_localizacion,
-            'sintesis_localizacion' => $this->sintesis_localizacion,
-            'circunstancia_uno_id' => $this->circunstancia_uno_id,
-            'hipotesis_uno' => $this->hipotesis_uno,
-            'circunstancia_dos_id' => $this->circunstancia_dos_id,
-            'hipotesis_dos' => $this->hipotesis_dos,
-            'sitio_final' => $this->sitio_final,
-            'tipo_hipotesis_id' => $this->tipo_hipotesis_id,
-            'observaciones' => $this->observaciones,
-        ];
+        return $this->belongsTo(Sitio::class);
+    }
+
+    public function areaAsignaSitio(): BelongsTo
+    {
+        return $this->belongsTo(Area::class);
     }
 }

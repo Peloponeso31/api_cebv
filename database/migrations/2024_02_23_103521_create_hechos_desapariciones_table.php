@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('hechos_desapariciones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reporte_id')
-                ->constrained(table: 'reportes', indexName: 'idx_desapariciones_reporte');
+
+            $table->foreignId('reporte_id')->constrained(table: 'reportes', indexName: 'idx_desapariciones_reporte');
 
             $table->boolean('cambio_comportamiento')->nullable();
             $table->text('descripcion_cambio_comportamiento')->nullable();

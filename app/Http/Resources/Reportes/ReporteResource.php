@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Reportes;
 
-use App\Http\Resources\PersonaResource;
+use App\Http\Resources\Personas\PersonaResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,16 +13,12 @@ class ReporteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'area_id' => $this->area_id,
-            'zona_estado' => $this->zona_estado,
-            'medio_id' => $this->medio_id,
-            'tipo_desaparicon' => $this->tipo_desaparicon,
-            'estatus' => $this->estatus,
-            'fecha_desaparicion' => $this->fecha_desaparicion,
-            'fecha_percato' => $this->fecha_percato,
-            'folio' => $this->folio,
-            'reportante' => PersonaResource::collection($this->personas()->wherePivot('tipo_relacion', 'Reportante')->get()),
-            'desaparecido' => PersonaResource::collection($this->personas()->wherePivot('tipo_relacion', 'Desaparecido')->get()),
+            'area_atiende_id' => $this->area_atiende_id,
+            'tipo_reporte_id' => $this->tipo_reporte_id,
+            'medio_conocimiento_id' => $this->medio_conocimiento_id,
+            'zona_estado_id' => $this->zona_estado_id,
+            'tipo_desaparicion' => $this->tipo_desaparicion,
+            'desaparecidos' => PersonaResource::collection($this->desaparecidos),
         ];
     }
 }

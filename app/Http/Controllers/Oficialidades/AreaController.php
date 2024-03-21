@@ -4,10 +4,19 @@ namespace App\Http\Controllers\Oficialidades;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Oficialidades\AreaRequest;
+use App\Http\Resources\Oficialidades\AreaResource;
 use App\Models\Oficialidades\Area;
+use App\Services\CrudService;
 
 class AreaController extends Controller
 {
+    protected CrudService $service;
+
+    public function __construct(CrudService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $query = Area::query();
@@ -21,23 +30,21 @@ class AreaController extends Controller
 
     public function store(AreaRequest $request)
     {
-        return Area::create($request->all());
+        return $this->service->store($request, new Area(), new AreaResource(Area::class));
     }
 
     public function show($id)
     {
-        return Area::findOrFail($id);
+        return $this->service->show($id, new Area(), new AreaResource(Area::class));
     }
 
     public function update($id, AreaRequest $request)
     {
-        $model = Area::findOrFail($id);
-
-        return $model->update($request->all());
+        return $this->service->update($id, new Area(), new AreaResource(Area::class), $request);
     }
 
     public function destroy($id)
     {
-        return Area::findOrFail($id)->delete();
+        return $this->service->destroy($id, new Area());
     }
 }

@@ -6,9 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Informaciones\SitioRequest;
 use App\Http\Resources\Informaciones\SitioResource;
 use App\Models\Informaciones\Sitio;
+use App\Services\CrudService;
 
 class SitioController extends Controller
 {
+
+    protected CrudService $service;
+
+    public function __construct(CrudService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $query = Sitio::query();
@@ -22,25 +31,21 @@ class SitioController extends Controller
 
     public function store(SitioRequest $request)
     {
-        return new SitioResource(Sitio::create($request->all()));
+        return $this->service->store($request, new Sitio(), new SitioResource(Sitio::class));
     }
 
-    public function show(Sitio $sitio)
+    public function show($id)
     {
-        return new SitioResource($sitio);
+        return $this->service->show($id, new Sitio(), new SitioResource(Sitio::class));
     }
 
-    public function update(SitioRequest $request, Sitio $sitio)
+    public function update($id, SitioRequest $request)
     {
-        $sitio->update($request->all());
-
-        return new SitioResource($sitio);
+        return $this->service->update($id, new Sitio(), new SitioResource(Sitio::class), $request);
     }
 
-    public function destroy(Sitio $sitio)
+    public function destroy($id)
     {
-        $sitio->delete();
-
-        return response()->json();
+        return $this->service->destroy($id, new Sitio());
     }
 }

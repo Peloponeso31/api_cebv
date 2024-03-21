@@ -6,9 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Informaciones\TipoMedioRequest;
 use App\Http\Resources\Informaciones\TipoMedioResource;
 use App\Models\Informaciones\TipoMedio;
+use App\Services\CrudService;
 
 class TipoMedioController extends Controller
 {
+    protected CrudService $service;
+
+    public function __construct(CrudService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         $query = TipoMedio::query();
@@ -22,23 +30,21 @@ class TipoMedioController extends Controller
 
     public function store(TipoMedioRequest $request)
     {
-        return new TipoMedioResource(TipoMedio::create($request->all()));
+        return $this->service->store($request, new TipoMedio(), new TipoMedioResource(TipoMedio::class));
     }
 
-    public function show(TipoMedio $tipoMedio)
+    public function show($id)
     {
-        return new TipoMedioResource($tipoMedio);
+        return $this->service->show($id, new TipoMedio(), new TipoMedioResource(TipoMedio::class));
     }
 
-    public function update(TipoMedioRequest $request, TipoMedio $tipoMedio)
+    public function update($id, TipoMedioRequest $request)
     {
-        $tipoMedio->update($request->all());
-
-        return new TipoMedioResource($tipoMedio);
+        return $this->service->update($id, new TipoMedio(), new TipoMedioResource(TipoMedio::class), $request);
     }
 
     public function destroy($id)
     {
-        return TipoMedio::destroy($id);
+        return $this->service->destroy($id, new TipoMedio());
     }
 }

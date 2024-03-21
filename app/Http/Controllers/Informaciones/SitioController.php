@@ -11,12 +11,18 @@ class SitioController extends Controller
 {
     public function index()
     {
-        return SitioResource::collection(Sitio::all());
+        $query = Sitio::query();
+
+        if (request()->has('search')) {
+            $query = Sitio::search(request('search'));
+        }
+
+        return SitioResource::collection($query->get());
     }
 
     public function store(SitioRequest $request)
     {
-        return new SitioResource(Sitio::create($request->validated()));
+        return new SitioResource(Sitio::create($request->all()));
     }
 
     public function show(Sitio $sitio)
@@ -26,7 +32,7 @@ class SitioController extends Controller
 
     public function update(SitioRequest $request, Sitio $sitio)
     {
-        $sitio->update($request->validated());
+        $sitio->update($request->all());
 
         return new SitioResource($sitio);
     }

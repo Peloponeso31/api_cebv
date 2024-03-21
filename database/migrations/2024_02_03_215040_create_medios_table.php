@@ -9,8 +9,9 @@ return new class extends Migration {
     {
         Schema::create('medios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tipo_medio_id')
-                ->constrained(table: 'tipos_medios',indexName: 'idx_medios_tipo_medio');
+
+            $table->foreignId('tipo_medio_id')->constrained(table: 'tipos_medios',indexName: 'idx_medios_tipo_medio');
+
             $table->string('nombre');
         });
     }

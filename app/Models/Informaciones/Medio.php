@@ -15,8 +15,8 @@ class Medio extends Model
     protected $table = 'medios';
 
     protected $fillable = [
-        'nombre',
         'tipo_medio_id',
+        'nombre',
     ];
 
     public $timestamps = false;
@@ -45,8 +45,8 @@ class Medio extends Model
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
             'tipo_medio_id' => $this->tipo_medio_id,
+            'nombre' => $this->nombre,
         ];
     }
 }

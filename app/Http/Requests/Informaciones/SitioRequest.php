@@ -9,12 +9,7 @@ class SitioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required'],
+            'nombre' => ['required', 'string', 'max:255'],
         ];
-    }
-
-    public function authorize(): bool
-    {
-        return true;
     }
 }

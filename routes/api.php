@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
+use App\Http\Controllers\Informaciones\SitioController;
 use App\Http\Controllers\Informaciones\TipoMedioController;
 use App\Http\Controllers\Oficialidades\AreaController;
 use App\Http\Controllers\Oficialidades\InstitucionController;
@@ -65,6 +66,7 @@ Route::middleware('auth:sanctum')->group(function () {
      */
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/tipos-medios', TipoMedioController::class);
+    Route::apiResource('/sitios', SitioController::class);
 
     /**
      * Routes for the oficialidades module

@@ -9,27 +9,6 @@ use App\Models\Ubicaciones\Direccion;
 
 class DireccionController extends Controller
 {
-    public function __construct()
-    {
-        /**
-         * Permisos para el controlador DireccionController a
-         * través del middleware y roles de Spatie
-         */
-        //$this->middleware('role:guest_test|user_test|admin_test')->only('index', 'show');
-        //$this->middleware('role:user_test|admin_test')->only('store', 'update');
-        //$this->middleware('role:admin_test')->only('destroy');
-
-        /**
-         * Permisos para el controlador DireccionController a
-         * través del middleware y permisos de Spatie
-         */
-        //$this->middleware('permission:read_test')->only('index', 'show');
-        //$this->middleware('permission:create_test')->only('store');
-        //$this->middleware('permission:update_test')->only('update');
-        //$this->middleware('permission:delete_test')->only('destroy');
-    }
-
-
     public function index()
     {
         $query = Direccion::query();

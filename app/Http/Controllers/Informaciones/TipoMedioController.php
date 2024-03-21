@@ -4,30 +4,37 @@ namespace App\Http\Controllers\Informaciones;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Informaciones\TipoMedioRequest;
+use App\Http\Resources\Informaciones\TipoMedioResource;
 use App\Models\Informaciones\TipoMedio;
 
 class TipoMedioController extends Controller
 {
     public function index()
     {
-        return TipoMedio::all();
+        $query = TipoMedio::query();
+
+        if (request()->has('search')) {
+            $query = TipoMedio::search(request('search'));
+        }
+
+        return TipoMedioResource::collection($query->get());
     }
 
     public function store(TipoMedioRequest $request)
     {
-        return TipoMedio::create($request->all());
+        return new TipoMedioResource(TipoMedio::create($request->all()));
     }
 
-    public function show($id)
+    public function show(TipoMedio $tipoMedio)
     {
-        return TipoMedio::findOrFail($id);
+        return new TipoMedioResource($tipoMedio);
     }
 
-    public function update($id, TipoMedioRequest $request)
+    public function update(TipoMedioRequest $request, TipoMedio $tipoMedio)
     {
-        $tipoMedio = TipoMedio::findOrFail($id);
+        $tipoMedio->update($request->all());
 
-        return $tipoMedio->update($request->all());
+        return new TipoMedioResource($tipoMedio);
     }
 
     public function destroy($id)

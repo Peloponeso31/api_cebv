@@ -9,6 +9,7 @@ class InstitucionSeeder extends Seeder
 {
     public function run(): void
     {
+        // TODO: Change for real data
         $instituciones = [
             'Comisión Nacional de Derechos Humanos',
             'Instituto Nacional de Migración',

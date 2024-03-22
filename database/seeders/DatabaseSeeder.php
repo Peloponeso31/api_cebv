@@ -39,7 +39,9 @@ class DatabaseSeeder extends Seeder
          * Test seeders
          */
         $this->call([
+            PersonaSeeder::class,
             ReporteSeeder::class,
+            TestingSeeder::class,
         ]);
     }
 }

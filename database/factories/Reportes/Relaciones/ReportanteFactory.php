@@ -2,7 +2,9 @@
 
 namespace Database\Factories\Reportes\Relaciones;
 
+use App\Models\Personas\Parentesco;
 use App\Models\Personas\Persona;
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReportanteFactory extends Factory
@@ -12,7 +14,8 @@ class ReportanteFactory extends Factory
         return [
             'persona_id' => Persona::factory(),
             'reporte_id' => Reporte::factory(),
-            'denuncia anonima' => fake()->boolean,
+            'parentesco_id' => Parentesco::inRandomOrder()->first()->id,
+            'denuncia_anonima' => fake()->boolean,
             'informacion_consentimiento' => fake()->boolean,
             'informacion_exclusiva_busqueda' => fake()->boolean,
             'publicacion_registro_nacional' => fake()->boolean,

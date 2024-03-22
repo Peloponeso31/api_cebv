@@ -88,7 +88,7 @@ Route::middleware('auth:sanctum')->group(function () {
      */
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
     Route::apiResource('/reportes', ReporteController::class);
-    Route::apiResource('/reportes/{reporte}/folio', ReporteController::class)->only('setFolio');
+    Route::post('/reportes/{reporte}/folios', 'App\Http\Controllers\Reportes\ReporteController@setFolio');
 
     Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
 

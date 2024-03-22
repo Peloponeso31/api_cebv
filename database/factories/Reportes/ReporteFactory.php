@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories\Reportes\Hechos;
+namespace Database\Factories\Reportes;
 
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;

@@ -7,7 +7,7 @@ use App\Models\Reportes\Reporte;
 
 class ReporteService
 {
-    public function setFolio(mixed $id)
+    public function setFolio(mixed $id): void
     {
         $reporte = Reporte::findOrFail($id);
 

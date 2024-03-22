@@ -5,44 +5,32 @@ namespace App\Http\Controllers\Oficialidades;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\FolioResource;
 use App\Models\Oficialidades\Folio;
-use Illuminate\Http\Request;
+use App\Services\CrudService;
 
 class FolioController extends Controller
 {
+    protected CrudService $service;
+    protected Folio $model;
+
+    public function __construct(CrudService $service, Folio $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function index()
     {
-        return FolioResource::collection(Folio::all());
+        $query = $this->model::query();
+
+        if (request()->has('search')) {
+            $query = $this->model::search(request('search'));
+        }
+
+        return FolioResource::collection($query->get());
     }
 
-    public function store(Request $request)
+    public function show($id)
     {
-        $data = $request->validate([
-            'folio' => ['required'],
-        ]);
-
-        return new FolioResource(Folio::create($data));
-    }
-
-    public function show(Folio $folio)
-    {
-        return new FolioResource($folio);
-    }
-
-    public function update(Request $request, Folio $folio)
-    {
-        $data = $request->validate([
-            'folio' => ['required'],
-        ]);
-
-        $folio->update($data);
-
-        return new FolioResource($folio);
-    }
-
-    public function destroy(Folio $folio)
-    {
-        $folio->delete();
-
-        return response()->json();
+        return $this->service->show($id, $this->model, new FolioResource($this->model::class));
     }
 }

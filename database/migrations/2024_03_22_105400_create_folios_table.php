@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained(table: 'users');
 
             $table->string('folio');
+            // TODO: Add dateTime to created at
         });
     }
 

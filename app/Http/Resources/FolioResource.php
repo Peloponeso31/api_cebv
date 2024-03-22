@@ -14,8 +14,9 @@ class FolioResource extends JsonResource
         return [
             'id' => $this->id,
             'folio' => $this->folio,
-
-            'reporte' => new ReporteResource($this->whenLoaded('reporte')),
+            'persona_id' => $this->persona_id,
+            'reporte_id' => $this->reporte_id,
+            'user_id' => $this->user_id,
         ];
     }
 }

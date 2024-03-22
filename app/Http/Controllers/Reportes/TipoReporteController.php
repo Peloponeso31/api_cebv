@@ -4,40 +4,49 @@ namespace App\Http\Controllers\Reportes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\TipoReporteRequest;
+use App\Http\Resources\Reportes\TipoReporteResource;
 use App\Models\Reportes\TipoReporte;
+use App\Services\CrudService;
 
 class TipoReporteController extends Controller
 {
+    protected CrudService $service;
+    protected TipoReporte $model;
+
+    public function __construct(CrudService $service, TipoReporte $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function index()
     {
-        $query = TipoReporte::query();
+        $query = $this->model::query();
 
         if (request()->has('search')) {
-            $query = TipoReporte::search(request('search'));
+            $query = $this->model::search(request('search'));
         }
 
-        return $query->get();
+        return TipoReporteResource::collection($query->get());
     }
 
     public function store(TipoReporteRequest $request)
     {
-        return TipoReporte::create($request->all());
+        return $this->service->store($request, $this->model, new TipoReporteResource($this->model::class));
     }
 
     public function show($id)
     {
-        return TipoReporte::findOrFail($id);
+        return $this->service->show($id, $this->model, new TipoReporteResource($this->model::class));
     }
 
     public function update($id, TipoReporteRequest $request)
     {
-        $tipoReporte = TipoReporte::findOrFail($id);
-
-        return $tipoReporte->update($request->all());
+        return $this->service->update($id, $request, $this->model, new TipoReporteResource($this->model::class));
     }
 
     public function destroy($id)
     {
-        return TipoReporte::destroy($id);
+        return $this->service->destroy($id, $this->model);
     }
 }

@@ -17,11 +17,11 @@ return new class extends Migration {
 
             $table->foreignId('area_atiende_id')->nullable()->constrained(table: 'areas', indexName: 'idx_reportes_area');
 
-            $table->foreignId('medio_conocimiento_id')->constrained(table: 'medios', indexName: 'idx_reportes_medio');
+            $table->foreignId('medio_conocimiento_id')->nullable()->constrained(table: 'medios', indexName: 'idx_reportes_medio');
 
-            $table->foreignId('zona_estado_id')->constrained(table: 'zonas_estados', indexName: 'idx_reportes_zona_estado');
+            $table->foreignId('zona_estado_id')->nullable()->constrained(table: 'zonas_estados', indexName: 'idx_reportes_zona_estado');
 
-            $table->foreignId('hipotesis_oficial_id')->constrained(table: 'tipos_hipotesis', indexName: 'idx_reportes_hipotesis_oficial');
+            $table->foreignId('hipotesis_oficial_id')->nullable()->constrained(table: 'tipos_hipotesis', indexName: 'idx_reportes_hipotesis_oficial');
 
             $table->enum('tipo_desaparicion', ['U', 'M']);
             $table->date('fecha_localizacion')->nullable();

@@ -11,40 +11,42 @@ use App\Services\CrudService;
 class AreaController extends Controller
 {
     protected CrudService $service;
+    protected Area $model;
 
-    public function __construct(CrudService $service)
+    public function __construct(CrudService $service, Area $model)
     {
         $this->service = $service;
+        $this->model = $model;
     }
 
     public function index()
     {
-        $query = Area::query();
+        $query = $this->model::query();
 
         if (request()->has('search')) {
-            $query = Area::search(request('search'));
+            $query = $this->model::search(request('search'));
         }
 
-        return $query->get();
+        return AreaResource::collection($query->get());
     }
 
     public function store(AreaRequest $request)
     {
-        return $this->service->store($request, new Area(), new AreaResource(Area::class));
+        return $this->service->store($request, $this->model, new AreaResource($this->model::class));
     }
 
     public function show($id)
     {
-        return $this->service->show($id, new Area(), new AreaResource(Area::class));
+        return $this->service->show($id, $this->model, new AreaResource($this->model::class));
     }
 
     public function update($id, AreaRequest $request)
     {
-        return $this->service->update($id, new Area(), new AreaResource(Area::class), $request);
+        return $this->service->update($id, $request, $this->model, new AreaResource($this->model::class));
     }
 
     public function destroy($id)
     {
-        return $this->service->destroy($id, new Area());
+        return $this->service->destroy($id, $this->model);
     }
 }

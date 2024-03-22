@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Personas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Personas\IndexPersonaRequest;
-use App\Http\Requests\Personas\StorePersonaRequest;
+use App\Http\Requests\Personas\PersonaRequest;
 use App\Http\Requests\Personas\UpdatePersonaRequest;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Models\Personas\Persona;
@@ -41,7 +41,7 @@ class PersonaController extends Controller
         return PersonaResource::collection($query->get());
     }
 
-    public function store(StorePersonaRequest $request)
+    public function store(PersonaRequest $request)
     {
         return new PersonaResource(Persona::create($request->all()));
     }
@@ -51,7 +51,7 @@ class PersonaController extends Controller
         return new PersonaResource(Persona::findOrFail($id));
     }
 
-    public function update($id, UpdatePersonaRequest $request)
+    public function update($id, PersonaRequest $request)
     {
         $model = Persona::findOrFail($id);
         $model->update($request->all());

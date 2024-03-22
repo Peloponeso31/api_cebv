@@ -13,6 +13,8 @@ use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;
 use App\Http\Controllers\Reportes\Hechos\HechoDesaparicionController;
+use App\Http\Controllers\Reportes\Relaciones\DesaparecidoController;
+use App\Http\Controllers\Reportes\Relaciones\ReportanteController;
 use App\Http\Controllers\Reportes\ReporteController;
 use App\Http\Controllers\Reportes\TipoReporteController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
@@ -93,6 +95,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
 
+    Route::apiResource('/reportantes', ReportanteController::class);
+    Route::apiResource('/desaparecidos', DesaparecidoController::class);
+
     /**
      * Routes for ubicaciones module
      */
@@ -101,7 +106,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/asentamientos', AsentamientoController::class);
     Route::apiResource('/direcciones', DireccionController::class);
     Route::apiResource('/zonas-estados', ZonaEstadoController::class);
-
 });
 
 Route::controller(AuthController::class)->group(function () {

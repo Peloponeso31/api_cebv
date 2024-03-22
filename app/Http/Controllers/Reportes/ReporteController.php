@@ -6,39 +6,47 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Reportes\Reporte;
+use App\Services\CrudService;
 
 class ReporteController extends Controller
 {
+    protected CrudService $service;
+    protected Reporte $model;
+
+    public function __construct(CrudService $service, Reporte $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function index()
     {
-        $query = Reporte::query();
+        $query = $this->model::query();
 
         if (request()->has('search')) {
-            $query = Reporte::search(request('search'));
+            $query = $this->model::search(request('search'));
         }
 
-        return ReporteResource::collection($query->paginate());
+        return ReporteResource::collection($query->get());
     }
 
     public function store(ReporteRequest $request)
     {
-        return Reporte::create($request->all());
+        return $this->service->store($request, $this->model, new ReporteResource($this->model::class));
     }
 
     public function show($id)
     {
-        return Reporte::findOrFail($id);
+        return $this->service->show($id, $this->model, new ReporteResource($this->model::class));
     }
 
     public function update($id, ReporteRequest $request)
     {
-        $reporte = Reporte::findOrFail($id);
-
-        return $reporte->update($request->all());
+        return $this->service->update($id, $request, $this->model, new ReporteResource($this->model::class));
     }
 
     public function destroy($id)
     {
-        return Reporte::destroy($id);
+        return $this->service->destroy($id, $this->model);
     }
 }

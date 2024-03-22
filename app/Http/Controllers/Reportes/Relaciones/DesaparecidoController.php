@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Reportes\Relaciones;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Reportes\DesaparecidoRequest;
-use App\Http\Resources\Reportes\DesaparecidoResource;
+use App\Http\Requests\Reportes\Relaciones\DesaparecidoRequest;
+use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Models\Reportes\Relaciones\Desaparecido;
 
 class DesaparecidoController extends Controller

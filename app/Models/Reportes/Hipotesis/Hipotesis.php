@@ -52,4 +52,17 @@ class Hipotesis extends Model
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'reporte_id' => $this->reporte_id,
+            'tipo_hipotesis_id' => $this->tipo_hipotesis_id,
+            'sitio_id' => $this->sitio_id,
+            'area_asigna_sitio_id' => $this->area_asigna_sitio_id,
+            'etapa' => $this->etapa,
+            'descripcion' => $this->descripcion
+        ];
+    }
 }

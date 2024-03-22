@@ -11,7 +11,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CrudService
 {
-
     /**
      * Create and save a new model instance or register on database.
      *
@@ -43,7 +42,7 @@ class CrudService
      * @param JsonResource $resource The JSON resource to return.
      * @return JsonResponse|JsonResource Returns a JSON response or a JSON resource.
      */
-    public function show($id, Model $model, JsonResource $resource): JsonResponse|JsonResource
+    public function show(mixed $id, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
         try {
             // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
@@ -65,12 +64,12 @@ class CrudService
      * Update the specified resource in storage.
      *
      * @param mixed $id The identifier of the resource to update.
+     * @param FormRequest $request The incoming form request.
      * @param Model $model The model instance to update.
      * @param JsonResource $resource The JSON resource to return.
-     * @param FormRequest $request The incoming form request.
      * @return JsonResponse|JsonResource Returns a JSON response or a JSON resource.
      */
-    public function update($id, Model $model, JsonResource $resource, FormRequest $request): JsonResponse|JsonResource
+    public function update(mixed $id, FormRequest $request, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
         try {
             // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
@@ -98,7 +97,7 @@ class CrudService
      * @param Model $model The model instance to delete.
      * @return JsonResponse Returns a JSON response.
      */
-    public function destroy($id, Model $model): JsonResponse
+    public function destroy(mixed $id, Model $model): JsonResponse
     {
         try {
             // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.

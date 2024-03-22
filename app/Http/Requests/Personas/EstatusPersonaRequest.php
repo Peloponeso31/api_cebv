@@ -8,8 +8,15 @@ class EstatusPersonaRequest extends FormRequest
 {
     public function rules(): array
     {
-        return [
-            'nombre' => ['required', 'max:100'],
-        ];
+        return match ($this->method()) {
+            'POST', 'PUT' => [
+                'nombre' => ['required', 'string', 'max:100'],
+                'abreviatura' => ['required', 'string', 'uppercase', 'max:10']
+            ],
+            default => [
+                'nombre' => ['sometimes', 'string', 'max:100'],
+                'abreviatura' => ['sometimes', 'string', 'uppercase', 'max:10']
+            ],
+        };
     }
 }

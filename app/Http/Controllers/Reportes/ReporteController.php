@@ -7,15 +7,18 @@ use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
+use App\Services\ReporteService;
 
 class ReporteController extends Controller
 {
     protected CrudService $service;
     protected Reporte $model;
+    protected ReporteService $reporteService;
 
-    public function __construct(CrudService $service, Reporte $model)
+    public function __construct(CrudService $service, ReporteService $reporteService, Reporte $model)
     {
         $this->service = $service;
+        $this->reporteService = $reporteService;
         $this->model = $model;
     }
 
@@ -48,5 +51,10 @@ class ReporteController extends Controller
     public function destroy($id)
     {
         return $this->service->destroy($id, $this->model);
+    }
+
+    public function setFolio($id)
+    {
+        $this->reporteService->setFolio($id);
     }
 }

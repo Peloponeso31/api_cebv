@@ -16,6 +16,13 @@ class Folio extends Model
 
     protected $table = 'folios';
 
+    protected $fillable = [
+        'folio',
+        'persona_id',
+        'reporte_id',
+        'user_id',
+    ];
+
     public $timestamps = false;
 
     protected function persona(): BelongsTo

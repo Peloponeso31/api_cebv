@@ -12,6 +12,7 @@ class Lado extends Model
     use HasFactory;
 
     protected $table = "lados";
+    protected $fillable = ['nomlado'];
     public $timestamps = false;
 
     public function senas_particulares(): HasMany {

@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Catalogos\Tipo;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\LadoRnpdno;
 use Illuminate\Http\Request;
 
-class TipoController extends Controller
+class LadoRnpdnoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Tipo::all();
+        return LadoRnpdno::all();
     }
 
     /**
@@ -34,7 +35,7 @@ class TipoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tipo $tipo)
+    public function show(LadoRnpdno $ladoRnpdno)
     {
         //
     }
@@ -42,7 +43,7 @@ class TipoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tipo $tipo)
+    public function edit(LadoRnpdno $ladoRnpdno)
     {
         //
     }
@@ -50,7 +51,7 @@ class TipoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tipo $tipo)
+    public function update(Request $request, LadoRnpdno $ladoRnpdno)
     {
         //
     }
@@ -58,7 +59,7 @@ class TipoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tipo $tipo)
+    public function destroy(LadoRnpdno $ladoRnpdno)
     {
         //
     }

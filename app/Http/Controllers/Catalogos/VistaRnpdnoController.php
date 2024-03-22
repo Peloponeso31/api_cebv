@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Catalogos\Vista;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\VistaRnpdno;
 use Illuminate\Http\Request;
 
-class VistaController extends Controller
+class VistaRnpdnoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Vista::all();
+        return VistaRnpdno::all();
     }
 
     /**
@@ -34,7 +35,7 @@ class VistaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Vista $vista)
+    public function show(VistaRnpdno $vistaRnpdno)
     {
         //
     }
@@ -42,7 +43,7 @@ class VistaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Vista $vista)
+    public function edit(VistaRnpdno $vistaRnpdno)
     {
         //
     }
@@ -50,7 +51,7 @@ class VistaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Vista $vista)
+    public function update(Request $request, VistaRnpdno $vistaRnpdno)
     {
         //
     }
@@ -58,7 +59,7 @@ class VistaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Vista $vista)
+    public function destroy(VistaRnpdno $vistaRnpdno)
     {
         //
     }

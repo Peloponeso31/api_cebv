@@ -6,7 +6,7 @@ use App\Http\Resources\Reportes\ReporteResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Folio */
+/** @mixin \App\Models\Oficialidades\Folio */
 class FolioResource extends JsonResource
 {
     public function toArray(Request $request): array

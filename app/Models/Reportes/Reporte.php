@@ -2,9 +2,9 @@
 
 namespace App\Models\Reportes;
 
-use App\Models\Folio;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
+use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;

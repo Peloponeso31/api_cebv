@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Oficialidades;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\FolioResource;
-use App\Models\Folio;
+use App\Models\Oficialidades\Folio;
 use Illuminate\Http\Request;
 
 class FolioController extends Controller

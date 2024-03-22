@@ -2,7 +2,7 @@
 
 namespace App\Models\Personas;
 
-use App\Models\Folio;
+use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Direccion;

@@ -16,6 +16,8 @@ class Reportante extends Model
     protected $table = 'reportantes';
 
     protected $fillable = [
+        'persona_id',
+        'reporte_id',
         'denuncia_anonima',
         'informacion_consentimiento',
         'informacion_exclusiva_busqueda',
@@ -54,6 +56,8 @@ class Reportante extends Model
     {
         return [
             'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'reporte_id' => $this->reporte_id,
             'denuncia_anonima' => $this->denuncia_anonima,
             'informacion_consentimiento' => $this->informacion_consentimiento,
             'informacion_exclusiva_busqueda' => $this->informacion_exclusiva_busqueda,

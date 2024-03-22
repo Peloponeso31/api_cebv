@@ -13,6 +13,8 @@ class Desaparecido extends Model
     protected $table = 'desaparecidos';
 
     protected $fillable = [
+        'persona_id',
+        'reporte_id',
         'habla_espanhol',
         'sabe_leer',
         'sabe_escribir',

@@ -42,6 +42,7 @@ use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VistaController;
 use App\Http\Controllers\VistaRnpdnoController;
 use App\Http\Controllers\VestimentaController;
+use App\Http\Controllers\InformacionConyugalController;
 use App\Http\Resources\UserAdminResource;
 use App\Models\Catalogos\VistaRnpdno;
 use App\Models\User;
@@ -119,6 +120,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
+
+    //Routes for the Informacion Conyugal
+    Route::apiResource("/informacion_conyugal", InformacionConyugalController::class);
 
     Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);

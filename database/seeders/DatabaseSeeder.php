@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TipoHipotesisSeeder::class,
             CatalogosSeeder::class,
             PruebaSeeder::class,
+            InformacionConyugalSeeder::class
         ]);
     }
 }

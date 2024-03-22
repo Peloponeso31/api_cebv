@@ -2,6 +2,7 @@
 
 namespace App\Models\Personas;
 
+use App\Models\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Direccion;
@@ -45,5 +46,10 @@ class Persona extends Model
     public function domicilios(): BelongsToMany
     {
         return $this->belongsToMany(Direccion::class, 'domicilios');
+    }
+
+    public function folios(): HasMany
+    {
+        return $this->hasMany(Folio::class, 'persona_id');
     }
 }

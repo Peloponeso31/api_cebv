@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes;
 
+use App\Models\Folio;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
@@ -85,6 +86,11 @@ class Reporte extends Model
     public function desaparecidos(): HasMany
     {
         return $this->hasMany(Desaparecido::class, 'reporte_id');
+    }
+
+    public function folios(): HasMany
+    {
+        return $this->hasMany(Folio::class, 'reporte_id');
     }
 
 

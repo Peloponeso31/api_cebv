@@ -409,5 +409,20 @@ class CatalogosSeeder extends Seeder
             ["ascendencia"=>"AMERICANA"],
             ["ascendencia"=>"ASIATICA"],
         ]);
+
+        \App\Models\Catalogos\Area::insert([
+            ["nombre"=> "Celula Norte"],
+            ["nombre"=> "Celula Centro"],
+            ["nombre"=> "Celula Sur"],
+            ["nombre"=> "Búsqueda Inmediata"],
+            ["nombre"=> "Larga Data"],
+            ["nombre"=> "OGPI"],
+        ]);
+
+        \App\Models\Catalogos\Puesto::insert([
+            ["nombre"=> "Comisionado Estatal"],
+            ["nombre"=> "Jefe de Departamento"],
+            ["nombre"=> "Jefe de Oficina"],
+        ]);
     }
 }

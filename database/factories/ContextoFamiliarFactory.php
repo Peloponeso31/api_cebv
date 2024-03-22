@@ -22,7 +22,7 @@ class ContextoFamiliarFactory extends Factory
             "familiar_cercano" => fake()-> name(),
             "familiar_violencia" => fake()-> name(),
             
-            "persona_id" => fake()->text(),
+            "persona_id" => fake()->numberBetween(0, 1000),
         ];
     }
 }

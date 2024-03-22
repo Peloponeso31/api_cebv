@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +20,10 @@ class DatabaseSeeder extends Seeder
             TipoHipotesisSeeder::class,
             CatalogosSeeder::class,
             PruebaSeeder::class,
+            ContextoEconomicoSeeder::class,
+            ContextoSocialSeeder::class,
+            ContextoFamiliarSeeder::class,
+            EmpleadoSeeder::class,
         ]);
     }
 }

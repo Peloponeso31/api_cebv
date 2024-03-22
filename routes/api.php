@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreaTController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
@@ -30,8 +31,12 @@ use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
+use App\Http\Controllers\ContextoFamiliarController;
+use App\Http\Controllers\ContextoSocialController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\LadoController;
 use App\Http\Controllers\LadoRnpdnoController;
+use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\RegionCuerpoController;
 use App\Http\Controllers\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\SenasParticularesController;
@@ -44,6 +49,7 @@ use App\Http\Controllers\VistaRnpdnoController;
 use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
 use App\Models\Catalogos\VistaRnpdno;
+use App\Models\ContextoFamiliar;
 use App\Models\User;
 
 /*
@@ -78,6 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/usuario', UserAdminController::class);
     Route::apiResource("/persona", PersonaController::class);
+    Route::apiResource("/Empleado", EmpleadoController::class);
 
     /**
      * Routes for ubicaciones module
@@ -96,7 +103,6 @@ Route::middleware('auth:sanctum')->group(function () {
     /**
      * Routes for the informacion module
      */
-    Route::apiResource('/areas', AreaController::class);
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
@@ -117,8 +123,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
-
+    
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
+    Route::apiResource("/contexto_familiar", ContextoFamiliarController::class);
+    Route::apiResource("/contexto_social", ContextoSocialController::class);
+    Route::apiResource("/AreaT", AreaController::class);
+    Route::apiResource("/Puesto", PuestoController::class);
 
     Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);

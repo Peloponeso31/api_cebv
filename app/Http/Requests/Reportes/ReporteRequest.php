@@ -23,14 +23,14 @@ class ReporteRequest extends FormRequest
             ],
             default => [
                 'tipo_reporte_id' => ['sometimes', 'exists:tipos_reportes,id', 'integer'],
-                'area_atiende_id' => ['sometimes', 'nullable', 'exists:areas,id', 'integer'],
-                'medio_conocimiento_id' => ['sometimes', 'nullable', 'exists:medios,id', 'integer'],
-                'zona_estado_id' => ['sometimes', 'nullable', 'exists:zonas_estados,id', 'integer'],
-                'hipotesis_oficial_id' => ['sometimes', 'nullable', 'exists:tipos_hipotesis,id', 'integer'],
+                'area_atiende_id' => ['sometimes', 'exists:areas,id', 'integer'],
+                'medio_conocimiento_id' => ['sometimes', 'exists:medios,id', 'integer'],
+                'zona_estado_id' => ['sometimes', 'exists:zonas_estados,id', 'integer'],
+                'hipotesis_oficial_id' => ['sometimes', 'exists:tipos_hipotesis,id', 'integer'],
                 'tipo_desaparicion' => ['sometimes', 'string', Rule::in('U', 'M'), 'max:1'],
-                'fecha_localizacion' => ['sometimes', 'nullable', 'date'],
-                'sintesis_localizacion' => ['sometimes', 'nullable', 'string'],
-                'clasificacion_persona' => ['sometimes', 'nullable', 'string'],
+                'fecha_localizacion' => ['sometimes', 'date'],
+                'sintesis_localizacion' => ['sometimes', 'string'],
+                'clasificacion_persona' => ['sometimes', 'string'],
             ],
         };
     }

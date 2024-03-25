@@ -19,7 +19,7 @@ class DesaparecidoFactory extends Factory
             'habla_espanhol' => fake()->boolean,
             'sabe_leer' => fake()->boolean,
             'sabe_escribir' => fake()->boolean,
-            'url_boletin' => fake()->url,
+            'url_boletin' => fake()->imageUrl(1080, 720, 'boletín'),
         ];
     }
 }

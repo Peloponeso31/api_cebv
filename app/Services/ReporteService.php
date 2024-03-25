@@ -5,30 +5,26 @@ namespace App\Services;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
+use Illuminate\Http\JsonResponse;
 
 class ReporteService
 {
+    /**
+     * @param mixed $id
+     * @return JsonResponse
+     */
     public function setFolio(mixed $id)
     {
         $reporte = Reporte::findOrFail($id);
 
-        $desaparecidos = Desaparecido::where('reporte_id', '=', $id)->get();
-
-        if ($reporte) {
-            foreach ($desaparecidos as $desaparecido) {
-                // TODO: Add if en folio
-                Folio::create([
-                    'folio' => 'mazapan',
-                    'persona_id' => $desaparecido->persona_id,
-                    'reporte_id' => $id,
-                    'user_id' => auth()->id(),
-                ]);
-                echo "Jaló el folio\n";
+        if ($reporte->desaparecidos_count > 0) {
+            foreach ($reporte->desaparecidos as $desaparecido) {
+               echo "Desaparecido $desaparecido->id";
             }
+            return response()->json("Se asigno el folio - reporte $reporte->id 000");
 
-            echo "Jala";
         } else {
-            echo "No jala";
+            return response()->json("Sin personas para asignar folio - reporte $reporte->id", 404);
         }
     }
 }

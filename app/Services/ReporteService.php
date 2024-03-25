@@ -21,7 +21,7 @@ class ReporteService
             foreach ($reporte->desaparecidos as $desaparecido) {
                echo "Desaparecido $desaparecido->id";
             }
-            return response()->json("Se asigno el folio - reporte $reporte->id");
+            return response()->json("Se asigno el folio - reporte $reporte->id 000");
 
         } else {
             return response()->json("Sin personas para asignar folio - reporte $reporte->id", 404);

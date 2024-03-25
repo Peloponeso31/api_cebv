@@ -23,25 +23,47 @@ class UserSeeder extends Seeder
          * Test users for permissions
          */
         $admin = User::create([
-            'name' => 'Admin Test',
+            'name' => 'Administrador', 
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin')
         ]);
 
-        $user = User::create([
-            'name' => 'User Test',
-            'email' => 'user@user.com',
-            'password' => Hash::make('user')
+        $super = User::create([
+            'name' => 'Supervisor',
+            'email' => 'super@admin.com',
+            'password' => Hash::make('super')
         ]);
 
-        $guest = User::create([
-            'name' => 'Guest Test',
-            'email' => 'guest@guest.com',
-            'password' => Hash::make('guest')
+        $captu = User::create([
+            'name' => 'Capturista',
+            'email' => 'captu@admin.com',
+            'password' => Hash::make('captu')
         ]);
 
-        $admin->assignRole('admin_test');
-        $user->assignRole('user_test');
-        $guest->assignRole('guest_test');
+        $consu = User::create([
+            'name' => 'Consultista',
+            'email' => 'consu@admin.com',
+            'password' => Hash::make('consu')
+        ]);
+
+        
+
+        // $user = User::create([
+        //     'name' => 'User Test',
+        //     'email' => 'user@user.com',
+        //     'password' => Hash::make('user')
+        // ]);
+
+        // $guest = User::create([
+        //     'name' => 'Guest Test',
+        //     'email' => 'guest@guest.com',
+        //     'password' => Hash::make('guest')
+        // ]); 
+
+        $admin->assignRole('administrador');
+        $super->assignRole('supervisor');
+        $captu->assignRole('capturista');
+        $consu->assignRole('consulta');
+    
     }
 }

@@ -8,6 +8,15 @@ use App\Models\Reportes\Informacion\Area;
 
 class AreaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:buscar') ->only('index', 'show');
+        $this->middleware('can:creacion') ->only('store');
+        $this->middleware('can:edicion') ->only('update');
+        $this->middleware('can:eliminacion') ->only('destroy');  
+    }
+    
     public function index()
     {
         $query = Area::query();

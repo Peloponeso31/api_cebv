@@ -10,6 +10,14 @@ use App\Models\Persona;
 
 class PersonaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:buscar') ->only('index', 'show');
+        $this->middleware('can:creacion') ->only('store');
+        $this->middleware('can:edicion') ->only('update');
+        $this->middleware('can:eliminacion') ->only('destroy');  
+    }
+    
     /**
      * Campos excluidos para la consulta de informacion sobre personas.
      */

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    
     public function token(AuthRequest $request) {
         $email = $request->all()['email'];
         $password = $request->all()['password'];

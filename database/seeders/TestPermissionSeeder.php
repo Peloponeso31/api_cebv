@@ -11,16 +11,17 @@ class TestPermissionSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            'admin_test',
-            'user_test',
-            'guest_test',
+            'administrador',
+            'supervisor',
+            'capturista',
+            'consulta',
         ];
 
         $permissions = [
-            'create_test',
-            'update_test',
-            'read_test',
-            'delete_test',
+            'buscar',
+            'creacion',
+            'edicion',
+            'eliminacion',
         ];
 
         foreach ($roles as $role) {
@@ -31,8 +32,9 @@ class TestPermissionSeeder extends Seeder
             Permission::firstOrCreate(['name' => $permission]);
         }
 
-        Role::where('name', 'admin_test')->first()->givePermissionTo($permissions);
-        Role::where('name', 'user_test')->first()->givePermissionTo('create_test', 'update_test', 'read_test');
-        Role::where('name', 'guest_test')->first()->givePermissionTo('read_test');
+        Role::where('name', 'administrador')->first()->givePermissionTo($permissions);
+        Role::where('name', 'supervisor')->first()->givePermissionTo($permissions);
+        Role::where('name', 'capturista')->first()->givePermissionTo('buscar', 'creacion', 'edicion');
+        Role::where('name', 'consulta')->first()->givePermissionTo('buscar');
     }
 }

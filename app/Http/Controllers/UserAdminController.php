@@ -6,9 +6,11 @@ use App\Http\Resources\UserAdminResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\UserActionLog;
 
 class UserAdminController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -47,5 +49,41 @@ class UserAdminController extends Controller
     public function destroy(string $id)
     {
         User::findOrFail($id)->delete();
+    }
+
+    /**
+     * Suspender un usuario específico
+     */
+    public function suspend(string $id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'Suspendido';
+        $user->save();
+
+        // Registrar la acción de suspensión en la tabla de registros de acciones de usuario
+        UserActionLog::create([
+            'user_id' => $user->id,
+            'action' => 'suspender',
+        ]);
+
+        return new UserAdminResource($user);
+    }
+
+    /**
+     * Activar un usuario específico
+     */
+    public function activate(string $id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = 'Activo';
+        $user->save();
+
+        // Registrar la acción de activación en la tabla de registros de acciones de usuario
+        UserActionLog::create([
+            'user_id' => $user->id,
+            'action' => 'activar',
+        ]);
+
+        return new UserAdminResource($user);
     }
 }

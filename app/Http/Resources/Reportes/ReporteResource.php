@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Reportes;
 
 use App\Http\Resources\Personas\PersonaResource;
+use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class ReporteResource extends JsonResource
             'fecha_localizacion' => $this->fecha_localizacion,
             'sintesis_localizacion' => $this->sintesis_localizacion,
             'clasificacion_persona' => $this->clasificacion_persona,
+            'reportantes' => ReportanteResource::collection($this->reportantes),
             'desaparecidos' => PersonaResource::collection($this->desaparecidos),
         ];
     }

@@ -55,6 +55,6 @@ class ReporteController extends Controller
 
     public function setFolio($id)
     {
-        $this->reporteService->setFolio($id);
+        return $this->reporteService->setFolio($id);
     }
 }

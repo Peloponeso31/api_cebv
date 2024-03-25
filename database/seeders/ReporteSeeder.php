@@ -20,5 +20,9 @@ class ReporteSeeder extends Seeder
             ->hasReportantes(3)
             ->count(2)
             ->create();
+
+        Reporte::factory()
+            ->count(2)
+            ->create();
     }
 }

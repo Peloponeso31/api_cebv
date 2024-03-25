@@ -53,8 +53,13 @@ class ReporteController extends Controller
         return $this->service->destroy($id, $this->model);
     }
 
+    public function getFolios($id)
+    {
+        return $this->reporteService->getFolios($id);
+    }
+
     public function setFolio($id)
     {
-        return $this->reporteService->setFolio($id);
+        return $this->reporteService->setFolio($id, auth()->id());
     }
 }

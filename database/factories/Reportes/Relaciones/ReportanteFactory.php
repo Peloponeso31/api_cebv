@@ -21,7 +21,7 @@ class ReportanteFactory extends Factory
             'publicacion_registro_nacional' => fake()->boolean,
             'publicacion_boletin' => fake()->boolean,
             'pertenencia_colectivo' => fake()->boolean,
-            'nombre_colectivo' => fake()->name,
+            'nombre_colectivo' => fake()->company(),
             'informacion_relevante' => fake()->sentence,
 
         ];

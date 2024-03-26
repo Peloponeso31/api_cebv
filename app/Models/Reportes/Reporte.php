@@ -97,7 +97,7 @@ class Reporte extends Model
 
     public function hechosDesapariciones(): HasMany
     {
-        return $this->hasMany(HechoDesaparicion::class, 'reporte_id', 'idx_desapariciones_reporte');
+        return $this->hasMany(HechoDesaparicion::class, 'reporte_id');
     }
 
     public function hipotesis(): HasMany

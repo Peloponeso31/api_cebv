@@ -5,13 +5,14 @@ namespace App\Models\Reportes\Hipotesis;
 use App\Models\Informaciones\Sitio;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
 
 class Hipotesis extends Model
 {
-    use Searchable;
+    use HasFactory, Searchable;
 
     protected $table = 'hipotesis';
 

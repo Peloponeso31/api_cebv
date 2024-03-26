@@ -4,12 +4,15 @@ namespace Database\Factories\Reportes\Hipotesis;
 
 use App\Models\Informaciones\Sitio;
 use App\Models\Oficialidades\Area;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class HipotesisFactory extends Factory
 {
+    protected $model = Hipotesis::class;
+
     public function definition(): array
     {
         return [

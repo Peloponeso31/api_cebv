@@ -10,11 +10,12 @@ use Laravel\Scout\Searchable;
 
 class HechoDesaparicion extends Model
 {
-    use Searchable;
+    use HasFactory, Searchable;
 
     protected $table = 'hechos_desapariciones';
 
     protected $fillable = [
+        'reporte_id',
         'fecha_desaparicion',
         'fecha_percato',
         'cambio_comportamiento',
@@ -48,6 +49,7 @@ class HechoDesaparicion extends Model
     {
         return [
             'id' => $this->id,
+            'reporte_id' => $this->reporte_id,
             'fecha_desaparicion' => $this->fecha_desaparicion,
             'fecha_percato' => $this->fecha_percato,
             'cambio_comportamiento' => $this->cambio_comportamiento,

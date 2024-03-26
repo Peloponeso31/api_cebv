@@ -13,8 +13,7 @@ class MedioController extends Controller
     protected CrudService $service;
     protected Medio $model;
 
-    public function __construct(CrudService $service, Medio $model)
-    {
+    public function __construct(CrudService $service, Medio $model) {
         $this->service = $service;
         $this->model = $model;
     }

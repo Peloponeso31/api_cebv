@@ -11,6 +11,8 @@ class HechoDesaparicionRequest extends FormRequest
         return match ($this->method()) {
             'POST', 'PUT' => [
                 'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
+                'fecha_desaparicion' => ['nullable'],
+                'fecha_percato' => ['required', 'date'],
                 'cambio_comportamiento' => ['nullable', 'boolean'],
                 'descripcion_cambio_comportamiento' => ['nullable','string'],
                 'fue_amenazado' => ['nullable','boolean'],
@@ -23,6 +25,8 @@ class HechoDesaparicionRequest extends FormRequest
             ],
             default => [
                 'reporte_id' => ['sometimes', 'exists:reportes,id', 'integer'],
+                'fecha_desaparicion' => ['sometimes'],
+                'fecha_percato' => ['sometimes', 'date'],
                 'cambio_comportamiento' => ['sometimes', 'boolean'],
                 'descripcion_cambio_comportamiento' => ['sometimes','string'],
                 'fue_amenazado' => ['sometimes','boolean'],

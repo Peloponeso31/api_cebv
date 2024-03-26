@@ -19,7 +19,9 @@ return new class extends Migration {
 
             $table->string('folio_cebv', 20);
             $table->string('folio_fub', 37);
-            // TODO: Add dateTime to created at
+
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

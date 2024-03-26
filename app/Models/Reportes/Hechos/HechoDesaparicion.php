@@ -15,6 +15,8 @@ class HechoDesaparicion extends Model
     protected $table = 'hechos_desapariciones';
 
     protected $fillable = [
+        'fecha_desaparicion',
+        'fecha_percato',
         'cambio_comportamiento',
         'descripcion_cambio_comportamiento',
         'fue_amenazado',
@@ -46,6 +48,8 @@ class HechoDesaparicion extends Model
     {
         return [
             'id' => $this->id,
+            'fecha_desaparicion' => $this->fecha_desaparicion,
+            'fecha_percato' => $this->fecha_percato,
             'cambio_comportamiento' => $this->cambio_comportamiento,
             'descripcion_cambio_comportamiento' => $this->descripcion_cambio_comportamiento,
             'fue_amenazado' => $this->fue_amenazado,

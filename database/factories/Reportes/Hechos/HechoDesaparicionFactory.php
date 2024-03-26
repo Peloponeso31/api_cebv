@@ -6,6 +6,7 @@ use App\Models\Oficialidades\Area;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
+use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,26 +16,23 @@ class HechoDesaparicionFactory extends Factory
 
     public function definition(): array
     {
-        $zonaEstado = ['Centro', 'Norte', 'Sur'];
         $amenaza = fake()->boolean(40);
+        $comportamiento = fake()->boolean(40);
+        $fechaDesaparicion = fake()->boolean ? fake()->dateTimeThisYear() : null;
 
         return [
-            'persona_id' => Persona::factory(),
-            'direccion_id' => Direccion::inRandomOrder()->first()->id,
-            'zona_estado' => fake()->boolean(50) ? fake()->randomElement($zonaEstado) : null,
-            'area_id' => Area::inRandomOrder()->first()->id,
-            'dependencia' => fake()->word(),
-            'fecha_desaparicion' => fake()->dateTimeThisYear(),
-            'fecha_percato' => fake()->dateTimeThisYear(),
-            'cambio_comportamiento' => fake()->boolean(),
+            'reporte_id' => Reporte::factory(),
+            'fecha_desaparicion' => $fechaDesaparicion,
+            'fecha_percato' => fake()->dateTimeBetween('-1 week'),
+            'cambio_comportamiento' => $comportamiento,
+            'descripcion_cambio_comportamiento' => $comportamiento ? fake()->sentence() : null,
             'fue_amenazado' => $amenaza,
-            'descripcion_amenaza' => $amenaza ? fake()->text() : null,
-            'contador_desapariciones' => fake()->boolean(50) ? fake()->numberBetween(1, 5) : 0,
+            'descripcion_amenaza' => $amenaza ? fake()->sentence() : null,
+            'contador_desapariciones' => fake()->numberBetween(1, 10),
             'situacion_previa' => fake()->text(),
-            'informacion_relevante' => fake()->boolean(60) ? fake()->text() : null,
+            'informacion_relevante' => fake()->text(),
             'hechos_desaparicion' => fake()->text(),
             'sintesis_desaparicion' => fake()->text(),
-            'hipotesis_id' => Hipotesis::inRandomOrder()->first()->id,
         ];
     }
 }

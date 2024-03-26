@@ -13,7 +13,7 @@ class HipotesisFactory extends Factory
     public function definition(): array
     {
         return [
-            'reporte_id' => Reporte::inRandomOrder()->first()->id,
+            'reporte_id' => Reporte::factory(),
             'tipo_hipotesis_id' => TipoHipotesis::inRandomOrder()->first()->id,
             'sitio_id' => Sitio::inRandomOrder()->first()->id,
             'area_asigna_sitio_id' => Area::inRandomOrder()->first()->id,

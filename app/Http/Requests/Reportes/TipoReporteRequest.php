@@ -10,6 +10,7 @@ class TipoReporteRequest extends FormRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:255'],
+            // TODO: Add validation and update method
         ];
     }
 }

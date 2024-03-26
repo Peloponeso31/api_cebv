@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
+use App\Models\Reportes\TipoReporte;
+use App\Models\Ubicaciones\ZonaEstado;
 use Illuminate\Http\JsonResponse;
 
 class ReporteService
@@ -38,6 +40,14 @@ class ReporteService
         $reporte = Reporte::findOrFail($id);
         $desaparecidos = Desaparecido::where('reporte_id', $reporte->id)->get();
 
+
+        $year = $reporte->created_at->format('y');
+        $tipoDesaparicion = $reporte->tipo_desaparicion;
+        $tipoReporte = TipoReporte::findOrFail($reporte->tipo_reporte_id)->abreviatura;
+        $zonaEstado = ZonaEstado::findOrFail($reporte->zona_estado_id)->abreviatura;
+
+
+
         // Registro de los folios asignados
         $foliosAsignados = [];
 
@@ -59,7 +69,10 @@ class ReporteService
                     'reporte_id' => $reporte->id,
                     'persona_id' => $desaparecido->id,
                     'folio' => [
-                        'zona_estado' => 'centro'
+                        'fecha_registro' => $year,
+                        'tipo_reporte' => $tipoReporte,
+                        'tipo_desaparicion' => $tipoDesaparicion,
+                        'zona_estado' => $zonaEstado,
                     ]
                 ]);
             }

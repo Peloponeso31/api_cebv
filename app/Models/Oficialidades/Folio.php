@@ -30,7 +30,8 @@ class Folio extends Model
     {
         return Attribute::make(
             get: fn($value, array $attributes) => $value,
-            set: fn($value) => $value['zona_estado'] . "test",
+            set: fn($value) => $value['fecha_registro'] . '/' . $value ['tipo_reporte'] .
+            $value ['tipo_desaparicion'] . $value['zona_estado'],
         );
     }
 

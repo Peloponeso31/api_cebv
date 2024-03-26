@@ -10,20 +10,18 @@ class TipoReporteSeeder extends Seeder
     public function run(): void
     {
         $tiposReportes= [
-            'Solicitud de búsqueda',
-            'Carpetas de investigación',
-            'Solicitud de búsqueda de familiares',
-            'Solicitud de colaboración',
-            'Solicitud de difusión',
-            'Investigación ministerial',
+            ['nombre' => 'Solicitud de busqueda', 'abreviatura' => 'SB'],
+            ['nombre' => 'Carpetas de investigación', 'abreviatura' => 'CI'],
+            ['nombre' => 'Solicitud de búsqueda de familiares', 'abreviatura' => 'SBF'],
+            ['nombre' => 'Solicitud de colaboración', 'abreviatura' => 'SC'],
+            ['nombre' => 'Solicitud de difusión', 'abreviatura' => 'SD'],
+            ['nombre' => 'Investigación ministerial', 'abreviatura' => 'IM'],
         ];
 
         sort($tiposReportes);
 
         foreach ($tiposReportes as $tipoReporte) {
-            TipoReporte::firstOrCreate([
-                'nombre' => $tipoReporte
-            ]);
+            TipoReporte::firstOrCreate($tipoReporte);
         }
     }
 }

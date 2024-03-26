@@ -13,7 +13,8 @@ class FolioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'folio' => $this->folio,
+            'folio_cevb' => $this->folio_cevb,
+            'folio_fub' => $this->folio_fub,
             'persona_id' => $this->persona_id,
             'reporte_id' => $this->reporte_id,
             'user_id' => $this->user_id,

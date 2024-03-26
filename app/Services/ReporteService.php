@@ -68,7 +68,7 @@ class ReporteService
                     'user_id' => $userId,
                     'reporte_id' => $reporte->id,
                     'persona_id' => $desaparecido->id,
-                    'folio' => [
+                    'folio_cebv' => [
                         'fecha_registro' => $year,
                         'tipo_reporte' => $tipoReporte,
                         'tipo_desaparicion' => $tipoDesaparicion,

@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes\Hipotesis;
 
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -39,6 +40,11 @@ class TipoHipotesis extends Model
     public function hipotesis(): HasMany
     {
         return $this->hasMany(Hipotesis::class);
+    }
+
+    public function reportes(): HasMany
+    {
+        return $this->hasMany(Reporte::class, 'hipotesis_oficial_id');
     }
 
     public function toSearchableArray()

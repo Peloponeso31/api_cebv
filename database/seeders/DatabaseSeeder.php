@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,15 +11,36 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        /**
+         * System seeders
+         */
         $this->call([
             TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
-            UbicacionSeeder::class,
+        ]);
+
+        /**
+         * Catalogs seeders
+         */
+        $this->call([
+            AreaSeeder::class,
+            EstatusPersonaSeeder::class,
+            InstitucionSeeder::class,
             MedioSeeder::class,
-            TipoReporteSeeder::class,
+            ParentescoSeeder::class,
+            SitioSeeder::class,
             TipoHipotesisSeeder::class,
-            CatalogosSeeder::class,
-            PruebaSeeder::class,
+            TipoReporteSeeder::class,
+            UbicacionSeeder::class,
+            ZonaEstadoSeeder::class,
+        ]);
+
+        /**
+         * Test seeders
+         */
+        $this->call([
+            PersonaSeeder::class,
+            ReporteSeeder::class,
         ]);
     }
 }

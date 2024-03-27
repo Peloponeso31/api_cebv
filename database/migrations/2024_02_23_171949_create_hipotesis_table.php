@@ -9,35 +9,16 @@ return new class extends Migration {
     {
         Schema::create('hipotesis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('reporte_id')
-                ->constrained(table: 'reportes', indexName: 'idx_hipotesis_reporte');
 
-            $table->foreignId('area_id')
-                ->nullable()
-                ->constrained(table: 'areas', indexName: 'idx_hipotesis_area');
+            $table->foreignId('reporte_id');
+            $table->foreignId('tipo_hipotesis_id')->constrained('tipos_hipotesis');
+            $table->foreignId('sitio_id');
+            $table->foreignId('area_asigna_sitio_id')->constrained('areas');
 
-            $table->date('fecha_localizacion')->nullable();
-            $table->text('sintesis_localizacion')->nullable();
-
-            $table->foreignId('circunstancia_uno_id')
-                ->nullable()
-                ->constrained(table: 'circunstancias', indexName: 'idx_hipotesis_circunstancia_uno');
-            $table->text('hipotesis_uno')->nullable();
-
-            $table->foreignId('circunstancia_dos_id')
-                ->nullable()
-                ->constrained(table: 'circunstancias', indexName: 'idx_hipotesis_circunstancia_dos');
-            $table->text('hipotesis_dos')->nullable();
-
-
-            $table->string('sitio_final')->nullable();
-            $table->foreignId('tipo_hipotesis_id')
-                ->nullable()
-                ->constrained(table: 'tipos_hipotesis', indexName: 'idx_hipotesis_tipo_hipotesis');
-            $table->text('observaciones')->nullable();
+            $table->enum('etapa', ['Inicial', 'Final']);
+            $table->text('descripcion');
 
             $table->timestamps();
-
         });
     }
 

@@ -2,65 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\TamanoOrejasRequest;
 use App\Models\Catalogos\TamanoOjos;
 use App\Models\Catalogos\TamanoOrejas;
 use Illuminate\Http\Request;
 
 class TamanoOrejasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return TamanoOrejas::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+  
+    
+    public function store(TamanoOrejasRequest $request)
     {
-        //
+        return TamanoOrejas::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function show( $id)
     {
-        //
+        return TamanoOrejas::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TamanoOrejas $tamanoOrejas)
+  
+    
+    public function update($id, TamanoOrejasRequest $request)
     {
-        //
+        $tamanoorejas= TamanoOrejas::findOrFail($id);
+        return $tamanoorejas->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TamanoOrejas $tamanoOrejas)
+    public function destroy( $id)
     {
-        //
-    }
+        
+    return TamanoOrejas::findOrFail($id)->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TamanoOrejas $tamanoOrejas)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TamanoOrejas $tamanoOrejas)
-    {
-        //
     }
 }

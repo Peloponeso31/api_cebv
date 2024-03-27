@@ -10,8 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ColorPiel extends Model
 {
     use HasFactory;
+    protected $table='color_piels';
+    protected $fillable=['colorpiel'];
+    public $timestamps= true;
 
-    
     public function caracteristicas_fisicas():HasMany{
         return $this->hasMany(CaracteristicasFisicas::class);
     }

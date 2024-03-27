@@ -21,16 +21,11 @@ class CrudService
      */
     public function store(FormRequest $request, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
-        try {
             // Create a new model instance with the data from the request.
             $model = $model->create($request->all());
 
             // Return the newly created resource.
             return new $resource($model);
-        } catch (Exception $e) {
-            // If an unexpected error occurs, return a JSON response with a 500 status code.
-            return response()->json(['message' => 'Error inesperado'], 500);
-        }
     }
 
 

@@ -12,8 +12,8 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id');
             $table->foreignId('persona_id');
-            $table->foreignId('estatus_rpdno_id')->constrained('estatus_personas');
-            $table->foreignId('estatus_cebv_id')->constrained('estatus_personas');
+            $table->foreignId('estatus_rpdno_id')->constrained(table: 'estatus_personas');
+            $table->foreignId('estatus_cebv_id')->constrained(table: 'estatus_personas');
 
             $table->boolean('habla_espanhol')->nullable();
             $table->boolean('sabe_leer')->nullable();

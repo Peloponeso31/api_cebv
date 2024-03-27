@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSenasParticularesRequest;
+use App\Http\Requests\UpdateSenasParticularesRequest;
 use App\Http\Resources\SenasParticularesResource;
 use App\Models\SenasParticulares;
 use Illuminate\Http\Request;
@@ -18,14 +19,6 @@ class SenasParticularesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreSenasParticularesRequest $request)
@@ -36,32 +29,27 @@ class SenasParticularesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SenasParticulares $senasParticulares)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SenasParticulares $senasParticulares)
-    {
-        //
+        return new SenasParticularesResource(SenasParticulares::findOrFail($id));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SenasParticulares $senasParticulares)
+    public function update($id, UpdateSenasParticularesRequest $request)
     {
-        //
+        $model = SenasParticulares::findOrFail($id);
+        $model->update($request->all());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SenasParticulares $senasParticulares)
+    public function destroy($id)
     {
-        //
+        if (SenasParticulares::findOrFail($id)->delete()) {
+            return response()->json(['mensaje' => 'Borrado correcto']);
+        }
     }
 }

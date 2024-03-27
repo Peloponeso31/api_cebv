@@ -12,6 +12,7 @@ class Tipo extends Model
     use HasFactory;
 
     protected $table = "tipos";
+    protected $fillable = ['nombre'];
     public $timestamps = false;
 
     public function senas_particulares(): HasMany {

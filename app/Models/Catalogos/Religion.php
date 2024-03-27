@@ -11,9 +11,9 @@ class Religion extends Model
 {
     use HasFactory;
 
-    protected $table='religions';
+    protected $table = "religions";
     protected $fillable=['religion'];
-    protected $timestamps= true;
+    public $timestamps= true;
 
 
     public function etnia():HasMany {

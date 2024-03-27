@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TamanoOrejas extends Model
 {
     use HasFactory;
-    protected $table='tamano_orejas';
+    protected $table="tamano_orejas";
     protected $fillable=['tamanoorejas'];
     public $timestamps= true;
 

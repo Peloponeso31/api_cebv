@@ -11,7 +11,7 @@ class TamanoOjos extends Model
 {
     use HasFactory;
     
-    protected $table='tamano_ojos';
+    protected $table="tamano_ojos";
     protected $fillable=['tamano'];
     public $timestamps= true;
 

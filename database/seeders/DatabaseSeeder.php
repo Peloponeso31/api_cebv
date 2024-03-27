@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             InstitucionSeeder::class,
             MedioSeeder::class,
             ParentescoSeeder::class,
+            CatalogosSeeder::class,
             SitioSeeder::class,
             TipoHipotesisSeeder::class,
             TipoReporteSeeder::class,

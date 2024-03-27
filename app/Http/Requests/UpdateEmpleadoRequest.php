@@ -20,7 +20,7 @@ class UpdateEmpleadoRequest extends FormRequest
                 "apellido_materno" => ['nullable'],
                 "fecha_nacimiento" => ['nullable', 'date'],
                 "puesto" => ['nullable'],
-                "area" => ['nullable'],
+                "oficina" => ['nullable'],
             ];
         } else {
             return [
@@ -29,7 +29,7 @@ class UpdateEmpleadoRequest extends FormRequest
                 "apellido_materno" => ['sometimes', 'nullable'],
                 "fecha_nacimiento" => ['sometimes', 'nullable', 'date'],
                 "puesto" => ['sometimes', 'nullable'],
-                "area" => ['sometimes', 'nullable'],
+                "oficina" => ['sometimes', 'nullable'],
             ];
         }
     }

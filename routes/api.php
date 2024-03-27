@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AreaTController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
@@ -36,6 +35,7 @@ use App\Http\Controllers\ContextoSocialController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\LadoController;
 use App\Http\Controllers\LadoRnpdnoController;
+use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\PuestoController;
 use App\Http\Controllers\RegionCuerpoController;
 use App\Http\Controllers\RegionCuerpoRnpdnoController;
@@ -49,7 +49,6 @@ use App\Http\Controllers\VistaRnpdnoController;
 use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
 use App\Models\Catalogos\VistaRnpdno;
-use App\Models\ContextoFamiliar;
 use App\Models\User;
 
 /*
@@ -85,6 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/usuario', UserAdminController::class);
     Route::apiResource("/persona", PersonaController::class);
     Route::apiResource("/Empleado", EmpleadoController::class);
+    Route::apiResource("/Oficina", OficinaController::class);
 
     /**
      * Routes for ubicaciones module
@@ -127,7 +127,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
     Route::apiResource("/contexto_familiar", ContextoFamiliarController::class);
     Route::apiResource("/contexto_social", ContextoSocialController::class);
-    Route::apiResource("/AreaT", AreaController::class);
+    Route::apiResource("/Area", AreaController::class);
     Route::apiResource("/Puesto", PuestoController::class);
 
     Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);

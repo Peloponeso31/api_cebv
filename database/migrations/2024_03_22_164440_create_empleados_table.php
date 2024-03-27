@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string("apellido_materno")->nullable();
             $table->string("fecha_nacimiento")->nullable();
             $table->foreignId("puesto_id")->nullable();
-            $table->foreignId("area_id")->nullable();
+            $table->foreignId("oficina_id")->nullable();
         });
     }
 

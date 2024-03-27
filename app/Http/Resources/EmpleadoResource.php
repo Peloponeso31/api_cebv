@@ -20,7 +20,7 @@ class EmpleadoResource extends JsonResource
             "apellido_materno"=> $this->apellido_materno,
             "fecha_nacimiento"=> $this->fecha_nacimiento,
             "puesto_id"=> $this->puesto_id,
-            "area_id"=> $this->area_id,
+            "oficina_id"=> $this->oficina_id,
         ];
     }
 }

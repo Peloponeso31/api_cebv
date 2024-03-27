@@ -1,8 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CatalogosSeeder extends Seeder
@@ -410,13 +408,13 @@ class CatalogosSeeder extends Seeder
             ["ascendencia"=>"ASIATICA"],
         ]);
 
-        \App\Models\Catalogos\Area::insert([
-            ["nombre"=> "Celula Norte"],
-            ["nombre"=> "Celula Centro"],
-            ["nombre"=> "Celula Sur"],
-            ["nombre"=> "Búsqueda Inmediata"],
-            ["nombre"=> "Larga Data"],
-            ["nombre"=> "OGPI"],
+        \App\Models\Catalogos\Oficina::insert([
+            ["oficina"=> "Celula Norte"],
+            ["oficina"=> "Celula Centro"],
+            ["oficina"=> "Celula Sur"],
+            ["oficina"=> "Búsqueda Inmediata"],
+            ["oficina"=> "Larga Data"],
+            ["oficina"=> "OGPI"],
         ]);
 
         \App\Models\Catalogos\Puesto::insert([

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Catalogos\Area;
+use App\Models\Catalogos\Oficina;
 use App\Models\Catalogos\Puesto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,15 +18,15 @@ class Empleado extends Model
         "apellido_materno",
         "fecha_nacimiento",
         "puesto",
-        "area",
+        "oficina",
     ];
 
     public function usuario():BelongsTo{
         return $this->belongsTo(User::class);
     }
 
-    public function Area():BelongsTo{
-        return $this->belongsTo(Area::class);
+    public function Oficina():BelongsTo{
+        return $this->belongsTo(Oficina::class);
     }
 
     public function Puesto():BelongsTo{

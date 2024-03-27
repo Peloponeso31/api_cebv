@@ -14,7 +14,7 @@ class StoreEmpleadoRequest extends FormRequest
             "apellido_materno"=> ['nullable'],
             "fecha_nacimiento"=> ['nullable', 'date'],
             "puesto"=> ['nullable'],
-            "area"=> ['nullable'],
+            "oficina"=> ['nullable'],
         ];
     }
 

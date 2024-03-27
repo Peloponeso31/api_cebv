@@ -3,14 +3,197 @@
   "info": {
     "title": "Api Comision Estatal de Busqueda de Veracruz",
     "version": "v2",
-    "description": "Esta API proporciona la estructura de las operacones que se realizaran."
+    "description": "Esta API proporciona la estructura de las operaciones que se realizaran."
   },
   "servers": [
     {
-      "url": "http://187.188.213.206:18085/"
+      "url": "localhost/api",
+      "description": "Direccion prubas locales"
+    },
+    
+    {
+      "url": "http://187.188.213.206:18085/",
+      "description": "Direccion de servidor principal en linea"
     }
   ],
   "paths": {
+    "/usuario":{
+      "get":{
+        "summary": "Consulta de todos los usuarios que tendran acceso a la aplicación",
+        "tags":[
+          "Usuario Administrador"
+        ],
+        "responses":{
+          "201":{
+            "description": "Consulta",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/UsuariAdminResource"
+                }
+              }
+            }
+          },
+          "401":{
+            "description": "Error interno SQL."
+          },
+          "500":{
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "post":{
+        "summary": "Crearcion de un nuevo usuario para tener acceso a la aplicación",
+        "tags":[
+          "Usuario Administrador"
+        ],
+        "parameters":[
+          {
+            "name": "email",
+            "in":"query",
+            "required":true,
+            "description": "El email con el que tendra acceso el usuario",
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name": "password",
+            "in":"query",
+            "required":true,
+            "description": "La contraseña con la que tendra acceso el usuario",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": " ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/StoreUsuarioAdmin"
+                }
+              }
+            }
+          },
+          "401":{
+            "description":" "
+          },
+          "500":{
+            "description":" "
+          }
+        }
+      }
+    },
+    "/usuario/{id}":{
+      "get":{
+        "summary": "Consulta de un usuario creado",
+        "tags":[
+          "Usuario Administrador"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in":"path",
+            "required":true,
+            "description": "El id con el que se identifica a el usuario",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": " ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/UsuariAdminResource"
+                }
+              }
+            }
+          },
+          "401":{
+            "description":" "
+          },
+          "500":{
+            "description":" "
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualizacion de la informacion de un usuario",
+        "tags":[
+          "Usuario Administrador"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in":"path",
+            "required":true,
+            "description": "El id con el que se identifica a el usuario",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": " ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/StoreUsuarioAdmin"
+                }
+              }
+            }
+          },
+          "401":{
+            "description":" "
+          },
+          "500":{
+            "description":" "
+          }
+        }
+      },
+      "delete":{
+        "summary":"Eliminacion de un usuario",
+        "tags":[
+          "Usuario Administrador"
+        ],
+        "parameters":[
+          {
+            "name": "id",
+            "in":"path",
+            "required":true,
+            "description": "El id con el que se identifica a el usuario",
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description": " ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/StoreUsuarioAdmin"
+                }
+              }
+            }
+          },
+          "401":{
+            "description":" "
+          },
+          "500":{
+            "description":" "
+          }
+        }
+      }
+    },
     "/personas": {
       "get": {
         "summary": "Obtiene una lista de personas desaparecidas registradas",
@@ -391,7 +574,855 @@
           }
         }
       }
-    }
+    },
+      "/senas_particulares": {
+        "get":{
+          "summary": "Muestra los registros de señas particulares relacionadas a una persona",
+          "tags": [
+            "Señas Pariculares"
+          ],
+          "responses": {
+            "200": {
+              "description": "Registros",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "404": {
+              "description": "no encontrada"
+            }
+          }
+        },
+        "post":{
+          "summary": "Ingresa un registro de señas particulares relacionadas a una persona",
+          "tags": [
+            "Señas Pariculares"
+          ],
+          "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "region_cuerpo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "vista_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lado_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tipo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "cantidad",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "foto",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Creacion de registro de señas particulares realcionada a una persona",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "404": {
+              "description": "No encontrada"
+            }
+          }
+        }
+      },
+      "/senas_particulares/{id}": {
+        "get":{
+          "summary": "Muestra los registros de señas particulares relacionadas a una persona buscado por un identificador",
+          "tags": [
+            "Señas Pariculares"
+          ],
+          "parameters":[
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Registros",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "404": {
+              "description": "no encontrada"
+            }
+          }
+        },
+        "put":{
+          "summary": "actualiza un registro de señas particulares relacionadas a una persona",
+          "tags": [
+            "Señas Pariculares"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "region_cuerpo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "vista_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lado_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tipo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "cantidad",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "foto",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+         ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateSenasParticularesRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Creacion de registro de señas particulares realcionada a una persona",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UpdateSenasParticularesRequest"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "404": {
+              "description": "No encontrada"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Eliminar un registro de señas particulares existente",
+          "tags": [
+            "Señas Pariculares"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Desaparición eliminada exitosamente"
+            },
+            "401": {
+              "description": "No autorizado"
+            },
+            "404": {
+              "description": "Desaparición no encontrada"
+            }
+          }
+        }
+      },
+      "/catalogos/region_cuerpo": {
+        "get":{
+          "summary": "Muestra los datos respecto a la region de el cuerpo",
+          "tags":[
+            "Region cuerpo seña"
+          ],
+          "responses":{
+            "200":{
+              "description": " ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetRegionCuerpo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post":{
+          "summary": "Crea un nuevo registro de vista de seña",
+          "tags":[
+             "Region cuerpo seña"
+          ],
+          "parameters":[
+            {
+              "name":"nomvista",
+              "in":"query",
+              "required":true,
+              "schema":{
+                "type":"string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetRegionCuerpo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/catalogos/region_cuerpo/{id}": {
+        "get":{
+          "summary": "Busca un registro de region de seña por su identificador",
+          "tags":[
+             "Region cuerpo seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetRegionCuerpo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary": "Actualiza registro de region cuerpo de seña",
+          "tags":[
+             "Region cuerpo seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetRegionCuerpo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de regior cuerpo de seña",
+          "tags":[
+             "Region cuerpo seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Eliminacion correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetRegionCuerpo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/catalogos/vista": {
+        "get":{
+          "summary": "Muestra los datos respecto a la vista de la seña sobre el cuerpo",
+          "tags":[
+            "Vista seña"
+          ],
+          "responses":{
+            "200":{
+              "description": " ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetVistaSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post":{
+          "summary": "Crea un nuevo registro de vista de seña",
+          "tags":[
+             "Vista seña"
+          ],
+          "parameters":[
+            {
+              "name":"nomvista",
+              "in":"query",
+              "required":true,
+              "schema":{
+                "type":"string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetVistaSena"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/catalogos/vista/{id}": {
+        "get":{
+          "summary": "Busca un registro de vista de seña por su identificador",
+          "tags":[
+             "Vista seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetVistaSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary": "Actualiza registro de vista de seña",
+          "tags":[
+             "Vista seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetVistaSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de lado de seña",
+          "tags":[
+             "Vista seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Eliminacion correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetVistaSena"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "/catalogos/lado": {
+        "get":{
+          "summary": "Muestra los datos respecto al lado de la seña",
+          "tags":[
+            "Lado seña"
+          ],
+          "responses":{
+            "200":{
+              "description": " ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetLadoSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post":{
+          "summary": "Crea un nuevo registro de Lado de seña",
+          "tags":[
+             "Lado seña"
+          ],
+          "parameters":[
+            {
+              "name":"nomvista",
+              "in":"query",
+              "required":true,
+              "schema":{
+                "type":"string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetLadoSena"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/catalogos/lado/{id}": {
+        "get":{
+          "summary": "Busca un registro de lado de seña por su identificador",
+          "tags":[
+             "Lado seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetLadoSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary": "Actualiza registro de lado de seña",
+          "tags":[
+             "Lado seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetLadoSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de lado de seña",
+          "tags":[
+             "Lado seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Eliminacion correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetLadoSena"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },      
+      "/catalogos/tipo": {
+        "get":{
+          "summary": "Muestra los datos respecto a la tipo de seña",
+          "tags":[
+             "Tipo seña"
+          ],
+          "responses":{
+            "200":{
+              "description": " ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetTipoSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post":{
+          "summary": "Crea un nuevo registro de tipo de seña",
+          "tags":[
+             "Tipo seña"
+          ],
+          "parameters":[
+            {
+              "name":"nomtipo",
+              "in":"query",
+              "required":true,
+              "schema":{
+                "type":"string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetTipoSena"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/catalogos/tipo/{id}": {
+        "get":{
+          "summary": "Busca un registro de tipo de seña por su identificador",
+          "tags":[
+             "Tipo seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetTipoSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary": "Actualiza registro de tipo de seña",
+          "tags":[
+             "Tipo seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Ingreso correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetTipoSena"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de tipo de seña",
+          "tags":[
+             "Tipo seña"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description": "Eliminacion correcto ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/GetTipoSena"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
   },
   "components": {
     "schemas": {
@@ -686,6 +1717,133 @@
           "hipotesis_id": {
             "type": "integer",
             "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
+      },
+      "StoreSenasParticularesRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "region_cuerpo_id":{
+            "type":"integer"
+          },
+          "vista_id":{
+            "type":"integer"
+          },
+          "lado_id":{
+            "type":"integer"
+          },
+          "tipo_id":{
+            "type":"integer"
+          },
+          "cantidad":{
+            "type":"integer"
+          },
+          "descripcion":{
+            "type":"string"
+          },
+          "foto":{
+            "type":"string"
+          }
+        }
+      },
+      "UpdateSenasParticularesRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer" 
+          },
+          "region_cuerpo_id":{
+            "type":"integer"
+          },
+          "vista_id":{
+            "type":"integer"
+          },
+          "lado_id":{
+            "type":"integer"
+          },
+          "tipo_id":{
+            "type":"integer"
+          },
+          "cantidad":{
+            "type":"integer"
+          },
+          "descripcion":{
+            "type":"string"
+          },
+          "foto":{
+            "type":"string"
+          }
+        }
+      },
+      "GetRegionCuerpo":{
+        "type": "object",
+      "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          }
+       }
+      },
+      "GetTipoSena":{
+        "type": "object",
+      "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nomtipo":{
+            "type":"string"
+          }
+       }
+      },
+      "GetVistaSena":{
+        "type": "object",
+      "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nomvista":{
+            "type":"string"
+          }
+       }
+      },
+      "GetLadoSena":{
+        "type": "object",
+      "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nomlado":{
+            "type":"string"
+          }
+       }
+      },
+      "UsuariAdminResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "email":{
+            "type":"string"
+          },
+          "password":{
+            "type":"string"
+          }
+        }
+      },
+      "StoreUsuarioAdmin":{
+        "type":"object",
+        "properties":{
+          "email":{
+            "type":"string"
+          },
+          "password":{
+            "type":"string"
           }
         }
       }

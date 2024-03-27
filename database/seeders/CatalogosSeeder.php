@@ -193,11 +193,11 @@ class CatalogosSeeder extends Seeder
         ]);
 
         \App\Models\Catalogos\Vista::insert([
-            ["nomvista" => "DORSAL"],
-            ["nomvista" => "FRONTAL"],
-            ["nomvista" => "NO ESPECIFICA"],
-            ["nomvista" => "INTERNO"],
-            ["nomvista" => "EXTERNO"],
+            ["nombre" => "DORSAL"],
+            ["nombre" => "FRONTAL"],
+            ["nombre" => "NO ESPECIFICA"],
+            ["nombre" => "INTERNO"],
+            ["nombre" => "EXTERNO"],
         ]);
 
         \App\Models\Catalogos\VistaRnpdno::insert([
@@ -207,12 +207,12 @@ class CatalogosSeeder extends Seeder
         ]);
 
         \App\Models\Catalogos\Lado::insert([
-            ["nomlado" => "DERECHO"],
-            ["nomlado" => "IZQUIERDO"],
-            ["nomlado" => "NO ESPECIFICA"],
-            ["nomlado" => "UNICO"],
-            ["nomlado" => "ANTERIOR"],
-            ["nomlado" => "POSTERIOR"],
+            ["nombre" => "DERECHO"],
+            ["nombre" => "IZQUIERDO"],
+            ["nombre" => "NO ESPECIFICA"],
+            ["nombre" => "UNICO"],
+            ["nombre" => "ANTERIOR"],
+            ["nombre" => "POSTERIOR"],
         ]);
 
         \App\Models\Catalogos\LadoRnpdno::insert([
@@ -223,16 +223,16 @@ class CatalogosSeeder extends Seeder
         ]);
 
         \App\Models\Catalogos\Tipo::insert([
-            ["nomtipo" => "ARETE/PERFORACIONES"],
-            ["nomtipo" => "CICATRIZ"],
-            ["nomtipo" => "CIRCUNCISION"],
-            ["nomtipo" => "CORTES DECORATIVOS"],
-            ["nomtipo" => "GEFECTO FISICO"],
-            ["nomtipo" => "LUNARES O MANCHAS"],
-            ["nomtipo" => "MARCAS TEMPORALES"],
-            ["nomtipo" => "OTRO"],
-            ["nomtipo" => "PROTESIS"],
-            ["nomtipo" => "TATUAJE"],
+            ["nombre" => "ARETE/PERFORACIONES"],
+            ["nombre" => "CICATRIZ"],
+            ["nombre" => "CIRCUNCISION"],
+            ["nombre" => "CORTES DECORATIVOS"],
+            ["nombre" => "GEFECTO FISICO"],
+            ["nombre" => "LUNARES O MANCHAS"],
+            ["nombre" => "MARCAS TEMPORALES"],
+            ["nombre" => "OTRO"],
+            ["nombre" => "PROTESIS"],
+            ["nombre" => "TATUAJE"],
          ]);
 
         \App\Models\Catalogos\ColorCabello::insert([

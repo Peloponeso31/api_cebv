@@ -10,7 +10,7 @@ class LadoSenaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomlado' => ['required', 'string'],
+            'nombre' => ['required', 'string'],
         ];
     }
 }

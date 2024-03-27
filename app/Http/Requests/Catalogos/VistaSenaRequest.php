@@ -9,7 +9,7 @@ class VistaSenaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomvista' => ['required','string'],
+            'nombre' => ['required','string'],
         ];
     }
 }

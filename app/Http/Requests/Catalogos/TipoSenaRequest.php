@@ -9,7 +9,7 @@ class TipoSenaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomtipo' => ['required','string']
+            'nombre' => ['required','string']
         ];
     }
 }

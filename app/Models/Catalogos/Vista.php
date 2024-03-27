@@ -12,7 +12,7 @@ class Vista extends Model
     use HasFactory;
 
     protected $table = "vistas";
-    protected $fillable = ['nomvista'];
+    protected $fillable = ['nombre'];
     public $timestamps = false;
 
     public function senas_particulares(): HasMany {

@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Catalogos;
 
-use App\Models\Catalogos\VistaRnpdno;
+use App\Http\Controllers\Controller;
+use App\Models\Catalogos\RegionCuerpoRnpdno;
 use Illuminate\Http\Request;
 
-class VistaRnpdnoController extends Controller
+class RegionCuerpoRnpdnoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return VistaRnpdno::all();
+        return RegionCuerpoRnpdno::all();
     }
 
     /**
@@ -34,7 +35,7 @@ class VistaRnpdnoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(VistaRnpdno $vistaRnpdno)
+    public function show(RegionCuerpoRnpdno $regionCuerpoRnpdno)
     {
         //
     }
@@ -42,7 +43,7 @@ class VistaRnpdnoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(VistaRnpdno $vistaRnpdno)
+    public function edit(RegionCuerpoRnpdno $regionCuerpoRnpdno)
     {
         //
     }
@@ -50,7 +51,7 @@ class VistaRnpdnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, VistaRnpdno $vistaRnpdno)
+    public function update(Request $request, RegionCuerpoRnpdno $regionCuerpoRnpdno)
     {
         //
     }
@@ -58,7 +59,7 @@ class VistaRnpdnoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(VistaRnpdno $vistaRnpdno)
+    public function destroy(RegionCuerpoRnpdno $regionCuerpoRnpdno)
     {
         //
     }

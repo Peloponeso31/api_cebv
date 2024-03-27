@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InformacionConyugal;
+use App\Models\Parentesco;
 use Illuminate\Http\Request;
 
-class InformacionConyugalController extends Controller
+class ParentescoController extends Controller
 {
-      /**
+       /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return InformacionConyugal::all();
+        return Parentesco::all();
     }
 
     /**
@@ -34,7 +34,7 @@ class InformacionConyugalController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(InformacionConyugal $informacionConyugal)
+    public function show(Parentesco $parentesco)
     {
         //
     }
@@ -42,7 +42,7 @@ class InformacionConyugalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(InformacionConyugal $informacionConyugal)
+    public function edit(Parentesco $parentesco)
     {
         //
     }
@@ -50,7 +50,7 @@ class InformacionConyugalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, InformacionConyugal $informacionConyugal)
+    public function update(Request $request, Parentesco $parentesco)
     {
         //
     }
@@ -58,7 +58,7 @@ class InformacionConyugalController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(InformacionConyugal $informacionConyugal)
+    public function destroy(Parentesco $parentesco)
     {
         //
     }

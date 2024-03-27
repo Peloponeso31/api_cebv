@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use App\Models\Oficialidades\Folio;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
 use App\Models\Reportes\TipoReporte;
+use App\Models\Serie;
 use App\Models\Ubicaciones\ZonaEstado;
 use Illuminate\Http\JsonResponse;
 
@@ -40,14 +42,6 @@ class ReporteService
         $reporte = Reporte::findOrFail($id);
         $desaparecidos = Desaparecido::where('reporte_id', $reporte->id)->get();
 
-
-        $year = $reporte->created_at->format('y');
-        $tipoDesaparicion = $reporte->tipo_desaparicion;
-        $tipoReporte = TipoReporte::findOrFail($reporte->tipo_reporte_id)->abreviatura;
-        $zonaEstado = ZonaEstado::findOrFail($reporte->zona_estado_id)->abreviatura;
-
-
-
         // Registro de los folios asignados
         $foliosAsignados = [];
 
@@ -64,17 +58,7 @@ class ReporteService
             } else {
                 $foliosAsignados[] = "$desaparecido->persona_id";
 
-                Folio::create([
-                    'user_id' => $userId,
-                    'reporte_id' => $reporte->id,
-                    'persona_id' => $desaparecido->id,
-                    'folio_cebv' => [
-                        'fecha_registro' => $year,
-                        'tipo_reporte' => $tipoReporte,
-                        'tipo_desaparicion' => $tipoDesaparicion,
-                        'zona_estado' => $zonaEstado,
-                    ]
-                ]);
+                $this->createFolio($userId, $reporte, $desaparecido);
             }
         }
 
@@ -83,5 +67,34 @@ class ReporteService
             "Folios asignados a personas: " => $foliosAsignados,
             "Folios existentes a personas: " => $foliosRepetidos,
         ]);
+    }
+
+    public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido)
+    {
+        $tipoReporte = TipoReporte::findOrFail($reporte->tipo_reporte_id);
+
+        $numero = Serie::create(['tipo_reporte_id' => $reporte->tipo_reporte_id]);
+        $numeroString = strval($numero->numero);
+        $serie = str_pad($numeroString, 5, '0', STR_PAD_LEFT);
+
+        $desaparicion = HechoDesaparicion::where('reporte_id', $reporte->id)->first();
+        $fechaDesaparicion = is_null($desaparicion->fecha_desaparicion) ? 'AA' : $desaparicion->fecha_desaparicion->format('y');
+
+        $zonaEstado = ZonaEstado::findOrFail($reporte->zona_estado_id)->abreviatura;
+
+        Folio::create([
+            'user_id' => $userId,
+            'reporte_id' => $reporte->id,
+            'persona_id' => $desaparecido->persona_id,
+            'folio_cebv' => [
+                'fecha_registro' => $reporte->created_at->format('y'),
+                'tipo_reporte' => $tipoReporte->abreviatura,
+                'serie' => $serie,
+                'tipo_desaparicion' => $reporte->tipo_desaparicion,
+                'fecha_desaparicion' => $fechaDesaparicion,
+                'zona_estado' => $zonaEstado,
+            ]
+        ]);
+
     }
 }

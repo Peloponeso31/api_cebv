@@ -27,12 +27,13 @@ class Folio extends Model
 
     public $timestamps = false;
 
-    protected function folio(): Attribute
+    protected function folioCebv(): Attribute
     {
         return Attribute::make(
             get: fn($value, array $attributes) => $value,
-            set: fn($value) => $value['fecha_registro'] . '/' . $value ['tipo_reporte'] .
-            $value ['tipo_desaparicion'] . $value['zona_estado'],
+            set: fn($value) =>
+                $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
+                $value['tipo_desaparicion'].'-'.$value['fecha_desaparicion'].$value['zona_estado'],
         );
     }
 

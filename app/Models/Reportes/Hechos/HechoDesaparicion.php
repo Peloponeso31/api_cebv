@@ -31,6 +31,8 @@ class HechoDesaparicion extends Model
     ];
 
     protected $casts = [
+        'fecha_desaparicion' => 'datetime',
+        'fecha_percato' => 'datetime',
         'cambio_comportamiento' => 'boolean',
         'fue_amenazado' => 'boolean',
     ];

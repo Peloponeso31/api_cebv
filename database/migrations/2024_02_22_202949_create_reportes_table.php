@@ -28,7 +28,8 @@ return new class extends Migration {
             $table->text('sintesis_localizacion')->nullable();
             $table->string('clasificacion_persona')->nullable();
 
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

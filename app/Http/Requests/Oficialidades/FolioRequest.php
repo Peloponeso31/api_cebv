@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Oficialidades;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,10 +14,11 @@ class FolioRequest extends FormRequest
                 'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
                 'user_id' => ['required', 'exists:users,id', 'integer'],
                 'folio_cebv' =>['required', 'string', 'max:20'],
-                'folio_fub' => ['required', 'string', 'max:37'],
+                'folio_fub' => ['sometimes', 'string', 'max:37'],
             ],
             default => [
-                'folio_fub' => ['sometimes', 'string', 'max:37'],],
+                'folio_fub' => ['sometimes', 'string', 'max:37'],
+            ],
         };
     }
 

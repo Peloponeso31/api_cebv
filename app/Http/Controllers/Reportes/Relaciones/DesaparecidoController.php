@@ -6,35 +6,42 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\Relaciones\DesaparecidoRequest;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Services\CrudService;
 
 class DesaparecidoController extends Controller
 {
+    public function __construct(CrudService $service, Desaparecido $model) {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function index()
     {
-        return DesaparecidoResource::collection(Desaparecido::all());
+        return response()
+            ->json(DesaparecidoResource::collection(Desaparecido::all()))
+            ->setEncodingOptions(JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
+    protected CrudService $service;
+    protected Desaparecido $model;
+
 
     public function store(DesaparecidoRequest $request)
     {
-        return new DesaparecidoResource(Desaparecido::create($request->validated()));
+        return $this->service->store($request, $this->model, new DesaparecidoResource($this->model::class));
     }
 
-    public function show(Desaparecido $desaparecido)
+    public function show($id)
     {
-        return new DesaparecidoResource($desaparecido);
+        return $this->service->show($id, $this->model, new DesaparecidoResource($this->model::class));
     }
 
-    public function update(DesaparecidoRequest $request, Desaparecido $desaparecido)
+    public function update($id, DesaparecidoRequest $request)
     {
-        $desaparecido->update($request->validated());
-
-        return new DesaparecidoResource($desaparecido);
+        return $this->service->update($id, $request, $this->model, new DesaparecidoResource($this->model::class));
     }
 
-    public function destroy(Desaparecido $desaparecido)
+    public function destroy($id)
     {
-        $desaparecido->delete();
-
-        return response()->json();
+        return $this->service->destroy($id, $this->model);
     }
 }

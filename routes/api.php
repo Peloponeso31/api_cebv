@@ -5,6 +5,7 @@ use App\Http\Controllers\Informaciones\MedioController;
 use App\Http\Controllers\Informaciones\SitioController;
 use App\Http\Controllers\Informaciones\TipoMedioController;
 use App\Http\Controllers\Oficialidades\AreaController;
+use App\Http\Controllers\Oficialidades\FolioController;
 use App\Http\Controllers\Oficialidades\InstitucionController;
 use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
@@ -75,6 +76,7 @@ Route::middleware('auth:sanctum')->group(function () {
      */
     Route::apiResource('/areas', AreaController::class);
     Route::apiResource('/instituciones', InstitucionController::class);
+    Route::apiResource('/folios', FolioController::class);
 
     /**
      * Routes for personas module

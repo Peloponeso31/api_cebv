@@ -9,8 +9,12 @@ return new class extends Migration {
     {
         Schema::create('series', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('tipo_reporte_id')->constrained('tipos_reportes');
+
             $table->bigInteger('numero');
+
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Oficialidades;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FolioResource;
+use App\Http\Resources\Oficialidades\FolioResource;
 use App\Models\Oficialidades\Folio;
 use App\Services\CrudService;
 
@@ -26,7 +26,9 @@ class FolioController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return FolioResource::collection($query->get());
+        return response()
+            ->json(FolioResource::collection($query->get()))
+            ->setEncodingOptions(JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     }
 
     public function show($id)

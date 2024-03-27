@@ -18,10 +18,10 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained(table: 'users');
 
             $table->string('folio_cebv', 20);
-            $table->string('folio_fub', 37);
+            $table->string('folio_fub', 37)->nullable();
 
             $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('update_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

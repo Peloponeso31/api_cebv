@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Oficialidades;
 
-use App\Http\Resources\Reportes\ReporteResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,7 +12,7 @@ class FolioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'folio_cevb' => $this->folio_cevb,
+            'folio_cevb' => $this->folio_cebv,
             'folio_fub' => $this->folio_fub,
             'persona_id' => $this->persona_id,
             'reporte_id' => $this->reporte_id,

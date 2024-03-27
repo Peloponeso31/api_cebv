@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Carbon;
 
 class Reporte extends Model
 {

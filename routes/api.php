@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
 use App\Http\Controllers\Informaciones\SitioController;
@@ -18,14 +20,30 @@ use App\Http\Controllers\Reportes\Relaciones\DesaparecidoController;
 use App\Http\Controllers\Reportes\Relaciones\ReportanteController;
 use App\Http\Controllers\Reportes\ReporteController;
 use App\Http\Controllers\Reportes\TipoReporteController;
+use App\Http\Controllers\TamanoOjosController;
+use App\Http\Controllers\TamanoOrejasController;
+use App\Http\Controllers\TipoCabelloController;
+use App\Http\Controllers\TipoLabiosController;
+use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
+use App\Http\Controllers\ContextoEconomicoController;
+use App\Http\Controllers\LadoController;
+use App\Http\Controllers\LadoRnpdnoController;
+use App\Http\Controllers\RegionCuerpoController;
+use App\Http\Controllers\RegionCuerpoRnpdnoController;
+use App\Http\Controllers\SenasParticularesController;
+use App\Http\Controllers\TipoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
 use App\Http\Controllers\UserAdminController;
-use App\Models\Reportes\Reporte;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\VistaController;
+use App\Http\Controllers\VistaRnpdnoController;
+use App\Http\Controllers\VestimentaController;
+use App\Http\Resources\UserAdminResource;
+use App\Models\Catalogos\VistaRnpdno;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,12 +62,8 @@ use Illuminate\Support\Facades\Route;
  * Rutas protegidas por autenticacion.
  */
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function() {
-        return Auth::user();
-    });
-
-    Route::get("/pdf", function () {
-        return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => Reporte::find(1)])->stream();
+    Route::get('/usuario_actual', function() {
+        return new UserAdminResource(Auth::user());
     });
 
     /*
@@ -98,7 +112,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
-
+    
     Route::apiResource('/reportantes', ReportanteController::class);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
 
@@ -110,6 +124,36 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/asentamientos', AsentamientoController::class);
     Route::apiResource('/direcciones', DireccionController::class);
     Route::apiResource('/zonas-estados', ZonaEstadoController::class);
+    Route::apiResource('/senas_particulares', SenasParticularesController::class);
+    Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
+    Route::apiResource('/catalogos/tipo',TipoController::class);
+    Route::apiResource('/catalogos/vista',VistaController::class);
+    Route::apiResource('/catalogos/lado',LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
+    Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
+
+
+    Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
+
+    Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
+    Route::apiResource('/color_cabello', ColorCabelloController::class);
+    Route::apiResource('/color_ojos', ColorOjosController::class);
+    Route::apiResource('/tamano_ojos', TamanoOjosController::class);
+    Route::apiResource('/color_piel', ColorPielController::class);
+    Route::apiResource('/tipo_cabello', TipoCabelloController::class);
+    Route::apiResource('/tipo_labios', TipoLabiosController::class);
+    Route::apiResource('/tipo_nariz', TipoNarizController::class);
+    Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
+    Route::apiResource('/complexion', ComplexionController::class);
+
+
+    Route::apiResource("etnia", EtniaController::class);
+    Route::apiResource("/religion", ReligionController::class);
+    Route::apiResource("/lengua", LenguaController::class);
+    Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
+    Route::apiResource("/vestimenta", VestimentaController::class);
+    Route::apiResource("/ascendencia", AscendenciaController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

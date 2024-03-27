@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\ColorOjosRequest;
 use App\Models\Catalogos\ColorOjos;
 use Illuminate\Http\Request;
 
 class ColorOjosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
         return ColorOjos::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function store(ColorOjosRequest $request)
     {
-        //
+        return ColorOjos::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function show($id)
     {
-        //
+        return ColorOjos::findOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ColorOjos $colorOjos)
+    public function update( $id, ColorOjosRequest $request)
     {
-        //
+        $colorojos= ColorOjos::findOrFail($id);
+        return $colorojos->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ColorOjos $colorOjos)
+    
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ColorOjos $colorOjos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ColorOjos $colorOjos)
-    {
-        //
+        return ColorOjos::findOrFail($id)->delete();
     }
 }

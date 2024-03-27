@@ -27,7 +27,6 @@ use App\Http\Controllers\ComplexionController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\GrupoEtnicoController;
 use App\Http\Controllers\LenguaController;
-use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\ReligionController;
 use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
@@ -52,9 +51,6 @@ use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
-use App\Models\Catalogos\VistaRnpdno;
-use App\Models\User;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

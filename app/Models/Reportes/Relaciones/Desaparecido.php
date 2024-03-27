@@ -17,6 +17,8 @@ class Desaparecido extends Model
         'reporte_id',
         'habla_espanhol',
         'sabe_leer',
+        "estatus_rpdno_id",
+        "estatus_cebv_id",
         'sabe_escribir',
         'url_boletin',
     ];

@@ -42,7 +42,9 @@ use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VestimentaController;
+use App\Http\Resources\UserAdminResource;
 use App\Models\Catalogos\VistaRnpdno;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +62,8 @@ use App\Models\Catalogos\VistaRnpdno;
  * Rutas protegidas por autenticacion.
  */
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function() {
-        return Auth::user();
+    Route::get('/usuario_actual', function() {
+        return new UserAdminResource(Auth::user());
     });
 
     /*

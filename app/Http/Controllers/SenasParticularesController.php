@@ -40,7 +40,7 @@ class SenasParticularesController extends Controller
     public function update($id, UpdateSenasParticularesRequest $request)
     {
         $model = SenasParticulares::findOrFail($id);
-        $model->update($request->all());
+        return $model->update($request->all());
     }
 
     /**

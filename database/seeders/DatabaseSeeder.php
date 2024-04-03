@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +35,10 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
+            nacionalidad_seeder::class,
+            Companias_Telefonicas_seeder::class,
+           
+            
         ]);
 
         /**
@@ -42,6 +47,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PersonaSeeder::class,
             ReporteSeeder::class,
+            Telefonos_seeder::class,
+            ContactoSeeder::class
         ]);
     }
 }

@@ -23,7 +23,9 @@ use App\Http\Controllers\Catalogos\TipoController;
 use App\Http\Controllers\ColorCabelloController;
 use App\Http\Controllers\ColorOjosController;
 use App\Http\Controllers\ColorPielController;
+use App\Http\Controllers\CompaniaTelefonicaController;
 use App\Http\Controllers\ComplexionController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\GrupoEtnicoController;
 use App\Http\Controllers\LenguaController;
@@ -45,6 +47,7 @@ use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\SenasParticularesController;
+use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
@@ -104,6 +107,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/estatus-personas', EstatusPersonaController::class);
     Route::apiResource('/parentescos', ParentescoController::class);
     Route::apiResource("/persona", PersonaController::class);
+    Route::apiResource("/CompaniaTelefonica", CompaniaTelefonicaController::class);
+    Route::apiResource("/Telefono", TelefonoController::class);
+    Route::apiResource("/Contacto", ContactoController::class);
 
     /**
      * Routes for the reportes module

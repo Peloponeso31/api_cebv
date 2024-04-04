@@ -139,6 +139,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/direcciones', DireccionController::class);
     Route::apiResource('/zonas-estados', ZonaEstadoController::class);
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
+    Route::post('/bulk_insert/senas_particulares', [SenasParticularesController::class, 'bulkStore']);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
     Route::apiResource('/catalogos/tipo',TipoController::class);
     Route::apiResource('/catalogos/vista',VistaController::class);
@@ -151,7 +152,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
     Route::apiResource("/contexto_familiar", ContextoFamiliarController::class);
 
-    Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
+    Route::apiResource('/caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);
     Route::apiResource('/color_ojos', ColorOjosController::class);
     Route::apiResource('/tamano_ojos', TamanoOjosController::class);
@@ -163,7 +164,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/complexion', ComplexionController::class);
 
 
-    Route::apiResource("etnia", EtniaController::class);
+    Route::apiResource("/etnia", EtniaController::class);
     Route::apiResource("/religion", ReligionController::class);
     Route::apiResource("/lengua", LenguaController::class);
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);

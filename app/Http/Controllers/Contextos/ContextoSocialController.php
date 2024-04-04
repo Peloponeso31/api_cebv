@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Contextos;
 
-use App\Http\Requests\StoreContextoSocialRequest;
-use App\Http\Requests\UpdateContextoSocialRequest;
-use App\Http\Resources\ContextoSocialResource;
-use App\Models\ContextoSocial;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Contextos\StoreContextoSocialRequest;
+use App\Http\Requests\Contextos\UpdateContextoSocialRequest;
+use App\Http\Resources\Contextos\ContextoSocialResource;
+use App\Models\Contextos\ContextoSocial;
 use Illuminate\Http\Request;
 
 class ContextoSocialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
+    public function __construct() {
+        $this->middleware(['can:consulta'])->only('index','show');
+        $this->middleware(['can:agregar'])->only('store');
+        $this->middleware(['can:edicion'])->only('update');
+        $this->middleware(['can:eliminacion'])->only('destroy');;
+    }
+
     public function index()
     {
         return ContextoSocialResource::collection(ContextoSocial::all());

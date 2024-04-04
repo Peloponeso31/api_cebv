@@ -7,6 +7,7 @@ use App\Models\Catalogos\GrupoEtnico;
 use App\Models\Catalogos\Lengua;
 use App\Models\Catalogos\Religion;
 use App\Models\Catalogos\Vestimenta;
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

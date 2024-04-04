@@ -1,27 +1,23 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Contextos;
 
 use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ContextoSocial extends Model
+
+class ContextoFamiliar extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'persona_id',
-        "pasatiempos",
-        "club_organizacion",
-        "estudio",
-        "amistades",
-        "amistades_municipio",
-        "correo_electronico",
-        "nombre_redes_sociales",
-        "lugares_frecuentes",
-        "vivienda_estado"
+        "personas_vive",
+        "hijos",
+        "familiar_cercano",
+        "familiar_violencia"
     ];
 
     public function persona(): BelongsTo

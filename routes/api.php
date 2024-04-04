@@ -26,6 +26,9 @@ use App\Http\Controllers\ColorPielController;
 use App\Http\Controllers\CompaniaTelefonicaController;
 use App\Http\Controllers\ComplexionController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\Contextos\ContextoEconomicoController;
+use App\Http\Controllers\Contextos\ContextoFamiliarController;
+use App\Http\Controllers\Contextos\ContextoSocialController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\GrupoEtnicoController;
 use App\Http\Controllers\LenguaController;
@@ -45,9 +48,6 @@ use App\Http\Controllers\TipoLabiosController;
 use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
-use App\Http\Controllers\ContextoEconomicoController;
-use App\Http\Controllers\ContextoFamiliarController;
-use App\Http\Controllers\ContextoSocialController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
@@ -109,9 +109,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/estatus-personas', EstatusPersonaController::class);
     Route::apiResource('/parentescos', ParentescoController::class);
     Route::apiResource("/persona", PersonaController::class);
-    Route::apiResource("/CompaniaTelefonica", CompaniaTelefonicaController::class);
-    Route::apiResource("/Telefono", TelefonoController::class);
-    Route::apiResource("/Contacto", ContactoController::class);
+    Route::apiResource("/compania-telefonica", CompaniaTelefonicaController::class);
+    Route::apiResource("/telefono", TelefonoController::class);
+    Route::apiResource("/contacto", ContactoController::class);
 
     /**
      * Routes for the reportes module
@@ -147,11 +147,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
-    Route::apiResource("/contexto_social", ContextoSocialController::class);
-    Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
-    Route::apiResource("/contexto_familiar", ContextoFamiliarController::class);
+    Route::apiResource("/contextos/contexto-familiar", ContextoFamiliarController::class);
+    Route::apiResource("/contextos/contexto-economico", ContextoEconomicoController::class);
+    Route::apiResource("/contextos/contexto-social", ContextoSocialController::class);
 
-    Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
+    Route::apiResource('/caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);
     Route::apiResource('/color_ojos', ColorOjosController::class);
     Route::apiResource('/tamano_ojos', TamanoOjosController::class);

@@ -1,34 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Contextos;
 
-use App\Http\Requests\StoreContextoEconomicoRequest;
-use App\Http\Requests\UpdateContextoEconomicoRequest;
-use App\Http\Resources\ContextoEconomicoResource;
-use App\Models\ContextoEconomico;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Contextos\StoreContextoEconomicoRequest;
+use App\Http\Requests\Contextos\UpdateContextoEconomicoRequest;
+use App\Http\Resources\Contextos\ContextoEconomicoResource;
+use App\Models\Contextos\ContextoEconomico;
 use Illuminate\Http\Request;
 
 class ContextoEconomicoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function __construct() {
+        $this->middleware(['can:consulta'])->only('index','show');
+        $this->middleware(['can:agregar'])->only('store');
+        $this->middleware(['can:edicion'])->only('update');
+        $this->middleware(['can:eliminacion'])->only('destroy');;
+    }
+
+    
     public function index()
     {
         return ContextoEconomicoResource::collection(ContextoEconomico::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreContextoEconomicoRequest $request)
     {
         return new ContextoEconomicoResource(ContextoEconomico::create($request->all()));
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show($id)
     {
         $model = ContextoEconomico::findOrFail($id);
@@ -36,9 +39,7 @@ class ContextoEconomicoController extends Controller
         return new ContextoEconomicoResource($model);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update($id, UpdateContextoEconomicoRequest $request)
     {
         $model = ContextoEconomico::findOrFail($id);
@@ -46,9 +47,7 @@ class ContextoEconomicoController extends Controller
         $model->update($request->all());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Request $request, $id)
     {
         if ($request->user()->tokenCan('delete')) {

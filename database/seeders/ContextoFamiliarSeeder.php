@@ -12,6 +12,6 @@ class ContextoFamiliarSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\ContextoFamiliar::factory(100)->create();  
+        \App\Models\Contextos\ContextoFamiliar::factory(100)->create();
     }
 }

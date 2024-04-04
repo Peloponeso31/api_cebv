@@ -1,34 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Contextos;
 
-use App\Http\Requests\StoreContextoFamiliarRequest;
-use App\Http\Requests\UpdateContextoFamiliarRequest;
-use App\Http\Resources\ContextoFamiliarResource;
-use App\Models\ContextoFamiliar;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Contextos\StoreContextoFamiliarRequest;
+use App\Http\Requests\Contextos\UpdateContextoFamiliarRequest;
+use App\Http\Resources\Contextos\ContextoFamiliarResource;
+use App\Models\Contextos\ContextoFamiliar;
 use Illuminate\Http\Request;
 
 class ContextoFamiliarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function __construct() {
+        $this->middleware(['can:consulta'])->only('index','show');
+        $this->middleware(['can:agregar'])->only('store');
+        $this->middleware(['can:edicion'])->only('update');
+        $this->middleware(['can:eliminacion'])->only('destroy');;
+    }
+    
+    
     public function index()
     {
         return ContextoFamiliarResource::collection(ContextoFamiliar::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreContextoFamiliarRequest $request)
     {
         return new ContextoFamiliarResource(ContextoFamiliar::create($request->all()));
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(string $id)
     {
         $model = ContextoFamiliar::findOrFail($id);
@@ -36,9 +39,7 @@ class ContextoFamiliarController extends Controller
         return new ContextoFamiliarResource($model);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update($id, UpdateContextoFamiliarRequest $request)
     {
         $model = ContextoFamiliar::findOrFail($id);
@@ -46,9 +47,6 @@ class ContextoFamiliarController extends Controller
         $model->update($request->all());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, $id)
     {
         if ($request->user()->tokenCan('delete')) {

@@ -14,34 +14,34 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
 
-        /*
-         * Test users for permissions
-         */
         $admin = User::create([
-            'name' => 'Admin Test',
-            'email' => 'admin@admin.com',
+            'name' => 'Administrador',
+            'email' => 'admin@cebv.com',
             'password' => Hash::make('admin')
         ]);
 
-        $user = User::create([
-            'name' => 'User Test',
-            'email' => 'user@user.com',
-            'password' => Hash::make('user')
+        $supervisor = User::create([
+            'name' => 'Supervisor',
+            'email' => 'supervisor@cebv.com',
+            'password' => Hash::make('supervisor')
         ]);
 
-        $guest = User::create([
-            'name' => 'Guest Test',
-            'email' => 'guest@guest.com',
-            'password' => Hash::make('guest')
+        $capturista = User::create([
+            'name' => 'Capturista',
+            'email' => 'capturista@cebv.com',
+            'password' => Hash::make('capturista')
         ]);
 
-        $admin->assignRole('admin_test');
-        $user->assignRole('user_test');
-        $guest->assignRole('guest_test');
+        $consultor = User::create([
+            'name' => 'Consultor',
+            'email' => 'consultor@cebv.com',
+            'password' => Hash::make('consultor')
+        ]);
+
+        $admin->assignRole('administrador');
+        $supervisor->assignRole('supervisor');
+        $capturista->assignRole('capturista');
+        $consultor->assignRole('consultor');
     }
 }

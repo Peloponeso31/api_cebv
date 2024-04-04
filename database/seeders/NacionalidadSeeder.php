@@ -6,7 +6,7 @@ use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use Illuminate\Database\Seeder;
 
-class nacionalidad_seeder extends Seeder
+class NacionalidadSeeder extends Seeder
 {
     /**
      * Run the database seeds.

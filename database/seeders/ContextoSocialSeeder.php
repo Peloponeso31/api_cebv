@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contextos\ContextoSocial;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class ContextoSocialSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\ContextoSocial::factory(100)->create();
+        ContextoSocial::factory(100)->create();
     }
 }

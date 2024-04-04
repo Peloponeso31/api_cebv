@@ -15,6 +15,10 @@ class TipoMedioController extends Controller
 
     public function __construct(CrudService $service, TipoMedio $model)
     {
+        $this->middleware(['can:consulta'])->only('index','show');
+        $this->middleware(['can:agregar'])->only('store');
+        $this->middleware(['can:edicion'])->only('update');
+        $this->middleware(['can:eliminacion'])->only('destroy');
         $this->service = $service;
         $this->model = $model;
     }

@@ -1,20 +1,14 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Contextos;
 
 use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ContextoFamiliar>
- */
+
 class ContextoFamiliarFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
         return [

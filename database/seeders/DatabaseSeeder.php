@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ContextoSocial;
-use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +15,7 @@ class DatabaseSeeder extends Seeder
          * System seeders
          */
         $this->call([
-            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
+            PermisoSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
         ]);
 
@@ -36,11 +34,11 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
-            nacionalidad_seeder::class,
+            NacionalidadSeeder::class,
             Companias_Telefonicas_seeder::class,
-            ContextoSocialSeeder::class,
+            ContextoFamiliarSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class
+            ContextoSocialSeeder::class,     
         ]);
 
         /**
@@ -50,7 +48,8 @@ class DatabaseSeeder extends Seeder
             PersonaSeeder::class,
             ReporteSeeder::class,
             Telefonos_seeder::class,
-            ContactoSeeder::class
+            ContactoSeeder::class,
+            
         ]);
     }
 }

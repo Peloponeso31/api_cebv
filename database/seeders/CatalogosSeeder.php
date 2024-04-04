@@ -207,10 +207,10 @@ class CatalogosSeeder extends Seeder
         ]);
 
         \App\Models\Catalogos\Lado::insert([
-            ["nombre" => "DERECHO", "color" => "000000"],
+            ["nombre" => "DERECHO",         "color" => "E63244"],
             ["nombre" => "IZQUIERDO",       "color" => "ED1C24"],
-            ["nombre" => "NO ESPECIFICA", "color" => "000000"],
-            ["nombre" => "UNICO", "color" => "000000"],
+            ["nombre" => "NO ESPECIFICA",   "color" => "6C7156"],
+            ["nombre" => "UNICO",           "color" => "000000"],
             ["nombre" => "ANTERIOR",        "color" => "FF7F27"],
             ["nombre" => "POSTERIOR",       "color" => "FFF200"],
         ]);

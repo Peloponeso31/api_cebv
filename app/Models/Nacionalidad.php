@@ -15,7 +15,6 @@ class Nacionalidad extends Model
 
     protected $fillable = [
         'nombre'
-        
     ];
 
     public function personas(): BelongsToMany

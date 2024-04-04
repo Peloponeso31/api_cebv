@@ -46,6 +46,8 @@ use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
+use App\Http\Controllers\ContextoFamiliarController;
+use App\Http\Controllers\ContextoSocialController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
@@ -145,8 +147,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
-
+    Route::apiResource("/contexto_social", ContextoSocialController::class);
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
+    Route::apiResource("/contexto_familiar", ContextoFamiliarController::class);
 
     Route::apiResource('caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);

@@ -15,6 +15,7 @@ class ContextoEconomicoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'persona_id'=> $this -> persona_id,
             "empresa" => $this->empresa,
             "puesto" => $this->puesto,
             "fecha_ingreso" => $this->fecha_ingreso,

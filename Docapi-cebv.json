@@ -426,11 +426,11 @@
         }
       }
     },
-    "/desapariciones": {
+    "/hechos-desapariciones": {
       "get": {
         "summary": "Obtener todos los registros de las desapariciones",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "responses": {
           "200": {
@@ -440,7 +440,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DesaparicionResource"
+                    "$ref": "#/components/schemas/HechosDesaparicionResource"
                   }
                 }
               }
@@ -451,14 +451,14 @@
       "post": {
         "summary": "Crear una nueva desaparición",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDesaparicionRequest"
+                "$ref": "#/components/schemas/HechosDesaparicionRequest"
               }
             }
           }
@@ -469,7 +469,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DesaparicionResource"
+                  "$ref": "#/components/schemas/HechosDesaparicionResource"
                 }
               }
             }
@@ -477,11 +477,11 @@
         }
       }
     },
-    "/desapariciones/{id}": {
+    "/hechos-desapariciones/{id}": {
       "get": {
-        "summary": "Obtener una desaparición por su ID",
+        "summary": "Obtener un hecho de desaparición por su ID",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "parameters": [
           {
@@ -500,7 +500,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DesaparicionResource"
+                  "$ref": "#/components/schemas/HechosDesaparicionResource"
                 }
               }
             }
@@ -511,9 +511,9 @@
         }
       },
       "put": {
-        "summary": "Actualizar una desaparición existente",
+        "summary": "Actualizar un hecho de desaparición existente",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "parameters": [
           {
@@ -521,8 +521,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "integer"
             }
           }
         ],
@@ -531,14 +530,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDesaparicionRequest"
+                "$ref": "#/components/schemas/HechosDesaparicionRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Desaparición actualizada exitosamente"
+            "description": "Desaparición actualizada exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HechosDesaparicionResource"
+                }
+              }
+            }
           },
           "404": {
             "description": "Desaparición no encontrada"
@@ -548,7 +554,7 @@
       "delete": {
         "summary": "Eliminar una desaparición existente",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "parameters": [
           {
@@ -1489,7 +1495,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MediosResource"
+                "$ref": "#/components/schemas/MediosRequest"
               }
             }
           }
@@ -1500,7 +1506,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MediosRequest"
+                  "$ref": "#/components/schemas/MediosResource"
                 }
               }
             }
@@ -1605,7 +1611,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MediosResource"
+                "$ref": "#/components/schemas/MediosRequest"
               }
             }
           }
@@ -1616,7 +1622,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MediosRequest"
+                  "$ref": "#/components/schemas/MediosResource"
                 }
               }
             }
@@ -1747,10 +1753,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoMediosResource"
+                "$ref": "#/components/schemas/TipoMediosRequest"
               }
             }
           }
@@ -1761,7 +1768,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TipoMediosRequest"
+                  "$ref": "#/components/schemas/TipoMediosResource"
                 }
               }
             }
@@ -1862,10 +1869,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": ""
+                "$ref": "#/components/schemas/TipoMediosRequest"
               }
             }
           }
@@ -1876,7 +1884,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TipoMediosRequest"
+                  "$ref": "#/components/schemas/TipoMediosResource"
                 }
               }
             }
@@ -2007,10 +2015,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SitiosResource"
+                "$ref": "#/components/schemas/SitiosRequest"
               }
             }
           }
@@ -2021,7 +2030,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SitiosRequest"
+                  "$ref": "#/components/schemas/SitiosResource"
                 }
               }
             }
@@ -2122,10 +2131,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SitiosResource"
+                "$ref": "#/components/schemas/SitiosRequest"
               }
             }
           }
@@ -2136,7 +2146,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SitiosRequest"
+                  "$ref": "#/components/schemas/SitiosResource"
                 }
               }
             }
@@ -2267,10 +2277,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CircunstanciasResource"
+                "$ref": "#/components/schemas/CircunstanciasRequest"
               }
             }
           }
@@ -2281,7 +2292,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                  "$ref": "#/components/schemas/CircunstanciasResource"
                 }
               }
             }
@@ -2382,10 +2393,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CircunstanciasResource"
+                "$ref": "#/components/schemas/CircunstanciasRequest"
               }
             }
           }
@@ -2396,7 +2408,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                  "$ref": "#/components/schemas/CircunstanciasResource"
                 }
               }
             }
@@ -2472,72 +2484,904 @@
         }
       }
     },
-    "/hipotesis":{
-      "get":{
-
+    "/hipotesis": {
+      "get": {
+        "summary": "Muestra todos los registros de las hipotesis realizadas por los casos de desaparición",
+        "tags": [
+          "Hipotesis"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
       },
-      "post":{
-
+      "post": {
+        "summary": "Crea un nueva hipotesis de desaparicion",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_hipotesis_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "area_asigna_sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "etapa",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/hipotesis/{id}":{
-      "get":{
-
+    "/hipotesis/{id}": {
+      "get": {
+        "summary": "Muestra un registro de hipotesis buscado por su id",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
       },
-      "put":{
-
+      "put": {
+        "summary": "Actualiza un registro de hipotesis",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_hipotesis_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "area_asigna_sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "etapa",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
       },
-      "delete":{
-
+      "delete": {
+        "summary": "Elimina un registro de hipotesis",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos-hipotesis": {
+      "get": {
+        "summary": "Muestra todos los registos de los tipos de hipotesis",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de tipo de hipotesis",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "circunstancia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "abreviatura",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoHipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos-hipotesis/{id}": {
+      "get": {
+        "summary": "Muestra un registro identificado por su id",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro de tipo de hipotesis",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "circunstancia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "abreviatura",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoHipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
     "schemas": {
-      "HipotesisRequest":{
-        "reporte_id":{
-
-        },
-        "tipo_hipotesis_id":{
-
-        },
-        "sitio_id":{
-
-        },
-        "area_asigna_sitio_id":{
-
-        },
-        "etapa":{
-
-        },
-        "descripcion":{
-          
+      "DesaparecidoRequest": {
+        "type": "object",
+        "properties": {
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "persona_id": {
+            "type": "string",
+            "description": "Informacion de la persona desaparecida"
+          },
+          "estatus_rnpdno_id": {
+            "type": "integer"
+          },
+          "estatus_cebv_id": {
+            "type": "integer"
+          },
+          "habla_español": {
+            "type": "boolean"
+          },
+          "sabe_leer": {
+            "type": "boolean"
+          },
+          "sabe_escribir": {
+            "type": "boolean"
+          },
+          "url_boletin": {
+            "type": "string"
+          }
         }
       },
-      "HipotesisResource":{
-        "type":"object",
-        "properties":{
-          "id":{
-            "type":"integer",
-            "description":"Id de la hipotesis"
+      "DesaparecidoResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id que hace referencia al desaparecido"
           },
-          "etapa":{
-            "type":"integer"
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
           },
-          "descripcion":{
-            "type":"string"
+          "persona": {
+            "type": "string",
+            "description": "Informacion de la persona desaparecida"
           },
-          "reporte_id":{
-            "type":"integer"
+          "habla_español": {
+            "type": "boolean"
           },
-          "tipo_hipotesis_id":{
-            "type":"integer"
+          "sabe_leer": {
+            "type": "boolean"
           },
-          "sitio_id":{
-            "type":"integer"
+          "sabe_escribir": {
+            "type": "boolean"
           },
-          "area_asigna_sitio_id":{
-            "type":"integer"
+          "url_boletin": {
+            "type": "string"
+          },
+          "folio": {
+            "type": "string",
+            "description": "Folio de busqueda de la CEBV"
+          }
+        }
+      },
+      "HechosDesaparicionResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "El id referente al hecho de desaparicion"
+          },
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "descripcion_cambio_comportamiento": {
+            "type": "string",
+            "description": "Como fue el cambio de comportamiento"
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desapariciones": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          }
+        }
+      },
+      "HechosDesaparicionRequest": {
+        "type": "object",
+        "properties": {
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha en la que desaparecio la persona"
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha en la que se percactaron de la desaparicion"
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "descripcion_cambio_comportamiento": {
+            "type": "string",
+            "description": "Como fue el cambio de comportamiento"
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desapariciones": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          }
+        }
+      },
+      "TipoHipotesisRequest": {
+        "type": "object",
+        "properties": {
+          "circunstancia_id": {
+            "type": "integer",
+            "description": "Id de circunstancia relacionada"
+          },
+          "abreviatura": {
+            "type": "string",
+            "description": ""
+          },
+          "descripcion": {
+            "type": "string",
+            "description": " Descripcion del tipo de hipotesis"
+          }
+        }
+      },
+      "TipoHipotesisResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id del tipo de hipotesis"
+          },
+          "abreviatura": {
+            "type": "string",
+            "description": ""
+          },
+          "descripcion": {
+            "type": "string",
+            "description": " Descripcion del tipo de hipotesis"
+          },
+          "circunstancia_id": {
+            "type": "integer",
+            "description": "Id de circunstancia relacionada"
+          }
+        }
+      },
+      "HipotesisRequest": {
+        "type": "object",
+        "properties": {
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "tipo_hipotesis_id": {
+            "type": "integer",
+            "description": "ID del tipo de hipotesis"
+          },
+          "sitio_id": {
+            "type": "integer",
+            "description": "Id relacionado al sitio"
+          },
+          "area_asigna_sitio_id": {
+            "type": "integer",
+            "description": "Id del area a la que es asignada"
+          },
+          "etapa": {
+            "type": "string",
+            "example": "Inicial o Final"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Relato de la hipotesis"
+          }
+        }
+      },
+      "HipotesisResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id de la hipotesis"
+          },
+          "etapa": {
+            "type": "integer"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "reporte_id": {
+            "type": "integer"
+          },
+          "tipo_hipotesis_id": {
+            "type": "integer"
+          },
+          "sitio_id": {
+            "type": "integer"
+          },
+          "area_asigna_sitio_id": {
+            "type": "integer"
           }
         }
       },
@@ -2718,219 +3562,6 @@
           }
         }
       },
-      "DesaparicionResource": {
-        "type": "object",
-        "properties": {
-          "persona_id": {
-            "type": "integer",
-            "description": "Identificador de la persona relacionada a la desaparicion"
-          },
-          "direccion_id": {
-            "type": "integer",
-            "description": "Identificador de la direccion relacionada con la desaparicion."
-          },
-          "zona_estado": {
-            "type": "string",
-            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
-          },
-          "area_id": {
-            "type": "string",
-            "description": "El nombre del area."
-          },
-          "dependencia": {
-            "type": "string",
-            "description": "El nombre de la dependencia si es el caso."
-          },
-          "fecha_desaparicion": {
-            "type": "string",
-            "format": "date",
-            "description": "La fecha de desaparicion de la persona."
-          },
-          "fecha_percato": {
-            "type": "string",
-            "format": "date",
-            "description": "Percato de la desaparicion de la persona."
-          },
-          "cambio_comportamiento": {
-            "type": "boolean",
-            "description": "Hubo cambio en el comportamiento en la persona."
-          },
-          "fue_amenazado": {
-            "type": "boolean",
-            "description": "Sabe si fue amenazada la persona."
-          },
-          "descripcion_amenaza": {
-            "type": "string",
-            "description": "Descripcion de la persona."
-          },
-          "contador_desaparicion": {
-            "type": "integer",
-            "description": "El."
-          },
-          "situacion_previa": {
-            "type": "string",
-            "description": "La situacion previa de la persona."
-          },
-          "informacion_relevante": {
-            "type": "string",
-            "description": "Informacion sobre la desaparicion"
-          },
-          "hechos_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "sintesis_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "hipotesis_id": {
-            "type": "integer",
-            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
-          }
-        }
-      },
-      "StoreDesaparicionRequest": {
-        "type": "object",
-        "properties": {
-          "persona_id": {
-            "type": "integer",
-            "description": "Identificador de la persona relacionada a la desaparicion"
-          },
-          "direccion_id": {
-            "type": "integer",
-            "description": "Identificador de la direccion relacionada con la desaparicion."
-          },
-          "zona_estado": {
-            "type": "string",
-            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
-          },
-          "area_id": {
-            "type": "string",
-            "description": "El nombre del area."
-          },
-          "dependencia": {
-            "type": "string",
-            "description": "El nombre de la dependencia si es el caso."
-          },
-          "fecha_desaparicion": {
-            "type": "string",
-            "format": "date",
-            "description": "La fecha de desaparicion de la persona."
-          },
-          "fecha_percato": {
-            "type": "string",
-            "format": "date",
-            "description": "Percato de la desaparicion de la persona."
-          },
-          "cambio_comportamiento": {
-            "type": "boolean",
-            "description": "Hubo cambio en el comportamiento en la persona."
-          },
-          "fue_amenazado": {
-            "type": "boolean",
-            "description": "Sabe si fue amenazada la persona."
-          },
-          "descripcion_amenaza": {
-            "type": "string",
-            "description": "Descripcion de la persona."
-          },
-          "contador_desaparicion": {
-            "type": "integer",
-            "description": "El."
-          },
-          "situacion_previa": {
-            "type": "string",
-            "description": "La situacion previa de la persona."
-          },
-          "informacion_relevante": {
-            "type": "string",
-            "description": "Informacion sobre la desaparicion"
-          },
-          "hechos_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "sintesis_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "hipotesis_id": {
-            "type": "integer",
-            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
-          }
-        }
-      },
-      "UpdateDesaparicionRequest": {
-        "type": "object",
-        "properties": {
-          "persona_id": {
-            "type": "integer",
-            "description": "Identificador de la persona relacionada a la desaparicion"
-          },
-          "direccion_id": {
-            "type": "integer",
-            "description": "Identificador de la direccion relacionada con la desaparicion."
-          },
-          "zona_estado": {
-            "type": "string",
-            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
-          },
-          "area_id": {
-            "type": "string",
-            "description": "El nombre del area."
-          },
-          "dependencia": {
-            "type": "string",
-            "description": "El nombre de la dependencia si es el caso."
-          },
-          "fecha_desaparicion": {
-            "type": "string",
-            "format": "date",
-            "description": "La fecha de desaparicion de la persona."
-          },
-          "fecha_percato": {
-            "type": "string",
-            "format": "date",
-            "description": "Percato de la desaparicion de la persona."
-          },
-          "cambio_comportamiento": {
-            "type": "boolean",
-            "description": "Hubo cambio en el comportamiento en la persona."
-          },
-          "fue_amenazado": {
-            "type": "boolean",
-            "description": "Sabe si fue amenazada la persona."
-          },
-          "descripcion_amenaza": {
-            "type": "string",
-            "description": "Descripcion de la persona."
-          },
-          "contador_desaparicion": {
-            "type": "integer",
-            "description": "El."
-          },
-          "situacion_previa": {
-            "type": "string",
-            "description": "La situacion previa de la persona."
-          },
-          "informacion_relevante": {
-            "type": "string",
-            "description": "Informacion sobre la desaparicion"
-          },
-          "hechos_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "sintesis_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "hipotesis_id": {
-            "type": "integer",
-            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
-          }
-        }
-      },
       "StoreSenasParticularesRequest": {
         "type": "object",
         "properties": {
@@ -3006,7 +3637,7 @@
           "id": {
             "type": "integer"
           },
-          "nomtipo": {
+          "nombre": {
             "type": "string"
           }
         }
@@ -3017,7 +3648,7 @@
           "id": {
             "type": "integer"
           },
-          "nomvista": {
+          "nombre": {
             "type": "string"
           }
         }
@@ -3028,7 +3659,7 @@
           "id": {
             "type": "integer"
           },
-          "nomlado": {
+          "nombre": {
             "type": "string"
           }
         }

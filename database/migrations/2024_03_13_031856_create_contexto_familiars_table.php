@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contexto_familiars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("persona_id")->nullable();
+            $table->foreignId('persona_id') -> constrained(table: 'personas');
             $table->string("personas_vive")->nullable();
             $table->integer("hijos")->nullable();
             $table->string("familiar_cercano")->nullable();

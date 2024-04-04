@@ -15,6 +15,7 @@ class ContextoSocialResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+        'persona_id'=> $this -> persona_id,
         "pasatiempos"=> $this-> pasatiempos,
         "club_organizacion"=> $this-> club_organizacion,
         "estudio"=> $this-> estudio,

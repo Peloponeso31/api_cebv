@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Persona;
 
 class ContextoSocial extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'persona_id',
         "pasatiempos",
         "club_organizacion",
         "estudio",

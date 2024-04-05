@@ -57,6 +57,7 @@ use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -175,3 +176,4 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/token', 'token');
 });
+

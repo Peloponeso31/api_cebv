@@ -1,0 +1,9 @@
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=true
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	remote.origin.url=https://github.com/Peloponeso31/api_cebv.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.pre-release.remote=origin
+file:.git/config	branch.pre-release.merge=refs/heads/pre-release
+file:.git/config	branch.feature/ficha-de-datos.vscode-merge-base=origin/pre-release

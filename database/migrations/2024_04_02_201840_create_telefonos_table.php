@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lados', function (Blueprint $table) {
-            $table->id();
-            $table->string("nombre");
-            $table->string("color", length:6)->nullable();
+        Schema::create('telefonos', function (Blueprint $table) {
+            $table->string('numero');
+            $table->string('observaciones') -> nullable();
+            $table->foreignId('compania_id') -> constrained(table: 'companias_telefonicas');
         });
+       
+        
     }
 
     /**
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lados');
+        Schema::dropIfExists('telefonos');
     }
 };

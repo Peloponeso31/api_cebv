@@ -55,7 +55,7 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "REGION CLAVICULAR",             "color" => "FF9B31"],
             ["nombre" => "REGION ESTERNAL",               "color" => "FF3232"],
             ["nombre" => "REGION FRONTAL",                "color" => "FF4F46"],
-            ["nombre" => "REGION INGUINAL  O INGLE",      "color" => "FA5A5A"],
+            ["nombre" => "REGION INGUINAL  O INGLE",      "color" => "FF5A5A"],
             ["nombre" => "REGION LATERAL DEL CUELLO",     "color" => "FFFD55"],
             ["nombre" => "REGION MALAR O POMULO",         "color" => "D2FF55"],
             ["nombre" => "REGION MAMILAR O TETILLA",      "color" => "FF5555"],
@@ -207,12 +207,12 @@ class CatalogosSeeder extends Seeder
         ]);
 
         \App\Models\Catalogos\Lado::insert([
-            ["nombre" => "DERECHO"],
-            ["nombre" => "IZQUIERDO"],
-            ["nombre" => "NO ESPECIFICA"],
-            ["nombre" => "UNICO"],
-            ["nombre" => "ANTERIOR"],
-            ["nombre" => "POSTERIOR"],
+            ["nombre" => "DERECHO",         "color" => "E63244"],
+            ["nombre" => "IZQUIERDO",       "color" => "ED1C24"],
+            ["nombre" => "NO ESPECIFICA",   "color" => "6C7156"],
+            ["nombre" => "UNICO",           "color" => "000000"],
+            ["nombre" => "ANTERIOR",        "color" => "FF7F27"],
+            ["nombre" => "POSTERIOR",       "color" => "FFF200"],
         ]);
 
         \App\Models\Catalogos\LadoRnpdno::insert([

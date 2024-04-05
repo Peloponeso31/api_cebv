@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lados', function (Blueprint $table) {
-            $table->id();
-            $table->string("nombre");
-            $table->string("color", length:6)->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->enum('status', ['activo', 'suspendido', 'inactivo'])->default('activo');
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lados');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

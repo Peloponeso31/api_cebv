@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lados', function (Blueprint $table) {
+        Schema::create('nacionalidad_persona', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
-            $table->string("color", length:6)->nullable();
+            $table->foreignId('persona_id') ;
+            $table->foreignId('nacionalidad_id')->constrained(table: 'nacionalidades');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lados');
+        Schema::dropIfExists('nacionalidad_persona');
     }
 };

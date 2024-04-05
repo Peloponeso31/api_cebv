@@ -19,8 +19,8 @@ return new class extends Migration
             $table->foreignId("vista_id");
             $table->foreignId("lado_id");
             $table->foreignId("tipo_id");
-            $table->integer("cantidad")->default(0);
-            $table->string("descripcion");
+            $table->integer("cantidad")->nullable()->default(0);
+            $table->string("descripcion")->nullable();
             $table->string("foto")->nullable();
             $table->timestamps();
         });

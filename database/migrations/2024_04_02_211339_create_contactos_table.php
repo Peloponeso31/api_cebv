@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lados', function (Blueprint $table) {
+        Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-            $table->string("nombre");
-            $table->string("color", length:6)->nullable();
+            $table->enum("tipo", ['Red Social','Correo Electronico']);
+            $table->string("contacto");
+            $table->string("observaciones") -> nullable();
+            $table->foreignId('persona_id') -> constrained(table: 'personas');
         });
+        
+        
     }
 
     /**
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lados');
+        Schema::dropIfExists('contactos');
     }
 };

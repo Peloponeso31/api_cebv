@@ -15,6 +15,7 @@ class ContextoFamiliarResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'persona_id'=> $this -> persona_id,
             "personas_vive"=> $this-> personas_vive,
             "hijos"=> $this-> hijos,
             "familiar_cercano"=> $this-> familiar_cercano,

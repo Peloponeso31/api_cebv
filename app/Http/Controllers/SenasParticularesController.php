@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BulkSenasParticularesRequest;
 use App\Http\Requests\StoreSenasParticularesRequest;
 use App\Http\Requests\UpdateSenasParticularesRequest;
 use App\Http\Resources\SenasParticularesResource;
@@ -24,6 +25,11 @@ class SenasParticularesController extends Controller
     public function store(StoreSenasParticularesRequest $request)
     {
         return new SenasParticularesResource(SenasParticulares::create($request->all()));
+    }
+
+    public function bulkStore(BulkSenasParticularesRequest $request)
+    {
+        SenasParticulares::insert($request->all());
     }
 
     /**

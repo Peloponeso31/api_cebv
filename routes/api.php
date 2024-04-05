@@ -45,6 +45,7 @@ use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
 use App\Models\Catalogos\VistaRnpdno;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,3 +144,4 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/token', 'token');
 });
+

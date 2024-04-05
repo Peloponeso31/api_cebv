@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('tipos_reportes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('abreviatura', 4);
         });
     }
 

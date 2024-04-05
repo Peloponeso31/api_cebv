@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\ReligionRequest;
 use App\Models\Catalogos\Religion;
 use Illuminate\Http\Request;
 
 class ReligionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return Religion::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(ReligionRequest $request)
     {
-        //
+        return Religion::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function show($id)
     {
-        //
+        return Religion::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Religion $religion)
+    
+    public function update($id, ReligionRequest $request)
     {
-        //
+        $religion= Religion::findOrFail($id);
+        return $religion->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Religion $religion)
+   
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Religion $religion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Religion $religion)
-    {
-        //
+        return Religion::findOrFail($id)->delete();
     }
 }

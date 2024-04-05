@@ -27,7 +27,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        SenasParticulares::observe(SenasParticularesObserver::class);
+        //SenasParticulares::observe(SenasParticularesObserver::class);
     }
 
     /**

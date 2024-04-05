@@ -2,7 +2,8 @@
 
 namespace App\Http\Resources\Reportes;
 
-use App\Http\Resources\PersonaResource;
+use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
+use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,18 +14,17 @@ class ReporteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'area_id' => $this->area_id,
-            'zona_estado' => $this->zona_estado,
-            'medio_id' => $this->medio_id,
-            'tipo_desaparicon' => $this->tipo_desaparicon,
-            'estatus' => $this->estatus,
-            'fecha_desaparicion' => $this->fecha_desaparicion,
-            'fecha_percato' => $this->fecha_percato,
-            'folio' => $this->folio,
-            'hechos_desaparicion_id' => $this->hechoDesaparicion->id,
-            'creado' => $this->created_at,
-            'reportante' => PersonaResource::collection($this->reportante()->get()),
-            'desaparecido' => PersonaResource::collection($this->desaparecidos()->get()),
+            'tipo_reporte_id' => $this->tipo_reporte_id,
+            'area_atiende_id' => $this->area_atiende_id,
+            'medio_conocimiento_id' => $this->medio_conocimiento_id,
+            'zona_estado_id' => $this->zona_estado_id,
+            'hipotesis_oficial_id' => $this->hipotesis_oficial_id,
+            'tipo_desaparicion' => $this->tipo_desaparicion,
+            'fecha_localizacion' => $this->fecha_localizacion,
+            'sintesis_localizacion' => $this->sintesis_localizacion,
+            'clasificacion_persona' => $this->clasificacion_persona,
+            'reportantes' => ReportanteResource::collection($this->reportantes),
+            'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),
         ];
     }
 }

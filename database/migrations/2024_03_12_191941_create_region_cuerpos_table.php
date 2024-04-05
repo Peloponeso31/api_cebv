@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('region_cuerpo', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
+            $table->string("color", length:6);
         });
     }
 

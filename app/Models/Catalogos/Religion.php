@@ -11,6 +11,11 @@ class Religion extends Model
 {
     use HasFactory;
 
+    protected $table = "religions";
+    protected $fillable=['religion'];
+    public $timestamps= true;
+
+
     public function etnia():HasMany {
         return $this->hasMany(Etnia::class);
     }

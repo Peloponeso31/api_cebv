@@ -3,33 +3,37 @@
 namespace App\Models;
 
 use App\Models\Catalogos\Lado;
-use App\Models\Catalogos\RegionCuerpo;
-use App\Models\Catalogos\RegionCuerpoRnpdno;
 use App\Models\Catalogos\Tipo;
 use App\Models\Catalogos\Vista;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Personas\Persona;
+use App\Models\Catalogos\RegionCuerpo;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Catalogos\RegionCuerpoRnpdno;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SenasParticulares extends Model
 {
     use HasFactory;
 
+    protected $table = 'senas_particulares';
+
     protected $fillable = [
-        "tipo_id",
-        "lado_id",
-        "vista_id",
         "persona_id",
         "region_cuerpo_id",
-        "region_cuerpo_rnpdno_id",
+        //"region_cuerpo_rnpdno_id",
+        "lado_id",
+        "vista_id",
+        "tipo_id",
         "cantidad",
         "descripcion",
-        "foto"
+        "foto",
     ];
 
     public function region_cuerpo(): BelongsTo {
         return $this->belongsTo(RegionCuerpo::class);
     }
+    
 
     public function region_cuerpo_rnpdno(): BelongsTo {
         return $this->belongsTo(RegionCuerpoRnpdno::class);

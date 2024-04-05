@@ -99,6 +99,8 @@ class Handler extends ExceptionHandler
                 return response()->json([
                     'error' => 'Error general.',
                     'causa' => get_class($e),
+                    'archivo' => $e->getFile(),
+                    "linea" => $e->getLine(),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
                     'request' => $request->all()

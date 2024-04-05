@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\TipoLabiosRequest;
 use App\Models\Catalogos\TipoLabios;
 use Illuminate\Http\Request;
 
 class TipoLabiosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
        return TipoLabios::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function store(TipoLabiosRequest $request)
     {
-        //
+        return TipoLabios::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+   
+    public function show( $id)
     {
-        //
+        return TipoLabios::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TipoLabios $tipoLabios)
+    
+    public function update( $id, TipoLabiosRequest $request)
     {
-        //
+        $tipolabios= TipoLabios::findOrFail($id);
+        return $tipolabios->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TipoLabios $tipoLabios)
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TipoLabios $tipoLabios)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TipoLabios $tipoLabios)
-    {
-        //
+        return TipoLabios::findOrFail($id)->delete();
     }
 }

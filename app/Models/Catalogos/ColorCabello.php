@@ -11,6 +11,10 @@ class ColorCabello extends Model
 {
     use HasFactory;
 
+    protected $table='color_cabellos';
+    protected $fillable=['colorcabellos'];
+    public $timestamps= true;
+
     public function caracteristicas_fisicas():HasMany {
         return $this->hasMany(CaracteristicasFisicas::class);
     }

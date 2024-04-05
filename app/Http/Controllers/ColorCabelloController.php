@@ -2,64 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\ColorCabelloRequest;
 use App\Models\Catalogos\ColorCabello;
 use Illuminate\Http\Request;
 
 class ColorCabelloController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return ColorCabello::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(ColorCabelloRequest $request)
     {
-        //
+        return ColorCabello::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show( $id)
     {
-        //
+        return ColorCabello::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ColorCabello $colorCabello)
+    public function update($id, ColorCabelloRequest $request)
     {
-        //
+        $colorcabello= ColorCabello::findOrFail($id);
+        return $colorcabello->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ColorCabello $colorCabello)
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ColorCabello $colorCabello)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ColorCabello $colorCabello)
-    {
-        //
+        return ColorCabello::FindOrFail($id)->delete();
     }
 }

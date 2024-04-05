@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,6 +18,7 @@ class ContextoSocialFactory extends Factory
     public function definition(): array
     {
         return [
+            'persona_id' => Persona::factory(),
             "pasatiempos" => fake()->text(),
             "club_organizacion" => fake()->company(),
             "estudio" => fake()->randomElement(['Sí', 'No']),
@@ -26,8 +28,7 @@ class ContextoSocialFactory extends Factory
             "nombre_redes_sociales" => fake()->name(),
             "lugares_frecuentes" => fake()->country(),
             "vivienda_estado" => fake()->randomElement(['Sí', 'No']),
-
-            "persona_id" => fake()->numberBetween(0, 1000)
+            
         ];
     }
 }

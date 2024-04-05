@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contexto_economicos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("persona_id")->nullable();
+            $table->foreignId('persona_id') -> constrained(table: 'personas');
             $table->string("empresa")->nullable();
             $table->string("puesto")->nullable();
             $table->date("fecha_ingreso")->nullable();

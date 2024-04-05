@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Reportes\Informacion\Medio;
-use App\Models\Reportes\Informacion\TipoMedio;
+use App\Models\Informaciones\Medio;
+use App\Models\Informaciones\TipoMedio;
 use Illuminate\Database\Seeder;
 
 class MedioSeeder extends Seeder

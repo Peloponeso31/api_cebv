@@ -2,64 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\LenguaRequest;
 use App\Models\Catalogos\Lengua;
 use Illuminate\Http\Request;
 
 class LenguaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return Lengua::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function store(LenguaRequest $request)
     {
-        //
+        return Lengua::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+   
+    public function show( $id)
     {
-        //
+        return Lengua::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Lengua $lengua)
+
+    public function update($id, LenguaRequest $request)
     {
-        //
+        $lengua= Lengua::findOrFail($id);
+        return $lengua->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Lengua $lengua)
+    
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Lengua $lengua)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Lengua $lengua)
-    {
-        //
+        return Lengua::findOrFail($id)->delete();
     }
 }

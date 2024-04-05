@@ -5,6 +5,7 @@ namespace App\Models\Reportes\Relaciones;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
+use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -47,5 +48,10 @@ class Desaparecido extends Model
     protected function estatusCebv(): BelongsTo
     {
         return $this->belongsTo(EstatusPersona::class, 'estatus_cebv_id');
+    }
+
+    public function ubicacionAmparoBuscador(): BelongsTo
+    {
+        return $this->belongsTo(Municipio::class);
     }
 }

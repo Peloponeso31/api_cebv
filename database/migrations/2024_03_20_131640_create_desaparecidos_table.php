@@ -19,6 +19,11 @@ return new class extends Migration {
             $table->boolean('sabe_leer')->nullable();
             $table->boolean('sabe_escribir')->nullable();
             $table->string('url_boletin')->nullable();
+            $table->string('amparo_buscador')->nullable();
+            $table->string('ubicacion_amparo_buscador')->nullable();
+            $table->string('nombre_juez')->nullable();
+            $table->date('fecha_amparo')->nullable();
+            $table->string('derechos_humanos')->nullable();
 
             $table->timestamps();
         });

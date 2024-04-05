@@ -44,9 +44,7 @@ class Medio extends Model
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
-            'tipo_medio_id' => $this->tipo_medio_id,
-            'nombre' => $this->nombre,
+            'tipo_medio_id' => (int)$this->tipo_medio_id,
         ];
     }
 }

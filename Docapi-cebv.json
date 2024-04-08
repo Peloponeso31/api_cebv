@@ -426,11 +426,11 @@
         }
       }
     },
-    "/desapariciones": {
+    "/hechos-desapariciones": {
       "get": {
         "summary": "Obtener todos los registros de las desapariciones",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "responses": {
           "200": {
@@ -440,7 +440,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DesaparicionResource"
+                    "$ref": "#/components/schemas/HechosDesaparicionResource"
                   }
                 }
               }
@@ -451,14 +451,14 @@
       "post": {
         "summary": "Crear una nueva desaparición",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreDesaparicionRequest"
+                "$ref": "#/components/schemas/HechosDesaparicionRequest"
               }
             }
           }
@@ -469,7 +469,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DesaparicionResource"
+                  "$ref": "#/components/schemas/HechosDesaparicionResource"
                 }
               }
             }
@@ -477,11 +477,11 @@
         }
       }
     },
-    "/desapariciones/{id}": {
+    "/hechos-desapariciones/{id}": {
       "get": {
-        "summary": "Obtener una desaparición por su ID",
+        "summary": "Obtener un hecho de desaparición por su ID",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "parameters": [
           {
@@ -500,7 +500,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DesaparicionResource"
+                  "$ref": "#/components/schemas/HechosDesaparicionResource"
                 }
               }
             }
@@ -511,9 +511,9 @@
         }
       },
       "put": {
-        "summary": "Actualizar una desaparición existente",
+        "summary": "Actualizar un hecho de desaparición existente",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "parameters": [
           {
@@ -521,8 +521,7 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int64"
+              "type": "integer"
             }
           }
         ],
@@ -531,14 +530,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateDesaparicionRequest"
+                "$ref": "#/components/schemas/HechosDesaparicionRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Desaparición actualizada exitosamente"
+            "description": "Desaparición actualizada exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HechosDesaparicionResource"
+                }
+              }
+            }
           },
           "404": {
             "description": "Desaparición no encontrada"
@@ -548,7 +554,7 @@
       "delete": {
         "summary": "Eliminar una desaparición existente",
         "tags": [
-          "Desaparicion"
+          "Hechos desapariciones"
         ],
         "parameters": [
           {
@@ -1489,7 +1495,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MediosResource"
+                "$ref": "#/components/schemas/MediosRequest"
               }
             }
           }
@@ -1500,7 +1506,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MediosRequest"
+                  "$ref": "#/components/schemas/MediosResource"
                 }
               }
             }
@@ -1605,7 +1611,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MediosResource"
+                "$ref": "#/components/schemas/MediosRequest"
               }
             }
           }
@@ -1616,7 +1622,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MediosRequest"
+                  "$ref": "#/components/schemas/MediosResource"
                 }
               }
             }
@@ -1747,10 +1753,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TipoMediosResource"
+                "$ref": "#/components/schemas/TipoMediosRequest"
               }
             }
           }
@@ -1761,7 +1768,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TipoMediosRequest"
+                  "$ref": "#/components/schemas/TipoMediosResource"
                 }
               }
             }
@@ -1862,10 +1869,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": ""
+                "$ref": "#/components/schemas/TipoMediosRequest"
               }
             }
           }
@@ -1876,7 +1884,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TipoMediosRequest"
+                  "$ref": "#/components/schemas/TipoMediosResource"
                 }
               }
             }
@@ -2007,10 +2015,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SitiosResource"
+                "$ref": "#/components/schemas/SitiosRequest"
               }
             }
           }
@@ -2021,7 +2030,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SitiosRequest"
+                  "$ref": "#/components/schemas/SitiosResource"
                 }
               }
             }
@@ -2122,10 +2131,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SitiosResource"
+                "$ref": "#/components/schemas/SitiosRequest"
               }
             }
           }
@@ -2136,7 +2146,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SitiosRequest"
+                  "$ref": "#/components/schemas/SitiosResource"
                 }
               }
             }
@@ -2267,10 +2277,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CircunstanciasResource"
+                "$ref": "#/components/schemas/CircunstanciasRequest"
               }
             }
           }
@@ -2281,7 +2292,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                  "$ref": "#/components/schemas/CircunstanciasResource"
                 }
               }
             }
@@ -2382,10 +2393,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CircunstanciasResource"
+                "$ref": "#/components/schemas/CircunstanciasRequest"
               }
             }
           }
@@ -2396,7 +2408,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                  "$ref": "#/components/schemas/CircunstanciasResource"
                 }
               }
             }
@@ -2472,72 +2484,4425 @@
         }
       }
     },
-    "/hipotesis":{
-      "get":{
-
+    "/hipotesis": {
+      "get": {
+        "summary": "Muestra todos los registros de las hipotesis realizadas por los casos de desaparición",
+        "tags": [
+          "Hipotesis"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          }
+        }
       },
-      "post":{
-
+      "post": {
+        "summary": "Crea un nueva hipotesis de desaparicion",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_hipotesis_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "area_asigna_sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "etapa",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/hipotesis/{id}":{
+    "/hipotesis/{id}": {
+      "get": {
+        "summary": "Muestra un registro de hipotesis buscado por su id",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro de hipotesis",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_hipotesis_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "area_asigna_sitio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "etapa",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de hipotesis",
+        "tags": [
+          "Hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos-hipotesis": {
+      "get": {
+        "summary": "Muestra todos los registos de los tipos de hipotesis",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de tipo de hipotesis",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "circunstancia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "abreviatura",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoHipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos-hipotesis/{id}": {
+      "get": {
+        "summary": "Muestra un registro identificado por su id",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro de tipo de hipotesis",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "circunstancia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "abreviatura",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoHipotesisRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Tipo de hipotesis"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoHipotesisResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reportantes":{
       "get":{
-
+        "summary": "Muestra todos los registros de los reportantes",
+        "tags": [
+          "Reportantes"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportanteResource"
+                }
+              }
+            }
+          }
+        } 
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de reportante",
+        "tags": [
+          "Reportantes"
+        ],
+        "parameters": [
+          {
+            "name": "reportante_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "parentesco_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "denuncia_anonima",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "informacion_consentimiento",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "informacion_exclusiva_busqueda",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "publicacion_registro_nacional",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "publicacion_boletin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pertenecia_colectivo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "nombre_colectivo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "informacion_relevante",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportanteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportanteResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reportantes/{id}":{
+      "get":{
+        "summary": "Muestra un registro identificado por su id",
+        "tags": [
+          "Reportantes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportanteResource"
+                }
+              }
+            }
+          }
+        }
       },
       "put":{
-
+        "summary": "Actualiza un registro de reportante",
+        "tags": [
+          "Reportantes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "reportante_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "parentesco_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "denuncia_anonima",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "informacion_consentimiento",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "informacion_exclusiva_busqueda",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "publicacion_registro_nacional",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "publicacion_boletin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pertenecia_colectivo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "nombre_colectivo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "informacion_relevante",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReportanteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportanteResource"
+                }
+              }
+            }
+          }
+        }
       },
       "delete":{
-
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Reportantes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportanteResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/desaparecidos":{
+      "get":{
+        "summary": "Muestra todos los registros de los desaparecidos",
+        "tags": [
+          "Desaparecidos"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparecidoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de desaparecidos",
+        "tags": [
+          "Desaparecidos"
+        ],
+        "parameters": [
+          {
+            "name": "reportante_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "estatus_rpdno_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "estatus_cebv_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "habla_espanol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sabe_leer",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sabe_escribir",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "url_boletin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DesaparecidoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparecidoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/desaparecidos/{id}":{
+      "get":{
+        "summary": "Muestra un registro identificado por su id",
+        "tags": [
+          "Desaparecidos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparecidoResource"
+                }
+              }
+            }
+          }
+        } 
+      },
+      "put":{
+        "summary": "Crea un nuevo registro de desaparecidos",
+        "tags": [
+          "Desaparecidos"
+        ],
+        "parameters": [
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name": "reportante_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "estatus_rpdno_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "estatus_cebv_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "habla_espanol",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sabe_leer",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sabe_escribir",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "url_boletin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DesaparecidoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparecidoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Desaparecidos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DesaparecidoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reportes":{
+      "get":{
+        "summary": "Muestra todos los registros de los reportes",
+        "tags": [
+          "Reportes"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReporteResource"
+                }
+              }
+            }
+          }
+        } 
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de reporte",
+        "tags": [
+          "Reportes"
+        ],
+        "parameters": [
+          {
+            "name": "tipo_reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "area_atiende_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "medio_conocimiento_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "zona_estado_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "hipotesis_oficial_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_desaparicion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example":"U O M"
+            }
+          },
+          {
+            "name": "fecha_localizacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format":"date"
+            }
+          },
+          {
+            "name": "sintesis_localizacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clasificacion_persona",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReporteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReporteResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reportes/{id}":{
+      "get":{
+        "summary": "Muestra un registro identificado por su id",
+        "tags": [
+          "Reportes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReporteResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary": "Actualiza un registro de reporte",
+        "tags": [
+          "Reportes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "area_atiende_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "medio_conocimiento_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "zona_estado_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "hipotesis_oficial_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_desaparicion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example":"U O M"
+            }
+          },
+          {
+            "name": "fecha_localizacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format":"date"
+            }
+          },
+          {
+            "name": "sintesis_localizacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clasificacion_persona",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReporteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReporteResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Reportes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReporteResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos-reportes": {
+      "get": {
+        "summary": "Muestra todos los registos de los tipos de reportes",
+        "tags": [
+          "Tipo de reportes"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoReporteResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de tipo de reportes",
+        "tags": [
+          "Tipo de reportes"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoReporteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoReporteResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipos-reportes/{id}": {
+      "get": {
+        "summary": "Muestra un registro identificado por su id",
+        "tags": [
+          "Tipo de reportes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoReporteResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro de tipo de reportes",
+        "tags": [
+          "Tipo de reportes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoReporteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoReporteResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Tipo de reportes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoReporteResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/religion":{
+      "get":{
+        "summary":"Muestra los registros de religion",
+        "tags":[
+          "Religion"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ReligionRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de religion",
+        "tags": [
+          "Religion"
+        ],
+        "parameters": [
+          {
+            "name": "religion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReligionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReligionRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/religion/{id}":{
+      "get":{
+        "summary":"Muestra los registros de religion",
+        "tags":[
+          "Religion"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ReligionRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de religion",
+        "tags":[
+          "Religion"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"religion",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ReligionRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ReligionRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Religion",
+        "tags": [
+          "Religion"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReligionRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lengua":{
+      "get":{
+        "summary":"Muestra los registros de lengua",
+        "tags":[
+          "Lengua"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/LenguaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de lengua",
+        "tags": [
+          "Lengua"
+        ],
+        "parameters": [
+          {
+            "name": "lengua",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LenguaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LenguaRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/lengua/{id}":{
+      "get":{
+        "summary":"Muestra los registros de legua",
+        "tags":[
+          "Lengua"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/LenguaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de lengua",
+        "tags":[
+          "Lengua"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"lengua",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/LenguaRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/LenguaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de lengua",
+        "tags": [
+          "Lengua"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LenguaRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/grupo_etnico":{
+      "get":{
+        "summary":"Muestra los registros de grupo etnico",
+        "tags":[
+          "Grupo etnico"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/GrupoEtnicoRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de grupo etnico",
+        "tags": [
+          "Grupo etnico"
+        ],
+        "parameters": [
+          {
+            "name": "grupoetnico",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GrupoEtnicoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GrupoEtnicoRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/grupo_etnico/{id}":{
+      "get":{
+        "summary":"Muestra los registros de grupo etnico",
+        "tags":[
+          "Grupo etnico"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/GrupoEtnicoRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de grupo etnico",
+        "tags":[
+          "Grupo etnico"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"grupoetnico",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/GrupoEtnicoRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/GrupoEtnicoRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de grupo etnico",
+        "tags": [
+          "Grupo etnico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GrupoEtnicoRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vestimenta":{
+      "get":{
+        "summary":"Muestra los registros de vestimenta",
+        "tags":[
+          "Vestimenta"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/VestimentaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de vestimenta",
+        "tags": [
+          "Vestimenta"
+        ],
+        "parameters": [
+          {
+            "name": "vestimenta",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VestimentaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VestimentaRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/vestimenta/{id}":{
+      "get":{
+        "summary":"Muestra los registros de vestimenta",
+        "tags":[
+          "Vestimenta"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/VestimentaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de vestimenta",
+        "tags":[
+          "Vestimenta"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"vestimenta",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/VestimentaRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/VestimentaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de vestimenta",
+        "tags": [
+          "Vestimenta"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VestimentaRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ascendencia":{
+      "get":{
+        "summary":"Muestra los registros de ascendencia",
+        "tags":[
+          "Ascendencia"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AscendenciaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de ascendencia",
+        "tags": [
+          "Ascendencia"
+        ],
+        "parameters": [
+          {
+            "name": "ascendencia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AscendenciaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AscendenciaRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ascendencia/{id}":{
+      "get":{
+        "summary":"Muestra los registros de ascendencia",
+        "tags":[
+          "Ascendencia"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AscendenciaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de ascendencia",
+        "tags":[
+          "Ascendencia"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"ascendencia",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/AscendenciaRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AscendenciaRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de ascendencia",
+        "tags": [
+          "Ascendencia"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AscendenciaRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color_ojos":{
+      "get":{
+        "summary":"Muestra los registros de color de ojos",
+        "tags":[
+          "Color Ojos"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de color de ojos",
+        "tags": [
+          "Color Ojos"
+        ],
+        "parameters": [
+          {
+            "name": "color",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorOjosRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColorOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color_ojos/{id}":{
+      "get":{
+        "summary":"Muestra los registros de color de ojos",
+        "tags":[
+          "Color Ojos"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de color de ojos",
+        "tags":[
+          "Color Ojos"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"color",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ColorOjosRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de color de ojos",
+        "tags": [
+          "Color Ojos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColorOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tamano_ojos":{
+      "get":{
+        "summary":"Muestra los registros de Tamaño de ojos",
+        "tags":[
+          "Tamaño Ojos"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TamanoOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Tamaño de ojos",
+        "tags": [
+          "Tamaño Ojos"
+        ],
+        "parameters": [
+          {
+            "name": "tamano",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TamanoOjosRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TamanoOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tamano_ojos/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Tamaño de ojos",
+        "tags":[
+          "Tamaño Ojos"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TamanoOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Tamaño de ojos",
+        "tags":[
+          "Tamaño Ojos"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"tamano",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/TamanoOjosRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TamanoOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Tamaño de ojos",
+        "tags": [
+          "Tamaño Ojos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TamanoOjosRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color_cabello":{
+      "get":{
+        "summary":"Muestra los registros de color de cabello",
+        "tags":[
+          "Color Cabello"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de color de cabello",
+        "tags": [
+          "Color Cabello"
+        ],
+        "parameters": [
+          {
+            "name": "colorcabellos",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorCabelloRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColorCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color_cabello/{id}":{
+      "get":{
+        "summary":"Muestra los registros de color de cabello",
+        "tags":[
+          "Color Cabello"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de color de cabello",
+        "tags":[
+          "Color Cabello"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"colorcabellos",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ColorCabelloRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de color de cabello",
+        "tags": [
+          "Color Cabello"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColorCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color_piel":{
+      "get":{
+        "summary":"Muestra los registros de color de piel",
+        "tags":[
+          "Color Piel"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorPielRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de color de piel",
+        "tags": [
+          "Color Piel"
+        ],
+        "parameters": [
+          {
+            "name": "colorpiel",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ColorPielRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColorPielRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color_piel/{id}":{
+      "get":{
+        "summary":"Muestra los registros de color de piel",
+        "tags":[
+          "Color Piel"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorPielRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de color de piel",
+        "tags":[
+          "Color Piel"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"colorpiel",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ColorPielRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ColorPielRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de color de piel",
+        "tags": [
+          "Color Piel"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ColorPielRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_cabello":{
+      "get":{
+        "summary":"Muestra los registros de tipo de cabello",
+        "tags":[
+          "Tipo Cabello"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de tipo de cabello",
+        "tags": [
+          "Tipo Cabello"
+        ],
+        "parameters": [
+          {
+            "name": "tipocabello",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoCabelloRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_cabello/{id}":{
+      "get":{
+        "summary":"Muestra los registros de tipo de cabello",
+        "tags":[
+          "Tipo Cabello"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de tipo de cabello",
+        "tags":[
+          "Tipo Cabello"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"tipocabello",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/TipoCabelloRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de tipo de cabello",
+        "tags": [
+          "Tipo Cabello"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoCabelloRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_labios":{
+      "get":{
+        "summary":"Muestra los registros de tipo de labios",
+        "tags":[
+          "Tipo Labios"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoLabiosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de tipo de labios",
+        "tags": [
+          "Tipo Labios"
+        ],
+        "parameters": [
+          {
+            "name": "tipolabios",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoLabiosRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoLabiosRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_labios/{id}":{
+      "get":{
+        "summary":"Muestra los registros de tipo de labios",
+        "tags":[
+          "Tipo Labios"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoLabiosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de tipo de labios",
+        "tags":[
+          "Tipo Labios"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"tipolabios",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/TipoLabiosRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoLabiosRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de tipo de labios",
+        "tags": [
+          "Tipo Labios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoLabiosRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_nariz":{
+      "get":{
+        "summary":"Muestra los registros de tipo de nariz",
+        "tags":[
+          "Tipo Nariz"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoNarizRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de tipo de nariz",
+        "tags": [
+          "Tipo Nariz"
+        ],
+        "parameters": [
+          {
+            "name": "tiponariz",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoNarizRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoNarizRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo_nariz/{id}":{
+      "get":{
+        "summary":"Muestra los registros de tipo de nariz",
+        "tags":[
+          "Tipo Nariz"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoNarizRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de tipo de nariz",
+        "tags":[
+          "Tipo Nariz"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"tiponariz",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/TipoNarizRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TipoNarizRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de tipo de nariz",
+        "tags": [
+          "Tipo Nariz"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoNarizRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tamano_orejas":{
+      "get":{
+        "summary":"Muestra los registros de Tamaño de orejas",
+        "tags":[
+          "Tamaño Orejas"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TamanoOrejasRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Tamaño de orejas",
+        "tags": [
+          "Tamaño Orejas"
+        ],
+        "parameters": [
+          {
+            "name": "tamanoorejas",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TamanoOrejasRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TamanoOrejasRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tamano_orejas/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Tamaño de orejas",
+        "tags":[
+          "Tamaño Orejas"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TamanoOrejasRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Tamaño de orejas",
+        "tags":[
+          "Tamaño Orejas"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"tamanoorejas",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/TamanoOrejasRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TamanoOrejasRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Tamaño de orejas",
+        "tags": [
+          "Tamaño Orejas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TamanoOrejasRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/complexion":{
+      "get":{
+        "summary":"Muestra los registros de Complexion",
+        "tags":[
+          "Complexion"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ComplexionRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Complexion",
+        "tags": [
+          "Complexion"
+        ],
+        "parameters": [
+          {
+            "name": "complexion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ComplexionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComplexionRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/complexion/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Complexion",
+        "tags":[
+          "Complexion"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ComplexionRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Complexion",
+        "tags":[
+          "Complexion"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"complexion",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ComplexionRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ComplexionRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Complexion",
+        "tags": [
+          "Complexion"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ComplexionRequest"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "components": {
     "schemas": {
-      "HipotesisRequest":{
-        "reporte_id":{
-
-        },
-        "tipo_hipotesis_id":{
-
-        },
-        "sitio_id":{
-
-        },
-        "area_asigna_sitio_id":{
-
-        },
-        "etapa":{
-
-        },
-        "descripcion":{
-          
+      "ReligionRequest":{
+        "type":"object",
+        "properties":{
+          "religion":{
+            "type":"string"
+          }
         }
       },
-      "HipotesisResource":{
+      "LenguaRequest":{
+        "type":"object",
+        "properties":{
+          "lengua":{
+            "type":"string"
+          }
+        }
+      },
+      "GrupoEtnicoRequest":{
+        "type":"object",
+        "properties":{
+          "grupoetnico":{
+            "type":"string"
+          }
+        }
+      },
+      "VestimentaRequest":{
+        "type":"object",
+        "properties":{
+          "vestimenta":{
+            "type":"string"
+          }
+        }
+      },
+      "AscendenciaRequest":{
+        "type":"object",
+        "properties":{
+          "ascendencia":{
+            "type":"string"
+          }
+        }
+      },
+      "ColorOjosRequest":{
+        "type":"object",
+        "properties":{
+          "color":{
+            "type":"string"
+          }
+        }
+      },
+      "TamanoOjosRequest":{
+        "type":"object",
+        "properties":{
+          "tamano":{
+            "type":"string"
+          }
+        }
+      },
+      "ColorCabelloRequest":{
+        "type":"object",
+        "properties":{
+          "colorcabellos":{
+            "type":"string"
+          }
+        }
+      },
+      "ColorPielRequest":{
+        "type":"object",
+        "properties":{
+          "colorpiel":{
+            "type":"string"
+          }
+        }
+      },
+      "TipoCabelloRequest":{
+        "type":"object",
+        "properties":{
+          "tipocabello":{
+            "type":"string"
+          }
+        }
+      },
+      "TipoLabiosRequest":{
+        "type":"object",
+        "properties":{
+          "tipolabios":{
+            "type":"string"
+          }
+        }
+      },
+      "TipoNarizRequest":{
+        "type":"object",
+        "properties":{
+          "tiponariz":{
+            "type":"string"
+          }
+        }
+      },
+      "TamanoOrejasRequest":{
+        "type":"object",
+        "properties":{
+          "tamanoorejas":{
+            "type":"string"
+          }
+        }
+      },
+      "ComplexionRequest":{
+        "type":"object",
+        "properties":{
+          "complexion":{
+            "type":"string"
+          }
+        }
+      },
+      "TipoReporteResource":{
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer",
-            "description":"Id de la hipotesis"
-          },
-          "etapa":{
             "type":"integer"
           },
-          "descripcion":{
+          "nombre":{
             "type":"string"
+          }
+        }
+      },
+      "TipoReporteRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "ReporteRequest":{
+        "type":"object",
+        "properties":{
+          "tipo_reporte_id":{
+            "type":"integer"
+          },
+          "area_atiende_id":{
+            "type":"integer"
+          },
+          "medio_conocimiento_id":{
+            "type":"integer"
+          },
+          "zona_estado_id":{
+            "type":"integer"
+          },
+          "hipotesis_oficial_id":{
+            "type":"integer"
+          },
+          "tipo_desaparicion":{
+            "type":"string",
+            "example":"U O M"
+          },
+          "fecha_localizacion":{
+            "type":"string",
+            "format":"date"
+          },
+          "sintesis_localizacion":{
+            "type":"string"
+          },
+          "clasificacion_persona":{
+            "type":"string"
+          }
+        }
+      },
+      "ReporteResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "tipo_reporte_id":{
+            "type":"integer"
+          },
+          "area_atiende_id":{
+            "type":"integer"
+          },
+          "medio_conocimiento_id":{
+            "type":"integer"
+          },
+          "zona_estado_id":{
+            "type":"integer"
+          },
+          "hipotesis_oficial_id":{
+            "type":"integer"
+          },
+          "tipo_desaparicion":{
+            "type":"string",
+            "example":"U O M"
+          },
+          "fecha_localizacion":{
+            "type":"string",
+            "format":"date"
+          },
+          "sintesis_localizacion":{
+            "type":"string"
+          },
+          "clasificacion_persona":{
+            "type":"string"
+          },
+          "reportantes":{
+            "type":"string"
+          },
+          "desaparecidos":{
+            "type":"string"
+          }
+        }
+      },
+      "ReportanteResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
           },
           "reporte_id":{
             "type":"integer"
           },
-          "tipo_hipotesis_id":{
+          "persona":{
+            "type":"string"
+          },
+          "parentesco_id":{
             "type":"integer"
           },
-          "sitio_id":{
+          "denuncia_anonima":{
+            "type":"boolean"
+          },
+          "informacion_consentimiento":{
+            "type":"boolean"
+          },
+          "informacion_exclusiva_busqueda":{
+            "type":"boolean"
+          },
+          "publicacion_registro_nacional":{
+            "type":"boolean"
+          },
+          "publicacion_boletin":{
+            "type":"boolean"
+          },
+          "pertenencia_colectivo":{
+            "type":"boolean"
+          },
+          "nombre_colectivo":{
+            "type":"string"
+          },
+          "informacion_relevante":{
+            "type":"string"
+          },
+          "create_at":{
+            "type":"string",
+            "format":"date"
+          },
+          "update_at":{
+            "type":"string",
+            "format":"date"
+          }
+        }
+      }, 
+      "ReportanteRequest":{
+        "type":"object",
+        "properties":{
+          "reporte_id":{
             "type":"integer"
           },
-          "area_asigna_sitio_id":{
+          "persona_id":{
             "type":"integer"
+          },
+          "parentesco_id":{
+            "type":"integer"
+          },
+          "denuncia_anonima":{
+            "type":"boolean"
+          },
+          "informacion_consentimiento":{
+            "type":"boolean"
+          },
+          "informacion_exclusiva_busqueda":{
+            "type":"boolean"
+          },
+          "publicacion_registro_nacional":{
+            "type":"boolean"
+          },
+          "publicacion_boletin":{
+            "type":"boolean"
+          },
+          "pertenencia_colectivo":{
+            "type":"boolean"
+          },
+          "nombre_colectivo":{
+            "type":"string"
+          },
+          "informacion_relevante":{
+            "type":"string"
+          }
+        }
+      },
+      "DesaparecidoRequest": {
+        "type": "object",
+        "properties": {
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "persona_id": {
+            "type": "string",
+            "description": "Informacion de la persona desaparecida"
+          },
+          "estatus_rnpdno_id": {
+            "type": "integer"
+          },
+          "estatus_cebv_id": {
+            "type": "integer"
+          },
+          "habla_español": {
+            "type": "boolean"
+          },
+          "sabe_leer": {
+            "type": "boolean"
+          },
+          "sabe_escribir": {
+            "type": "boolean"
+          },
+          "url_boletin": {
+            "type": "string"
+          }
+        }
+      },
+      "DesaparecidoResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id que hace referencia al desaparecido"
+          },
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "persona": {
+            "type": "string",
+            "description": "Informacion de la persona desaparecida"
+          },
+          "habla_español": {
+            "type": "boolean"
+          },
+          "sabe_leer": {
+            "type": "boolean"
+          },
+          "sabe_escribir": {
+            "type": "boolean"
+          },
+          "url_boletin": {
+            "type": "string"
+          },
+          "folio": {
+            "type": "string",
+            "description": "Folio de busqueda de la CEBV"
+          }
+        }
+      },
+      "HechosDesaparicionResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "El id referente al hecho de desaparicion"
+          },
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "descripcion_cambio_comportamiento": {
+            "type": "string",
+            "description": "Como fue el cambio de comportamiento"
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desapariciones": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          }
+        }
+      },
+      "HechosDesaparicionRequest": {
+        "type": "object",
+        "properties": {
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "fecha_desaparicion": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha en la que desaparecio la persona"
+          },
+          "fecha_percato": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha en la que se percactaron de la desaparicion"
+          },
+          "cambio_comportamiento": {
+            "type": "boolean",
+            "description": "Hubo cambio en el comportamiento en la persona."
+          },
+          "descripcion_cambio_comportamiento": {
+            "type": "string",
+            "description": "Como fue el cambio de comportamiento"
+          },
+          "fue_amenazado": {
+            "type": "boolean",
+            "description": "Sabe si fue amenazada la persona."
+          },
+          "descripcion_amenaza": {
+            "type": "string",
+            "description": "Descripcion de la persona."
+          },
+          "contador_desapariciones": {
+            "type": "integer",
+            "description": "El."
+          },
+          "situacion_previa": {
+            "type": "string",
+            "description": "La situacion previa de la persona."
+          },
+          "informacion_relevante": {
+            "type": "string",
+            "description": "Informacion sobre la desaparicion"
+          },
+          "hechos_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          },
+          "sintesis_desaparicion": {
+            "type": "string",
+            "description": "El nombre de la persona."
+          }
+        }
+      },
+      "TipoHipotesisRequest": {
+        "type": "object",
+        "properties": {
+          "circunstancia_id": {
+            "type": "integer",
+            "description": "Id de circunstancia relacionada"
+          },
+          "abreviatura": {
+            "type": "string",
+            "description": ""
+          },
+          "descripcion": {
+            "type": "string",
+            "description": " Descripcion del tipo de hipotesis"
+          }
+        }
+      },
+      "TipoHipotesisResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id del tipo de hipotesis"
+          },
+          "abreviatura": {
+            "type": "string",
+            "description": ""
+          },
+          "descripcion": {
+            "type": "string",
+            "description": " Descripcion del tipo de hipotesis"
+          },
+          "circunstancia_id": {
+            "type": "integer",
+            "description": "Id de circunstancia relacionada"
+          }
+        }
+      },
+      "HipotesisRequest": {
+        "type": "object",
+        "properties": {
+          "reporte_id": {
+            "type": "integer",
+            "description": "Id del reporte relacionado"
+          },
+          "tipo_hipotesis_id": {
+            "type": "integer",
+            "description": "ID del tipo de hipotesis"
+          },
+          "sitio_id": {
+            "type": "integer",
+            "description": "Id relacionado al sitio"
+          },
+          "area_asigna_sitio_id": {
+            "type": "integer",
+            "description": "Id del area a la que es asignada"
+          },
+          "etapa": {
+            "type": "string",
+            "example": "Inicial o Final"
+          },
+          "descripcion": {
+            "type": "string",
+            "description": "Relato de la hipotesis"
+          }
+        }
+      },
+      "HipotesisResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Id de la hipotesis"
+          },
+          "etapa": {
+            "type": "integer"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "reporte_id": {
+            "type": "integer"
+          },
+          "tipo_hipotesis_id": {
+            "type": "integer"
+          },
+          "sitio_id": {
+            "type": "integer"
+          },
+          "area_asigna_sitio_id": {
+            "type": "integer"
           }
         }
       },
@@ -2718,219 +7083,6 @@
           }
         }
       },
-      "DesaparicionResource": {
-        "type": "object",
-        "properties": {
-          "persona_id": {
-            "type": "integer",
-            "description": "Identificador de la persona relacionada a la desaparicion"
-          },
-          "direccion_id": {
-            "type": "integer",
-            "description": "Identificador de la direccion relacionada con la desaparicion."
-          },
-          "zona_estado": {
-            "type": "string",
-            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
-          },
-          "area_id": {
-            "type": "string",
-            "description": "El nombre del area."
-          },
-          "dependencia": {
-            "type": "string",
-            "description": "El nombre de la dependencia si es el caso."
-          },
-          "fecha_desaparicion": {
-            "type": "string",
-            "format": "date",
-            "description": "La fecha de desaparicion de la persona."
-          },
-          "fecha_percato": {
-            "type": "string",
-            "format": "date",
-            "description": "Percato de la desaparicion de la persona."
-          },
-          "cambio_comportamiento": {
-            "type": "boolean",
-            "description": "Hubo cambio en el comportamiento en la persona."
-          },
-          "fue_amenazado": {
-            "type": "boolean",
-            "description": "Sabe si fue amenazada la persona."
-          },
-          "descripcion_amenaza": {
-            "type": "string",
-            "description": "Descripcion de la persona."
-          },
-          "contador_desaparicion": {
-            "type": "integer",
-            "description": "El."
-          },
-          "situacion_previa": {
-            "type": "string",
-            "description": "La situacion previa de la persona."
-          },
-          "informacion_relevante": {
-            "type": "string",
-            "description": "Informacion sobre la desaparicion"
-          },
-          "hechos_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "sintesis_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "hipotesis_id": {
-            "type": "integer",
-            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
-          }
-        }
-      },
-      "StoreDesaparicionRequest": {
-        "type": "object",
-        "properties": {
-          "persona_id": {
-            "type": "integer",
-            "description": "Identificador de la persona relacionada a la desaparicion"
-          },
-          "direccion_id": {
-            "type": "integer",
-            "description": "Identificador de la direccion relacionada con la desaparicion."
-          },
-          "zona_estado": {
-            "type": "string",
-            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
-          },
-          "area_id": {
-            "type": "string",
-            "description": "El nombre del area."
-          },
-          "dependencia": {
-            "type": "string",
-            "description": "El nombre de la dependencia si es el caso."
-          },
-          "fecha_desaparicion": {
-            "type": "string",
-            "format": "date",
-            "description": "La fecha de desaparicion de la persona."
-          },
-          "fecha_percato": {
-            "type": "string",
-            "format": "date",
-            "description": "Percato de la desaparicion de la persona."
-          },
-          "cambio_comportamiento": {
-            "type": "boolean",
-            "description": "Hubo cambio en el comportamiento en la persona."
-          },
-          "fue_amenazado": {
-            "type": "boolean",
-            "description": "Sabe si fue amenazada la persona."
-          },
-          "descripcion_amenaza": {
-            "type": "string",
-            "description": "Descripcion de la persona."
-          },
-          "contador_desaparicion": {
-            "type": "integer",
-            "description": "El."
-          },
-          "situacion_previa": {
-            "type": "string",
-            "description": "La situacion previa de la persona."
-          },
-          "informacion_relevante": {
-            "type": "string",
-            "description": "Informacion sobre la desaparicion"
-          },
-          "hechos_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "sintesis_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "hipotesis_id": {
-            "type": "integer",
-            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
-          }
-        }
-      },
-      "UpdateDesaparicionRequest": {
-        "type": "object",
-        "properties": {
-          "persona_id": {
-            "type": "integer",
-            "description": "Identificador de la persona relacionada a la desaparicion"
-          },
-          "direccion_id": {
-            "type": "integer",
-            "description": "Identificador de la direccion relacionada con la desaparicion."
-          },
-          "zona_estado": {
-            "type": "string",
-            "description": "Son las zonas en las que se divide (Centro, Norte, Sur)"
-          },
-          "area_id": {
-            "type": "string",
-            "description": "El nombre del area."
-          },
-          "dependencia": {
-            "type": "string",
-            "description": "El nombre de la dependencia si es el caso."
-          },
-          "fecha_desaparicion": {
-            "type": "string",
-            "format": "date",
-            "description": "La fecha de desaparicion de la persona."
-          },
-          "fecha_percato": {
-            "type": "string",
-            "format": "date",
-            "description": "Percato de la desaparicion de la persona."
-          },
-          "cambio_comportamiento": {
-            "type": "boolean",
-            "description": "Hubo cambio en el comportamiento en la persona."
-          },
-          "fue_amenazado": {
-            "type": "boolean",
-            "description": "Sabe si fue amenazada la persona."
-          },
-          "descripcion_amenaza": {
-            "type": "string",
-            "description": "Descripcion de la persona."
-          },
-          "contador_desaparicion": {
-            "type": "integer",
-            "description": "El."
-          },
-          "situacion_previa": {
-            "type": "string",
-            "description": "La situacion previa de la persona."
-          },
-          "informacion_relevante": {
-            "type": "string",
-            "description": "Informacion sobre la desaparicion"
-          },
-          "hechos_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "sintesis_desaparicion": {
-            "type": "string",
-            "description": "El nombre de la persona."
-          },
-          "hipotesis_id": {
-            "type": "integer",
-            "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
-          }
-        }
-      },
       "StoreSenasParticularesRequest": {
         "type": "object",
         "properties": {
@@ -3006,7 +7158,7 @@
           "id": {
             "type": "integer"
           },
-          "nomtipo": {
+          "nombre": {
             "type": "string"
           }
         }
@@ -3017,7 +7169,7 @@
           "id": {
             "type": "integer"
           },
-          "nomvista": {
+          "nombre": {
             "type": "string"
           }
         }
@@ -3028,7 +7180,7 @@
           "id": {
             "type": "integer"
           },
-          "nomlado": {
+          "nombre": {
             "type": "string"
           }
         }

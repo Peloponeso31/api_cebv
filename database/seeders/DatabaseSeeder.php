@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContextoSocial;
 use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
@@ -37,8 +38,9 @@ class DatabaseSeeder extends Seeder
             ZonaEstadoSeeder::class,
             nacionalidad_seeder::class,
             Companias_Telefonicas_seeder::class,
-           
-            
+            ContextoSocialSeeder::class,
+            ContextoEconomicoSeeder::class,
+            ContextoFamiliarSeeder::class
         ]);
 
         /**

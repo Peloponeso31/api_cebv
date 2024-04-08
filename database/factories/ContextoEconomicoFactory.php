@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 
@@ -19,6 +20,7 @@ class ContextoEconomicoFactory extends Factory
     public function definition(): array
     {
         return [
+            'persona_id' => Persona::factory(),
             "empresa"  => fake()-> company(),
             "puesto" => fake()->jobTitle(),
             "fecha_ingreso" => fake()->date(),
@@ -44,8 +46,6 @@ class ContextoEconomicoFactory extends Factory
             "desacuerdos" => fake()->text(),
             "amenazasIntimidacion" => fake()->text(),
             "ult_cont_sindi" => fake()->name(),
-
-            "persona_id" => fake()->numberBetween(0, 1000),
         ];
     }
 }

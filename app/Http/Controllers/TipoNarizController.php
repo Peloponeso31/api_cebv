@@ -2,64 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\TipoNarizRequest;
 use App\Models\Catalogos\TipoNariz;
 use Illuminate\Http\Request;
 
 class TipoNarizController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return TipoNariz::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+   
+    public function store(TipoNarizRequest $request)
     {
-        //
+        return TipoNariz::create($request->all());  
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function show( $id)
     {
-        //
+        return TipoNariz::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TipoNariz $tipoNariz)
+    public function update( $id, TipoNarizRequest $request)
     {
-        //
+        $tiponariz= TipoNariz::findOrFail($id);
+        return $tiponariz->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TipoNariz $tipoNariz)
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TipoNariz $tipoNariz)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TipoNariz $tipoNariz)
-    {
-        //
+        return TipoNariz::findOrFail($id)->delete();
     }
 }

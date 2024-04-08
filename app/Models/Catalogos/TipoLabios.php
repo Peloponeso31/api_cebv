@@ -10,6 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class TipoLabios extends Model
 {
     use HasFactory;
+    protected $table='tipo_labios';
+    protected $fillable=['tipolabios'];
+    public $timestamps= true;
+
     public function caracteristicas_fisicas():HasMany {
         return $this->hasMany(CaracteristicasFisicas::class);
     }

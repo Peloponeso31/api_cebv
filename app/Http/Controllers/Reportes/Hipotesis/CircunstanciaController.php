@@ -4,38 +4,49 @@ namespace App\Http\Controllers\Reportes\Hipotesis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\Hipotesis\CircunstanciaRequest;
+use App\Http\Resources\Reportes\Hipotesis\CircunstanciaResource;
 use App\Models\Reportes\Hipotesis\Circunstancia;
+use App\Services\CrudService;
 
 class CircunstanciaController extends Controller
 {
+    protected CrudService $service;
+    protected Circunstancia $model;
+
+    public function __construct(CrudService $service, Circunstancia $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function index()
     {
-        return Circunstancia::all();
+        $query = $this->model::query();
+
+        if (request()->has('search')) {
+            $query = $this->model::search(request('search'));
+        }
+
+        return CircunstanciaResource::collection($query->get());
     }
 
     public function store(CircunstanciaRequest $request)
     {
-        return Circunstancia::create($request->all());
+        return $this->service->store($request, $this->model, new CircunstanciaResource($this->model::class));
     }
 
     public function show($id)
     {
-        return Circunstancia::findOrFail($id);
+        return $this->service->show($id, $this->model, new CircunstanciaResource($this->model::class));
     }
 
     public function update($id, CircunstanciaRequest $request)
     {
-        $model = Circunstancia::findOrFail($id);
-
-        return $model->update($request->all());
+        return $this->service->update($id, $request, $this->model, new CircunstanciaResource($this->model::class));
     }
 
     public function destroy($id)
     {
-        $model = Circunstancia::findOrFail($id);
-
-        $model->delete();
-
-        return response()->json();
+        return $this->service->destroy($id, $this->model);
     }
 }

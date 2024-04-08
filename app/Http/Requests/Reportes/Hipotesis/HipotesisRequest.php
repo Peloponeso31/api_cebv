@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Reportes\Hipotesis;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class HipotesisRequest extends FormRequest
 {
@@ -11,29 +12,20 @@ class HipotesisRequest extends FormRequest
         return match ($this->method()) {
             'POST', 'PUT' => [
                 'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
-                'fecha_localizacion' => ['nullable', 'date'],
-                'sintesis_localizacion' => ['nullable'],
-                'circunstancia_uno_id' => ['nullable', 'exists:circunstancias,id', 'integer'],
-                'hipotesis_uno' => ['nullable'],
-                'circunstancia_dos_id' => ['nullable', 'exists:circunstancias,id', 'integer'],
-                'hipotesis_dos' => ['nullable'],
-                'area_id' => ['nullable', 'exists:areas,id', 'integer'],
-                'sitio_final' => ['nullable'],
-                'tipo_hipotesis_id' => ['nullable', 'exists:tipos_hipotesis', 'integer'],
-                'observaciones' => ['nullable'],
+                'tipo_hipotesis_id' => ['required', 'exists:tipos_hipotesis,id', 'integer'],
+                'sitio_id' => ['required', 'exists:sitios,id', 'integer'],
+                'area_asigna_sitio_id' => ['required', 'exists:areas,id', 'integer'],
+                'etapa' => ['required', 'string', Rule::in('Inicial', 'Final')],
+                'descripcion' => ['required', 'string'],
+
             ],
             default => [
                 'reporte_id' => ['sometimes', 'exists:reportes,id', 'integer'],
-                'fecha_localizacion' => ['sometimes', 'date'],
-                'sintesis_localizacion' => ['sometimes'],
-                'circunstancia_uno_id' => ['sometimes', 'exists:circunstancias,id', 'integer'],
-                'hipotesis_uno' => ['sometimes'],
-                'circunstancia_dos_id' => ['sometimes', 'exists:circunstancias,id', 'integer'],
-                'hipotesis_dos' => ['sometimes'],
-                'area_id' => ['sometimes', 'exists:areas,id', 'integer'],
-                'sitio_final' => ['sometimes'],
                 'tipo_hipotesis_id' => ['sometimes', 'exists:tipos_hipotesis,id', 'integer'],
-                'observaciones' => ['sometimes'],
+                'sitio_id' => ['sometimes', 'exists:sitios,id', 'integer'],
+                'area_asigna_sitio_id' => ['sometimes', 'exists:areas,id', 'integer'],
+                'etapa' => ['sometimes', 'string', Rule::in('Inicial', 'Final')],
+                'descripcion' => ['sometimes', 'string'],
             ],
         };
     }

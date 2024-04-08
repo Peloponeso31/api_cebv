@@ -3,14 +3,196 @@
   "info": {
     "title": "Api Comision Estatal de Busqueda de Veracruz",
     "version": "v2",
-    "description": "Esta API proporciona la estructura de las operacones que se realizaran."
+    "description": "Esta API proporciona la estructura de las operaciones que se realizaran."
   },
   "servers": [
     {
-      "url": "http://187.188.213.206:18085/"
+      "url": "localhost/api",
+      "description": "Direccion prubas locales"
+    },
+    {
+      "url": "http://187.188.213.206:18085/",
+      "description": "Direccion de servidor principal en linea"
     }
   ],
   "paths": {
+    "/usuario": {
+      "get": {
+        "summary": "Consulta de todos los usuarios que tendran acceso a la aplicación",
+        "tags": [
+          "Usuario Administrador"
+        ],
+        "responses": {
+          "201": {
+            "description": "Consulta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuariAdminResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error interno SQL."
+          },
+          "500": {
+            "description": "Error interno del servidor."
+          }
+        }
+      },
+      "post": {
+        "summary": "Crearcion de un nuevo usuario para tener acceso a la aplicación",
+        "tags": [
+          "Usuario Administrador"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "description": "El email con el que tendra acceso el usuario",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "description": "La contraseña con la que tendra acceso el usuario",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreUsuarioAdmin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " "
+          },
+          "500": {
+            "description": " "
+          }
+        }
+      }
+    },
+    "/usuario/{id}": {
+      "get": {
+        "summary": "Consulta de un usuario creado",
+        "tags": [
+          "Usuario Administrador"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "El id con el que se identifica a el usuario",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuariAdminResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " "
+          },
+          "500": {
+            "description": " "
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizacion de la informacion de un usuario",
+        "tags": [
+          "Usuario Administrador"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "El id con el que se identifica a el usuario",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreUsuarioAdmin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " "
+          },
+          "500": {
+            "description": " "
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminacion de un usuario",
+        "tags": [
+          "Usuario Administrador"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "El id con el que se identifica a el usuario",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreUsuarioAdmin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " "
+          },
+          "500": {
+            "description": " "
+          }
+        }
+      }
+    },
     "/personas": {
       "get": {
         "summary": "Obtiene una lista de personas desaparecidas registradas",
@@ -391,10 +573,2070 @@
           }
         }
       }
+    },
+    "/senas_particulares": {
+      "get": {
+        "summary": "Muestra los registros de señas particulares relacionadas a una persona",
+        "tags": [
+          "Señas Pariculares"
+        ],
+        "responses": {
+          "200": {
+            "description": "Registros",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "404": {
+            "description": "no encontrada"
+          }
+        }
+      },
+      "post": {
+        "summary": "Ingresa un registro de señas particulares relacionadas a una persona",
+        "tags": [
+          "Señas Pariculares"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "region_cuerpo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "vista_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lado_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tipo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "cantidad",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "foto",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Creacion de registro de señas particulares realcionada a una persona",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "404": {
+            "description": "No encontrada"
+          }
+        }
+      }
+    },
+    "/senas_particulares/{id}": {
+      "get": {
+        "summary": "Muestra los registros de señas particulares relacionadas a una persona buscado por un identificador",
+        "tags": [
+          "Señas Pariculares"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registros",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreSenasParticularesRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "404": {
+            "description": "no encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "actualiza un registro de señas particulares relacionadas a una persona",
+        "tags": [
+          "Señas Pariculares"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "region_cuerpo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "vista_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lado_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "tipo_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "cantidad",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "foto",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSenasParticularesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Creacion de registro de señas particulares realcionada a una persona",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateSenasParticularesRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "404": {
+            "description": "No encontrada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un registro de señas particulares existente",
+        "tags": [
+          "Señas Pariculares"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Desaparición eliminada exitosamente"
+          },
+          "401": {
+            "description": "No autorizado"
+          },
+          "404": {
+            "description": "Desaparición no encontrada"
+          }
+        }
+      }
+    },
+    "/catalogos/region_cuerpo": {
+      "get": {
+        "summary": "Muestra los datos respecto a la region de el cuerpo",
+        "tags": [
+          "Region cuerpo seña"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRegionCuerpo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de vista de seña",
+        "tags": [
+          "Region cuerpo seña"
+        ],
+        "parameters": [
+          {
+            "name": "nomvista",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRegionCuerpo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/region_cuerpo/{id}": {
+      "get": {
+        "summary": "Busca un registro de region de seña por su identificador",
+        "tags": [
+          "Region cuerpo seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRegionCuerpo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza registro de region cuerpo de seña",
+        "tags": [
+          "Region cuerpo seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRegionCuerpo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de regior cuerpo de seña",
+        "tags": [
+          "Region cuerpo seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eliminacion correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRegionCuerpo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/vista": {
+      "get": {
+        "summary": "Muestra los datos respecto a la vista de la seña sobre el cuerpo",
+        "tags": [
+          "Vista seña"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVistaSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de vista de seña",
+        "tags": [
+          "Vista seña"
+        ],
+        "parameters": [
+          {
+            "name": "nomvista",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVistaSena"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/vista/{id}": {
+      "get": {
+        "summary": "Busca un registro de vista de seña por su identificador",
+        "tags": [
+          "Vista seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVistaSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza registro de vista de seña",
+        "tags": [
+          "Vista seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVistaSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de lado de seña",
+        "tags": [
+          "Vista seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eliminacion correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVistaSena"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/lado": {
+      "get": {
+        "summary": "Muestra los datos respecto al lado de la seña",
+        "tags": [
+          "Lado seña"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLadoSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de Lado de seña",
+        "tags": [
+          "Lado seña"
+        ],
+        "parameters": [
+          {
+            "name": "nomvista",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLadoSena"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/lado/{id}": {
+      "get": {
+        "summary": "Busca un registro de lado de seña por su identificador",
+        "tags": [
+          "Lado seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLadoSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza registro de lado de seña",
+        "tags": [
+          "Lado seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLadoSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de lado de seña",
+        "tags": [
+          "Lado seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eliminacion correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetLadoSena"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/tipo": {
+      "get": {
+        "summary": "Muestra los datos respecto a la tipo de seña",
+        "tags": [
+          "Tipo seña"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTipoSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de tipo de seña",
+        "tags": [
+          "Tipo seña"
+        ],
+        "parameters": [
+          {
+            "name": "nomtipo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTipoSena"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/catalogos/tipo/{id}": {
+      "get": {
+        "summary": "Busca un registro de tipo de seña por su identificador",
+        "tags": [
+          "Tipo seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTipoSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza registro de tipo de seña",
+        "tags": [
+          "Tipo seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingreso correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTipoSena"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de tipo de seña",
+        "tags": [
+          "Tipo seña"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eliminacion correcto ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTipoSena"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/medios": {
+      "get": {
+        "summary": "Muestra todos los registos de los medios",
+        "tags": [
+          "Medios"
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediosResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de medio",
+        "tags": [
+          "Medios"
+        ],
+        "parameters": [
+          {
+            "name": "tipo_medio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediosResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediosRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/medios/{id}": {
+      "get": {
+        "summary": "Muestra un registro de medio identificado por id",
+        "tags": [
+          "Medios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediosResource"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Modifica un registro de medios usando su id",
+        "tags": [
+          "Medios"
+        ],
+        "parameters": [
+          {
+            "name": "tipo_medio_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediosResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediosRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de la tabla de medios usando su id",
+        "tags": [
+          "Medios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediosRequest"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo-medios": {
+      "get": {
+        "summary": "Muestra todos los tipos de medios que se utilizan",
+        "tags": [
+          "Tipo medios"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoMediosResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de tipo de medio",
+        "tags": [
+          "Tipo medios"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TipoMediosResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoMediosRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tipo-medios/{id}": {
+      "get": {
+        "summary": "Muestra un unico registro identificado por su id",
+        "tags": [
+          "Tipo medios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoMediosResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro identificado por su id",
+        "tags": [
+          "Tipo medios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": ""
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoMediosRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro identificado por su id",
+        "tags": [
+          "Tipo medios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoMediosRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sitios": {
+      "get": {
+        "summary": "Muestra todos los registros de sitios",
+        "tags": [
+          "Sitios"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitiosResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un registro nuevo para sitios",
+        "tags": [
+          "Sitios"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SitiosResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitiosRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sitios/{id}": {
+      "get": {
+        "summary": "Muestra un registro referente a los sitios",
+        "tags": [
+          "Sitios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitiosResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro referente a los sitios",
+        "tags": [
+          "Sitios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SitiosResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitiosRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de los sitios",
+        "tags": [
+          "Sitios"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitiosRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/circunstancias": {
+      "get": {
+        "summary": "Muestra los registros de circunstancias",
+        "tags": [
+          "Circunstancias"
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CircunstanciasResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un nuevo registro de circunstancias",
+        "tags": [
+          "Circunstancias"
+        ],
+        "parameters": [
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CircunstanciasResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/circunstancias/{id}": {
+      "get": {
+        "summary": "Muestra un registro de circunstancias",
+        "tags": [
+          "Circunstancias"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CircunstanciasResource"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un registro de circunstancias",
+        "tags": [
+          "Circunstancias"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CircunstanciasResource"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un registro de circunsatncias",
+        "tags": [
+          "Circunstancias"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CircunstanciasRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          },
+          "500": {
+            "description": " ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hipotesis":{
+      "get":{
+
+      },
+      "post":{
+
+      }
+    },
+    "/hipotesis/{id}":{
+      "get":{
+
+      },
+      "put":{
+
+      },
+      "delete":{
+
+      }
     }
   },
   "components": {
     "schemas": {
+      "HipotesisRequest":{
+        "reporte_id":{
+
+        },
+        "tipo_hipotesis_id":{
+
+        },
+        "sitio_id":{
+
+        },
+        "area_asigna_sitio_id":{
+
+        },
+        "etapa":{
+
+        },
+        "descripcion":{
+          
+        }
+      },
+      "HipotesisResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id de la hipotesis"
+          },
+          "etapa":{
+            "type":"integer"
+          },
+          "descripcion":{
+            "type":"string"
+          },
+          "reporte_id":{
+            "type":"integer"
+          },
+          "tipo_hipotesis_id":{
+            "type":"integer"
+          },
+          "sitio_id":{
+            "type":"integer"
+          },
+          "area_asigna_sitio_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "CircunstanciasResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "El ID que se asigno al elemento insertado"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre que se le asignara al sitios"
+          }
+        }
+      },
+      "CircunstanciasRequest": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "Nombre que se le asiganra al sitio"
+          }
+        }
+      },
+      "SitiosResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "El ID que se asigno al elemento insertado"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre que se le asignara al sitios"
+          }
+        }
+      },
+      "SitiosRequest": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "Nombre que se le asiganra al sitio"
+          }
+        }
+      },
+      "TipoMediosRequest": {
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "type": "string",
+            "description": "nombre del tipo de medio que se desea registrar"
+          }
+        }
+      },
+      "TipoMediosResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "El ID que identifica el elemento"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "nombre del tipo de medio"
+          }
+        }
+      },
+      "MediosRequest": {
+        "type": "object",
+        "properties": {
+          "tipo_medio_id": {
+            "type": "integer",
+            "description": "El ID que identifica al tipo de medio"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre referente al medio"
+          }
+        }
+      },
+      "MediosResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "El id referente al medio"
+          },
+          "tipo_medio_id": {
+            "type": "integer",
+            "description": "El ID que identifica al tipo de medio"
+          },
+          "nombre": {
+            "type": "string",
+            "description": "Nombre referente al medio"
+          }
+        }
+      },
       "Persona": {
         "type": "object",
         "properties": {
@@ -686,6 +2928,133 @@
           "hipotesis_id": {
             "type": "integer",
             "description": "El identificador de la hipotesis realizada sobre la desaparicion de la persona."
+          }
+        }
+      },
+      "StoreSenasParticularesRequest": {
+        "type": "object",
+        "properties": {
+          "persona_id": {
+            "type": "integer"
+          },
+          "region_cuerpo_id": {
+            "type": "integer"
+          },
+          "vista_id": {
+            "type": "integer"
+          },
+          "lado_id": {
+            "type": "integer"
+          },
+          "tipo_id": {
+            "type": "integer"
+          },
+          "cantidad": {
+            "type": "integer"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "foto": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateSenasParticularesRequest": {
+        "type": "object",
+        "properties": {
+          "persona_id": {
+            "type": "integer"
+          },
+          "region_cuerpo_id": {
+            "type": "integer"
+          },
+          "vista_id": {
+            "type": "integer"
+          },
+          "lado_id": {
+            "type": "integer"
+          },
+          "tipo_id": {
+            "type": "integer"
+          },
+          "cantidad": {
+            "type": "integer"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "foto": {
+            "type": "string"
+          }
+        }
+      },
+      "GetRegionCuerpo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nombre": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTipoSena": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nomtipo": {
+            "type": "string"
+          }
+        }
+      },
+      "GetVistaSena": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nomvista": {
+            "type": "string"
+          }
+        }
+      },
+      "GetLadoSena": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "nomlado": {
+            "type": "string"
+          }
+        }
+      },
+      "UsuariAdminResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "StoreUsuarioAdmin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
           }
         }
       }

@@ -2,65 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEtniaRequest;
 use App\Http\Resources\EtniaResource;
 use App\Models\Etnia;
 use Illuminate\Http\Request;
 
 class EtniaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return EtniaResource::collection(Etnia::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+   
+    public function store(StoreEtniaRequest $request)
     {
-        //
+        return new EtniaResource(Etnia::create($request->all()));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show($id)
     {
-        //
+        return new EtniaResource(Etnia::findOrFail($id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Etnia $etnia)
+    
+    public function update($id, StoreEtniaRequest $request)
     {
-        //
+        $etnia= Etnia::findOrFail($id);
+        $etnia->update($request->all());   
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Etnia $etnia)
+    public function destroy( $id)
     {
-        //
+        if (Etnia::findOrFail($id)->delete()) {
+            return response()->json(['mensaje' => 'Borrado correcto']);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Etnia $etnia)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Etnia $etnia)
-    {
-        //
-    }
+}
 }

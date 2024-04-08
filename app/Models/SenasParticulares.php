@@ -15,16 +15,18 @@ class SenasParticulares extends Model
 {
     use HasFactory;
 
+    protected $table = 'senas_particulares';
+
     protected $fillable = [
-        "tipo_id",
-        "lado_id",
-        "vista_id",
         "persona_id",
         "region_cuerpo_id",
-        "region_cuerpo_rnpdno_id",
+        //"region_cuerpo_rnpdno_id",
+        "lado_id",
+        "vista_id",
+        "tipo_id",
         "cantidad",
         "descripcion",
-        "foto"
+        "foto",
     ];
 
     public function region_cuerpo(): BelongsTo {

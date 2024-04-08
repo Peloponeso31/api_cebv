@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('senas_particulares', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("persona_id");
+            $table->foreignId("persona_id")->nullable();
             $table->foreignId("region_cuerpo_id");
-            $table->foreignId("region_cuerpo_rnpdno_id")->nullable();
+           // $table->foreignId("region_cuerpo_rnpdno_id")->nullable();
             $table->foreignId("vista_id");
             $table->foreignId("lado_id");
             $table->foreignId("tipo_id");
-            $table->integer("cantidad")->default(0);
-            $table->string("descripcion");
-            $table->string("foto");
+            $table->integer("cantidad")->nullable()->default(0);
+            $table->string("descripcion")->nullable();
+            $table->string("foto")->nullable();
             $table->timestamps();
         });
     }

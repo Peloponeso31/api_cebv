@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\TipoCabelloRequest;
 use App\Models\Catalogos\TipoCabello;
 use Illuminate\Http\Request;
 
 class TipoCabelloController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return TipoCabello::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function store(TipoCabelloRequest $request)
     {
-        //
+        return TipoCabello::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function show( $id)
     {
-        //
+        return TipoCabello::FindOrFail($id);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(TipoCabello $tipoCabello)
+    public function update( $id, TipoCabelloRequest $request)
     {
-        //
+        $tipocabello= TipoCabello::findOrFail($id);
+        return $tipocabello->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(TipoCabello $tipoCabello)
+   
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, TipoCabello $tipoCabello)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(TipoCabello $tipoCabello)
-    {
-        //
+        return TipoCabello::findOrFail($id)->delete();
     }
 }

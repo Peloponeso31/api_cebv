@@ -2,64 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Catalogos\VestimentaRequest;
 use App\Models\Catalogos\Vestimenta;
 use Illuminate\Http\Request;
 
 class VestimentaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return Vestimenta::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+   
+    public function store(VestimentaRequest $request)
     {
-        //
+        
+        return Vestimenta::create($request->all()); 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function show( $id)
     {
-        //
+        return Vestimenta::FindOrFail($id);
+    }
+    
+    public function update( $id, VestimentaRequest $request)
+    {
+        $vestimenta= Vestimenta::findOrFail($id);
+        return $vestimenta->update($request->all());
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Vestimenta $vestimenta)
+    public function destroy( $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Vestimenta $vestimenta)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Vestimenta $vestimenta)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Vestimenta $vestimenta)
-    {
-        //
+        return Vestimenta::findOrFail($id)->delete();
     }
 }

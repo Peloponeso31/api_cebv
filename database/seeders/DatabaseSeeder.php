@@ -50,7 +50,8 @@ class DatabaseSeeder extends Seeder
             PersonaSeeder::class,
             ReporteSeeder::class,
             Telefonos_seeder::class,
-            ContactoSeeder::class
+            ContactoSeeder::class,
+            EmpleadoSeeder::class,
         ]);
     }
 }

@@ -48,6 +48,8 @@ use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\ContextoFamiliarController;
 use App\Http\Controllers\ContextoSocialController;
+use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
@@ -96,6 +98,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/sitios', SitioController::class);
+    Route::apiResource("/Empleado", EmpleadoController::class);
+    Route::apiResource("/Oficina", OficinaController::class);
 
     /**
      * Routes for the oficialidades module
@@ -119,10 +123,13 @@ Route::middleware('auth:sanctum')->group(function () {
      */
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
     Route::apiResource('/reportes', ReporteController::class);
-    Route::put('/reportes/folios/{id}', [ReporteController::class, 'setFolio']);
-    Route::get('/reportes/folios/{id}', [ReporteController::class, 'getFolios']);
 
-    Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
+    /**
+     * Routes for the informacion module
+     */
+    Route::apiResource('/tipos-medios', TipoMedioController::class);
+    Route::apiResource('/medios', MedioController::class);
+    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);

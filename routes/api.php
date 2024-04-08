@@ -47,14 +47,9 @@ use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\ContextoFamiliarController;
-use App\Http\Controllers\ContextoSocialController
+use App\Http\Controllers\ContextoSocialController;
 use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\LadoController;
-use App\Http\Controllers\LadoRnpdnoController;
 use App\Http\Controllers\OficinaController;
-use App\Http\Controllers\PuestoController;
-use App\Http\Controllers\RegionCuerpoController;
-use App\Http\Controllers\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;

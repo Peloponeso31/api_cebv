@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('contexto_socials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("persona_id")->nullable();
             $table->foreignId('persona_id') -> constrained(table: 'personas');
             $table->string("pasatiempos")->nullable();
             $table->string("club_organizacion")->nullable();

@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id');
-            $table->foreignId('persona_id');
+            $table->foreignId('persona_id')->nullable();
             $table->foreignId('parentesco_id');
 
             $table->boolean('denuncia_anonima');

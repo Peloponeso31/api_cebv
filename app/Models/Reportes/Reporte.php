@@ -74,7 +74,7 @@ class Reporte extends Model
      */
     public function zonaEstado(): BelongsTo
     {
-        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id', 'idx_reportes_zona_estado');
+        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id');
     }
 
     public function hipotesisOficial(): BelongsTo

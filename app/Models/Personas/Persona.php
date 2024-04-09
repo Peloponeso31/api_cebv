@@ -36,7 +36,7 @@ class Persona extends Model
         'fecha_nacimiento',
         'curp',
         'ocupacion',
-        'sexo',
+        'sexo_al_nacer',
         'genero',
     ];
 

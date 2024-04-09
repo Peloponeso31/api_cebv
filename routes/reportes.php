@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Reportes\Reporte;
@@ -30,8 +31,13 @@ Route::middleware('auth:sanctum')->group(function() {
         return Pdf::loadView("reportes.Caratula")->stream();
     });
     
-    Route::get("/boletines", function () {
-        return Pdf::loadView("reportes.boletin_BI")->stream();
+    Route::get("/boletines/{id}", function (string $id) {
+        $desaparecido =  Desaparecido::whereId($id)->first();
+
+        return Pdf::loadView("reportes.boletin_BI", 
+        [
+            "desaparecido" => $desaparecido
+        ])->stream();
     });
     
     Route::get("/indicaciones", function () {

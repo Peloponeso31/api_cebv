@@ -76,18 +76,26 @@ html, body {
         <col width="20%">
       </colgroup>
     <th rowspan="2"><img class="img" src="{{ public_path('reportes/boletin_BI/Logos-Cebv.png') }}" width="250" ></th>
-    <th><h2>ARELLI GRILLET SÁNCHEZ CAMPO</h2></th>
+    <th><h2>
+        {{ $desaparecido->persona->nombre }}
+        {{ $desaparecido->persona->apellido_paterno }}
+        {{ $desaparecido->persona->apellido_materno }}
+    </h2></th>
     <tr>
-        <td>22/SB 0356U-22ZC</td>
+        <td> NO. FOLIO </td>
     </tr>
     <tr style="height: 10px;">
-    <td rowspan="9"> <img src="{{ public_path('reportes/boletin_BI/Marin.jpg') }}" width="50%" height="35%" ></td>
-        <td><h3>SEXO:</h3> mujer</td>
+    <td rowspan="9"> <img src="{{ public_path('reportes/boletin_BI/foto_mia.jpg') }}" width="50%" height="35%" ></td>
+        <td><h3>SEXO:</h3> {{ $desaparecido->persona->sexo_al_nacer }} </td>
             <tr>
-            <td><h3>EDAD ACTUAL:</h3> 22 años</td>
+            <td><h3>EDAD ACTUAL:</h3>
+                {{ $desaparecido->persona->edad_anos() }} años 
+            </td>
             </tr>
             <tr>
-            <td><h3>FECHA DE NACIMIENTO:</h3> 15 de mayo de 1999</td>  
+            <td><h3>FECHA DE NACIMIENTO:</h3> 
+                {{ $desaparecido->persona->fecha_nacimiento_legible() }}
+            </td>  
             </tr>
             <tr>
             <td><h3>ESTATURA:</h3> 1.50</td> 

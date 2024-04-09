@@ -22,7 +22,7 @@ class PersonaResource extends JsonResource
             'fecha_nacimiento' => $this->fecha_nacimiento,
             'curp' => $this->curp,
             'ocupacion' => $this->ocupacion,
-            'sexo' => $this->sexo,
+            'sexo' => $this->sexo_al_nacer,
             'genero' => $this->genero,
         ];
     }

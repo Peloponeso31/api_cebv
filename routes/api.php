@@ -124,7 +124,7 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
     Route::apiResource('/reportes', ReporteController::class);
-    Route::get('vista/reportes', [ReporteController::class, 'vistaReportesDashboard']);
+    Route::get('/vista/reportes', [ReporteController::class, 'vistaReportesDashboard']);
 
     /**
      * Routes for the informacion module
@@ -138,6 +138,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/hipotesis', HipotesisController::class);
     
     Route::apiResource('/reportantes', ReportanteController::class);
+    Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
 
     /**

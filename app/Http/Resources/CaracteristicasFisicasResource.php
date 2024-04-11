@@ -18,12 +18,12 @@ class CaracteristicasFisicasResource extends JsonResource
             "persona_id"=>$this->persona,
              "color_ojos"=>$this->color_ojos->color,
             "tamano_ojos"=>$this->tamano_ojos->tamano,
-            "color_cabello"=>$this->color_cabello->colorcabellos,
+            "color_cabello"=>$this->color_cabello->color,
             "color_piel"=>$this->color_piel->colorpiel,
-            "tipo_cabello"=>$this->tipo_cabello->tipocabello,
-            "tipo_labios"=>$this->tipo_labios->tipolabios,
-            "tipo_nariz"=>$this->tipo_nariz->tiponariz,
-            "tipo_orejas"=>$this->tamano_orejas->tamanoorejas,
+            "tipo_cabello"=>$this->tipo_cabello->tipo,
+            "tipo_labios"=>$this->tipo_labios->tipo,
+            "tipo_nariz"=>$this->tipo_nariz->tipo,
+            "tipo_orejas"=>$this->tamano_orejas->tamano,
             "complexion"=>$this->complexion->complexion,
         ];
     }

@@ -233,20 +233,20 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "TATUAJE"],
          ]);
 
-        \App\Models\Catalogos\ColorCabello::insert([
-            ["colorcabellos" => "ALBINO"],
-            ["colorcabellos" => "CANO"],
-            ["colorcabellos" => "CASTAÑO CLARO"],
-            ["colorcabellos" => "CASTAÑO OSCURO"],
-            ["colorcabellos" => "ENTRECANO"],
-            ["colorcabellos" => "NEGRO"],
-            ["colorcabellos" => "PELIRROJO"],
-            ["colorcabellos" => "RUBIO"],
-            ["colorcabellos" => "TEÑIDO"],
-            ["colorcabellos" => "NO ESPECIFICA"]
+        \App\Models\Catalogos\CaracteristicasFisicas\ColorCabello::insert([
+            ["color" => "ALBINO"],
+            ["color" => "CANO"],
+            ["color" => "CASTAÑO CLARO"],
+            ["color" => "CASTAÑO OSCURO"],
+            ["color" => "ENTRECANO"],
+            ["color" => "NEGRO"],
+            ["color" => "PELIRROJO"],
+            ["color" => "RUBIO"],
+            ["color" => "TEÑIDO"],
+            ["color" => "NO ESPECIFICA"]
         ]);
 
-        \App\Models\Catalogos\ColorOjos::insert([
+        \App\Models\Catalogos\CaracteristicasFisicas\ColorOjos::insert([
             ["color" => "AZULES"],
             ["color" => "CAFÉS CLAROS"],
             ["color" => "CAFÉS OSCUROS"],
@@ -257,7 +257,7 @@ class CatalogosSeeder extends Seeder
             ["color" => "NO ESPECIFICA"]
         ]);
 
-        \App\Models\Catalogos\TamanoOjos::insert([
+        \App\Models\Catalogos\CaracteristicasFisicas\TamanoOjos::insert([
             ["tamano" => "GRANDES"],
             ["tamano" => "MEDIANOS"],
             ["tamano" => "PEQUEÑOS"],
@@ -265,54 +265,54 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\ColorPiel::insert([
-            ["colorpiel" => "ALBINA"],
-            ["colorpiel" => "AMARILLA"],
-            ["colorpiel" => "BLANCA"],
-            ["colorpiel" => "MORENA"],
-            ["colorpiel" => "MORENA CLARA"],
-            ["colorpiel" => "MORENA OSCURA"],
-            ["colorpiel" => "NEGRA"],
-            ["colorpiel" => "NO ESPECIFICA"],
+        \App\Models\Catalogos\CaracteristicasFisicas\ColorPiel::insert([
+            ["color" => "ALBINA"],
+            ["color" => "AMARILLA"],
+            ["color" => "BLANCA"],
+            ["color" => "MORENA"],
+            ["color" => "MORENA CLARA"],
+            ["color" => "MORENA OSCURA"],
+            ["color" => "NEGRA"],
+            ["color" => "NO ESPECIFICA"],
 
         ]);
-        \App\Models\Catalogos\TipoCabello::insert([
-            ["tipocabello" => "AFRO +"],
-            ["tipocabello" => "CHINO +"],
-            ["tipocabello" => "CRESPO"],
-            ["tipocabello" => "LACIO"],
-            ["tipocabello" => "ONDULADO"],
-            ["tipocabello" => "RIZADO"],
-            ["tipocabello" => "SEMIONDULADO"],
-            ["tipocabello" => "NO ESPECIFICA"]
-
-        ]);
-
-        \App\Models\Catalogos\TipoLabios::insert([
-            ["tipolabios" => "DELGADOS"],
-            ["tipolabios" => "GRUESOS"],
-            ["tipolabios" => "MEDIANOS"],
-            ["tipolabios" => "MIXTOS"],
-            ["tipolabios" => "NO ESPECIFICA"],
-        ]);
-
-        \App\Models\Catalogos\TipoNariz::insert([
-            ["tiponariz" => "AGUILEÑA"],
-            ["tiponariz" => "CHATA"],
-            ["tiponariz" => "RECTA"],
-            ["tiponariz" => "NO ESPECIFICA"],
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoCabello::insert([
+            ["tipo" => "AFRO +"],
+            ["tipo" => "CHINO +"],
+            ["tipo" => "CRESPO"],
+            ["tipo" => "LACIO"],
+            ["tipo" => "ONDULADO"],
+            ["tipo" => "RIZADO"],
+            ["tipo" => "SEMIONDULADO"],
+            ["tipo" => "NO ESPECIFICA"]
 
         ]);
 
-        \App\Models\Catalogos\TamanoOrejas::insert([
-            ["tamanoorejas" => "CHICAS"],
-            ["tamanoorejas" => "GRANDES"],
-            ["tamanoorejas" => "MEDIANAS"],
-            ["tamanoorejas" => "NO ESPECIFICA"],
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoLabios::insert([
+            ["tipo" => "DELGADOS"],
+            ["tipo" => "GRUESOS"],
+            ["tipo" => "MEDIANOS"],
+            ["tipo" => "MIXTOS"],
+            ["tipo" => "NO ESPECIFICA"],
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoNariz::insert([
+            ["tipo" => "AGUILEÑA"],
+            ["tipo" => "CHATA"],
+            ["tipo" => "RECTA"],
+            ["tipo" => "NO ESPECIFICA"],
 
         ]);
 
-        \App\Models\Catalogos\Complexion::insert([
+        \App\Models\Catalogos\CaracteristicasFisicas\TamanoOrejas::insert([
+            ["tamano" => "CHICAS"],
+            ["tamano" => "GRANDES"],
+            ["tamano" => "MEDIANAS"],
+            ["tamano" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\Complexion::insert([
             ["complexion" => "ATLÉTICA"],
             ["complexion" => "DELGADA"],
             ["complexion" => "OBESA"],
@@ -322,7 +322,7 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\Religion::insert([
+        \App\Models\Catalogos\Etnia\Religion::insert([
             ["religion" => "Católicos"],
             ["religion" => "Catolicos Ortodoxos"],
             ["religion" => "Anabautista/Menonita"],
@@ -343,7 +343,7 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\Lengua::insert([
+        \App\Models\Catalogos\Etnia\Lengua::insert([
             ["lengua" => "Nahualt"],
             ["lengua" => "Paipai"],
             ["lengua" => "Kiliwa"],
@@ -372,7 +372,7 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\GrupoEtnico::insert([
+        \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
             ["grupoetnico" => "NAHUAS"],
             ["grupoetnico" => "TOTONACAS"],
             ["grupoetnico" => "HUASTECO"],
@@ -384,7 +384,7 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\Vestimenta::insert([
+        \App\Models\Catalogos\Etnia\Vestimenta::insert([
             ["vestimenta" => "HUIPIL"],
             ["vestimenta" => "CALZÓN DE MANTA"],
             ["vestimenta" => "SARAPE"],
@@ -397,7 +397,7 @@ class CatalogosSeeder extends Seeder
         ]);
 
 
-        \App\Models\Catalogos\Ascendencia::insert([
+        \App\Models\Catalogos\Etnia\Ascendencia::insert([
             ["ascendencia" => "AFROAMERICANO"],
             ["ascendencia" => "ESPAÑOLA"],
             ["ascendencia" => "MEXICANA"],

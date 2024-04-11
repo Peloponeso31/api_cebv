@@ -20,6 +20,11 @@ use App\Http\Controllers\Catalogos\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\Catalogos\VistaController;
 use App\Http\Controllers\Catalogos\VistaRnpdnoController;
 use App\Http\Controllers\Catalogos\TipoController;
+use App\Http\Controllers\RegionVellofacialController;
+use App\Http\Controllers\ColorVellofacialController;
+use App\Http\Controllers\CorteVellofacialController;
+use App\Http\Controllers\VolumenVellofacialController;
+use App\Http\Controllers\VelloFacialController;
 use App\Http\Controllers\ColorCabelloController;
 use App\Http\Controllers\ColorOjosController;
 use App\Http\Controllers\ColorPielController;
@@ -178,6 +183,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);
+
+    Route::apiResource("/velloFacial", VelloFacialController::class);
+    Route::apiResource("/regionvello", RegionVelloFacialController::class);
+    Route::apiResource("/colorvello", ColorVelloFacialController::class);
+    Route::apiResource("/cortevello", CorteVelloFacialController::class);
+    Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
+
 });
 
 Route::controller(AuthController::class)->group(function () {

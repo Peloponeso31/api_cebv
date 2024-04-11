@@ -40,7 +40,8 @@ class DatabaseSeeder extends Seeder
             Companias_Telefonicas_seeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class
+            ContextoFamiliarSeeder::class,
+            MediaFiliacionSeeder::class
         ]);
 
         /**

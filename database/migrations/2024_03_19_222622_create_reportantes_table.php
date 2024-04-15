@@ -12,7 +12,7 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id');
             $table->foreignId('persona_id')->nullable();
-            $table->foreignId('parentesco_id');
+            $table->foreignId('parentesco_id')->nullable();
 
             $table->boolean('denuncia_anonima');
             $table->boolean('informacion_consentimiento');
@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->boolean('publicacion_registro_nacional');
             $table->boolean('publicacion_boletin');
             $table->boolean('pertenencia_colectivo');
+            
             $table->string('nombre_colectivo')->nullable();
             $table->text('informacion_relevante')->nullable();
 

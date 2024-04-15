@@ -193,9 +193,9 @@
         }
       }
     },
-    "/personas": {
+    "/persona": {
       "get": {
-        "summary": "Obtiene una lista de personas desaparecidas registradas",
+        "summary": "Obtiene una lista de personas registradas",
         "tags": [
           "Personas"
         ],
@@ -233,7 +233,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Persona"
+                    "$ref": "#/components/schemas/PersonaResource"
                   }
                 }
               }
@@ -248,10 +248,89 @@
         }
       },
       "post": {
-        "summary": "Crea el registro de varias personas a la vez.",
+        "summary": "Crea el registro de una sola persona",
         "tags": [
           "Personas"
         ],
+        "parameters":[
+          {
+            "name":"nombre",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"apellido_paterno",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"apellido_materno",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"fecha_nacimiento",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "format":"date"
+            }
+          },
+          {
+            "name":"curp",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"ocupacion",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"sexo_al_nacer",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"genero",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PersonaRequest"
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "Created",
@@ -260,7 +339,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Persona"
+                    "$ref": "#/components/schemas/PersonaResource"
                   }
                 }
               }
@@ -277,7 +356,7 @@
     },
     "/persona/{id}": {
       "get": {
-        "summary": "Obtiene los datos de una personas desaparecida registrada",
+        "summary": "Obtiene los datos de una persona registrada",
         "tags": [
           "Personas"
         ],
@@ -302,7 +381,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Persona"
+                    "$ref": "#/components/schemas/PersonaResource"
                   }
                 }
               }
@@ -339,6 +418,123 @@
                 }
               }
             }
+          }
+        }
+      },
+      "put": {
+        "summary": "Crea el registro de una sola persona",
+        "tags": [
+          "Personas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "description": "El ID de la persona."
+          },
+          {
+            "name":"nombre",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"apellido_paterno",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"apellido_materno",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"fecha_nacimiento",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string",
+              "format":"date"
+            }
+          },
+          {
+            "name":"curp",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"ocupacion",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"sexo_al_nacer",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"genero",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PersonaRequest"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PersonaResource"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -381,47 +577,6 @@
           },
           "500": {
             "description": "Error interno del servidor."
-          }
-        }
-      }
-    },
-    "/persona": {
-      "post": {
-        "summary": "Crea el registro de una sola personas",
-        "tags": [
-          "Personas"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/PersonaInput"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Persona"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -6345,10 +6500,4088 @@
           }
         }
       }
+    },
+    "/caracteristicas_fisicas":{
+      "get":{
+        "summary":"Muestra los registros de caracteristicas fisicas",
+        "tags":[
+          "Caracteristicas fisicas"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/CaracteristicasFisicasResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de caracteristica fisica",
+        "tags": [
+          "Caracteristicas fisicas"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "color_cabello_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "color_ojos_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tamano_ojos_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "color_piel_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_cabello_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_labios_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_nariz_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tamano_orejas_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "complexion_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreCaracteristicasFisicasRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaracteristicasFisicasResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/caracteristicas_fisicas/{id}":{
+      "get":{
+        "summary":"Muestra los registros de caracteristicas fisicas",
+        "tags":[
+          "Caracteristicas fisicas"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/CaracteristicasFisicasResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de caracteristicas fisicas",
+        "tags":[
+          "Caracteristicas fisicas"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "color_cabello_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "color_ojos_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tamano_ojos_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "color_piel_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_cabello_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_labios_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo_nariz_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tamano_orejas_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "complexion_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/UpdateCaracteristicasFisicasRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/CaracteristicasFisicasResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de caracteristicas fisicas",
+        "tags": [
+          "Caracteristicas fisicas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaracteristicasFisicasResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/etnia":{
+      "get":{
+        "summary":"Muestra los registros de etnia",
+        "tags":[
+          "Etnia"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EtniaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de etnia",
+        "tags": [
+          "Etnia"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "religion_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "lengua_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "grupo_etnico_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "vestimeta_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "ascendencia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreEtniaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EtniaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/etnia/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Etnia",
+        "tags":[
+          "Etnia"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EtniaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de caracteristicas fisicas",
+        "tags":[
+          "Etnia"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "religion_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "lengua_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "grupo_etnico_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "vestimeta_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "ascendencia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/UpdateEtniaRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EtniaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de caracteristicas fisicas",
+        "tags": [
+          "Etnia"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EtniaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parentescos":{
+      "get":{
+        "summary":"Muestra los registros de Complexion",
+        "tags":[
+          "Parentesco"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ParentescoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de parentesco",
+        "tags": [
+          "Parentesco"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ParentescoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParentescoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parentescos/{id}":{
+      "get":{
+        "summary":"Muestra los registros de parentesco",
+        "tags":[
+          "Parentesco"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ParentescoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de parentesco",
+        "tags":[
+          "Parentesco"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"nombre",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ParentescoRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ParentescoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de parentesco",
+        "tags": [
+          "Parentesco"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParentescoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estatus-personas":{
+      "get":{
+        "summary":"Muestra los registros de Complexion",
+        "tags":[
+          "Estatus persona"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EstatusPersonaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Complexion",
+        "tags": [
+          "Estatus persona"
+        ],
+        "parameters": [
+          {
+            "name": "complexion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EstatusPersonaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstatusPersonaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estatus-personas/{id}":{
+      "get":{
+        "summary":"Muestra los registros del estaus de persona",
+        "tags":[
+          "Estatus persona"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EstatusPersonaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro del estaus de persona",
+        "tags":[
+          "Estatus persona"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"complexion",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/EstatusPersonaRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EstatusPersonaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro del estaus de persona",
+        "tags": [
+          "Estatus persona"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EstatusPersonaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/areas":{
+      "get":{
+        "summary":"Muestra los registros de Areas",
+        "tags":[
+          "Areas"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AreaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Areas",
+        "tags": [
+          "Areas"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AreaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AreaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/areas/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Areas",
+        "tags":[
+          "Areas"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AreaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Areas",
+        "tags":[
+          "Areas"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"nombre",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/AreaRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AreaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Areas",
+        "tags": [
+          "Areas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AreaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/folios":{
+      "get":{
+        "summary":"Muestra los registros de Folios",
+        "tags":[
+          "Folios"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/FolioResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Folios",
+        "tags": [
+          "Folios"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "reporte_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "folio_cebv",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "folio_fub",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FolioRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolioResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/folios/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Folios",
+        "tags":[
+          "Folios"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"persona_id",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"reporte_id",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"user_id",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"folio_cebv",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"folio_fub",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/FolioResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Folios",
+        "tags":[
+          "Folios"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"persona_id",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"reporte_id",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"user_id",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"folio_cebv",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"folio_fub",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/FolioRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/FolioResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Folios",
+        "tags": [
+          "Folios"
+        ],
+        "parameters": [
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FolioRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instituciones":{
+      "get":{
+        "summary":"Muestra los registros de Instituciones",
+        "tags":[
+          "Instituciones"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/InstitucionResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Instituciones",
+        "tags": [
+          "Instituciones"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstitucionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstitucionResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/instituciones/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Instituciones",
+        "tags":[
+          "Instituciones"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/InstitucionResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Instituciones",
+        "tags":[
+          "Instituciones"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"nombre",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/InstitucionRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/InstitucionResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Instituciones",
+        "tags": [
+          "Instituciones"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstitucionRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/direcciones":{
+      "get":{
+        "summary":"Muestra los registros de Direcciones",
+        "tags":[
+          "Direcciones"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/DireccionResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Direcciones",
+        "tags": [
+          "Direcciones"
+        ],
+        "parameters": [
+          {
+            "name": "asentamiento_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "calle",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numero_exterior",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numero_ineterior",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "calle_1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "calle_2",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tramo_carretero",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_postal",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "referencia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DireccionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DireccionResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/direcciones/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Direcciones",
+        "tags":[
+          "Direcciones"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/DireccionResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Direcciones",
+        "tags":[
+          "Direcciones"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name": "asentamiento_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "calle",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numero_exterior",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "numero_ineterior",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "calle_1",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "calle_2",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tramo_carretero",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codigo_postal",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "referencia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/DireccionRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/DireccionResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Dirrecciones",
+        "tags": [
+          "Direcciones"
+        ],
+        "parameters": [
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DireccionRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/zona-estados":{
+      "get":{
+        "summary":"Muestra los registros de Zonas de Estados",
+        "tags":[
+          "Zona Estados"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ZonaEstadoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de Zonas de Estados",
+        "tags": [
+          "Zona Estados"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "abreviatura",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ZonaEstadoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZonaEstadoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/zona-estados/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Zonas de Estados",
+        "tags":[
+          "Zona Estados"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ZonaEstadoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary":"Actualiza un registro de Zonas de Estados",
+        "tags":[
+          "Zona Estados"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          },
+          {
+            "name":"nombre",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          },
+          {
+            "name":"abreviatura",
+            "in":"query",
+            "required":true,
+            "schema":{
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody":{
+          "required":true,
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref":"#/components/schemas/ZonaEstadoRequest"
+              }
+            }
+          }
+        },
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ZonaEstadoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete":{
+        "summary": "Elimina un registro de Zona de Estados",
+        "tags": [
+          "Zona Estados"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ZonaEstadoRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/asentamientos":{
+      "get":{
+        "summary":"Muestra los registros de Zonas de Estados",
+        "tags":[
+          "Asentamiento"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AsentamientoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/asentamientos/{id}":{
+      "get":{
+        "summary":"Muestra los registros por id de Asentamiento",
+        "tags":[
+          "Asentamiento"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/AsentamientoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estados":{
+      "get":{
+        "summary":"Muestra los registros de Estados",
+        "tags":[
+          "Estados"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EstadoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estados/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Estados por id",
+        "tags":[
+          "Estados"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EstadoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipios":{
+      "get":{
+        "summary":"Muestra los registros de los municipios",
+        "tags":[
+          "Municipios"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/MunicipioResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/municipios/{id}":{
+      "get":{
+        "summary":"Muestra los registros de Zonas de Estados",
+        "tags":[
+          "Municipios"
+        ],
+        "parameters":[
+          {
+            "name":"id",
+            "in":"path",
+            "required":true,
+            "schema":{
+              "type":"integer"
+            }
+          }
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/MunicipioResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contexto_social":{
+        "get":{
+          "summary":"Muestra los registros de contexto social",
+          "tags":[
+            "Contexto Social"
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoSocialResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post":{
+          "summary": "Crea un nuevo registro de contexto social",
+          "tags": [
+            "Contexto Social"
+          ],
+          "parameters": [
+            {
+              "name": "persona_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pasatiempos",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "club_organizacion",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "estudio",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "amistades",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "amistades_municipio",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "correo_electronico",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "nombre_redes_sociales",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "lugares_frecuentes",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "vivienda_estado",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreContextoSocialRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ContextoSocialResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+    "/contexto_social/{id}":{
+        "get":{
+          "summary":"Muestra los registros de contexto social",
+          "tags":[
+            "Contexto Social"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoSocialResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de contexto social",
+          "tags":[
+            "Contexto Social"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "persona_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pasatiempos",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "club_organizacion",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "estudio",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "amistades",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "amistades_municipio",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "correo_electronico",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "nombre_redes_sociales",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "lugares_frecuentes",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "vivienda_estado",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdateContextoSocialRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoSocialResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de contexto social",
+          "tags": [
+            "Contexto Social"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ContextoSocialResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/contexto_economico":{
+      "get":{
+        "summary":"Muestra los registros de contexto economico",
+        "tags":[
+          "Contexto Economico"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ContextoEconomicoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de contexto economico",
+        "tags": [
+          "Contexto Economico"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "empresa",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "puesto",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_ingreso",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format":"date"
+            }
+          },
+          {
+            "name": "relacion_colegas",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string",
+              "example":"Si o No"
+            }
+          },
+          {
+            "name": "conflictos_trabajo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cambiosFinanzas",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deudas",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "actividadesExtralaborales",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string",
+              "example":"Si o No"
+            }
+          },
+          {
+            "name": "emprendimientos",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string",
+              "example":"Si o No"
+            }
+          },
+          {
+            "name": "saludMental",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "ausenciaPrevia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string",
+              "example":"Si o No"
+            }
+          },
+          {
+            "name": "contactosRelevantes",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"boolean"
+            }
+          },
+          {
+            "name": "beneficios",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "cambiosBeneficios",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"boolean"
+            }
+          },
+          {
+            "name": "ultimoContactoTrabajo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"boolean"
+            }
+          },
+          {
+            "name": "sindicato",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "fecha_ingreso_sindicato",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string",
+              "format":"date"
+            }
+          },
+          {
+            "name": "idSindicato",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"integer"
+            }
+          },
+          {
+            "name": "posicionSindicato",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "participacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string",
+              "example":"Si o No"
+            }
+          },
+          {
+            "name": "relacion_sindicato",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "conflictos_sindicatos",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "desacuerdo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "amenazaIntimidacion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          },
+          {
+            "name": "ult_cont_sindi",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type":"string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreContextoEconomicoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContextoEconomicoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contexto_economico/{id}":{
+        "get":{
+          "summary":"Muestra los registros de contexto economico",
+          "tags":[
+            "Contexto Economico"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoEconomicoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de contexto economico",
+          "tags":[
+            "Contexto Economico"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "persona_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "empresa",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "puesto",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "fecha_ingreso",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format":"date"
+              }
+            },
+            {
+              "name": "relacion_colegas",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "conflictos_trabajo",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "cambiosFinanzas",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "deudas",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "actividadesExtralaborales",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "emprendimientos",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "saludMental",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "ausenciaPrevia",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "contactosRelevantes",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"boolean"
+              }
+            },
+            {
+              "name": "beneficios",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "cambiosBeneficios",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"boolean"
+              }
+            },
+            {
+              "name": "ultimoContactoTrabajo",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"boolean"
+              }
+            },
+            {
+              "name": "sindicato",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "fecha_ingreso_sindicato",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "format":"date"
+              }
+            },
+            {
+              "name": "idSindicato",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"integer"
+              }
+            },
+            {
+              "name": "posicionSindicato",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "participacion",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string",
+                "example":"Si o No"
+              }
+            },
+            {
+              "name": "relacion_sindicato",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "conflictos_sindicatos",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "desacuerdo",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "amenazaIntimidacion",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            },
+            {
+              "name": "ult_cont_sindi",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type":"string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdateContextoEconomicoRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoEconomicoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de contexto economico",
+          "tags": [
+            "Contexto Economico"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ContextoEconomicoResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/contexto_familiar":{
+      "get":{
+        "summary":"Muestra los registros de contexto familiar",
+        "tags":[
+          "Contexto Familiar"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ContextoFamiliarResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea un nuevo registro de contexto familiar",
+        "tags": [
+          "Contexto Familiar"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "persona_vive",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "hijos",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "familiar_cercano",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "familiar_violencia",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreContextoFamiliarRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContextoFamiliarResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contexto_familiar/{id}":{
+        "get":{
+          "summary":"Muestra los registros de contexto familiar",
+          "tags":[
+            "Contexto Familiar"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoFamiliarResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de contexto familiar",
+          "tags":[
+            "Contexto Familiar"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "persona_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "persona_vive",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "hijos",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "familiar_cercano",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "familiar_violencia",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdateContextoFamiliarRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContextoFamiliarResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de contexto familiar",
+          "tags": [
+            "Contexto Familiar"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ContextoFamiliarResource"
+                  }
+                }
+              }
+            }
+          }
+        }
     }
+
   },
   "components": {
     "schemas": {
+      "ContextoFamiliarResource":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "persona_vive":{
+            "type":"string"
+          },
+          "hijos":{
+            "type":"integer"
+          },
+          "familiar_cercano":{
+            "type":"string"
+          },
+          "familiar_violencia":{
+            "type":"string"
+          }
+        }
+      },
+      "StoreContextoFamiliarRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "persona_vive":{
+            "type":"string"
+          },
+          "hijos":{
+            "type":"integer"
+          },
+          "familiar_cercano":{
+            "type":"string"
+          },
+          "familiar_violencia":{
+            "type":"string"
+          }
+        }
+      },
+      "UpdateContextoFamiliarRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "persona_vive":{
+            "type":"string"
+          },
+          "hijos":{
+            "type":"integer"
+          },
+          "familiar_cercano":{
+            "type":"string"
+          },
+          "familiar_violencia":{
+            "type":"string"
+          }
+        }
+      },
+      "ContextoSocialResource":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "pasatiempos":{
+            "type":"string"
+          },
+          "club_organizacion":{
+            "type":"string"
+          },
+          "estudio":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "amistades":{
+            "type":"string"
+          },
+          "amistades_municipio":{
+            "type":"string"
+          },
+          "correo_electronico":{
+            "type":"string"
+          },
+          "nombre_redes_sociales":{
+            "type":"string"
+          },
+          "lugares_frecuentes":{
+            "type":"string"
+          },
+          "vivienda_estado":{
+            "type":"string",
+            "example":"Si o No"
+          }
+        }
+      },
+      "StoreContextoSocialRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "pasatiempos":{
+            "type":"string"
+          },
+          "club_organizacion":{
+            "type":"string"
+          },
+          "estudio":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "amistades":{
+            "type":"string"
+          },
+          "amistades_municipio":{
+            "type":"string"
+          },
+          "correo_electronico":{
+            "type":"string"
+          },
+          "nombre_redes_sociales":{
+            "type":"string"
+          },
+          "lugares_frecuentes":{
+            "type":"string"
+          },
+          "vivienda_estado":{
+            "type":"string",
+            "example":"Si o No"
+          }
+        }
+      },
+      "UpdateContextoSocialRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "pasatiempos":{
+            "type":"string"
+          },
+          "club_organizacion":{
+            "type":"string"
+          },
+          "estudio":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "amistades":{
+            "type":"string"
+          },
+          "amistades_municipio":{
+            "type":"string"
+          },
+          "correo_electronico":{
+            "type":"string"
+          },
+          "nombre_redes_sociales":{
+            "type":"string"
+          },
+          "lugares_frecuentes":{
+            "type":"string"
+          },
+          "vivienda_estado":{
+            "type":"string",
+            "example":"Si o No"
+          }
+        }
+      },
+      "ContextoEconomicoResource":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "empresa":{
+            "type":"string"
+          },
+          "puesto":{
+            "type":"string"
+          },
+          "fecha_ingreso":{
+            "type":"string",
+            "format":"date"
+          },
+          "relacion_colegas":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "conflictos_trabajo":{
+            "type":"string"
+          },
+          "cambiosFinanzas":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "deudas":{
+            "type":"integer"
+          },
+          "actividadesExtralaborales":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "emprendimientos":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "saludMental":{
+            "type":"string"
+          },
+          "ausenciaPrevia":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "contactosRelevantes":{
+            "type":"boolean"
+          },
+          "beneficios":{
+            "type":"string"
+          },
+          "cambiosBeneficios":{
+            "type":"boolean"
+          },
+          "ultimoContactoTrabajo":{
+            "type":"boolean"
+          },
+          "sindicato":{
+            "type":"string"
+          },
+          "fecha_ingreso_sindicato":{
+            "type":"string",
+            "format":"date"
+          },
+          "idSindicato":{
+            "type":"integer"
+          },
+          "posicionSindicato":{
+            "type":"string"
+          },
+          "participacion":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "relacion_sindicato":{
+            "type":"string"
+          },
+          "conflictos_sindicato":{
+            "type":"string"
+          },
+          "desacuerdos":{
+            "type":"string"
+          },
+          "amenazasIntimidacion":{
+            "type":"string"
+          },
+          "ult_cont_sindi":{
+            "type":"string"
+          }
+        }
+      },
+      "StoreContextoEconomicoRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "empresa":{
+            "type":"string"
+          },
+          "puesto":{
+            "type":"string"
+          },
+          "fecha_ingreso":{
+            "type":"string",
+            "format":"date"
+          },
+          "relacion_colegas":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "conflictos_trabajo":{
+            "type":"string"
+          },
+          "cambiosFinanzas":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "deudas":{
+            "type":"integer"
+          },
+          "actividadesExtralaborales":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "emprendimientos":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "saludMental":{
+            "type":"string"
+          },
+          "ausenciaPrevia":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "contactosRelevantes":{
+            "type":"boolean"
+          },
+          "beneficios":{
+            "type":"string"
+          },
+          "cambiosBeneficios":{
+            "type":"boolean"
+          },
+          "ultimoContactoTrabajo":{
+            "type":"boolean"
+          },
+          "sindicato":{
+            "type":"string"
+          },
+          "fecha_ingreso_sindicato":{
+            "type":"string",
+            "format":"date"
+          },
+          "idSindicato":{
+            "type":"integer"
+          },
+          "posicionSindicato":{
+            "type":"string"
+          },
+          "participacion":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "relacion_sindicato":{
+            "type":"string"
+          },
+          "conflictos_sindicato":{
+            "type":"string"
+          },
+          "desacuerdos":{
+            "type":"string"
+          },
+          "amenazasIntimidacion":{
+            "type":"string"
+          },
+          "ult_cont_sindi":{
+            "type":"string"
+          }
+        }
+      },
+      "UpdateContextoEconomicoRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "empresa":{
+            "type":"string"
+          },
+          "puesto":{
+            "type":"string"
+          },
+          "fecha_ingreso":{
+            "type":"string",
+            "format":"date"
+          },
+          "relacion_colegas":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "conflictos_trabajo":{
+            "type":"string"
+          },
+          "cambiosFinanzas":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "deudas":{
+            "type":"integer"
+          },
+          "actividadesExtralaborales":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "emprendimientos":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "saludMental":{
+            "type":"string"
+          },
+          "ausenciaPrevia":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "contactosRelevantes":{
+            "type":"boolean"
+          },
+          "beneficios":{
+            "type":"string"
+          },
+          "cambiosBeneficios":{
+            "type":"boolean"
+          },
+          "ultimoContactoTrabajo":{
+            "type":"boolean"
+          },
+          "sindicato":{
+            "type":"string"
+          },
+          "fecha_ingreso_sindicato":{
+            "type":"string",
+            "format":"date"
+          },
+          "idSindicato":{
+            "type":"integer"
+          },
+          "posicionSindicato":{
+            "type":"string"
+          },
+          "participacion":{
+            "type":"string",
+            "example":"Si o No"
+          },
+          "relacion_sindicato":{
+            "type":"string"
+          },
+          "conflictos_sindicato":{
+            "type":"string"
+          },
+          "desacuerdos":{
+            "type":"string"
+          },
+          "amenazasIntimidacion":{
+            "type":"string"
+          },
+          "ult_cont_sindi":{
+            "type":"string"
+          }
+        }
+      },
+      "AsentamientoResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          },
+          "ambito":{
+            "type":"string"
+          },
+          "latitud":{
+            "type":"string"
+          },
+          "longitud":{
+            "type":"string"
+          },
+          "altitud":{
+            "type":"string"
+          }
+        }
+      },
+      "EstadoResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          },
+          "abreviatura_inegi":{
+            "type":"string"
+          },
+          "abreviatura_cebv":{
+            "type":"string"
+          },
+          "municipios_count":{
+            "type":"string"
+          }
+        }
+      },
+      "MunicipioResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "estado_id":{
+            "type":"integer"
+          },
+          "estado_nombre":{
+            "type":"string"
+          },
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "ZonaEstadoRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string"
+          },
+          "abreviatura":{
+            "type":"string"
+          }
+        }
+      },
+      "ZonaEstadoResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          },
+          "abreviatura":{
+            "type":"string"
+          }
+        }
+      },
+      "DireccionResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "asentamiento_id":{
+            "type":"integer"
+          },
+          "calle":{
+            "type":"string"
+          }
+          ,
+          "numero_exterior":{
+            "type":"string"
+          },
+          "numero_interior":{
+            "type":"string"
+          },
+          "calle_1":{
+            "type":"string"
+          },
+          "calle_2":{
+            "type":"string"
+          },
+          "tramo_carretero":{
+            "type":"string"
+          },
+          "codigo_postal":{
+            "type":"string"
+          },
+          "referencia":{
+            "type":"string"
+          }
+        }
+      },
+      "DireccionRequest":{
+        "type":"object",
+        "properties":{
+          "asentamiento_id":{
+            "type":"integer"
+          },
+          "calle":{
+            "type":"string"
+          }
+          ,
+          "numero_exterior":{
+            "type":"string"
+          },
+          "numero_interior":{
+            "type":"string"
+          },
+          "calle_1":{
+            "type":"string"
+          },
+          "calle_2":{
+            "type":"string"
+          },
+          "tramo_carretero":{
+            "type":"string"
+          },
+          "codigo_postal":{
+            "type":"string"
+          },
+          "referencia":{
+            "type":"string"
+          }
+        }
+      },
+      "InstitucionRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "InstitucionResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "AreaRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "AreaResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "FolioRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "reporte_id":{
+            "type":"integer"
+          },
+          "user_id":{
+            "type":"integer"
+          },
+          "folio_cebv":{
+            "type":"string"
+          },
+          "folio_fub":{
+            "type":"string"
+          }
+        }
+      },
+      "FolioResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "persona_id":{
+            "type":"integer"
+          },
+          "reporte_id":{
+            "type":"integer"
+          },
+          "user_id":{
+            "type":"integer"
+          },
+          "folio_cebv":{
+            "type":"string"
+          },
+          "folio_fub":{
+            "type":"string"
+          }
+        }
+      },
+      "ParentescoRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "ParentescoResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          }
+        }
+      },
+      "EstatusPersonaRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string"
+          },
+          "abreviatura":{
+            "type":"string"
+          }
+        }
+      },
+      "EstatusPersonaResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer"
+          },
+          "nombre":{
+            "type":"string"
+          },
+          "abreviatura":{
+            "type":"string"
+          }
+        }
+      },
+      "StoreEtniaRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "religion_id":{
+            "type":"string"
+          },
+          "lengua_id":{
+            "type":"string"
+          },
+          "grupo_etnico_id":{
+            "type":"string"
+          },
+          "vestimenta_id":{
+            "type":"string"
+          },
+          "ascendencia_id":{
+            "type":"string"
+          }
+        }
+      },
+      "UpdateEtniaRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "religion_id":{
+            "type":"string"
+          },
+          "lengua_id":{
+            "type":"string"
+          },
+          "grupo_etnico_id":{
+            "type":"string"
+          },
+          "vestimenta_id":{
+            "type":"string"
+          },
+          "ascendencia_id":{
+            "type":"string"
+          }
+        }
+      },
+      "EtniaResource":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "religion":{
+            "type":"string"
+          },
+          "lengua":{
+            "type":"string"
+          },
+          "grupo_etnico":{
+            "type":"string"
+          },
+          "vestimenta":{
+            "type":"string"
+          },
+          "ascendencia":{
+            "type":"string"
+          }
+        }
+      },
+      "StoreCaracteristicasFisicasRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "color_cabello_id":{
+            "type":"integer"
+          },
+          "color_ojos_id":{
+            "type":"integer"
+          },
+          "tamano_ojos_id":{
+            "type":"integer"
+          },
+          "color_piel_id":{
+            "type":"integer"
+          },
+          "tipo_cabello_id":{
+            "type":"integer"
+          },
+          "Tipo_labios_id":{
+            "type":"integer"
+          },
+          "tipo_nariz_id":{
+            "type":"integer"
+          },
+          "taamano_orejas_id":{
+            "type":"integer"
+          },
+          "complexion_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "UpdateCaracteristicasFisicasRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "color_cabello_id":{
+            "type":"integer"
+          },
+          "color_ojos_id":{
+            "type":"integer"
+          },
+          "tamano_ojos_id":{
+            "type":"integer"
+          },
+          "color_piel_id":{
+            "type":"integer"
+          },
+          "tipo_cabello_id":{
+            "type":"integer"
+          },
+          "Tipo_labios_id":{
+            "type":"integer"
+          },
+          "tipo_nariz_id":{
+            "type":"integer"
+          },
+          "taamano_orejas_id":{
+            "type":"integer"
+          },
+          "complexion_id":{
+            "type":"integer"
+          }
+        }
+      },
+      "CaracteristicasFisicasResource":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer"
+          },
+          "color_ojos":{
+            "type":"string"
+          },
+          "tamano_ojos":{
+            "type":"string"
+          },
+          "color_cabello":{
+            "type":"string"
+          },
+          "color_piel":{
+            "type":"string"
+          },
+          "tipo_cabello":{
+            "type":"string"
+          },
+          "Tipo_labios":{
+            "type":"string"
+          },
+          "tipo_nariz":{
+            "type":"string"
+          },
+          "taamano_orejas":{
+            "type":"string"
+          },
+          "complexion":{
+            "type":"string"
+          }
+        }
+      },
       "ReligionRequest":{
         "type":"object",
         "properties":{
@@ -7002,7 +11235,7 @@
           }
         }
       },
-      "Persona": {
+      "PersonaResource": {
         "type": "object",
         "properties": {
           "id": {
@@ -7045,7 +11278,7 @@
           }
         }
       },
-      "PersonaInput": {
+      "PersonaRequest": {
         "type": "object",
         "properties": {
           "nombre": {

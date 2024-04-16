@@ -14,9 +14,8 @@ html, body {
             padding: 0;
             height: 100%;
             width: 100%;
-            background-image: url("{{ public_path('reportes/boletin_BI/Logobackground-body.png') }}");
+            background-image: url("{{ public_path('reportes/boletin_BI/Edit_Busqueda Inmediata.png') }}");
             background-repeat: no-repeat;
-            background-size: cover;
             background-position: center center;
         }
         
@@ -27,7 +26,7 @@ html, body {
 
 
      th, td{
-            border: 1px solid black;
+            border: 1px white;
             padding: 6px;
             text-align: left;
             font-size: 1em;
@@ -75,7 +74,7 @@ html, body {
         <col width="80%">
         <col width="20%">
       </colgroup>
-    <th rowspan="2"><img class="img" src="{{ public_path('reportes/boletin_BI/Logos-Cebv.png') }}" width="250" ></th>
+    <th rowspan="2"><img class="img" src="{{ public_path('reportes/boletin_BI/Logos-Cebv.png') }}" width="200" ></th>
     <th><h2>
         {{ $desaparecido->persona->nombre }}
         {{ $desaparecido->persona->apellido_paterno }}

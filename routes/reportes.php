@@ -55,4 +55,8 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get("/oficios-ssas", function () {
         return Pdf::loadView("reportes.oficios_SSA")->stream();
     });
+
+    Route::get("/tarjetas-folios", function () {
+        return Pdf::loadView("reportes.tarjeta_de_folio")->stream();
+    });
 });

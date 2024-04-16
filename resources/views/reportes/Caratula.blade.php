@@ -31,8 +31,21 @@
 
 
   #footer .page:after { content: counter(page, upper-roman); }
-   
 
+  html, body {
+            background-image: url("{{ public_path('reportes/boletin_BI/Logobackground-body.png') }}");
+            background-repeat: no-repeat;
+            background-position: center center;
+  }
+
+  footer{
+            background-image: url("{{ public_path('reportes/Caratula/200Logo-footer.png') }}");
+            background-repeat: no-repeat;
+            background-position: left;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+  }
 
 table {
             border-collapse:collapse;
@@ -144,10 +157,11 @@ table {
 
         <div id="footer">
             <p>
-                Enríquez s/n, Zona Centro <br>
+                Enríquez s/n, Zona Centro  <br>
                 C.P. 91000 Xalapa, Veracruz <br>
                 Tel: 01 228 841 7400 ext. 3531 <br>
                 <b>www.segobver.gob.mx</b>
+                
             </p> 
         </div>
 

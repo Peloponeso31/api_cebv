@@ -22,15 +22,15 @@ class DesaparecidoFolioPersonaResource extends JsonResource
             ['persona_id', $this->persona->id],
         ])->first();
 
+        $desaparecido = $this->persona->nombre." ".$this->persona->apellido_paterno." ".$this->persona->apellido_materno;
+
         return [
             "folio_id" => $this->whenNotNull($folio->id ?? null),
             "desaparecido_id" => $this->id,
             "persona_id" => $this->persona->id,
             "folio_cebv" => $this->whenNotNull($folio->folio_cebv ?? null),
-            "fub" => $this->whenNotNull($folio->folio_fub ?? null),
-            "nombre" => $this->persona->nombre,
-            "apellido_paterno" => $this->persona->apellido_paterno,
-            "apellido_materno" => $this->persona->apellido_materno,
+            "nombre_desaparecido" => $desaparecido,
+            "curp_desaparecido" => $this->persona->curp,
             "fecha_desaparicion" => $this->whenNotNull($this->reporte->hechosDesapariciones->fecha_desaparicion ?? null),
         ];
     }

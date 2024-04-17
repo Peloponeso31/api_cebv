@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Empleado;
 
 use App\Models\Catalogos\Oficina;
 use App\Models\Catalogos\Puesto;

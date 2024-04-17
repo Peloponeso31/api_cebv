@@ -1,42 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Empleado;
 
-use App\Http\Requests\StoreEmpleadoRequest;
-use App\Http\Requests\UpdateEmpleadoRequest;
-use App\Http\Resources\EmpleadoResource;
-use App\Models\Empleado;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Empleado\StoreEmpleadoRequest;
+use App\Http\Requests\Empleado\UpdateEmpleadoRequest;
+use App\Http\Resources\Empleado\EmpleadoResource;
+use App\Models\Empleado\Empleado;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return EmpleadoResource::collection(Empleado::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreEmpleadoRequest $request)
     {
         return new EmpleadoResource(Empleado::create($request->all()));
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show($id)
     {
         $model = Empleado::findOrFail($id);
@@ -44,17 +31,7 @@ class EmpleadoController extends Controller
         return new EmpleadoResource($model);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Empleado $empleado)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update($id, UpdateEmpleadoRequest $request)
     {
         $model = Empleado::findOrFail($id);
@@ -62,9 +39,7 @@ class EmpleadoController extends Controller
         $model->update($request->all());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    
     public function destroy(Request $request, $id)
     {
         if ($request->user()->tokenCan('delete')) {

@@ -12,13 +12,6 @@ use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
 use App\Http\Controllers\Personas\PersonaController;
 use App\Http\Controllers\CaracteristicasFisicasController;
-use App\Http\Controllers\Catalogos\LadoController;
-use App\Http\Controllers\Catalogos\LadoRnpdnoController;
-use App\Http\Controllers\Catalogos\RegionCuerpoController;
-use App\Http\Controllers\Catalogos\RegionCuerpoRnpdnoController;
-use App\Http\Controllers\Catalogos\VistaController;
-use App\Http\Controllers\Catalogos\VistaRnpdnoController;
-use App\Http\Controllers\Catalogos\TipoController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CompaniaTelefonicaController;
@@ -36,6 +29,13 @@ use App\Http\Controllers\Catalogos\Etnia\GrupoEtnicoController;
 use App\Http\Controllers\Catalogos\Etnia\LenguaController;
 use App\Http\Controllers\Catalogos\Etnia\ReligionController;
 use App\Http\Controllers\Catalogos\Etnia\VestimentaController;
+use App\Http\Controllers\Catalogos\SenasParticulares\LadoController;
+use App\Http\Controllers\Catalogos\SenasParticulares\RegionCuerpoController;
+use App\Http\Controllers\Catalogos\SenasParticulares\TipoController;
+use App\Http\Controllers\Catalogos\SenasParticulares\VistaController;
+use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\LadoRnpdnoController;
+use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\RegionCuerpoRnpdnoController;
+use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\VistaRnpdnoController;
 use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;
@@ -121,10 +121,12 @@ Route::middleware('auth:sanctum')->group(function () {
     /**
      * Routes for the reportes module
      */
-    
-    Route::apiResource('/tipos-reportes', TipoReporteController::class);
-    Route::apiResource('/reportes', ReporteController::class);
     Route::get('/vista/reportes', [ReporteController::class, 'vistaReportesDashboard']);
+    Route::get('/reportes/asignar_folio/{id}', [ReporteController::class, 'setFolio']);
+    Route::get('/reportes/ver_folio/{id}', [ReporteController::class, 'getFolios']);
+    Route::apiResource('/reportes', ReporteController::class);
+    Route::apiResource('/tipos-reportes', TipoReporteController::class);
+
 
     /**
      * Routes for the informacion module
@@ -140,6 +142,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/reportantes', ReportanteController::class);
     Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
+    Route::get('/desaparecidos_folio', [DesaparecidoController::class, 'desaparecido_persona_folio']);
 
     /**
      * Routes for ubicaciones module
@@ -152,7 +155,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
     Route::post('/bulk_insert/senas_particulares', [SenasParticularesController::class, 'bulkStore']);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
-    Route::apiResource('/catalogos/tipo',TipoController::class);
+    Route::apiResource('/catalogos/tipo', TipoController::class);
     Route::apiResource('/catalogos/vista',VistaController::class);
     Route::apiResource('/catalogos/lado',LadoController::class);
     Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);

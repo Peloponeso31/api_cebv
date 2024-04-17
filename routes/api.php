@@ -36,6 +36,7 @@ use App\Http\Controllers\Catalogos\SenasParticulares\VistaController;
 use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\LadoRnpdnoController;
 use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\VistaRnpdnoController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;

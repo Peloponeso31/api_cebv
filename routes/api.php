@@ -21,6 +21,7 @@ use App\Http\Controllers\Catalogos\VistaController;
 use App\Http\Controllers\Catalogos\VistaRnpdnoController;
 use App\Http\Controllers\Catalogos\TipoController;
 use App\Http\Controllers\ColorCabelloController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\ColorOjosController;
 use App\Http\Controllers\ColorPielController;
 use App\Http\Controllers\CompaniaTelefonicaController;
@@ -48,8 +49,11 @@ use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\ContextoFamiliarController;
 use App\Http\Controllers\ContextoSocialController;
-use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\Empleado\EmpleadoController;
+use App\Http\Controllers\GrupoPertenenciaController;
 use App\Http\Controllers\OficinaController;
+use App\Http\Controllers\PertenenciaController;
+use App\Http\Controllers\PrendaDeVestirController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
@@ -58,7 +62,6 @@ use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -178,6 +181,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);
+    Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
+    Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
+    Route::apiResource("/pertenencia", PertenenciaController::class);
+    Route::apiResource("/color", ColorController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

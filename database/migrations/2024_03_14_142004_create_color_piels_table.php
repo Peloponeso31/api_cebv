@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('color_piels', function (Blueprint $table) {
             $table->id();
-            $table->string("colorpiel");
+            $table->string("color");
             $table->timestamps();
         });
     }

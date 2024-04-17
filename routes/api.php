@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
 use App\Http\Controllers\Informaciones\SitioController;
@@ -28,9 +27,22 @@ use App\Http\Controllers\CompaniaTelefonicaController;
 use App\Http\Controllers\ComplexionController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EtniaController;
-use App\Http\Controllers\GrupoEtnicoController;
-use App\Http\Controllers\LenguaController;
-use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\CompaniaTelefonicaController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorCabelloController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorOjosController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorPielController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ComplexionController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TamanoOjosController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TamanoOrejasController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TipoCabelloController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TipoLabiosController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TipoNarizController;
+use App\Http\Controllers\Catalogos\Etnia\AscendenciaController;
+use App\Http\Controllers\Catalogos\Etnia\GrupoEtnicoController;
+use App\Http\Controllers\Catalogos\Etnia\LenguaController;
+use App\Http\Controllers\Catalogos\Etnia\ReligionController;
+use App\Http\Controllers\Catalogos\Etnia\VestimentaController;
 use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;
@@ -39,11 +51,6 @@ use App\Http\Controllers\Reportes\Relaciones\DesaparecidoController;
 use App\Http\Controllers\Reportes\Relaciones\ReportanteController;
 use App\Http\Controllers\Reportes\ReporteController;
 use App\Http\Controllers\Reportes\TipoReporteController;
-use App\Http\Controllers\TamanoOjosController;
-use App\Http\Controllers\TamanoOrejasController;
-use App\Http\Controllers\TipoCabelloController;
-use App\Http\Controllers\TipoLabiosController;
-use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
@@ -60,7 +67,6 @@ use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
 use App\Http\Controllers\UserAdminController;
-use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
 
 /*
@@ -124,8 +130,10 @@ Route::middleware('auth:sanctum')->group(function () {
     /**
      * Routes for the reportes module
      */
+    
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
     Route::apiResource('/reportes', ReporteController::class);
+    Route::get('/vista/reportes', [ReporteController::class, 'vistaReportesDashboard']);
 
     /**
      * Routes for the informacion module
@@ -139,6 +147,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/hipotesis', HipotesisController::class);
     
     Route::apiResource('/reportantes', ReportanteController::class);
+    Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
 
     /**

@@ -17,14 +17,6 @@ class RegionVellofacialController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(StoreRegionVellofacialRequest $request)
@@ -38,14 +30,6 @@ class RegionVellofacialController extends Controller
     public function show( $id)
     {
         return RegionVellofacial::findOrFail($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(RegionVellofacial $regionVellofacial)
-    {
-        //
     }
 
     /**

@@ -12,7 +12,7 @@ class RegionVellofacial extends Model
     use HasFactory;
 
     protected $table = "region_vellofacials";
-    protected $fillable = ['nombre'];
+    protected $fillable = ['region_vellofacial'];
     public $timestamps = false;
 
     public function vello_facial(): HasMany {

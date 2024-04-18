@@ -12,7 +12,7 @@ class ColorVellofacial extends Model
     use HasFactory;
 
     protected $table = "color_vellofacials";
-    protected $fillable = ['nombre'];
+    protected $fillable = ['color_vellofacial'];
     public $timestamps = false;
 
     public function vello_facial(): HasMany {

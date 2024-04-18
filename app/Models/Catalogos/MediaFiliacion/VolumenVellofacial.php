@@ -12,7 +12,7 @@ class VolumenVellofacial extends Model
     use HasFactory;
 
     protected $table = "volumen_vellofacials";
-    protected $fillable = ['nombre'];
+    protected $fillable = ['volumen_vellofacial'];
     public $timestamps = false;
 
     public function vello_facial(): HasMany {

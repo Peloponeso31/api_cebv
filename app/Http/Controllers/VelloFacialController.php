@@ -17,13 +17,6 @@ class VelloFacialController extends Controller
         return VelloFacialResource::collection(VelloFacial::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -42,13 +35,6 @@ class VelloFacialController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(VelloFacial $velloFacial)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

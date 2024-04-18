@@ -12,7 +12,7 @@ class CorteVellofacial extends Model
     use HasFactory;
 
     protected $table = "corte_vellofacials";
-    protected $fillable = ['nombre'];
+    protected $fillable = ['corte_vellofacial'];
     public $timestamps = false;
 
     public function vello_facial(): HasMany {

@@ -9689,19 +9689,24 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "persona_vive":{
-            "type":"string"
+            "type":"string",
+            "description":"La persona esta viva o no"
           },
           "hijos":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cuantos hijos tiene"
           },
           "familiar_cercano":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun familiar cercano que conozca"
           },
           "familiar_violencia":{
-            "type":"string"
+            "type":"string",
+            "description":"Sufria violencia familiar"
           }
         }
       },
@@ -9709,19 +9714,24 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "persona_vive":{
-            "type":"string"
+            "type":"string",
+            "description":"La persona esta viva o no"
           },
           "hijos":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cuantos hijos tiene"
           },
           "familiar_cercano":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Algun familiar cercano que conozca?"
           },
           "familiar_violencia":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Sufria violencia familiar?"
           }
         }
       },
@@ -9729,19 +9739,24 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "persona_vive":{
-            "type":"string"
+            "type":"string",
+            "description":"La persona esta viva o no"
           },
           "hijos":{
-            "type":"integer"
+            "type":"integer",
+            "description":"¿cuantos hijos tiene?"
           },
           "familiar_cercano":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Algun familiar cercano que conozca?"
           },
           "familiar_violencia":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Sufria violencia familiar?"
           }
         }
       },
@@ -9749,32 +9764,40 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"La persona esta viva o no"
           },
           "pasatiempos":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun pasatiempo que tuviera la persona desaparecida"
           },
           "club_organizacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Pertenecia a algun club o organizacion"
           },
           "estudio":{
             "type":"string",
             "example":"Si o No"
           },
           "amistades":{
-            "type":"string"
+            "type":"string",
+            "description":"Amistades que tenia"
           },
           "amistades_municipio":{
-            "type":"string"
+            "type":"string",
+            "description":"De donde eran esas amistades"
           },
           "correo_electronico":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun correo electronico"
           },
           "nombre_redes_sociales":{
-            "type":"string"
+            "type":"string",
+            "description":"como aparecia en redes sociales"
           },
           "lugares_frecuentes":{
-            "type":"string"
+            "type":"string",
+            "description":"lugares que frecuentaba"
           },
           "vivienda_estado":{
             "type":"string",
@@ -9786,32 +9809,40 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "pasatiempos":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun pasatiempo que tuviera la persona desaparecida"
           },
           "club_organizacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Pertenecia a algun club o organizacion"
           },
           "estudio":{
             "type":"string",
             "example":"Si o No"
           },
           "amistades":{
-            "type":"string"
+            "type":"string",
+            "description":"Amistades que tenia"
           },
           "amistades_municipio":{
-            "type":"string"
+            "type":"string",
+            "description":"De donde eran esas amistades"
           },
           "correo_electronico":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun correo electronico"
           },
           "nombre_redes_sociales":{
-            "type":"string"
+            "type":"string",
+            "description":"como aparecia en redes sociales"
           },
           "lugares_frecuentes":{
-            "type":"string"
+            "type":"string",
+            "description":"lugares que frecuentaba"
           },
           "vivienda_estado":{
             "type":"string",
@@ -9823,32 +9854,40 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "pasatiempos":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun pasatiempo que tuviera la persona desaparecida"
           },
           "club_organizacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Pertenecia a algun club o organizacion"
           },
           "estudio":{
             "type":"string",
             "example":"Si o No"
           },
           "amistades":{
-            "type":"string"
+            "type":"string",
+            "description":"Amistades que tenia"
           },
           "amistades_municipio":{
-            "type":"string"
+            "type":"string",
+            "description":"De donde eran esas amistades"
           },
           "correo_electronico":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun correo electronico"
           },
           "nombre_redes_sociales":{
-            "type":"string"
+            "type":"string",
+            "description":"como aparecia en redes sociales"
           },
           "lugares_frecuentes":{
-            "type":"string"
+            "type":"string",
+            "description":"lugares que frecuentaba"
           },
           "vivienda_estado":{
             "type":"string",
@@ -9860,46 +9899,58 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "empresa":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de empresa o trabajo donde laboraba la persona desaparecida"
           },
           "puesto":{
-            "type":"string"
+            "type":"string",
+            "description":"que puesto ocupaba en la empresa o trabajo"
           },
           "fecha_ingreso":{
             "type":"string",
-            "format":"date"
+            "format":"date",
+            "description":"cuando inicio labores en ese trabajo "
           },
           "relacion_colegas":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"se relacionaba con sus colegas"
           },
           "conflictos_trabajo":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo problemas en el trabajo"
           },
           "cambiosFinanzas":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"hubo algun cambio notorio en las finanzas de la persona"
           },
           "deudas":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cantidad de deudas, si es que tenia"
           },
           "actividadesExtralaborales":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"tenia otras actividades aparte de su trabajo"
           },
           "emprendimientos":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"tenia algun emprendimiento o negocio propio"
           },
           "saludMental":{
-            "type":"string"
+            "type":"string",
+            "description":"como era su salud mental"
           },
           "ausenciaPrevia":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"Ya se habia ausentado antes?"
           },
           "contactosRelevantes":{
             "type":"boolean"
@@ -10133,22 +10184,27 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"identificador del asentamiento"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del asentamiento"
           },
           "ambito":{
             "type":"string"
           },
           "latitud":{
-            "type":"string"
+            "type":"string",
+            "description":"latitud a la que se encuentra"
           },
           "longitud":{
-            "type":"string"
+            "type":"string",
+            "description":"longitud que tiene"
           },
           "altitud":{
-            "type":"string"
+            "type":"string",
+            "description":"altitud a la que esta ubicado"
           }
         }
       },
@@ -10156,19 +10212,24 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el estado"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del estado"
           },
           "abreviatura_inegi":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que le da el inegi al nombre del estado"
           },
           "abreviatura_cebv":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que le da la cebv al nombre del estado"
           },
           "municipios_count":{
-            "type":"string"
+            "type":"string",
+            "description":"municipios que contiene ese estado"
           }
         }
       },
@@ -10176,16 +10237,20 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica una zona"
           },
           "estado_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id del estado relacionado a ese municipio"
           },
           "estado_nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del estado"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del municipio"
           }
         }
       },
@@ -10193,10 +10258,12 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una zona"
           },
           "abreviatura":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que se le da a esa zona"
           }
         }
       },
@@ -10204,13 +10271,16 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica una zona"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una zona"
           },
           "abreviatura":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que se le da a esa zona"
           }
         }
       },
@@ -10218,35 +10288,44 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica la direccion en la base de datos"
           },
           "asentamiento_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id de asentamiento relacionado a la direccion"
           },
           "calle":{
-            "type":"string"
-          }
-          ,
+            "type":"string",
+            "description":"nombre de la calle"
+          },
           "numero_exterior":{
-            "type":"string"
+            "type":"string",
+            "description":"numero exterior donde se encuentra la casa"
           },
           "numero_interior":{
-            "type":"string"
+            "type":"string",
+            "description":"nuemro interior que identifica la direccion"
           },
           "calle_1":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una de las calle entre las que esta"
           },
           "calle_2":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una segunda calle entre las que esta"
           },
           "tramo_carretero":{
-            "type":"string"
+            "type":"string",
+            "description":"En caso de estar sobre carretera dar el kilometro por el que se localiza"
           },
           "codigo_postal":{
-            "type":"string"
+            "type":"string",
+            "description":"codigo postal del lugar"
           },
           "referencia":{
-            "type":"string"
+            "type":"string",
+            "description":"Alguna referencia que haga mas facil ubicar la direccion"
           }
         }
       },
@@ -10254,32 +10333,41 @@
         "type":"object",
         "properties":{
           "asentamiento_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id de asentamiento relacionado a la direccion"
           },
           "calle":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de la calle"
           }
           ,
           "numero_exterior":{
-            "type":"string"
+            "type":"string",
+            "description":"numero exterior donde se encuentra la casa"
           },
           "numero_interior":{
-            "type":"string"
+            "type":"string",
+            "description":"nuemro interior que identifica la direccion"
           },
           "calle_1":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una de las calle entre las que esta"
           },
           "calle_2":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una segunda calle entre las que esta"
           },
           "tramo_carretero":{
-            "type":"string"
+            "type":"string",
+            "description":"En caso de estar sobre carretera dar el kilometro por el que se localiza"
           },
           "codigo_postal":{
-            "type":"string"
+            "type":"string",
+            "description":"codigo postal del lugar"
           },
           "referencia":{
-            "type":"string"
+            "type":"string",
+            "description":"Alguna referencia que haga mas facil ubicar la direccion"
           }
         }
       },
@@ -10287,7 +10375,8 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de la institucion a registrar"
           }
         }
       },
@@ -10295,10 +10384,12 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica a la institucion en la base de datos"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de la institucion a registrar"
           }
         }
       },
@@ -10306,7 +10397,8 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del area a registrar"
           }
         }
       },
@@ -10314,10 +10406,12 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica a el area en la base de datos"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del area a registrar"
           }
         }
       },
@@ -10415,19 +10509,19 @@
             "type":"integer"
           },
           "religion_id":{
-            "type":"string"
+            "type":"integer"
           },
           "lengua_id":{
-            "type":"string"
+            "type":"integer"
           },
           "grupo_etnico_id":{
-            "type":"string"
+            "type":"integer"
           },
           "vestimenta_id":{
-            "type":"string"
+            "type":"integer"
           },
           "ascendencia_id":{
-            "type":"string"
+            "type":"integer"
           }
         }
       },
@@ -10438,19 +10532,19 @@
             "type":"integer"
           },
           "religion_id":{
-            "type":"string"
+            "type":"integer"
           },
           "lengua_id":{
-            "type":"string"
+            "type":"integer"
           },
           "grupo_etnico_id":{
-            "type":"string"
+            "type":"integer"
           },
           "vestimenta_id":{
-            "type":"string"
+            "type":"integer"
           },
           "ascendencia_id":{
-            "type":"string"
+            "type":"integer"
           }
         }
       },
@@ -10586,7 +10680,8 @@
         "type":"object",
         "properties":{
           "religion":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre de la religion de la persona"
           }
         }
       },
@@ -10594,7 +10689,8 @@
         "type":"object",
         "properties":{
           "lengua":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de lengua que habla la persona"
           }
         }
       },
@@ -10602,7 +10698,8 @@
         "type":"object",
         "properties":{
           "grupoetnico":{
-            "type":"string"
+            "type":"string",
+            "description": "Grupo etnico al cual la persona pertene"
           }
         }
       },
@@ -10610,7 +10707,8 @@
         "type":"object",
         "properties":{
           "vestimenta":{
-            "type":"string"
+            "type":"string",
+            "description": "Vestimenta la cual llevaba la persona"
           }
         }
       },
@@ -10618,7 +10716,8 @@
         "type":"object",
         "properties":{
           "ascendencia":{
-            "type":"string"
+            "type":"string",
+            "description": "Tipo de ascendencia de la persona"
           }
         }
       },
@@ -10626,7 +10725,8 @@
         "type":"object",
         "properties":{
           "color":{
-            "type":"string"
+            "type":"string",
+            "description": "Color de ojos de la persona"
           }
         }
       },
@@ -10634,7 +10734,8 @@
         "type":"object",
         "properties":{
           "tamano":{
-            "type":"string"
+            "type":"string",
+            "description": "Medida del tamaño de los ojos de la persona"
           }
         }
       },
@@ -10642,7 +10743,8 @@
         "type":"object",
         "properties":{
           "colorcabellos":{
-            "type":"string"
+            "type":"string",
+            "description": "Color de cabello de la persona"
           }
         }
       },
@@ -10650,7 +10752,8 @@
         "type":"object",
         "properties":{
           "colorpiel":{
-            "type":"string"
+            "type":"string",
+            "description": "Color de piel de la persona"
           }
         }
       },
@@ -10658,7 +10761,8 @@
         "type":"object",
         "properties":{
           "tipocabello":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de cabello de la persona"
           }
         }
       },
@@ -10666,7 +10770,8 @@
         "type":"object",
         "properties":{
           "tipolabios":{
-            "type":"string"
+            "type":"string",
+            "description": "Medida del tamaño de los labios de la persona"
           }
         }
       },
@@ -10674,7 +10779,8 @@
         "type":"object",
         "properties":{
           "tiponariz":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de nariz de la persona"
           }
         }
       },
@@ -10682,7 +10788,8 @@
         "type":"object",
         "properties":{
           "tamanoorejas":{
-            "type":"string"
+            "type":"string",
+            "description": "Medida del tamaño de las orejas de la persona"
           }
         }
       },
@@ -10690,7 +10797,8 @@
         "type":"object",
         "properties":{
           "complexion":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de complexion de la persona"
           }
         }
       },

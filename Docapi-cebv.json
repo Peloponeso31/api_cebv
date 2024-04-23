@@ -11457,28 +11457,36 @@
         "type": "object",
         "properties": {
           "persona_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Actualiza el id de persona."
           },
           "region_cuerpo_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Actualiza el id de la region del cuerpo."
           },
           "vista_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Actualiza el id de la vista del cuerpo."
           },
           "lado_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Actualiza el id del lado del cuerpo."
           },
           "tipo_id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Actualiza el id del tipo de seña del cuerpo."
           },
           "cantidad": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Actualiza el id la cantidad de señas del cuerpo."
           },
           "descripcion": {
-            "type": "string"
+            "type": "string",
+            "description": "Actualiza la descripcion de la seña del cuerpo."
           },
           "foto": {
-            "type": "string"
+            "type": "string",
+            "description": "Actualiza la foto seña del cuerpo."
           }
         }
       },
@@ -11486,10 +11494,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Obtiene el id de la region del cuerpo."
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description": "Muestra el nombre de la region del cuerpo."
           }
         }
       },
@@ -11497,10 +11507,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Obtiene el id del tipo de seña del cuerpo."
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description": "Muestra el nombre del tipo de seña del cuerpo."
           }
         }
       },
@@ -11508,10 +11520,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Obtiene el id de la vista del cuerpo."
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description": "Muestra el nombre de la vista del cuerpo."
           }
         }
       },
@@ -11519,10 +11533,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Obtiene el id del lado del cuerpo."
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description": "Muestra el nombre del lado del cuerpo."
           }
         }
       },
@@ -11530,13 +11546,16 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Muestra el id del adminitrador."
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "Muestra el email del adminitrador."
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "description": "Muestra el password del adminitrador."
           }
         }
       },
@@ -11544,10 +11563,12 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": "string",
+            "description": "Obtiene el email del adminitrador."
           },
           "password": {
-            "type": "string"
+            "type": "string",
+            "description": "Obtiene el password del adminitrador."
           }
         }
       }

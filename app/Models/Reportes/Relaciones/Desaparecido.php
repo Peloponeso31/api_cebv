@@ -16,6 +16,7 @@ class Desaparecido extends Model
     protected $fillable = [
         'persona_id',
         'reporte_id',
+        'clasificacion_persona',
         'habla_espanhol',
         'sabe_leer',
         "estatus_rpdno_id",

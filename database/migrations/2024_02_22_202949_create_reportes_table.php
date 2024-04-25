@@ -19,17 +19,21 @@ return new class extends Migration {
 
             $table->foreignId('medio_conocimiento_id')->nullable()->constrained(table: 'medios', indexName: 'idx_reportes_medio');
 
+            $table->string('estado_id', 2)->nullable(); // Llave foránea
+
             $table->foreignId('zona_estado_id')->nullable()->constrained(table: 'zonas_estados', indexName: 'idx_reportes_zona_estado');
 
             $table->foreignId('hipotesis_oficial_id')->nullable()->constrained(table: 'tipos_hipotesis', indexName: 'idx_reportes_hipotesis_oficial');
 
-            $table->enum('tipo_desaparicion', ['U', 'M']);
+            $table->enum('tipo_desaparicion', ['U', 'M'])->nullable();
             $table->date('fecha_localizacion')->nullable();
             $table->text('sintesis_localizacion')->nullable();
-            $table->string('clasificacion_persona')->nullable();
 
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('fecha_creacion')->useCurrent();
+            $table->timestamp('fecha_actualizacion')->useCurrent()->useCurrentOnUpdate();
+
+            $table->foreign('estado_id')
+                ->references('id')->on('estados');
         });
     }
 

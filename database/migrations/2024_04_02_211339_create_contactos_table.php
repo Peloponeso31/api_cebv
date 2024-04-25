@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,13 +12,15 @@ return new class extends Migration
     {
         Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-            $table->enum("tipo", ['Red Social','Correo Electronico']);
-            $table->string("contacto");
-            $table->string("observaciones") -> nullable();
-            $table->foreignId('persona_id') -> constrained(table: 'personas');
+
+            $table->foreignId('persona_id')->constrained(table: 'personas');
+
+            $table->enum('tipo', ['Red Social', 'Correo Electronico']);
+            $table->string('contacto');
+            $table->string('observaciones')->nullable();
         });
-        
-        
+
+
     }
 
     /**

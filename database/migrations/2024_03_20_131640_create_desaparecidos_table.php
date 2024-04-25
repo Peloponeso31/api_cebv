@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('estatus_rpdno_id')->constrained(table: 'estatus_personas');
             $table->foreignId('estatus_cebv_id')->constrained(table: 'estatus_personas');
 
+            $table->string('clasificacion_persona')->nullable();
             $table->boolean('habla_espanhol')->nullable();
             $table->boolean('sabe_leer')->nullable();
             $table->boolean('sabe_escribir')->nullable();

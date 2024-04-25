@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApodoController;
+use App\Http\Controllers\NacionalidadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
@@ -74,7 +76,7 @@ use App\Http\Resources\UserAdminResource;
  * Rutas protegidas por autenticacion.
  */
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/usuario_actual', function() {
+    Route::get('/usuario_actual', function () {
         return new UserAdminResource(Auth::user());
     });
 
@@ -109,10 +111,14 @@ Route::middleware('auth:sanctum')->group(function () {
      */
     Route::apiResource('/estatus-personas', EstatusPersonaController::class);
     Route::apiResource('/parentescos', ParentescoController::class);
-    Route::apiResource("/persona", PersonaController::class);
-    Route::apiResource("/CompaniaTelefonica", CompaniaTelefonicaController::class);
-    Route::apiResource("/Telefono", TelefonoController::class);
-    Route::apiResource("/Contacto", ContactoController::class);
+    Route::apiResource('/personas', PersonaController::class);
+    Route::apiResource('/companias-telefonicas', CompaniaTelefonicaController::class);
+    Route::apiResource('/telefonos', TelefonoController::class);
+    Route::apiResource('/contactos', ContactoController::class);
+    Route::apiResource('/apodos', ApodoController::class);
+    Route::apiResource('/nacionalidades', NacionalidadController::class);
+    Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
+    Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
 
     /**
      * Routes for the reportes module
@@ -127,7 +133,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
-    
+
     Route::apiResource('/reportantes', ReportanteController::class);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
 
@@ -142,11 +148,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
     Route::post('/bulk_insert/senas_particulares', [SenasParticularesController::class, 'bulkStore']);
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
-    Route::apiResource('/catalogos/tipo',TipoController::class);
-    Route::apiResource('/catalogos/vista',VistaController::class);
-    Route::apiResource('/catalogos/lado',LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
+    Route::apiResource('/catalogos/tipo', TipoController::class);
+    Route::apiResource('/catalogos/vista', VistaController::class);
+    Route::apiResource('/catalogos/lado', LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);

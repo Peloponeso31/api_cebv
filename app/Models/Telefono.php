@@ -17,18 +17,19 @@ class Telefono extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'persona_id',
         'numero',
         'observaciones',
         'compania_id',
     ];
 
-    public function personas(): HasMany
+    public function personas(): BelongsTo
     {
-        return $this->hasMany(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     public function compania(): BelongsTo
     {
-        return $this->belongsTo(CompaniaTelefonica::class, "compania_id");
+        return $this->belongsTo(CompaniaTelefonica::class);
     }
 }

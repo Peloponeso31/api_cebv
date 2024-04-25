@@ -2,6 +2,7 @@
 
 namespace App\Models\Personas;
 
+use App\Models\Apodo;
 use App\Models\CaracteristicasFisicas;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
@@ -22,34 +23,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Scout\Searchable;
 
 class Persona extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $table = 'personas';
 
     protected $fillable = [
+        'lugar_nacimiento_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
+        'pseudonimo_nombre',
+        'pseudonimo_apellido_paterno',
+        'pseudonimo_apellido_materno',
         'fecha_nacimiento',
         'curp',
+        'observaciones_curp',
+        'rfc',
         'ocupacion',
         'sexo',
         'genero',
     ];
-
-    public function reporto(): HasMany
-    {
-        return $this->hasMany(Reporte::class, 'reportante_id');
-    }
-
-    public function reportada(): HasOne
-    {
-        return $this->hasOne(Reporte::class, 'reportada_id');
-    }
-    
 
     /**
      * The reportes that belong to the persona.
@@ -57,7 +54,7 @@ class Persona extends Model
      * @return BelongsToMany
      */
 
-     public function reportes(): BelongsToMany
+    public function reportes(): BelongsToMany
     {
         return $this->belongsToMany(Reporte::class);
     }
@@ -135,5 +132,22 @@ class Persona extends Model
     public function contactos(): HasMany
     {
         return $this->hasMany(Contacto::class);
+    }
+
+    public function apodos(): HasMany
+    {
+        return $this->hasMany(Apodo::class, 'persona_id');
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'nombre' => $this->nombre,
+            'apellido_paterno' => $this->apellido_paterno,
+            'apellido_materno' => $this->apellido_materno,
+            'pseudonimo_nombre' => $this->pseudonimo_nombre,
+            'pseudonimo_apellido_paterno' => $this->pseudonimo_apellido_paterno,
+            'pseudonimo_apellido_materno' => $this->pseudonimo_apellido_materno,
+        ];
     }
 }

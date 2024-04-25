@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
-            nacionalidad_seeder::class,
-            Companias_Telefonicas_seeder::class,
+            nacionalidadSeeder::class,
+            CompaniaTelefonicaSeeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
             ContextoFamiliarSeeder::class
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PersonaSeeder::class,
             ReporteSeeder::class,
-            Telefonos_seeder::class,
+            TelefonoSeeder::class,
             ContactoSeeder::class
         ]);
     }

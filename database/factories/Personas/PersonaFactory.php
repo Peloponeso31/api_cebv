@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Personas;
 
+use App\Models\Ubicaciones\Estado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -17,27 +18,65 @@ class PersonaFactory extends Factory
      */
     public function definition(): array
     {
-        if (fake()->boolean(50)) {
-            return [
-                'nombre' => fake()->firstNameMale(),
-                'apellido_paterno' => fake()->lastName(),
-                'apellido_materno' => fake()->boolean(90) ? fake()->lastName() : null,
-                'fecha_nacimiento' => fake()->date(),
-                'ocupacion' => fake()->jobTitle(),
-                'curp' => 'CURP'.Str::random(14),
-                'sexo_al_nacer' => 'hombre',
-                'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
-            ];
-        }
-        return [
+        $generos = [
+            "Mujer cisgénero",
+            "Hombre cisgénero",
+            "Mujer transgénero",
+            "Hombre transgénero",
+            "Persona no binaria",
+            "Género fluido",
+            "Género queer",
+            "Agénero",
+            "Bigénero",
+            "Trigénero",
+            "Pangénero",
+            "Neutrois",
+            "Género agénero",
+            "Demigénero",
+            "Androgino",
+            "Transmasculino",
+            "Transfemenino",
+            "Género no conforme",
+            "Genderqueer",
+            "Two-Spirit",
+        ];
+
+        $hombre = [
+            'lugar_nacimiento_id' => Estado::inRandomOrder()->first()->id,
+            'nombre' => fake()->firstNameMale(),
+            'apellido_paterno' => fake()->lastName(),
+            'apellido_materno' => fake()->boolean(90) ? fake()->lastName() : null,
+            'pseudonimo_nombre' => fake()->firstNameMale(),
+            'pseudonimo_apellido_paterno' => fake()->lastName(),
+            'pseudonimo_apellido_materno' => fake()->boolean(90) ? fake()->lastName() : null,
+            'fecha_nacimiento' => fake()->date(),
+            'ocupacion' => fake()->jobTitle(),
+            'curp' => 'CURP' . Str::random(13),
+            'observaciones_curp' => fake()->paragraph(),
+            'rfc' => 'RFC' . Str::random(10),
+            'sexo' => 'H',
+            'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement($generos)
+        ];
+
+        $mujer = [
+            'lugar_nacimiento_id' => Estado::inRandomOrder()->first()->id,
             'nombre' => fake()->firstNameFemale(),
             'apellido_paterno' => fake()->lastName(),
             'apellido_materno' => fake()->boolean(90) ? fake()->lastName() : null,
+            'pseudonimo_nombre' => fake()->firstNameFemale(),
+            'pseudonimo_apellido_paterno' => fake()->lastName(),
+            'pseudonimo_apellido_materno' => fake()->boolean(90) ? fake()->lastName() : null,
             'fecha_nacimiento' => fake()->date(),
             'ocupacion' => fake()->jobTitle(),
-            'curp' => 'CURP'.Str::random(14),
-            'sexo_al_nacer' => 'mujer',
-            'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
+            'curp' => 'CURP' . Str::random(13),
+            'observaciones_curp' => fake()->paragraph(1),
+            'rfc' => 'RFC' . Str::random(10),
+            'sexo' => 'M',
+            'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement($generos)
         ];
+
+        if (fake()->boolean()) return $hombre;
+
+        return $mujer;
     }
 }

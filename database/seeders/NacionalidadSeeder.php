@@ -6,7 +6,7 @@ use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use Illuminate\Database\Seeder;
 
-class nacionalidad_seeder extends Seeder
+class NacionalidadSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -185,7 +185,7 @@ class nacionalidad_seeder extends Seeder
             'YEMENI',
             'YUGOSLAVA',
             'ZAIRANA',
-            'ZAMBIANA', 
+            'ZAMBIANA',
         ];
 
         foreach ($nacionalidades as $nacionalidad) {
@@ -195,6 +195,7 @@ class nacionalidad_seeder extends Seeder
         }
 
         Persona::factory()
+            ->count(4)
             ->hasAttached(Nacionalidad::inRandomOrder()->first())
             ->create();
     }

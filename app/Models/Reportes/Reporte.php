@@ -10,6 +10,7 @@ use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
+use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\ZonaEstado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,10 +26,13 @@ class Reporte extends Model
 
     protected $table = 'reportes';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'tipo_reporte_id',
         'area_atiende_id',
         'medio_conocimiento_id',
+        'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
         'tipo_desaparicion',
@@ -65,6 +69,16 @@ class Reporte extends Model
     public function medioConocimiento(): BelongsTo
     {
         return $this->belongsTo(Medio::class, 'medio_conocimiento_id');
+    }
+
+    /**
+     * Get the estado that owns the reporte.
+     *
+     * @return BelongsTo
+     */
+    public function estado(): BelongsTo
+    {
+        return $this->belongsTo(Estado::class, 'estado_id');
     }
 
     /**

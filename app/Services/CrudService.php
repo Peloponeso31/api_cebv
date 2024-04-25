@@ -21,11 +21,11 @@ class CrudService
      */
     public function store(FormRequest $request, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
-            // Create a new model instance with the data from the request.
-            $model = $model->create($request->all());
+        // Create a new model instance with the data from the request.
+        $model = $model->create($request->all());
 
-            // Return the newly created resource.
-            return new $resource($model);
+        // Return the newly created resource.
+        return new $resource($model);
     }
 
 
@@ -39,19 +39,11 @@ class CrudService
      */
     public function show(mixed $id, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
-        try {
-            // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
-            $model = $model->findOrFail($id);
+        // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
+        $model = $model->findOrFail($id);
 
-            // Return the requested resource.
-            return new $resource($model);
-        } catch (ModelNotFoundException $e) {
-            // If the resource is not found, return a JSON response with a 404 status code.
-            return response()->json(['message' => 'Recurso no encontrado'], 404);
-        } catch (Exception $e) {
-            // If an unexpected error occurs, return a JSON response with a 500 status code.
-            return response()->json(['message' => 'Error inesperado'], 500);
-        }
+        // Return the requested resource.
+        return new $resource($model);
     }
 
 
@@ -66,22 +58,14 @@ class CrudService
      */
     public function update(mixed $id, FormRequest $request, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
-        try {
-            // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
-            $model = $model->findOrFail($id);
+        // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
+        $model = $model->findOrFail($id);
 
-            // Update the model with the data from the request.
-            $model->update($request->all());
+        // Update the model with the data from the request.
+        $model->update($request->all());
 
-            // Return the updated resource.
-            return new $resource($model);
-        } catch (ModelNotFoundException $e) {
-            // If the resource is not found, return a JSON response with a 404 status code.
-            return response()->json(['message' => 'Recurso no encontrado'], 404);
-        } catch (Exception $e) {
-            // If an unexpected error occurs, return a JSON response with a 500 status code.
-            return response()->json(['message' => 'Error inesperado'], 500);
-        }
+        // Return the updated resource.
+        return new $resource($model);
     }
 
 
@@ -94,21 +78,13 @@ class CrudService
      */
     public function destroy(mixed $id, Model $model): JsonResponse
     {
-        try {
-            // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
-            $model = $model->findOrFail($id);
+        // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
+        $model = $model->findOrFail($id);
 
-            // Delete the model from the database.
-            $model->delete();
+        // Delete the model from the database.
+        $model->delete();
 
-            // Return a JSON response indicating successful deletion.
-            return response()->json(['message' => 'Recurso eliminado correctamente']);
-        } catch (ModelNotFoundException $e) {
-            // If the resource is not found, return a JSON response with a 404 status code.
-            return response()->json(['message' => 'Recurso no encontrado'], 404);
-        } catch (Exception $e) {
-            // If an unexpected error occurs, return a JSON response with a 500 status code.
-            return response()->json(['message' => 'Error inesperado'], 500);
-        }
+        // Return a JSON response indicating successful deletion.
+        return response()->json(['message' => 'Recurso eliminado correctamente']);
     }
 }

@@ -12,6 +12,24 @@ use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
 use App\Http\Controllers\Personas\PersonaController;
 use App\Http\Controllers\CaracteristicasFisicasController;
+use App\Http\Controllers\Catalogos\LadoController;
+use App\Http\Controllers\Catalogos\LadoRnpdnoController;
+use App\Http\Controllers\Catalogos\RegionCuerpoController;
+use App\Http\Controllers\Catalogos\RegionCuerpoRnpdnoController;
+use App\Http\Controllers\Catalogos\VistaController;
+use App\Http\Controllers\Catalogos\VistaRnpdnoController;
+use App\Http\Controllers\Catalogos\TipoController;
+use App\Http\Controllers\RegionVellofacialController;
+use App\Http\Controllers\ColorVellofacialController;
+use App\Http\Controllers\CorteVellofacialController;
+use App\Http\Controllers\VolumenVellofacialController;
+use App\Http\Controllers\VelloFacialController;
+use App\Http\Controllers\ColorCabelloController;
+use App\Http\Controllers\ColorOjosController;
+use App\Http\Controllers\ColorPielController;
+use App\Http\Controllers\CompaniaTelefonicaController;
+use App\Http\Controllers\ComplexionController;
+use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\CompaniaTelefonicaController;
@@ -180,7 +198,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
     Route::apiResource('/complexion', ComplexionController::class);
 
-
     Route::apiResource("/etnia", EtniaController::class);
     Route::apiResource("/religion", ReligionController::class);
     Route::apiResource("/lengua", LenguaController::class);
@@ -191,6 +208,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
     Route::apiResource("/pertenencia", PertenenciaController::class);
     Route::apiResource("/color", ColorController::class);
+
+    Route::apiResource("/velloFacial", VelloFacialController::class);
+    Route::apiResource("/regionvello", RegionVelloFacialController::class);
+    Route::apiResource("/colorvello", ColorVelloFacialController::class);
+    Route::apiResource("/cortevello", CorteVelloFacialController::class);
+    Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

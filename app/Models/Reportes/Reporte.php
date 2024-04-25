@@ -74,7 +74,7 @@ class Reporte extends Model
      */
     public function zonaEstado(): BelongsTo
     {
-        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id', 'idx_reportes_zona_estado');
+        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id');
     }
 
     public function hipotesisOficial(): BelongsTo
@@ -97,9 +97,9 @@ class Reporte extends Model
         return $this->hasMany(Folio::class, 'reporte_id');
     }
 
-    public function hechosDesapariciones(): HasMany
+    public function hechosDesapariciones(): HasOne
     {
-        return $this->hasMany(HechoDesaparicion::class, 'reporte_id');
+        return $this->hasOne(HechoDesaparicion::class, 'reporte_id');
     }
 
     public function hipotesis(): HasMany

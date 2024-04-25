@@ -18,6 +18,7 @@ class Reportante extends Model
     protected $fillable = [
         'persona_id',
         'reporte_id',
+        'parentesco_id',
         'denuncia_anonima',
         'informacion_consentimiento',
         'informacion_exclusiva_busqueda',
@@ -25,7 +26,7 @@ class Reportante extends Model
         'publicacion_boletin',
         'pertenencia_colectivo',
         'nombre_colectivo',
-        'informacion_relevante',
+        'informacion_relevante'
     ];
 
     protected $casts = [

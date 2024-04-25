@@ -15,7 +15,8 @@ class SenasParticularesResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            "persona_id" => $this->persona_id,
+            'id' => $this->id,
+            "persona_id" => $this->persona,
             "region_cuerpo" => $this->region_cuerpo->nombre,
             //"region_cuerpo_rnpdno" => $this->region_cuerpo_rnpdno->nombre,
             "vista"=> $this->vista->nombre,

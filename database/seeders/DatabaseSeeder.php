@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
             ContextoFamiliarSeeder::class,
-            PertenenciaSeeder::class
+            PertenenciaSeeder::class,
+            MediaFiliacionSeeder::class
         ]);
 
         /**

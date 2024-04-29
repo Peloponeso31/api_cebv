@@ -6,14 +6,30 @@ use App\Http\Requests\StorePertenenciaRequest;
 use App\Http\Requests\UpdatePertenenciaRequest;
 use App\Http\Resources\PertenenciaResource;
 use App\Models\Pertenencia;
+use App\Services\CrudService;
 use Request;
 
 class PertenenciaController extends Controller
 {
-    
+    protected CrudService $service;
+    protected Pertenencia $model;
+
+    public function __construct(CrudService $service, Pertenencia $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
+
     public function index()
     {
-        return PertenenciaResource::collection(Pertenencia::all());
+        $query = $this->model::query();
+
+        if (request()->has('search')) {
+            $query = $this->model::search(request('search'));
+        }
+
+        return PertenenciaResource::collection($query->get());
     }
 
     

@@ -27,17 +27,21 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     
-    Route::get("/caratulas", function () {
-        return Pdf::loadView("reportes.Caratula")->stream();
+    Route::get("/caratulas/{id}", function (string $id) {
+        $desaparecido =  Desaparecido::whereId($id)->first();
+        return Pdf::loadView("reportes.Caratula", [
+            "desaparecido" => $desaparecido
+        ])->stream();
     });
     
     Route::get("/boletines/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
+        $tamanoPapel = [0.0, 0.0, 2215, 2215];
 
         return Pdf::loadView("reportes.boletin_BI", 
         [
             "desaparecido" => $desaparecido
-        ])->stream();
+        ])->setPaper($tamanoPapel)->stream();
     });
     
     Route::get("/indicaciones", function () {
@@ -57,6 +61,7 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     Route::get("/tarjetas-folios", function () {
-        return Pdf::loadView("reportes.tarjeta_de_folio")->stream();
+        $tamanoPapel = [0.0, 0.0, 595.28, 420.945];
+        return Pdf::loadView("reportes.tarjeta_de_folio")->setPaper($tamanoPapel)->stream();
     });
 });

@@ -67,7 +67,7 @@
         background-image: url("{{ public_path('reportes/tarjeta_de_folio/Logobackground-body.png') }}");
             background-repeat: no-repeat;
             background-position: center;
-            font-family: "Montserrat Alternates", sans-serif;
+            fo
     }
 
     .montserrat-alternates-thin {

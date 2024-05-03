@@ -11,6 +11,7 @@ use App\Models\Catalogos\TamanoOrejas;
 use App\Models\Catalogos\TipoCabello;
 use App\Models\Catalogos\TipoLabios;
 use App\Models\Catalogos\TipoNariz;
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,10 +24,11 @@ class CaracteristicasFisicas extends Model
         "color_ojos_id",
         "tamano_ojos_id",
         "color_piel_id",
+        "tipo_cabello_id",
         "tipo_labios_id",
         "tipo_nariz_id",
-        "tamano_orejas",
-        "complexion_id"
+        "tamano_orejas_id",
+        "complexion_id",
         
     ];
 

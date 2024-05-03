@@ -16,7 +16,7 @@ class CaracteristicasFisicasResource extends JsonResource
     {
         return [
             "persona_id"=>$this->persona,
-             "color_ojos"=>$this->color_ojos->color,
+            "color_ojos"=>$this->color_ojos->color,
             "tamano_ojos"=>$this->tamano_ojos->tamano,
             "color_cabello"=>$this->color_cabello->colorcabellos,
             "color_piel"=>$this->color_piel->colorpiel,
@@ -25,6 +25,7 @@ class CaracteristicasFisicasResource extends JsonResource
             "tipo_nariz"=>$this->tipo_nariz->tiponariz,
             "tipo_orejas"=>$this->tamano_orejas->tamanoorejas,
             "complexion"=>$this->complexion->complexion,
+            "estatura"=>$this->estatura->estatura,
         ];
     }
 }

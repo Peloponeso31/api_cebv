@@ -41,7 +41,9 @@ class DatabaseSeeder extends Seeder
             Companias_Telefonicas_seeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class
+            ContextoFamiliarSeeder::class,
+            PertenenciaSeeder::class,
+            MediaFiliacionSeeder::class
         ]);
 
         /**
@@ -53,6 +55,7 @@ class DatabaseSeeder extends Seeder
             Telefonos_seeder::class,
             ContactoSeeder::class,
             CaracteristicasFisicasSeeder::class,
+            EmpleadoSeeder::class,
         ]);
     }
 }

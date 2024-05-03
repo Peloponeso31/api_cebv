@@ -25,6 +25,18 @@ use App\Http\Controllers\ColorVellofacialController;
 use App\Http\Controllers\CorteVellofacialController;
 use App\Http\Controllers\VolumenVellofacialController;
 use App\Http\Controllers\VelloFacialController;
+use App\Http\Controllers\ProyeccionMentonController;
+use App\Http\Controllers\TipoProyeccionMentonController;
+use App\Http\Controllers\TipoPabellonAuricularController;
+use App\Http\Controllers\ModificacionPabellonAuricularController;
+use App\Http\Controllers\PabellonAuricularController;
+use App\Http\Controllers\TipoCejaController;
+use App\Http\Controllers\CejaController;
+use App\Http\Controllers\TamanoBocaController;
+use App\Http\Controllers\FormaOjoController;
+use App\Http\Controllers\TipoCalvicieController;
+use App\Http\Controllers\ModificacionCabelloController;
+use App\Http\Controllers\TamanoCabelloController;
 use App\Http\Controllers\ColorCabelloController;
 use App\Http\Controllers\ColorOjosController;
 use App\Http\Controllers\ColorPielController;
@@ -190,6 +202,25 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource("/cortevello", CorteVelloFacialController::class);
     Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
 
+    Route::apiResource("/proyeccionmenton", ProyeccionMentonController::class);
+    Route::apiResource("/tipoproyeccionmenton", TipoProyeccionMentonController::class);
+
+    Route::apiResource("/pabellonauricular", PabellonAuricularController::class);
+    Route::apiResource("/tipopabellonauricular", TipoPabellonAuricularController::class);
+    Route::apiResource("/modificacionpabellonauricular", ModificacionPabellonAuricularController::class);
+
+    Route::apiResource("/ceja", CejaController::class);
+    Route::apiResource("/tipoceja", TipoCejaController::class);
+
+    Route::apiResource("/tamanoboca", TamanoBocaController::class);
+
+    Route::apiResource("/formaojo", FormaOjoController::class);
+
+    Route::apiResource("/tipocalvicie", TipoCalvicieController::class);
+
+    Route::apiResource("/modificacioncabello", ModificacioncabelloController::class);
+
+    Route::apiResource("/tamanocabello", TamanoCabelloController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

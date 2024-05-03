@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Reportes\Reporte;
@@ -26,12 +27,21 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     
-    Route::get("/caratulas", function () {
-        return Pdf::loadView("reportes.Caratula")->stream();
+    Route::get("/caratulas/{id}", function (string $id) {
+        $desaparecido =  Desaparecido::whereId($id)->first();
+        return Pdf::loadView("reportes.Caratula", [
+            "desaparecido" => $desaparecido
+        ])->stream();
     });
     
-    Route::get("/boletines", function () {
-        return Pdf::loadView("reportes.boletin_BI")->stream();
+    Route::get("/boletines/{id}", function (string $id) {
+        $desaparecido =  Desaparecido::whereId($id)->first();
+        $tamanoPapel = [0.0, 0.0, 2215, 2215];
+
+        return Pdf::loadView("reportes.boletin_BI", 
+        [
+            "desaparecido" => $desaparecido
+        ])->setPaper($tamanoPapel)->stream();
     });
     
     Route::get("/indicaciones", function () {
@@ -48,5 +58,10 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get("/oficios-ssas", function () {
         return Pdf::loadView("reportes.oficios_SSA")->stream();
+    });
+
+    Route::get("/tarjetas-folios", function () {
+        $tamanoPapel = [0.0, 0.0, 595.28, 420.945];
+        return Pdf::loadView("reportes.tarjeta_de_folio")->setPaper($tamanoPapel)->stream();
     });
 });

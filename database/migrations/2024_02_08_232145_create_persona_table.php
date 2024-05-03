@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string  ('ocupacion')->nullable();
             $table->string  ('sexo_al_nacer')->nullable();
             $table->string  ('genero')->nullable();
+            $table->float   ("estatura")->nullable();
+            $table->float   ("peso")->nullable();
             $table->timestamps();
             //$table->boolean ('violencia_familiar');
         });

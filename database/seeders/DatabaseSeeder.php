@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CaracteristicasFisicas;
 use App\Models\ContextoSocial;
 use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
@@ -53,6 +54,7 @@ class DatabaseSeeder extends Seeder
             ReporteSeeder::class,
             Telefonos_seeder::class,
             ContactoSeeder::class,
+            CaracteristicasFisicasSeeder::class,
             EmpleadoSeeder::class,
         ]);
     }

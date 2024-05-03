@@ -36,8 +36,10 @@ class Persona extends Model
         'fecha_nacimiento',
         'curp',
         'ocupacion',
-        'sexo',
+        'sexo_al_nacer',
         'genero',
+        "estatura",
+        "peso",
     ];
 
     public function reporto(): HasMany
@@ -71,6 +73,31 @@ class Persona extends Model
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
+    
+    public function caracteristicasfisicas(): HasOne
+    {
+        return $this->hasOne(CaracteristicasFisicas::class);
+    }
+
+    public function color_ojos()
+    {
+        return $this->caracteristicasfisicas->color_ojos->color;
+    }
+
+    public function color_piel()
+    {
+        return $this->caracteristicasfisicas->color_piel->colorpiel;
+    }
+
+    public function color_cabello()
+    {
+        return $this->caracteristicasfisicas->color_cabello->colorcabellos;
+    }
+
+    public function tipo_cabello()
+    {
+        return $this->caracteristicasfisicas->tipo_cabello->tipocabello;
+    }
 
     public function contexto_familiar(): HasOne
     {
@@ -87,10 +114,6 @@ class Persona extends Model
         return $this->hasOne(ContextoSocial::class);
     }
 
-    public function caracteristicasfisicas(): HasOne
-    {
-        return $this->hasOne(CaracteristicasFisicas::class);
-    }
 
     public function etnia(): HasOne
     {

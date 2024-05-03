@@ -25,8 +25,11 @@ class PersonaFactory extends Factory
                 'fecha_nacimiento' => fake()->date(),
                 'ocupacion' => fake()->jobTitle(),
                 'curp' => 'CURP'.Str::random(14),
-                'sexo_al_nacer' => 'hombre',
+                'sexo_al_nacer' => 'Hombre',
                 'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
+                'estatura' => number_format(fake()->randomFloat(2, 0, 3), 2),
+                'peso' => number_format(fake()->randomFloat(2, 0, 200), 2),
+
             ];
         }
         return [
@@ -36,8 +39,10 @@ class PersonaFactory extends Factory
             'fecha_nacimiento' => fake()->date(),
             'ocupacion' => fake()->jobTitle(),
             'curp' => 'CURP'.Str::random(14),
-            'sexo_al_nacer' => 'mujer',
+            'sexo_al_nacer' => 'Mujer',
             'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement(["Mujer cisgénero", "Hombre cisgénero", "Mujer transgénero", "Hombre transgénero", "Persona no binaria", "Género fluido", "Género queer", "Agénero", "Bigénero", "Trigénero", "Pangénero", "Neutrois", "Género agénero", "Demigénero", "Androgino", "Transmasculino", "Transfemenino", "Género no conforme", "Genderqueer", "Two-Spirit"]),
+            'estatura' => number_format(fake()->randomFloat(2, 0, 3), 2),
+            'peso' => number_format(fake()->randomFloat(2, 0, 200), 2),
         ];
     }
 }

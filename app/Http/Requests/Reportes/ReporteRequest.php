@@ -20,6 +20,7 @@ class ReporteRequest extends FormRequest
                 'fecha_localizacion' => ['nullable', 'date'],
                 'sintesis_localizacion' => ['nullable', 'string'],
                 'clasificacion_persona' => ['nullable', 'string'],
+                'created_at' => ['required', 'date'],
             ],
             default => [
                 'tipo_reporte_id' => ['sometimes', 'exists:tipos_reportes,id', 'integer'],
@@ -31,6 +32,7 @@ class ReporteRequest extends FormRequest
                 'fecha_localizacion' => ['sometimes', 'date'],
                 'sintesis_localizacion' => ['sometimes', 'string'],
                 'clasificacion_persona' => ['sometimes', 'string'],
+                'created_at' => ['sometimes', 'date'],
             ],
         };
     }

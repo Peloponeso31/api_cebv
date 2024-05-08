@@ -25,6 +25,7 @@ class ReporteResource extends JsonResource
             'clasificacion_persona' => $this->clasificacion_persona,
             'reportantes' => ReportanteResource::collection($this->reportantes),
             'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),
+            'created_at' => $this->created_at,
         ];
     }
 }

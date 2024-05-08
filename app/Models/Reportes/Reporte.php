@@ -35,6 +35,7 @@ class Reporte extends Model
         'fecha_localizacion',
         'sintesis_localizacion',
         'clasificacion_persona',
+        'created_at',
     ];
 
     /**

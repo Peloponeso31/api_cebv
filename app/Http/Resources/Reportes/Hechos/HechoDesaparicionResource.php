@@ -14,6 +14,8 @@ class HechoDesaparicionResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
+            'fecha_desaparicion' => $this->fecha_desaparicion,
+            'fecha_percato' => $this->fecha_percato,
             'cambio_comportamiento' => $this->cambio_comportamiento,
             'descripcion_cambio_comportamiento' => $this->descripcion_cambio_comportamiento,
             'fue_amenazado' => $this->fue_amenazado,

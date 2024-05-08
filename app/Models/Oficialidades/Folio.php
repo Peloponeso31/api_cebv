@@ -4,6 +4,7 @@ namespace App\Models\Oficialidades;
 
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
+use App\Models\Reportes\TipoReporte;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -31,10 +32,22 @@ class Folio extends Model
     {
         return Attribute::make(
             get: fn($value, array $attributes) => $value,
-            set: fn($value) =>
-                $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
-                $value['tipo_desaparicion'].'-'.$value['fecha_desaparicion'].$value['zona_estado'],
+            set: fn($value) => $this->folioCuztume($value)
         );
+    }
+
+    protected function folioCuztume($value)
+    {
+        $tipoReporte = TipoReporte::Find($value['tipo_reporte']);
+
+        if($tipoReporte && in_array($tipoReporte->abreviatura, ['SB', 'SBF', 'SD'])) {
+            return $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
+                $value['tipo_desaparicion'].'-'.$value['fecha_desaparicion'].$value['abreviatura_cebv'];
+        }
+        else{
+            return $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
+                $value['tipo_desaparicion'].'-'.$value['fecha_desaparicion'].$value['zona_estado'];
+        }
     }
 
 

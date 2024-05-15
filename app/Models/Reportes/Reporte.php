@@ -35,10 +35,20 @@ class Reporte extends Model
         'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
+        'esta_terminado',
         'tipo_desaparicion',
         'fecha_localizacion',
         'sintesis_localizacion',
         'clasificacion_persona',
+        'fecha_creacion',
+        'fecha_actualizacion',
+    ];
+
+    protected $casts = [
+        'esta_terminado' => 'boolean',
+        'fecha_localizacion' => 'datetime',
+        'fecha_creacion' => 'datetime',
+        'fecha_actualizacion' => 'datetime',
     ];
 
     /**
@@ -88,12 +98,12 @@ class Reporte extends Model
      */
     public function zonaEstado(): BelongsTo
     {
-        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id', 'idx_reportes_zona_estado');
+        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id');
     }
 
     public function hipotesisOficial(): BelongsTo
     {
-        return $this->belongsTo(TipoHipotesis::class, 'hipotesis_oficial_id', 'idx_reportes_hipotesis_oficial');
+        return $this->belongsTo(TipoHipotesis::class, 'hipotesis_oficial_id',);
     }
 
     public function reportantes(): HasMany
@@ -108,12 +118,12 @@ class Reporte extends Model
 
     public function folios(): HasMany
     {
-        return $this->hasMany(Folio::class, 'reporte_id');
+        return $this->hasMany(Folio::class);
     }
 
-    public function hechosDesapariciones(): HasMany
+    public function hechoDesaparicion(): HasOne
     {
-        return $this->hasMany(HechoDesaparicion::class, 'reporte_id');
+        return $this->hasOne(HechoDesaparicion::class);
     }
 
     public function hipotesis(): HasMany

@@ -26,6 +26,7 @@ class ReporteFactory extends Factory
             'zona_estado_id' => ZonaEstado::inRandomOrder()->first()->id,
             'hipotesis_oficial_id' => TipoHipotesis::inRandomOrder()->first()->id,
             'tipo_desaparicion' => fake()->randomElement(['U', 'M']),
+            'esta_terminado' => fake()->boolean(),
             'fecha_creacion' => Carbon::now(),
             'fecha_actualizacion' => Carbon::now(),
         ];

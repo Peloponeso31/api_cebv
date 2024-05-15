@@ -23,15 +23,15 @@ class EstatusPersona extends Model
 
     public function desaparecidosRpdno(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'estatus_rpdno_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function desaparecidosCebv(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'estatus_cebv_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'id' => $this->id,

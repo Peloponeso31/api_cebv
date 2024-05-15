@@ -16,9 +16,10 @@ class ReporteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tipo_reporte_id' => $this->tipo_reporte_id,
+            'esta_terminado' => $this->esta_terminado,
+            'tipo_reporte' => TipoReporteResource::make($this->tipoReporte),
             'area_atiende_id' => $this->area_atiende_id,
-            'medio_conocimiento_id' => $this->medio_conocimiento_id,
+            'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
             'estado' => EstadoResource::make($this->estado),
             'zona_estado_id' => $this->zona_estado_id,
             'hipotesis_oficial_id' => $this->hipotesis_oficial_id,

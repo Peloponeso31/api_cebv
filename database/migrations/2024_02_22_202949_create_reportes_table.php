@@ -14,18 +14,14 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('tipo_reporte_id')->constrained(table: 'tipos_reportes', indexName: 'idx_reportes_tipo_reporte');
-
             $table->foreignId('area_atiende_id')->nullable()->constrained(table: 'areas', indexName: 'idx_reportes_area');
-
             $table->foreignId('medio_conocimiento_id')->nullable()->constrained(table: 'medios', indexName: 'idx_reportes_medio');
-
             $table->string('estado_id', 2)->nullable(); // Llave foránea
-
             $table->foreignId('zona_estado_id')->nullable()->constrained(table: 'zonas_estados', indexName: 'idx_reportes_zona_estado');
-
             $table->foreignId('hipotesis_oficial_id')->nullable()->constrained(table: 'tipos_hipotesis', indexName: 'idx_reportes_hipotesis_oficial');
 
-            $table->enum('tipo_desaparicion', ['U', 'M'])->nullable();
+            $table->boolean('esta_terminado')->default(false);
+            $table->enum('tipo_desaparicion', ['U', 'M'])->default('U')->nullable();
             $table->date('fecha_localizacion')->nullable();
             $table->text('sintesis_localizacion')->nullable();
 

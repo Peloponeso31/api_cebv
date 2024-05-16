@@ -12,6 +12,7 @@ class DocumentoLegalResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'tipo_documento' => $this->tipo_documento,
             'numero_documento' => $this->numero_documento,
             'donde_radica' => $this->donde_radica,
             'nombre_servidor_publico' => $this->nombre_servidor_publico,

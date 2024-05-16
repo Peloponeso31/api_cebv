@@ -26,8 +26,8 @@ return new class extends Migration {
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();
             $table->string('ocupacion')->nullable();
-            $table->enum('sexo', ['H', 'M'])->nullable();
-            $table->string('genero', 50)->nullable();
+            $table->foreignId('sexo_id')->constrained(table: 'sexos')->nullable();
+            $table->foreignId('genero_id')->constrained(table: 'generos')->nullable();
 
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('estados');

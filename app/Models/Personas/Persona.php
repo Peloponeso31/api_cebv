@@ -9,17 +9,20 @@ use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
 use App\Models\Etnia;
+use App\Models\Genero;
 use App\Models\Nacionalidad;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Models\SenasParticulares;
+use App\Models\Sexo;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -48,12 +51,25 @@ class Persona extends Model
         'genero',
     ];
 
+    protected $casts = [
+        'fecha_nacimiento' => 'date',
+    ];
+
+    public function sexo(): BelongsTo
+    {
+        return $this->belongsTo(Sexo::class, 'sexo_id');
+    }
+
+    public function genero(): BelongsTo
+    {
+        return $this->belongsTo(Genero::class, 'genero_id');
+    }
+
     /**
      * The reportes that belong to the persona.
      *
      * @return BelongsToMany
      */
-
     public function reportes(): BelongsToMany
     {
         return $this->belongsToMany(Reporte::class);

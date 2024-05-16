@@ -36,11 +36,15 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
-            nacionalidadSeeder::class,
+            SexoSeeder::class,
+            GeneroSeeder::class,
             CompaniaTelefonicaSeeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class
+            ContextoFamiliarSeeder::class,
+            nacionalidadSeeder::class,
+            EscolaridadSeeder::class,
+            EstadoConyugalSeeder::class,
         ]);
 
         /**

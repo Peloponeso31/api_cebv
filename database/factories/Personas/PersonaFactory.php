@@ -2,6 +2,8 @@
 
 namespace Database\Factories\Personas;
 
+use App\Models\Genero;
+use App\Models\Sexo;
 use App\Models\Ubicaciones\Estado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -54,8 +56,8 @@ class PersonaFactory extends Factory
             'curp' => 'CURP' . Str::random(13),
             'observaciones_curp' => fake()->paragraph(),
             'rfc' => 'RFC' . Str::random(10),
-            'sexo' => 'H',
-            'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement($generos)
+            'sexo_id' => Sexo::inRandomOrder()->first()->id,
+            'genero_id' => fake()->boolean(95) ? 1 : fake()->randomElement([3, 4])
         ];
 
         $mujer = [
@@ -71,8 +73,8 @@ class PersonaFactory extends Factory
             'curp' => 'CURP' . Str::random(13),
             'observaciones_curp' => fake()->paragraph(1),
             'rfc' => 'RFC' . Str::random(10),
-            'sexo' => 'M',
-            'genero' => fake()->boolean(95) ? 'Heterosexual' : fake()->randomElement($generos)
+            'sexo_id' => Sexo::inRandomOrder()->first()->id,
+            'genero_id' => fake()->boolean(95) ? 2 : fake()->randomElement([3, 4])
         ];
 
         if (fake()->boolean()) return $hombre;

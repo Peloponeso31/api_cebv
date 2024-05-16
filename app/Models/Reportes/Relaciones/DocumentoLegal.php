@@ -13,6 +13,7 @@ class DocumentoLegal extends Model
 
     protected $fillable = [
         'desaparecido_id',
+        'tipo_documento',
         'numero_documento',
         'donde_radica',
         'nombre_servidor_publico',
@@ -25,6 +26,6 @@ class DocumentoLegal extends Model
 
     public function desaparecido(): BelongsTo
     {
-        return $this->belongsTo(Desaparecido::class);
+        return $this->belongsTo(Desaparecido::class, 'desaparecido_id');
     }
 }

@@ -137,16 +137,7 @@ class Reporte extends Model
     public function toSearchableArray(): array
     {
         return [
-            'id' => $this->id,
-            'tipo_reporte_id' => $this->tipoReporte,
-            'area_atiende_id' => $this->areaAtiende,
-            'medio_conocimiento_id' => $this->medioConocimiento,
-            'zona_estado_id' => $this->zonaEstado,
-            'hipotesis_oficial_id' => $this->hipotesisOficial,
-            'tipo_desaparicion' => $this->tipo_desaparicion,
-            'fecha_localizacion' => $this->fecha_localizacion,
-            'sintesis_localizacion' => $this->sintesis_localizacion,
-            'clasificacion_persona' => $this->clasificacion_persona,
+            'esta_terminado' => $this->esta_terminado,
         ];
     }
 }

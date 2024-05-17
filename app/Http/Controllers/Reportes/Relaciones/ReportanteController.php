@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reportes\Relaciones;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\Relaciones\ReportanteRequest;
+use App\Http\Resources\ReportantePresentacionResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Services\CrudService;
@@ -48,5 +49,9 @@ class ReportanteController extends Controller
     public function destroy($id)
     {
         return $this->service->destroy($id, $this->model);
+    }
+
+    public function vista($id) {
+        return new ReportantePresentacionResource(Reportante::find($id));
     }
 }

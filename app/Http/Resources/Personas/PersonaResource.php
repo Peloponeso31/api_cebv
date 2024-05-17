@@ -31,7 +31,7 @@ class PersonaResource extends JsonResource
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
             'ocupacion' => $this->ocupacion,
-            'sexo' => $this->sexo,
+            'sexo' => $this->sexo_al_nacer,
             'genero' => $this->genero,
             'apodos' => ApodoResource::collection($this->apodos),
             'nacionalidades' => NacionalidadResource::collection($this->nacionalidads)

@@ -31,21 +31,44 @@
 
 
   #footer .page:after { content: counter(page, upper-roman); }
-   
 
+  html, body {
+            background-image: url("{{ public_path('reportes/boletin_BI/Logobackground-body.png') }}");
+            background-repeat: no-repeat;
+            background-position: center center;
+  }
+
+  footer{
+            background-image: url("{{ public_path('reportes/Caratula/200Logo-footer.png') }}");
+            background-repeat: no-repeat;
+            background-position: left;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+  }
 
 table {
             border-collapse:collapse;
             width: 100%;
         }
 
-        th, td {
+        th {
             border: 1px solid black;
             padding: 6px;
-            text-align: center;
+            text-align: center; 
         }
 
+        td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: center; 
+        }
 
+        .montserrat-alternates-thin {
+            font-family: "Montserrat Alternates", sans-serif;
+            font-weight: 100;
+            font-style: normal;
+        }
 </style>
 
 
@@ -73,11 +96,13 @@ table {
         </tr>
         <tr>
             <th rowspan="2">NOMBRE</th>
-            <td rowspan="2" colspan="2" >ROXANA DE LA CRUZ</td>
-            <th colspan="2">SEXO: MUJER</th>
+            <td rowspan="2" colspan="2" >{{ $desaparecido->persona->nombre }}
+                {{ $desaparecido->persona->apellido_paterno }}
+                {{ $desaparecido->persona->apellido_materno }}</td>
+            <th colspan="2">SEXO: {{ $desaparecido->persona->sexo_al_nacer }} </th>
         </tr>
                 <tr>
-                    <th colspan="2">GENERO: FEMENINO</th>
+                    <th colspan="2">GENERO: {{ $desaparecido->persona->genero }}</th>
                 </tr>
             
         
@@ -90,14 +115,14 @@ table {
         <tr>
                 <th colspan="2">FECHA DESAPARICIÓN</th>
                 <th rowspan="2">EDAD</th>
-                <td rowspan="2">22</td>
+                <td rowspan="2">{{ $desaparecido->persona->edad_anos() }} </td>
                 <th>CURP O ALGÚN DATO DE IDENTIFICACIÓN</th>
                 
 
                 <tr>
                 <td>08 DE FEBRERO</td>
                 <td>2023</td>
-                <td>CUOR00923MVZRRXA1</td>
+                <td>{{ $desaparecido->persona->curp }}</td>
                 </tr>
         </tr>
             
@@ -144,7 +169,7 @@ table {
 
         <div id="footer">
             <p>
-                Enríquez s/n, Zona Centro <br>
+                Enríquez s/n, Zona Centro  <br>
                 C.P. 91000 Xalapa, Veracruz <br>
                 Tel: 01 228 841 7400 ext. 3531 <br>
                 <b>www.segobver.gob.mx</b>

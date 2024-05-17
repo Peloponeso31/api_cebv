@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CaracteristicasFisicas;
 use App\Models\ContextoSocial;
 use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;

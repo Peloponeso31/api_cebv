@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reportes\Relaciones;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\Relaciones\DesaparecidoRequest;
+use App\Http\Resources\DesaparecidoFolioPersonaResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Services\CrudService;
@@ -43,5 +44,9 @@ class DesaparecidoController extends Controller
     public function destroy($id)
     {
         return $this->service->destroy($id, $this->model);
+    }
+
+    public function desaparecido_persona_folio() {
+        return DesaparecidoFolioPersonaResource::collection(Desaparecido::all());
     }
 }

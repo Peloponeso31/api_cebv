@@ -66,6 +66,11 @@ class Desaparecido extends Model
         return $this->belongsTo(Municipio::class);
     }
 
+    public function prendaDeVestir(): HasMany
+    {
+        return $this->hasMany(Municipio::class);
+    }
+
     public function documentosLegales(): HasMany
     {
         return $this->hasMany(DocumentoLegal::class);

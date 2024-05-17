@@ -18,8 +18,6 @@ use App\Http\Controllers\CorteVellofacialController;
 use App\Http\Controllers\VolumenVellofacialController;
 use App\Http\Controllers\VelloFacialController;
 use App\Http\Controllers\EtniaController;
-use App\Http\Controllers\ContactoController;
-use App\Http\Controllers\CompaniaTelefonicaController;
 use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorCabelloController;
 use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorOjosController;
 use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorPielController;
@@ -42,6 +40,8 @@ use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\LadoRnpdnoController;
 use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\RegionCuerpoRnpdnoController;
 use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\VistaRnpdnoController;
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\CompaniaTelefonicaController;
+use App\Http\Controllers\CondicionVulnerabilidad\CondicionVulnerabilidadController;
 use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;
@@ -58,10 +58,11 @@ use App\Http\Controllers\ContextoSocialController;
 use App\Http\Controllers\Empleado\EmpleadoController;
 use App\Http\Controllers\GrupoPertenenciaController;
 use App\Http\Controllers\OficinaController;
+use App\Http\Controllers\Personas\ContactoController;
 use App\Http\Controllers\PertenenciaController;
 use App\Http\Controllers\PrendaDeVestirController;
 use App\Http\Controllers\SenasParticularesController;
-use App\Http\Controllers\TelefonoController;
+use App\Http\Controllers\Telefono\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
@@ -108,6 +109,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/sitios', SitioController::class);
     Route::apiResource("/Empleado", EmpleadoController::class);
     Route::apiResource("/Oficina", OficinaController::class);
+
+    
+    /**
+     * Routes for the vulnerability condition module
+     */
+
+    Route::apiResource('/CondicionVulnerabilidad', CondicionVulnerabilidadController::class);
 
     /**
      * Routes for the oficialidades module

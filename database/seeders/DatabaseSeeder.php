@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\CaracteristicasFisicas;
-use App\Models\ContextoSocial;
-use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +23,7 @@ class DatabaseSeeder extends Seeder
          * Catalogs seeders
          */
         $this->call([
+            SangreSeeder::class,
             AreaSeeder::class,
             EstatusPersonaSeeder::class,
             InstitucionSeeder::class,
@@ -37,13 +35,15 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
-            nacionalidad_seeder::class,
+            NacionalidadSeeder::class,
             Companias_Telefonicas_seeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
             ContextoFamiliarSeeder::class,
             PertenenciaSeeder::class,
-            MediaFiliacionSeeder::class
+            MediaFiliacionSeeder::class,
+            CondicionVulnerabilidadSeeder::class,
+            
         ]);
 
         /**
@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
             ContactoSeeder::class,
             CaracteristicasFisicasSeeder::class,
             EmpleadoSeeder::class,
+            
         ]);
     }
 }

@@ -3,22 +3,22 @@
 namespace App\Models\Personas;
 
 use App\Models\CaracteristicasFisicas;
-use App\Models\Contacto;
-use App\Models\ContextoEconomico;
-use App\Models\ContextoFamiliar;
-use App\Models\ContextoSocial;
+use App\Models\CondicionVulnerabilidad\CondicionVulnerabilidad;
+use App\Models\Contextos\ContextoEconomico;
+use App\Models\Contextos\ContextoFamiliar;
+use App\Models\Contextos\ContextoSocial;
 use App\Models\Etnia;
-use App\Models\Nacionalidad;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Models\SenasParticulares;
-use App\Models\Telefono;
+use App\Models\Telefono\Telefono;
 use App\Models\Ubicaciones\Direccion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -158,5 +158,10 @@ class Persona extends Model
     public function contactos(): HasMany
     {
         return $this->hasMany(Contacto::class);
+    }
+
+    public function condicion_vulnerabilidad(): BelongsTo
+    {
+        return $this->belongsTo(CondicionVulnerabilidad::class);
     }
 }

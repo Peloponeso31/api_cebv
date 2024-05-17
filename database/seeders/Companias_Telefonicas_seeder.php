@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CompaniaTelefonica;
+use App\Models\Telefono\CompaniaTelefonica;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

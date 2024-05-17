@@ -12,7 +12,7 @@ class ContextoEconomicoSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\ContextoEconomico::factory(100)->create();
+        \App\Models\Contextos\ContextoEconomico::factory(100)->create();
 
     
         

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Telefono\Telefono;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class Telefonos_seeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Telefono::factory(100)->create();
+        Telefono::factory(100)->create();
     }
 }

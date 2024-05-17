@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Catalogos\ColorCabello;
-use App\Models\Catalogos\ColorOjos;
-use App\Models\Catalogos\ColorPiel;
-use App\Models\Catalogos\Complexion;
-use App\Models\Catalogos\TamanoOjos;
-use App\Models\Catalogos\TamanoOrejas;
-use App\Models\Catalogos\TipoCabello;
-use App\Models\Catalogos\TipoLabios;
-use App\Models\Catalogos\TipoNariz;
+use App\Models\Catalogos\CaracteristicasFisicas\ColorCabello;
+use App\Models\Catalogos\CaracteristicasFisicas\ColorOjos;
+use App\Models\Catalogos\CaracteristicasFisicas\ColorPiel;
+use App\Models\Catalogos\CaracteristicasFisicas\Complexion;
+use App\Models\Catalogos\CaracteristicasFisicas\TamanoOjos;
+use App\Models\Catalogos\CaracteristicasFisicas\TamanoOrejas;
+use App\Models\Catalogos\CaracteristicasFisicas\TipoCabello;
+use App\Models\Catalogos\CaracteristicasFisicas\TipoLabios;
+use App\Models\Catalogos\CaracteristicasFisicas\TipoNariz;
 use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

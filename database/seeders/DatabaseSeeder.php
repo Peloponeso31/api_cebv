@@ -37,13 +37,15 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
-            nacionalidad_seeder::class,
-            Companias_Telefonicas_seeder::class,
+            SexoSeeder::class,
+            GeneroSeeder::class,
+            CompaniaTelefonicaSeeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
             ContextoFamiliarSeeder::class,
-            PertenenciaSeeder::class,
-            MediaFiliacionSeeder::class
+            nacionalidadSeeder::class,
+            EscolaridadSeeder::class,
+            EstadoConyugalSeeder::class,
         ]);
 
         /**
@@ -52,10 +54,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PersonaSeeder::class,
             ReporteSeeder::class,
-            Telefonos_seeder::class,
-            ContactoSeeder::class,
-            CaracteristicasFisicasSeeder::class,
-            EmpleadoSeeder::class,
+            TelefonoSeeder::class,
+            ContactoSeeder::class
         ]);
     }
 }

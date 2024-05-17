@@ -16,7 +16,7 @@ class AsentamientoController extends Controller
             $query = Asentamiento::search(request('search'));
         }
 
-        return AsentamientoResource::collection($query->paginate());
+        return AsentamientoResource::collection($query->get());
     }
 
     public function show($id)

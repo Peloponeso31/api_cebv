@@ -2,6 +2,7 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
@@ -40,6 +41,11 @@ class Estado extends Model
     public function municipios(): HasMany
     {
         return $this->hasMany(Municipio::class);
+    }
+
+    public function reportes(): HasMany
+    {
+        return $this->hasMany(Reporte::class);
     }
 
     /**

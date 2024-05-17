@@ -14,6 +14,7 @@ class DesaparecidoFactory extends Factory
         return [
             'persona_id' => Persona::inRandomOrder()->first()->id,
             'reporte_id' => Reporte::inRandomOrder()->first()->id,
+            'clasificacion_persona' => fake()->word(),
             'estatus_rpdno_id' => EstatusPersona::inRandomOrder()->first()->id,
             'estatus_cebv_id' => EstatusPersona::inRandomOrder()->first()->id,
             'habla_espanhol' => fake()->boolean,

@@ -47,7 +47,7 @@ class HechoDesaparicion extends Model
         return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'id' => $this->id,

@@ -62,9 +62,7 @@ class Municipio extends Model
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
             'estado_id' => $this->estado_id,
-            'nombre' => $this->nombre,
         ];
     }
 }

@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\ApodoController;
+use App\Http\Controllers\EscolaridadController;
+use App\Http\Controllers\EstadoConyugalController;
+use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\NacionalidadController;
+use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
+use App\Http\Controllers\SexoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -83,8 +90,8 @@ use App\Http\Resources\UserAdminResource;
 /**
  * Rutas protegidas por autenticacion.
  */
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/usuario_actual', function() {
+Route::middleware('auth:sanctum')->group(callback: function () {
+    Route::get('/usuario_actual', function () {
         return new UserAdminResource(Auth::user());
     });
 
@@ -120,11 +127,19 @@ Route::middleware('auth:sanctum')->group(function () {
      * Routes for personas module
      */
     Route::apiResource('/estatus-personas', EstatusPersonaController::class);
+    Route::apiResource('/estados-conyugales', EstadoConyugalController::class);
+    Route::apiResource('/escolaridades', EscolaridadController::class);
     Route::apiResource('/parentescos', ParentescoController::class);
-    Route::apiResource("/persona", PersonaController::class);
-    Route::apiResource("/CompaniaTelefonica", CompaniaTelefonicaController::class);
-    Route::apiResource("/Telefono", TelefonoController::class);
-    Route::apiResource("/Contacto", ContactoController::class);
+    Route::apiResource('/personas', PersonaController::class);
+    Route::apiResource('/generos', GeneroController::class);
+    Route::apiResource('/sexos', SexoController::class);
+    Route::apiResource('/companias-telefonicas', CompaniaTelefonicaController::class);
+    Route::apiResource('/telefonos', TelefonoController::class);
+    Route::apiResource('/contactos', ContactoController::class);
+    Route::apiResource('/apodos', ApodoController::class);
+    Route::apiResource('/nacionalidades', NacionalidadController::class);
+    Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
+    Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
 
     /**
      * Routes for the reportes module
@@ -146,11 +161,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
-    
+
     Route::apiResource('/reportantes', ReportanteController::class);
     Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
     Route::get('/desaparecidos_folio', [DesaparecidoController::class, 'desaparecido_persona_folio']);
+    Route::apiResource('/documentos-legales', DocumentoLegalController::class);
 
     /**
      * Routes for ubicaciones module

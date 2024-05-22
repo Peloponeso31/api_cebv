@@ -7,6 +7,7 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Models\MarcaVehiculo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
@@ -187,6 +188,11 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);
+
+    /**
+     * Routes for Vehiculos module
+     */
+    Route::apiResource('/marcas-vehiculos', MarcaVehiculo::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

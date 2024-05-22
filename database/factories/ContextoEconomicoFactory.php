@@ -45,8 +45,7 @@ class ContextoEconomicoFactory extends Factory
             "conflictos_sindicato" => fake()->text(),
             "desacuerdos" => fake()->text(),
             "amenazasIntimidacion" => fake()->text(),
-            "ult_cont_sindi" => fake()->text(),
-            
+            "ult_cont_sindi" => fake()->name(),
         ];
     }
 }

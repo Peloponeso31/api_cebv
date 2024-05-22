@@ -9,7 +9,6 @@ use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
 use App\Models\MarcaVehiculo;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AscendenciaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
 use App\Http\Controllers\Informaciones\SitioController;
@@ -21,23 +20,36 @@ use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
 use App\Http\Controllers\Personas\PersonaController;
 use App\Http\Controllers\CaracteristicasFisicasController;
-use App\Http\Controllers\Catalogos\LadoController;
-use App\Http\Controllers\Catalogos\LadoRnpdnoController;
-use App\Http\Controllers\Catalogos\RegionCuerpoController;
-use App\Http\Controllers\Catalogos\RegionCuerpoRnpdnoController;
-use App\Http\Controllers\Catalogos\VistaController;
-use App\Http\Controllers\Catalogos\VistaRnpdnoController;
-use App\Http\Controllers\Catalogos\TipoController;
-use App\Http\Controllers\ColorCabelloController;
-use App\Http\Controllers\ColorOjosController;
-use App\Http\Controllers\ColorPielController;
-use App\Http\Controllers\CompaniaTelefonicaController;
-use App\Http\Controllers\ComplexionController;
-use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\RegionVellofacialController;
+use App\Http\Controllers\ColorVellofacialController;
+use App\Http\Controllers\CorteVellofacialController;
+use App\Http\Controllers\VolumenVellofacialController;
+use App\Http\Controllers\VelloFacialController;
 use App\Http\Controllers\EtniaController;
-use App\Http\Controllers\GrupoEtnicoController;
-use App\Http\Controllers\LenguaController;
-use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\CompaniaTelefonicaController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorCabelloController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorOjosController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ColorPielController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\ComplexionController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TamanoOjosController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TamanoOrejasController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TipoCabelloController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TipoLabiosController;
+use App\Http\Controllers\Catalogos\CaracteristicaFisicas\TipoNarizController;
+use App\Http\Controllers\Catalogos\Etnia\AscendenciaController;
+use App\Http\Controllers\Catalogos\Etnia\GrupoEtnicoController;
+use App\Http\Controllers\Catalogos\Etnia\LenguaController;
+use App\Http\Controllers\Catalogos\Etnia\ReligionController;
+use App\Http\Controllers\Catalogos\Etnia\VestimentaController;
+use App\Http\Controllers\Catalogos\SenasParticulares\LadoController;
+use App\Http\Controllers\Catalogos\SenasParticulares\RegionCuerpoController;
+use App\Http\Controllers\Catalogos\SenasParticulares\TipoController;
+use App\Http\Controllers\Catalogos\SenasParticulares\VistaController;
+use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\LadoRnpdnoController;
+use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\RegionCuerpoRnpdnoController;
+use App\Http\Controllers\Catalogos\SenasParticularesRnpdno\VistaRnpdnoController;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\Reportes\Hipotesis\CircunstanciaController;
 use App\Http\Controllers\Reportes\Hipotesis\HipotesisController;
 use App\Http\Controllers\Reportes\Hipotesis\TipoHipotesisController;
@@ -46,25 +58,23 @@ use App\Http\Controllers\Reportes\Relaciones\DesaparecidoController;
 use App\Http\Controllers\Reportes\Relaciones\ReportanteController;
 use App\Http\Controllers\Reportes\ReporteController;
 use App\Http\Controllers\Reportes\TipoReporteController;
-use App\Http\Controllers\TamanoOjosController;
-use App\Http\Controllers\TamanoOrejasController;
-use App\Http\Controllers\TipoCabelloController;
-use App\Http\Controllers\TipoLabiosController;
-use App\Http\Controllers\TipoNarizController;
 use App\Http\Controllers\Ubicaciones\AsentamientoController;
 use App\Http\Controllers\Ubicaciones\DireccionController;
 use App\Http\Controllers\ContextoEconomicoController;
 use App\Http\Controllers\ContextoFamiliarController;
 use App\Http\Controllers\ContextoSocialController;
+use App\Http\Controllers\Empleado\EmpleadoController;
+use App\Http\Controllers\GrupoPertenenciaController;
+use App\Http\Controllers\OficinaController;
+use App\Http\Controllers\PertenenciaController;
+use App\Http\Controllers\PrendaDeVestirController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
 use App\Http\Controllers\Ubicaciones\MunicipioController;
 use App\Http\Controllers\Ubicaciones\ZonaEstadoController;
 use App\Http\Controllers\UserAdminController;
-use App\Http\Controllers\VestimentaController;
 use App\Http\Resources\UserAdminResource;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -104,6 +114,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/sitios', SitioController::class);
+    Route::apiResource("/Empleado", EmpleadoController::class);
+    Route::apiResource("/Oficina", OficinaController::class);
 
     /**
      * Routes for the oficialidades module
@@ -133,19 +145,28 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for the reportes module
      */
-    Route::apiResource('/tipos-reportes', TipoReporteController::class);
+    Route::get('/vista/reportes', [ReporteController::class, 'vistaReportesDashboard']);
+    Route::get('/reportes/asignar_folio/{id}', [ReporteController::class, 'setFolio']);
+    Route::get('/reportes/ver_folio/{id}', [ReporteController::class, 'getFolios']);
     Route::apiResource('/reportes', ReporteController::class);
-    Route::put('/reportes/folios/{id}', [ReporteController::class, 'setFolio']);
-    Route::get('/reportes/folios/{id}', [ReporteController::class, 'getFolios']);
+    Route::apiResource('/tipos-reportes', TipoReporteController::class);
 
-    Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
+
+    /**
+     * Routes for the informacion module
+     */
+    Route::apiResource('/tipos-medios', TipoMedioController::class);
+    Route::apiResource('/medios', MedioController::class);
+    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
 
     Route::apiResource('/reportantes', ReportanteController::class);
+    Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
+    Route::get('/desaparecidos_folio', [DesaparecidoController::class, 'desaparecido_persona_folio']);
     Route::apiResource('/documentos-legales', DocumentoLegalController::class);
 
     /**
@@ -157,13 +178,17 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/direcciones', DireccionController::class);
     Route::apiResource('/zonas-estados', ZonaEstadoController::class);
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
+
     Route::post('/bulk_insert/senas_particulares', [SenasParticularesController::class, 'bulkStore']);
+    Route::delete('/bulk_delete/senas_particulares', [SenasParticularesController::class, 'bulkDelete']);
+    Route::get('/sena/persona/{persona_id}', [SenasParticularesController::class, 'SenaPersona']);
+
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
     Route::apiResource('/catalogos/tipo', TipoController::class);
-    Route::apiResource('/catalogos/vista', VistaController::class);
-    Route::apiResource('/catalogos/lado', LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
+    Route::apiResource('/catalogos/vista',VistaController::class);
+    Route::apiResource('/catalogos/lado',LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);
@@ -181,7 +206,6 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
     Route::apiResource('/complexion', ComplexionController::class);
 
-
     Route::apiResource("/etnia", EtniaController::class);
     Route::apiResource("/religion", ReligionController::class);
     Route::apiResource("/lengua", LenguaController::class);
@@ -193,6 +217,16 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      * Routes for Vehiculos module
      */
     Route::apiResource('/marcas-vehiculos', MarcaVehiculo::class);
+    Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
+    Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
+    Route::apiResource("/pertenencia", PertenenciaController::class);
+    Route::apiResource("/color", ColorController::class);
+
+    Route::apiResource("/velloFacial", VelloFacialController::class);
+    Route::apiResource("/regionvello", RegionVelloFacialController::class);
+    Route::apiResource("/colorvello", ColorVelloFacialController::class);
+    Route::apiResource("/cortevello", CorteVelloFacialController::class);
+    Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

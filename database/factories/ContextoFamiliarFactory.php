@@ -23,7 +23,6 @@ class ContextoFamiliarFactory extends Factory
             "hijos" => fake()->boolean(60) ? fake()->numberBetween(0, 6) : null,
             "familiar_cercano" => fake()-> name(),
             "familiar_violencia" => fake()-> name(),
-            
         ];
     }
 }

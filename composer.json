@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",
+        "league/flysystem-sftp-v3": "^3.0",
         "spatie/laravel-permission": "^6.4"
     },
     "require-dev": {

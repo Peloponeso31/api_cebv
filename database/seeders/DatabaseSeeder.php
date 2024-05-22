@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\ContextoSocial;
+use App\Models\MarcaVehiculo;
 use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
@@ -45,6 +46,7 @@ class DatabaseSeeder extends Seeder
             nacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
+            MarcaVehiculoSeeder::class,
         ]);
 
         /**

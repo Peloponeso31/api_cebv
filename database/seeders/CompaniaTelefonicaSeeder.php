@@ -6,7 +6,7 @@ use App\Models\CompaniaTelefonica;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class Companias_Telefonicas_seeder extends Seeder
+class CompaniaTelefonicaSeeder extends Seeder
 {
     /**
      * Run the database seeds.

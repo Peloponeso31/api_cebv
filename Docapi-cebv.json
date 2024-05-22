@@ -9680,28 +9680,1888 @@
             }
           }
         }
+    },
+    "/Contacto":{
+      "get":{
+        "summary":"Muestra el o los contactos de la persona",
+        "tags":[
+          "Contacto"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ContactoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro de el o los contactos de la persona",
+        "tags": [
+          "Contacto"
+        ],
+        "parameters": [
+          {
+            "name": "persona_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "tipo",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contacto",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "observaciones",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContactoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Contacto/{id}":{
+        "get":{
+          "summary":"Muestra el o los contactos de la persona",
+          "tags":[
+            "Contacto"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContactoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de el o los contactos de la persona",
+          "tags":[
+            "Contacto"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "persona_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "tipo",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "contacto",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "observaciones",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/ContactoRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ContactoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de el o los contactos de la persona",
+          "tags": [
+            "Contacto"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ContactoResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/CompaniaTelefonica":{
+      "get":{
+        "summary":"Muestra el registro de la compañia telefonica",
+        "tags":[
+          "Compañia Telefonica"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/CompaniaTelefonicaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro de la compañia telefonica",
+        "tags": [
+          "Compañia Telefonica"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompaniaTelefonicaResquest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompaniaTelefonicaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/CompaniaTelefonica/{id}":{
+        "get":{
+          "summary":"Muestra el registro de la compañia telefonica",
+          "tags":[
+            "Compañia Telefonica"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/CompaniaTelefonicaResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza el registro de la compañia telefonica",
+          "tags":[
+            "Compañia Telefonica"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "nombre",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/CompaniaTelefonicaResquest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/CompaniaTelefonicaResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina el registro de la compañia telefonica",
+          "tags": [
+            "Compañia Telefonica"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CompaniaTelefonicaResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/Empleado":{
+      "get":{
+        "summary":"Muestra el registro del empleado",
+        "tags":[
+          "Empleado"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EmpleadoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro del empleado",
+        "tags": [
+          "Empleado"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apellido_paterno",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apellido_materno",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fecha_nacimiento",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "puesto_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "oficina_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmpleadoResquest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmpleadoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Empleado/{id}":{
+        "get":{
+          "summary":"Muestra el registro del empleado",
+          "tags":[
+            "Empleado"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/EmpleadoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza el registro del empleado",
+          "tags":[
+            "Empleado"
+          ],
+          "parameters":[
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "nombre",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "apellido_paterno",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "apellido_materno",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "fecha_nacimiento",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "puesto_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "oficina_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/EmpleadoResquest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/EmpleadoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina el registro del empleado",
+          "tags": [
+            "Empleado"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EmpleadoResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/Telefono":{
+      "get":{
+        "summary":"Muestra el registro del telefono",
+        "tags":[
+          "Telefono"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TelefonoResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro del telefono",
+        "tags": [
+          "Telefono"
+        ],
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "observaciones",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "compania_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TelefonoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelefonoResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Telefono/{id}":{
+        "get":{
+          "summary":"Muestra el registro del telefono",
+          "tags":[
+            "Telefono"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/TelefonoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza el registro del telefono",
+          "tags":[
+            "Telefono"
+          ],
+          "parameters":[
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "numero",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "observaciones",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "compania_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/TelefonoRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/TelefonoResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina el registro del telefono",
+          "tags": [
+            "Telefono"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/TelefonoResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/prenda_de_vestir":{
+      "get":{
+        "summary":"Muestra todos los registros de prendas de vestir",
+        "tags":[
+          "Prenda de vestir"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/PrendaDeVestirResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro de prenda de vestir",
+        "tags": [
+          "Prenda de vestir"
+        ],
+        "parameters": [
+          {
+            "name": "grupo_pertenencia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pertenencia_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "color_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "marca",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "descripcion",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StorePrendaDeVestirRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrendaDeVestirResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prenda_de_vestir/{id}":{
+        "get":{
+          "summary":"Muestra un registro de prenda de vestir",
+          "tags":[
+            "Prenda de vestir"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/PrendaDeVestirResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza el registro de prenda de vestir",
+          "tags":[
+            "Prenda de vestir"
+          ],
+          "parameters":[
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "grupo_pertenencia_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "pertenencia_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "color_id",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "marca",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "descripcion",
+              "in": "query",
+              "required": false,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdatePrendaDeVestirRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/PrendaDeVestirResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina el registro sobre prendas de vestir",
+          "tags": [
+            "Prenda de vestir"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PrendaDeVestirResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/grupo_pertenencia":{
+      "get":{
+        "summary":"Muestra todos los registros de grupo pertenencia",
+        "tags":[
+          "Grupo pertenencia"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/GrupoPertenenciaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro de grupo pertenencia",
+        "tags": [
+          "Grupo pertenencia"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StoreGrupoPertenenciaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GrupoPertenenciaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/grupo_pertenencia/{id}":{
+        "get":{
+          "summary":"Muestra un registro de grupo pertenencia",
+          "tags":[
+            "Grupo pertenencia"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/GrupoPertenenciaResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de grupo pertenencia",
+          "tags":[
+            "Grupo pertenencia"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "nombre",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdateGrupoPertenenciaRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/GrupoPertenenciaResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de grupo pertenencia",
+          "tags": [
+            "Grupo pertenencia"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/GrupoPertenenciaResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/pertenencia":{
+      "get":{
+        "summary":"Muestra todos los registros de pertenencia",
+        "tags":[
+          "Pertenencia"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/PertenenciaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro de pertenencia",
+        "tags": [
+          "Pertenencia"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StorePertenenciaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PertenenciaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pertenencia/{id}":{
+        "get":{
+          "summary":"Muestra un registro de pertenencia",
+          "tags":[
+            "Pertenencia"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/PertenenciaResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de pertenencia",
+          "tags":[
+            "Pertenencia"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "nombre",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdatePertenenciaRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/PertenenciaResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de pertenencia",
+          "tags": [
+            "Pertenencia"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/PertenenciaResource"
+                  }
+                }
+              }
+            }
+          }
+        }
+    },
+    "/color":{
+      "get":{
+        "summary":"Muestra todos los registros de color de pertenencia",
+        "tags":[
+          "Color pertenencia"
+        ],
+        "responses":{
+          "200":{
+            "description":" ",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/PertenenciaResource"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post":{
+        "summary": "Crea el registro de color de pertenencia",
+        "tags": [
+          "Color pertenencia"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StorePertenenciaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PertenenciaResource"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/color/{id}":{
+        "get":{
+          "summary":"Muestra un registro del color de pertenencia",
+          "tags":[
+            "Color pertenencia"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ColorResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "put":{
+          "summary":"Actualiza un registro de color de pertenencia",
+          "tags":[
+            "Color pertenencia"
+          ],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"path",
+              "required":true,
+              "schema":{
+                "type":"integer"
+              }
+            },
+            {
+              "name": "nombre",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody":{
+            "required":true,
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/UpdateColorRequest"
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":" ",
+              "content":{
+                "application/json":{
+                  "schema":{
+                    "$ref":"#/components/schemas/ColorResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete":{
+          "summary": "Elimina un registro de color de pertenencia",
+          "tags": [
+            "Color pertenencia"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ColorResource"
+                  }
+                }
+              }
+            }
+          }
+        }
     }
-
   },
   "components": {
     "schemas": {
+      "StorePrendaDeVestirRequest":{
+        "type":"object",
+        "properties":{
+          "grupo_pertenencia_id":{
+            "type":"integer",
+            "description":"Id del grupo pertenencia"
+          },
+          "pertenencia_id":{
+            "type":"integer",
+            "description":"Id de la pertenencia relacionada a el grupo pertenencia"
+          },
+          "color_id":{
+            "type":"integer",
+            "description":"Id color de la pertenecia"
+          },
+          "marca":{
+            "type":"string",
+            "description":"marca de la pertenencia"
+          },
+          "descripcion":{
+            "type":"string",
+            "description":"descripcion sobre la pertenencia"
+          }
+        }
+      },
+      "UpdatePrendaDeVestirRequest":{
+        "type":"object",
+        "properties":{
+          "grupo_pertenencia_id":{
+            "type":"integer",
+            "description":"Id del grupo pertenencia"
+          },
+          "pertenencia_id":{
+            "type":"integer",
+            "description":"Id de la pertenencia relacionada a el grupo pertenencia"
+          },
+          "color_id":{
+            "type":"integer",
+            "description":"Id color de la pertenecia"
+          },
+          "marca":{
+            "type":"string",
+            "description":"marca de la pertenencia"
+          },
+          "descripcion":{
+            "type":"string",
+            "description":"descripcion sobre la pertenencia"
+          }
+        }
+      },
+      "PrendaDeVestirResource":{
+        "type":"object",
+        "properties":{
+          "grupo_pertenencia_id":{
+            "type":"integer",
+            "description":"Id del grupo pertenencia"
+          },
+          "pertenencia_id":{
+            "type":"integer",
+            "description":"Id de la pertenencia relacionada a el grupo pertenencia"
+          },
+          "color_id":{
+            "type":"integer",
+            "description":"Id color de la pertenecia"
+          },
+          "marca":{
+            "type":"string",
+            "description":"marca de la pertenencia"
+          },
+          "descripcion":{
+            "type":"string",
+            "description":"descripcion sobre la pertenencia"
+          }
+        }
+      },
+      "StoreGrupoPertenenciaRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nombre del grupo pertenencia a registrar"
+          }
+        }
+      },
+      "UpdateGrupoPertenenciaRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nuevo nombre del grupo pertenencia a actualizar"
+          }
+        }
+      },
+      "GrupoPertenenciaResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con el grupo pertenencia"
+          },
+          "nombre":{
+            "type":"string",
+            "description":"nombre del grupo pertenencia registrado"
+          }
+        }
+      },
+      "StorePertenenciaRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nombre la pertenencia a registrar"
+          }
+        }
+      },
+      "UpdatePertenenciaRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nuevo nombre de la pertenencia a actualizar"
+          }
+        }
+      },
+      "PertenenciaResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con la pertenencia"
+          },
+          "grupo_pertenencia_id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con el grupo pertenencia"
+          },
+          "nombre":{
+            "type":"string",
+            "description":"nombre de la pertenencia registrado"
+          }
+        }
+      },
+      "StoreColorRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nombre del color a registrar"
+          }
+        }
+      },
+      "UpdateColorRequest":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nuevo nombre del color a actualizar"
+          }
+        }
+      },
+      "ColorResource":{
+        "type":"object",
+        "properties":{
+          "nombre":{
+            "type":"string",
+            "description":"nombre del color registrado"
+          }
+        }
+      },
+      "TelefonoResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con el telefono de la persona desaparecida"
+          },
+          "numero":{
+            "type":"integer",
+            "description":"numero telefonico relacionado con la persona desaparecida"
+          },
+          "observaciones":{
+            "type":"string",
+            "description":"observaciones del numero telefonico relacionado con la persona desaparecida"
+          },
+          "compania_id":{
+            "type":"integer",
+            "description":"Id del registro de la compañia relacionado con el telefono de la persona desaparecida"
+          }
+        }
+      },
+      "TelefonoRequest":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con el telefono de la persona desaparecida"
+          },
+          "numero":{
+            "type":"integer",
+            "description":"numero telefonico relacionado con la persona desaparecida"
+          },
+          "observaciones":{
+            "type":"string",
+            "description":"observaciones del numero telefonico relacionado con la persona desaparecida"
+          },
+          "compania_id":{
+            "type":"integer",
+            "description":"Id del registro de la compañia relacionado con el telefono de la persona desaparecida"
+          }
+        }
+      },
+      "EmpleadoResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con el empleado"
+          },
+          "nombre":{
+            "type":"string",
+            "description":"nombre relacionado con el empleado"
+          },
+          "apellido_paterno":{
+            "type":"string",
+            "description":"El apellido paterno relacionado con el empleado"
+          },
+          "apellido_materno":{
+            "type":"string",
+            "description":"El apellido materno relacionado con el empleado"
+          },
+          "fecha_nacimiento":{
+            "type":"integer",
+            "description":"La fecha de nacimiento relacionado con el empleado (formato YYYY-MM-DD)"
+          },
+          "puesto_id":{
+            "type":"integer",
+            "description":"Id del registro del puesto relacionado con el empleado"
+          },
+          "oficina_id":{
+            "type":"integer",
+            "description":"Id del registro de la oficina relacionado con el empleado"
+          }
+        }
+      },
+      "EmpleadoResquest":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con el empleado"
+          },
+          "nombre":{
+            "type":"string",
+            "description":"nombre relacionado con el empleado"
+          },
+          "apellido_paterno":{
+            "type":"string",
+            "description":"El apellido paterno relacionado con el empleado"
+          },
+          "apellido_materno":{
+            "type":"string",
+            "description":"El apellido materno relacionado con el empleado"
+          },
+          "fecha_nacimiento":{
+            "type":"integer",
+            "description":"La fecha de nacimiento relacionado con el empleado (formato YYYY-MM-DD)"
+          },
+          "puesto_id":{
+            "type":"integer",
+            "description":"Id del registro del puesto relacionado con el empleado"
+          },
+          "oficina_id":{
+            "type":"integer",
+            "description":"Id del registro de la oficina relacionado con el empleado"
+          }
+        }
+      },
+      "CompaniaTelefonicaResource":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con la compañia de la persona desaparecida"
+          },
+          "tipo":{
+            "type":"string",
+            "description":"nombre relacionado con la compañia de la persona desaparecida"
+          }
+        }
+      },
+      "CompaniaTelefonicaResquest":{
+        "type":"object",
+        "properties":{
+          "id":{
+            "type":"integer",
+            "description":"Id del registro relacionado con la compañia de la persona desaparecida"
+          },
+          "tipo":{
+            "type":"string",
+            "description":"nombre relacionado con la compañia de la persona desaparecida"
+          }
+        }
+      },
+      "ContactoResource":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer",
+            "description":"Id del contacto relacionado con la persona desaparecida"
+          },
+          "tipo":{
+            "type":"string",
+            "description":"Tipo del contacto de la persona"
+          },
+          "contacto":{
+            "type":"integer",
+            "description":"...."
+          },
+          "observaciones":{
+            "type":"string",
+            "description":"Observaciones del contacto de la persona"
+          }
+        }
+      },
+      "ContactoRequest":{
+        "type":"object",
+        "properties":{
+          "persona_id":{
+            "type":"integer",
+            "description":"Id del contacto relacionado con la persona desaparecida"
+          },
+          "tipo":{
+            "type":"string",
+            "description":"Tipo del contacto de la persona"
+          },
+          "contacto":{
+            "type":"integer",
+            "description":"...."
+          },
+          "observaciones":{
+            "type":"string",
+            "description":"Observaciones del contacto de la persona"
+          }
+        }
+      },
       "ContextoFamiliarResource":{
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "persona_vive":{
-            "type":"string"
+            "type":"string",
+            "description":"La persona esta viva o no"
           },
           "hijos":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cuantos hijos tiene"
           },
           "familiar_cercano":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun familiar cercano que conozca"
           },
           "familiar_violencia":{
-            "type":"string"
+            "type":"string",
+            "description":"Sufria violencia familiar"
           }
         }
       },
@@ -9709,19 +11569,24 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "persona_vive":{
-            "type":"string"
+            "type":"string",
+            "description":"La persona esta viva o no"
           },
           "hijos":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cuantos hijos tiene"
           },
           "familiar_cercano":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Algun familiar cercano que conozca?"
           },
           "familiar_violencia":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Sufria violencia familiar?"
           }
         }
       },
@@ -9729,19 +11594,24 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "persona_vive":{
-            "type":"string"
+            "type":"string",
+            "description":"La persona esta viva o no"
           },
           "hijos":{
-            "type":"integer"
+            "type":"integer",
+            "description":"¿cuantos hijos tiene?"
           },
           "familiar_cercano":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Algun familiar cercano que conozca?"
           },
           "familiar_violencia":{
-            "type":"string"
+            "type":"string",
+            "description":"¿Sufria violencia familiar?"
           }
         }
       },
@@ -9749,32 +11619,40 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"La persona esta viva o no"
           },
           "pasatiempos":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun pasatiempo que tuviera la persona desaparecida"
           },
           "club_organizacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Pertenecia a algun club o organizacion"
           },
           "estudio":{
             "type":"string",
             "example":"Si o No"
           },
           "amistades":{
-            "type":"string"
+            "type":"string",
+            "description":"Amistades que tenia"
           },
           "amistades_municipio":{
-            "type":"string"
+            "type":"string",
+            "description":"De donde eran esas amistades"
           },
           "correo_electronico":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun correo electronico"
           },
           "nombre_redes_sociales":{
-            "type":"string"
+            "type":"string",
+            "description":"como aparecia en redes sociales"
           },
           "lugares_frecuentes":{
-            "type":"string"
+            "type":"string",
+            "description":"lugares que frecuentaba"
           },
           "vivienda_estado":{
             "type":"string",
@@ -9786,32 +11664,40 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "pasatiempos":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun pasatiempo que tuviera la persona desaparecida"
           },
           "club_organizacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Pertenecia a algun club o organizacion"
           },
           "estudio":{
             "type":"string",
             "example":"Si o No"
           },
           "amistades":{
-            "type":"string"
+            "type":"string",
+            "description":"Amistades que tenia"
           },
           "amistades_municipio":{
-            "type":"string"
+            "type":"string",
+            "description":"De donde eran esas amistades"
           },
           "correo_electronico":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun correo electronico"
           },
           "nombre_redes_sociales":{
-            "type":"string"
+            "type":"string",
+            "description":"como aparecia en redes sociales"
           },
           "lugares_frecuentes":{
-            "type":"string"
+            "type":"string",
+            "description":"lugares que frecuentaba"
           },
           "vivienda_estado":{
             "type":"string",
@@ -9823,32 +11709,40 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "pasatiempos":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun pasatiempo que tuviera la persona desaparecida"
           },
           "club_organizacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Pertenecia a algun club o organizacion"
           },
           "estudio":{
             "type":"string",
             "example":"Si o No"
           },
           "amistades":{
-            "type":"string"
+            "type":"string",
+            "description":"Amistades que tenia"
           },
           "amistades_municipio":{
-            "type":"string"
+            "type":"string",
+            "description":"De donde eran esas amistades"
           },
           "correo_electronico":{
-            "type":"string"
+            "type":"string",
+            "description":"Algun correo electronico"
           },
           "nombre_redes_sociales":{
-            "type":"string"
+            "type":"string",
+            "description":"como aparecia en redes sociales"
           },
           "lugares_frecuentes":{
-            "type":"string"
+            "type":"string",
+            "description":"lugares que frecuentaba"
           },
           "vivienda_estado":{
             "type":"string",
@@ -9860,46 +11754,58 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "empresa":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de empresa o trabajo donde laboraba la persona desaparecida"
           },
           "puesto":{
-            "type":"string"
+            "type":"string",
+            "description":"que puesto ocupaba en la empresa o trabajo"
           },
           "fecha_ingreso":{
             "type":"string",
-            "format":"date"
+            "format":"date",
+            "description":"cuando inicio labores en ese trabajo "
           },
           "relacion_colegas":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"se relacionaba con sus colegas"
           },
           "conflictos_trabajo":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo problemas en el trabajo"
           },
           "cambiosFinanzas":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"hubo algun cambio notorio en las finanzas de la persona"
           },
           "deudas":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cantidad de deudas, si es que tenia"
           },
           "actividadesExtralaborales":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"tenia otras actividades aparte de su trabajo"
           },
           "emprendimientos":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"tenia algun emprendimiento o negocio propio"
           },
           "saludMental":{
-            "type":"string"
+            "type":"string",
+            "description":"como era su salud mental"
           },
           "ausenciaPrevia":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"Ya se habia ausentado antes?"
           },
           "contactosRelevantes":{
             "type":"boolean"
@@ -9914,36 +11820,45 @@
             "type":"boolean"
           },
           "sindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del sindicato al que pertenecia"
           },
           "fecha_ingreso_sindicato":{
             "type":"string",
-            "format":"date"
+            "format":"date",
+            "description":"fecha en la que ingreso al sindicato"
           },
           "idSindicato":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id del sindicato en la base de datos"
           },
           "posicionSindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"Posicion que tenia en el sindicato"
           },
           "participacion":{
             "type":"string",
             "example":"Si o No"
           },
           "relacion_sindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"como era la relacion en el sindicato"
           },
           "conflictos_sindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo algun conflicto en el sindicato"
           },
           "desacuerdos":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo desacuerdos con alguien"
           },
           "amenazasIntimidacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Fue intimidado o amenazado"
           },
           "ult_cont_sindi":{
-            "type":"string"
+            "type":"string",
+            "description":"con quien del sindicato tuvo contacto antes de su desaparición"
           }
         }
       },
@@ -9951,46 +11866,58 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "empresa":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de empresa o trabajo donde laboraba la persona desaparecida"
           },
           "puesto":{
-            "type":"string"
+            "type":"string",
+            "description":"que puesto ocupaba en la empresa o trabajo"
           },
           "fecha_ingreso":{
             "type":"string",
-            "format":"date"
+            "format":"date",
+            "description":"cuando inicio labores en ese trabajo "
           },
           "relacion_colegas":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"se relacionaba con sus colegas"
           },
           "conflictos_trabajo":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo problemas en el trabajo"
           },
           "cambiosFinanzas":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"hubo algun cambio notorio en las finanzas de la persona"
           },
           "deudas":{
-            "type":"integer"
+            "type":"integer",
+            "description":"cantidad de deudas, si es que tenia"
           },
           "actividadesExtralaborales":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"tenia otras actividades aparte de su trabajo"
           },
           "emprendimientos":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"tenia algun emprendimiento o negocio propio"
           },
           "saludMental":{
-            "type":"string"
+            "type":"string",
+            "description":"como era su salud mental"
           },
           "ausenciaPrevia":{
             "type":"string",
-            "example":"Si o No"
+            "example":"Si o No",
+            "description":"Ya se habia ausentado antes?"
           },
           "contactosRelevantes":{
             "type":"boolean"
@@ -10005,36 +11932,45 @@
             "type":"boolean"
           },
           "sindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del sindicato al que pertenecia"
           },
           "fecha_ingreso_sindicato":{
             "type":"string",
-            "format":"date"
+            "format":"date",
+            "description":"fecha en la que ingreso al sindicato"
           },
           "idSindicato":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id del sindicato en la base de datos"
           },
           "posicionSindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"Posicion que tenia en el sindicato"
           },
           "participacion":{
             "type":"string",
             "example":"Si o No"
           },
           "relacion_sindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"como era la relacion en el sindicato"
           },
           "conflictos_sindicato":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo algun conflicto en el sindicato"
           },
           "desacuerdos":{
-            "type":"string"
+            "type":"string",
+            "description":"tuvo desacuerdos con alguien"
           },
           "amenazasIntimidacion":{
-            "type":"string"
+            "type":"string",
+            "description":"Fue intimidado o amenazado"
           },
           "ult_cont_sindi":{
-            "type":"string"
+            "type":"string",
+            "description":"con quien del sindicato tuvo contacto antes de su desaparición"
           }
         }
       },
@@ -10133,22 +12069,27 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"identificador del asentamiento"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del asentamiento"
           },
           "ambito":{
             "type":"string"
           },
           "latitud":{
-            "type":"string"
+            "type":"string",
+            "description":"latitud a la que se encuentra"
           },
           "longitud":{
-            "type":"string"
+            "type":"string",
+            "description":"longitud que tiene"
           },
           "altitud":{
-            "type":"string"
+            "type":"string",
+            "description":"altitud a la que esta ubicado"
           }
         }
       },
@@ -10156,19 +12097,24 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el estado"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del estado"
           },
           "abreviatura_inegi":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que le da el inegi al nombre del estado"
           },
           "abreviatura_cebv":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que le da la cebv al nombre del estado"
           },
           "municipios_count":{
-            "type":"string"
+            "type":"string",
+            "description":"municipios que contiene ese estado"
           }
         }
       },
@@ -10176,16 +12122,20 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica una zona"
           },
           "estado_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id del estado relacionado a ese municipio"
           },
           "estado_nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del estado"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del municipio"
           }
         }
       },
@@ -10193,10 +12143,12 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una zona"
           },
           "abreviatura":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que se le da a esa zona"
           }
         }
       },
@@ -10204,13 +12156,16 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica una zona"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una zona"
           },
           "abreviatura":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que se le da a esa zona"
           }
         }
       },
@@ -10218,35 +12173,44 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica la direccion en la base de datos"
           },
           "asentamiento_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id de asentamiento relacionado a la direccion"
           },
           "calle":{
-            "type":"string"
-          }
-          ,
+            "type":"string",
+            "description":"nombre de la calle"
+          },
           "numero_exterior":{
-            "type":"string"
+            "type":"string",
+            "description":"numero exterior donde se encuentra la casa"
           },
           "numero_interior":{
-            "type":"string"
+            "type":"string",
+            "description":"nuemro interior que identifica la direccion"
           },
           "calle_1":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una de las calle entre las que esta"
           },
           "calle_2":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una segunda calle entre las que esta"
           },
           "tramo_carretero":{
-            "type":"string"
+            "type":"string",
+            "description":"En caso de estar sobre carretera dar el kilometro por el que se localiza"
           },
           "codigo_postal":{
-            "type":"string"
+            "type":"string",
+            "description":"codigo postal del lugar"
           },
           "referencia":{
-            "type":"string"
+            "type":"string",
+            "description":"Alguna referencia que haga mas facil ubicar la direccion"
           }
         }
       },
@@ -10254,32 +12218,41 @@
         "type":"object",
         "properties":{
           "asentamiento_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id de asentamiento relacionado a la direccion"
           },
           "calle":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de la calle"
           }
           ,
           "numero_exterior":{
-            "type":"string"
+            "type":"string",
+            "description":"numero exterior donde se encuentra la casa"
           },
           "numero_interior":{
-            "type":"string"
+            "type":"string",
+            "description":"nuemro interior que identifica la direccion"
           },
           "calle_1":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una de las calle entre las que esta"
           },
           "calle_2":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de una segunda calle entre las que esta"
           },
           "tramo_carretero":{
-            "type":"string"
+            "type":"string",
+            "description":"En caso de estar sobre carretera dar el kilometro por el que se localiza"
           },
           "codigo_postal":{
-            "type":"string"
+            "type":"string",
+            "description":"codigo postal del lugar"
           },
           "referencia":{
-            "type":"string"
+            "type":"string",
+            "description":"Alguna referencia que haga mas facil ubicar la direccion"
           }
         }
       },
@@ -10287,7 +12260,8 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de la institucion a registrar"
           }
         }
       },
@@ -10295,10 +12269,12 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica a la institucion en la base de datos"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre de la institucion a registrar"
           }
         }
       },
@@ -10306,7 +12282,8 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del area a registrar"
           }
         }
       },
@@ -10314,10 +12291,12 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica a el area en la base de datos"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del area a registrar"
           }
         }
       },
@@ -10325,19 +12304,24 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id de la persona a la que se le asignara el folio"
           },
           "reporte_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id del reporte relaizado y que se relaciona a la persona desaparecida"
           },
           "user_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica a la persona que esta trabajando en el reporte y la generacion del reporte"
           },
           "folio_cebv":{
-            "type":"string"
+            "type":"string",
+            "description":"Folio de busqueda de la CEBV"
           },
           "folio_fub":{
-            "type":"string"
+            "type":"string",
+            "description":"Folio unico de busqueda"
           }
         }
       },
@@ -10345,22 +12329,28 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica al folio"
           },
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id de la persona a la que se le asignara el folio"
           },
           "reporte_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id del reporte relaizado y que se relaciona a la persona desaparecida"
           },
           "user_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica a la persona que esta trabajando en el reporte y la generacion del reporte"
           },
           "folio_cebv":{
-            "type":"string"
+            "type":"string",
+            "description":"Folio de busqueda de la CEBV"
           },
           "folio_fub":{
-            "type":"string"
+            "type":"string",
+            "description":"Folio unico de busqueda"
           }
         }
       },
@@ -10368,7 +12358,8 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"tipo de parentesco con la persona desaparecida"
           }
         }
       },
@@ -10376,10 +12367,12 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica al parentesco en la base de datos"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"tipo de parentesco con la persona desaparecida"
           }
         }
       },
@@ -10387,10 +12380,12 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"estatus de la persona que se busca"
           },
           "abreviatura":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que se le da al estatus"
           }
         }
       },
@@ -10398,13 +12393,16 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica al estaus de la persona en la base de datos"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"estatus de la persona que se busca"
           },
           "abreviatura":{
-            "type":"string"
+            "type":"string",
+            "description":"abreviatura que se le da al estatus"
           }
         }
       },
@@ -10412,22 +12410,28 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "religion_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la religion seleccionada en la base de datos"
           },
           "lengua_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la lengua seleccionada en la base de datos"
           },
           "grupo_etnico_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica al grupo etnico seleccionado en la base de datos"
           },
           "vestimenta_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la vestimenta seleccionada en la base de datos"
           },
           "ascendencia_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la ascendencia seleccionada en la base de datos"
           }
         }
       },
@@ -10435,22 +12439,28 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "religion_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la religion seleccionada en la base de datos"
           },
           "lengua_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la lengua seleccionada en la base de datos"
           },
           "grupo_etnico_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica al grupo etnico seleccionado en la base de datos"
           },
           "vestimenta_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la vestimenta seleccionada en la base de datos"
           },
           "ascendencia_id":{
-            "type":"string"
+            "type":"integer",
+            "description":"id que identifica a la ascendencia seleccionada en la base de datos"
           }
         }
       },
@@ -10458,22 +12468,28 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"muestra el id de la persona a la que se le asignan los datos de etnia"
           },
           "religion":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra la religion en lugar de su id"
           },
           "lengua":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra la lengua en lugar de su id"
           },
           "grupo_etnico":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra el grupo etnico en lugar de su id"
           },
           "vestimenta":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra la vestimenta en lugar de su id"
           },
           "ascendencia":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra la ascendencia en lugar de su id"
           }
         }
       },
@@ -10481,34 +12497,44 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "color_cabello_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el color de cabello en la base de datos"
           },
           "color_ojos_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el color de ojos en la base de datos"
           },
           "tamano_ojos_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tamaño de ojos en la base de datos"
           },
           "color_piel_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el color de piel en la base de datos"
           },
           "tipo_cabello_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tipo de cabello en la base de datos"
           },
           "Tipo_labios_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tipo de labios en la base de datos"
           },
           "tipo_nariz_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tipo de nariz en la base de datos"
           },
-          "taamano_orejas_id":{
-            "type":"integer"
+          "tamano_orejas_id":{
+            "type":"integer",
+            "description":"id que identifica el tamaño de orejas en la base de datos"
           },
           "complexion_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica la complexion en la base de datos"
           }
         }
       },
@@ -10516,34 +12542,44 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona realacionada"
           },
           "color_cabello_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el color de cabello en la base de datos"
           },
           "color_ojos_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el color de ojos en la base de datos"
           },
           "tamano_ojos_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tamaño de ojos en la base de datos"
           },
           "color_piel_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el color de piel en la base de datos"
           },
           "tipo_cabello_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tipo de cabello en la base de datos"
           },
           "Tipo_labios_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tipo de labios en la base de datos"
           },
           "tipo_nariz_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica el tipo de nariz en la base de datos"
           },
-          "taamano_orejas_id":{
-            "type":"integer"
+          "tamano_orejas_id":{
+            "type":"integer",
+            "description":"id que identifica el tamaño de orejas en la base de datos"
           },
           "complexion_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica la complexion en la base de datos"
           }
         }
       },
@@ -10551,34 +12587,44 @@
         "type":"object",
         "properties":{
           "persona_id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"Id de la persona relacionada"
           },
           "color_ojos":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del color de ojos que esta en la base de datos"
           },
           "tamano_ojos":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del tamaño de ojos que esta en la base de datos"
           },
           "color_cabello":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del color de cabello que esta en la base de datos"
           },
           "color_piel":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del color de piel que esta en la base de datos"
           },
           "tipo_cabello":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del tipo de cabello que esta en la base de datos"
           },
           "Tipo_labios":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del tipo de labios que esta en la base de datos"
           },
           "tipo_nariz":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor del tipo de nariz que esta en la base de datos"
           },
-          "taamano_orejas":{
-            "type":"string"
+          "tamano_orejas":{
+            "type":"string",
+            "description":"muestra valor de el tamaño de orejas que esta en la base de datos"
           },
           "complexion":{
-            "type":"string"
+            "type":"string",
+            "description":"muestra valor de la complexion que esta en la base de datos"
           }
         }
       },
@@ -10586,7 +12632,8 @@
         "type":"object",
         "properties":{
           "religion":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre de la religion de la persona"
           }
         }
       },
@@ -10594,7 +12641,8 @@
         "type":"object",
         "properties":{
           "lengua":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de lengua que habla la persona"
           }
         }
       },
@@ -10602,7 +12650,8 @@
         "type":"object",
         "properties":{
           "grupoetnico":{
-            "type":"string"
+            "type":"string",
+            "description": "Grupo etnico al cual la persona pertene"
           }
         }
       },
@@ -10610,7 +12659,8 @@
         "type":"object",
         "properties":{
           "vestimenta":{
-            "type":"string"
+            "type":"string",
+            "description": "Vestimenta la cual llevaba la persona"
           }
         }
       },
@@ -10618,7 +12668,8 @@
         "type":"object",
         "properties":{
           "ascendencia":{
-            "type":"string"
+            "type":"string",
+            "description": "Tipo de ascendencia de la persona"
           }
         }
       },
@@ -10626,7 +12677,8 @@
         "type":"object",
         "properties":{
           "color":{
-            "type":"string"
+            "type":"string",
+            "description": "Color de ojos de la persona"
           }
         }
       },
@@ -10634,7 +12686,8 @@
         "type":"object",
         "properties":{
           "tamano":{
-            "type":"string"
+            "type":"string",
+            "description": "Medida del tamaño de los ojos de la persona"
           }
         }
       },
@@ -10642,7 +12695,8 @@
         "type":"object",
         "properties":{
           "colorcabellos":{
-            "type":"string"
+            "type":"string",
+            "description": "Color de cabello de la persona"
           }
         }
       },
@@ -10650,7 +12704,8 @@
         "type":"object",
         "properties":{
           "colorpiel":{
-            "type":"string"
+            "type":"string",
+            "description": "Color de piel de la persona"
           }
         }
       },
@@ -10658,7 +12713,8 @@
         "type":"object",
         "properties":{
           "tipocabello":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de cabello de la persona"
           }
         }
       },
@@ -10666,7 +12722,8 @@
         "type":"object",
         "properties":{
           "tipolabios":{
-            "type":"string"
+            "type":"string",
+            "description": "Medida del tamaño de los labios de la persona"
           }
         }
       },
@@ -10674,7 +12731,8 @@
         "type":"object",
         "properties":{
           "tiponariz":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de nariz de la persona"
           }
         }
       },
@@ -10682,7 +12740,8 @@
         "type":"object",
         "properties":{
           "tamanoorejas":{
-            "type":"string"
+            "type":"string",
+            "description": "Medida del tamaño de las orejas de la persona"
           }
         }
       },
@@ -10690,7 +12749,8 @@
         "type":"object",
         "properties":{
           "complexion":{
-            "type":"string"
+            "type":"string",
+            "description": "Nombre del tipo de complexion de la persona"
           }
         }
       },
@@ -10698,10 +12758,12 @@
         "type":"object",
         "properties":{
           "id":{
-            "type":"integer"
+            "type":"integer",
+            "description":"id que identifica al tipo de reporte seleccionado"
           },
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del tipo de reporte "
           }
         }
       },
@@ -10709,7 +12771,8 @@
         "type":"object",
         "properties":{
           "nombre":{
-            "type":"string"
+            "type":"string",
+            "description":"nombre del tipo de reporte "
           }
         }
       },
@@ -11320,28 +13383,36 @@
         "type": "object",
         "properties": {
           "persona_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"Id de la persona relacionada"
           },
           "region_cuerpo_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica a la region del cuerpo en la base de datos"
           },
           "vista_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica a la vista del cuerpo en la base de datos"
           },
           "lado_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica al lado del cuerpo en la base de datos"
           },
           "tipo_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica al tipo del cuerpo en la base de datos"
           },
           "cantidad": {
-            "type": "integer"
+            "type": "integer",
+            "description":"cantidad de señas que tiene la persona"
           },
           "descripcion": {
-            "type": "string"
+            "type": "string",
+            "description":"descripcion de la seña"
           },
           "foto": {
-            "type": "string"
+            "type": "string",
+            "description":"foto de la seña identificada"
           }
         }
       },
@@ -11349,28 +13420,36 @@
         "type": "object",
         "properties": {
           "persona_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"Id de la persona relacionada"
           },
           "region_cuerpo_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica a la region del cuerpo en la base de datos"
           },
           "vista_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica a la vista del cuerpo en la base de datos"
           },
           "lado_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica al lado del cuerpo en la base de datos"
           },
           "tipo_id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica al tipo del cuerpo en la base de datos"
           },
           "cantidad": {
-            "type": "integer"
+            "type": "integer",
+            "description":"cantidad de señas que tiene la persona"
           },
           "descripcion": {
-            "type": "string"
+            "type": "string",
+            "description":"descripcion de la seña"
           },
           "foto": {
-            "type": "string"
+            "type": "string",
+            "description":"foto de la seña identificada"
           }
         }
       },
@@ -11378,10 +13457,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica la region del cuerpo"
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description":"nombre de la region del cuerpo"
           }
         }
       },
@@ -11389,10 +13470,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica el tipo de seña"
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description":"nombre del tipo de seña"
           }
         }
       },
@@ -11400,10 +13483,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica la vista del cuerpo"
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description":"nombre de la vista del cuerpo"
           }
         }
       },
@@ -11411,10 +13496,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "description":"id que identifica el lado del cuerpo"
           },
           "nombre": {
-            "type": "string"
+            "type": "string",
+            "description":"nombre del lado del cuerpo"
           }
         }
       },

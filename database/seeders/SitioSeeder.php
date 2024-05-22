@@ -9,8 +9,6 @@ class SitioSeeder extends Seeder
 {
     public function run(): void
     {
-
-
         $sitios = [
             "Anexo",
             "Albergue",

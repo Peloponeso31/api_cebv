@@ -26,11 +26,11 @@ class Empleado extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function Oficina():BelongsTo{
+    public function oficina():BelongsTo{
         return $this->belongsTo(Oficina::class);
     }
 
-    public function Puesto():BelongsTo{
+    public function puesto():BelongsTo{
         return $this->belongsTo(Puesto::class);
     }
 }

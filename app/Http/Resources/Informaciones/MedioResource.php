@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Informaciones;
 
 use App\Http\Resources\Reportes\ReporteResource;
+use App\Models\Informaciones\Medio;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,7 +14,7 @@ class MedioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tipo_medio_id' => $this->tipo_medio_id,
+            'tipo_medio' => TipoMedioResource::make($this->tipoMedio),
             'nombre' => $this->nombre,
         ];
     }

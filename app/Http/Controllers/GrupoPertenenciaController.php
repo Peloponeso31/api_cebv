@@ -6,14 +6,29 @@ use App\Http\Requests\StoreGrupoPertenenciaRequest;
 use App\Http\Requests\UpdateGrupoPertenenciaRequest;
 use App\Http\Resources\GrupoPertenenciaResource;
 use App\Models\GrupoPertenencia;
+use App\Services\CrudService;
 use Request;
 
 class GrupoPertenenciaController extends Controller
 {
-    
+    protected CrudService $service;
+    protected GrupoPertenencia $model;
+
+    public function __construct(CrudService $service, GrupoPertenencia $model)
+    {
+        $this->service = $service;
+        $this->model = $model;
+    }
+
     public function index()
     {
-        return GrupoPertenenciaResource::collection(GrupoPertenencia::all());
+        $query = $this->model::query();
+
+        if (request()->has('search')) {
+            $query = $this->model::search(request('search'));
+        }
+
+        return GrupoPertenenciaResource::collection($query->get());
     }
 
     

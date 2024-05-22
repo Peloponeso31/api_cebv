@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\CompaniaTelefonica;
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,10 +20,11 @@ class TelefonoFactory extends Factory
     public function definition(): array
     {
         return [
-            "observaciones" => fake() -> text(),
+            'persona_id' => Persona::inRandomOrder()->first()->id,
+            "observaciones" => fake()->text(),
             "numero" => fake()->phoneNumber(),
             "compania_id" => CompaniaTelefonica::inRandomOrder()->first()->id,
         ];
-       
+
     }
 }

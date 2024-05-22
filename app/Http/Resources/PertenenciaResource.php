@@ -11,6 +11,8 @@ class PertenenciaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
+            'grupo_pertenencia_id' => $this->grupo_pertenencia_id,
             'nombre' => $this-> nombre,
         ];
     }

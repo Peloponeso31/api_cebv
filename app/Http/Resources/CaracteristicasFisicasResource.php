@@ -25,6 +25,7 @@ class CaracteristicasFisicasResource extends JsonResource
             "tipo_nariz"=>$this->tipo_nariz->tipo,
             "tipo_orejas"=>$this->tamano_orejas->tamano,
             "complexion"=>$this->complexion->complexion,
+            "estatura"=>$this->estatura->estatura,
         ];
     }
 }

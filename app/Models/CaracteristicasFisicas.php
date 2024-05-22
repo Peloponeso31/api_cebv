@@ -26,11 +26,11 @@ class CaracteristicasFisicas extends Model
         "color_ojos_id",
         "tamano_ojos_id",
         "color_piel_id",
+        "tipo_cabello_id",
         "tipo_labios_id",
         "tipo_nariz_id",
         "tamano_orejas_id",
         "complexion_id"
-        
     ];
 
         public function persona():BelongsTo{

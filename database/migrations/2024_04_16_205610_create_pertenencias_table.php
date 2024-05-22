@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pertenencias', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('grupo_pertenencia_id');
             $table->string('nombre');
             $table->timestamps();
         });

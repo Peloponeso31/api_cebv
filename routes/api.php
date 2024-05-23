@@ -4,9 +4,13 @@ use App\Http\Controllers\ApodoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\NacionalidadController;
+use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Http\Controllers\TipoVehiculoController;
+use App\Http\Controllers\UsoVehiculoController;
 use App\Models\MarcaVehiculo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -214,9 +218,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource("/ascendencia", AscendenciaController::class);
 
     /**
-     * Routes for Vehiculos module
+     * Routes for señas particulares module
      */
-    Route::apiResource('/marcas-vehiculos', MarcaVehiculo::class);
     Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
     Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
     Route::apiResource("/pertenencia", PertenenciaController::class);
@@ -227,6 +230,16 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource("/colorvello", ColorVelloFacialController::class);
     Route::apiResource("/cortevello", CorteVelloFacialController::class);
     Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
+
+    /**
+     * Routes for the Vehiculos module
+     */
+
+    Route::apiResource('/marcas-vehiculos', MarcaVehiculoController::class);
+    Route::apiResource('/tipos-vehiculos', TipoVehiculoController::class);
+    Route::apiResource('/usos-vehiculos', UsoVehiculoController::class);
+    Route::apiResource('/relaciones-vehiculos', RelacionVehiculoController::class);
+
 });
 
 Route::controller(AuthController::class)->group(function () {

@@ -277,8 +277,8 @@ class CatalogosSeeder extends Seeder
             ["color" => "NO ESPECIFICA"],
 
         ]);
-      
-        \App\Models\Catalogos\TipoCabello::insert([
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoCabello::insert([
             ["tipocabello" => "AFRO"],
             ["tipocabello" => "CHINO"],
             ["tipocabello" => "CRESPO"],
@@ -686,7 +686,7 @@ class CatalogosSeeder extends Seeder
             ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "UÑAS POSTIZAS"],
             ["grupo_pertenencia" => "OTRO", "pertenencia" => "NO ESPECIFICA"],
             ["grupo_pertenencia" => "OTRO", "pertenencia" => "OTRO"],
-            
+
         ]); */
     }
 }

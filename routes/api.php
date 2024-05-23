@@ -4,9 +4,14 @@ use App\Http\Controllers\ApodoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\NacionalidadController;
+use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Http\Controllers\TipoVehiculoController;
+use App\Http\Controllers\UsoVehiculoController;
+use App\Models\MarcaVehiculo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -177,7 +182,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/direcciones', DireccionController::class);
     Route::apiResource('/zonas-estados', ZonaEstadoController::class);
     Route::apiResource('/senas_particulares', SenasParticularesController::class);
-    
+
     Route::post('/bulk_insert/senas_particulares', [SenasParticularesController::class, 'bulkStore']);
     Route::delete('/bulk_delete/senas_particulares', [SenasParticularesController::class, 'bulkDelete']);
     Route::get('/sena/persona/{persona_id}', [SenasParticularesController::class, 'SenaPersona']);
@@ -211,6 +216,10 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);
+
+    /**
+     * Routes for señas particulares module
+     */
     Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
     Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
     Route::apiResource("/pertenencia", PertenenciaController::class);
@@ -221,6 +230,16 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource("/colorvello", ColorVelloFacialController::class);
     Route::apiResource("/cortevello", CorteVelloFacialController::class);
     Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
+
+    /**
+     * Routes for the Vehiculos module
+     */
+
+    Route::apiResource('/marcas-vehiculos', MarcaVehiculoController::class);
+    Route::apiResource('/tipos-vehiculos', TipoVehiculoController::class);
+    Route::apiResource('/usos-vehiculos', UsoVehiculoController::class);
+    Route::apiResource('/relaciones-vehiculos', RelacionVehiculoController::class);
+
 });
 
 Route::controller(AuthController::class)->group(function () {

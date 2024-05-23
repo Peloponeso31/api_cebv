@@ -279,14 +279,14 @@ class CatalogosSeeder extends Seeder
 
         ]);
         \App\Models\Catalogos\TipoCabello::insert([
-            ["tipocabello" => "AFRO"],
-            ["tipocabello" => "CHINO"],
-            ["tipocabello" => "CRESPO"],
-            ["tipocabello" => "LACIO"],
-            ["tipocabello" => "ONDULADO"],
-            ["tipocabello" => "RIZADO"],
-            ["tipocabello" => "SEMIONDULADO"],
-            ["tipocabello" => "NO ESPECIFICA"]
+            ["tipo" => "AFRO"],
+            ["tipo" => "CHINO"],
+            ["tipo" => "CRESPO"],
+            ["tipo" => "LACIO"],
+            ["tipo" => "ONDULADO"],
+            ["tipo" => "RIZADO"],
+            ["tipo" => "SEMIONDULADO"],
+            ["tipo" => "NO ESPECIFICA"]
 
         ]);
 

@@ -14,7 +14,7 @@ html, body {
             padding: 0;
             height: 100%;
             width: 100%;
-            background-image: url("{{ public_path('reportes/boletin_BI/Edit_Busqueda Inmediata.png') }}");
+            background-image: url("{{ public_path('reportes/boletin_LD/Boletín Larga Data.png') }}");
             background-repeat: no-repeat;
             background-position: center center;
         }
@@ -27,10 +27,10 @@ html, body {
 
 
      th, td{
-            border: 1px white;
+            border: 1px transparent;
             padding: 0px;
             text-align: left;
-            font-size: 3em;
+            font-size: 3.1em;
     }
     
 
@@ -45,10 +45,6 @@ html, body {
     .img{
         image-orientation:initial;
         
-    }
-
-    .txt{
-        color: transparent;
     }
 
     h1{
@@ -88,15 +84,8 @@ html, body {
         <col width="80%">
         <col width="20%">
       </colgroup>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-      
     <th rowspan="2"></th>
-    <th class="montserrat-alternates-extrabold"><h2>
+    <th class="montserjrat-alternates-extrabold"><h2>
         {{ $desaparecido->persona->nombre }}
         {{ $desaparecido->persona->apellido_paterno }}
         {{ $desaparecido->persona->apellido_materno }}
@@ -117,10 +106,15 @@ html, body {
                 {{ $desaparecido->persona->fecha_nacimiento_legible() }}
             </td>  
             </tr>
-            <tr>
-            <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">ESTATURA:</h3>  {{ $desaparecido->persona->estatura }} </td> 
-            </tr> 
-            <tr>
+
+            @isset($desaparecido->persona->estatura)
+                <tr>
+                <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">ESTATURA:</h3>  
+                    {{ $desaparecido->persona->estatura }} </td> 
+                </tr> 
+                <tr>
+            @endisset
+
             <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">COLOR DE OJOS:</h3> {{ $desaparecido->persona->caracteristicasfisicas->color_ojos->color }} </td>
             </tr>   
             <tr>
@@ -137,31 +131,12 @@ html, body {
             </tr>
     </tr>
     <tr>
-        <th colspan="2"><h3 class="montserrat-alternates-extrabold">SEÑAS PARTICULARES:</h3></th>
+        <th class="montserrat-alternates-regular" colspan="2"><h3 class="montserrat-alternates-extrabold">SEÑAS PARTICULARES:</h3></th>
     </tr>
     <tr>
-        <td class="montserrat-alternates-regular" colspan="2">Requiere trtamiento médico especializado. Cicatriz en la pierna derecha, lunar en el pecho, tatuaje en mano derecha,<br> pieza dental  frontal inferior fracturada.</td>
+        <td class="montserrat-alternates-regular" colspan="2">Requiere trtamiento médico especializado. Cicatriz en la pierna derecha, lunar en el pecho, tatuaje en mano derecha, pieza  <br> dental  frontal inferior fracturada.</td>
     </tr>
-    <tr>
-        <td class="desc-nula">.</td>
-    </tr>
-    <tr>
-        <td class="desc-nula">.</td>
-    </tr>
-    <tr>
-        <td class="desc-nula">.</td>
-    </tr>
-    <tr>
-        <td class="desc-nula">.</td>
-    </tr>
-    <tr>
-        <td class="desc-nula">.</td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular" class="desc-vulnerabilidad">Se considera que la integridad fisica de la persona puede encontrarse<br> en riesgo, toda vez que pueda ser victima de la comisión de un delito. <br>
-            <br>La búsqueda de una persona puede generar información confusa, para<br> acceder a información fidedigna, favor de referirse a los canales <br>oficiales.</td>
-           
-    </tr>
+      
 </table>
 </body>
 </html>

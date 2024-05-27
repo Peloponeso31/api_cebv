@@ -2,47 +2,40 @@
 
 namespace App\Models\Reportes;
 
-use App\Models\Persona;
+use App\Models\Informaciones\Medio;
+use App\Models\Oficialidades\Area;
+use App\Models\Oficialidades\Folio;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
-use App\Models\Reportes\Informacion\Area;
-use App\Models\Reportes\Informacion\HechoDesaparicion;
-use App\Models\Reportes\Informacion\Medio;
-use App\Models\Ubicaciones\Direccion;
+use App\Models\Reportes\Hipotesis\TipoHipotesis;
+use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Models\Reportes\Relaciones\Reportante;
+use App\Models\Ubicaciones\ZonaEstado;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Carbon;
 
 class Reporte extends Model
 {
-    use Searchable;
+    use HasFactory, Searchable;
 
     protected $table = 'reportes';
 
     protected $fillable = [
         'tipo_reporte_id',
-        'area_id',
-        'medio_id',
-        'direccion_id',
-        'zona_estado',
+        'area_atiende_id',
+        'medio_conocimiento_id',
+        'zona_estado_id',
+        'hipotesis_oficial_id',
         'tipo_desaparicion',
-        'estatus',
-        'fecha_desaparicion',
-        'fecha_percato',
-        'folio', // TODO Remove this field
+        'fecha_localizacion',
+        'sintesis_localizacion',
+        'clasificacion_persona',
     ];
-
-    /**
-     * The personas that belong to the reporte.
-     *
-     * @return BelongsToMany
-     */
-    public function personas(): BelongsToMany
-    {
-        return $this->belongsToMany(Persona::class);
-    }
 
     /**
      * Get the tipo de reporte that owns the reporte.
@@ -59,9 +52,9 @@ class Reporte extends Model
      *
      * @return BelongsTo
      */
-    public function area(): BelongsTo
+    public function areaAtiende(): BelongsTo
     {
-        return $this->belongsTo(Area::class, 'area_id');
+        return $this->belongsTo(Area::class, 'area_atiende_id');
     }
 
     /**
@@ -69,55 +62,67 @@ class Reporte extends Model
      *
      * @return BelongsTo
      */
-    public function medio(): BelongsTo
+    public function medioConocimiento(): BelongsTo
     {
-        return $this->belongsTo(Medio::class, 'medio_id');
+        return $this->belongsTo(Medio::class, 'medio_conocimiento_id');
     }
 
     /**
-     * Get the direccion that owns the reporte.
+     * Get the zona del estado that owns the reporte.
      *
      * @return BelongsTo
      */
-    public function direccion(): BelongsTo
+    public function zonaEstado(): BelongsTo
     {
-        return $this->belongsTo(Direccion::class, 'direccion_id');
+        return $this->belongsTo(ZonaEstado::class, 'zona_estado_id', 'idx_reportes_zona_estado');
     }
 
-    /**
-     * Get the hecho de desaparicion associated with the reporte.
-     *
-     * @return HasOne
-     */
-    public function hechoDesaparicion(): HasOne
+    public function hipotesisOficial(): BelongsTo
     {
-        return $this->hasOne(HechoDesaparicion::class);
+        return $this->belongsTo(TipoHipotesis::class, 'hipotesis_oficial_id', 'idx_reportes_hipotesis_oficial');
     }
 
-    /**
-     * Get the hipotesis associated with the reporte.
-     *
-     * @return HasOne
-     */
+    public function reportantes(): HasMany
+    {
+        return $this->hasMany(Reportante::class, 'reporte_id');
+    }
+
+    public function desaparecidos(): HasMany
+    {
+        return $this->hasMany(Desaparecido::class, 'reporte_id');
+    }
+
+    public function folios(): HasMany
+    {
+        return $this->hasMany(Folio::class, 'reporte_id');
+    }
+
+    public function hechosDesapariciones(): HasMany
+    {
+        return $this->hasMany(HechoDesaparicion::class, 'reporte_id');
+    }
+
     public function hipotesis(): HasMany
     {
-        return $this->hasMany(Hipotesis::class);
+        return $this->hasMany(Hipotesis::class, 'reporte_id');
     }
 
-    public function toSearchableArray()
+    /**
+     * @return array
+     */
+    public function toSearchableArray(): array
     {
         return [
             'id' => $this->id,
-            'tipo_reporte_id' => $this->tipo_reporte_id,
-            'area_id' => $this->area_id,
-            'medio_id' => $this->medio_id,
-            'direccion_id' => $this->direccion_id,
-            'zona_estado' => $this->zona_estado,
+            'tipo_reporte_id' => $this->tipoReporte,
+            'area_atiende_id' => $this->areaAtiende,
+            'medio_conocimiento_id' => $this->medioConocimiento,
+            'zona_estado_id' => $this->zonaEstado,
+            'hipotesis_oficial_id' => $this->hipotesisOficial,
             'tipo_desaparicion' => $this->tipo_desaparicion,
-            'estatus' => $this->estatus,
-            'fecha_desaparicion' => $this->fecha_desaparicion,
-            'fecha_percato' => $this->fecha_percato,
-            'folio' => $this->folio,
+            'fecha_localizacion' => $this->fecha_localizacion,
+            'sintesis_localizacion' => $this->sintesis_localizacion,
+            'clasificacion_persona' => $this->clasificacion_persona,
         ];
     }
 }

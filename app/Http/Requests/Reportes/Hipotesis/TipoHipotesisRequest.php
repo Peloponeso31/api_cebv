@@ -10,7 +10,7 @@ class TipoHipotesisRequest extends FormRequest
     {
         return match ($this->method()) {
             'POST', 'PUT' => [
-                'circunstancia_id' => ['required', 'exists:circunstancias,id'],
+                'circunstancia_id' => ['required', 'exists:circunstancias,id','integer'],
                 'abreviatura' => ['required', 'string', 'max:10'],
                 'descripcion' => ['required', 'string', 'max:255'],
             ],

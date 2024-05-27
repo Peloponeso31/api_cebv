@@ -6,60 +6,47 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Ubicaciones\DireccionRequest;
 use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Models\Ubicaciones\Direccion;
+use App\Services\CrudService;
 
 class DireccionController extends Controller
 {
-    public function __construct()
+    protected CrudService $service;
+    protected Direccion $model;
+
+    public function __construct(CrudService $service, Direccion $model)
     {
-        /**
-         * Permisos para el controlador DireccionController a
-         * través del middleware y roles de Spatie
-         */
-        //$this->middleware('role:guest_test|user_test|admin_test')->only('index', 'show');
-        //$this->middleware('role:user_test|admin_test')->only('store', 'update');
-        //$this->middleware('role:admin_test')->only('destroy');
-
-        /**
-         * Permisos para el controlador DireccionController a
-         * través del middleware y permisos de Spatie
-         */
-        //$this->middleware('permission:read_test')->only('index', 'show');
-        //$this->middleware('permission:create_test')->only('store');
-        //$this->middleware('permission:update_test')->only('update');
-        //$this->middleware('permission:delete_test')->only('destroy');
+        $this->service = $service;
+        $this->model = $model;
     }
-
 
     public function index()
     {
-        $query = Direccion::query();
+        $query = $this->model::query();
 
         if (request()->has('search')) {
-            $query = Direccion::search(request('search'));
+            $query = $this->model::search(request('search'));
         }
 
-        return DireccionResource::collection($query->paginate());
+        return DireccionResource::collection($query->get());
     }
 
     public function store(DireccionRequest $request)
     {
-        return Direccion::create($request->all());
+        return $this->service->store($request, $this->model, new DireccionResource($this->model::class));
     }
 
     public function show($id)
     {
-        return Direccion::findOrFail($id);
+        return $this->service->show($id, $this->model, new DireccionResource($this->model::class));
     }
 
     public function update($id, DireccionRequest $request)
     {
-        $direccion = Direccion::findOrFail($id);
-
-        return $direccion->update($request->all());
+        return $this->service->update($id, $request, $this->model, new DireccionResource($this->model::class));
     }
 
     public function destroy($id)
     {
-         return Direccion::findOrFail($id)->delete();
+        return $this->service->destroy($id, $this->model);
     }
 }

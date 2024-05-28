@@ -14,6 +14,12 @@ class UserAdminResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+         return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'status' => $this->status,
+            // Agrega cualquier otro campo que desees incluir en la respuesta
+        ];
     }
 }

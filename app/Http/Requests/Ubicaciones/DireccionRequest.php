@@ -23,13 +23,13 @@ class DireccionRequest extends FormRequest
             default => [
                 'asentamiento_id' => ['sometimes','exists:asentamientos,id', 'max:9'],
                 'calle' => ['sometimes', 'string', 'max:255'],
-                'numero_exterior' => ['sometimes', 'nullable', 'string', 'max:10'],
-                'numero_interior' => ['sometimes', 'nullable', 'string', 'max:10'],
-                'calle_1' => ['sometimes', 'nullable', 'string', 'max:255'],
-                'calle_2' => ['sometimes', 'nullable', 'string', 'max:255'],
-                'tramo_carretero' => ['sometimes', 'nullable', 'string', 'max:100'],
-                'codigo_postal' => ['sometimes', 'nullable', 'string', 'max:5'],
-                'referencia' => ['sometimes', 'nullable', 'string'],
+                'numero_exterior' => ['sometimes', 'string', 'max:10'],
+                'numero_interior' => ['sometimes', 'string', 'max:10'],
+                'calle_1' => ['sometimes', 'string', 'max:255'],
+                'calle_2' => ['sometimes', 'string', 'max:255'],
+                'tramo_carretero' => ['sometimes', 'string', 'max:100'],
+                'codigo_postal' => ['sometimes', 'string', 'max:5'],
+                'referencia' => ['sometimes', 'string'],
             ]
         };
     }

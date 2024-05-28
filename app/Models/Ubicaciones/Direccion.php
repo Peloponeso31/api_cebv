@@ -2,10 +2,12 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
@@ -47,6 +49,11 @@ class Direccion extends Model
     public function reportes(): HasMany
     {
         return $this->hasMany(Reporte::class);
+    }
+
+    public function personas(): BelongsToMany
+    {
+        return $this->belongsToMany(Persona::class, 'domicilios');
     }
 
     public function toSearchableArray()

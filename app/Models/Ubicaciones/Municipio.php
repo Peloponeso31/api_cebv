@@ -2,6 +2,7 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -53,12 +54,15 @@ class Municipio extends Model
         return $this->hasMany(Asentamiento::class);
     }
 
+    public function desaparecidos(): HasMany
+    {
+        return $this->hasMany(Desaparecido::class);
+    }
+
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
             'estado_id' => $this->estado_id,
-            'nombre' => $this->nombre,
         ];
     }
 }

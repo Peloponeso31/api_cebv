@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Reportes;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ReporteRequest extends FormRequest
 {
@@ -10,29 +11,29 @@ class ReporteRequest extends FormRequest
     {
         return match ($this->method()) {
             'POST', 'PUT' => [
-                'tipo_reporte_id' => ['required', 'exists:tipos_reportes,id'],
-                'area_id' => ['nullable', 'exists:areas,id', 'integer'],
-                'medio_id' => ['required', 'exists:medios,id', 'integer'],
-                'direccion_id' => ['nullable', 'exists:direcciones,id', 'integer'],
-                'zona_estado' => ['required', 'in:Norte,Centro,Sur,Sin zona', 'string'],
-                'tipo_desaparicion' => ['required', 'in:U,M', 'string'],
-                'estatus' => ['required', 'in:Localizada con vida,Localizada sin vida,No localizada', 'string'],
-                'fecha_desaparicion' => ['nullable', 'date'],
-                'fecha_percato' => ['nullable', 'date'],
-                'folio' => ['nullable', 'max:20', 'string'],
+                'tipo_reporte_id' => ['required', 'exists:tipos_reportes,id', 'integer'],
+                'area_atiende_id' => ['nullable', 'exists:areas,id', 'integer'],
+                'medio_conocimiento_id' => ['nullable', 'exists:medios,id', 'integer'],
+                'estado_id' => ['nullable', 'exists:estados,id', 'integer'],
+                'zona_estado_id' => ['nullable', 'exists:zonas_estados,id', 'integer'],
+                'hipotesis_oficial_id' => ['nullable', 'exists:tipos_hipotesis,id', 'integer'],
+                'esta_terminado' => ['boolean'],
+                'tipo_desaparicion' => ['nullable', 'string', Rule::in('U', 'M'), 'max:1'],
+                'fecha_localizacion' => ['nullable', 'date'],
+                'sintesis_localizacion' => ['nullable', 'string'],
             ],
             default => [
-                'tipo_reporte_id' => ['sometimes', 'exists:tipos_reportes,id'],
-                'area_id' => ['sometimes', 'nullable', 'exists:areas,id', 'integer'],
-                'medio_id' => ['sometimes', 'exists:medios,id', 'integer'],
-                'direccion_id' => ['sometimes', 'nullable', 'exists:direcciones,id', 'integer'],
-                'zona_estado' => ['sometimes', 'in:Norte,Centro,Sur,Sin zona', 'string'],
-                'tipo_desaparicion' => ['sometimes', 'in:U,M', 'string'],
-                'estatus' => ['sometimes', 'in:Localizada con vida,Localizada sin vida,No localizada', 'string'],
-                'fecha_desaparicion' => ['sometimes', 'nullable', 'date'],
-                'fecha_percato' => ['sometimes', 'nullable', 'date'],
-                'folio' => ['sometimes', 'nullable', 'max:20', 'string'],
-            ]
+                'tipo_reporte_id' => ['sometimes', 'exists:tipos_reportes,id', 'integer'],
+                'area_atiende_id' => ['sometimes', 'exists:areas,id', 'integer'],
+                'medio_conocimiento_id' => ['sometimes', 'exists:medios,id', 'integer'],
+                'estado_id' => ['nullable', 'exists:estados,id', 'integer'],
+                'zona_estado_id' => ['sometimes', 'exists:zonas_estados,id', 'integer'],
+                'hipotesis_oficial_id' => ['sometimes', 'exists:tipos_hipotesis,id', 'integer'],
+                'esta_terminado' => ['sometimes', 'boolean'],
+                'tipo_desaparicion' => ['sometimes', 'string', Rule::in('U', 'M'), 'max:1'],
+                'fecha_localizacion' => ['sometimes', 'date'],
+                'sintesis_localizacion' => ['sometimes', 'string'],
+            ],
         };
     }
 }

@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\CaracteristicasFisicas;
+use App\Models\ContextoSocial;
+use App\Models\MarcaVehiculo;
+use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\App;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,15 +15,54 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        /**
+         * System seeders
+         */
         $this->call([
-            AreaSeeder::class,
             TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
-            UbicacionSeeder::class,
+        ]);
+
+        /**
+         * Catalogs seeders
+         */
+        $this->call([
+            AreaSeeder::class,
+            EstatusPersonaSeeder::class,
+            InstitucionSeeder::class,
             MedioSeeder::class,
-            TipoReporteSeeder::class,
+            ParentescoSeeder::class,
+            CatalogosSeeder::class,
+            SitioSeeder::class,
             TipoHipotesisSeeder::class,
-            PruebaSeeder::class ,
+            TipoReporteSeeder::class,
+            UbicacionSeeder::class,
+            ZonaEstadoSeeder::class,
+            SexoSeeder::class,
+            GeneroSeeder::class,
+            CompaniaTelefonicaSeeder::class,
+            ContextoSocialSeeder::class,
+            ContextoEconomicoSeeder::class,
+            ContextoFamiliarSeeder::class,
+            NacionalidadSeeder::class,
+            EscolaridadSeeder::class,
+            EstadoConyugalSeeder::class,
+
+            //vehiculos
+            MarcaVehiculoSeeder::class,
+            TipoVehiculoSeeder::class,
+            UsoVehiculoSeeder::class,
+            RelacionVehiculoSeeder::class
+        ]);
+
+        /**
+         * Test seeders
+         */
+        $this->call([
+            PersonaSeeder::class,
+            ReporteSeeder::class,
+            TelefonoSeeder::class,
+            ContactoSeeder::class
         ]);
     }
 }

@@ -12,6 +12,7 @@ class AsentamientoResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'municipio_id' => $this->municipio_id,
             'nombre' => $this->nombre,
             'ambito' => $this->ambito,
             'latitud' => $this->latitud,

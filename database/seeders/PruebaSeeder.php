@@ -67,7 +67,7 @@ class PruebaSeeder extends Seeder
                 'fecha_desaparicion' => $row[7],
                 'fecha_percato' => $row[8],
                 'folio' => $row[9],
-
+                'created_at' => now()
             ];
         };
 
@@ -160,5 +160,10 @@ class PruebaSeeder extends Seeder
 
         DB::statement('ALTER TABLE hipotesis ENABLE KEYS');
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        foreach (Reporte::all() as $reporte) {
+            $reporte->personas()->attach(Persona::all()->random()->id, ['tipo_relacion' => 'Reportante']);
+            $reporte->personas()->attach(Persona::all()->random()->id, ['tipo_relacion' => 'Desaparecido']);
+        }
     }
 }

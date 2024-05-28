@@ -4,9 +4,12 @@ namespace App\Models\Reportes\Hipotesis;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Scout\Searchable;
 
 class Circunstancia extends Model
 {
+    use Searchable;
+
     protected $table = 'circunstancias';
 
     protected $fillable = ['descripcion'];
@@ -31,5 +34,13 @@ class Circunstancia extends Model
     public function hipotesis(): HasMany
     {
         return $this->hasMany(Hipotesis::class);
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'descripcion' => $this->descripcion,
+        ];
     }
 }

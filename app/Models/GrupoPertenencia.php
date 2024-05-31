@@ -15,7 +15,7 @@ class GrupoPertenencia extends Model
     public $timestamps = false;
 
     public function PrendaDeVestir(): HasMany
-    {1
+    {
         return $this->hasMany(PrendaDeVestir::class);
     }
 

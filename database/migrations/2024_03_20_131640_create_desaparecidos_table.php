@@ -27,6 +27,9 @@ return new class extends Migration {
             $table->boolean('ci_nivel_federal')->default(false);
             $table->string('otro_derecho_humano')->nullable();
 
+            // TODO; Identidad resguardada (string)
+            // TODO: Edad manual al momento de la desaparicion en anios, meses y dias (int).
+
             $table->timestamps();
         });
     }

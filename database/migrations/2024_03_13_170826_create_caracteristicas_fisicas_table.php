@@ -24,6 +24,9 @@ return new class extends Migration
             $table->foreignId("tamano_orejas_id");
             $table->foreignId("complexion_id");
             $table->timestamps();
+            // TODO: Agregar atributos y catalogos definidos en la pestana de media filiacion.
+            // TODO: Generar modelo de media filiacion complementaria con los atributos descritos en la pestana con el mismo nombre.
+
         });
     }
 

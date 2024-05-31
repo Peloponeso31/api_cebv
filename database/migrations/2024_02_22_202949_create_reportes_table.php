@@ -19,6 +19,8 @@ return new class extends Migration {
             $table->string('estado_id', 2)->nullable(); // Llave foránea
             $table->foreignId('zona_estado_id')->nullable()->constrained(table: 'zonas_estados', indexName: 'idx_reportes_zona_estado');
             $table->foreignId('hipotesis_oficial_id')->nullable()->constrained(table: 'tipos_hipotesis', indexName: 'idx_reportes_hipotesis_oficial');
+            // TODO: fk catalogo instutuciones
+
 
             $table->boolean('esta_terminado')->default(false);
             $table->enum('tipo_desaparicion', ['U', 'M'])->default('U')->nullable();

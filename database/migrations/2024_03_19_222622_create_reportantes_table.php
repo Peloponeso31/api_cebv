@@ -23,6 +23,11 @@ return new class extends Migration
             $table->boolean('pertenencia_colectivo')->nullable();
             $table->string('nombre_colectivo')->nullable();
             $table->text('informacion_relevante')->nullable();
+            // TODO: Edad en años
+            // TODO: Informacion relevante
+            // TODO: Si el reportante ha realizado busquedas previas, en donde y si pertenece a un colectivo y a cual
+            // TODO: Datos de posible estorsion o amenaza en la pestaña de reportante
+            // TODO: Modelo de colectivo
 
             $table->timestamps();
         });

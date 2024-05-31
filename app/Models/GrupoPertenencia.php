@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;  
+namespace App\Models;
 use App\Models\Catalogos\PrendaDeVestir;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,7 @@ class GrupoPertenencia extends Model
     public $timestamps = false;
 
     public function PrendaDeVestir(): HasMany
-    {
+    {1
         return $this->hasMany(PrendaDeVestir::class);
     }
 

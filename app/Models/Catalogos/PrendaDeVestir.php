@@ -25,7 +25,7 @@ class PrendaDeVestir extends Model
     ];
     public $timestamps = false;
 
-    
+
     public function grupoPertenencia(): HasOne
     {
         return $this->hasOne(GrupoPertenencia::class, 'grupo_pertenencia_id');
@@ -40,4 +40,6 @@ class PrendaDeVestir extends Model
     {
         return $this->hasOne(Color::class, 'color_id');
     }
+
+    // TODO: Corregir modelo de grupo de pertenencia asi como las relaciones.
 }

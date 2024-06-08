@@ -47,12 +47,20 @@ class DatabaseSeeder extends Seeder
             nacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
+            ReligionSeeder::class,
 
-            //vehiculos
+            // vehiculos
             MarcaVehiculoSeeder::class,
             TipoVehiculoSeeder::class,
             UsoVehiculoSeeder::class,
             RelacionVehiculoSeeder::class
+        ]);
+
+        /**
+         * Caracteristicas Físicas seeders
+         */
+        $this->call([
+            TipoCabelloSeeder::class,
         ]);
 
         /**

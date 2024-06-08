@@ -161,7 +161,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      */
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/medios', MedioController::class);
-    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
+    Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
@@ -189,10 +189,10 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
     Route::apiResource('/catalogos/tipo', TipoController::class);
-    Route::apiResource('/catalogos/vista',VistaController::class);
-    Route::apiResource('/catalogos/lado',LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
+    Route::apiResource('/catalogos/vista', VistaController::class);
+    Route::apiResource('/catalogos/lado', LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);
@@ -211,7 +211,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/complexion', ComplexionController::class);
 
     Route::apiResource("/etnia", EtniaController::class);
-    Route::apiResource("/religion", ReligionController::class);
+    Route::apiResource('/religiones', ReligionController::class);
     Route::apiResource("/lengua", LenguaController::class);
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);

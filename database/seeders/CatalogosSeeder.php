@@ -278,17 +278,6 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\CaracteristicasFisicas\TipoCabello::insert([
-            ["tipocabello" => "AFRO"],
-            ["tipocabello" => "CHINO"],
-            ["tipocabello" => "CRESPO"],
-            ["tipocabello" => "LACIO"],
-            ["tipocabello" => "ONDULADO"],
-            ["tipocabello" => "RIZADO"],
-            ["tipocabello" => "SEMIONDULADO"],
-            ["tipocabello" => "NO ESPECIFICA"]
-        ]);
-
         \App\Models\Catalogos\CaracteristicasFisicas\TipoLabios::insert([
             ["tipo" => "DELGADOS"],
             ["tipo" => "GRUESOS"],
@@ -323,26 +312,6 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
-        \App\Models\Catalogos\Etnia\Religion::insert([
-            ["religion" => "Católicos"],
-            ["religion" => "Catolicos Ortodoxos"],
-            ["religion" => "Anabautista/Menonita"],
-            ["religion" => "Anglicano/Episcopal"],
-            ["religion" => "Bautista"],
-            ["religion" => "Luterana"],
-            ["religion" => "Metodista"],
-            ["religion" => "Testigos de jehova"],
-            ["religion" => "Cristianos"],
-            ["religion" => "Evangelicos"],
-            ["religion" => "Pentecostales"],
-            ["religion" => "Protestantes"],
-            ["religion" => "Judaismo"],
-            ["religion" => "Islamismo"],
-            ["religion" => "Budismo"],
-            ["religion" => "Hinduismo"],
-            ["religion" => "Otras de origen oriental"],
-
-        ]);
 
         \App\Models\Catalogos\Etnia\Lengua::insert([
             ["lengua" => "Nahualt"],

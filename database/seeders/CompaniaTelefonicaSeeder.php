@@ -51,7 +51,6 @@ class CompaniaTelefonicaSeeder extends Seeder
             'Miio',
             'Vission Cable',
             'PilloFon'
-
         ];
 
         foreach ($companias as $compania) {

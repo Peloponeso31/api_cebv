@@ -9,9 +9,9 @@ use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
-use App\Models\MarcaVehiculo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -145,6 +145,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/nacionalidades', NacionalidadController::class);
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
+    Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
 
     /**
      * Routes for the reportes module
@@ -212,7 +213,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource("/etnia", EtniaController::class);
     Route::apiResource('/religiones', ReligionController::class);
-    Route::apiResource("/lengua", LenguaController::class);
+    Route::apiResource('/lenguas', LenguaController::class);
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);

@@ -48,12 +48,8 @@ class DatabaseSeeder extends Seeder
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
             ReligionSeeder::class,
-
-            // vehiculos
-            MarcaVehiculoSeeder::class,
-            TipoVehiculoSeeder::class,
-            UsoVehiculoSeeder::class,
-            RelacionVehiculoSeeder::class
+            LenguaSeeder::class,
+            TipoRedSocialSeeder::class,
         ]);
 
         /**
@@ -64,13 +60,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         /**
+         * Vehículos seeders
+         */
+        $this->call([
+            MarcaVehiculoSeeder::class,
+            TipoVehiculoSeeder::class,
+            UsoVehiculoSeeder::class,
+            RelacionVehiculoSeeder::class,
+        ]);
+
+        /**
          * Test seeders
          */
         $this->call([
             PersonaSeeder::class,
             ReporteSeeder::class,
             TelefonoSeeder::class,
-            ContactoSeeder::class
+            ContactoSeeder::class,
         ]);
     }
 }

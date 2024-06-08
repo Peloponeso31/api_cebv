@@ -313,34 +313,7 @@ class CatalogosSeeder extends Seeder
         ]);
 
 
-        \App\Models\Catalogos\Etnia\Lengua::insert([
-            ["lengua" => "Nahualt"],
-            ["lengua" => "Paipai"],
-            ["lengua" => "Kiliwa"],
-            ["lengua" => "Cucapa"],
-            ["lengua" => "Cochini"],
-            ["lengua" => "Kumiai"],
-            ["lengua" => "Seri"],
-            ["lengua" => "Chontal de Oaxaca"],
-            ["lengua" => "Chinanteco"],
-            ["lengua" => "Chinanteco Ojitlan"],
-            ["lengua" => "Chinanteco de Usila"],
-            ["lengua" => "Chinanteco de Quiotepec"],
-            ["lengua" => "Chinanteco de Yolox"],
-            ["lengua" => "Chinanteco de Palantla"],
-            ["lengua" => "Chinanteco de Valle Nacional"],
-            ["lengua" => "Chinanteco de Lalana"],
-            ["lengua" => "Chinanteco de Latani"],
-            ["lengua" => "Chinanteco de Petlapa"],
-            ["lengua" => "Pame"],
-            ["lengua" => "Chichimeca Jonaz"],
-            ["lengua" => "Otomi"],
-            ["lengua" => "Mazahua"],
-            ["lengua" => "Matlatzinca"],
-            ["lengua" => "Español"],
 
-
-        ]);
 
         \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
             ["grupoetnico" => "NAHUAS"],

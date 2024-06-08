@@ -9,9 +9,9 @@ use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
-use App\Models\MarcaVehiculo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -145,6 +145,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/nacionalidades', NacionalidadController::class);
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
+    Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
 
     /**
      * Routes for the reportes module
@@ -161,7 +162,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      */
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/medios', MedioController::class);
-    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
+    Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
@@ -189,10 +190,10 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
     Route::apiResource('/catalogos/tipo', TipoController::class);
-    Route::apiResource('/catalogos/vista',VistaController::class);
-    Route::apiResource('/catalogos/lado',LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
+    Route::apiResource('/catalogos/vista', VistaController::class);
+    Route::apiResource('/catalogos/lado', LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);
@@ -211,8 +212,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/complexion', ComplexionController::class);
 
     Route::apiResource("/etnia", EtniaController::class);
-    Route::apiResource("/religion", ReligionController::class);
-    Route::apiResource("/lengua", LenguaController::class);
+    Route::apiResource('/religiones', ReligionController::class);
+    Route::apiResource('/lenguas', LenguaController::class);
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);

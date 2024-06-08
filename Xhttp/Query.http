@@ -1,0 +1,5 @@
+// @no-log
+GET http://api_cebv.test/api/tipos-redes-sociales
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+

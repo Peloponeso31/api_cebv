@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             LenguaSeeder::class,
             TipoRedSocialSeeder::class,
+            OcupacionSeeder::class,
+            GrupoVulnerableSeeder::class,
         ]);
 
         /**
@@ -57,6 +59,10 @@ class DatabaseSeeder extends Seeder
          */
         $this->call([
             TipoCabelloSeeder::class,
+            ComplexionSeeder::class,
+            ColorPielSeeder::class,
+            FormaCaraSeeder::class,
+            ColorOjoSeeder::class,
         ]);
 
         /**

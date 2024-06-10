@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('complexions', function (Blueprint $table) {
+        Schema::create('colores_pieles', function (Blueprint $table) {
             $table->id();
-            $table->string("complexion");
-            $table->timestamps();
+            $table->string('nombre');
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('complexions');
+        Schema::dropIfExists('colores_pieles');
     }
 };

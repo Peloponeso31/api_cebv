@@ -1,5 +1,5 @@
 // @no-log
-GET http://api_cebv.test/api/tipos-redes-sociales
+GET http://api_cebv.test/api/colores-ojos
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 

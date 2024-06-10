@@ -247,34 +247,13 @@ class CatalogosSeeder extends Seeder
             ["color" => "NO ESPECIFICA"]
         ]);
 
-        \App\Models\Catalogos\CaracteristicasFisicas\ColorOjos::insert([
-            ["color" => "AZULES"],
-            ["color" => "CAFÉS CLAROS"],
-            ["color" => "CAFÉS OSCUROS"],
-            ["color" => "GRISES"],
-            ["color" => "MIEL O ÁMBAR"],
-            ["color" => "NEGROS"],
-            ["color" => "VERDES"],
-            ["color" => "NO ESPECIFICA"]
-        ]);
+
 
         \App\Models\Catalogos\CaracteristicasFisicas\TamanoOjos::insert([
             ["tamano" => "GRANDES"],
             ["tamano" => "MEDIANOS"],
             ["tamano" => "PEQUEÑOS"],
             ["tamano" => "NO ESPECIFICA"],
-
-        ]);
-
-        \App\Models\Catalogos\CaracteristicasFisicas\ColorPiel::insert([
-            ["color" => "ALBINA"],
-            ["color" => "AMARILLA"],
-            ["color" => "BLANCA"],
-            ["color" => "MORENA"],
-            ["color" => "MORENA CLARA"],
-            ["color" => "MORENA OSCURA"],
-            ["color" => "NEGRA"],
-            ["color" => "NO ESPECIFICA"],
 
         ]);
 
@@ -301,19 +280,6 @@ class CatalogosSeeder extends Seeder
             ["tamano" => "NO ESPECIFICA"],
 
         ]);
-
-        \App\Models\Catalogos\CaracteristicasFisicas\Complexion::insert([
-            ["complexion" => "ATLÉTICA"],
-            ["complexion" => "DELGADA"],
-            ["complexion" => "OBESA"],
-            ["complexion" => "REGULAR"],
-            ["complexion" => "ROBUSTA"],
-            ["complexion" => "NO ESPECIFICA"],
-
-        ]);
-
-
-
 
         \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
             ["grupoetnico" => "NAHUAS"],

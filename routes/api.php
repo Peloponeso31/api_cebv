@@ -3,9 +3,12 @@
 use App\Http\Controllers\ApodoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
+use App\Http\Controllers\FormaCaraController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\GrupoVulnerableController;
 use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\NacionalidadController;
+use App\Http\Controllers\OcupacionController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
@@ -146,6 +149,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
     Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
+    Route::apiResource('/ocupaciones', OcupacionController::class);
 
     /**
      * Routes for the reportes module
@@ -155,7 +159,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::get('/reportes/ver_folio/{id}', [ReporteController::class, 'getFolios']);
     Route::apiResource('/reportes', ReporteController::class);
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
-
+    Route::apiResource('/grupos-vulnerables', GrupoVulnerableController::class);
 
     /**
      * Routes for the informacion module
@@ -202,14 +206,15 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource('/caracteristicas_fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/color_cabello', ColorCabelloController::class);
-    Route::apiResource('/color_ojos', ColorOjosController::class);
+    Route::apiResource('/colores-ojos', ColorOjosController::class);
     Route::apiResource('/tamano_ojos', TamanoOjosController::class);
-    Route::apiResource('/color_piel', ColorPielController::class);
+    Route::apiResource('/colores-pieles', ColorPielController::class);
     Route::apiResource('/tipo_cabello', TipoCabelloController::class);
     Route::apiResource('/tipo_labios', TipoLabiosController::class);
     Route::apiResource('/tipo_nariz', TipoNarizController::class);
     Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
-    Route::apiResource('/complexion', ComplexionController::class);
+    Route::apiResource('/complexiones', ComplexionController::class);
+    Route::apiResource('/formas-caras', FormaCaraController::class);
 
     Route::apiResource("/etnia", EtniaController::class);
     Route::apiResource('/religiones', ReligionController::class);

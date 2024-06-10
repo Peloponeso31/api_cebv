@@ -36,6 +36,8 @@ class LenguaSeeder extends Seeder
             "Español",
         ];
 
+        sort($lenguas);
+
         foreach ($lenguas as $lengua) {
             Lengua::create([
                 'nombre' => $lengua

@@ -14,6 +14,7 @@ use App\Models\Etnia;
 use App\Models\Genero;
 use App\Models\Nacionalidad;
 use App\Models\Oficialidades\Folio;
+use App\Models\RedesSociales_Persona;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
@@ -72,6 +73,12 @@ class Persona extends Model
     {
         return $this->belongsTo(Genero::class, 'genero_id');
     }
+
+    public function redes_persona(): BelongsTo
+    {
+        return $this->belongsTo(RedesSociales_Persona::class);
+    }
+
 
     /**
      * The reportes that belong to the persona.

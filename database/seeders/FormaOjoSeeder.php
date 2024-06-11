@@ -17,8 +17,6 @@ class FormaOjoSeeder extends Seeder
             'No especifica',
         ];
 
-        sort($formasOjos);
-
         foreach ($formasOjos as $formaOjo) {
             FormaOjo::create([
                 'nombre' => $formaOjo,

@@ -58,24 +58,28 @@ class DatabaseSeeder extends Seeder
          * Caracteristicas Físicas seeders
          */
         $this->call([
-            TipoCabelloSeeder::class,
             ComplexionSeeder::class,
             ColorPielSeeder::class,
             FormaCaraSeeder::class,
+
             ColorOjoSeeder::class,
             FormaOjoSeeder::class,
             TamanoOjoSeeder::class,
+
             CalvicieSeeder::class,
             ColorCabelloSeeder::class,
             TamanoCabelloSeeder::class,
             TipoCabelloSeeder::class,
             CejaSeeder::class,
+
             FormaNarizSeeder::class,
             TamanoBocaSeeder::class,
             TamanoLabiosSeeder::class,
+
             TamanoOrejaSeeder::class,
             FormaOrejaSeeder::class,
             TipoMentonSeeder::class,
+
             RegionDeformacionSeeder::class,
             IntervencionQuirurgicaSeeder::class,
             EnfermedadPielSeeder::class,

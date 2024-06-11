@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Personas;
 
-use App\Models\Personas\Persona;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class EstadoConyugal extends Model
+class Ocupacion extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'estados_conyugales';
+    protected $table = 'ocupaciones';
 
     protected $fillable = [
         'nombre', 
@@ -18,6 +18,6 @@ class EstadoConyugal extends Model
 
     public function persona(): HasOne
     {
-        return $this->hasOne(Persona::class); 
+        return $this->hasOne(Persona::class, 'ocupacion_id');
     }
 }

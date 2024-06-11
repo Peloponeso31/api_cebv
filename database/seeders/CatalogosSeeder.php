@@ -587,6 +587,29 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "CLARO", "hexadecimal" => "FFFFFF"]
         ]);
 
+        \App\Models\Personas\Ocupacion::insert([
+            ["nombre" => "AGRICULTOR"],
+            ["nombre" => "ALBAÑIL"],
+            ["nombre" => "APRENDIZ DE CARPINTERIA"],
+            ["nombre" => "AYUDANTE DE ALBAÑIL"],
+            ["nombre" => "BAJA"],
+            ["nombre" => "CAMPESINO"],
+            ["nombre" => "CAÑERO"],
+            ["nombre" => "CARGADOR DE ABARROTES DE CASA"],
+            ["nombre" => "CHOFER"],
+            ["nombre" => "CHOFER DE MAQUINARIA PESADA"],
+            ["nombre" => "CHOFER DE PIPA DE AGUA"],
+            ["nombre" => "CHOFER DE TRANSPORTE PUBLICO"],
+            ["nombre" => "COMERCIANTE"],
+            ["nombre" => "COMERCIANTE; LABORES DEL HOGAR            "],
+            ["nombre" => "CONDUCTOR DE VOLTEO"],
+            ["nombre" => "CORTADOR DE LEÑA"],
+            ["nombre" => "DENTISTA"],
+            ["nombre" => "DESEMPLEADO"],
+            ["nombre" => "DIVERSOS EMPLEOS"],
+            
+        ]);
+
         /*
 
         \App\Models\Catalogos\PrendaDeVestir::insert([

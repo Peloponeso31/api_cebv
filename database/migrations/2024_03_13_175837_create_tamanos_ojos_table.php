@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_labios', function (Blueprint $table) {
+
+        Schema::create('tamanos_ojos', function (Blueprint $table) {
             $table->id();
-            $table->string("tipo");
-            $table->timestamps();
+            $table->string('nombre');
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_labios');
+        Schema::dropIfExists('tamanos_ojos');
     }
 };

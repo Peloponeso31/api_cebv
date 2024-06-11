@@ -234,52 +234,6 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "TATUAJE"],
         ]);
 
-        \App\Models\Catalogos\CaracteristicasFisicas\ColorCabello::insert([
-            ["color" => "ALBINO"],
-            ["color" => "CANO"],
-            ["color" => "CASTAÑO CLARO"],
-            ["color" => "CASTAÑO OSCURO"],
-            ["color" => "ENTRECANO"],
-            ["color" => "NEGRO"],
-            ["color" => "PELIRROJO"],
-            ["color" => "RUBIO"],
-            ["color" => "TEÑIDO"],
-            ["color" => "NO ESPECIFICA"]
-        ]);
-
-
-
-        \App\Models\Catalogos\CaracteristicasFisicas\TamanoOjos::insert([
-            ["tamano" => "GRANDES"],
-            ["tamano" => "MEDIANOS"],
-            ["tamano" => "PEQUEÑOS"],
-            ["tamano" => "NO ESPECIFICA"],
-
-        ]);
-
-        \App\Models\Catalogos\CaracteristicasFisicas\TipoLabios::insert([
-            ["tipo" => "DELGADOS"],
-            ["tipo" => "GRUESOS"],
-            ["tipo" => "MEDIANOS"],
-            ["tipo" => "MIXTOS"],
-            ["tipo" => "NO ESPECIFICA"],
-        ]);
-
-        \App\Models\Catalogos\CaracteristicasFisicas\TipoNariz::insert([
-            ["tipo" => "AGUILEÑA"],
-            ["tipo" => "CHATA"],
-            ["tipo" => "RECTA"],
-            ["tipo" => "NO ESPECIFICA"],
-
-        ]);
-
-        \App\Models\Catalogos\CaracteristicasFisicas\TamanoOrejas::insert([
-            ["tamano" => "CHICAS"],
-            ["tamano" => "GRANDES"],
-            ["tamano" => "MEDIANAS"],
-            ["tamano" => "NO ESPECIFICA"],
-
-        ]);
 
         \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
             ["grupoetnico" => "NAHUAS"],
@@ -290,7 +244,6 @@ class CatalogosSeeder extends Seeder
             ["grupoetnico" => "OTOMIES"],
             ["grupoetnico" => "ZOQUE"],
             ["grupoetnico" => "MIXES"],
-
         ]);
 
         \App\Models\Catalogos\Etnia\Vestimenta::insert([
@@ -497,7 +450,7 @@ class CatalogosSeeder extends Seeder
 
         /*
 
-        \App\Models\Catalogos\PrendaDeVestir::insert([
+        \App\Models\Catalogos\Prenda DeVestir::insert([
             ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ABRIGO"],
             ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ALBA (VESTIMENTA PARA SACERDOTE)"],
             ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BAÑADOR"],

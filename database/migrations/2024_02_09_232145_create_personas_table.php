@@ -22,6 +22,11 @@ return new class extends Migration {
             $table->string('pseudonimo_apellido_paterno')->nullable();
             $table->string('pseudonimo_apellido_materno')->nullable();
             $table->date('fecha_nacimiento')->nullable();
+            $table->date('fecha_nacimiento_cebv')->nullable();
+            $table->string('observaciones_fecha_nacimiento')->nullable();
+            $table->foreignId('escolaridad_id')->nullable();
+            $table->foreignId('estado_conyugal_id')->nullable();
+            $table->foreignId('ocupacion_id')->nullable();
             $table->string('curp', 18)->unique()->nullable();
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();

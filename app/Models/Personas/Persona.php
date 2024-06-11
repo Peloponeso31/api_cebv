@@ -8,10 +8,13 @@ use App\Models\Contacto;
 use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Escolaridad;
+use App\Models\EstadoConyugal;
 use App\Models\Etnia;
 use App\Models\Genero;
 use App\Models\Nacionalidad;
 use App\Models\Oficialidades\Folio;
+use App\Models\RedesSociales_Persona;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
@@ -43,8 +46,12 @@ class Persona extends Model
         'pseudonimo_apellido_paterno',
         'pseudonimo_apellido_materno',
         'fecha_nacimiento',
+        'observaciones_fecha_nacimiento',
         'curp',
         'observaciones_curp',
+        'escolaridad_id',
+        'estado_conyugal_id',
+        'ocupacion_id',
         'rfc',
         'ocupacion',
         'sexo_al_nacer',
@@ -66,6 +73,12 @@ class Persona extends Model
     {
         return $this->belongsTo(Genero::class, 'genero_id');
     }
+
+    public function redes_persona(): BelongsTo
+    {
+        return $this->belongsTo(RedesSociales_Persona::class);
+    }
+
 
     /**
      * The reportes that belong to the persona.
@@ -176,6 +189,21 @@ class Persona extends Model
     public function apodos(): HasMany
     {
         return $this->hasMany(Apodo::class, 'persona_id');
+    }
+
+    public function escolaridad(): BelongsTo
+    {
+        return $this->belongsTo(Escolaridad::class, 'escolaridad_id');
+    }
+
+    public function estado_conyugal(): BelongsTo
+    {
+        return $this->belongsTo(EstadoConyugal::class, 'estado_conyugal_id');
+    }
+
+    public function ocupacion(): HasOne
+    {
+        return $this->hasOne(Ocupacion::class, 'ocupacion_id');
     }
 
     public function toSearchableArray()

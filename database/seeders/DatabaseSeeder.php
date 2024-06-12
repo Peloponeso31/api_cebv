@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
             ContextoFamiliarSeeder::class,
-            nacionalidadSeeder::class,
+            NacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
             ReligionSeeder::class,

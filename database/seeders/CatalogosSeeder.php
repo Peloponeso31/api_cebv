@@ -234,6 +234,144 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "TATUAJE"],
         ]);
 
+        \App\Models\Catalogos\CaracteristicasFisicas\ColorCabello::insert([
+            ["color" => "ALBINO"],
+            ["color" => "CANO"],
+            ["color" => "CASTAÑO CLARO"],
+            ["color" => "CASTAÑO OSCURO"],
+            ["color" => "ENTRECANO"],
+            ["color" => "NEGRO"],
+            ["color" => "PELIRROJO"],
+            ["color" => "RUBIO"],
+            ["color" => "TEÑIDO"],
+            ["color" => "NO ESPECIFICA"]
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\ColorOjos::insert([
+            ["color" => "AZULES"],
+            ["color" => "CAFÉS CLAROS"],
+            ["color" => "CAFÉS OSCUROS"],
+            ["color" => "GRISES"],
+            ["color" => "MIEL O ÁMBAR"],
+            ["color" => "NEGROS"],
+            ["color" => "VERDES"],
+            ["color" => "NO ESPECIFICA"]
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TamanoOjos::insert([
+            ["tamano" => "GRANDES"],
+            ["tamano" => "MEDIANOS"],
+            ["tamano" => "PEQUEÑOS"],
+            ["tamano" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\ColorPiel::insert([
+            ["color" => "ALBINA"],
+            ["color" => "AMARILLA"],
+            ["color" => "BLANCA"],
+            ["color" => "MORENA"],
+            ["color" => "MORENA CLARA"],
+            ["color" => "MORENA OSCURA"],
+            ["color" => "NEGRA"],
+            ["color" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoCabello::insert([
+            ["tipo" => "AFRO"],
+            ["tipo" => "CHINO"],
+            ["tipo" => "CRESPO"],
+            ["tipo" => "LACIO"],
+            ["tipo" => "ONDULADO"],
+            ["tipo" => "RIZADO"],
+            ["tipo" => "SEMIONDULADO"],
+            ["tipo" => "NO ESPECIFICA"]
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoLabios::insert([
+            ["tipo" => "DELGADOS"],
+            ["tipo" => "GRUESOS"],
+            ["tipo" => "MEDIANOS"],
+            ["tipo" => "MIXTOS"],
+            ["tipo" => "NO ESPECIFICA"],
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoNariz::insert([
+            ["tipo" => "AGUILEÑA"],
+            ["tipo" => "CHATA"],
+            ["tipo" => "RECTA"],
+            ["tipo" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TamanoOrejas::insert([
+            ["tamano" => "CHICAS"],
+            ["tamano" => "GRANDES"],
+            ["tamano" => "MEDIANAS"],
+            ["tamano" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\Complexion::insert([
+            ["complexion" => "ATLÉTICA"],
+            ["complexion" => "DELGADA"],
+            ["complexion" => "OBESA"],
+            ["complexion" => "REGULAR"],
+            ["complexion" => "ROBUSTA"],
+            ["complexion" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\Etnia\Religion::insert([
+            ["religion" => "Católicos"],
+            ["religion" => "Catolicos Ortodoxos"],
+            ["religion" => "Anabautista/Menonita"],
+            ["religion" => "Anglicano/Episcopal"],
+            ["religion" => "Bautista"],
+            ["religion" => "Luterana"],
+            ["religion" => "Metodista"],
+            ["religion" => "Testigos de jehova"],
+            ["religion" => "Cristianos"],
+            ["religion" => "Evangelicos"],
+            ["religion" => "Pentecostales"],
+            ["religion" => "Protestantes"],
+            ["religion" => "Judaismo"],
+            ["religion" => "Islamismo"],
+            ["religion" => "Budismo"],
+            ["religion" => "Hinduismo"],
+            ["religion" => "Otras de origen oriental"],
+
+        ]);
+
+        \App\Models\Catalogos\Etnia\Lengua::insert([
+            ["lengua" => "Nahualt"],
+            ["lengua" => "Paipai"],
+            ["lengua" => "Kiliwa"],
+            ["lengua" => "Cucapa"],
+            ["lengua" => "Cochini"],
+            ["lengua" => "Kumiai"],
+            ["lengua" => "Seri"],
+            ["lengua" => "Chontal de Oaxaca"],
+            ["lengua" => "Chinanteco"],
+            ["lengua" => "Chinanteco Ojitlan"],
+            ["lengua" => "Chinanteco de Usila"],
+            ["lengua" => "Chinanteco de Quiotepec"],
+            ["lengua" => "Chinanteco de Yolox"],
+            ["lengua" => "Chinanteco de Palantla"],
+            ["lengua" => "Chinanteco de Valle Nacional"],
+            ["lengua" => "Chinanteco de Lalana"],
+            ["lengua" => "Chinanteco de Latani"],
+            ["lengua" => "Chinanteco de Petlapa"],
+            ["lengua" => "Pame"],
+            ["lengua" => "Chichimeca Jonaz"],
+            ["lengua" => "Otomi"],
+            ["lengua" => "Mazahua"],
+            ["lengua" => "Matlatzinca"],
+            ["lengua" => "Español"],
+
+
+        ]);
 
         \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
             ["grupoetnico" => "NAHUAS"],
@@ -447,107 +585,5 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "ESTAMPADO", "hexadecimal" => "FFFFF"],
             ["nombre" => "CLARO", "hexadecimal" => "FFFFFF"]
         ]);
-
-        /*
-
-        \App\Models\Catalogos\Prenda DeVestir::insert([
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ABRIGO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ALBA (VESTIMENTA PARA SACERDOTE)"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BAÑADOR"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BABERO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BATA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BAUTIZO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BERMUDA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BIKINI"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BLUSA, PANTIBLUSA, BLUSON"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BOTAS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "BRASSIER"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CALCETAS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CALCETIN"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CAMISON"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CAMISA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CAMISETA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CAMISOLA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CAPA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CHALECO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CHAMARRA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CONJUNTO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "COORDINADO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "CORPIÑO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "DELANTAL"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "DISFRAZ"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ESCOLAR"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "FAJERO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "FALDA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "FONDO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "GABARDINA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "GUAYABERA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "HOSPITAL"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "INDUSTRIAL"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "LEGGINGS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "LEOTARDO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "MALLON"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "MAMELUCO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "MEDIAS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "MILITAR"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "NOVIA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "OVEROL"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PANTALON"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PANTALETA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PANTS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PETO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PIJAMA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PLAYERA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "POLICIA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "PRIMERA COMUNION"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ROPA INTERIOR"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "SACO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "SALTO DE CAMA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "SHORTS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "SUDADERA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "SUETER"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "TENIS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "TRAJE DE BAÑO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "TRAJE REGIONAL"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "TRAJE"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "TRUSA"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "VESTIDO"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "XV AÑOS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ZAPATILLAS"],
-            ["grupo_pertenencia" => "PRENDA DE VESTIR", "pertenencia" => "ZAPATOS"],
-            ["grupo_pertenencia" => "ALHAJA", "pertenencia" => "JOYERIA"],
-            ["grupo_pertenencia" => "ALHAJA", "pertenencia" => "RELOJES DE PULSO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "ANILLO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "ARETES - ARRACADAS - PENDIENTES"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "BOINA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "BOLSO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "BUFANDA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "CINTURON"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "COLLAR - CADENA - PULSERA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "CORBATA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "ESTOLA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "FAJA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "GORRA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "GORRO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "GUANTES"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "JORONGO - PONCHO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "MANCUERNILLA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "MASCARA - PAÑOLETA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "MONEDERO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "MOÑO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "PANUELO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "PASHMINA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "PECHERA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "PEINETA - PASADOR - TUBOS PARA PELO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "PLUMA"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "REBOZO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "SOMBRERO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "TOCADO"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "TURBANTE"],
-            ["grupo_pertenencia" => "ACCESORIO DE DAMA Y CABALLERO", "pertenencia" => "UÑAS POSTIZAS"],
-            ["grupo_pertenencia" => "OTRO", "pertenencia" => "NO ESPECIFICA"],
-            ["grupo_pertenencia" => "OTRO", "pertenencia" => "OTRO"],
-
-        ]); */
     }
 }

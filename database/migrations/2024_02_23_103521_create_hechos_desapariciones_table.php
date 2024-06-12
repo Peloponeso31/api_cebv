@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();
             $table->text('sintesis_desaparicion')->nullable();
+            // TODO: Fecha de desaparicion y percato cebv
+            // TODO: Observaciones sobre la fecha de desaparicion y percato cebv
 
             $table->timestamps();
         });

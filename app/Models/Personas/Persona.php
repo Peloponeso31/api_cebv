@@ -49,8 +49,6 @@ class Persona extends Model
         'ocupacion',
         'sexo_al_nacer',
         'genero',
-        "estatura",
-        "peso",
     ];
 
     protected $casts = [
@@ -86,7 +84,7 @@ class Persona extends Model
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
-    
+
     public function caracteristicasfisicas(): HasOne
     {
         return $this->hasOne(CaracteristicasFisicas::class);
@@ -177,6 +175,11 @@ class Persona extends Model
     {
         return $this->hasMany(Apodo::class, 'persona_id');
     }
+
+    // TODO: Relacionar con el modelo de escolaridad
+    // TODO: Relacionar con estado conyugal
+    // TODO: Modelo y catalogo de redes sociales (tipo de red socual, usuario y observaciones).
+    // TODO: Modelo y catalogo de ocupaciones.
 
     public function toSearchableArray()
     {

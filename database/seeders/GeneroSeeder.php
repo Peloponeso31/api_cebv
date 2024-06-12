@@ -12,7 +12,7 @@ class GeneroSeeder extends Seeder
         $generos = [
             'Masculino',
             'Femenino',
-            'Otra situación',
+            'No binario',
             'No especificado'
         ];
 

@@ -10,6 +10,8 @@ class Escolaridad extends Model
 
     protected $table = 'escolaridades';
 
+    // TODO: Agregar atributos en la pestaña de reportante, seccion escolaridad.
+    // TODO: Catalogo de avance de escolaridad en la seccion antes mencionada.
     protected $fillable = [
         'nombre',
     ];

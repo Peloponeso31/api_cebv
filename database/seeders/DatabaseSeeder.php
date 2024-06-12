@@ -47,12 +47,52 @@ class DatabaseSeeder extends Seeder
             NacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
+            ReligionSeeder::class,
+            LenguaSeeder::class,
+            TipoRedSocialSeeder::class,
+            OcupacionSeeder::class,
+            GrupoVulnerableSeeder::class,
+        ]);
 
-            //vehiculos
+        /**
+         * Caracteristicas Físicas seeders
+         */
+        $this->call([
+            ComplexionSeeder::class,
+            ColorPielSeeder::class,
+            FormaCaraSeeder::class,
+
+            ColorOjoSeeder::class,
+            FormaOjoSeeder::class,
+            TamanoOjoSeeder::class,
+
+            CalvicieSeeder::class,
+            ColorCabelloSeeder::class,
+            TamanoCabelloSeeder::class,
+            TipoCabelloSeeder::class,
+            CejaSeeder::class,
+
+            FormaNarizSeeder::class,
+            TamanoBocaSeeder::class,
+            TamanoLabiosSeeder::class,
+
+            TamanoOrejaSeeder::class,
+            FormaOrejaSeeder::class,
+            TipoMentonSeeder::class,
+
+            RegionDeformacionSeeder::class,
+            IntervencionQuirurgicaSeeder::class,
+            EnfermedadPielSeeder::class,
+        ]);
+
+        /**
+         * Vehículos seeders
+         */
+        $this->call([
             MarcaVehiculoSeeder::class,
             TipoVehiculoSeeder::class,
             UsoVehiculoSeeder::class,
-            RelacionVehiculoSeeder::class
+            RelacionVehiculoSeeder::class,
         ]);
 
         /**
@@ -62,7 +102,7 @@ class DatabaseSeeder extends Seeder
             PersonaSeeder::class,
             ReporteSeeder::class,
             TelefonoSeeder::class,
-            ContactoSeeder::class
+            ContactoSeeder::class,
         ]);
     }
 }

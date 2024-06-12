@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->string('pseudonimo_nombre')->nullable();
             $table->string('pseudonimo_apellido_paterno')->nullable();
             $table->string('pseudonimo_apellido_materno')->nullable();
+            // TODO: Agregar fecha de nacimiento cebv
+            // TODO: Agregar observaciones de fecha de nacimiento
             $table->date('fecha_nacimiento')->nullable();
             $table->string('curp', 18)->unique()->nullable();
             $table->text('observaciones_curp')->nullable();

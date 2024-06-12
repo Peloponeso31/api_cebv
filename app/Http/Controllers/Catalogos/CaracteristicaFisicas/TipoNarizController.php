@@ -4,24 +4,25 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\TipoNarizRequest;
+use App\Http\Resources\TipoNarizResource;
 use App\Models\Catalogos\CaracteristicasFisicas\TipoNariz;
 use Illuminate\Http\Request;
 
 class TipoNarizController extends Controller
 {
-    
+
     public function index()
     {
-        return TipoNariz::all();
+        return TipoNarizResource::collection(TipoNariz::all());
     }
 
-   
+
     public function store(TipoNarizRequest $request)
     {
-        return TipoNariz::create($request->all());  
+        return TipoNariz::create($request->all());
     }
 
-    
+
     public function show( $id)
     {
         return TipoNariz::FindOrFail($id);

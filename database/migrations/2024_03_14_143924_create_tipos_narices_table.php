@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tamano_orejas', function (Blueprint $table) {
+        Schema::create('tipos_narices', function (Blueprint $table) {
             $table->id();
-            $table->string("tamano");
-            $table->timestamps();
+            $table->string('nombre');
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tamano_orejas');
+        Schema::dropIfExists('tipos_narices');
     }
 };

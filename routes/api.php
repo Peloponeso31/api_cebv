@@ -245,7 +245,6 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/intervenciones-quirurgicas', IntervencionQuirurgicaController::class);
     Route::apiResource('/enfermedades-pieles', EnfermedadPielController::class);
 
-
     /**
      * Routes for the contextos sociales module
      */

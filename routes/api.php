@@ -24,6 +24,7 @@ use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
 use App\Http\Controllers\Personas\PersonaController;
 use App\Http\Controllers\CaracteristicasFisicasController;
+use App\Http\Controllers\MediaFiliacionController;
 use App\Http\Controllers\RegionVellofacialController;
 use App\Http\Controllers\ColorVellofacialController;
 use App\Http\Controllers\CorteVellofacialController;
@@ -258,6 +259,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      /**
      * Routes for mediaFiliacion module
      */
+    Route::apiResource('/media_filiacion', MediaFiliacionController::class);
     Route::apiResource('/ausencia_dientes', AusenciaDientesController::class);
     Route::apiResource('/tratamiento_dental', TratamientoDentalController::class);
     Route::apiResource('/tipo_menton', TipoMentonController::class);

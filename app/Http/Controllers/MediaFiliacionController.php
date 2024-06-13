@@ -2,64 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMediaFiliacionRequest;
+use App\Http\Requests\UpdateMediaFiliacionRequest;
+use App\Http\Resources\MediaFiliacionResource;
 use App\Models\MediaFiliacion;
 use Illuminate\Http\Request;
 
 class MediaFiliacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        return MediaFiliacionResource::collection(MediaFiliacion::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function store(StoreMediaFiliacionRequest $request)
     {
-        //
+        return new MediaFiliacionResource(MediaFiliacion::create($request->all()));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function show( $id)
     {
-        //
+        return new MediaFiliacionResource(MediaFiliacion::findOrFail($id));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(MediaFiliacion $mediaFiliacion)
+    public function update( $id, UpdateMediaFiliacionRequest $request)
     {
-        //
+        $mediafiliacion= MediaFiliacion::findOrFail($id);
+        $mediafiliacion->update($request->all());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(MediaFiliacion $mediaFiliacion)
+    public function destroy( $id)
     {
-        //
+        if (MediaFiliacion::findOrFail($id)->delete()) {
+            return response()->json(['mensaje' => 'Borrado correcto']);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, MediaFiliacion $mediaFiliacion)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(MediaFiliacion $mediaFiliacion)
-    {
-        //
-    }
+}
 }

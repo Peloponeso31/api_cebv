@@ -24,6 +24,7 @@ use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
 use App\Http\Controllers\TipoMentonController;
 use App\Http\Controllers\TipoRedSocialController;
+use App\Http\Controllers\TipoSangreController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
 use App\Models\TamanoCabello;
@@ -278,7 +279,11 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/usos-vehiculos', UsoVehiculoController::class);
     Route::apiResource('/relaciones-vehiculos', RelacionVehiculoController::class);
 
+    /**
+     * Nuevas rutas que no sé dónde meter
+     */
     Route::apiResource('/colectivos', ColectivoController::class);
+    Route::apiResource('/tipos-sangre', TipoSangreController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

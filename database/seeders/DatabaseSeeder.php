@@ -87,6 +87,7 @@ class DatabaseSeeder extends Seeder
             RegionDeformacionSeeder::class,
             IntervencionQuirurgicaSeeder::class,
             EnfermedadPielSeeder::class,
+            TipoSangreSeeder::class,
         ]);
 
         /**

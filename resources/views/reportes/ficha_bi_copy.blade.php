@@ -662,214 +662,246 @@ h1, h2{
     </table> <br>
     
     <div class="Estatura-Peso">
+        <h2>Media filiación</h2>
+        <h2>Perfil corporal</h2>
         <table>
             <tr>
                 <th>Estaura:</th>
-                <td>{{ $desaparecido->persona->estatura }}m</td>
                 <th>Peso:</th>
+                <th>Complexión:</th>
+                <th>Color de piel:</th>
+                <th>Forma de la cara:</th>
+            </tr>
+            <tr>
+                <td>{{ $desaparecido->persona->estatura }}m</td>
                 <td>{{ $desaparecido->persona->peso }}kg</td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
     </div> 
     </section>
     
     <section id="Complexion">
-        <h2>Complexión:</h2>
+        <h2>Ojos:</h2>
     <table>
         <tr>
-            <th>Regular</th>
-            <th>Obesa</th>
-            <th>Robusta</th>
-            <th>Delgada</th>
-            <th>Atlética</th>
+            <th>Color de ojos:</th>
+            <th>Forma de ojos:</th>
+            <th>Tamaño de ojos:</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th colspan="3">Otra especificacion de ojos:</th>
+        </tr>
+        <tr>
+            <td colspan="3"></td>
         </tr>
     </table>
     </section>
     
     <section id="Piel">
-        <br><h2>Color de piel:</h2>
+        <br><h2>Cabello:</h2>
        
         <table>
             <tr>
-                <th>{{ $desaparecido->persona->caracteristicasfisicas->color_piel ->colorpiel }}</th>
-                
+                <th>Calvicie:</th>
+                <th>Color de cabello:</th>
+                <th>Tamaño de cabello:</th>
+                <th>Tipo de cabello:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="4">Cualquier otra especificación del cabello:</th>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
             </tr>
         </table>
         </section>
     
     
         <section id="Ojos">
-            <br> <h2>Color de ojos: {{ $desaparecido->persona->caracteristicasfisicas->color_ojos->color }}</h2><p>Forma de ojos:</p>
+            <br> <h2>Vello facial:</p>
             
             <table>
                 <tr>
-                    <th>Redondos</th>
-                    <th>Ovales</th>
-                    <th>Rasgados</th>
-                    <th>Alargados</th>
+                    <th colspan="2">Cejas:</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th>Bigote:</th>
+                    <th>Cualquier otra especificacion del bigote:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Barba:</th>
+                    <th>Cualquier otra especificacion de la barba:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </section>
     
         <section id="TamañoO">
-            <br> <h2>Tamaño de ojos:</h2><br>
+            <br> <h2>Nariz:</h2><br>
             
                 <table>
                     <tr>
-                        <th>Grandes</th>
-                        <th>Medianos</th>
-                        <th>Pequeños</th>
+                        <th>Forma de la nariz:</th>
+                        <th>Cualquier otra especificación de la nariz:</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
         </section>
     
         <section id="Cabello">
-            <b><h2>Color de cabello: {{ $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos }}</h2><p>Corto/largo:</p> <p>Tipo de cabello:</p>
+            <b><h2>Boca:</h2>
             
                 <table>
                     <tr>
-                        <th>{{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello }}</th>
-                    
+                        <th>Tamaño de boca:</th>
+                        <th>Tamoño de labios:</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
         </section>
        
         <section id="CantidadC">
-            <br><b><h2>Cantidad de cabello:</h2></b>
+            <br><b><h2>Orejas:</h2></b>
            
                 <table>
                     <tr>
-                        <th>Abundante</th>
-                        <th>Regular</th>
-                        <th>Escaso</th>
-                        <th>Crespo</th>
+                        <th>Tamaño de orejas:</th>
+                        <th>Formas de orejas:</th>
+                        <th>Cualquier otra especificación de la oreja:</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
         </section>
     
         <section id="Fcara">
-            <br><h2>Forma de cara:</h2>
+            <br><h2>Media filiacion complementaria</h2>
+            <h2>Dientes</h2>
         
         <table>
             <tr>
-                <th>Redonda</th>
-                <th>Ovalada</th>
-                <th>Triangular</th>
-                <th>Cuadrada/Rectangular</th>
-                <th>Alargada</th>
+                <th>¿Presenta ausencia de dientes?</th>
+                <th>Especifique la ausencia dental:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>¿Tiene  algún tratamiento dental?</th>
+                <th>Especifique el tratamiento dental:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
             </tr>
         </table>
         </section>
        
         <section id="Tceja">
-            <br><h2>Tipo de ceja:</h2>
+            <br><h2>Proyeccion del menton</h2>
         <table>
             <tr>
-                <th>Poblada</th>
-                <th>Regulares</th>
-                <th>Escasa</th>
-                <th>Depilada</th>
-                <th>Rasurada</th>
+                <th>Tipo de mentón:</th>
+                <th>Cualquier otra especificacion del menton</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
             </tr>
         </table>
         </section>
     
         <section id="Mcejas">
-            <br> <h2>Modificaciones de la ceja:</h2><br>
+            <br> <h2>Deformaciones</h2><br>
             
                  <table>
                     <tr>
-                        <th>Tatuadas</th>
-                        <th>Perforadas</th>
-                        <th>Teñidas</th>
+                        <th>Región de la deformación:</th>
+                        <th>Especificacion de la deformacion:</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
         </section>
     
         <section id="Orejasf">
-            <br> <h2>Orejas de su forma:</h2><br>
+            <br> <h2>Interveciones quirurgicas</h2><br>
             
             <table>
                 <tr>
-                    <th>Cuadrada</th>
-                    <th>Ovalada</th>
-                    <th>Redonda</th>
-                    <th>Triangular</th>
+                    <th>Intervencion quirurgica</th>
+                    <th>Especificacion de la intervencion quirurjica:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </section>
     
     
         <section id="Orejast">
-            <br> <h2>Orejas por su tamaño:</h2><br>
+            <br> <h2>Enfermedades de la piel</h2><br>
             
                  <table>
                     <tr>
-                        <th>Chica</th>
-                        <th>Mediana</th>
-                        <th>Grande</th>
+                        <th>Tipo de enfermedades:</th>
+                        <th>Especificacion de la enfermedad de la piel:</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </table>
         </section>
     
         <section id="Narizf">
-            <br> <h2>Nariz por su forma:</h2><br>
+            <br> <h2>Observaciones generales</h2><br>
            
                  <table>
                     <tr>
-                        <th>Chata</th>
-                        <th>Aguileña</th>
-                        <th>Recta</th>
+                        <td></td>
                     </tr>
                 </table>
         </section>
-    
-        <section id="Boca">
-            <br> <h2>Boca:</h2><br>
-            
-                 <table>
-                    <tr>
-                        <th>Chica</th>
-                        <th>Mediana</th>
-                        <th>Grande</th>
-                    </tr>
-                </table>
-        </section>
-    
-        <section id="Labios">
-            <br> <h2>Labios:</h2><br>
-         
-                 <table>
-                    <tr>
-                        <th>Delgados</th>
-                        <th>Gruesos</th>
-                        <th>Mixtos</th>
-                    </tr>
-                </table>
-        </section>
-    
-        <section id="Dientes">
-            <br> <h2>Dientes:</h2><br>
-            
-                    <table>
-                        <tr>
-                            <th>Ausencia</th>
-                            <th>No ausencia</th>
-                        </tr>
-                    </table>
-        </section>
-    
-        <section id="Bigote">
-            <br> <h2>Bigote:</h2><br>
-            
-                 <table>
-                    <tr>
-                        <th>Lampiño</th>
-                        <th>Poblado</th>
-                        <th>Recortado</th>
-                    </tr>
-                </table>
-        </section>
+
+
     
         <section id="morfologia">
             <br> <h2>Ubicación y descripción morfológica (caracteristicas, tatuajes):</h2><br>
@@ -886,26 +918,20 @@ h1, h2{
         <table>
             <tr>
                 <th>Estado conyugal</th>
-                <th>¿Con qué personas vive?</th>
-            </tr>
-            <tr>
                 <td>Soltero</td>
+                <th>¿Con qué personas vive?</th>
                 <td>Sus papás y su hermano</td>
             </tr>
             <tr>
                 <th>Datos de la última pareja sentimental conocida</th>
-                <th>Hijas(os)</th>
-            </tr>
-            <tr>
                 <td>No se le conocio</td>
+                <th>Hijas(os)</th>
                 <td>Ninguno</td>
             </tr>
             <tr>
                 <th>¿Quién es el integrante de su familia más cercano?</th>
-                <th>¿Conoce si ha sufrido algún tipo de violencia por parte de algún integrante de la familia?</th>
-            </tr>
-            <tr>
                 <td>Su hermano</td>
+                <th>¿Conoce si ha sufrido algún tipo de violencia por parte de algún integrante de la familia?</th>
                 <td>Ninguna</td>
             </tr>
         </table>
@@ -917,26 +943,20 @@ h1, h2{
         <table>
             <tr>
                 <th>¿Dónde trabaja o cuál es su medio de subsistencia?</th>
-                <th>¿Sabe si le gusta su trabajo?</th>
-            </tr>
-            <tr>
                 <td>En el tecnologico</td>
+                <th>¿Sabe si le gusta su trabajo?</th>
                 <td>Si</td>
             </tr>
             <tr>
                 <th>¿Ha manifestado la intensión de irse a trabajar fuera de la ciudad?</th>
-                <th>¿Conoce si ha sufrido algún tipo de violencia por parte de algún integrante de su trabajo?</th>
-            </tr>
-            <tr>
                 <td>Si</td>
+                <th>¿Conoce si ha sufrido algún tipo de violencia por parte de algún integrante de su trabajo?</th>
                 <td>se desconoce</td>
             </tr>
             <tr>
                 <th>¿Sabe si tiene deudas?</th>
-                <th></th>
-            </tr>
-            <tr>
                 <td>Se desconoce</td>
+                <th></th>
                 <td></td>
             </tr>
         </table>
@@ -948,26 +968,20 @@ h1, h2{
         <table>
             <tr>
                 <th>¿Qué pasatiempos tiene?</th>
-                <th>¿Pertenece a algún club u organización?¿Puede mencionar?</th>
-            </tr>
-            <tr>
                 <td>practicar deportes, jugar videojuegos e ir al gym</td>
+                <th>¿Pertenece a algún club u organización?¿Puede mencionar?</th>
                 <td>si, no me se el nombre</td>
             </tr>
             <tr>
                 <th>¿Estudia?</th>
-                <th>¿Puede mencionar sus amistades más cercanas?</th>
-            </tr>
-            <tr>
                 <td>si</td>
+                <th>¿Puede mencionar sus amistades más cercanas?</th>
                 <td>No me se los nombres</td>
             </tr>
             <tr>
                 <th>¿Ha manifestado tener amistades en otro Municipio o Estado?</th>
-                <th>Correo electrónico, Nombre en sus Redes Sociales</th>
-            </tr>
-            <tr>
                 <td>Si</td>
+                <th>Correo electrónico, Nombre en sus Redes Sociales</th>
                 <td>ismaelmg46@gmail.com, IsmaelMAGA, ismaelmaga_18</td>
             </tr>
         </table>

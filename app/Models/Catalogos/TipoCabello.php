@@ -11,7 +11,7 @@ class TipoCabello extends Model
 {
     use HasFactory;
     protected $table='tipo_cabellos';
-    protected $fillable=['tipocabello'];
+    protected $fillable=['tipo'];
     public $timestamps= true;
 
     public function caracteristicas_fisicas():HasMany {

@@ -889,7 +889,13 @@ h1, h2{
        
         <table>
             <tr>
-                <th>{{ $desaparecido->persona->caracteristicasfisicas->color_piel ->colorpiel }}</th>
+                @foreach (App\Models\Catalogos\ColorPiel::all() as $color_piel)
+                @if ($color_piel->colorpiel == $desaparecido->persona->caracteristicasfisicas->color_piel->colorpiel)
+                    <th> <mark style="background-color: yellow;"> {{$color_piel->color}} </mark> </th>
+                @else
+                    <th> {{$color_piel->colorpiel}} </th>
+                @endif
+            @endforeach
             </tr>
         </table>
         </section>
@@ -909,13 +915,25 @@ h1, h2{
                 <p>3.2 Tipo:</p>
                 <table>
                     <tr>
-                        <th>{{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello }}</th>
+                        @foreach (App\Models\Catalogos\TipoCabello::all() as $tipo_cabello)
+                        @if ($tipo_cabello->tipocabello == $desaparecido->persona->caracteristicasfisicas->tipo_cabello->tipocabello)
+                            <th> <mark style="background-color: yellow;"> {{$tipo_cabello->color}} </mark> </th>
+                        @else
+                            <th> {{$tipo_cabello->tipocabello}} </th>
+                        @endif
+                    @endforeach
                     </tr>
                 </table>
                 <p>3.3 Color</p>
                 <table>
                     <tr>
-                        <th>{{ $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos }}</th>
+                        @foreach (App\Models\Catalogos\ColorCabello::all() as $color_cabello)
+                        @if ($color_cabello->colorcabellos == $desaparecido->persona->caracteristicasfisicas->color_cabello->colorcabellos)
+                            <th> <mark style="background-color: yellow;"> {{$color_cabello->colorcabellos}} </mark> </th>
+                        @else
+                            <th> {{$color_cabello->colorcabellos}} </th>
+                        @endif
+                    @endforeach
                     </tr>
                 </table>
                 <p>3.4 Modificaciones:</p>
@@ -969,7 +987,13 @@ h1, h2{
             <p>5.1 Color:</p>
             <table>
                 <tr>
-                    <th>{{ $desaparecido->persona->caracteristicasfisicas->color_ojos->color }}</th>
+                    @foreach (App\Models\Catalogos\ColorOjos::all() as $color_ojos)
+                            @if ($color_ojos->color == $desaparecido->persona->caracteristicasfisicas->color_ojos->color)
+                                <th> <mark style="background-color: yellow;"> {{$color_ojos->color}} </mark> </th>
+                            @else
+                                <th> {{$color_ojos->color}} </th>
+                            @endif
+                        @endforeach
                 </tr>
             </table>
 
@@ -1109,14 +1133,14 @@ h1, h2{
                     <tr>
                         @foreach (App\Models\Catalogos\TipoCabello::all() as $tipo_cabello)
                             @if ($tipo_cabello->id == $desaparecido->persona->caracteristicasfisicas->tipo_cabello->id)
-                                <th> <u> {{$tipo_cabello->tipocabello}} </u> </th>
+                                <th> <mark style="background-color: yellow;"> {{$tipo_cabello->tipocabello}} </mark> </th>
                             @else
                                 <th> {{$tipo_cabello->tipocabello}} </th>
                             @endif
                         @endforeach
                     </tr>
                     <tr>
-                        <td colspan="5">Modificaciones:</td>
+                        <td colspan="8">Modificaciones:</td>
                     </tr>
                 </table>
 

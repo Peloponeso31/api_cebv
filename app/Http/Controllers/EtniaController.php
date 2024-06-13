@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 
 class EtniaController extends Controller
 {
-    
+
     public function index()
     {
         return EtniaResource::collection(Etnia::all());
     }
 
-   
+
     public function store(StoreEtniaRequest $request)
     {
         return new EtniaResource(Etnia::create($request->all()));
@@ -26,11 +26,11 @@ class EtniaController extends Controller
         return new EtniaResource(Etnia::findOrFail($id));
     }
 
-    
+
     public function update($id, StoreEtniaRequest $request)
     {
         $etnia= Etnia::findOrFail($id);
-        $etnia->update($request->all());   
+        $etnia->update($request->all());
     }
 
     public function destroy( $id)

@@ -20,6 +20,8 @@ class CaracteristicasFisicas extends Model
 {
     use HasFactory;
     protected $fillable= [
+        "persona_id",
+        "tipo_cabello_id",
         "color_cabello_id",
         "color_ojos_id",
         "tamano_ojos_id",
@@ -28,8 +30,7 @@ class CaracteristicasFisicas extends Model
         "tipo_labios_id",
         "tipo_nariz_id",
         "tamano_orejas_id",
-        "complexion_id",
-        
+        "complexion_id"
     ];
 
         public function persona():BelongsTo{

@@ -3,64 +3,75 @@
 namespace App\Http\Controllers\Personas;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NacionalidadRequest;
 use App\Http\Requests\Personas\IndexPersonaRequest;
 use App\Http\Requests\Personas\PersonaRequest;
 use App\Http\Requests\Personas\UpdatePersonaRequest;
 use App\Http\Resources\Personas\PersonaResource;
+use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
+use App\Services\CrudService;
+use Request;
 
 class PersonaController extends Controller
 {
-    /**
-     * Campos excluidos para la consulta de informacion sobre personas.
-     */
-    private $camposExcluidos = [
-        'paginacion',
-        'devolver_con'
-    ];
+    protected CrudService $service;
+    protected Persona $model;
 
-    public function index(IndexPersonaRequest $request)
+    public function __construct(CrudService $service, Persona $model)
     {
-        $queryArgs = [];
-        $relaciones = $request['devolver_con'] ?? [];
+        $this->service = $service;
+        $this->model = $model;
+    }
 
-        foreach (array_keys($request->all()) as $campo) {
-            if (!in_array($campo, $this->camposExcluidos)) {
-                if (substr($campo, 0, 4) == "not_") {
-                    array_push($queryArgs, [substr($campo, 4), 'NOT LIKE', '%' . $request[$campo] . '%']);
-                } else {
-                    array_push($queryArgs, [$campo, 'LIKE', '%' . $request[$campo] . '%']);
-                }
-            }
+    public function index()
+    {
+        $query = $this->model::query();
+
+        if (request()->has('search')) {
+            $query = $this->model::search(request('search'));
         }
 
-        $query = Persona::where($queryArgs)->with($relaciones);
-        if (array_key_exists('paginacion', $request->all())) {
-            return response()->json($query->paginate($request['paginacion'], ['*'], 'pagina'));
-        }
-        return PersonaResource::collection($query->get());
+        return PersonaResource::collection($query->orderByDesc('id')->paginate());
     }
 
     public function store(PersonaRequest $request)
     {
-        return new PersonaResource(Persona::create($request->all()));
+        return $this->service->store($request, $this->model, new PersonaResource($this->model::class));
     }
 
     public function show($id)
     {
-        return new PersonaResource(Persona::findOrFail($id));
+        return $this->service->show($id, $this->model, new PersonaResource($this->model::class));
     }
 
     public function update($id, PersonaRequest $request)
     {
-        $model = Persona::findOrFail($id);
-        $model->update($request->all());
+        return $this->service->update($id, $request, $this->model, new PersonaResource($this->model::class));
     }
 
     public function destroy($id)
     {
-        if (Persona::findOrFail($id)->delete()) {
-            return response()->json(['mensaje' => 'Borrado correcto']);
-        }
+        return $this->service->destroy($id, $this->model);
+    }
+
+    public function addNacionality($personaId, $nacionalidadId)
+    {
+        $persona = Persona::findOrFail($personaId);
+        $nacionalidad = Nacionalidad::findOrFail($nacionalidadId);
+
+        $persona->nacionalidads()->attach($nacionalidad->id);
+
+        return PersonaResource::make($persona);
+    }
+
+    public function removeNacionality($personaId, $nacionalidadId)
+    {
+        $persona = Persona::findOrFail($personaId);
+        $nacionalidad = Nacionalidad::findOrFail($nacionalidadId);
+
+        $persona->nacionalidads()->detach($nacionalidad->id);
+
+        return PersonaResource::make($persona);
     }
 }

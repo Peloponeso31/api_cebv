@@ -29,8 +29,7 @@ class TipoReporte extends Model
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
-            'nombre' => $this->nombre,
+            'id' => $this->id
         ];
     }
 }

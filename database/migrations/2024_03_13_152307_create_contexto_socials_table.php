@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string("nombre_redes_sociales")->nullable();
             $table->string("lugares_frecuentes")->nullable();
             $table->string("vivienda_estado")->nullable();
+            // TODO: Campos de se encuentra en transito a los estados unidos de america
 
             $table->timestamps();
         });

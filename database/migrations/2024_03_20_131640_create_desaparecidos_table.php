@@ -12,18 +12,23 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id');
             $table->foreignId('persona_id');
-            $table->foreignId('estatus_rpdno_id')->constrained(table: 'estatus_personas');
-            $table->foreignId('estatus_cebv_id')->constrained(table: 'estatus_personas');
+            $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'estatus_personas');
+            $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'estatus_personas');
 
+
+            $table->string('clasificacion_persona')->nullable();
             $table->boolean('habla_espanhol')->nullable();
             $table->boolean('sabe_leer')->nullable();
             $table->boolean('sabe_escribir')->nullable();
             $table->string('url_boletin')->nullable();
-            $table->string('amparo_buscador')->nullable();
-            $table->string('ubicacion_amparo_buscador')->nullable();
-            $table->string('nombre_juez')->nullable();
-            $table->date('fecha_amparo')->nullable();
-            $table->string('derechos_humanos')->nullable();
+            $table->boolean('declaracion_especial_ausencia')->default(false);
+            $table->boolean('accion_urgente')->default(false);
+            $table->boolean('dictamen')->default(false);
+            $table->boolean('ci_nivel_federal')->default(false);
+            $table->string('otro_derecho_humano')->nullable();
+
+            // TODO; Identidad resguardada (string)
+            // TODO: Edad manual al momento de la desaparicion en anios, meses y dias (int).
 
             $table->timestamps();
         });

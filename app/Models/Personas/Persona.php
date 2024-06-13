@@ -110,6 +110,11 @@ class Persona extends Model
         return $this->caracteristicasfisicas->tipo_cabello->tipocabello;
     }
 
+    public function tamaño_ojos()
+    {
+        return $this->caracteristicasfisicas->tamaño_ojos->tamañoojos;
+    }
+
     public function contexto_familiar(): HasOne
     {
         return $this->hasOne(ContextoFamiliar::class);

@@ -8,61 +8,124 @@ use Illuminate\Database\Seeder;
 
 class PertenenciaSeeder extends Seeder
 {
-    
     public function run(): void
     {
-        $gpspertenencias = [
-            'PRENDA DE VESTIR',
-            'ALHAJA',
-            'ACCESORIO DE DAMA Y CABALLERO',
-            'OTRO'
-        ];
-        sort($gpspertenencias);
-
-        foreach ($gpspertenencias as $gppertenencia){
-            GrupoPertenencia::firstOrCreate([
-                "nombre" => $gppertenencia
-            ]);
-        }
-
-        $prendaId = GrupoPertenencia::where('nombre','PRENDA DE VESTIR')->first()->id;
-        $alhajaId = GrupoPertenencia::where('nombre','ALHAJA')->first()->id;
-        $accesorioId = GrupoPertenencia::where('nombre','ACCESORIO DE DAMA Y CABALLERO')->first()->id;
-        $otroId = GrupoPertenencia::where('nombre','OTRO')->first()->id;
+        $prendaId = GrupoPertenencia::where('nombre','Prendas de vestir')->first()->id;
+        $alhajaId = GrupoPertenencia::where('nombre','Alhaja')->first()->id;
+        $accesorioId = GrupoPertenencia::where('nombre','Accesorio de dama y caballero')->first()->id;
+        $otroId = GrupoPertenencia::where('nombre','Otro')->first()->id;
 
         $prendas = [
-            'ABRIGO',
-            'ALBA',
-            'BAÑADOR',
-            'BABERO',
-            'BATA',
-            'BERMUDA',
-            'BIKINI',
-            'BLUSA',
-            'BOTAS',
-            'BRASSIER',
-            'CALCETAS',
+            'Abrigo',
+            'Alba (vestimenta para sacerdote)',
+            'Bañador',
+            'Babero',
+            'Bata',
+            'Bautizo',
+            'Bermuda',
+            'Bikini',
+            'Blusa, Pantiblusa, Blusón',
+            'Botas',
+            'Brasier',
+            'Calcetas',
+            'Calcetín',
+            'Camisón',
+            'Camisa',
+            'Camiseta',
+            'Camisola',
+            'Capa',
+            'Chaleco',
+            'Chamarra',
+            'Conjunto',
+            'Coordinado',
+            'Corpiño',
+            'Delantal',
+            'Disfraz',
+            'Escolar',
+            'Fajero',
+            'Falda',
+            'Fondo',
+            'Gabardina',
+            'Guayabera',
+            'Hospital',
+            'Industrial',
+            'Leggings',
+            'Leotardo',
+            'Mallón',
+            'Mameluco',
+            'Medias',
+            'Militar',
+            'Novia',
+            'Overol',
+            'Pantalón',
+            'Pantaleta',
+            'Pants',
+            'Peto',
+            'Pijama',
+            'Playera',
+            'Policía',
+            'Primera comunión',
+            'Ropa interior',
+            'Saco',
+            'Salto de cama',
+            'Shorts',
+            'Sudadera',
+            'Suéter',
+            'Tenis',
+            'Traje de baño',
+            'Traje regional',
+            'Traje',
+            'Trusa',
+            'Vestido',
+            'XV años',
+            'Zapatillas',
+            'Zapatos',
+            'Uniforme escolar',
+            'Sandalias',
+            'No especifica'
         ];
 
         $alhajas = [
-            'JOYERIA',
-            'RELOJES DE PULSO'
+            'Joyería',
+            'Relojes de pulso',
+            'No especifica'
         ];
 
         $accesorios = [
-            'ANILLO',
-            'ARETES',
-            'BOINA',
-            'BOLSO',
-            'BUFANDA',
-            'CINTURON',
-            'COLLAR',
-            'CORBATA',
+            'Anillo',
+            'Aretes - Arracadas - Pendientes',
+            'Boina',
+            'Bolso',
+            'Bufanda',
+            'Cinturón',
+            'Collar - Cadena - Pulsera',
+            'Corbata',
+            'Estola',
+            'Faja',
+            'Gorra',
+            'Gorro',
+            'Guantes',
+            'Jorongo - Poncho',
+            'Mancuernilla',
+            'Máscara - Pañoleta',
+            'Monedero',
+            'Moño',
+            'Pañuelo',
+            'Pashmina',
+            'Pechera',
+            'Peineta - Pasador - Tubos para pelo',
+            'Pluma',
+            'Rebozo',
+            'Sombrero',
+            'Tocado',
+            'Turbante',
+            'Uñas postizas',
+            'Mochila'
         ];
 
         $otros = [
-            'NO ESPECIFICA',
-            'OTRO'
+            'No especifica',
+            'Otro'
         ];
 
         sort($prendas);

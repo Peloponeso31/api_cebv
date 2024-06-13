@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApodoController;
 use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
+use App\Http\Controllers\ColectivoController;
 use App\Http\Controllers\EnfermedadPielController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
@@ -238,7 +239,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tamanos-labios', TipoLabiosController::class);
 
     Route::apiResource('/tamanos-orejas', TamanoOrejasController::class);
-    Route::apiResource('/formas-orejas',FormaOrejaController::class);
+    Route::apiResource('/formas-orejas', FormaOrejaController::class);
     Route::apiResource('/tipos-mentones', TipoMentonController::class);
 
     Route::apiResource('/regiones-deformaciones', RegionDeformacionController::class);
@@ -259,9 +260,9 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      * Routes for señas particulares module
      */
     Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
-    Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
-    Route::apiResource("/pertenencia", PertenenciaController::class);
-    Route::apiResource("/color", ColorController::class);
+    Route::apiResource('/grupos-pertenencias', GrupoPertenenciaController::class);
+    Route::apiResource('/pertenencias', PertenenciaController::class);
+    Route::apiResource('/colores', ColorController::class);
 
     Route::apiResource("/velloFacial", VelloFacialController::class);
     Route::apiResource("/regionvello", RegionVelloFacialController::class);
@@ -277,9 +278,9 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/usos-vehiculos', UsoVehiculoController::class);
     Route::apiResource('/relaciones-vehiculos', RelacionVehiculoController::class);
 
+    Route::apiResource('/colectivos', ColectivoController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/token', 'token');
 });
-

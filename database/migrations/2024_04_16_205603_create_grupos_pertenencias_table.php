@@ -6,19 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up(): void
     {
-        Schema::create('grupo_pertenencias', function (Blueprint $table) {
+        Schema::create('grupos_pertenencias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->timestamps();
         });
     }
 
-    
+
     public function down(): void
     {
-        Schema::dropIfExists('grupo_pertenencias');
+        Schema::dropIfExists('grupos_pertenencias');
     }
 };

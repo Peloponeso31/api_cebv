@@ -14,10 +14,12 @@ class Pertenencia extends Model
     use Searchable;
 
     protected $table = "pertenencias";
+
     protected $fillable = [
         'grupo_pertenencia_id',
         'nombre',
     ];
+
     public $timestamps = false;
 
     public function PrendaDeVestir(): HasMany
@@ -30,7 +32,7 @@ class Pertenencia extends Model
         return $this->belongsTo(GrupoPertenencia::class, 'grupo_pertenencia_id');
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'grupo_pertenencia_id' => (int)$this->grupo_pertenencia_id,

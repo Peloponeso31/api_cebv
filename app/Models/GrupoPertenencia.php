@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Catalogos\PrendaDeVestir;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,8 +11,10 @@ class GrupoPertenencia extends Model
 {
     use HasFactory;
 
-    protected $table = "grupo_pertenencias";
+    protected $table = 'grupos_pertenencias';
+
     protected $fillable = ['nombre'];
+
     public $timestamps = false;
 
     public function PrendaDeVestir(): HasMany
@@ -22,13 +25,5 @@ class GrupoPertenencia extends Model
     public function pertenencia(): HasMany
     {
         return $this->hasMany(Pertenencia::class);
-    }
-
-    public function toSearchableArray()
-    {
-        return [
-            'id' => $this->id,
-            'nombre' => $this->nombre,
-        ];
     }
 }

@@ -52,6 +52,10 @@ class DatabaseSeeder extends Seeder
             TipoRedSocialSeeder::class,
             OcupacionSeeder::class,
             GrupoVulnerableSeeder::class,
+            GrupoPertenenciaSeeder::class,
+            PertenenciaSeeder::class,
+            ColectivoSeeder::class,
+            ColorSeeder::class,
         ]);
 
         /**

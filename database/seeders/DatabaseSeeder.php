@@ -109,5 +109,13 @@ class DatabaseSeeder extends Seeder
             TelefonoSeeder::class,
             ContactoSeeder::class,
         ]);
+
+        /**
+         * Seeders que no sé dónde meter
+         */
+        $this->call([
+            EnfoqueDiferenciadoSeeder::class,
+            SituacionMigratoriaSeeder::class
+        ]);
     }
 }

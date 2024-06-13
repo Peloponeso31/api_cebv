@@ -5,6 +5,7 @@ use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
 use App\Http\Controllers\ColectivoController;
 use App\Http\Controllers\EnfermedadPielController;
+use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
 use App\Http\Controllers\FormaCaraController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\RegionDeformacionController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
 use App\Http\Controllers\TipoMentonController;
@@ -27,7 +29,6 @@ use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoSangreController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
-use App\Models\TamanoCabello;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -284,6 +285,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      */
     Route::apiResource('/colectivos', ColectivoController::class);
     Route::apiResource('/tipos-sangre', TipoSangreController::class);
+    Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
+    Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

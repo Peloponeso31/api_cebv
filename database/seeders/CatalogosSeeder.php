@@ -323,6 +323,61 @@ class CatalogosSeeder extends Seeder
 
         ]);
 
+        // Algunos catalogos que faltaban agregar
+
+        \App\Models\Catalogos\CaracteristicasFisicas\FormaOjos::insert([
+            ["forma" => "ALARGADOS"],
+            ["forma" => "OVALADOS"],
+            ["forma" => "RASGADOS"],
+            ["forma" => "REDONDOS"],
+            ["forma" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\Calvicie::insert([
+            ["calvicie" => "NO"],
+            ["calvicie" => "BILATERAL"],
+            ["calvicie" => "CORONAL"],
+            ["calvicie" => "FRONTAL"],
+            ["calvicie" => "FRONTO CORO"],
+            ["calvicie" => "TOTAL"],
+            ["calvicie" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TamanoCabello::insert([
+            ["tamano" => "CORTO"],
+            ["tamano" => "LARGO"],
+            ["tamano" => "MEDIANO (AL HOMBRO)"],
+            ["tamano" => "RAPADO"],
+            ["tamano" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TamanoBoca::insert([
+            ["tamano" => "CHICA"],
+            ["tamano" => "MEDIANA"],
+            ["tamano" => "GRANDE"],
+            ["tamano" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\CaracteristicasFisicas\TipoCeja::insert([
+            ["tipo" => "DEPILADAS"],
+            ["tipo" => "ESCASAS"],
+            ["tipo" => "POBLADAS"],
+            ["tipo" => "RASURADAS"],
+            ["tipo" => "REGULARES"],
+            ["tipo" => "NO ESPECIFICA"],
+
+        ]);
+        //MediaFiliacion segun ficha de busqueda--faltan catalogos
+        \App\Models\Catalogos\MediaFiliacion\TipoMenton::insert([
+            ["tipo" => "SALIENTE"],
+            ["tipo" => "RETRAIDO"],
+            ["tipo" => "RECTO"],
+        ]);
+
         \App\Models\Catalogos\Etnia\Religion::insert([
             ["religion" => "Católicos"],
             ["religion" => "Catolicos Ortodoxos"],

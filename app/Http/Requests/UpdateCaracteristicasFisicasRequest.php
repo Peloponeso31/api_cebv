@@ -35,6 +35,24 @@ class UpdateCaracteristicasFisicasRequest extends FormRequest
             'tipo_nariz_id' => ['sometimes','integer'],
             'tamano_orejas_id' => ['sometimes','integer'],
             'complexion_id' => ['sometimes','integer'],
+
+            'barba_id' => ['sometimes','nullable', Rule::in(['Sí', 'No', 'No especifico'])] ,
+            'bigote_id' => ['sometimes','nullable', Rule::in(['Sí', 'No', 'No especifico'])] ,
+            'calvicie_id' => ['sometimes','nullable', Rule::in(['Sí', 'No'])] ,
+            'especificacion_barba_id' => ['sometimes','integer'] ,
+            'especificacion_bigote_id' => ['sometimes','integer'],
+            'especificacion_cabello_id' => ['sometimes','integer'],
+            'especificacion_nariz_id' => ['sometimes','integer'],
+            'especificacion_ojos_id' => ['sometimes','integer'],
+            'especificacion_oreja_id' => ['sometimes','integer'],
+            'estatura_id' => ['sometimes','integer'],
+            'forma_cara_id' => ['sometimes','integer'],
+            'forma_ojos_id' => ['sometimes','integer'],
+            'forma_oreja_id' => ['sometimes','integer'],
+            'peso_id' => ['sometimes','integer'],
+            'tamano_boca_id' => ['sometimes','integer'],
+            'tamano_cabello_id' => ['sometimes','integer'],
+            'tipo_ceja_id' => ['sometimes','integer'],
         ];
     } else {
         return [
@@ -48,6 +66,24 @@ class UpdateCaracteristicasFisicasRequest extends FormRequest
             'tipo_nariz_id' => ['sometimes','integer'],
             'tamano_orejas_id' => ['sometimes','integer'],
             'complexion_id' => ['sometimes','integer'],
+
+            'barba_id' => ['sometimes','nullable', Rule::in(['Sí', 'No', 'No especifico'])] ,
+            'bigote_id' => ['sometimes','nullable', Rule::in(['Sí', 'No', 'No especifico'])] ,
+            'calvicie_id' => ['sometimes','nullable', Rule::in(['Sí', 'No'])] ,
+            'especificacion_barba_id' => ['sometimes','integer'] ,
+            'especificacion_bigote_id' => ['sometimes','integer'],
+            'especificacion_cabello_id' => ['sometimes','integer'],
+            'especificacion_nariz_id' => ['sometimes','integer'],
+            'especificacion_ojos_id' => ['sometimes','integer'],
+            'especificacion_oreja_id' => ['sometimes','integer'],
+            'estatura_id' => ['sometimes','integer'],
+            'forma_cara_id' => ['sometimes','integer'],
+            'forma_ojos_id' => ['sometimes','integer'],
+            'forma_oreja_id' => ['sometimes','integer'],
+            'peso_id' => ['sometimes','integer'],
+            'tamano_boca_id' => ['sometimes','integer'],
+            'tamano_cabello_id' => ['sometimes','integer'],
+            'tipo_ceja_id' => ['sometimes','integer'],
         ];
     }
 }

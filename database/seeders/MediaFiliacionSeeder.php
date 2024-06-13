@@ -40,5 +40,14 @@ class MediaFiliacionSeeder extends Seeder
             ["nombre" => "Lampiña"],
             ["nombre" => "Escasa"]
         ]);
+
+
+        //Relacion con el desaparecido
+        $desaparecidos = Desaparecido::all();
+        foreach ($desaparecidos as $desaparecido) {
+            MediaFiliacion::factory()->create([
+                "persona_id" => $desaparecido->persona->id
+            ]);
+        }
     }
 }

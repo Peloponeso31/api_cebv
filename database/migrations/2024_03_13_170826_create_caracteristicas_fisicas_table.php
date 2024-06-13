@@ -23,6 +23,23 @@ return new class extends Migration
             $table->foreignId("tipo_nariz_id");
             $table->foreignId("tamano_orejas_id");
             $table->foreignId("complexion_id");
+            $table->foreignId("barba_id");
+            $table->foreignId("bigote_id");
+            $table->foreignId("calvicie_id");
+            $table->foreignId("especificacion_barba_id");
+            $table->foreignId("especificacion_bigote_id");
+            $table->foreignId("especificacion_cabello_id");
+            $table->foreignId("especificacion_nariz_id");
+            $table->foreignId("especificacion_ojos_id");
+            $table->foreignId("especificacion_oreja_id");
+            $table->foreignId("estatura_id");
+            $table->foreignId("forma_cara_id");
+            $table->foreignId("forma_ojos_id");
+            $table->foreignId("forma_oreja_id");
+            $table->foreignId("peso_id");
+            $table->foreignId("tamano_boca_id");
+            $table->foreignId("tamano_cabello_id");
+            $table->foreignId("tipo_ceja_id");
             $table->timestamps();
         });
     }

@@ -115,7 +115,10 @@ class DatabaseSeeder extends Seeder
          */
         $this->call([
             EnfoqueDiferenciadoSeeder::class,
-            SituacionMigratoriaSeeder::class
+            SituacionMigratoriaSeeder::class,
+            ParticularSeeder::class,
+            AutoridadSeeder::class,
+            MetodoCapturaSeeder::class,
         ]);
     }
 }

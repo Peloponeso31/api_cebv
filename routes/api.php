@@ -16,6 +16,7 @@ use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\GrupoVulnerableController;
 use App\Http\Controllers\IntervencionQuirurgicaController;
 use App\Http\Controllers\MarcaVehiculoController;
+use App\Http\Controllers\MedioCapturaController;
 use App\Http\Controllers\MetodoCapturaController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\OcupacionController;
@@ -293,6 +294,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/autoridades', AutoridadController::class);
     Route::apiResource('particulares', ParticularController::class);
     Route::apiResource('/metodos-captura', MetodoCapturaController::class);
+    Route::apiResource('/medios-captura', MedioCapturaController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

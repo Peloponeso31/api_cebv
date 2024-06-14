@@ -119,6 +119,7 @@ class DatabaseSeeder extends Seeder
             ParticularSeeder::class,
             AutoridadSeeder::class,
             MetodoCapturaSeeder::class,
+            MedioCapturaSeeder::class,
         ]);
     }
 }

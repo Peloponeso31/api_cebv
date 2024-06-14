@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApodoController;
+use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
 use App\Http\Controllers\ColectivoController;
@@ -287,6 +288,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-sangre', TipoSangreController::class);
     Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
     Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
+    Route::apiResource('/autoridades', AutoridadController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

@@ -9,6 +9,7 @@ use App\Http\Controllers\EnfermedadPielController;
 use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
+use App\Http\Controllers\EstatusPerpetradorController;
 use App\Http\Controllers\FormaCaraController;
 use App\Http\Controllers\FormaOjoController;
 use App\Http\Controllers\FormaOrejaController;
@@ -295,6 +296,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('particulares', ParticularController::class);
     Route::apiResource('/metodos-captura', MetodoCapturaController::class);
     Route::apiResource('/medios-captura', MedioCapturaController::class);
+    Route::apiResource('/estatus-perpetradores', EstatusPerpetradorController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

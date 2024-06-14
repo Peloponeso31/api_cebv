@@ -120,6 +120,7 @@ class DatabaseSeeder extends Seeder
             AutoridadSeeder::class,
             MetodoCapturaSeeder::class,
             MedioCapturaSeeder::class,
+            EstatusPerpetradorSeeder::class,
         ]);
     }
 }

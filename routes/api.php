@@ -18,6 +18,7 @@ use App\Http\Controllers\IntervencionQuirurgicaController;
 use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\OcupacionController;
+use App\Http\Controllers\ParticularController;
 use App\Http\Controllers\RegionDeformacionController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
@@ -289,6 +290,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
     Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
     Route::apiResource('/autoridades', AutoridadController::class);
+    Route::apiResource('particulares', ParticularController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

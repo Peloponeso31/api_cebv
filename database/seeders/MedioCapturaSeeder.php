@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MedioCaptura;
 use Illuminate\Database\Seeder;
 
 class MedioCapturaSeeder extends Seeder
@@ -15,5 +16,11 @@ class MedioCapturaSeeder extends Seeder
             'OTRO',
             'SIN INFORMACION',
         ];
+
+        foreach ($mediosCaptura as $medioCaptura) {
+            MedioCaptura::create([
+                'nombre' => $medioCaptura,
+            ]);
+        }
     }
 }

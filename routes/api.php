@@ -293,7 +293,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
     Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
     Route::apiResource('/autoridades', AutoridadController::class);
-    Route::apiResource('particulares', ParticularController::class);
+    Route::apiResource('/particulares', ParticularController::class);
     Route::apiResource('/metodos-captura', MetodoCapturaController::class);
     Route::apiResource('/medios-captura', MedioCapturaController::class);
     Route::apiResource('/estatus-perpetradores', EstatusPerpetradorController::class);

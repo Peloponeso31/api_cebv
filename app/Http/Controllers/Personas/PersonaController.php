@@ -12,6 +12,7 @@ use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use App\Services\CrudService;
 use Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PersonaController extends Controller
 {
@@ -26,13 +27,12 @@ class PersonaController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
+        $personas = QueryBuilder::for(Persona::class)
+            ->allowedFilters(['nombre'])
+            ->with(['reportes'])
+            ->paginate();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
-
-        return PersonaResource::collection($query->orderByDesc('id')->paginate());
+        return PersonaResource::collection($personas);
     }
 
     public function store(PersonaRequest $request)

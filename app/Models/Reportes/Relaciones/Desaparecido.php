@@ -9,8 +9,10 @@ use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Desaparecido extends Model
+class Desaparecido extends Model implements Searchable
 {
     protected $table = 'desaparecidos';
 
@@ -46,7 +48,7 @@ class Desaparecido extends Model
         return $this->belongsTo(Reporte::class);
     }
 
-    protected function persona(): BelongsTo
+    protected function persona() : BelongsTo
     {
         return $this->belongsTo(Persona::class);
     }
@@ -74,5 +76,13 @@ class Desaparecido extends Model
     public function documentosLegales(): HasMany
     {
         return $this->hasMany(DocumentoLegal::class);
+    }
+
+    public function getSearchResult(): SearchResult
+    {
+        return new SearchResult(
+            $this,
+            $this->dictamen
+        );
     }
 }

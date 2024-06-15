@@ -4,11 +4,17 @@ namespace App\Http\Controllers\Reportes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
+use App\Http\Resources\Personas\PersonaResource;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
+use App\Models\Personas\Persona;
+use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
 use App\Services\ReporteService;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\Searchable\Search;
 
 class ReporteController extends Controller
 {
@@ -25,13 +31,14 @@ class ReporteController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
+        $busqueda = (new Search())
+            ->registerModel(Reporte::class, "tipo_reporte_id")
+            ->registerModel(Desaparecido::class, "persona_id")
+            ->registerModel(Persona::class, "nombre")
+            ->search("ia")
+            ->groupByType();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
-
-        return ReporteResource::collection($query->paginate());
+        return $busqueda;
     }
 
     public function store(ReporteRequest $request)

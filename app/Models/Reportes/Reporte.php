@@ -5,6 +5,7 @@ namespace App\Models\Reportes;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
+use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
@@ -17,12 +18,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Laravel\Scout\Searchable;
-use Illuminate\Support\Carbon;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Reporte extends Model
+class Reporte extends Model implements Searchable
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $table = 'reportes';
 
@@ -56,6 +57,14 @@ class Reporte extends Model
      *
      * @return BelongsTo
      */
+    public function getSearchResult(): SearchResult
+    {
+        return new SearchResult(
+            $this,
+            $this->id
+        );
+    }
+
     public function tipoReporte(): BelongsTo
     {
         return $this->belongsTo(TipoReporte::class, 'tipo_reporte_id');
@@ -131,13 +140,4 @@ class Reporte extends Model
         return $this->hasMany(Hipotesis::class, 'reporte_id');
     }
 
-    /**
-     * @return array
-     */
-    public function toSearchableArray(): array
-    {
-        return [
-            'esta_terminado' => $this->esta_terminado,
-        ];
-    }
 }

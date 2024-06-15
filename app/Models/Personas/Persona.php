@@ -26,11 +26,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Laravel\Scout\Searchable;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
-class Persona extends Model
+
+class Persona extends Model implements Searchable
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $table = 'personas';
 
@@ -72,9 +74,9 @@ class Persona extends Model
      *
      * @return BelongsToMany
      */
-    public function reportes(): BelongsToMany
+    public function reportes(): HasMany
     {
-        return $this->belongsToMany(Reporte::class);
+        return $this->hasMany(Reporte::class);
     }
 
     public function edad_anos()
@@ -86,7 +88,7 @@ class Persona extends Model
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
-    
+
     public function caracteristicasfisicas(): HasOne
     {
         return $this->hasOne(CaracteristicasFisicas::class);
@@ -178,15 +180,11 @@ class Persona extends Model
         return $this->hasMany(Apodo::class, 'persona_id');
     }
 
-    public function toSearchableArray()
+    public function getSearchResult(): SearchResult
     {
-        return [
-            'nombre' => $this->nombre,
-            'apellido_paterno' => $this->apellido_paterno,
-            'apellido_materno' => $this->apellido_materno,
-            'pseudonimo_nombre' => $this->pseudonimo_nombre,
-            'pseudonimo_apellido_paterno' => $this->pseudonimo_apellido_paterno,
-            'pseudonimo_apellido_materno' => $this->pseudonimo_apellido_materno,
-        ];
+        return new SearchResult(
+            $this,
+            $this->nombre
+        );
     }
 }

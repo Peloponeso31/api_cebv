@@ -50,6 +50,7 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             LenguaSeeder::class,
             TipoRedSocialSeeder::class,
+            TipoOcupacionSeeder::class,
             OcupacionSeeder::class,
             GrupoVulnerableSeeder::class,
             GrupoPertenenciaSeeder::class,

@@ -30,6 +30,7 @@ use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
 use App\Http\Controllers\TipoMentonController;
+use App\Http\Controllers\TipoOcupacionController;
 use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoSangreController;
 use App\Http\Controllers\TipoVehiculoController;
@@ -168,6 +169,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
     Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
+    Route::apiResource('/tipos-ocupaciones', TipoOcupacionController::class);
     Route::apiResource('/ocupaciones', OcupacionController::class);
 
     /**

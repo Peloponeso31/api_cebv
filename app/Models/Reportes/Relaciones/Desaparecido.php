@@ -42,15 +42,14 @@ class Desaparecido extends Model implements Searchable
         'dictamen' => 'boolean',
         'ci_nivel_federal' => 'boolean',
     ];
-
-    protected function reporte(): BelongsTo
+    public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class);
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
-    protected function persona() : BelongsTo
+    public function persona() : BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     protected function estatusRpdno(): BelongsTo

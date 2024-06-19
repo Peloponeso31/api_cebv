@@ -31,14 +31,16 @@ class ReporteController extends Controller
 
     public function index()
     {
-        $busqueda = (new Search())
+
+        return ReporteResource::collection(Reporte::paginate());
+       /** $busqueda = (new Search())
             ->registerModel(Reporte::class, "tipo_reporte_id")
             ->registerModel(Desaparecido::class, "persona_id")
             ->registerModel(Persona::class, "nombre")
             ->search("ia")
             ->groupByType();
 
-        return $busqueda;
+        return $busqueda;**/
     }
 
     public function store(ReporteRequest $request)

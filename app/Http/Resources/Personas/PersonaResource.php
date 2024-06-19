@@ -4,7 +4,9 @@ namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\ApodoResource;
 use App\Http\Resources\NacionalidadResource;
+use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\ReporteResource;
+use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -36,7 +38,7 @@ class PersonaResource extends JsonResource
             'genero' => $this->genero,
             'apodos' => ApodoResource::collection($this->apodos),
             'nacionalidades' => NacionalidadResource::collection($this->nacionalidads),
-            'reportes' => ReporteResource::collection($this->whenLoaded('reportes')),
+            'desapariciones' => DesaparecidoResource::collection($this->whenLoaded('desaparecidos')),
         ];
     }
 }

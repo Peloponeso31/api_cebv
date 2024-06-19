@@ -138,12 +138,12 @@ class Persona extends Model
 
     public function desaparecidos(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'persona_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function reportantes(): HasMany
     {
-        return $this->hasMany(Reportante::class, 'persona_id');
+        return $this->hasMany(Reportante::class);
     }
 
     public function domicilios(): BelongsToMany

@@ -11,10 +11,10 @@ class DesaparecidoRequest extends FormRequest
         return match ($this->method()) {
             'POST', 'PUT' => [
                 'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
-                'persona_id' => ['required', 'exists:personas,id', 'integer'],
+                'persona_id' => ['exists:personas,id', 'integer'],
                 'clasificacion_persona' => ['nullable', 'string'],
-                'estatus_rpdno_id' => ['required', 'exists:estatus_personas,id', 'integer'],
-                'estatus_cebv_id' => ['required', 'exists:estatus_personas,id', 'integer'],
+                'estatus_rpdno_id' => ['exists:estatus_personas,id', 'integer'],
+                'estatus_cebv_id' => ['exists:estatus_personas,id', 'integer'],
                 'habla_espanhol' => ['nullable', 'boolean'],
                 'sabe_leer' => ['nullable', 'boolean'],
                 'sabe_escribir' => ['nullable', 'boolean'],

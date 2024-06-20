@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\Relaciones\DocumentoLegalRequest;
 use App\Http\Resources\Reportes\Relaciones\DocumentoLegalResource;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
+use App\Services\CrudService;
 
 class DocumentoLegalController extends Controller
 {
@@ -19,16 +20,16 @@ class DocumentoLegalController extends Controller
         return new DocumentoLegalResource(DocumentoLegal::create($request->validated()));
     }
 
-    public function show(DocumentoLegal $documentoLegal)
+    public function show($documentoLegal)
     {
-        return new DocumentoLegalResource($documentoLegal);
+        return new DocumentoLegalResource(DocumentoLegal::find($documentoLegal));
     }
 
-    public function update(DocumentoLegalRequest $request, DocumentoLegal $documentoLegal)
+    public function update(DocumentoLegalRequest $request, $documentoLegal)
     {
-        $documentoLegal->update($request->validated());
-
-        return new DocumentoLegalResource($documentoLegal);
+        $documento = DocumentoLegal::find($documentoLegal);
+        $documento->update($request->validated());
+        return new DocumentoLegalResource($documento);
     }
 
     public function destroy(DocumentoLegal $documentoLegal)

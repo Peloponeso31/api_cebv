@@ -32,7 +32,7 @@ class ReporteController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return ReporteResource::collection($query->paginate());
+        return ReporteResource::collection($query->orderByDesc("id")->get());
     }
 
     public function store(ReporteRequest $request)

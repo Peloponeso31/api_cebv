@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id');
-            $table->foreignId('persona_id');
+            $table->foreignId('persona_id')->nullable();
             $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'estatus_personas');
             $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'estatus_personas');
 

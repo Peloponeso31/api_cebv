@@ -13,7 +13,10 @@ return new class extends Migration {
             $table->foreignId('reporte_id')->constrained(table: 'reportes', indexName: 'idx_desapariciones_reporte');
 
             $table->dateTime('fecha_desaparicion')->nullable();
-            $table->dateTime('fecha_percato');
+            $table->string('fecha_desaparicion_cebv')->nullable();
+            $table->dateTime('fecha_percato')->nullable();
+            $table->string('fecha_percato_cebv')->nullable();
+            $table->text('aclaraciones_fecha_hechos')->nullable();
             $table->boolean('cambio_comportamiento')->nullable();
             $table->text('descripcion_cambio_comportamiento')->nullable();
             $table->boolean('fue_amenazado')->nullable();

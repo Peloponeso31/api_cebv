@@ -7,6 +7,7 @@ use App\Http\Requests\Reportes\Informacion\HechoDesaparicionRequest;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Services\CrudService;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class HechoDesaparicionController extends Controller
 {
@@ -21,13 +22,11 @@ class HechoDesaparicionController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
+        $hechos = QueryBuilder::for(HechoDesaparicion::class)
+            ->allowedFilters(['reporte_id'])
+            ->get();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
-
-        return HechoDesaparicionResource::collection($query->get());
+        return HechoDesaparicionResource::collection($hechos);
     }
 
     public function store(HechoDesaparicionRequest $request)

@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Resources\FolioResource;
+use App\Http\Resources\UserAdminResource;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
@@ -12,21 +14,14 @@ class ReporteService
 {
     /**
      * @param mixed $id
-     * @return JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getFolios(mixed $id): JsonResponse
+    public function getFolios(mixed $id): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $reporte = Reporte::findOrFail($id);
         $folios = Folio::where('reporte_id', $reporte->id)->get();
 
-        if ($folios->isEmpty()) {
-            return response()->json("No se encontraron folios para el reporte $reporte->id", 404);
-        }
-
-        return response()->json([
-            'Folios del reporte' => $reporte->id,
-            'Folios' => $folios
-        ]);
+        return FolioResource::collection($folios);
     }
 
     /**

@@ -12,7 +12,7 @@ class HechoDesaparicionRequest extends FormRequest
             'POST', 'PUT' => [
                 'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
                 'fecha_desaparicion' => ['nullable'],
-                'fecha_percato' => ['required', 'date'],
+                'fecha_percato' => ['nullable', 'date'],
                 'cambio_comportamiento' => ['nullable', 'boolean'],
                 'descripcion_cambio_comportamiento' => ['nullable','string'],
                 'fue_amenazado' => ['nullable','boolean'],

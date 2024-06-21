@@ -1,4 +1,4 @@
 // @no-log
-GET http://api_cebv.test/api/personas?filter[nombre]=juan&filter[apellido_paterno]=ce
+GET http://api_cebv.test/api/hechos-desapariciones?filter[reporte_id]=2
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}

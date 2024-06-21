@@ -529,302 +529,720 @@ h1, h2{
         
           <table>
             <tr>
-                <th>Nombre Completo*</th>
-                <td colspan="3">Ismael Matus García</td>
-                
+                <th>Nombre(S)*:</th>
+                <th>Primer apellido:</th>
+                <th>Segundo apellido:</th>
+                <th>¿Usted que es de la persona desaparecida o no localizada?</th>
             </tr>
             <tr>
-                <th>Edad y Fecha de Nacimiento</th>
-                <td>23 años, 07 de Marzo de 2001</td>
-                <th>Sexo</th> 
-                <td>Hombre</td>
+                <td>Ismael</td>
+                <td>Matus</td>
+                <td>García</td>
+                <td>Hermano</td>
             </tr>
             <tr>
-                <th>Domicilio</th>
-                <td colspan="3">Lucas Martin</td> 
+                <th>Sexo:</th> 
+                <th>Genero:</th>
+                <th>Religión:</th>
+                <th>Lengua:</th> 
             </tr>
             <tr>
-                <th>Teléfono(s)*</th>
-                <td colspan="3">2283561304</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-                <th>Correo Electronico</th> 
-                <td colspan="3">ismaelmg46@gmail.com</td> 
+                <th>Fecha de nacimiento:</th>
+                <th colspan="3">Edad(Años):</th>
             </tr>
             <tr>
-                <th>Relación con la Persona <br>Desaparecida o No Localizada*</th>
-                <td>Tio</td>
-                <th>Tipo de Reporte</th>
-                <td>Denuncia</td> 
+                <td></td> 
+                <td colspan="3"></td> 
+            </tr>
+            <tr>
+                <th>Lugar de nacimiento:</th>
+                <th colspan="3">Nacionalidad:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th>RFC:</th>
+                <th colspan="3">CURP:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="3"></td>
             </tr>
 
+        </table>
+
+        <h2>Datos de Contacto</h2>
+        <table>
+            <tr>
+                <th>Teléfono móvil:</th>
+                <th>Compañia:</th>
+                <th>Observaciones:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Teléfono fijo:</th>
+                <th colspan="2">Observaciones:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Correo electronico:</th>
+                <th colspan="2">Observaciones:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+
+        <h2>Domicilio de la persona</h2>
+        <table>
+            <tr>
+                <th>Calle:</th>
+                <th>N° Exterior:</th>
+                <th>N° Interior:</th>
+                <th>Colonia</th>
+                <th>Código Postal:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <th>Municipio:</th>
+                <th colspan="3">Localidad:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th>Entre calle 1:</th>
+                <th>Entre calle 2:</th>
+                <th colspan="3">Tramo carretero:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th colspan="5">Referencia:</th>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+        </table>
+
+        <h2>Información relevante</h2>
+        <table>
+            <tr>
+                <th>Nivel de escolaridad:</th>
+                <th>Avance de escolaridad:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Estado conyugal:</th>
+                <th>Pertenecia a grupo de población vulnerable:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Información relevante que quiera añadir:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+
+        <h2>Participación en búsquedas</h2>
+        <table>
+            <tr>
+                <th colspan="2">¿Ha realizado búsquedas con anterioridad?</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th colspan="2">¿En dónde?</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Pertenece a algún colectivo:</th>
+                <th>Nombre del colectivo:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h2>Datos de posible extorsión o amenaza</h2>
+        <table>
+            <tr>
+                <th>¿Ha sido victima de extorsión o fraude?</th>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Descripción de la situación:</th>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <th>¿Ha recibido amenazas?</th>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <th>¿Sabe de donde proviene?</th>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
         </table>
 
         </section>
     
     <section id="Desaparecida">
-        <h2>DATOS DE LA PERSONA DESAPARECIDA O NO LOCALIZADA</h2>
+        <h2>Persona reportada</h2>
+        <h2>DATOS De identificación de la persona</h2>
 
     <table>
         <tr>
-            <th>Nombre Completo*</th>
-            <td colspan="3">{{ $desaparecido->persona->nombre }}
-                {{ $desaparecido->persona->apellido_paterno }}
-                {{ $desaparecido->persona->apellido_materno }}</td>
+            <th>Nombre(S)*</th>
+            <th>Primer apellido:</th>
+            <th>Segundo apellido:</th>
+            <th>Identidad resguardada:</th>
         </tr>
         <tr>
-            <th>Genero</th>
-            <td>(Femenino, Masculino, Otro) <br>{{ $desaparecido->persona->genero }} </td>
-            <th>Nacionalidad y Estatus Migratorio</th>
+            <td>{{ $desaparecido->persona->nombre }}</td>
+            <td>{{ $desaparecido->persona->apellido_paterno }}</td>
+            <td>{{ $desaparecido->persona->apellido_materno }}</td>
             <td></td>
         </tr>
         <tr>
-            <th>Edad y Fecha de Nacimiento*</th>
-            <td>{{ $desaparecido->persona->edad_anos() }} años, {{ $desaparecido->persona->fecha_nacimiento }}</td> 
-            <th>Tipo de Sangre</th>
-            <td></td>
+            <th>Pseudónimo(S) Nombre(S):</th>
+            <th>Pseudónimo primer apellido:</th>
+            <th colspan="2">Pseudónimo segundo apellido:</th>
         </tr>
         <tr>
-            <th>Ocupación</th>
-            <td>{{ $desaparecido->persona->ocupacion }}</td> 
-            <th>Escolaridad</th>
             <td></td>
+            <td></td>
+            <td colspan="2"></td>
         </tr>
         <tr>
-            <th>Condición de Salud</th>
+            <th>Alias:</th>
+            <th>Sexo:</th>
+            <th colspan="2">Genero:</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td colspan="2">{{ $desaparecido->persona->genero }}</td>
+        </tr>
+        <tr>
+            <th colspan="3">¿Se desconoce fecha exacta?</th>
+            <td>No</td>
+        </tr>
+        <tr>
+            <th colspan="4">Fecha de nacimiento específica:</th>
+        </tr>
+        <tr>
+            <td colspan="4">{{ $desaparecido->persona->fecha_nacimiento }}</td>
+        </tr>
+        <tr>
+            <th colspan="4">Edad al momento de la desaparición</th>
+        </tr>
+        <tr>
+            <th>Edad(Años):</th>
+            <th>Edad(Meses):</th>
+            <th colspan="2">Edad(Días):</th>
+        </tr>
+        <tr>
+            <td>{{ $desaparecido->persona->edad_anos() }} años</td>
+            <td> meses</td>
+            <td colspan="2"> días</td>
+        </tr>
+        <tr>
+            <th colspan="4">Edad actual</th>
+        </tr>
+        <tr>
+            <th>Edad(Años):</th>
+            <th>Edad(Meses):</th>
+            <th colspan="2">Edad(Días):</th>
+        </tr>
+        <tr>
+            <td>{{ $desaparecido->persona->edad_anos() }} años</td>
+            <td> meses</td>
+            <td colspan="2"> días</td>
+        </tr>
+        <tr>
+            <th>Lugar de nacimiento:</th>
+            <th colspan="3">Nacionalidad:</th>
+        </tr>
+        <tr>
+            <td></td>
             <td colspan="3"></td>
         </tr>
         <tr>
-            <th>Teléfono Celular*</th>
-            <td>2283561304</td>
-            <th>CURP</th>
-            <td>{{ $desaparecido->persona->curp }}</td> 
+            <th colspan="4">Información extra sobre su situación migratoria</th>
         </tr>
         <tr>
-            <th>Dirección de Residencia</th>
-            <td colspan="3">Lucas Martin</td>
+            <th colspan="4">¿Se encuentra en transito a Estados Unidos de Norte America?</th>
         </tr>
         <tr>
-            <th>¿Tiene conocimiento de que consuma tabaco, alchol o alguna otra sustancia?</th>
-            <td> ¿Si, cual? <br>No <br>¿Con qué frecuencia? <br>No</td> 
-        <th>¿Ha recibido alguna llamada de exigencia monetaria?</th>
-        <td>¿Si, cuanto? <br>No <br> ¿Por qué medio?<br></td>
-    </tr>
-   
-</section>
-    
-    <section id="información desaparición">
-        <h2>INFORMACIÓN SOBRE LA DESAPARICIÓN</h2>
-
-    <table>
-        <tr>
-            <th>Lugar de desaparición*</th>
-            <td colspan="3">Ismael Matus García</td>
+            <td colspan="4"></td>
         </tr>
         <tr>
-            <th>Fecha de desaparición*</th>
-            <td>23 años, 07 de Marzo de 2001</td>
-            <th>Hora aproximada de la desaparición o última hora de contacto*</th>
-            <td>9:30:42 pm</td>
-            
+            <th>RFC:</th>
+            <th colspan="3">CURP:</th>
         </tr>
         <tr>
-            <th>Datos de personas que puedas brindar información y/o probablemente involucradas<</th>
-            <td colspan="3">No se</td> 
+            <td></td>
+            <td colspan="3">{{ $desaparecido->persona->curp }}</td>
         </tr>
         <tr>
-            <th>Narrativa de los hechos que se reportan*</th>
-            <td colspan="3">asddddddddddddddddddddddddddd</td>
+            <th colspan="4">Observaciones del CURP:</th>
         </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        </table>
         
+        <h2>Domicilio de la persona</h2>
 
-    </section>
-    
-    <section id="caracteristicas afiliacion">
-        <h2>CARACTERISTICAS DE MEDIA AFILIACION DE LA PERSONA DESAPARECIDA O NO LOCALIZADA</h2>
-
-    <table>
-
-        <tr>
-            <th>Vestimenta que porta</th>
-            <td>Playera verde, tenis negros, pantalon negro</td>
-        </tr>
-        <tr>
-            <th>Señas particulares*</th>
-            <td>(Tatuajes, lunares, manchas, cicatrices, perforaciones, protesis, acne, amputaciones, quemaduras, malformaciones, entre otros) <br> Ciatriz en el dedo indice</td> 
-        </tr>
-
-        <tr>
-            <th>Tatuajes</th>
-            <td>(Ubicación, descripción) <br>Ninguno</td>
-        </tr>
-
-    </table> <br>
-    
-    <div class="Estatura-Peso">
-        <h2>Media filiación</h2>
-        <h2>Perfil corporal</h2>
         <table>
             <tr>
-                <th>Estaura:</th>
-                <th>Peso:</th>
-                <th>Complexión:</th>
-                <th>Color de piel:</th>
-                <th>Forma de la cara:</th>
+                <th>Calle:</th>
+                <th>N° Exterior:</th>
+                <th>N° Interior:</th>
+                <th>Colonia</th>
+                <th>Código Postal:</th>
             </tr>
             <tr>
-                <td>{{ $desaparecido->persona->estatura }}m</td>
-                <td>{{ $desaparecido->persona->peso }}kg</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <th>Municipio:</th>
+                <th colspan="3">Localidad:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th>Entre calle 1:</th>
+                <th>Entre calle 2:</th>
+                <th colspan="3">Tramo carretero:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th colspan="5">Referencia:</th>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+            </tr>
+        </table>
+
+        <h2>Datos de Contacto</h2>
+        <table>
+            <tr>
+                <th>Teléfono móvil:</th>
+                <th>Compañia:</th>
+                <th>Observaciones:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Teléfono fijo:</th>
+                <th colspan="2">Observaciones:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Correo electronico:</th>
+                <th colspan="2">Observaciones:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Tipo de red social:</th>
+                <th>Usuario:</th>
+                <th>Observaciones:</th>
+            </tr>
+            <tr>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
         </table>
-    </div> 
-    </section>
-    
-    <section id="Complexion">
-        <h2>Ojos:</h2>
+
+        <h2>Datos sociodemográficos</h2>
+        <table>
+            <tr>
+                <th>¿Habla español?</th>
+                <th>¿Sabe leer?</th>
+                <th>¿Sabe escribir?</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Nivel de escolaridad:</th>
+                <th>Avance de escolaridad:</th>
+                <th>Religión:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Ocupacion Principal:</th>
+                <th colspan="2">Detalles sobre la ocupación principal:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Ocupacion Secundaria:</th>
+                <th colspan="2">Detalles sobre la ocupación Secundaria:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Estado conyugal:</th>
+                <th colspan="2">Nombre de la pareja o conyuge:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+   
+</section>
+
+<div class="Estatura-Peso">
+    <h2>Media filiación</h2>
+    <h2>Perfil corporal</h2>
     <table>
         <tr>
-            <th>Color de ojos:</th>
-            <th>Forma de ojos:</th>
-            <th>Tamaño de ojos:</th>
+            <th>Estaura:</th>
+            <th>Peso:</th>
+            <th>Complexión:</th>
+            <th>Color de piel:</th>
+            <th>Forma de la cara:</th>
+        </tr>
+        <tr>
+            <td>{{ $desaparecido->persona->estatura }}m</td>
+            <td>{{ $desaparecido->persona->peso }}kg</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div> 
+</section>
+
+<section id="Complexion">
+    <h2>Ojos:</h2>
+<table>
+    <tr>
+        <th>Color de ojos:</th>
+        <th>Forma de ojos:</th>
+        <th>Tamaño de ojos:</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th colspan="3">Otra especificacion de ojos:</th>
+    </tr>
+    <tr>
+        <td colspan="3"></td>
+    </tr>
+</table>
+</section>
+
+<section id="Piel">
+    <br><h2>Cabello:</h2>
+   
+    <table>
+        <tr>
+            <th>Calvicie:</th>
+            <th>Color de cabello:</th>
+            <th>Tamaño de cabello:</th>
+            <th>Tipo de cabello:</th>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td></td>
+            <td></td>
         </tr>
         <tr>
-            <th colspan="3">Otra especificacion de ojos:</th>
+            <th colspan="4">Cualquier otra especificación del cabello:</th>
         </tr>
         <tr>
-            <td colspan="3"></td>
+            <td colspan="4"></td>
         </tr>
     </table>
     </section>
-    
-    <section id="Piel">
-        <br><h2>Cabello:</h2>
-       
+
+
+    <section id="Ojos">
+        <br> <h2>Vello facial:</p>
+        
         <table>
             <tr>
-                <th>Calvicie:</th>
-                <th>Color de cabello:</th>
-                <th>Tamaño de cabello:</th>
-                <th>Tipo de cabello:</th>
+                <th colspan="2">Cejas:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th>Bigote:</th>
+                <th>Cualquier otra especificacion del bigote:</th>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
-                <th colspan="4">Cualquier otra especificación del cabello:</th>
+                <th>Barba:</th>
+                <th>Cualquier otra especificacion de la barba:</th>
             </tr>
             <tr>
-                <td colspan="4"></td>
+                <td></td>
+                <td></td>
             </tr>
         </table>
-        </section>
-    
-    
-        <section id="Ojos">
-            <br> <h2>Vello facial:</p>
-            
+    </section>
+
+    <section id="TamañoO">
+        <br> <h2>Nariz:</h2><br>
+        
             <table>
                 <tr>
-                    <th colspan="2">Cejas:</th>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <th>Bigote:</th>
-                    <th>Cualquier otra especificacion del bigote:</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Barba:</th>
-                    <th>Cualquier otra especificacion de la barba:</th>
+                    <th>Forma de la nariz:</th>
+                    <th>Cualquier otra especificación de la nariz:</th>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                 </tr>
             </table>
-        </section>
-    
-        <section id="TamañoO">
-            <br> <h2>Nariz:</h2><br>
-            
-                <table>
-                    <tr>
-                        <th>Forma de la nariz:</th>
-                        <th>Cualquier otra especificación de la nariz:</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-        </section>
-    
-        <section id="Cabello">
-            <b><h2>Boca:</h2>
-            
-                <table>
-                    <tr>
-                        <th>Tamaño de boca:</th>
-                        <th>Tamoño de labios:</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-        </section>
+    </section>
+
+    <section id="Cabello">
+        <b><h2>Boca:</h2>
+        
+            <table>
+                <tr>
+                    <th>Tamaño de boca:</th>
+                    <th>Tamoño de labios:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+    </section>
+   
+    <section id="CantidadC">
+        <br><b><h2>Orejas:</h2></b>
        
-        <section id="CantidadC">
-            <br><b><h2>Orejas:</h2></b>
-           
-                <table>
-                    <tr>
-                        <th>Tamaño de orejas:</th>
-                        <th>Formas de orejas:</th>
-                        <th>Cualquier otra especificación de la oreja:</th>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-        </section>
+            <table>
+                <tr>
+                    <th>Tamaño de orejas:</th>
+                    <th>Formas de orejas:</th>
+                    <th>Cualquier otra especificación de la oreja:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+    </section>
+
     
+    <section id="información desaparición">
+        <h2>Media filiacion complementaria</h2>
+        <h2>Dientes</h2>
+
+    <table>
+        <tr>
+            <th>¿Presenta ausencia de dientes?</th>
+            <th>Especifique la ausencia dental:</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>¿Tiene algún tratamiento dental?</th>
+            <th>Especifique el tratamiento dental:</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        </table>
+
+        <h2>Proyeccion del menton</h2>
+        <table>
+        <tr>
+            <th>Tipo de mentón:</th>
+            <th>Cualquier especificacion del menton</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+         </table>
+
+        <h2>Deformaciones</h2>
+        <table>
+        <tr>
+            <th>Región de la deformacion</th>
+            <th>Especificacion de la deformacion:</th> 
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        </table>
+
+        <h2>Intervenciones quirurgicas</h2>
+        <table>
+        <tr>
+            <th>Intervencion quirurjica:</th>
+            <th>Especificacion de la intervencion quirurjica:</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        </table>
+
+        <h2>Enfermedades de la piel</h2>
+        <table>
+            <tr>
+                <th>Tipo de enfermedad:</th>
+                <th>Especificacion de la enfermedad en la piel:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h2>Observaciones generales</h2>
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+
+    </section>
+    
+    <section id="caracteristicas afiliacion">
+        <h2>PRENDAS DE VESTIR</h2>
+
+    <table>
+
+        <tr>
+            <th>Grupo Pertenecia</th>
+            <th>Pertenecia</th>
+            <th>Color</th>
+            <th>Material</th>
+            <th>Marca</th>
+            <th>Descripcion</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table> 
+    </section><br>
+    
+   
         <section id="Fcara">
-            <br><h2>Media filiacion complementaria</h2>
-            <h2>Dientes</h2>
+            <br><h2>SEÑAS PARTICULARES</h2>
         
         <table>
             <tr>
-                <th>¿Presenta ausencia de dientes?</th>
-                <th>Especifique la ausencia dental:</th>
+                <th>Region del cuerpo</th>
+                <th>Vista</th>
+                <th>Lado</th>
+                <th>Tipo</th>
+                <th>Cantidad</th>
+                <th>Descripcion</th>
             </tr>
             <tr>
                 <td></td>
                 <td></td>
-            </tr>
-            <tr>
-                <th>¿Tiene  algún tratamiento dental?</th>
-                <th>Especifique el tratamiento dental:</th>
-            </tr>
-            <tr>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -832,11 +1250,11 @@ h1, h2{
         </section>
        
         <section id="Tceja">
-            <br><h2>Proyeccion del menton</h2>
+            <br><h2>CONDICIONES DE VULNERABILIDAD</h2>
         <table>
             <tr>
-                <th>Tipo de mentón:</th>
-                <th>Cualquier otra especificacion del menton</th>
+                <th>Tipo de sangre</th>
+                <th>RH</th>
             </tr>
             <tr>
                 <td></td>
@@ -846,36 +1264,24 @@ h1, h2{
         </section>
     
         <section id="Mcejas">
-            <br> <h2>Deformaciones</h2><br>
+            <br> <h2>Condiciones de salud</h2><br>
             
                  <table>
                     <tr>
-                        <th>Región de la deformación:</th>
-                        <th>Especificacion de la deformacion:</th>
+                        <th>Condicion</th>
+                        <th>Tratamiento</th>
+                        <th>Naturaleza</th>
+                        <th>Observaciones</th>
                     </tr>
                     <tr>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                 </table>
         </section>
-    
-        <section id="Orejasf">
-            <br> <h2>Interveciones quirurgicas</h2><br>
-            
-            <table>
-                <tr>
-                    <th>Intervencion quirurgica</th>
-                    <th>Especificacion de la intervencion quirurjica:</th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </section>
-    
-    
+
         <section id="Orejast">
             <br> <h2>Enfermedades de la piel</h2><br>
             
@@ -891,11 +1297,49 @@ h1, h2{
                 </table>
         </section>
     
+        <section id="Orejasf">
+            <br> <h2>Enfoque diferenciado</h2><br>
+            
+            <table>
+                <tr>
+                    <th>Pertenecia grupal o étnica</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Enfoque diferenciado</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>CARACTERISTICA PERSONAL QUE PUEDA COLOCAR A LA PERSONA EN MAYOR VULNERAVILIDAD</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>INFORMACIÓN PERSONAL ADICIONL QUE SE CONSIDERE RELEVANTE PARA LA BUSQUEDA Y LOCALIZACION DE LA PERSONA</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+    
+    
+        
+    
         <section id="Narizf">
-            <br> <h2>Observaciones generales</h2><br>
+            <br> <h2>Embarazo</h2><br>
            
                  <table>
                     <tr>
+                        <th colspan="2">¿Esta emabarazada?</th>
+                    </tr>
+                    <tr>
+                        <th>Meses de embarazo</th>
                         <td></td>
                     </tr>
                 </table>

@@ -861,6 +861,7 @@ h1, h2{
             <td>Ciatriz en el dedo indice</td> 
         </tr>
 
+        
         <tr>
             <th>Tatuajes</th>
             <td>Ninguno</td>

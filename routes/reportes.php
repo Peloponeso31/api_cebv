@@ -22,9 +22,11 @@ Route::middleware('auth:sanctum')->group(function() {
         return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => $reporte])->stream($reporte->folio.".pdf");
     });
 
-    Route::get("/informes-inicios/{id}", function ($id) {
-        $reporte = Reporte::findOrFail($id);
-        return Pdf::loadView("reportes.informe_inicio", ["reporte" => $reporte])->stream($reporte->folio.".pdf");
+    Route::get("/informes-inicios/{id}", function (string $id) {
+        $desaparecido =  Desaparecido::whereId($id)->first();
+        return Pdf::loadView("reportes.informe_inicio", [
+            "desaparecido" => $desaparecido
+        ])->stream();
     });
 
     Route::get("/ficha_de_datos", function () {

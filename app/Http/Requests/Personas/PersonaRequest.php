@@ -25,12 +25,12 @@ class PersonaRequest extends FormRequest
                 'pseudonimo_apellido_paterno' => ['nullable', 'alpha:ascii', 'max:255'],
                 'pseudonimo_apellido_materno' => ['nullable', 'alpha:ascii', 'max:255'],
                 'fecha_nacimiento' => ['nullable', 'date'],
-                'curp' => ['nullable', 'regex:/^([A-ZÑ][AEIOUXÁÉÍÓÚ][A-ZÑ]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/'],
+                'curp' => ['nullable', 'regex:/^([A-Z][AEIOUX][A-Z]{2}\d{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])[HM](?:AS|B[CS]|C[CLMSH]|D[FG]|G[TR]|HG|JC|M[CNS]|N[ETL]|OC|PL|Q[TR]|S[PLR]|T[CSL]|VZ|YN|ZS)[B-DF-HJ-NP-TV-Z]{3}[A-Z\d])(\d)$/'],
                 'observaciones_curp' => ['nullable', 'string', 'max:255'],
                 'rfc' => ['nullable', 'string', 'max:13'],
                 'ocupacion' => ['nullable', 'alpha', 'max:255'],
-                'sexo' => ['nullable', 'string', Rule::in('H', 'M'), 'max:1'],
-                'genero' => ['nullable', 'string', 'max:50'],
+                'sexo_id' => ['nullable', 'numeric'],
+                'genero_id' => ['nullable', 'numeric'],
             ],
             // Default case it's the same as 'PATCH'
             default => [

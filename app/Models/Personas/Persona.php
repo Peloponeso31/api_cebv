@@ -47,8 +47,8 @@ class Persona extends Model
         'observaciones_curp',
         'rfc',
         'ocupacion',
-        'sexo_al_nacer',
-        'genero',
+        'sexo_id',
+        'genero_id',
     ];
 
     protected $casts = [

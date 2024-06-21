@@ -14,7 +14,6 @@ return new class extends Migration
             $table->foreignId('reporte_id');
             $table->foreignId('persona_id')->nullable();
             $table->foreignId('parentesco_id')->nullable();
-
             $table->boolean('denuncia_anonima')->nullable();
             $table->boolean('informacion_consentimiento')->nullable();
             $table->boolean('informacion_exclusiva_busqueda')->nullable();

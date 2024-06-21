@@ -7,8 +7,10 @@
     "require": {
         "php": "^8.1",
         "ext-pdo": "*",
+        "algolia/algoliasearch-client-php": "^3.4",
         "barryvdh/laravel-dompdf": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
+        "hoa/regex": "~1.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.8",

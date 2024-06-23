@@ -1,4 +1,4 @@
 // @no-log
-GET http://api_cebv.test/api/instituciones
+GET http://api_cebv.test/api/condiciones-salud
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}

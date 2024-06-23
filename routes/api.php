@@ -5,6 +5,7 @@ use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
 use App\Http\Controllers\ColectivoController;
+use App\Http\Controllers\CondicionSaludController;
 use App\Http\Controllers\EnfermedadPielController;
 use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
@@ -256,6 +257,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/regiones-deformaciones', RegionDeformacionController::class);
     Route::apiResource('/intervenciones-quirurgicas', IntervencionQuirurgicaController::class);
     Route::apiResource('/enfermedades-pieles', EnfermedadPielController::class);
+
+    Route::apiResource('/condiciones-salud', CondicionSaludController::class);
 
     /**
      * Routes for the contextos sociales module

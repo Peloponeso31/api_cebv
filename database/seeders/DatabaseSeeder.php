@@ -93,6 +93,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         /**
+         * Situaciones de salud
+         */
+        $this->call([
+            CondicionSaludSeeder::class,
+        ]);
+
+        /**
          * Vehículos seeders
          */
         $this->call([

@@ -10,6 +10,7 @@ class InstitucionRequest extends FormRequest
     {
         return [
             'nombre' => ['required', 'string', 'max:255'],
+            'descripcion' => ['required', 'string', 'max:255'],
         ];
     }
 }

@@ -1,4 +1,4 @@
 // @no-log
-GET http://api_cebv.test/api/tipos-hipotesis-busqueda-inmediata
+GET http://api_cebv.test/api/instituciones
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}

@@ -41,7 +41,13 @@ class Persona extends Model
     protected $table = 'personas';
 
     protected $fillable = [
+        'sexo_id',
+        'genero_id',
         'lugar_nacimiento_id',
+        'religion_id',
+        'lengua_id',
+        'estado_conyugal_id',
+        'escolaridad_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
@@ -53,8 +59,7 @@ class Persona extends Model
         'observaciones_curp',
         'rfc',
         'ocupacion',
-        'sexo_id',
-        'genero_id',
+        'nivel_escolaridad',
     ];
 
     protected $casts = [

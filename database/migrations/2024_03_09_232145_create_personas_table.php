@@ -31,7 +31,6 @@ return new class extends Migration {
             $table->string('curp', 18)->unique()->nullable();
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();
-            $table->string('ocupacion')->nullable();
             $table->enum('nivel_escolaridad', ['TERMINADA', 'EN CURSO', 'NO ESPECIFICA'])->nullable();
 
             $table->foreign('lugar_nacimiento_id')

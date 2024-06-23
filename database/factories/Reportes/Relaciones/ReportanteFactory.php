@@ -20,10 +20,7 @@ class ReportanteFactory extends Factory
             'informacion_exclusiva_busqueda' => fake()->boolean,
             'publicacion_registro_nacional' => fake()->boolean,
             'publicacion_boletin' => fake()->boolean,
-            'pertenencia_colectivo' => fake()->boolean,
-            'nombre_colectivo' => fake()->company(),
             'informacion_relevante' => fake()->sentence,
-
         ];
     }
 }

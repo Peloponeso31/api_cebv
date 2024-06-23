@@ -13,13 +13,18 @@ class Color extends Model
 
     protected $table = "colores";
     protected $fillable = [
-       'nombre'
+        'nombre'
     ];
     public $timestamps = false;
 
     public function PrendaDeVestir(): HasMany
     {
         return $this->hasMany(PrendaDeVestir::class);
+    }
+
+    public function vehiculos(): HasMany
+    {
+        return $this->hasMany(Vehiculo::class);
     }
 
 }

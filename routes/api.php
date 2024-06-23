@@ -37,6 +37,7 @@ use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoSangreController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
+use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -287,6 +288,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for the Vehiculos module
      */
+    Route::apiResource('/vehiculos', VehiculoController::class);
     Route::apiResource('/marcas-vehiculos', MarcaVehiculoController::class);
     Route::apiResource('/tipos-vehiculos', TipoVehiculoController::class);
     Route::apiResource('/usos-vehiculos', UsoVehiculoController::class);

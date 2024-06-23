@@ -1,17 +1,43 @@
 <?php
 
 use App\Http\Controllers\ApodoController;
+use App\Http\Controllers\AutoridadController;
+use App\Http\Controllers\CalvicieController;
+use App\Http\Controllers\CejaController;
+use App\Http\Controllers\ColectivoController;
+use App\Http\Controllers\CondicionSaludController;
+use App\Http\Controllers\EnfermedadPielController;
+use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
+use App\Http\Controllers\EstatusPerpetradorController;
+use App\Http\Controllers\FormaCaraController;
+use App\Http\Controllers\FormaOjoController;
+use App\Http\Controllers\FormaOrejaController;
 use App\Http\Controllers\GeneroController;
+use App\Http\Controllers\GrupoVulnerableController;
+use App\Http\Controllers\IntervencionQuirurgicaController;
 use App\Http\Controllers\MarcaVehiculoController;
+use App\Http\Controllers\MedioCapturaController;
+use App\Http\Controllers\MetodoCapturaController;
 use App\Http\Controllers\NacionalidadController;
+use App\Http\Controllers\OcupacionController;
+use App\Http\Controllers\ParticularController;
+use App\Http\Controllers\RegionDeformacionController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
+use App\Http\Controllers\SituacionMigratoriaController;
+use App\Http\Controllers\TamanoBocaController;
+use App\Http\Controllers\TamanoCabelloController;
+use App\Http\Controllers\TipoHipotesisInmediataController;
+use App\Http\Controllers\TipoMentonController;
+use App\Http\Controllers\TipoOcupacionController;
+use App\Http\Controllers\TipoRedSocialController;
+use App\Http\Controllers\TipoSangreController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
-use App\Models\MarcaVehiculo;
+use App\Http\Controllers\VehiculoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Informaciones\MedioController;
@@ -145,6 +171,9 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/nacionalidades', NacionalidadController::class);
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
+    Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
+    Route::apiResource('/tipos-ocupaciones', TipoOcupacionController::class);
+    Route::apiResource('/ocupaciones', OcupacionController::class);
 
     /**
      * Routes for the reportes module
@@ -154,17 +183,18 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::get('/reportes/ver_folio/{id}', [ReporteController::class, 'getFolios']);
     Route::apiResource('/reportes', ReporteController::class);
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
-
+    Route::apiResource('/grupos-vulnerables', GrupoVulnerableController::class);
 
     /**
      * Routes for the informacion module
      */
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/medios', MedioController::class);
-    Route::apiResource('/hechos-desaparicion', HechoDesaparicionController::class);
+    Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
+    Route::apiResource('/tipos-hipotesis-inmediata', TipoHipotesisInmediataController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
 
     Route::apiResource('/reportantes', ReportanteController::class);
@@ -189,30 +219,54 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
     Route::apiResource('/catalogos/tipo', TipoController::class);
-    Route::apiResource('/catalogos/vista',VistaController::class);
-    Route::apiResource('/catalogos/lado',LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno',VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno',LadoRnpdnoController::class);
+    Route::apiResource('/catalogos/vista', VistaController::class);
+    Route::apiResource('/catalogos/lado', LadoController::class);
+    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
+    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
     Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);
     Route::apiResource("/contexto_familiar", ContextoFamiliarController::class);
 
-    Route::apiResource('/caracteristicas_fisicas', CaracteristicasFisicasController::class);
-    Route::apiResource('/color_cabello', ColorCabelloController::class);
-    Route::apiResource('/color_ojos', ColorOjosController::class);
-    Route::apiResource('/tamano_ojos', TamanoOjosController::class);
-    Route::apiResource('/color_piel', ColorPielController::class);
-    Route::apiResource('/tipo_cabello', TipoCabelloController::class);
-    Route::apiResource('/tipo_labios', TipoLabiosController::class);
-    Route::apiResource('/tipo_nariz', TipoNarizController::class);
-    Route::apiResource('/tamano_orejas', TamanoOrejasController::class);
-    Route::apiResource('/complexion', ComplexionController::class);
+    /**
+     * Routes for the caracteristicas fisicas module
+     */
+    Route::apiResource('/caracteristicas-fisicas', CaracteristicasFisicasController::class);
+    Route::apiResource('/complexiones', ComplexionController::class);
+    Route::apiResource('/colores-pieles', ColorPielController::class);
+    Route::apiResource('/formas-caras', FormaCaraController::class);
 
+    Route::apiResource('/colores-ojos', ColorOjosController::class);
+    Route::apiResource('/formas-ojos', FormaOjoController::class);
+    Route::apiResource('/tamanos-ojos', TamanoOjosController::class);
+
+    Route::apiResource('/tipos-calvicies', CalvicieController::class);
+    Route::apiResource('/colores-cabellos', ColorCabelloController::class);
+    Route::apiResource('/tamanos-cabellos', TamanoCabelloController::class);
+    Route::apiResource('/tipos-cabellos', TipoCabelloController::class);
+    Route::apiResource('/tipos-cejas', CejaController::class);
+
+    Route::apiResource('/tipos-narices', TipoNarizController::class);
+    Route::apiResource('/tamanos-bocas', TamanoBocaController::class);
+    Route::apiResource('/tamanos-labios', TipoLabiosController::class);
+
+    Route::apiResource('/tamanos-orejas', TamanoOrejasController::class);
+    Route::apiResource('/formas-orejas', FormaOrejaController::class);
+    Route::apiResource('/tipos-mentones', TipoMentonController::class);
+
+    Route::apiResource('/regiones-deformaciones', RegionDeformacionController::class);
+    Route::apiResource('/intervenciones-quirurgicas', IntervencionQuirurgicaController::class);
+    Route::apiResource('/enfermedades-pieles', EnfermedadPielController::class);
+
+    Route::apiResource('/condiciones-salud', CondicionSaludController::class);
+
+    /**
+     * Routes for the contextos sociales module
+     */
     Route::apiResource("/etnia", EtniaController::class);
-    Route::apiResource("/religion", ReligionController::class);
-    Route::apiResource("/lengua", LenguaController::class);
+    Route::apiResource('/religiones', ReligionController::class);
+    Route::apiResource('/lenguas', LenguaController::class);
     Route::apiResource("/grupo_etnico", GrupoEtnicoController::class);
     Route::apiResource("/vestimenta", VestimentaController::class);
     Route::apiResource("/ascendencia", AscendenciaController::class);
@@ -221,9 +275,9 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      * Routes for señas particulares module
      */
     Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
-    Route::apiResource("/grupo_pertenencia", GrupoPertenenciaController::class);
-    Route::apiResource("/pertenencia", PertenenciaController::class);
-    Route::apiResource("/color", ColorController::class);
+    Route::apiResource('/grupos-pertenencias', GrupoPertenenciaController::class);
+    Route::apiResource('/pertenencias', PertenenciaController::class);
+    Route::apiResource('/colores', ColorController::class);
 
     Route::apiResource("/velloFacial", VelloFacialController::class);
     Route::apiResource("/regionvello", RegionVelloFacialController::class);
@@ -234,15 +288,26 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for the Vehiculos module
      */
-
+    Route::apiResource('/vehiculos', VehiculoController::class);
     Route::apiResource('/marcas-vehiculos', MarcaVehiculoController::class);
     Route::apiResource('/tipos-vehiculos', TipoVehiculoController::class);
     Route::apiResource('/usos-vehiculos', UsoVehiculoController::class);
     Route::apiResource('/relaciones-vehiculos', RelacionVehiculoController::class);
 
+    /**
+     * Nuevas rutas que no sé dónde meter
+     */
+    Route::apiResource('/colectivos', ColectivoController::class);
+    Route::apiResource('/tipos-sangre', TipoSangreController::class);
+    Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
+    Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
+    Route::apiResource('/autoridades', AutoridadController::class);
+    Route::apiResource('/particulares', ParticularController::class);
+    Route::apiResource('/metodos-captura', MetodoCapturaController::class);
+    Route::apiResource('/medios-captura', MedioCapturaController::class);
+    Route::apiResource('/estatus-perpetradores', EstatusPerpetradorController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {
     Route::match(['get', 'post'], '/token', 'token');
 });
-

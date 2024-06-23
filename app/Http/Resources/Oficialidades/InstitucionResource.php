@@ -12,6 +12,7 @@ class InstitucionResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'abreviatura' => $this->abreviatura,
             'nombre' => $this->nombre,
         ];
     }

@@ -14,6 +14,11 @@ class HechoDesaparicionResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
+            'fecha_desaparicion' => $this->fecha_desaparicion,
+            'fecha_desaparicion_cebv' => $this->fecha_desaparicion_cebv,
+            'fecha_percato' => $this->fecha_percato,
+            'fecha_percato_cebv' => $this->fecha_percato_cebv,
+            'aclaraciones_fecha_hechos' => $this->aclaraciones_fecha_hechos,
             'cambio_comportamiento' => $this->cambio_comportamiento,
             'descripcion_cambio_comportamiento' => $this->descripcion_cambio_comportamiento,
             'fue_amenazado' => $this->fue_amenazado,
@@ -23,7 +28,8 @@ class HechoDesaparicionResource extends JsonResource
             'informacion_relevante' => $this->informacion_relevante,
             'hechos_desaparicion' => $this->hechos_desaparicion,
             'sintesis_desaparicion' => $this->sintesis_desaparicion,
-
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\GrupoPertenencia;
 use Illuminate\Database\Seeder;
 
 class GrupoPertenenciaSeeder extends Seeder
@@ -12,6 +12,15 @@ class GrupoPertenenciaSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $gruposPertencias = [
+            'Prendas de vestir',
+            'Alhaja',
+            'Accesorio de dama y caballero',
+            'Otro',
+        ];
+
+        foreach ($gruposPertencias as $grupoPertenencia) {
+            GrupoPertenencia::create(['nombre' => $grupoPertenencia]);
+        }
     }
 }

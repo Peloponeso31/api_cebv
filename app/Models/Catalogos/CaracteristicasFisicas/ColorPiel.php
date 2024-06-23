@@ -9,12 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ColorPiel extends Model
 {
-    use HasFactory;
-    protected $table='color_piels';
-    protected $fillable=['colorpiel'];
-    public $timestamps= true;
+    protected $table = 'colores_pieles';
 
-    public function caracteristicas_fisicas():HasMany{
+    protected $fillable = ['nombre'];
+
+    public $timestamps = false;
+
+    public function caracteristicas_fisicas(): HasMany
+    {
         return $this->hasMany(CaracteristicasFisicas::class);
     }
 }

@@ -17,7 +17,10 @@ class HechoDesaparicion extends Model
     protected $fillable = [
         'reporte_id',
         'fecha_desaparicion',
+        'fecha_desaparicion_cebv',
         'fecha_percato',
+        'fecha_percato_cebv',
+        'aclaraciones_fecha_hechos',
         'cambio_comportamiento',
         'descripcion_cambio_comportamiento',
         'fue_amenazado',
@@ -27,7 +30,6 @@ class HechoDesaparicion extends Model
         'informacion_relevante',
         'hechos_desaparicion',
         'sintesis_desaparicion',
-        'reporte_id',
     ];
 
     protected $casts = [

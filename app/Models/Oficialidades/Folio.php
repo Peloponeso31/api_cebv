@@ -25,6 +25,11 @@ class Folio extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public $timestamps = false;
 
     protected function folioCebv(): Attribute

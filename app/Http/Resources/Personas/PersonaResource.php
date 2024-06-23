@@ -3,7 +3,9 @@
 namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\ApodoResource;
+use App\Http\Resources\GeneroResource;
 use App\Http\Resources\NacionalidadResource;
+use App\Http\Resources\SexoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -31,8 +33,8 @@ class PersonaResource extends JsonResource
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
             'ocupacion' => $this->ocupacion,
-            'sexo' => $this->sexo_al_nacer,
-            'genero' => $this->genero,
+            'sexo' => SexoResource::make($this->sexo),
+            'genero' => GeneroResource::make($this->genero),
             'apodos' => ApodoResource::collection($this->apodos),
             'nacionalidades' => NacionalidadResource::collection($this->nacionalidads)
         ];

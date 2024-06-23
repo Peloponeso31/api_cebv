@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\ColorCabelloRequest;
+use App\Http\Resources\ColorCabelloResource;
 use App\Models\Catalogos\CaracteristicasFisicas\ColorCabello;
 use Illuminate\Http\Request;
 
 class ColorCabelloController extends Controller
 {
-    
+
     public function index()
     {
-        return ColorCabello::all();
+        return ColorCabelloResource::collection(ColorCabello::all());
     }
 
     public function store(ColorCabelloRequest $request)

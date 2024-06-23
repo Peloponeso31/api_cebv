@@ -10,9 +10,9 @@ class ReportanteRequest extends FormRequest
     {
         return match ($this->method()) {
             'POST', 'PUT' => [
-                'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
-                'persona_id' => ['nullable', 'exists:personas,id', 'integer'],
-                'parentesco_id' => ['nullable', 'exists:parentescos,id', 'integer'],
+                'reporte_id' => ['required', 'exists:reportes,id', 'numeric'],
+                'persona_id' => ['nullable', 'exists:personas,id', 'numeric'],
+                'parentesco_id' => ['nullable', 'exists:parentescos,id', 'numeric'],
                 'denuncia_anonima' => ['nullable', 'boolean'],
                 'informacion_consentimiento' => ['nullable', 'boolean'],
                 'informacion_exclusiva_busqueda' => ['nullable', 'boolean'],
@@ -23,9 +23,9 @@ class ReportanteRequest extends FormRequest
                 'informacion_relevante' => ['string', 'nullable'],
             ],
             default => [
-                'reporte_id' => ['sometimes', 'exists:reportes,id', 'integer'],
-                'persona_id' => ['sometimes', 'exists:personas,id', 'integer'],
-                'parentesco_id' => ['sometimes', 'exists:parentescos,id', 'integer'],
+                'reporte_id' => ['sometimes', 'exists:reportes,id', 'numeric'],
+                'persona_id' => ['sometimes', 'exists:personas,id', 'numeric'],
+                'parentesco_id' => ['sometimes', 'exists:parentescos,id', 'numeric'],
                 'denuncia_anonima' => ['sometimes', 'boolean'],
                 'informacion_consentimiento' => ['sometimes', 'boolean'],
                 'informacion_exclusiva_busqueda' => ['sometimes', 'boolean'],

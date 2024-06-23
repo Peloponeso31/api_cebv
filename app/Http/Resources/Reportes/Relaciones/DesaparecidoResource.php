@@ -26,6 +26,7 @@ class DesaparecidoResource extends JsonResource
             'persona' => PersonaResource::make($this->persona),
             'estatus_rpdno' => EstatusPersonaResource::make($this->estatusRpdno),
             'estatus_cebv' => EstatusPersonaResource::make($this->estatusCebv),
+            'documentos_legales' => DocumentoLegalResource::collection($this->documentosLegales),
             'clasificacion_persona' => $this->clasificacion_persona,
             'habla_espanhol' => $this->habla_espanhol,
             'sabe_leer' => $this->sabe_leer,

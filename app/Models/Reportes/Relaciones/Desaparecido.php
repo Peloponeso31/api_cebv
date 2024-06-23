@@ -75,4 +75,6 @@ class Desaparecido extends Model
     {
         return $this->hasMany(DocumentoLegal::class);
     }
+
+
 }

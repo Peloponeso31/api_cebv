@@ -26,6 +26,6 @@ class DocumentoLegal extends Model
 
     public function desaparecido(): BelongsTo
     {
-        return $this->belongsTo(Desaparecido::class, 'desaparecido_id');
+        return $this->belongsTo(Desaparecido::class);
     }
 }

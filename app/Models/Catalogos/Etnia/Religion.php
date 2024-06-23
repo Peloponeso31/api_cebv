@@ -3,20 +3,27 @@
 namespace App\Models\Catalogos\Etnia;
 
 use App\Models\Etnia;
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Religion extends Model
 {
-    use HasFactory;
+    protected $table = 'religiones';
 
-    protected $table = "religions";
-    protected $fillable=['religion'];
-    public $timestamps= true;
+    protected $fillable = ['nombre'];
+
+    public $timestamps = false;
 
 
-    public function etnia():HasMany {
+    public function etnia(): HasMany
+    {
         return $this->hasMany(Etnia::class);
+    }
+
+    public function personas(): HasMany
+    {
+        return $this->hasMany(Persona::class);
     }
 }

@@ -10,8 +10,8 @@ return new class extends Migration {
         Schema::create('desaparecidos', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('reporte_id');
-            $table->foreignId('persona_id');
+            $table->foreignId('reporte_id')->constrained(table: 'reportes');
+            $table->foreignId('persona_id')->nullable()->constrained(table: 'personas');
             $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'estatus_personas');
             $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'estatus_personas');
 
@@ -26,6 +26,9 @@ return new class extends Migration {
             $table->boolean('dictamen')->default(false);
             $table->boolean('ci_nivel_federal')->default(false);
             $table->string('otro_derecho_humano')->nullable();
+
+            // TODO; Identidad resguardada (string)
+            // TODO: Edad manual al momento de la desaparicion en anios, meses y dias (int).
 
             $table->timestamps();
         });

@@ -13,7 +13,10 @@ return new class extends Migration {
             $table->foreignId('reporte_id')->constrained(table: 'reportes', indexName: 'idx_desapariciones_reporte');
 
             $table->dateTime('fecha_desaparicion')->nullable();
-            $table->dateTime('fecha_percato');
+            $table->string('fecha_desaparicion_cebv')->nullable();
+            $table->dateTime('fecha_percato')->nullable();
+            $table->string('fecha_percato_cebv')->nullable();
+            $table->text('aclaraciones_fecha_hechos')->nullable();
             $table->boolean('cambio_comportamiento')->nullable();
             $table->text('descripcion_cambio_comportamiento')->nullable();
             $table->boolean('fue_amenazado')->nullable();
@@ -23,6 +26,8 @@ return new class extends Migration {
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();
             $table->text('sintesis_desaparicion')->nullable();
+            // TODO: Fecha de desaparicion y percato cebv
+            // TODO: Observaciones sobre la fecha de desaparicion y percato cebv
 
             $table->timestamps();
         });

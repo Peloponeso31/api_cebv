@@ -4,14 +4,20 @@ namespace App\Models\Personas;
 
 use App\Models\Apodo;
 use App\Models\CaracteristicasFisicas;
+use App\Models\Catalogos\Etnia\Lengua;
+use App\Models\Catalogos\Etnia\Religion;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Escolaridad;
+use App\Models\EstadoConyugal;
 use App\Models\Etnia;
 use App\Models\Genero;
 use App\Models\Nacionalidad;
+use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
+use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
@@ -35,7 +41,13 @@ class Persona extends Model
     protected $table = 'personas';
 
     protected $fillable = [
+        'sexo_id',
+        'genero_id',
         'lugar_nacimiento_id',
+        'religion_id',
+        'lengua_id',
+        'estado_conyugal_id',
+        'escolaridad_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
@@ -47,10 +59,7 @@ class Persona extends Model
         'observaciones_curp',
         'rfc',
         'ocupacion',
-        'sexo_al_nacer',
-        'genero',
-        "estatura",
-        "peso",
+        'nivel_escolaridad',
     ];
 
     protected $casts = [
@@ -86,7 +95,7 @@ class Persona extends Model
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
-    
+
     public function caracteristicasfisicas(): HasOne
     {
         return $this->hasOne(CaracteristicasFisicas::class);
@@ -140,12 +149,12 @@ class Persona extends Model
 
     public function desaparecidos(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'persona_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function reportantes(): HasMany
     {
-        return $this->hasMany(Reportante::class, 'persona_id');
+        return $this->hasMany(Reportante::class);
     }
 
     public function domicilios(): BelongsToMany
@@ -177,6 +186,38 @@ class Persona extends Model
     {
         return $this->hasMany(Apodo::class, 'persona_id');
     }
+
+    public function redesSociales(): HasMany
+    {
+        return $this->hasMany(Redsocial::class);
+    }
+
+    public function religion(): BelongsTo
+    {
+        return $this->belongsTo(Religion::class);
+    }
+
+    public function lengua(): BelongsTo
+    {
+        return $this->belongsTo(Lengua::class);
+    }
+
+    public function estadoConyugal(): BelongsTo
+    {
+        return $this->belongsTo(EstadoConyugal::class);
+    }
+
+    public function escolaridad(): BelongsTo
+    {
+        return $this->belongsTo(Escolaridad::class);
+    }
+
+    public function ocupaciones(): BelongsToMany
+    {
+        return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
+    }
+
+    // TODO: Modelo y catalogo de ocupaciones.
 
     public function toSearchableArray()
     {

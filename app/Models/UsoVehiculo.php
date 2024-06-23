@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class UsoVehiculo extends Model
 {
@@ -13,4 +14,9 @@ class UsoVehiculo extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function vehiculos(): HasMany
+    {
+        return $this->hasMany(Vehiculo::class);
+    }
 }

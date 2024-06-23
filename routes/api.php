@@ -29,6 +29,7 @@ use App\Http\Controllers\SexoController;
 use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
+use App\Http\Controllers\TipoHipotesisInmediataController;
 use App\Http\Controllers\TipoMentonController;
 use App\Http\Controllers\TipoOcupacionController;
 use App\Http\Controllers\TipoRedSocialController;
@@ -191,6 +192,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
+    Route::apiResource('/tipos-hipotesis-busqueda-inmediata', TipoHipotesisInmediataController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
 
     Route::apiResource('/reportantes', ReportanteController::class);

@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             TipoOcupacionSeeder::class,
             OcupacionSeeder::class,
             GrupoVulnerableSeeder::class,
+            TipoHipotesisInmediataSeeder::class,
             GrupoPertenenciaSeeder::class,
             PertenenciaSeeder::class,
             ColectivoSeeder::class,

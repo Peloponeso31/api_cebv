@@ -192,7 +192,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
-    Route::apiResource('/tipos-hipotesis-busqueda-inmediata', TipoHipotesisInmediataController::class);
+    Route::apiResource('/tipos-hipotesis-inmediata', TipoHipotesisInmediataController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
 
     Route::apiResource('/reportantes', ReportanteController::class);

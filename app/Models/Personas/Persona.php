@@ -4,14 +4,20 @@ namespace App\Models\Personas;
 
 use App\Models\Apodo;
 use App\Models\CaracteristicasFisicas;
+use App\Models\Catalogos\Etnia\Lengua;
+use App\Models\Catalogos\Etnia\Religion;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Escolaridad;
+use App\Models\EstadoConyugal;
 use App\Models\Etnia;
 use App\Models\Genero;
 use App\Models\Nacionalidad;
+use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
+use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
@@ -176,9 +182,36 @@ class Persona extends Model
         return $this->hasMany(Apodo::class, 'persona_id');
     }
 
-    // TODO: Relacionar con el modelo de escolaridad
-    // TODO: Relacionar con estado conyugal
-    // TODO: Modelo y catalogo de redes sociales (tipo de red socual, usuario y observaciones).
+    public function redesSociales(): HasMany
+    {
+        return $this->hasMany(Redsocial::class);
+    }
+
+    public function religion(): BelongsTo
+    {
+        return $this->belongsTo(Religion::class);
+    }
+
+    public function lengua(): BelongsTo
+    {
+        return $this->belongsTo(Lengua::class);
+    }
+
+    public function estadoConyugal(): BelongsTo
+    {
+        return $this->belongsTo(EstadoConyugal::class);
+    }
+
+    public function escolaridad(): BelongsTo
+    {
+        return $this->belongsTo(Escolaridad::class);
+    }
+
+    public function ocupaciones(): BelongsToMany
+    {
+        return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
+    }
+
     // TODO: Modelo y catalogo de ocupaciones.
 
     public function toSearchableArray()

@@ -17,11 +17,6 @@ class GrupoPertenencia extends Model
 
     public $timestamps = false;
 
-    public function PrendaDeVestir(): HasMany
-    {
-        return $this->hasMany(PrendaDeVestir::class);
-    }
-
     public function pertenencia(): HasMany
     {
         return $this->hasMany(Pertenencia::class);

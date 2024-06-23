@@ -14,11 +14,13 @@ return new class extends Migration {
     {
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(RelacionVehiculo::class, 'relacion_vehiculo_id');
-            $table->foreignIdFor(TipoVehiculo::class, 'tipo_vehiculo_id');
-            $table->foreignIdFor(UsoVehiculo::class, 'uso_vehiculo_id');
-            $table->foreignIdFor(MarcaVehiculo::class, 'marca_vehiculo_id')->nullable();
-            $table->foreignIdFor(Color::class, 'color_id');
+
+            $table->foreignId('relacion_vehiculo_id')->constrained(table: 'relaciones_vehiculos');
+            $table->foreignId('tipo_vehiculo_id')->constrained(table: 'tipos_vehiculos');
+            $table->foreignId('uso_vehiculo_id')->constrained(table: 'usos_vehiculos');
+            $table->foreignId('marca_vehiculo_id')->nullable()->constrained(table: 'marcas_vehiculos');
+            $table->foreignId('color_id')->constrained(table: 'colores');
+
             $table->string('submarca')->nullable();
             $table->string('placa')->nullable();
             $table->string('modelo')->nullable();

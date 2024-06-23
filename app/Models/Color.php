@@ -11,10 +11,12 @@ class Color extends Model
 {
     use HasFactory;
 
-    protected $table = "colores";
+    protected $table = 'colores';
+
     protected $fillable = [
         'nombre'
     ];
+
     public $timestamps = false;
 
     public function PrendaDeVestir(): HasMany
@@ -26,5 +28,4 @@ class Color extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
-
 }

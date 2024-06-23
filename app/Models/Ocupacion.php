@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
 
 class Ocupacion extends Model
@@ -22,6 +24,11 @@ class Ocupacion extends Model
     public function tipoOcupacion(): BelongsTo
     {
         return $this->belongsTo(TipoOcupacion::class);
+    }
+
+    public function personas(): BelongsToMany
+    {
+        return $this->belongsToMany(Persona::class, 'ocupacion_persona');
     }
 
     public function toSearchableArray(): array

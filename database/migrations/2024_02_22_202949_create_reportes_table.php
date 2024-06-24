@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->enum('tipo_desaparicion', ['U', 'M'])->default('U')->nullable();
             $table->date('fecha_localizacion')->nullable();
             $table->text('sintesis_localizacion')->nullable();
-
+            $table->text('institucion_origen')->nullable();
             $table->boolean("declaracion_especial_ausencia")->nullable();
             $table->boolean("accion_urgente")->nullable();
             $table->boolean("dictamen")->nullable();

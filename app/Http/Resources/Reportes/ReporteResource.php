@@ -24,6 +24,7 @@ class ReporteResource extends JsonResource
             'estado' => EstadoResource::make($this->estado),
             'zona_estado_id' => $this->zona_estado_id,
             'hipotesis_oficial' => TipoHipotesisResource::make($this->hipotesisOficial),
+            'institucion_origen' => $this->institucion_origen,
             'tipo_desaparicion' => $this->tipo_desaparicion,
             'fecha_localizacion' => $this->fecha_localizacion,
             "declaracion_especial_ausencia" => $this->declaracion_especial_ausencia,

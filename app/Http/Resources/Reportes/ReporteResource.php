@@ -3,10 +3,12 @@
 namespace App\Http\Resources\Reportes;
 
 use App\Http\Resources\Informaciones\MedioResource;
+use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
 use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,6 +17,7 @@ class ReporteResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $hecho = HechoDesaparicion::where('reporte_id', $this->id)->first();
         return [
             'id' => $this->id,
             'esta_terminado' => $this->esta_terminado,
@@ -35,6 +38,7 @@ class ReporteResource extends JsonResource
             'sintesis_localizacion' => $this->sintesis_localizacion,
             'reportantes' => ReportanteResource::collection($this->reportantes),
             'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),
+            'hechos_desaparicion' => HechoDesaparicionResource::make($hecho),
             'fecha_creacion' => $this->fecha_creacion,
             'fecha_actualizacion' => $this->fecha_actualizacion,
         ];

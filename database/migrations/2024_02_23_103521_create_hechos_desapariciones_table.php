@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('hechos_desapariciones', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('reporte_id')->constrained(table: 'reportes', indexName: 'idx_desapariciones_reporte');
+            $table->foreignId('reporte_id')->constrained(table: 'reportes');
 
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
@@ -26,8 +26,6 @@ return new class extends Migration {
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();
             $table->text('sintesis_desaparicion')->nullable();
-            // TODO: Fecha de desaparicion y percato cebv
-            // TODO: Observaciones sobre la fecha de desaparicion y percato cebv
 
             $table->timestamps();
         });

@@ -1,15 +1,20 @@
 // @no-log
-GET http://api_cebv.test/api/vehiculos
+GET http://api_cebv.test/api/hechos-desapariciones?filter[reporte_id]=2
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-    "marca_vehiculo_id":  1,
-    "color_id": 4,
-    "submarca":  "mi marca",
-    "placa": "123-abc",
-    "numero_motor" : "987654321",
-    "numero_permiso" : "123456",
-    "descripcion" : "vehiculo de prueba editado",
-    "localizado" : false
+    "reporte_id": "6",
+    "fecha_desaparicion_cebv": "99/06/2024",
+    "fecha_percato_cebv": "99/07/2024",
+    "aclaraciones_fecha_hechos": "Aclaraciones de la fecha de los hechos",
+    "cambio_comportamiento": false,
+    "descripcion_cambio_comportamiento": "Descripción del cambio de comportamiento",
+    "fue_amenazado": false,
+    "descripcion_amenaza": "Descripción de la amenaza",
+    "contador_desapariciones": 1,
+    "situacion_previa": "Situación previa",
+    "informacion_relevante": "Información relevante",
+    "hechos_desaparicion": "Hechos de la desaparición",
+    "sintesis_desaparicion": "Síntesis de la desaparición"
 }

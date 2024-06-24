@@ -1634,7 +1634,433 @@ h1, h2{
 
         </section>
     
-    
+        <section id="Contextos">
+            <h2>Contextos</h2>
+            <h2>Contexto familiar</h2>
+            <table>
+                <tr>
+                    <th>N° de personas con las que vive:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Nombre del pariente</th>
+                    <th>Parentesco</th>
+                    <th>Ha ejercido violencia</th>
+                    <th>Es un familiar cercano</th>
+                    <th>Observaciones</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+                <h2>CONTEXTO ECONÓMICO-LABORAL</h2>
+           
+            <table>
+                <tr>
+                    <th>¿Dónde trabaja?</th>
+                    <th>¿Cuantos años lleva laborando?</th>
+                    <th>¿Le gusta su trabajo?</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>¿Ha manifestado la intensión de irse a trabajar fuera de la ciudad?</th>
+                    <th colspan="2">¿A donde desea irse?</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th>¿Ha sufrido violencia por parte de algún integrante de su trabajo?</th>
+                    <th colspan="2">¿Por parte de quién?</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th>¿Sabe si tiene deudas?</th>
+                    <th>Monto aproximado de la deuda</th>
+                    <th>¿A quien le debe?</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h2>Contexto social</h2>
+            <table>
+                <tr>
+                    <th>Pasatiempos</th>
+                    <th>Clubes u organizaciones a los que pertenece</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </table><br>
+                <table>
+                <tr>
+                    <th colspan="4">¿Estudia?</th>
+                </tr>
+                <tr>
+                    <th>Nivel</th>
+                    <th>Institución</th>
+                    <th>Horario</th>
+                    <th>Dirección</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </table><br>
+                <table>
+                <tr>
+                    <th colspan="5">Amistades</th>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apodo</th>
+                    <th>Telefono</th>
+                    <th>Dirección</th>
+                    <th>Redes sociales</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </table>
+            
+        </section>
+
+        <section id="vehiculos">
+            <h2>Vehículos involucrados</h2>
+            <h2>Datos del vehiculo involucrado</h2>
+            <table>
+                <tr>
+                    <th>Relación con la persona desaparecida o no localizada:</th>
+                    <th>Marca:</th>
+                    <th>Submarca:</th>
+                    <th>Color:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Placa:</th>
+                    <th>Modelo(Año):</th>
+                    <th>Número de serie:</th>
+                    <th>Número de motor:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Número de permiso:</th>
+                    <th>Tipo de vehiculo:</th>
+                    <th colspan="2">Uso vehiculo:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th colspan="4">Señas particulares:</th>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                </tr>
+                <tr>
+                    <th colspan="4">Fotografias</th>
+                </tr>
+                <tr>
+                    <td colspan="4"><!--Inserte la foto aqui --></td>
+                </tr>
+                <tr>
+                    <th colspan="4">Estatus del vehiculo:</th>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="boletines">
+            <h2>Generación de boletines</h2>
+            <h2>Fotografías de la persona desaparecida</h2>
+            <table>
+                <tr>
+                    <td><!--Inserte la foto aqui --></td>
+                    <td><!--Inserte la foto aqui --></td>
+                </tr>
+                <tr>
+                    <td><!--Inserte la foto aqui --></td>
+                    <td><!--Inserte la foto aqui --></td>
+                </tr>
+                <tr>
+                    <td><!--Inserte la foto aqui --></td>
+                    <td><!--Inserte la foto aqui --></td>
+                </tr>
+            </table>
+
+            <h2>Información exacta</h2>
+            <table>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h2>Información tratada</h2>
+            <table>
+                <tr>
+                    <th>Señas particulares para el boletín</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>¿Es menor de edad?</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Información adicional:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h2>Generación de boletín</h2>
+            <table>
+                <tr>
+                    <th>Tipo de boletín</th>
+                    <th>Estatus de la persona desaparecida</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </section>
+
+        <section id="Folio">
+            <h2>Folio y expediente</h2>
+            <table>
+                <tr>
+                    <th colspan="3">Folio cebv:</th>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <th>Municipio:</th>
+                    <th>Número de personas en el mismo evento:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Fecha de desaparición:</th>
+                    <th>Zona de desaparición:</th>
+                    <th>Terminación de la entidad:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <h2>Información del reporte</h2>
+            <table>
+                <tr>
+                    <th>Tipo de folio:*</th>
+                    <th>Tipo de desaparición:</th>
+                    <th>Nombre de quién asignó folio:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="Localizacion">
+            <h2>Datos de localización</h2>
+            <h2>Localización</h2>
+            <table>
+                <tr>
+                    <th colspan="2">¿La persona desaparecida fue localizada con vida?</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th>Estatus preliminar:*</th>
+                    <th>Fecha de estatus preliminar:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Fecha de localización:*</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table><br>
+            <table>
+                <tr>
+                    <th colspan="2">localizada con vida</th>
+                </tr>
+                <tr>
+                    <th>Estatus formalizado</th>
+                    <th>Fecha de actualización del estatus formalizado:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Síntesis de localización:*</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Describa brevemente la condición psicofísica en que fue localizada la persona</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table><br>
+            <table>
+                <tr>
+                    <th colspan="2">Ubicación de la localización</th>
+                </tr>
+                <tr>
+                    <th>Estado:*</th>
+                    <th>Municipio:*</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h2>Hipótesis de la localización</h2>
+            <table>
+                <tr>
+                    <th>Hipótesis de localización(ogpi) 1:</th>
+                    <th>Circunstancia final 1:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Hipótesis de localización(ogpi) 2:</th>
+                    <th>Circunstancia final 2:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Sitio final:</th>
+                    <th>Area que codifica inicial</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Hipótesis deb</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Observaciones sobre la actualización del status</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+
+            <h2>Documentación</h2>
+            <table>
+                <tr>
+                    <th>Informe de localización</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Prueba de vida</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Identificación oficial</th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+        
     
     
     

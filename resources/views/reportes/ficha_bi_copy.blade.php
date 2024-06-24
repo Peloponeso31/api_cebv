@@ -51,6 +51,7 @@ h1, h2{
   h2{
     font-size: 1em;
     text-align: left;
+    text-transform: uppercase;
   }
 
 .Fecha-Folio{
@@ -479,10 +480,17 @@ h1, h2{
             border-collapse:collapse;
             width: 100%;
         }
-        th, td {
+        th{
             border: 1px solid black;
             padding: 8px;
             text-align: left;
+            text-transform: uppercase;
+        }
+        td{
+            border: 1px solid black;
+            padding: 8px;
+            text-align: justify;
+            text-transform: none;
         }
     
 
@@ -579,7 +587,7 @@ h1, h2{
 
         </table>
 
-        <h2>Datos de Contacto</h2>
+        <h2>DATOS DE CONTACTO</h2>
         <table>
             <tr>
                 <th>Teléfono móvil:</th>
@@ -735,7 +743,7 @@ h1, h2{
     
     <section id="Desaparecida">
         <h2>Persona reportada</h2>
-        <h2>DATOS De identificación de la persona</h2>
+        <h2>Datos De identificación de la persona</h2>
 
     <table>
         <tr>
@@ -1345,88 +1353,108 @@ h1, h2{
                 </table>
         </section>
 
-
-    
-        <section id="morfologia">
-            <br> <h2>Ubicación y descripción morfológica (caracteristicas, tatuajes):</h2><br>
-            <div class="Morfologica">
-                <div class="L"> <img src="{{ public_path("reportes/ficha_de_datos/CuerpoUNIXMejorado.png") }}"
-                    width="500"
-                    height="500"/> </div> 
-                 </div><br>
-        </section>
     
         <section id="contexto familiar">
-            <h2>CONTEXTO FAMILIAR</h2>
-    
+            <h2>Modo, tiempo y lugar de la desaparición</h2>
+            <h2>Hora y fecha de los hechos</h2>
         <table>
             <tr>
-                <th>Estado conyugal</th>
-                <td>Soltero</td>
-                <th>¿Con qué personas vive?</th>
-                <td>Sus papás y su hermano</td>
+                <th>Fecha de desaparicón:</th>
+                <th>Hora Desaparición:</th>
             </tr>
             <tr>
-                <th>Datos de la última pareja sentimental conocida</th>
-                <td>No se le conocio</td>
-                <th>Hijas(os)</th>
-                <td>Ninguno</td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-                <th>¿Quién es el integrante de su familia más cercano?</th>
-                <td>Su hermano</td>
-                <th>¿Conoce si ha sufrido algún tipo de violencia por parte de algún integrante de la familia?</th>
-                <td>Ninguna</td>
+                <th>Fecha de percato:</th>
+                <th>Hora de percato:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Aclaración de la fecha y hora de los hechos:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
             </tr>
         </table>
         </section>
     
         <section id="contexto economico-laboral">
-            <h2>CONTEXTO ECONÓMICO-LABORAL</h2>
+            <h2>Lugar de los hechos</h2>
        
         <table>
             <tr>
-                <th>¿Dónde trabaja o cuál es su medio de subsistencia?</th>
-                <td>En el tecnologico</td>
-                <th>¿Sabe si le gusta su trabajo?</th>
-                <td>Si</td>
+                <th>Calle:</th>
+                <th>N° Exterior:</th>
+                <th>N° Interior:</th>
+                <th>Colonia</th>
+                <th>Código Postal:</th>
             </tr>
             <tr>
-                <th>¿Ha manifestado la intensión de irse a trabajar fuera de la ciudad?</th>
-                <td>Si</td>
-                <th>¿Conoce si ha sufrido algún tipo de violencia por parte de algún integrante de su trabajo?</th>
-                <td>se desconoce</td>
-            </tr>
-            <tr>
-                <th>¿Sabe si tiene deudas?</th>
-                <td>Se desconoce</td>
-                <th></th>
                 <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Estado:</th>
+                <th>Municipio:</th>
+                <th colspan="3">Localidad:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th>Entre calle 1:</th>
+                <th>Entre calle 2:</th>
+                <th colspan="3">Tramo carretero:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th colspan="5">Referencia:</th>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
             </tr>
         </table>
         </section>
     
         <section id="contexto social">
-            <h2>CONTEXTO SOCIAL</h2>
+            <h2>Circunstancias de los hechos</h2>
         
         <table>
             <tr>
-                <th>¿Qué pasatiempos tiene?</th>
-                <td>practicar deportes, jugar videojuegos e ir al gym</td>
-                <th>¿Pertenece a algún club u organización?¿Puede mencionar?</th>
-                <td>si, no me se el nombre</td>
+                <th>Zona del estado:</th>
+                <th>Área que atendera:</th>
             </tr>
             <tr>
-                <th>¿Estudia?</th>
-                <td>si</td>
-                <th>¿Puede mencionar sus amistades más cercanas?</th>
-                <td>No me se los nombres</td>
+                <th>¿La persona desaparecida había recibido amenazas o había cambiado su comportamiento o rutina recientemente?</th>
             </tr>
             <tr>
-                <th>¿Ha manifestado tener amistades en otro Municipio o Estado?</th>
-                <td>Si</td>
-                <th>Correo electrónico, Nombre en sus Redes Sociales</th>
-                <td>ismaelmg46@gmail.com, IsmaelMAGA, ismaelmaga_18</td>
+                <th>Descripción de la situación	de amenazas:</th>
+            </tr>
+            <tr>
+                <th>¿Cúantas veces antes la persona ha desaparecido o se ha ausentado?</th>
+            </tr>
+            <tr>
+                <th>Descripción de la situación previa o anote los folios en el campo siguiente si ya ha estado registrada:</th>
+            </tr>
+            <tr>
+                <th>Folios previos</th>
+            </tr>
+            <tr>
+                <th>Dato de persona(s) que puedieron estar relacionadas o brindar información sobre la desaparición:</th>
             </tr>
         </table>
         </section>

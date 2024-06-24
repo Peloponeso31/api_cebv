@@ -2060,7 +2060,48 @@ h1, h2{
             </table>
         </section>
 
-        
+        <section id="ogpi">
+            <h2>Control ogpi</h2>
+            <h2>Información general</h2>
+            <table>
+                <tr>
+                    <th>Fecha de captura</th>
+                    <th>Nombre del capturista</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Observaciones generales</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th colspan="2">N° de tarjeta</th>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+
+            <h2>Información rnpdno</h2>
+            <table>
+                <tr>
+                    <th>Folio fub:</th>
+                    <th>Autoridad que ingresó fub:</th>
+                    <th>Estatus en rnpdno:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </section>
+
+
     
     
     

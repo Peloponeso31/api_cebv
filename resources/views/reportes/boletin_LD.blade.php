@@ -134,7 +134,7 @@ html, body {
         <th class="montserrat-alternates-regular" colspan="2"><h3 class="montserrat-alternates-extrabold">SEÑAS PARTICULARES:</h3></th>
     </tr>
     <tr>
-        <td class="montserrat-alternates-regular" colspan="2">Requiere trtamiento médico especializado. Cicatriz en la pierna derecha, lunar en el pecho, tatuaje en mano derecha, pieza  <br> dental  frontal inferior fracturada.</td>
+        <td class="montserrat-alternates-regular" colspan="2">Requiere trtamiento médico especializado. Cicatriz en la pierna derecha, lunar en el pecho, tatuaje en mano derecha, <br> pieza  dental  frontal inferior fracturada.</td>
     </tr>
       
 </table>

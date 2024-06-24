@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_cabellos', function (Blueprint $table) {
+        Schema::create('tipos_cabellos', function (Blueprint $table) {
             $table->id();
-            $table->string("tipo");
+            $table->string("tipocabello");
             $table->timestamps();
         });
     }

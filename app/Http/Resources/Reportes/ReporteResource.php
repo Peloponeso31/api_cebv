@@ -2,8 +2,10 @@
 
 namespace App\Http\Resources\Reportes;
 
+use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
+use App\Http\Resources\Ubicaciones\EstadoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,17 +16,25 @@ class ReporteResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tipo_reporte_id' => $this->tipo_reporte_id,
+            'esta_terminado' => $this->esta_terminado,
+            'tipo_reporte' => TipoReporteResource::make($this->tipoReporte),
             'area_atiende_id' => $this->area_atiende_id,
-            'medio_conocimiento_id' => $this->medio_conocimiento_id,
+            'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
+            'estado' => EstadoResource::make($this->estado),
             'zona_estado_id' => $this->zona_estado_id,
             'hipotesis_oficial_id' => $this->hipotesis_oficial_id,
             'tipo_desaparicion' => $this->tipo_desaparicion,
             'fecha_localizacion' => $this->fecha_localizacion,
+            "declaracion_especial_ausencia" => $this->declaracion_especial_ausencia,
+            "accion_urgente" => $this->accion_urgente,
+            "dictamen" => $this->dictamen,
+            "ci_nivel_federal" => $this->ci_nivel_federal,
+            "otro_derecho_humano" => $this->otro_derecho_humano,
             'sintesis_localizacion' => $this->sintesis_localizacion,
-            'clasificacion_persona' => $this->clasificacion_persona,
             'reportantes' => ReportanteResource::collection($this->reportantes),
             'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),
+            'fecha_creacion' => $this->fecha_creacion,
+            'fecha_actualizacion' => $this->fecha_actualizacion,
         ];
     }
 }

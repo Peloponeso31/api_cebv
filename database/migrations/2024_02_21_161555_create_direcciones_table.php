@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('tramo_carretero', 100)->nullable();
             $table->string('codigo_postal', 5)->nullable();
             $table->text('referencia')->nullable();
+            // TODO: Coordenadas
 
             $table->foreign('asentamiento_id')
                 ->references('id')->on('asentamientos');

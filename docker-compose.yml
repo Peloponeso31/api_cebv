@@ -1,4 +1,12 @@
 services:
+    sftp:
+        image: atmoz/sftp
+        networks:
+            - sail
+        ports:
+            - "22:22"
+        command: foo:pass:::upload
+
     laravel.test:
         build:
             context: ./vendor/laravel/sail/runtimes/8.3
@@ -27,6 +35,7 @@ services:
             - meilisearch
             - mailpit
             - selenium
+
     mariadb:
         image: 'mariadb:10'
         ports:
@@ -51,6 +60,7 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+            
     redis:
         image: 'redis:alpine'
         ports:

@@ -18,14 +18,14 @@ class Reportante extends Model
     protected $fillable = [
         'persona_id',
         'reporte_id',
+        'parentesco_id',
+        'colectivo_id',
         'denuncia_anonima',
         'informacion_consentimiento',
         'informacion_exclusiva_busqueda',
         'publicacion_registro_nacional',
         'publicacion_boletin',
-        'pertenencia_colectivo',
-        'nombre_colectivo',
-        'informacion_relevante',
+        'informacion_relevante'
     ];
 
     protected $casts = [
@@ -34,7 +34,6 @@ class Reportante extends Model
         'informacion_exclusiva_busqueda' => 'boolean',
         'publicacion_registro_nacional' => 'boolean',
         'publicacion_boletin' => 'boolean',
-        'pertenencia_colectivo' => 'boolean',
     ];
 
     protected function reporte(): BelongsTo

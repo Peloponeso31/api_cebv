@@ -25,16 +25,26 @@ class Folio extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public $timestamps = false;
 
     protected function folioCebv(): Attribute
     {
         return Attribute::make(
             get: fn($value, array $attributes) => $value,
-            set: fn($value) =>
-                $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
-                $value['tipo_desaparicion'].'-'.$value['fecha_desaparicion'].$value['zona_estado'],
+            set: fn($value) => $this->setFolio($value)
+
         );
+    }
+
+    protected function setFolio($value): string
+    {
+        return $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
+            $value['tipo_desaparicion'] . '-' . $value['fecha_desaparicion'] . $value['terminacion'];
     }
 
 

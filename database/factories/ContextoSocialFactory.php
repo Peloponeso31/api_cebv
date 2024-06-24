@@ -28,7 +28,6 @@ class ContextoSocialFactory extends Factory
             "nombre_redes_sociales" => fake()->name(),
             "lugares_frecuentes" => fake()->country(),
             "vivienda_estado" => fake()->randomElement(['Sí', 'No']),
-            
         ];
     }
 }

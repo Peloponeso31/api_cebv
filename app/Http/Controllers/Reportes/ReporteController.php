@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Reportes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
+use App\Http\Resources\ReportesDashboardResource;
+use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
 use App\Services\ReporteService;
@@ -30,7 +32,7 @@ class ReporteController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return ReporteResource::collection($query->get());
+        return ReporteResource::collection($query->orderByDesc("id")->get());
     }
 
     public function store(ReporteRequest $request)
@@ -61,5 +63,10 @@ class ReporteController extends Controller
     public function setFolio($id)
     {
         return $this->reporteService->setFolio($id, auth()->id());
+    }
+
+    public function vistaReportesDashboard()
+    {
+        return ReportesDashboardResource::collection(Reporte::get());
     }
 }

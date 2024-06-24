@@ -16,7 +16,7 @@ class MunicipioController extends Controller
             $query = Municipio::search(request('search'));
         }
 
-        return MunicipioResource::collection($query->paginate());
+        return MunicipioResource::collection($query->get());
     }
 
     public function show($id)

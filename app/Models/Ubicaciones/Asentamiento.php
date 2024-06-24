@@ -57,13 +57,7 @@ class Asentamiento extends Model
     public function toSearchableArray()
     {
         return [
-            'id' => $this->id,
             'municipio_id' => $this->municipio_id,
-            'nombre' => $this->nombre,
-            'ambito' => $this->ambito,
-            'latitud' => $this->latitud,
-            'longitud' => $this->longitud,
-            'altitud' => $this->altitud,
         ];
     }
 }

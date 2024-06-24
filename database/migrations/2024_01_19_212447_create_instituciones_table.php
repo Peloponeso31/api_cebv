@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('instituciones', function (Blueprint $table) {
             $table->id();
+            $table->string('abreviatura');
             $table->string('nombre');
         });
     }

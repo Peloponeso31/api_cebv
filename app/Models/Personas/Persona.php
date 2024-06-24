@@ -2,64 +2,86 @@
 
 namespace App\Models\Personas;
 
+use App\Models\Apodo;
 use App\Models\CaracteristicasFisicas;
+use App\Models\Catalogos\Etnia\Lengua;
+use App\Models\Catalogos\Etnia\Religion;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Escolaridad;
+use App\Models\EstadoConyugal;
 use App\Models\Etnia;
+use App\Models\Genero;
 use App\Models\Nacionalidad;
+use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
+use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Models\SenasParticulares;
+use App\Models\Sexo;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Scout\Searchable;
 
 class Persona extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $table = 'personas';
 
     protected $fillable = [
+        'sexo_id',
+        'genero_id',
+        'lugar_nacimiento_id',
+        'religion_id',
+        'lengua_id',
+        'estado_conyugal_id',
+        'escolaridad_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
+        'pseudonimo_nombre',
+        'pseudonimo_apellido_paterno',
+        'pseudonimo_apellido_materno',
         'fecha_nacimiento',
         'curp',
+        'observaciones_curp',
+        'rfc',
         'ocupacion',
-        'sexo_al_nacer',
-        'genero',
-        "estatura",
-        "peso",
+        'nivel_escolaridad',
     ];
 
-    public function reporto(): HasMany
+    protected $casts = [
+        'fecha_nacimiento' => 'date',
+    ];
+
+    public function sexo(): BelongsTo
     {
-        return $this->hasMany(Reporte::class, 'reportante_id');
+        return $this->belongsTo(Sexo::class, 'sexo_id');
     }
 
-    public function reportada(): HasOne
+    public function genero(): BelongsTo
     {
-        return $this->hasOne(Reporte::class, 'reportada_id');
+        return $this->belongsTo(Genero::class, 'genero_id');
     }
-    
 
     /**
      * The reportes that belong to the persona.
      *
      * @return BelongsToMany
      */
-
-     public function reportes(): BelongsToMany
+    public function reportes(): BelongsToMany
     {
         return $this->belongsToMany(Reporte::class);
     }
@@ -73,7 +95,7 @@ class Persona extends Model
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
-    
+
     public function caracteristicasfisicas(): HasOne
     {
         return $this->hasOne(CaracteristicasFisicas::class);
@@ -132,12 +154,12 @@ class Persona extends Model
 
     public function desaparecidos(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'persona_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function reportantes(): HasMany
     {
-        return $this->hasMany(Reportante::class, 'persona_id');
+        return $this->hasMany(Reportante::class);
     }
 
     public function domicilios(): BelongsToMany
@@ -163,5 +185,54 @@ class Persona extends Model
     public function contactos(): HasMany
     {
         return $this->hasMany(Contacto::class);
+    }
+
+    public function apodos(): HasMany
+    {
+        return $this->hasMany(Apodo::class, 'persona_id');
+    }
+
+    public function redesSociales(): HasMany
+    {
+        return $this->hasMany(Redsocial::class);
+    }
+
+    public function religion(): BelongsTo
+    {
+        return $this->belongsTo(Religion::class);
+    }
+
+    public function lengua(): BelongsTo
+    {
+        return $this->belongsTo(Lengua::class);
+    }
+
+    public function estadoConyugal(): BelongsTo
+    {
+        return $this->belongsTo(EstadoConyugal::class);
+    }
+
+    public function escolaridad(): BelongsTo
+    {
+        return $this->belongsTo(Escolaridad::class);
+    }
+
+    public function ocupaciones(): BelongsToMany
+    {
+        return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
+    }
+
+    // TODO: Modelo y catalogo de ocupaciones.
+
+    public function toSearchableArray()
+    {
+        return [
+            'nombre' => $this->nombre,
+            'apellido_paterno' => $this->apellido_paterno,
+            'apellido_materno' => $this->apellido_materno,
+            'pseudonimo_nombre' => $this->pseudonimo_nombre,
+            'pseudonimo_apellido_paterno' => $this->pseudonimo_apellido_paterno,
+            'pseudonimo_apellido_materno' => $this->pseudonimo_apellido_materno,
+        ];
     }
 }

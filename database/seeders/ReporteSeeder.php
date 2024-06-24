@@ -10,27 +10,27 @@ class ReporteSeeder extends Seeder
     public function run(): void
     {
         Reporte::factory()
-            ->hasHechosDesapariciones()
-            ->hasHipotesis(3)
-            ->hasDesaparecidos(3)
-            ->hasReportantes(2)
-            ->count(6)
-            ->create();
-
-        Reporte::factory()
-            ->hasHechosDesapariciones()
-            ->hasHipotesis()
-            ->hasDesaparecidos(6)
-            ->hasReportantes(1)
-            ->count(6)
-            ->create();
-
-        Reporte::factory()
-            ->hasHechosDesapariciones()
-            ->hasHipotesis(2)
-            ->hasDesaparecidos()
+            ->count(4)
             ->hasReportantes()
-            ->count(6)
+            ->hasDesaparecidos()
+            ->create();
+
+        Reporte::factory()
+            ->count(3)
+            ->hasReportantes()
+            ->hasDesaparecidos(2)
+            ->create();
+
+        Reporte::factory()
+            ->count(4)
+            ->hasReportantes()
+            ->hasDesaparecidos(4)
+            ->create();
+
+        Reporte::factory()
+            ->count(3)
+            ->hasReportantes()
+            ->hasDesaparecidos()
             ->create();
     }
 }

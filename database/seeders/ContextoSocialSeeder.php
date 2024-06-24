@@ -12,6 +12,6 @@ class ContextoSocialSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\ContextoSocial::factory(100)->create();
+        \App\Models\ContextoSocial::factory(10)->create();
     }
 }

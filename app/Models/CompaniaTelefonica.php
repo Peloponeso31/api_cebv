@@ -18,20 +18,20 @@ class CompaniaTelefonica extends Model
         'nombre',
     ];
 
-    public function telefono(): HasMany
+    public function telefonos(): HasMany
     {
         return $this->hasMany(Telefono::class);
     }
 
     public function toSearchableArray(): array
     {
-        
+
         return [
             'id'=> $this -> id,
             'nombre'=> $this -> nombre,
         ];
     }
-   
+
 
 
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\CaracteristicasFisicas;
 use App\Models\ContextoSocial;
+use App\Models\MarcaVehiculo;
 use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
@@ -37,11 +38,75 @@ class DatabaseSeeder extends Seeder
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
             ZonaEstadoSeeder::class,
-            nacionalidad_seeder::class,
-            Companias_Telefonicas_seeder::class,
+            SexoSeeder::class,
+            GeneroSeeder::class,
+            CompaniaTelefonicaSeeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class
+            ContextoFamiliarSeeder::class,
+            NacionalidadSeeder::class,
+            EscolaridadSeeder::class,
+            EstadoConyugalSeeder::class,
+            ReligionSeeder::class,
+            LenguaSeeder::class,
+            TipoRedSocialSeeder::class,
+            TipoOcupacionSeeder::class,
+            OcupacionSeeder::class,
+            GrupoVulnerableSeeder::class,
+            TipoHipotesisInmediataSeeder::class,
+            GrupoPertenenciaSeeder::class,
+            PertenenciaSeeder::class,
+            ColectivoSeeder::class,
+            ColorSeeder::class,
+        ]);
+
+        /**
+         * Caracteristicas Físicas seeders
+         */
+        $this->call([
+            ComplexionSeeder::class,
+            ColorPielSeeder::class,
+            FormaCaraSeeder::class,
+
+            ColorOjoSeeder::class,
+            FormaOjoSeeder::class,
+            TamanoOjoSeeder::class,
+
+            CalvicieSeeder::class,
+            ColorCabelloSeeder::class,
+            TamanoCabelloSeeder::class,
+            TipoCabelloSeeder::class,
+            CejaSeeder::class,
+
+            FormaNarizSeeder::class,
+            TamanoBocaSeeder::class,
+            TamanoLabiosSeeder::class,
+
+            TamanoOrejaSeeder::class,
+            FormaOrejaSeeder::class,
+            TipoMentonSeeder::class,
+
+            RegionDeformacionSeeder::class,
+            IntervencionQuirurgicaSeeder::class,
+            EnfermedadPielSeeder::class,
+            TipoSangreSeeder::class,
+        ]);
+
+        /**
+         * Situaciones de salud
+         */
+        $this->call([
+            CondicionSaludSeeder::class,
+        ]);
+
+        /**
+         * Vehículos seeders
+         */
+        $this->call([
+            MarcaVehiculoSeeder::class,
+            TipoVehiculoSeeder::class,
+            UsoVehiculoSeeder::class,
+            RelacionVehiculoSeeder::class,
         ]);
 
         /**
@@ -50,9 +115,21 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PersonaSeeder::class,
             ReporteSeeder::class,
-            Telefonos_seeder::class,
+            TelefonoSeeder::class,
             ContactoSeeder::class,
-            CaracteristicasFisicasSeeder::class,
+        ]);
+
+        /**
+         * Seeders que no sé dónde meter
+         */
+        $this->call([
+            EnfoqueDiferenciadoSeeder::class,
+            SituacionMigratoriaSeeder::class,
+            ParticularSeeder::class,
+            AutoridadSeeder::class,
+            MetodoCapturaSeeder::class,
+            MedioCapturaSeeder::class,
+            EstatusPerpetradorSeeder::class,
         ]);
     }
 }

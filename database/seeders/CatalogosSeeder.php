@@ -370,8 +370,6 @@ class CatalogosSeeder extends Seeder
             ["lengua" => "Mazahua"],
             ["lengua" => "Matlatzinca"],
             ["lengua" => "Español"],
-
-
         ]);
 
         \App\Models\Catalogos\GrupoEtnico::insert([

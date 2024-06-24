@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Reportes\Relaciones;
 
+use App\Http\Resources\Personas\ParentescoResource;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Models\Personas\Persona;
 use Illuminate\Http\Request;
@@ -16,8 +17,8 @@ class ReportanteResource extends JsonResource
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
             //'persona_id' => $this->persona_id,
-            'persona' => new PersonaResource(Persona::find($this->persona_id)),
-            'parentesco_id' => $this->parentesco_id,
+            'persona' => new PersonaResource($this->persona),
+            'parentesco' => ParentescoResource::make($this->parentesco),
             'denuncia_anonima' => $this->denuncia_anonima,
             'informacion_consentimiento' => $this->informacion_consentimiento,
             'informacion_exclusiva_busqueda' => $this->informacion_exclusiva_busqueda,

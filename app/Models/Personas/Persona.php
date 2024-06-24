@@ -25,6 +25,7 @@ use App\Models\SenasParticulares;
 use App\Models\Sexo;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
+use App\Models\Ubicaciones\Estado;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -74,6 +75,10 @@ class Persona extends Model
     public function genero(): BelongsTo
     {
         return $this->belongsTo(Genero::class, 'genero_id');
+    }
+
+    public function lugar_nacimiento(): BelongsTo {
+        return $this->belongsTo(Estado::class, "lugar_nacimiento_id");
     }
 
     /**

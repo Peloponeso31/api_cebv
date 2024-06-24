@@ -14,7 +14,7 @@ class HipotesisResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'xd' => $this->id,
+            'id' => $this->id,
             'etapa' => $this->etapa,
             'descripcion' => $this->descripcion,
             'reporte_id' => $this->reporte_id,

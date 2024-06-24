@@ -37,6 +37,7 @@ class Reporte extends Model
         'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
+        "institucion_origen",
         'esta_terminado',
         'tipo_desaparicion',
         'fecha_localizacion',

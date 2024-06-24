@@ -6,6 +6,7 @@ use App\Http\Resources\ApodoResource;
 use App\Http\Resources\GeneroResource;
 use App\Http\Resources\NacionalidadResource;
 use App\Http\Resources\SexoResource;
+use App\Http\Resources\Ubicaciones\EstadoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,7 @@ class PersonaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'lugar_nacimiento_id' => $this->lugar_nacimiento_id,
+            'lugar_nacimiento' => EstadoResource::make($this->lugar_nacimiento),
             'nombre' => $this->nombre,
             'apellido_paterno' => $this->apellido_paterno,
             'apellido_materno' => $this->apellido_materno,

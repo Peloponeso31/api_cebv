@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Reportes;
 
 use App\Http\Resources\Informaciones\MedioResource;
+use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
@@ -22,7 +23,8 @@ class ReporteResource extends JsonResource
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
             'estado' => EstadoResource::make($this->estado),
             'zona_estado_id' => $this->zona_estado_id,
-            'hipotesis_oficial_id' => $this->hipotesis_oficial_id,
+            'hipotesis_oficial' => TipoHipotesisResource::make($this->hipotesisOficial),
+            'institucion_origen' => $this->institucion_origen,
             'tipo_desaparicion' => $this->tipo_desaparicion,
             'fecha_localizacion' => $this->fecha_localizacion,
             "declaracion_especial_ausencia" => $this->declaracion_especial_ausencia,

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Catalogos\CaracteristicasFisicas;
+namespace App\Models\Catalogos;
 
 use App\Models\CaracteristicasFisicas;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ColorOjos extends Model
+class TipoCabello extends Model
 {
     protected $table='colores_ojos';
     protected $fillable=['nombre'];

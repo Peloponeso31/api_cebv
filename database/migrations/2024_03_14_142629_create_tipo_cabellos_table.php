@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('tipos_cabellos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string("tipocabello");
+            $table->timestamps();
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipos_cabellos');
+        Schema::dropIfExists('tipo_cabellos');
     }
 };

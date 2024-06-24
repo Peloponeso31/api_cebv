@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CatalogosSeeder extends Seeder
@@ -87,7 +88,7 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "REGION BRAZO",                  "color" => "FFA2A2"],
             ["nombre" => "REGION CODO",                   "color" => "00FFAC"],
             ["nombre" => "REGION CUELLO",                 "color" => "FF7070"],
-            ["nombre" => "REGION MUSLO",                  "color" => "FF5659"],
+            ["nombre" => "REGIOL MUSLO",                  "color" => "FF5659"],
             ["nombre" => "REGION MUÑECA",                 "color" => "FFBCBD"],
             ["nombre" => "REGION OMOPLATO",               "color" => "FFBAE4"],
             ["nombre" => "REGION RODILLA",                "color" => "BF09FF"],
@@ -226,15 +227,152 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "CICATRIZ"],
             ["nombre" => "CIRCUNCISION"],
             ["nombre" => "CORTES DECORATIVOS"],
-            ["nombre" => "DEFECTO FISICO"],
+            ["nombre" => "GEFECTO FISICO"],
             ["nombre" => "LUNARES O MANCHAS"],
             ["nombre" => "MARCAS TEMPORALES"],
             ["nombre" => "OTRO"],
             ["nombre" => "PROTESIS"],
             ["nombre" => "TATUAJE"],
+         ]);
+
+        \App\Models\Catalogos\ColorCabello::insert([
+            ["colorcabellos" => "ALBINO"],
+            ["colorcabellos" => "CANO"],
+            ["colorcabellos" => "CASTAÑO CLARO"],
+            ["colorcabellos" => "CASTAÑO OSCURO"],
+            ["colorcabellos" => "ENTRECANO"],
+            ["colorcabellos" => "NEGRO"],
+            ["colorcabellos" => "PELIRROJO"],
+            ["colorcabellos" => "RUBIO"],
+            ["colorcabellos" => "TEÑIDO"],
+            ["colorcabellos" => "NO ESPECIFICA"]
         ]);
 
-        \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
+        \App\Models\Catalogos\ColorOjos::insert([
+            ["color" => "AZULES"],
+            ["color" => "CAFÉS CLAROS"],
+            ["color" => "CAFÉS OSCUROS"],
+            ["color" => "GRISES"],
+            ["color" => "MIEL O ÁMBAR"],
+            ["color" => "NEGROS"],
+            ["color" => "VERDES"],
+            ["color" => "NO ESPECIFICA"]
+        ]);
+
+        \App\Models\Catalogos\TamanoOjos::insert([
+            ["tamano" => "GRANDES"],
+            ["tamano" => "MEDIANOS"],
+            ["tamano" => "PEQUEÑOS"],
+            ["tamano" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\ColorPiel::insert([
+            ["colorpiel" => "ALBINA"],
+            ["colorpiel" => "AMARILLA"],
+            ["colorpiel" => "BLANCA"],
+            ["colorpiel" => "MORENA"],
+            ["colorpiel" => "MORENA CLARA"],
+            ["colorpiel" => "MORENA OSCURA"],
+            ["colorpiel" => "NEGRA"],
+            ["colorpiel" => "NO ESPECIFICA"],
+
+        ]);
+        \App\Models\Catalogos\TipoCabello::insert([
+            ["tipo" => "AFRO"],
+            ["tipo" => "CHINO"],
+            ["tipo" => "CRESPO"],
+            ["tipo" => "LACIO"],
+            ["tipo" => "ONDULADO"],
+            ["tipo" => "RIZADO"],
+            ["tipo" => "SEMIONDULADO"],
+            ["tipo" => "NO ESPECIFICA"]
+
+        ]);
+
+        \App\Models\Catalogos\TipoLabios::insert([
+            ["tipolabios" => "DELGADOS"],
+            ["tipolabios" => "GRUESOS"],
+            ["tipolabios" => "MEDIANOS"],
+            ["tipolabios" => "MIXTOS"],
+            ["tipolabios" => "NO ESPECIFICA"],
+        ]);
+
+        \App\Models\Catalogos\TipoNariz::insert([
+            ["tiponariz" => "AGUILEÑA"],
+            ["tiponariz" => "CHATA"],
+            ["tiponariz" => "RECTA"],
+            ["tiponariz" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\TamanoOrejas::insert([
+            ["tamanoorejas" => "CHICAS"],
+            ["tamanoorejas" => "GRANDES"],
+            ["tamanoorejas" => "MEDIANAS"],
+            ["tamanoorejas" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\Complexion::insert([
+            ["complexion" => "ATLÉTICA"],
+            ["complexion" => "DELGADA"],
+            ["complexion" => "OBESA"],
+            ["complexion" => "REGULAR"],
+            ["complexion" => "ROBUSTA"],
+            ["complexion" => "NO ESPECIFICA"],
+
+        ]);
+
+        \App\Models\Catalogos\Religion::insert([
+            ["religion" => "Católicos"],
+            ["religion" => "Catolicos Ortodoxos"],
+            ["religion" => "Anabautista/Menonita"],
+            ["religion" => "Anglicano/Episcopal"],
+            ["religion" => "Bautista"],
+            ["religion" => "Luterana"],
+            ["religion" => "Metodista"],
+            ["religion" => "Testigos de jehova"],
+            ["religion" => "Cristianos"],
+            ["religion" => "Evangelicos"],
+            ["religion" => "Pentecostales"],
+            ["religion" => "Protestantes"],
+            ["religion" => "Judaismo"],
+            ["religion" => "Islamismo"],
+            ["religion" => "Budismo"],
+            ["religion" => "Hinduismo"],
+            ["religion" => "Otras de origen oriental"],
+
+        ]);
+
+        \App\Models\Catalogos\Lengua::insert([
+            ["lengua" => "Nahualt"],
+            ["lengua" => "Paipai"],
+            ["lengua" => "Kiliwa"],
+            ["lengua" => "Cucapa"],
+            ["lengua" => "Cochini"],
+            ["lengua" => "Kumiai"],
+            ["lengua" => "Seri"],
+            ["lengua" => "Chontal de Oaxaca"],
+            ["lengua" => "Chinanteco"],
+            ["lengua" => "Chinanteco Ojitlan"],
+            ["lengua" => "Chinanteco de Usila"],
+            ["lengua" => "Chinanteco de Quiotepec"],
+            ["lengua" => "Chinanteco de Yolox"],
+            ["lengua" => "Chinanteco de Palantla"],
+            ["lengua" => "Chinanteco de Valle Nacional"],
+            ["lengua" => "Chinanteco de Lalana"],
+            ["lengua" => "Chinanteco de Latani"],
+            ["lengua" => "Chinanteco de Petlapa"],
+            ["lengua" => "Pame"],
+            ["lengua" => "Chichimeca Jonaz"],
+            ["lengua" => "Otomi"],
+            ["lengua" => "Mazahua"],
+            ["lengua" => "Matlatzinca"],
+            ["lengua" => "Español"],
+        ]);
+
+        \App\Models\Catalogos\GrupoEtnico::insert([
             ["grupoetnico" => "NAHUAS"],
             ["grupoetnico" => "TOTONACAS"],
             ["grupoetnico" => "HUASTECO"],
@@ -243,9 +381,10 @@ class CatalogosSeeder extends Seeder
             ["grupoetnico" => "OTOMIES"],
             ["grupoetnico" => "ZOQUE"],
             ["grupoetnico" => "MIXES"],
+
         ]);
 
-        \App\Models\Catalogos\Etnia\Vestimenta::insert([
+        \App\Models\Catalogos\Vestimenta::insert([
             ["vestimenta" => "HUIPIL"],
             ["vestimenta" => "CALZÓN DE MANTA"],
             ["vestimenta" => "SARAPE"],
@@ -258,7 +397,7 @@ class CatalogosSeeder extends Seeder
         ]);
 
 
-        \App\Models\Catalogos\Etnia\Ascendencia::insert([
+        \App\Models\Catalogos\Ascendencia::insert([
             ["ascendencia" => "AFROAMERICANO"],
             ["ascendencia" => "ESPAÑOLA"],
             ["ascendencia" => "MEXICANA"],
@@ -268,21 +407,5 @@ class CatalogosSeeder extends Seeder
             ["ascendencia" => "AMERICANA"],
             ["ascendencia" => "ASIATICA"],
         ]);
-
-        \App\Models\Catalogos\Oficina::insert([
-            ["oficina" => "Celula Norte"],
-            ["oficina" => "Celula Centro"],
-            ["oficina" => "Celula Sur"],
-            ["oficina" => "Búsqueda Inmediata"],
-            ["oficina" => "Larga Data"],
-            ["oficina" => "OGPI"],
-        ]);
-
-        \App\Models\Catalogos\Puesto::insert([
-            ["nombre" => "Comisionado Estatal"],
-            ["nombre" => "Jefe de Departamento"],
-            ["nombre" => "Jefe de Oficina"],
-        ]);
-
     }
 }

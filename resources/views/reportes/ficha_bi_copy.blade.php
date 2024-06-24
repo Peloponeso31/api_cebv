@@ -518,22 +518,49 @@ h1, h2{
             <div class="Fecha-Folio">
                 <table>
                     <tr>
-                        <th>Fecha:</th>
+                        <th>Fecha de inicio:</th>
                         <td>20/03/2024</td>
-                        <th>Folio:</th>
-                        <td>No. Folio</td>
                     </tr>
                     <tr>
-                        <th>Hora:</th>
-                        <td colspan="3">10:23:45</td>
+                        <th>Hora de inicio:</th>
+                        <td>10:23:45</td>
                     </tr>
             </table>
             </div> 
-            <p><br>Manifiesta que la información que aporte para el RNPDNO sea utilizada exclusivamente para la búsqueda e identificación
-            de la Persona Desaparecida o No Localizada.  <b>SI   NO</b></p>
-    
-            <p>¿Solicita que se haga pública la información de la Persona Desaparecida o No Localizada?   <b>SI   NO</b></p>
-          <h2>DATOS DEL REPORTANTE</h2>
+
+            <h2>Fuente de información</h2>
+            <table>
+                <tr>
+                    <th>Medio de conocimiento genérico:</th>
+                    <th>Medio de conocimiento especifico:</th>
+                    <th>estado de donde proviene el reporte:</th>
+                    <th>institución de origen:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <h2>Información de consentimiento</h2>
+            <table>
+                <tr>
+                    <th>Uso exclusivo de la información e identificación de la Persona Desaparecida o No Localizada. </th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>¿Solicita que se haga pública la información de la Persona Desaparecida o No Localizada? </th>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+
+           <h2>DATOS DEL REPORTANTE</h2>
         
           <table>
             <tr>
@@ -980,6 +1007,78 @@ h1, h2{
             </tr>
         </table>
    
+</section>
+
+<section id="Juridico">
+<h2>Instrumentos juridicos asociados</h2>
+<h2>Carpeta de investigación</h2>
+<table>
+    <tr>
+        <th colspan="4">Específica si hay o existe carpeta de investigación(ci).</th>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+    </tr>
+    <tr>
+        <th>Número de ci, im o reporte de fge:</th>
+        <th>dónde radica la ci, im o reporte de fge:</th>
+        <th>nombre del servidor(a) público:</th>
+        <th>fecha de recepción de ci, im o reporte de fge:</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>Amparo buscador</h2>
+<table>
+    <tr>
+        <th colspan="4">Escífica si hay o existe amparo buscador:</th>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+    </tr>
+    <tr>
+        <th>número de amparo buscador:</th>
+        <th>Dónde radica el amparo buscador:</th>
+        <th>Nombre del juez:</th>
+        <th>Fecha de recepción:</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<h2>Recomendación de derechos humanos</h2>
+<table>
+    <tr>
+        <th colspan="4">Específica si hay o existe recomendación de derechos humanos(dh):</th>
+    </tr>
+    <tr>
+        <td colspan="4"></td>
+    </tr>
+    <tr>
+        <th>Número de recomendación derechos humanos:</th>
+        <th>Dónde radica la recomendación derechos humanos:</th>
+        <th>Nombre del servidor(a) público:</th>
+        <th>Fecha de recepción recomendación dh:</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="4"><!--La que se seccione la muestra --> </td>
+    </tr>
+</table>
 </section>
 
 <div class="Estatura-Peso">

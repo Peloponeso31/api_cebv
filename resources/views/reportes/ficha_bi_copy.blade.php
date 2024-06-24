@@ -1375,7 +1375,7 @@ h1, h2{
                 <td></td>
             </tr>
             <tr>
-                <th>Aclaración de la fecha y hora de los hechos:</th>
+                <th colspan="2">Aclaración de la fecha y hora de los hechos:</th>
             </tr>
             <tr>
                 <td colspan="2"></td>
@@ -1439,24 +1439,199 @@ h1, h2{
                 <th>Área que atendera:</th>
             </tr>
             <tr>
-                <th>¿La persona desaparecida había recibido amenazas o había cambiado su comportamiento o rutina recientemente?</th>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-                <th>Descripción de la situación	de amenazas:</th>
+                <th colspan="2">¿La persona desaparecida había recibido amenazas o había cambiado su comportamiento o rutina recientemente?</th>
             </tr>
             <tr>
-                <th>¿Cúantas veces antes la persona ha desaparecido o se ha ausentado?</th>
+                <td colspan="2"></td>
             </tr>
             <tr>
-                <th>Descripción de la situación previa o anote los folios en el campo siguiente si ya ha estado registrada:</th>
+                <th colspan="2">Descripción de la situación	de amenazas:</th>
             </tr>
             <tr>
-                <th>Folios previos</th>
+                <td colspan="2"></td>
             </tr>
             <tr>
-                <th>Dato de persona(s) que puedieron estar relacionadas o brindar información sobre la desaparición:</th>
+                <th colspan="2">¿Cúantas veces antes la persona ha desaparecido o se ha ausentado?</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Descripción de la situación previa o anote los folios en el campo siguiente si ya ha estado registrada:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Folios previos</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Dato de persona(s) que puedieron estar relacionadas o brindar información sobre la desaparición:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Descripción de los hechos de la desaparición:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <th colspan="2">Síntesis de los hechos de desaparición:</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
             </tr>
         </table>
+
+        <h2>Hipótesis</h2>
+        <table>
+            <tr>
+                <th>Posible Hipótesis de desaparición 1:</th>
+                <th>Circunstancia inicial 1:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Posible Hipótesis de desaparición 2:</th>
+                <th>Circunstancia inicial 2:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Sitio inicial:</th>
+                <th>Área que codifica sitio inical:</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <h2>Desaparición asociada</h2>
+        <table>
+            <tr>
+                <th>¿Desapareció con alguien más?:</th>
+                <th>N° de personas en el mismo evento</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="2">Referencias de la o las otra(s) persona(s):</th>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+
+        <h2>Folios directos</h2>
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+
+        <h2>Folios indirectos</h2>
+        <table>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        </section>
+
+        <section id="Desapa-frozada">
+            <h2>Desaparición forzada o por particulares</h2>
+            <h2>Condiciones de desaparición</h2>
+            <table>
+                <tr>
+                    <th>¿Sufrió desaparición forzada?</th>
+                    <th>Autoridad:</th>
+                    <th>Describa la situación:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>¿Sufrió desaparición por particulares?</th>
+                    <th>Particular:</th>
+                    <th>Describa la situación:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Método de captura:</th>
+                    <th colspan="2">Observaciones del método de captura:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th colspan="3">¿Existió detención previa o extorsión?</th>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <th colspan="3">Despues de la desaparición o privación de la libertad de la persona...</th>
+                </tr>
+                <tr>
+                    <th>¿Ha sido avistado en alguna parte?</th>
+                    <th colspan="2">¿Dónde?</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+
+            <h2>Información sobre el perpetrador</h2>
+            <table>
+                <tr>
+                    <th>Nombre(s)/apodo(s):</th>
+                    <th>Sexo:</th>
+                    <th>Descripción:</th>
+                </tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Último estatus del perpetrador:</th>
+                    <th colspan="2">Descripción del gurpo perpetrador</th>
+                </tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <th>¿Se sucitaron otros delitos antes o después de la desaparicón?</th>
+                    <th colspan="2">Especifique cuáles:</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+
         </section>
     
     

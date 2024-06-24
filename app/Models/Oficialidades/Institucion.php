@@ -14,14 +14,16 @@ class Institucion extends Model
     protected $table = 'instituciones';
 
     protected $fillable = [
+        'descripcion',
         'nombre',
     ];
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
+            'descripcion' => $this->descripcion,
         ];
     }
 }

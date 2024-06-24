@@ -9,10 +9,13 @@
         "ext-pdo": "*",
         "barryvdh/laravel-dompdf": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
+        "hoa/regex": "~1.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",
+        "spatie/laravel-permission": "^6.4",
+        "spatie/pdf-to-image": "^2.3",
         "league/flysystem-sftp-v3": "^3.0",
         "spatie/laravel-permission": "^6.4",
         "spatie/laravel-query-builder": "^6.0"

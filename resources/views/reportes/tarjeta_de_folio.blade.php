@@ -28,6 +28,7 @@
     #footer .page:after { content: counter(page, upper-roman); }
     p {
         text-align: justify;
+        font-size: .85em;
     }
     h1 {
         text-align: center;
@@ -67,7 +68,7 @@
         background-image: url("{{ public_path('reportes/tarjeta_de_folio/Logobackground-body.png') }}");
             background-repeat: no-repeat;
             background-position: center;
-            fo
+            
     }
 
     .montserrat-alternates-thin {
@@ -198,34 +199,59 @@
         </p>
     </div>
 
-    <p class="encabezado1">
-        Para: <mark style="background-color: yellow;"><b>ARQLGO. JOSE CASAS CHAVEZ</b></mark><br>
-        JEFE DE OFICINA DE BÚSQUEDA DE LARGA DATA<br>
+    <p class="montserrat-alternates-regular">
+      Para: <mark style="background-color: yellow;"><b>ARQLGO. JOSE CASAS CHAVEZ</b></mark><br>
+      JEFE DE OFICINA DE BÚSQUEDA DE LARGA DATA<br>
 
-    </p>
-    
-    <p class="encabezado2">
-        DE:  MTRA. LUZ MARÍA URIBE VARGAS<br>
-        JEFA DE OFICINA DE GESTIÓN Y PROCESAMIENTO DE INFORMACIÓN <br>   
-    </p>
-    <p class="encabezado3">
-        ASUNTO: <b style="color: red">ASIGNACIÓN DE FOLIO PARA INVESTIGACIÓN MINISTERIAL </b> <br>
-    </p>
-    <p class="encabezado4">
-        FECHA:<mark style="background-color: yellow;"><b style="color: red">09/04/2024</b></mark><br>   
-        </p>
-    <p class="texto">
-        Con la finalidad de dar cumplimiento a lo dispuesto en el artículo 87 de la Ley General en Materia de Desaparición Forzada de Personas, Desaparición Cometida por Particulares y del Sistema Nacional de Búsqueda Personas, así como los diversos 38 fracción III y 62 de la Ley Número 677 en Materia de Desaparición de Personas para el Estado de Veracruz de Ignacio de la Llave, por esta vía me permito convalidar que en fecha <b style="color: red">14 de marzo de 2024</b> se asignó el folio número <mark style="background-color: yellow;"> <b style="color: red">24/IM 0009U-11ZN</b></mark> relativo a <mark style="background-color: yellow;"><b style="color: red">LAZARO PACHECO LAZCANO</b></mark>, derivado de la investigación ministerial recibida en esta Comisión. <br>
-    </p>
-    <p class="texto2">
-        Sin otro particular, le envío un cordial saludo. <br>
-    </p>
-    <p class="texto3">
-        A T E N T A M E N T E <br>
-        MTRA. LUZ MARÍA URIBE VARGAS 
-    </p>
+  </p>
+  
+  <p class="montserrat-alternates-regular">
+      DE:  MTRA. LUZ MARÍA URIBE VARGAS<br>
+      JEFA DE OFICINA DE GESTIÓN Y PROCESAMIENTO DE INFORMACIÓN <br>   
+  </p>
+  <p class="montserrat-alternates-regular">
+      ASUNTO: <b style="color: red">ASIGNACIÓN DE FOLIO PARA INVESTIGACIÓN MINISTERIAL </b> <br>
+  </p>
+  <p class="montserrat-alternates-regular">
+      FECHA:<mark style="background-color: yellow;"><b style="color: red">09/04/2024</b></mark><br>   
+      </p>
+  <p class="montserrat-alternates-regular">
+      Con la finalidad de dar cumplimiento a lo dispuesto en el artículo 87 de la Ley General en Materia de Desaparición Forzada de Personas, Desaparición Cometida por Particulares y del Sistema Nacional de Búsqueda Personas, así como los diversos 38 fracción III y 62 de la Ley Número 677 en Materia de Desaparición de Personas para el Estado de Veracruz de Ignacio de la Llave, por esta vía me permito convalidar que en fecha <b style="color: red">14 de marzo de 2024</b> se asignó el folio número <mark style="background-color: yellow;"> <b style="color: red">24/IM 0009U-11ZN</b></mark> relativo a <mark style="background-color: yellow;"> <b style="color: red">{{ $desaparecido->persona->nombre }} {{ $desaparecido->persona->apellido_paterno }} {{ $desaparecido->persona->apellido_materno }}</b></mark>, derivado de la investigación ministerial recibida en esta Comisión. <br>
+  </p>
+  <p class="montserrat-alternates-regular">
+      Sin otro particular, le envío un cordial saludo. <br>
+  </p>
+  <p class="montserrat-alternates-regular" >
+      A T E N T A M E N T E <br>
+      MTRA. LUZ MARÍA URIBE VARGAS 
+  </p>
 
-    <p class="montserrat-alternates-black-italic">Este es un párrafo con texto en Montserrat Alternates, negrita.</p>
+    <p class="montserrat-alternates-regular">
+      Para: <mark style="background-color: yellow;"><b>ARQLGO. JOSE CASAS CHAVEZ</b></mark><br>
+      JEFE DE OFICINA DE BÚSQUEDA DE LARGA DATA<br>
+
+  </p>
+  
+  <p class="montserrat-alternates-regular">
+      DE:  MTRA. LUZ MARÍA URIBE VARGAS<br>
+      JEFA DE OFICINA DE GESTIÓN Y PROCESAMIENTO DE INFORMACIÓN <br>   
+  </p>
+  <p class="montserrat-alternates-regular">
+      ASUNTO: <b style="color: red">ASIGNACIÓN DE FOLIO PARA INVESTIGACIÓN MINISTERIAL </b> <br>
+  </p>
+  <p class="montserrat-alternates-regular">
+      FECHA:<mark style="background-color: yellow;"><b style="color: red">09/04/2024</b></mark><br>   
+      </p>
+  <p class="montserrat-alternates-regular">
+      Con la finalidad de dar cumplimiento a lo dispuesto en el artículo 87 de la Ley General en Materia de Desaparición Forzada de Personas, Desaparición Cometida por Particulares y del Sistema Nacional de Búsqueda Personas, así como los diversos 38 fracción III y 62 de la Ley Número 677 en Materia de Desaparición de Personas para el Estado de Veracruz de Ignacio de la Llave, por esta vía me permito convalidar que en fecha <b style="color: red">14 de marzo de 2024</b> se asignó el folio número <mark style="background-color: yellow;"> <b style="color: red">24/IM 0009U-11ZN</b></mark> relativo a <mark style="background-color: yellow;"> <b style="color: red">{{ $desaparecido->persona->nombre }} {{ $desaparecido->persona->apellido_paterno }} {{ $desaparecido->persona->apellido_materno }}</b></mark>, derivado de la investigación ministerial recibida en esta Comisión. <br>
+  </p>
+  <p class="montserrat-alternates-regular">
+      Sin otro particular, le envío un cordial saludo. <br>
+  </p>
+  <p class="montserrat-alternates-regular" >
+      A T E N T A M E N T E <br>
+      MTRA. LUZ MARÍA URIBE VARGAS 
+  </p>
 
 
 </body>

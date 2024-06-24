@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             TipoOcupacionSeeder::class,
             OcupacionSeeder::class,
             GrupoVulnerableSeeder::class,
+            TipoHipotesisInmediataSeeder::class,
             GrupoPertenenciaSeeder::class,
             PertenenciaSeeder::class,
             ColectivoSeeder::class,
@@ -89,6 +90,13 @@ class DatabaseSeeder extends Seeder
             IntervencionQuirurgicaSeeder::class,
             EnfermedadPielSeeder::class,
             TipoSangreSeeder::class,
+        ]);
+
+        /**
+         * Situaciones de salud
+         */
+        $this->call([
+            CondicionSaludSeeder::class,
         ]);
 
         /**

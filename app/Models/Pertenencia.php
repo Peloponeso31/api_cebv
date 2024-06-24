@@ -13,7 +13,7 @@ class Pertenencia extends Model
 {
     use Searchable;
 
-    protected $table = "pertenencias";
+    protected $table = 'pertenencias';
 
     protected $fillable = [
         'grupo_pertenencia_id',
@@ -27,9 +27,9 @@ class Pertenencia extends Model
         return $this->hasMany(PrendaDeVestir::class);
     }
 
-    public function Grupopertenencia(): BelongsTo
+    public function grupoPertenencia(): BelongsTo
     {
-        return $this->belongsTo(GrupoPertenencia::class, 'grupo_pertenencia_id');
+        return $this->belongsTo(GrupoPertenencia::class);
     }
 
     public function toSearchableArray(): array

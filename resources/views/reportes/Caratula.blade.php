@@ -129,8 +129,8 @@ table {
         
         <tr>
             <th>¿ESTÁ RELACIONADO CON OTROS EXPEDIENTES?</th>
-            <th>NO<table><th>X</th></table></th>
-            <th>Si<table><th></th></table></th>
+            <th>NO<table><th><br></th></table></th>
+            <th>Si<table><th><br></th></table></th>
             <th>¿CON CUÁLES EXPEDIENTES?</th>
             <td></td>
         </tr>
@@ -147,8 +147,8 @@ table {
         </tr>
         <tr>
             <th rowspan="2">CAMBIO DE ESTATUS</th>
-            <th rowspan="2">LOCALIZADO C/V<table><th></th></table></th>
-            <th rowspan="2">LOCALIZADO S/V<table><th></th></table></th>
+            <th rowspan="2">LOCALIZADO C/V<table><th><br></th></table></th>
+            <th rowspan="2">LOCALIZADO S/V<table><th><br></th></table></th>
             <th>FECHA DE LOCALIZACIÓN</th> 
             <td></td>
             <tr>
@@ -159,7 +159,7 @@ table {
         </tr>
         <tr>
             <th>HECHOS Y OBSERVACIONES</th>
-            <td colspan="4">w</td>
+            <td colspan="4"></td>
         </tr>
 
         </table>

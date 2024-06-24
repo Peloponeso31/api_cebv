@@ -3,7 +3,10 @@
 namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\ApodoResource;
+use App\Http\Resources\GeneroResource;
 use App\Http\Resources\NacionalidadResource;
+use App\Http\Resources\SexoResource;
+use App\Http\Resources\Ubicaciones\EstadoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +22,7 @@ class PersonaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'lugar_nacimiento_id' => $this->lugar_nacimiento_id,
+            'lugar_nacimiento' => EstadoResource::make($this->lugar_nacimiento),
             'nombre' => $this->nombre,
             'apellido_paterno' => $this->apellido_paterno,
             'apellido_materno' => $this->apellido_materno,
@@ -31,8 +34,8 @@ class PersonaResource extends JsonResource
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
             'ocupacion' => $this->ocupacion,
-            'sexo' => $this->sexo_al_nacer,
-            'genero' => $this->genero,
+            'sexo' => SexoResource::make($this->sexo),
+            'genero' => GeneroResource::make($this->genero),
             'apodos' => ApodoResource::collection($this->apodos),
             'nacionalidades' => NacionalidadResource::collection($this->nacionalidads)
         ];

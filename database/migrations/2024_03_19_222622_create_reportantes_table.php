@@ -16,12 +16,14 @@ return new class extends Migration
             $table->foreignId('parentesco_id')->nullable()->constrained(table: 'parentescos');
             $table->foreignId('colectivo_id')->nullable()->constrained(table: 'colectivos');
 
-            $table->boolean('denuncia_anonima')->nullable();
+            $table->boolean('denuncia_anonima')->default(false);
             $table->boolean('informacion_consentimiento')->nullable();
             $table->boolean('informacion_exclusiva_busqueda')->nullable();
             $table->boolean('publicacion_registro_nacional')->nullable();
             $table->boolean('publicacion_boletin')->nullable();
             $table->text('informacion_relevante')->nullable();
+
+            $table->integer("edad_estimada")->nullable();
 
             // TODO: Edad en años
             // TODO: Informacion relevante

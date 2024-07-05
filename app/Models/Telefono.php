@@ -16,9 +16,9 @@ class Telefono extends Model
 
     protected $fillable = [
         'persona_id',
+        'compania_id',
         'numero',
         'observaciones',
-        'compania_id',
     ];
 
     public function personas(): BelongsTo

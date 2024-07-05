@@ -25,7 +25,8 @@ class Reportante extends Model
         'informacion_exclusiva_busqueda',
         'publicacion_registro_nacional',
         'publicacion_boletin',
-        'informacion_relevante'
+        'informacion_relevante',
+        'edad_estimada'
     ];
 
     protected $casts = [

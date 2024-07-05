@@ -177,7 +177,7 @@ class Persona extends Model
         return $this->hasMany(Folio::class, 'persona_id');
     }
 
-    public function nacionalidads(): BelongsToMany
+    public function nacionalidades(): BelongsToMany
     {
         return $this->belongsToMany(Nacionalidad::class);
     }
@@ -194,7 +194,7 @@ class Persona extends Model
 
     public function apodos(): HasMany
     {
-        return $this->hasMany(Apodo::class, 'persona_id');
+        return $this->hasMany(Apodo::class);
     }
 
     public function redesSociales(): HasMany

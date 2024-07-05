@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('reportes', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('tipo_reporte_id')->constrained(table: 'tipos_reportes', indexName: 'idx_reportes_tipo_reporte');
+            $table->foreignId('tipo_reporte_id')->nullable()->constrained(table: 'tipos_reportes', indexName: 'idx_reportes_tipo_reporte');
             $table->foreignId('area_atiende_id')->nullable()->constrained(table: 'areas', indexName: 'idx_reportes_area');
             $table->foreignId('medio_conocimiento_id')->nullable()->constrained(table: 'medios', indexName: 'idx_reportes_medio');
             $table->foreignId('zona_estado_id')->nullable()->constrained(table: 'zonas_estados', indexName: 'idx_reportes_zona_estado');

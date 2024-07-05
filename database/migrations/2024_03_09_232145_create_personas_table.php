@@ -15,11 +15,11 @@ return new class extends Migration {
 
             $table->foreignId('sexo_id')->nullable()->constrained(table: 'sexos');
             $table->foreignId('genero_id')->nullable()->constrained(table: 'generos');
-            $table->string('lugar_nacimiento_id', 2)->nullable();
             $table->foreignId('religion_id')->nullable()->constrained(table: 'religiones');
             $table->foreignId('lengua_id')->nullable()->constrained(table: 'lenguas');
             $table->foreignId('estado_conyugal_id')->nullable()->constrained(table: 'estados_conyugales');
             $table->foreignId('escolaridad_id')->nullable()->constrained(table: 'escolaridades');
+            $table->string('lugar_nacimiento_id', 2)->nullable();
 
             $table->string('nombre')->nullable();
             $table->string('apellido_paterno')->nullable();
@@ -32,6 +32,7 @@ return new class extends Migration {
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();
             $table->enum('nivel_escolaridad', ['TERMINADA', 'EN CURSO', 'NO ESPECIFICA'])->nullable();
+            $table->string('ocupacion')->nullable();
 
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('estados');

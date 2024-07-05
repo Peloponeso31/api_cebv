@@ -74,6 +74,11 @@ class Reporte extends Model
         return $this->belongsTo(Area::class, 'area_atiende_id');
     }
 
+    public function hechosDesaparicion(): HasOne
+    {
+        return $this->hasOne(HechoDesaparicion::class, 'reporte_id');
+    }
+
     /**
      * Get the medio that owns the reporte.
      *

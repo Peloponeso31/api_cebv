@@ -27,6 +27,7 @@ class ReportanteResource extends JsonResource
             'pertenencia_colectivo' => $this->pertenencia_colectivo,
             'nombre_colectivo' => $this->nombre_colectivo,
             'informacion_relevante' => $this->informacion_relevante,
+            'edad_estimada' => $this->edad_estimada,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

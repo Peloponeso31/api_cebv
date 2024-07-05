@@ -28,6 +28,7 @@ use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
 use App\Http\Controllers\SexoController;
 use App\Http\Controllers\SituacionMigratoriaController;
+use App\Http\Controllers\SyncReporteController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
 use App\Http\Controllers\TipoHipotesisInmediataController;
@@ -184,6 +185,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/reportes', ReporteController::class);
     Route::apiResource('/tipos-reportes', TipoReporteController::class);
     Route::apiResource('/grupos-vulnerables', GrupoVulnerableController::class);
+    Route::post('/actualizar/reporte/', [SyncReporteController::class, 'actualizarReporteCascade']);
 
     /**
      * Routes for the informacion module

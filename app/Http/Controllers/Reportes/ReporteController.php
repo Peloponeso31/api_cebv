@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
-use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
 use App\Services\ReporteService;

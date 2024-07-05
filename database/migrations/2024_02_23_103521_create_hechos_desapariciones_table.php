@@ -9,9 +9,7 @@ return new class extends Migration {
     {
         Schema::create('hechos_desapariciones', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
             $table->dateTime('fecha_percato')->nullable();

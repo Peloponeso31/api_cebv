@@ -6,6 +6,7 @@ use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 
 class HechoDesaparicion extends Model
@@ -44,9 +45,9 @@ class HechoDesaparicion extends Model
      *
      * @return BelongsTo
      */
-    public function reportes(): BelongsTo
+    public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class, 'reporte_id');
+        return $this->belongsTo(Reporte::class, "reporte_id");
     }
 
     public function toSearchableArray(): array

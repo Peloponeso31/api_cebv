@@ -4,7 +4,9 @@ namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\ApodoResource;
 use App\Http\Resources\GeneroResource;
+use App\Http\Resources\LenguaResource;
 use App\Http\Resources\NacionalidadResource;
+use App\Http\Resources\ReligionResource;
 use App\Http\Resources\SexoResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
 use Illuminate\Http\Request;
@@ -34,10 +36,13 @@ class PersonaResource extends JsonResource
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
             'ocupacion' => $this->ocupacion,
+            'domicilios' => $this->domicilios,
             'sexo' => SexoResource::make($this->sexo),
             'genero' => GeneroResource::make($this->genero),
             'apodos' => ApodoResource::collection($this->apodos),
-            'nacionalidades' => NacionalidadResource::collection($this->nacionalidads)
+            'nacionalidades' => NacionalidadResource::collection($this->nacionalidades),
+            'religion' => ReligionResource::make($this->religion),
+            'lengua' => LenguaResource::make($this->lengua),
         ];
     }
 }

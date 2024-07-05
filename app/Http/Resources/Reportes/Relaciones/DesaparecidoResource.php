@@ -38,6 +38,7 @@ class DesaparecidoResource extends JsonResource
             'ci_nivel_federal' => $this->ci_nivel_federal,
             'otro_derecho_humano' => $this->otro_derecho_humano,
             'folio_cebv' => $folio,
+            'edad_estimada' => $this->edad_estimada,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

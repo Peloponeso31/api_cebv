@@ -227,7 +227,6 @@ class Persona extends Model
         return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
     }
 
-    // TODO: Modelo y catalogo de ocupaciones.
 
     public function toSearchableArray()
     {

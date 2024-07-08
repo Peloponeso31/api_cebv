@@ -288,8 +288,10 @@ class SyncReporteController extends Controller
         ], [
             'fecha_desaparicion' => $request->hechos_desaparicion["fecha_desaparicion"] ?? null,
             'fecha_desaparicion_cebv' => $request->hechos_desaparicion["fecha_desaparicion_cebv"] ?? null,
+            'hora_desaparicion' => $request->hechos_desaparicion["hora_desaparicion"] ?? null,
             'fecha_percato' => $request->hechos_desaparicion["fecha_percato"] ?? null,
             'fecha_percato_cebv' => $request->hechos_desaparicion["fecha_percato_cebv"] ?? null,
+            'hora_percato' => $request->hechos_desaparicion["hora_percato"] ?? null,
             'aclaraciones_fecha_hechos' => $request->hechos_desaparicion["aclaraciones_fecha_hechos"] ?? null,
             'cambio_comportamiento' => $request->hechos_desaparicion["cambio_comportamiento"] ?? false,
             'descripcion_cambio_comportamiento' => $request->hechos_desaparicion["descripcion_cambio_comportamiento"] ?? null,
@@ -300,15 +302,23 @@ class SyncReporteController extends Controller
             'informacion_relevante' => $request->hechos_desaparicion["informacion_relevante"] ?? null,
             'hechos_desaparicion' => $request->hechos_desaparicion["hechos_desaparicion"] ?? null,
             'sintesis_desaparicion' => $request->hechos_desaparicion["sintesis_desaparicion"] ?? null,
+            'desaparecio_acompanado' => $request->hechos_desaparicion["desaparecio_acompanado"] ?? null,
+            'personas_mismo_evento' => $request->hechos_desaparicion["personas_mismo_evento"] ?? null,
         ]);
     }
 
     public function syncHipotesis($reporteId, ReporteTotalRequest $request)
     {
         foreach ($request->hipotesis as $hp) {
-            $model = Hipotesis::findOrFail($hp);
-
-            $model->updateOrCreate($request->all());
+            Hipotesis::updateOrCreate([
+                'id' => $hp["id"] ?? null,
+                'reporte_id' => $reporteId,
+            ], [
+                'tipo_hipotesis_id' => $hp["tipo_hipotesis"]["id"] ?? null,
+                'sitio_id' => $hp["sitio"]["id"] ?? null,
+                'area_asigna_sitio_id' => $hp["area_asigna_sitio"]["id"] ?? null,
+                'etapa' => $hp["etapa"] ?? null,
+            ]);
         }
     }
 }

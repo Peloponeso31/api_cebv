@@ -33,8 +33,11 @@ class ReporteService
     {
         $reporte = Reporte::findOrFail($id);
 
-        if (!$reporte->esta_terminado)
-            return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
+        /**
+         * TODO: Completar la validación de los campos mínimos requeridos para asignar un folio.
+         */
+        //if (!$reporte->esta_terminado)
+         //   return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
 
         $desaparecidos = Desaparecido::where('reporte_id', $reporte->id)->get();
 

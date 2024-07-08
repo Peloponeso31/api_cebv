@@ -60,6 +60,10 @@ class ReporteTotalRequest extends FormRequest
             'hechos_desaparicion.informacion_relevante' => ['nullable', 'string'],
             'hechos_desaparicion.hechos_desaparicion' => ['nullable', 'string'],
             'hechos_desaparicion.sintesis_desaparicion' => ['nullable', 'string'],
+            'hechos_desaparicion.hora_desaparicion' => ['nullable', 'string'],
+            'hechos_desaparicion.hora_percato' => ['nullable', 'string'],
+            'hechos_desaparicion.desaparecio_acompanado' => ['nullable', 'boolean'],
+            'hechos_desaparicion.personas_mismo_evento' => ['nullable', 'numeric'],
 
             //hipotesis
             'hipotesis.*.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],

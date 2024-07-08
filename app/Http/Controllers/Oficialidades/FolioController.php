@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Oficialidades;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Oficialidades\FolioResource;
+use App\Http\Resources\FolioResource;
 use App\Models\Oficialidades\Folio;
 use App\Services\CrudService;
 

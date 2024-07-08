@@ -12,11 +12,12 @@ class FolioResource extends JsonResource
     public function toArray(Request $request): array
     {
         $user = User::findOrFail($this->user_id);
+
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
             'reporte_id' => $this->reporte_id,
-            'user' => new UserAdminResource($user),
+            'user' => UserAdminResource::make($user),
             'folio_cebv' => $this->folio_cebv,
             'folio_fub' => $this->folio_fub,
             'created_at' => $this->created_at,

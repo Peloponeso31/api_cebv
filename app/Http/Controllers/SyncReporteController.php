@@ -9,6 +9,7 @@ use App\Models\Contacto;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -43,7 +44,6 @@ class SyncReporteController extends Controller
             'ocupacion' => $persona["ocupacion"] ?? null,
             'nacionalidades' => $persona["nacionalidades"] ?? null,
             'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
-
         ]);
 
         if (isset($persona["apodos"]) && $persona["apodos"] != null) {
@@ -179,10 +179,11 @@ class SyncReporteController extends Controller
         ]);
 
         if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {
-            HechoDesaparicion::updateOrCreate([
-                "id" => $request->hechos_desaparicion["id"] ?? null,
-                "reporte_id" => $request->hechos_desaparicion["reporte_id"]
-            ], $request->hechos_desaparicion);
+            $this->syncHechosDesaparicion($reporte->id, $request);
+        }
+
+        if ($request->has("hipotesis") && $request->hipotesis != null) {
+            $this->syncHipotesis($reporte->id, $request);
         }
 
         if ($request->has("reportantes") && $request->reportantes != null) {
@@ -263,5 +264,51 @@ class SyncReporteController extends Controller
         }
 
         return ReporteResource::make($reporte);
+    }
+
+    /**
+     * Delegación de responsabilidades
+     */
+
+    /**
+     * Este método sincroniza los hechos de desaparición de un reporte,
+     * se encarga de crear, actualizar y eliminar los hechos de desaparición
+     * de un reporte según los datos que se le pasen desde el cliente.
+     *
+     * @param $reporteId
+     * @return void
+     */
+    public function syncHechosDesaparicion($reporteId, ReporteTotalRequest $request)
+    {
+        if (!is_int($reporteId) || $reporteId == null) return;
+
+        HechoDesaparicion::updateOrCreate([
+            'id' => $request->hechos_desaparicion["id"] ?? null,
+            'reporte_id' => $reporteId,
+        ], [
+            'fecha_desaparicion' => $request->hechos_desaparicion["fecha_desaparicion"] ?? null,
+            'fecha_desaparicion_cebv' => $request->hechos_desaparicion["fecha_desaparicion_cebv"] ?? null,
+            'fecha_percato' => $request->hechos_desaparicion["fecha_percato"] ?? null,
+            'fecha_percato_cebv' => $request->hechos_desaparicion["fecha_percato_cebv"] ?? null,
+            'aclaraciones_fecha_hechos' => $request->hechos_desaparicion["aclaraciones_fecha_hechos"] ?? null,
+            'cambio_comportamiento' => $request->hechos_desaparicion["cambio_comportamiento"] ?? false,
+            'descripcion_cambio_comportamiento' => $request->hechos_desaparicion["descripcion_cambio_comportamiento"] ?? null,
+            'fue_amenazado' => $request->hechos_desaparicion["fue_amenazado"] ?? null,
+            'descripcion_amenaza' => $request->hechos_desaparicion["descripcion_amenaza"] ?? null,
+            'contador_desapariciones' => $request->hechos_desaparicion["contador_desapariciones"] ?? null,
+            'situacion_previa' => $request->hechos_desaparicion["situacion_previa"] ?? null,
+            'informacion_relevante' => $request->hechos_desaparicion["informacion_relevante"] ?? null,
+            'hechos_desaparicion' => $request->hechos_desaparicion["hechos_desaparicion"] ?? null,
+            'sintesis_desaparicion' => $request->hechos_desaparicion["sintesis_desaparicion"] ?? null,
+        ]);
+    }
+
+    public function syncHipotesis($reporteId, ReporteTotalRequest $request)
+    {
+        foreach ($request->hipotesis as $hp) {
+            $model = Hipotesis::findOrFail($hp);
+
+            $model->updateOrCreate($request->all());
+        }
     }
 }

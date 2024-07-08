@@ -15,12 +15,11 @@ class HipotesisResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'etapa' => $this->etapa,
-            'descripcion' => $this->descripcion,
             'reporte_id' => $this->reporte_id,
-            'tipo_hipotesis_id' => $this->tipo_hipotesis_id,
-            'sitio_id' => $this->sitio_id,
-            'area_asigna_sitio_id' => $this->area_asigna_sitio_id,
+            'etapa' => $this->etapa,
+            'tipo_hipotesis' => TipoHipotesisResource::make($this->tipoHipotesis),
+            'sitio' =>SitioResource::make($this->sitio),
+            'area_asigna_sitio' => AreaResource::make($this->areaAsignaSitio),
         ];
     }
 }

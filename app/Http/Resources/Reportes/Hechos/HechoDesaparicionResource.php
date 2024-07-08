@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Reportes\Hechos;
 
-use App\Http\Resources\Reportes\ReporteResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

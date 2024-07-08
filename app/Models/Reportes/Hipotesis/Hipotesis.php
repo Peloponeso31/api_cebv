@@ -22,7 +22,6 @@ class Hipotesis extends Model
         'sitio_id',
         'area_asigna_sitio_id',
         'etapa',
-        'descripcion',
     ];
 
     protected $casts = [

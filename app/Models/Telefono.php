@@ -19,6 +19,7 @@ class Telefono extends Model
         'compania_id',
         'numero',
         'observaciones',
+        'es_movil'
     ];
 
     public function personas(): BelongsTo

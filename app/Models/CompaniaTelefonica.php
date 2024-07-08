@@ -31,7 +31,4 @@ class CompaniaTelefonica extends Model
             'nombre'=> $this -> nombre,
         ];
     }
-
-
-
 }

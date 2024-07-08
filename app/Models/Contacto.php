@@ -16,10 +16,16 @@ class Contacto extends Model
 
     protected $fillable = [
         'persona_id',
+        'tipo_red_social_id',
         'tipo',
-        'contacto',
+        'nombre',
         'observaciones',
     ];
+
+    public function tipoRedSocial(): BelongsTo
+    {
+        return $this->belongsTo(TipoRedSocial::class, 'tipo_red_social_id');
+    }
 
     public function persona(): BelongsTo
     {

@@ -13,9 +13,8 @@ class MunicipioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'estado_id' => $this->estado_id,
-            'estado_nombre' => Estado::whereId($this->estado_id)->first()->nombre,
             'nombre' => $this->nombre,
+            'estado' => EstadoResource::make($this->estado),
         ];
     }
 }

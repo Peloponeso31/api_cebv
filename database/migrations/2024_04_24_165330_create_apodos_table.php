@@ -10,7 +10,9 @@ return new class extends Migration {
         Schema::create('apodos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('persona_id');
-            $table->string('apodo');
+            $table->string('nombre')->nullable();
+            $table->string('apellido_paterno')->nullable();
+            $table->string('apellido_materno')->nullable();
         });
     }
 

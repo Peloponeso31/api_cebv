@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ContactoFactory extends Factory
 {
-    
+
     public function definition(): array
     {
         $tipos = ['Red Social','Correo Electronico'];
         return [
             'persona_id' => Persona::factory(),
-            'tipo' => fake() -> randomElement($tipos),
-            'contacto' => fake() -> userName(),
+            'tipo'=> fake() -> randomElement($tipos),
+            'nombre' => fake() -> userName(),
             'observaciones' => fake() -> text(),
         ];
     }
-    
+
 }

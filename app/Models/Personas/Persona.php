@@ -14,6 +14,7 @@ use App\Models\Escolaridad;
 use App\Models\EstadoConyugal;
 use App\Models\Etnia;
 use App\Models\Genero;
+use App\Models\GrupoVulnerable;
 use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
@@ -167,7 +168,7 @@ class Persona extends Model
         return $this->hasMany(Reportante::class);
     }
 
-    public function domicilios(): BelongsToMany
+    public function direcciones(): BelongsToMany
     {
         return $this->belongsToMany(Direccion::class, 'domicilios');
     }
@@ -225,6 +226,11 @@ class Persona extends Model
     public function ocupaciones(): BelongsToMany
     {
         return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
+    }
+
+    public function gruposVulnerables(): BelongsToMany
+    {
+        return $this->belongsToMany(GrupoVulnerable::class, "grupos_vulnerables_personas");
     }
 
     // TODO: Modelo y catalogo de ocupaciones.

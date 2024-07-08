@@ -21,7 +21,12 @@ return new class extends Migration
             $table->boolean('informacion_exclusiva_busqueda')->nullable();
             $table->boolean('publicacion_registro_nacional')->nullable();
             $table->boolean('publicacion_boletin')->nullable();
+            $table->boolean('pertenencia_colectivo')->nullable();
+
             $table->text('informacion_relevante')->nullable();
+            $table->text('participacion_busquedas')->nullable();
+            $table->text('descripcion_extorsion')->nullable();
+            $table->text('descripcion_donde_proviene')->nullable();
 
             $table->integer("edad_estimada")->nullable();
 

@@ -9,9 +9,7 @@ return new class extends Migration {
     {
         Schema::create('ocupaciones', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('tipo_ocupacion_id')->constrained('tipos_ocupacion');
-
             $table->string('nombre');
         });
     }

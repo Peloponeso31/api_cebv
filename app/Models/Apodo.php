@@ -14,7 +14,9 @@ class Apodo extends Model
 
     protected $fillable = [
         'persona_id',
-        'apodo',
+        'nombre',
+        'apellido_paterno',
+        'apellido_materno'
     ];
 
     public function persona(): BelongsTo

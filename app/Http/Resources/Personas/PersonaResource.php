@@ -3,11 +3,17 @@
 namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\ApodoResource;
+use App\Http\Resources\ContactoResource;
+use App\Http\Resources\EscolaridadResource;
+use App\Http\Resources\EstadoConyugalResource;
 use App\Http\Resources\GeneroResource;
+use App\Http\Resources\GrupoVulnerableResource;
 use App\Http\Resources\LenguaResource;
 use App\Http\Resources\NacionalidadResource;
 use App\Http\Resources\ReligionResource;
 use App\Http\Resources\SexoResource;
+use App\Http\Resources\TelefonoResource;
+use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -36,13 +42,20 @@ class PersonaResource extends JsonResource
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
             'ocupacion' => $this->ocupacion,
-            'domicilios' => $this->domicilios,
+            'nivel_escolaridad' => $this->nivel_escolaridad,
+
             'sexo' => SexoResource::make($this->sexo),
             'genero' => GeneroResource::make($this->genero),
             'apodos' => ApodoResource::collection($this->apodos),
             'nacionalidades' => NacionalidadResource::collection($this->nacionalidades),
             'religion' => ReligionResource::make($this->religion),
             'lengua' => LenguaResource::make($this->lengua),
+            'telefonos' => TelefonoResource::collection($this->telefonos),
+            'contactos' => ContactoResource::collection($this->contactos),
+            'direcciones' => DireccionResource::collection($this->direcciones),
+            'grupos_vulnerables' => GrupoVulnerableResource::collection($this->gruposVulnerables),
+            'escolaridad' => EscolaridadResource::make($this->escolaridad),
+            'estado_conyugal' => EstadoConyugalResource::make($this->estadoConyugal)
         ];
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Models\Personas\Persona;
+use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
 class Ocupacion extends Model
@@ -24,6 +26,11 @@ class Ocupacion extends Model
     public function tipoOcupacion(): BelongsTo
     {
         return $this->belongsTo(TipoOcupacion::class);
+    }
+
+    public function desaparecidos(): HasMany
+    {
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function personas(): BelongsToMany

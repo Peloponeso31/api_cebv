@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Apodo;
+use App\Models\Contacto;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
@@ -12,6 +13,9 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
+use App\Models\Telefono;
+use App\Models\Ubicaciones\Direccion;
+use Illuminate\Database\Eloquent\Model;
 
 class SyncReporteController extends Controller
 {
@@ -24,6 +28,8 @@ class SyncReporteController extends Controller
             'genero_id' => $persona["sexo"]["id"] ?? null,
             'religion_id' => $persona["religion"]["id"] ?? null,
             'lengua_id' => $persona["lengua"]["id"] ?? null,
+            'escolaridad_id' => $persona["escolaridad"]["id"] ?? null,
+            'estado_conyugal_id' => $persona["estado_conyugal"]["id"] ?? null,
 
             'apellido_paterno' => $persona["apellido_paterno"] ?? null,
             'apellido_materno' => $persona["apellido_materno"] ?? null,
@@ -35,7 +41,8 @@ class SyncReporteController extends Controller
             'observaciones_curp' => $persona["observaciones_curp"] ?? null,
             'rfc' => $persona["rfc"] ?? null,
             'ocupacion' => $persona["ocupacion"] ?? null,
-            'nacionalidades' => $persona["nacionalidades"]?? null,
+            'nacionalidades' => $persona["nacionalidades"] ?? null,
+            'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
 
         ]);
 
@@ -45,7 +52,11 @@ class SyncReporteController extends Controller
                 $apodo_id = Apodo::updateOrCreate([
                     "id" => $apodo["id"] ?? null,
                     "persona_id" => $apodo["persona_id"] ?? $persona_created->id ?? null,
-                ], $apodo)->id;
+                ], [
+                    'nombre' => $apodo['nombre'],
+                    'apellido_paterno' => $apodo['apellido_paterno'],
+                    'apellido_materno' => $apodo['apellido_materno'],
+                ])->id;
                 array_push($apodos_modificados, $apodo_id);
             }
 
@@ -65,12 +76,87 @@ class SyncReporteController extends Controller
             $persona_created->nacionalidades()->sync($nacionalidades);
         }
 
+        if (isset($persona["grupos_vulnerables"]) && $persona["grupos_vulnerables"] != null) {
+            $grupos_vulnerables = [];
+            foreach ($persona["grupos_vulnerables"] as $grupoVulnerable) {
+                if (isset($grupoVulnerable["id"]) && $grupoVulnerable["id"] != null) {
+                    array_push($grupos_vulnerables, $grupoVulnerable["id"]);
+                }
+            }
+            $persona_created->gruposVulnerables()->sync($grupos_vulnerables);
+        }
+
+        if (isset($persona["telefonos"]) && $persona["telefonos"] != null) {
+            $telefonos_modificados = [];
+            foreach ($persona["telefonos"] as $telefono) {
+                $telefono_id = Telefono::updateOrCreate([
+                    "id" => $telefono["id"] ?? null,
+                    "persona_id" => $telefono["persona_id"] ?? $persona_created->id ?? null,
+                ], [
+                    'compania_id' => $telefono["compania"]["id"] ?? null,
+                    'numero' => $telefono["numero"] ?? null,
+                    'observaciones' => $telefono["observaciones"] ?? null,
+                    'es_movil' => $telefono["es_movil"] ?? null,
+                ])->id;
+                array_push($telefonos_modificados, $telefono_id);
+            }
+
+            $telefonos_eliminables = $persona_created->telefonos->except($telefonos_modificados);
+            if (count($telefonos_eliminables) > 0) {
+                $telefonos_eliminables->toQuery()->delete();
+            }
+        }
+
+        if (isset($persona["contactos"]) && $persona["contactos"] != null) {
+            $contactos_modificados = [];
+            foreach ($persona["contactos"] as $contacto) {
+                $contacto_id = Contacto::updateOrCreate([
+                    "id" => $contacto["id"] ?? null,
+                    "persona_id" => $contacto["persona_id"] ?? $persona_created->id ?? null,
+                ], [
+                    'tipo' => $contacto["tipo"] ?? null,
+                    'tipo_red_social_id' => $contacto["tipo_red_social"]["id"] ?? null,
+                    'nombre' => $contacto["nombre"] ?? null,
+                    'observaciones' => $contacto["observaciones"] ?? null,
+                ])->id;
+                array_push($contactos_modificados, $contacto_id);
+            }
+
+            $contactos_eliminables = $persona_created->contactos->except($contactos_modificados);
+            if (count($contactos_eliminables) > 0) {
+                $contactos_eliminables->toQuery()->delete();
+            }
+        }
+
+        if (isset($persona["direcciones"]) && $persona["direcciones"] != null) {
+            $direcciones = [];
+            foreach ($persona["direcciones"] as $direccion) {
+                $direccion_created = Direccion::updateOrCreate([
+                    "id" => $direccion["id"] ?? null
+                ], [
+                    "asentamiento_id" => $direccion["asentamiento"]["id"] ?? null,
+                    "calle" => $direccion["calle"],
+                    "colonia" => $direccion["colonia"],
+                    "numero_exterior" => $direccion["numero_exterior"],
+                    "numero_interior" => $direccion["numero_interior"],
+                    "calle_1" => $direccion["calle_1"],
+                    "calle_2" => $direccion["calle_2"],
+                    "tramo_carretero" => $direccion["tramo_carretero"],
+                    "codigo_postal" => $direccion["codigo_postal"],
+                    "referencia" => $direccion["referencia"],
+                ]);
+
+                array_push($direcciones, $direccion_created->id);
+            }
+            $persona_created->direcciones()->sync($direcciones);
+        }
+
         return $persona_created->id;
     }
 
     public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
-        $reporte = Reporte::updateOrCreate(["id" => $request->id ?? null] , [
+        $reporte = Reporte::updateOrCreate(["id" => $request->id ?? null], [
             // Catalogos
             'tipo_reporte_id' => $request->tipo_reporte["id"] ?? null,
             'area_atiende_id' => $request->area_atiende["id"] ?? null,
@@ -106,6 +192,7 @@ class SyncReporteController extends Controller
                     "reporte_id" => $reportante["reporte_id"] ?? $reporte->id ?? null
                 ], [
                     "parentesco_id" => $reportante["parentesco"]["id"] ?? null,
+                    "colectivo_id" => $reportante["colectivo"]["id"] ?? null,
                     "persona_id" => $this->updateOrCreatePersona($reportante["persona"]) ?? null,
                     "denuncia_anonima" => $reportante["denuncia_anonima"] ?? null,
                     "informacion_consentimiento" => $reportante["informacion_consentimiento"] ?? null,
@@ -116,6 +203,9 @@ class SyncReporteController extends Controller
                     "nombre_colectivo" => $reportante["nombre_colectivo"] ?? null,
                     "informacion_relevante" => $reportante["informacion_relevante"] ?? null,
                     "edad_estimada" => $reportante["edad_estimada"] ?? null,
+                    "participacion_busquedas" => $reportante["participacion_busquedas"] ?? null,
+                    "descripcion_extorsion" => $reportante["descripcion_extorsion"] ?? null,
+                    "descripcion_donde_proviene" => $reportante["descripcion_donde_proviene"] ?? null
                 ]);
             }
         }
@@ -128,6 +218,8 @@ class SyncReporteController extends Controller
                 ], [
                     'estatus_rpdno_id' => $desaparecido["estatus_rpdno"]["id"] ?? null,
                     'estatus_cebv_id' => $desaparecido["estatus_cebv"]["id"] ?? null,
+                    'ocupacion_principal_id' => $desaparecido["ocupacion_principal"]["id"] ?? null,
+                    'ocupacion_secundaria_id' => $desaparecido["ocupacion_secundaria"]["id"] ?? null,
                     "persona_id" => $this->updateOrCreatePersona($desaparecido["persona"]) ?? null,
                     'clasificacion_persona' => $desaparecido["clasificacion_persona"],
                     'habla_espanhol' => $desaparecido["habla_espanhol"],
@@ -138,7 +230,13 @@ class SyncReporteController extends Controller
                     'accion_urgente' => $desaparecido["accion_urgente"],
                     'dictamen' => $desaparecido["dictamen"],
                     'ci_nivel_federal' => $desaparecido["ci_nivel_federal"],
-                    'otro_derecho_humano' => $desaparecido["otro_derecho_humano"]
+                    'otro_derecho_humano' => $desaparecido["otro_derecho_humano"],
+                    'identidad_resguardada' => $desaparecido["identidad_resguardada"],
+                    'alias' => $desaparecido["alias"],
+                    'descripcion_ocupacion_principal' => $desaparecido["descripcion_ocupacion_principal"],
+                    'descripcion_ocupacion_secundaria' => $desaparecido["descripcion_ocupacion_secundaria"],
+                    'otras_especificaciones_ocupacion' => $desaparecido["otras_especificaciones_ocupacion"],
+                    'nombre_pareja_conyugue' => $desaparecido["nombre_pareja_conyugue"],
                 ]);
 
                 if (isset($desaparecido["documentos_legales"]) && $desaparecido["documentos_legales"] != null) {

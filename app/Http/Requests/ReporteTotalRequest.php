@@ -43,7 +43,7 @@ class ReporteTotalRequest extends FormRequest
             'sintesis_localizacion' => ['nullable', 'string'],
             'fecha_localizacion' => ['nullable', 'date'],
 
-            //hechos de_desapareicion
+            //hechos de_desaparicion
             'hechos_desaparicion.id' => ['nullable', 'exists:hechos_desapariciones,id', 'numeric'],
             'hechos_desaparicion.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
             'hechos_desaparicion.fecha_desaparicion' => ['nullable', 'date'],
@@ -60,6 +60,13 @@ class ReporteTotalRequest extends FormRequest
             'hechos_desaparicion.informacion_relevante' => ['nullable', 'string'],
             'hechos_desaparicion.hechos_desaparicion' => ['nullable', 'string'],
             'hechos_desaparicion.sintesis_desaparicion' => ['nullable', 'string'],
+
+            //hipotesis
+            'hipotesis.*.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
+            'hipotesis.*.tipo_hipotesis_id' => ['nullable', 'exists:tipos_hipotesis,id', 'numeric'],
+            'hipotesis.*.sitio_id' => ['nullable', 'exists:sitios,id', 'numeric'],
+            'hipotesis.*.area_asigna_sitio_id' => ['nullable', 'exists:areas,id', 'numeric'],
+            'hipotesis.*.etapa' => ['nullable', Rule::in('Inicial', 'Final')],
 
             // Reportante
             //'reportantes.*.reporte_id' => ['exists:reportes,id', 'numeric'],

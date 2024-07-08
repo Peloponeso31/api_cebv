@@ -5,6 +5,7 @@ namespace App\Http\Resources\Reportes;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\Oficialidades\AreaResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
+use App\Http\Resources\Reportes\Hipotesis\HipotesisResource;
 use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
@@ -31,6 +32,7 @@ class ReporteResource extends JsonResource
             'reportantes' => ReportanteResource::collection($this->reportantes),
             'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),
             'hechos_desaparicion' => HechoDesaparicionResource::make($hecho),
+            'hipotesis' => HipotesisResource::collection($this->hipotesis),
             'esta_terminado' => $this->esta_terminado,
             'institucion_origen' => $this->institucion_origen,
             'tipo_desaparicion' => $this->tipo_desaparicion,

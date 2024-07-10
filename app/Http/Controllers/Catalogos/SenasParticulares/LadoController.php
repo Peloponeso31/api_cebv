@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalogos\SenasParticulares;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LadoResource;
 use App\Models\Catalogos\Lado;
 use App\Http\Requests\Catalogos\SenasParticulares\LadoSenaRequest;
 
@@ -13,7 +14,7 @@ class LadoController extends Controller
      */
     public function index()
     {
-        return Lado::all();
+        return LadoResource::collection(Lado::all());
     }
 
 
@@ -30,7 +31,7 @@ class LadoController extends Controller
      */
     public function show($id)
     {
-        return Lado::findOrFail($id);
+        return LadoResource::make(Lado::findOrFail($id));
     }
 
 

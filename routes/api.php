@@ -219,13 +219,13 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::delete('/bulk_delete/senas_particulares', [SenasParticularesController::class, 'bulkDelete']);
     Route::get('/sena/persona/{persona_id}', [SenasParticularesController::class, 'SenaPersona']);
 
-    Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
-    Route::apiResource('/catalogos/tipo', TipoController::class);
-    Route::apiResource('/catalogos/vista', VistaController::class);
-    Route::apiResource('/catalogos/lado', LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
-    Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
+    Route::apiResource('/regiones-cuerpo', RegionCuerpoController::class);
+    Route::apiResource('/tipos', TipoController::class);
+    Route::apiResource('/vistas', VistaController::class);
+    Route::apiResource('/lados', LadoController::class);
+    Route::apiResource('/vistas-rnpdno', VistaRnpdnoController::class);
+    Route::apiResource('/lados-rnpdno', LadoRnpdnoController::class);
+    Route::apiResource('/regiones-cuerpo-rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);

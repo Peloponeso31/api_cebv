@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalogos\SenasParticulares;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\VistaResource;
 use App\Models\Catalogos\Vista;
 use App\Http\Requests\Catalogos\SenasParticulares\VistaSenaRequest;
 
@@ -13,7 +14,7 @@ class VistaController extends Controller
      */
     public function index()
     {
-        return Vista::all();
+        return VistaResource::collection(Vista::all());
     }
 
     /**
@@ -29,7 +30,7 @@ class VistaController extends Controller
      */
     public function show($id)
     {
-        return Vista::findOrFail($id);
+        return VistaResource::make(Vista::findOrFail($id));
     }
 
     /**

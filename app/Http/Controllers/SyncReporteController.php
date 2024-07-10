@@ -14,6 +14,7 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
+use App\Models\SenasParticulares;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Model;
@@ -151,6 +152,30 @@ class SyncReporteController extends Controller
             $persona_created->direcciones()->sync($direcciones);
         }
 
+        if (isset($persona["senas_particulares"]) && $persona["senas_particulares"] != null) {
+            $senas_modified = [];
+            foreach ($persona["senas_particulares"] as $sena) {
+                $sena_created = SenasParticulares::updateOrCreate([
+                    "id" => $sena["id"] ?? null,
+                    "persona_id" => $sena["persona"]["id"] ?? $persona_created->id ?? null,
+                ], [
+                    "region_cuerpo_id" => $sena["region_cuerpo"]["id"] ?? null,
+                    "lado_id" => $sena["lado"]["id"] ?? null,
+                    "vista_id" => $sena["vista"]["id"] ?? null,
+                    "tipo_id" => $sena["tipo"]["id"] ?? null,
+                    "cantidad" => $sena["cantidad"] ?? null,
+                    "descripcion" => $sena["descripcion"] ?? null,
+                    "foto" => $sena["foto"] ?? null,
+                ]);
+
+                array_push($senas_particulares_modified, $sena_created->id);
+            }
+            $senas_eliminables = $persona_created->senasParticulares->except($senas_modified);
+            if (count($senas_eliminables) > 0) {
+                $senas_eliminables->toQuery()->delete();
+            }
+        }
+
         return $persona_created->id;
     }
 
@@ -286,6 +311,7 @@ class SyncReporteController extends Controller
             'id' => $request->hechos_desaparicion["id"] ?? null,
             'reporte_id' => $reporteId,
         ], [
+            'direccion_id' => $this->syncLugarHechos($request->hechos_desaparicion["lugar_hechos"]) ?? null,
             'fecha_desaparicion' => $request->hechos_desaparicion["fecha_desaparicion"] ?? null,
             'fecha_desaparicion_cebv' => $request->hechos_desaparicion["fecha_desaparicion_cebv"] ?? null,
             'fecha_percato' => $request->hechos_desaparicion["fecha_percato"] ?? null,
@@ -301,6 +327,28 @@ class SyncReporteController extends Controller
             'hechos_desaparicion' => $request->hechos_desaparicion["hechos_desaparicion"] ?? null,
             'sintesis_desaparicion' => $request->hechos_desaparicion["sintesis_desaparicion"] ?? null,
         ]);
+    }
+
+    public function syncLugarHechos($lugar_hechos)
+    {
+        if ($lugar_hechos == null) return;
+
+        $direccion_created = Direccion::updateOrCreate([
+            "id" => $lugar_hechos["id"] ?? null
+        ], [
+            "asentamiento_id" => $lugar_hechos["asentamiento"]["id"] ?? null,
+            "calle" => $lugar_hechos["calle"] ?? null,
+            "colonia" => $lugar_hechos["colonia"] ?? null,
+            "numero_exterior" => $lugar_hechos["numero_exterior"] ?? null,
+            "numero_interior" => $lugar_hechos["numero_interior"] ?? null,
+            "calle_1" => $lugar_hechos["calle_1"] ?? null,
+            "calle_2" => $lugar_hechos["calle_2"] ?? null,
+            "tramo_carretero" => $lugar_hechos["tramo_carretero"] ?? null,
+            "codigo_postal" => $lugar_hechos["codigo_postal"] ?? null,
+            "referencia" => $lugar_hechos["referencia"] ?? null,
+        ]);
+
+        return $direccion_created->id;
     }
 
     public function syncHipotesis($reporteId, ReporteTotalRequest $request)

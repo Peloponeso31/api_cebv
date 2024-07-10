@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Reportes\Hechos;
 
+use App\Http\Resources\Ubicaciones\DireccionResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -27,6 +28,7 @@ class HechoDesaparicionResource extends JsonResource
             'informacion_relevante' => $this->informacion_relevante,
             'hechos_desaparicion' => $this->hechos_desaparicion,
             'sintesis_desaparicion' => $this->sintesis_desaparicion,
+            'lugar_hechos' => DireccionResource::make($this->lugarHechos),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

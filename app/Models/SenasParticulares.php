@@ -33,7 +33,7 @@ class SenasParticulares extends Model
     public function region_cuerpo(): BelongsTo {
         return $this->belongsTo(RegionCuerpo::class);
     }
-    
+
 
     public function region_cuerpo_rnpdno(): BelongsTo {
         return $this->belongsTo(RegionCuerpoRnpdno::class);

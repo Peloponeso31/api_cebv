@@ -153,7 +153,7 @@ class Persona extends Model
         return $this->hasOne(Etnia::class);
     }
 
-    public function senasparticulares(): HasMany
+    public function senasParticulares(): HasMany
     {
         return $this->hasMany(SenasParticulares::class);
     }

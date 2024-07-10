@@ -3,6 +3,7 @@
 namespace App\Models\Reportes\Hechos;
 
 use App\Models\Reportes\Reporte;
+use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -17,6 +18,7 @@ class HechoDesaparicion extends Model
 
     protected $fillable = [
         'reporte_id',
+        'direccion_id',
         'fecha_desaparicion',
         'fecha_desaparicion_cebv',
         'fecha_percato',
@@ -48,6 +50,11 @@ class HechoDesaparicion extends Model
     public function reporte(): BelongsTo
     {
         return $this->belongsTo(Reporte::class, "reporte_id");
+    }
+
+    public function lugarHechos() : BelongsTo
+    {
+        return $this->belongsTo(Direccion::class, 'direccion_id');
     }
 
     public function toSearchableArray(): array

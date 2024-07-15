@@ -15,6 +15,7 @@ use App\Models\EstadoConyugal;
 use App\Models\Etnia;
 use App\Models\Genero;
 use App\Models\GrupoVulnerable;
+use App\Models\MediaFiliacion;
 use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
@@ -45,6 +46,7 @@ class Persona extends Model
     protected $fillable = [
         'sexo_id',
         'genero_id',
+        'media_filiacion_id',
         'lugar_nacimiento_id',
         'religion_id',
         'lengua_id',
@@ -153,7 +155,7 @@ class Persona extends Model
         return $this->hasOne(Etnia::class);
     }
 
-    public function senasparticulares(): HasMany
+    public function senasParticulares(): HasMany
     {
         return $this->hasMany(SenasParticulares::class);
     }
@@ -231,6 +233,11 @@ class Persona extends Model
     public function gruposVulnerables(): BelongsToMany
     {
         return $this->belongsToMany(GrupoVulnerable::class, "grupos_vulnerables_personas");
+    }
+
+    public function mediaFiliacion(): HasOne
+    {
+        return $this->hasOne(MediaFiliacion::class);
     }
 
     // TODO: Modelo y catalogo de ocupaciones.

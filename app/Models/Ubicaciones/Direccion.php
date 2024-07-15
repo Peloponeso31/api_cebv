@@ -3,6 +3,7 @@
 namespace App\Models\Ubicaciones;
 
 use App\Models\Personas\Persona;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ class Direccion extends Model
 
     protected $fillable = [
         'asentamiento_id',
+        'direccion_concatenable',
         'calle',
         'colonia',
         'numero_exterior',
@@ -55,6 +57,11 @@ class Direccion extends Model
     public function personas(): BelongsToMany
     {
         return $this->belongsToMany(Persona::class, 'domicilios');
+    }
+
+    public function hechosDesaparicion(): HasMany
+    {
+        return $this->hasMany(HechoDesaparicion::class);
     }
 
     public function toSearchableArray()

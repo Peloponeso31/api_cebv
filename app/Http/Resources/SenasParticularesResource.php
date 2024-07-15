@@ -16,15 +16,15 @@ class SenasParticularesResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            "persona_id" => $this->persona,
-            "region_cuerpo" => $this->region_cuerpo->nombre,
-            //"region_cuerpo_rnpdno" => $this->region_cuerpo_rnpdno->nombre,
-            "vista"=> $this->vista->nombre,
-            "lado"=> $this->lado->nombre,
-            "tipo"=> $this->tipo->nombre,
+            "persona_id" => $this->persona_id,
             "cantidad" => $this->cantidad,
             "descripcion" => $this->descripcion,
-            "foto" => $this->foto
+            "foto" => $this->foto,
+            "region_cuerpo" => RegionCuerpoResource::make($this->region_cuerpo),
+            "vista"=> VistaResource::make($this->vista),
+            "lado"=> LadoResource::make($this->lado),
+            "tipo"=> TipoResource::make($this->tipo),
+            //"region_cuerpo_rnpdno" => $this->region_cuerpo_rnpdno->nombre,
         ];
     }
 }

@@ -38,6 +38,7 @@ use App\Http\Controllers\TipoMentonController;
 use App\Http\Controllers\TipoOcupacionController;
 use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoSangreController;
+use App\Http\Controllers\TiposDomicilioController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
 use App\Http\Controllers\VehiculoController;
@@ -120,6 +121,7 @@ use App\Http\Resources\UserAdminResource;
 |
 */
 
+Route::get('/excel/reportes', [ReporteController::class, 'exportExcell']);
 
 /**
  * Rutas protegidas por autenticacion.
@@ -177,6 +179,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
     Route::apiResource('/tipos-ocupaciones', TipoOcupacionController::class);
     Route::apiResource('/ocupaciones', OcupacionController::class);
+    Route::apiResource("/razones-curp", \App\Http\Controllers\RazonesCurpController::class);
 
     /**
      * Routes for the reportes module
@@ -189,12 +192,14 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/grupos-vulnerables', GrupoVulnerableController::class);
     Route::post('/actualizar/reporte/', [SyncReporteController::class, 'actualizarReporteCascade']);
 
+
     /**
      * Routes for the informacion module
      */
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
+    Route::apiResource('/tipos-domicilio', TiposDomicilioController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
@@ -221,13 +226,13 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::delete('/bulk_delete/senas_particulares', [SenasParticularesController::class, 'bulkDelete']);
     Route::get('/sena/persona/{persona_id}', [SenasParticularesController::class, 'SenaPersona']);
 
-    Route::apiResource('/catalogos/region_cuerpo', RegionCuerpoController::class);
-    Route::apiResource('/catalogos/tipo', TipoController::class);
-    Route::apiResource('/catalogos/vista', VistaController::class);
-    Route::apiResource('/catalogos/lado', LadoController::class);
-    Route::apiResource('/catalogos/vista_rnpdno', VistaRnpdnoController::class);
-    Route::apiResource('/catalogos/lado_rnpdno', LadoRnpdnoController::class);
-    Route::apiResource('/catalogos/region_cuerpo_rnpdno', RegionCuerpoRnpdnoController::class);
+    Route::apiResource('/regiones-cuerpo', RegionCuerpoController::class);
+    Route::apiResource('/tipos', TipoController::class);
+    Route::apiResource('/vistas', VistaController::class);
+    Route::apiResource('/lados', LadoController::class);
+    Route::apiResource('/vistas-rnpdno', VistaRnpdnoController::class);
+    Route::apiResource('/lados-rnpdno', LadoRnpdnoController::class);
+    Route::apiResource('/regiones-cuerpo-rnpdno', RegionCuerpoRnpdnoController::class);
 
     Route::apiResource("/contexto_social", ContextoSocialController::class);
     Route::apiResource("/contexto_economico", ContextoEconomicoController::class);

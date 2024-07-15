@@ -5,10 +5,8 @@ namespace App\Http\Resources\Reportes\Relaciones;
 use App\Http\Resources\OcupacionResource;
 use App\Http\Resources\Personas\EstatusPersonaResource;
 use App\Http\Resources\Personas\PersonaResource;
-use App\Http\Resources\Reportes\ReporteResource;
+use App\Http\Resources\PrendaDeVestirResource;
 use App\Models\Oficialidades\Folio;
-use App\Models\Personas\Persona;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -30,6 +28,7 @@ class DesaparecidoResource extends JsonResource
             'documentos_legales' => DocumentoLegalResource::collection($this->documentosLegales),
             'ocupacion_principal' => OcupacionResource::make($this->ocupacionPrincipal),
             'ocupacion_secundaria' => OcupacionResource::make($this->ocupacionSecundaria),
+            'prendas_de_vestir' => PrendaDeVestirResource::collection($this->prendasDeVestir),
             'clasificacion_persona' => $this->clasificacion_persona,
             'habla_espanhol' => $this->habla_espanhol,
             'sabe_leer' => $this->sabe_leer,
@@ -48,6 +47,14 @@ class DesaparecidoResource extends JsonResource
             'descripcion_ocupacion_secundaria' => $this->descripcion_ocupacion_secundaria,
             'otras_especificaciones_ocupacion' => $this->otras_especificaciones_ocupacion,
             'nombre_pareja_conyugue' => $this->nombre_pareja_conyugue,
+
+            'fecha_nacimiento_aproximada' => $this->fecha_nacimiento_aproximada,
+            'fecha_nacimiento_cebv' => $this->fecha_nacimiento_cebv,
+            'observaciones_fecha_nacimiento' => $this->observaciones_fecha_nacimiento,
+            'edad_momento_desaparicion_anos' => $this->edad_momento_desaparicion_anos,
+            'edad_momento_desaparicion_meses' => $this->edad_momento_desaparicion_meses,
+            'edad_momento_desaparicion_dias' => $this->edad_momento_desaparicion_dias,
+
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

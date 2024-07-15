@@ -7,6 +7,7 @@ use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Apodo;
 use App\Models\Contacto;
+use App\Models\MediaFiliacion;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
@@ -15,6 +16,7 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
+use App\Models\SenasParticulares;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
 
@@ -143,6 +145,7 @@ class SyncReporteController extends Controller
                 ], [
                     "asentamiento_id" => $direccion["asentamiento"]["id"] ?? null,
                     "calle" => $direccion["calle"],
+                    "domicilio_concatenado" => $direccion["domicilio_concatenado"] ?? null,
                     "colonia" => $direccion["colonia"],
                     "numero_exterior" => $direccion["numero_exterior"],
                     "numero_interior" => $direccion["numero_interior"],
@@ -156,6 +159,47 @@ class SyncReporteController extends Controller
                 array_push($direcciones, $direccion_created->id);
             }
             $persona_created->direcciones()->sync($direcciones);
+        }
+
+        if (isset($persona["senas_particulares"]) && $persona["senas_particulares"] != null) {
+            $senas_modified = [];
+            foreach ($persona["senas_particulares"] as $sena) {
+                $sena_created = SenasParticulares::updateOrCreate([
+                    "id" => $sena["id"] ?? null,
+                    "persona_id" => $sena["persona"]["id"] ?? $persona_created->id ?? null,
+                ], [
+                    "region_cuerpo_id" => $sena["region_cuerpo"]["id"] ?? null,
+                    "lado_id" => $sena["lado"]["id"] ?? null,
+                    "vista_id" => $sena["vista"]["id"] ?? null,
+                    "tipo_id" => $sena["tipo"]["id"] ?? null,
+                    "cantidad" => $sena["cantidad"] ?? null,
+                    "descripcion" => $sena["descripcion"] ?? null,
+                    "foto" => $sena["foto"] ?? null,
+                ]);
+
+                array_push($senas_modified, $sena_created->id ?? 0);
+            }
+            $senas_eliminables = $persona_created->senasParticulares->except($senas_modified);
+            if (count($senas_eliminables) > 0) {
+                $senas_eliminables->toQuery()->delete();
+            }
+        }
+
+        if (isset($persona["media_filiacion"]) && $persona["media_filiacion"] != null) {
+            $media_filiacion = $persona["media_filiacion"];
+            MediaFiliacion::updateOrCreate([
+                "id" => $persona["media_filiacion"]["id"] ?? null,
+                "persona_id" => $persona["persona_id"] ?? $persona_created->id ?? null,
+            ],[
+                "estatura" =>$media_filiacion["estatura"] ?? null,
+                "peso" =>$media_filiacion["peso"] ?? null,
+                "complexion_id" => $media_filiacion["complexion"]["id"] ?? null,
+                "color_piel_id" => $media_filiacion["color_piel"]["id"] ?? null,
+                "color_ojos_id" => $media_filiacion["color_ojos"]["id"] ?? null,
+                "color_cabello_id" => $media_filiacion["color_cabello"]["id"] ?? null,
+                "tamano_cabello_id" => $media_filiacion["tamano_cabello"]["id"] ?? null,
+                "tipo_cabello_id" => $media_filiacion["tipo_cabello"]["id"] ?? null,
+            ]);
         }
 
         return $persona_created->id;
@@ -229,23 +273,45 @@ class SyncReporteController extends Controller
                     'ocupacion_principal_id' => $desaparecido["ocupacion_principal"]["id"] ?? null,
                     'ocupacion_secundaria_id' => $desaparecido["ocupacion_secundaria"]["id"] ?? null,
                     "persona_id" => $this->updateOrCreatePersona($desaparecido["persona"]) ?? null,
-                    'clasificacion_persona' => $desaparecido["clasificacion_persona"],
-                    'habla_espanhol' => $desaparecido["habla_espanhol"],
-                    'sabe_leer' => $desaparecido["sabe_leer"],
-                    'sabe_escribir' => $desaparecido["sabe_escribir"],
-                    'url_boletin' => $desaparecido["url_boletin"],
-                    'declaracion_especial_ausencia' => $desaparecido["declaracion_especial_ausencia"],
-                    'accion_urgente' => $desaparecido["accion_urgente"],
-                    'dictamen' => $desaparecido["dictamen"],
-                    'ci_nivel_federal' => $desaparecido["ci_nivel_federal"],
-                    'otro_derecho_humano' => $desaparecido["otro_derecho_humano"],
-                    'identidad_resguardada' => $desaparecido["identidad_resguardada"],
-                    'alias' => $desaparecido["alias"],
-                    'descripcion_ocupacion_principal' => $desaparecido["descripcion_ocupacion_principal"],
-                    'descripcion_ocupacion_secundaria' => $desaparecido["descripcion_ocupacion_secundaria"],
-                    'otras_especificaciones_ocupacion' => $desaparecido["otras_especificaciones_ocupacion"],
-                    'nombre_pareja_conyugue' => $desaparecido["nombre_pareja_conyugue"],
+                    'clasificacion_persona' => $desaparecido["clasificacion_persona"] ?? null,
+                    'habla_espanhol' => $desaparecido["habla_espanhol"] ?? null,
+                    'sabe_leer' => $desaparecido["sabe_leer"] ?? null,
+                    'sabe_escribir' => $desaparecido["sabe_escribir"] ?? null,
+                    'url_boletin' => $desaparecido["url_boletin"] ?? null,
+                    'declaracion_especial_ausencia' => $desaparecido["declaracion_especial_ausencia"] ?? null,
+                    'accion_urgente' => $desaparecido["accion_urgente"] ?? null,
+                    'dictamen' => $desaparecido["dictamen"] ?? null,
+                    'ci_nivel_federal' => $desaparecido["ci_nivel_federal"] ?? null,
+                    'otro_derecho_humano' => $desaparecido["otro_derecho_humano"] ?? null,
+                    'identidad_resguardada' => $desaparecido["identidad_resguardada"] ?? null,
+                    'alias' => $desaparecido["alias"] ?? null,
+                    'descripcion_ocupacion_principal' => $desaparecido["descripcion_ocupacion_principal"] ?? null,
+                    'descripcion_ocupacion_secundaria' => $desaparecido["descripcion_ocupacion_secundaria"] ?? null,
+                    'otras_especificaciones_ocupacion' => $desaparecido["otras_especificaciones_ocupacion"] ?? null,
+                    'nombre_pareja_conyugue' => $desaparecido["nombre_pareja_conyugue"] ?? null,
                 ]);
+
+                if (isset($desaparecido["prendas_de_vestir"]) && $desaparecido["prendas_de_vestir"] != null) {
+                    $prendas_modified = [];
+                    foreach ($desaparecido["prendas_de_vestir"] as $prenda) {
+                        $prenda_created = SenasParticulares::updateOrCreate([
+                            "id" => $prenda["id"] ?? null,
+                            "desaparecido_id" => $prenda["desaparecido_id"] ?? $desaparecido_updated->id ?? null,
+                        ], [
+                            "pertenencia_id" => $prenda["pertenencia"]["id"] ?? null,
+                            "color_id" => $prenda["color"]["id"] ?? null,
+                            "marca" => $prenda["marca"] ?? null,
+                            "descripcion" => $prenda["descripcion"] ?? null,
+                        ]);
+
+                        array_push($prenda_created, $prenda_created->id);
+                    }
+
+                    $prendas_eliminables = $desaparecido_updated->prendasDeVestir->except($prendas_modified);
+                    if (count($prendas_eliminables) > 0) {
+                        $prendas_eliminables->toQuery()->delete();
+                    }
+                }
 
                 if (isset($desaparecido["documentos_legales"]) && $desaparecido["documentos_legales"] != null) {
                     $documentos_modificados = [];
@@ -298,6 +364,7 @@ class SyncReporteController extends Controller
             'id' => $request->hechos_desaparicion["id"] ?? null,
             'reporte_id' => $reporteId,
         ], [
+            'direccion_id' => $this->syncLugarHechos($request->hechos_desaparicion["lugar_hechos"]) ?? null,
             'fecha_desaparicion' => $request->hechos_desaparicion["fecha_desaparicion"] ?? null,
             'fecha_desaparicion_cebv' => $request->hechos_desaparicion["fecha_desaparicion_cebv"] ?? null,
             'hora_desaparicion' => $request->hechos_desaparicion["hora_desaparicion"] ?? null,
@@ -317,6 +384,28 @@ class SyncReporteController extends Controller
             'desaparecio_acompanado' => $request->hechos_desaparicion["desaparecio_acompanado"] ?? null,
             'personas_mismo_evento' => $request->hechos_desaparicion["personas_mismo_evento"] ?? null,
         ]);
+    }
+
+    public function syncLugarHechos($lugar_hechos)
+    {
+        if ($lugar_hechos == null) return;
+
+        $direccion_created = Direccion::updateOrCreate([
+            "id" => $lugar_hechos["id"] ?? null
+        ], [
+            "asentamiento_id" => $lugar_hechos["asentamiento"]["id"] ?? null,
+            "calle" => $lugar_hechos["calle"] ?? null,
+            "colonia" => $lugar_hechos["colonia"] ?? null,
+            "numero_exterior" => $lugar_hechos["numero_exterior"] ?? null,
+            "numero_interior" => $lugar_hechos["numero_interior"] ?? null,
+            "calle_1" => $lugar_hechos["calle_1"] ?? null,
+            "calle_2" => $lugar_hechos["calle_2"] ?? null,
+            "tramo_carretero" => $lugar_hechos["tramo_carretero"] ?? null,
+            "codigo_postal" => $lugar_hechos["codigo_postal"] ?? null,
+            "referencia" => $lugar_hechos["referencia"] ?? null,
+        ]);
+
+        return $direccion_created->id;
     }
 
     public function syncHipotesis($reporteId, ReporteTotalRequest $request)

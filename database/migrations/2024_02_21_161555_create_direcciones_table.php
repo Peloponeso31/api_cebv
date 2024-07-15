@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
             $table->string('asentamiento_id', 9)->nullable();
+            $table->string('domicilio_concatenado', 9)->nullable();
             $table->string('calle')->nullable();
             $table->string('colonia')->nullable();
             $table->string('numero_exterior', 10)->nullable();

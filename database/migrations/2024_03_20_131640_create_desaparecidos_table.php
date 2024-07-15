@@ -28,6 +28,13 @@ return new class extends Migration {
             $table->boolean('ci_nivel_federal')->default(false);
             $table->string('otro_derecho_humano')->nullable();
 
+            $table->date('fecha_nacimiento_aproximada')->nullable();
+            $table->string('fecha_nacimiento_cebv')->nullable();
+            $table->string('observaciones_fecha_nacimiento')->nullable();
+            $table->integer('edad_momento_desaparicion_anos')->nullable();
+            $table->integer('edad_momento_desaparicion_meses')->nullable();
+            $table->integer('edad_momento_desaparicion_dias')->nullable();
+
             $table->text('identidad_resguardada')->nullable();
             $table->text('alias')->nullable();
             $table->text('descripcion_ocupacion_principal')->nullable();

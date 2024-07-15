@@ -11,13 +11,16 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
+            $table->foreignId('direccion_id')->nullable();
 
             $table->dateTime('fecha_desaparicion')->nullable();
+            $table->date('fecha_desaparicion_aproximada')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
             $table->string('hora_desaparicion')->nullable();
             $table->dateTime('fecha_percato')->nullable();
             $table->string('fecha_percato_cebv')->nullable();
-            $table->string('hora_percato')->nullable();
+            $table->string('hora_percato')->nullable();w
+            $table->integer("cantidad_desaparecidos")->nullable();
             $table->text('aclaraciones_fecha_hechos')->nullable();
             $table->boolean('cambio_comportamiento')->nullable();
             $table->text('descripcion_cambio_comportamiento')->nullable();

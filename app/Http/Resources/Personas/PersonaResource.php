@@ -9,12 +9,15 @@ use App\Http\Resources\EstadoConyugalResource;
 use App\Http\Resources\GeneroResource;
 use App\Http\Resources\GrupoVulnerableResource;
 use App\Http\Resources\LenguaResource;
+use App\Http\Resources\MediaFiliacionResource;
 use App\Http\Resources\NacionalidadResource;
 use App\Http\Resources\ReligionResource;
+use App\Http\Resources\SenasParticularesResource;
 use App\Http\Resources\SexoResource;
 use App\Http\Resources\TelefonoResource;
 use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
+use App\Models\MediaFiliacion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -55,7 +58,9 @@ class PersonaResource extends JsonResource
             'direcciones' => DireccionResource::collection($this->direcciones),
             'grupos_vulnerables' => GrupoVulnerableResource::collection($this->gruposVulnerables),
             'escolaridad' => EscolaridadResource::make($this->escolaridad),
-            'estado_conyugal' => EstadoConyugalResource::make($this->estadoConyugal)
+            'estado_conyugal' => EstadoConyugalResource::make($this->estadoConyugal),
+            'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
+            'media_filiacion' => MediaFiliacionResource::make($this->mediaFiliacion)
         ];
     }
 }

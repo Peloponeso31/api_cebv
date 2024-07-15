@@ -11,9 +11,9 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('tipo_hipotesis_id')->constrained(table: 'tipos_hipotesis');
-            $table->foreignId('sitio_id')->constrained(table: 'sitios');
-            $table->foreignId('area_asigna_sitio_id')->constrained(table: 'areas');
+            $table->foreignId('tipo_hipotesis_id')->nullable()->constrained(table: 'tipos_hipotesis');
+            $table->foreignId('sitio_id')->nullable()->constrained(table: 'sitios');
+            $table->foreignId('area_asigna_sitio_id')->nullable()->constrained(table: 'areas');
 
             $table->enum('etapa', ['Inicial', 'Final']);
 

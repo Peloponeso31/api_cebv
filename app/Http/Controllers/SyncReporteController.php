@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\SyncModules;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Apodo;
@@ -16,10 +17,16 @@ use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
-use Illuminate\Database\Eloquent\Model;
 
 class SyncReporteController extends Controller
 {
+    protected SyncModules $sync;
+
+    function __construct(SyncModules $sync)
+    {
+        $this->sync = $sync;
+    }
+
     private function updateOrCreatePersona($persona)
     {
         $persona_created = Persona::updateOrCreate(["id" => $persona["id"] ?? null], [
@@ -263,6 +270,10 @@ class SyncReporteController extends Controller
             }
         }
 
+        if ($request->has("control_ogpi") && $request->control_ogpi != null) {
+            $this->sync->ControlOgpi($reporte->id, $request);
+        }
+
         return ReporteResource::make($reporte);
     }
 
@@ -276,6 +287,7 @@ class SyncReporteController extends Controller
      * de un reporte según los datos que se le pasen desde el cliente.
      *
      * @param $reporteId
+     * @param ReporteTotalRequest $request
      * @return void
      */
     public function syncHechosDesaparicion($reporteId, ReporteTotalRequest $request)

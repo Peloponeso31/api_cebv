@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Oficialidades;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Oficialidades\FolioRequest;
 use App\Http\Resources\FolioResource;
 use App\Models\Oficialidades\Folio;
 use App\Services\CrudService;
@@ -34,5 +35,10 @@ class FolioController extends Controller
     public function show($id)
     {
         return $this->service->show($id, $this->model, new FolioResource($this->model::class));
+    }
+
+    public function update($id, FolioRequest $request)
+    {
+        return $this->service->update($id, $request, $this->model, new FolioResource($this->model::class));
     }
 }

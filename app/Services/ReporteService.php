@@ -77,6 +77,7 @@ class ReporteService
         else $fechaDesaparicion = 'AA';
 
         if ($reporte->tipoReporte && in_array($reporte->tipoReporte->abreviatura, ['SC', 'SD', 'SBF'])) $terminacion = $reporte->estado->abreviatura_cebv;
+        if ($reporte->zonaEstado->abreviatura == null) return;
         else $terminacion = $reporte->zonaEstado->abreviatura;
 
         /**

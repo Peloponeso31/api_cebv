@@ -84,6 +84,13 @@ class ReporteTotalRequest extends FormRequest
             'reportantes.*.pertenencia_colectivo' => ['nullable', 'boolean'],
             'reportantes.*.nombre_colectivo' => ['string', 'nullable'],
             'reportantes.*.informacion_relevante' => ['string', 'nullable'],
+
+            // Control OGPI
+            'control_ogpi.id' => ['nullable', 'exists:control_ogpis,id', 'numeric'],
+            'control_ogpi.fecha_codificacion' => ['nullable', 'date'],
+            'control_ogpi.nombre_codificador' => ['nullable'],
+            'control_ogpi.observaciones' => ['nullable'],
+            'control_ogpi.numero_tarjeta' => ['nullable'],
         ];
     }
 }

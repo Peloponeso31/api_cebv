@@ -6,6 +6,7 @@ use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
 use App\Http\Controllers\ColectivoController;
 use App\Http\Controllers\CondicionSaludController;
+use App\Http\Controllers\ControlOgpiController;
 use App\Http\Controllers\EnfermedadPielController;
 use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\MetodoCapturaController;
 use App\Http\Controllers\NacionalidadController;
 use App\Http\Controllers\OcupacionController;
 use App\Http\Controllers\ParticularController;
+use App\Http\Controllers\PerpetradorController;
 use App\Http\Controllers\RegionDeformacionController;
 use App\Http\Controllers\RelacionVehiculoController;
 use App\Http\Controllers\Reportes\Relaciones\DocumentoLegalController;
@@ -308,6 +310,10 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/metodos-captura', MetodoCapturaController::class);
     Route::apiResource('/medios-captura', MedioCapturaController::class);
     Route::apiResource('/estatus-perpetradores', EstatusPerpetradorController::class);
+    Route::apiResource('/perpetradores', PerpetradorController::class);
+    Route::apiResource('/control-ogpis', ControlOgpiController::class);
+
+    Route::get('personas/{persona}/folios', [PersonaController::class, 'getFolios']);
 });
 
 Route::controller(AuthController::class)->group(function () {

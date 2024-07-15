@@ -35,8 +35,10 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get("/fichas-bis/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
+        $folio = \App\Models\Oficialidades\Folio::where('reporte_id', $desaparecido->reporte_id)->first();
         return Pdf::loadView("reportes.ficha_bi", [
-            "desaparecido" => $desaparecido
+            "desaparecido" => $desaparecido,
+            "folio" => $folio
         ])->stream();
     });
 
@@ -61,20 +63,20 @@ Route::middleware('auth:sanctum')->group(function() {
         ])->stream();
     });
 
-    
+
     Route::get("/caratulas/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.Caratula", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
-    
+
     Route::get("/boletines/{id}", function (string $id, Request $request) {
         $desaparecido =  Desaparecido::whereId($id)->first();
         $tamanoPapel = [0.0, 0.0, 2215, 2215];
 
 
-        return Pdf::loadView("reportes.boletin_BI", 
+        return Pdf::loadView("reportes.boletin_BI",
         [
             "desaparecido" => $desaparecido
         ])->setPaper($tamanoPapel)->stream();
@@ -84,7 +86,7 @@ Route::middleware('auth:sanctum')->group(function() {
         $desaparecido =  Desaparecido::findOrFail($id);
         $tamanoPapel = [0.0, 0.0, 2215, 2215];
 
-        return Pdf::loadView("reportes.boletin_LD", 
+        return Pdf::loadView("reportes.boletin_LD",
         [
             "desaparecido" => $desaparecido
         ])->setPaper($tamanoPapel)->stream();
@@ -94,19 +96,19 @@ Route::middleware('auth:sanctum')->group(function() {
         $desaparecido =  Desaparecido::whereId($id)->first();
         $tamanoPapel = [0.0, 0.0, 1238, 956];
 
-        return Pdf::loadView("reportes.boletin_UI", 
+        return Pdf::loadView("reportes.boletin_UI",
         [
             "desaparecido" => $desaparecido
         ])->setPaper($tamanoPapel)->stream();
     });
-    
+
     Route::get("/indicaciones/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.indicaciones_C4", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
-    
+
     Route::get("/oficios-ceis/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.oficio_CEI", [
@@ -132,7 +134,7 @@ Route::middleware('auth:sanctum')->group(function() {
         $desaparecido =  Desaparecido::whereId($id)->first();
         $tamanoPapel = [0.0, 0.0, 595.28, 420.945];
 
-        return Pdf::loadView("reportes.tarjeta_de_folio", 
+        return Pdf::loadView("reportes.tarjeta_de_folio",
         [
             "desaparecido" => $desaparecido
         ])->setPaper($tamanoPapel)->stream();

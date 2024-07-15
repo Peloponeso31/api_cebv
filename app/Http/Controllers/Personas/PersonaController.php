@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\NacionalidadRequest;
 use App\Http\Requests\Personas\PersonaRequest;
 use App\Http\Requests\Personas\UpdatePersonaRequest;
+use App\Http\Resources\FolioResource;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
@@ -70,5 +71,12 @@ class PersonaController extends Controller
         $persona->nacionalidads()->detach($nacionalidad->id);
 
         return PersonaResource::make($persona);
+    }
+
+    public function getFolios($personaId)
+    {
+        $persona = Persona::findOrFail($personaId);
+
+        return FolioResource::collection($persona->folios);
     }
 }

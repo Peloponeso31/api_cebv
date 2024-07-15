@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Reportes;
 
+use App\Http\Resources\ControlOgpiResource;
 use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\Oficialidades\AreaResource;
@@ -48,6 +49,7 @@ class ReporteResource extends JsonResource
             'sintesis_localizacion' => $this->sintesis_localizacion,
             'fecha_creacion' => $this->fecha_creacion,
             'fecha_actualizacion' => $this->fecha_actualizacion,
+            'control_ogpi' => ControlOgpiResource::make($this->controlOgpi),
             // Folio
             'folios' => FolioResource::collection($folios),
         ];

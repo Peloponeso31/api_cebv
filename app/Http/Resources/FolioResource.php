@@ -20,6 +20,7 @@ class FolioResource extends JsonResource
             'user' => UserAdminResource::make($user),
             'folio_cebv' => $this->folio_cebv,
             'folio_fub' => $this->folio_fub,
+            'autoridad_ingresa_fub' => $this->autoridad_ingresa_fub,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

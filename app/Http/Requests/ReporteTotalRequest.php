@@ -60,6 +60,10 @@ class ReporteTotalRequest extends FormRequest
             'hechos_desaparicion.informacion_relevante' => ['nullable', 'string'],
             'hechos_desaparicion.hechos_desaparicion' => ['nullable', 'string'],
             'hechos_desaparicion.sintesis_desaparicion' => ['nullable', 'string'],
+            'hechos_desaparicion.hora_desaparicion' => ['nullable', 'string'],
+            'hechos_desaparicion.hora_percato' => ['nullable', 'string'],
+            'hechos_desaparicion.desaparecio_acompanado' => ['nullable', 'boolean'],
+            'hechos_desaparicion.personas_mismo_evento' => ['nullable', 'numeric'],
 
             //hipotesis
             'hipotesis.*.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
@@ -80,6 +84,13 @@ class ReporteTotalRequest extends FormRequest
             'reportantes.*.pertenencia_colectivo' => ['nullable', 'boolean'],
             'reportantes.*.nombre_colectivo' => ['string', 'nullable'],
             'reportantes.*.informacion_relevante' => ['string', 'nullable'],
+
+            // Control OGPI
+            'control_ogpi.id' => ['nullable', 'exists:control_ogpis,id', 'numeric'],
+            'control_ogpi.fecha_codificacion' => ['nullable', 'date'],
+            'control_ogpi.nombre_codificador' => ['nullable'],
+            'control_ogpi.observaciones' => ['nullable'],
+            'control_ogpi.numero_tarjeta' => ['nullable'],
         ];
     }
 }

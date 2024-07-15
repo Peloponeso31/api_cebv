@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\Reportes;
 
+use App\Http\Resources\ControlOgpiResource;
+use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\Oficialidades\AreaResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
@@ -11,6 +13,7 @@ use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
 use App\Http\Resources\Ubicaciones\ZonaEstadoResource;
+use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -21,6 +24,7 @@ class ReporteResource extends JsonResource
     public function toArray(Request $request): array
     {
         $hecho = HechoDesaparicion::where('reporte_id', $this->id)->first();
+        $folios = Folio::where('reporte_id', $this->id)->get();
         return [
             'id' => $this->id,
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
@@ -45,6 +49,9 @@ class ReporteResource extends JsonResource
             'sintesis_localizacion' => $this->sintesis_localizacion,
             'fecha_creacion' => $this->fecha_creacion,
             'fecha_actualizacion' => $this->fecha_actualizacion,
+            'control_ogpi' => ControlOgpiResource::make($this->controlOgpi),
+            // Folio
+            'folios' => FolioResource::collection($folios),
         ];
     }
 }

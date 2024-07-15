@@ -16,11 +16,11 @@ return new class extends Migration {
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->date('fecha_desaparicion_aproximada')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
-            $table->string('observaciones_fecha_desaparicion')->nullable();
+            $table->string('hora_desaparicion')->nullable();
             $table->dateTime('fecha_percato')->nullable();
             $table->string('fecha_percato_cebv')->nullable();
+            $table->string('hora_percato')->nullable();w
             $table->integer("cantidad_desaparecidos")->nullable();
-
             $table->text('aclaraciones_fecha_hechos')->nullable();
             $table->boolean('cambio_comportamiento')->nullable();
             $table->text('descripcion_cambio_comportamiento')->nullable();
@@ -31,6 +31,8 @@ return new class extends Migration {
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();
             $table->text('sintesis_desaparicion')->nullable();
+            $table->boolean('desaparecio_acompanado')->nullable();
+            $table->integer('personas_mismo_evento')->nullable();
 
             $table->timestamps();
         });

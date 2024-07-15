@@ -23,6 +23,7 @@ class Folio extends Model
         'persona_id',
         'reporte_id',
         'user_id',
+        'autoridad_ingresa_fub',
     ];
 
     protected $casts = [

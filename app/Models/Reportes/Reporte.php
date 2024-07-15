@@ -2,9 +2,11 @@
 
 namespace App\Models\Reportes;
 
+use App\Models\ControlOgpi;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
+use App\Models\Perpetrador;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
@@ -137,6 +139,16 @@ class Reporte extends Model
     public function hipotesis(): HasMany
     {
         return $this->hasMany(Hipotesis::class, 'reporte_id');
+    }
+
+    public function perpetradores(): HasMany
+    {
+        return $this->hasMany(Perpetrador::class);
+    }
+
+    public function controlOgpi(): HasOne
+    {
+        return $this->hasOne(ControlOgpi::class);
     }
 
     /**

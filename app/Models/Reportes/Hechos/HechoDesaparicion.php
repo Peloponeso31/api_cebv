@@ -21,8 +21,10 @@ class HechoDesaparicion extends Model
         'direccion_id',
         'fecha_desaparicion',
         'fecha_desaparicion_cebv',
+        'hora_desaparicion',
         'fecha_percato',
         'fecha_percato_cebv',
+        'hora_percato',
         'aclaraciones_fecha_hechos',
         'cambio_comportamiento',
         'descripcion_cambio_comportamiento',
@@ -33,7 +35,8 @@ class HechoDesaparicion extends Model
         'informacion_relevante',
         'hechos_desaparicion',
         'sintesis_desaparicion',
-        'cantidad_desaparecidos',
+        'desaparecio_acompanado',
+        'personas_mismo_evento'
     ];
 
     protected $casts = [

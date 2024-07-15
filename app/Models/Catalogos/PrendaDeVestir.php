@@ -17,6 +17,7 @@ class PrendaDeVestir extends Model
     protected $table = "prendas_vestir";
 
     protected $fillable = [
+        'desaparecido_id',
         'pertenencia_id',
         'color_id',
         'marca',
@@ -34,5 +35,10 @@ class PrendaDeVestir extends Model
     public function color(): BelongsTo
     {
         return $this->belongsTo(Color::class);
+    }
+
+    public function desaparecidos(): HasMany
+    {
+        return $this->hasMany(Desaparecido::class, 'desaparecido_id');
     }
 }

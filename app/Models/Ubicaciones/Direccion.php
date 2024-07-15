@@ -20,6 +20,7 @@ class Direccion extends Model
 
     protected $fillable = [
         'asentamiento_id',
+        'direccion_concatenable',
         'calle',
         'colonia',
         'numero_exterior',

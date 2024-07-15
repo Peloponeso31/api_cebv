@@ -36,6 +36,7 @@ use App\Http\Controllers\TipoMentonController;
 use App\Http\Controllers\TipoOcupacionController;
 use App\Http\Controllers\TipoRedSocialController;
 use App\Http\Controllers\TipoSangreController;
+use App\Http\Controllers\TiposDomicilioController;
 use App\Http\Controllers\TipoVehiculoController;
 use App\Http\Controllers\UsoVehiculoController;
 use App\Http\Controllers\VehiculoController;
@@ -118,6 +119,7 @@ use App\Http\Resources\UserAdminResource;
 |
 */
 
+Route::get('/excel/reportes', [ReporteController::class, 'exportExcell']);
 
 /**
  * Rutas protegidas por autenticacion.
@@ -175,6 +177,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
     Route::apiResource('/tipos-ocupaciones', TipoOcupacionController::class);
     Route::apiResource('/ocupaciones', OcupacionController::class);
+    Route::apiResource("/razones-curp", \App\Http\Controllers\RazonesCurpController::class);
 
     /**
      * Routes for the reportes module
@@ -187,12 +190,14 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/grupos-vulnerables', GrupoVulnerableController::class);
     Route::post('/actualizar/reporte/', [SyncReporteController::class, 'actualizarReporteCascade']);
 
+
     /**
      * Routes for the informacion module
      */
     Route::apiResource('/tipos-medios', TipoMedioController::class);
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
+    Route::apiResource('/tipos-domicilio', TiposDomicilioController::class);
 
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);

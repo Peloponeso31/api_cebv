@@ -58,6 +58,8 @@ class DatabaseSeeder extends Seeder
             PertenenciaSeeder::class,
             ColectivoSeeder::class,
             ColorSeeder::class,
+            RazonesCurpSeeder::class,
+            TiposDomicilioSeeder::class
         ]);
 
         /**

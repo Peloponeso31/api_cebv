@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes\Relaciones;
 
+use App\Models\Catalogos\PrendaDeVestir;
 use App\Models\Ocupacion;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
@@ -38,6 +39,9 @@ class Desaparecido extends Model
         'descripcion_ocupacion_secundaria',
         'otras_especificaciones_ocupacion',
         'nombre_pareja_conyugue',
+        'fecha_desaparicion_aproximada',
+        'fecha_desaparicion_cebv',
+        'observaciones_fecha_desaparicion',
     ];
 
     protected $casts = [
@@ -93,5 +97,10 @@ class Desaparecido extends Model
     public function ocupacionSecundaria(): BelongsTo
     {
         return $this->belongsTo(Ocupacion::class, 'ocupacion_secundaria_id');
+    }
+
+    public function prendasDeVestir(): HasMany
+    {
+        return $this->hasMany(PrendaDeVestir::class);
     }
 }

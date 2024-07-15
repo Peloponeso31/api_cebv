@@ -14,9 +14,12 @@ return new class extends Migration {
             $table->foreignId('direccion_id')->nullable();
 
             $table->dateTime('fecha_desaparicion')->nullable();
-            $table->dateTime('fecha_percato')->nullable();
+            $table->date('fecha_desaparicion_aproximada')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
+            $table->string('observaciones_fecha_desaparicion')->nullable();
+            $table->dateTime('fecha_percato')->nullable();
             $table->string('fecha_percato_cebv')->nullable();
+            $table->integer("cantidad_desaparecidos")->nullable();
 
             $table->text('aclaraciones_fecha_hechos')->nullable();
             $table->boolean('cambio_comportamiento')->nullable();

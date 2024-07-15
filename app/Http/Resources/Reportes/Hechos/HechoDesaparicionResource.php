@@ -29,6 +29,9 @@ class HechoDesaparicionResource extends JsonResource
             'hechos_desaparicion' => $this->hechos_desaparicion,
             'sintesis_desaparicion' => $this->sintesis_desaparicion,
             'lugar_hechos' => DireccionResource::make($this->lugarHechos),
+            'fecha_desaparicion_aproximada' => $this->fecha_desaparicion_aproximada,
+            'observaciones_fecha_desaparicion' => $this->observaciones_fecha_desaparicion,
+            'cantidad_desaparecidos' => $this->cantidad_desaparecidos,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

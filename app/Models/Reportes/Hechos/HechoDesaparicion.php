@@ -33,6 +33,7 @@ class HechoDesaparicion extends Model
         'informacion_relevante',
         'hechos_desaparicion',
         'sintesis_desaparicion',
+        'cantidad_desaparecidos',
     ];
 
     protected $casts = [

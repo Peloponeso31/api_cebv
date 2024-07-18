@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Http\Resources\FolioResource;
-use App\Http\Resources\UserAdminResource;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
@@ -89,7 +88,6 @@ class ReporteService
         $numero = Serie::create(['tipo_reporte_id' => $reporte->tipo_reporte_id]);
         $numeroString = strval($numero->numero);
         $serie = str_pad($numeroString, 4, '0', STR_PAD_LEFT);
-
 
         Folio::create([
             'user_id' => $userId,

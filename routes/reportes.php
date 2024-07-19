@@ -49,6 +49,13 @@ Route::middleware('auth:sanctum')->group(function() {
         ])->stream();
     });
 
+    Route::get("/reportes-preliminares/{id}", function (string $id) {
+        $desaparecido =  Desaparecido::whereId($id)->first();
+        return Pdf::loadView("reportes.reporte_preliminar", [
+            "desaparecido" => $desaparecido
+        ])->stream();
+    });
+
     Route::get("/fichas-lds/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.ficha_ld", [

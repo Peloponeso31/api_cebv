@@ -269,18 +269,12 @@ class CatalogosSeeder extends Seeder
         ]);
 
         \App\Models\Catalogos\Oficina::insert([
-            ["oficina" => "Celula Norte"],
-            ["oficina" => "Celula Centro"],
-            ["oficina" => "Celula Sur"],
-            ["oficina" => "Búsqueda Inmediata"],
-            ["oficina" => "Larga Data"],
-            ["oficina" => "OGPI"],
-        ]);
-
-        \App\Models\Catalogos\Puesto::insert([
-            ["nombre" => "Comisionado Estatal"],
-            ["nombre" => "Jefe de Departamento"],
-            ["nombre" => "Jefe de Oficina"],
+            ["nombre" => "Celula Norte"],
+            ["nombre" => "Celula Centro"],
+            ["nombre" => "Celula Sur"],
+            ["nombre" => "Búsqueda Inmediata"],
+            ["nombre" => "Larga Data"],
+            ["nombre" => "OGPI"],
         ]);
     }
 }

@@ -36,6 +36,9 @@ class Handler extends ExceptionHandler
                 return response()->json([
                     'error' => 'Error interno SQL.',
                     'causa' => get_class($e),
+                    'archivo' => $e->getFile(),
+                    'linea' => $e->getLine(),
+                    'sentencia' => $e->getSql(),
                     'info_exepcion_interno' => $e,
                     'mensaje_excepcion_interno' => $e->getMessage(),
                     'error_detectado_en' => $e->getBindings(),

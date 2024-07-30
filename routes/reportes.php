@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Models\Reportes\Relaciones\Reportante;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Reportes\Reporte;
@@ -17,29 +19,26 @@ use App\Models\Reportes\Reporte;
 
 Route::middleware('auth:sanctum')->group(function() {
 
-    Route::get("/informe_de_inicio/{id}", function ($id) {
-        $reporte = Reporte::findOrFail($id);
-        return Pdf::loadView("reportes.informe_de_inicio", ["reporte" => $reporte])->stream($reporte->folio.".pdf");
-    });
-
     Route::get("/informes-inicios/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
+        $reporte = Reporte::findOrFail($desaparecido->reporte_id);
+        $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
+
+        $folio = Folio::where([
+            ["reporte_id", "=", $reporte->id],
+            ["persona_id", "=", $desaparecido->persona->id]
+        ])->first();
+
         return Pdf::loadView("reportes.informe_inicio", [
-            "desaparecido" => $desaparecido
+            "desaparecido" => $desaparecido,
+            "reporte" => $reporte,
+            "reportante" => $reportante,
+            "folio" => $folio
         ])->stream();
     });
 
     Route::get("/ficha_de_datos", function () {
         return Pdf::loadView("reportes.ficha_de_datos")->stream();
-    });
-
-    Route::get("/fichas-bis/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
-        $folio = \App\Models\Oficialidades\Folio::where('reporte_id', $desaparecido->reporte_id)->first();
-        return Pdf::loadView("reportes.ficha_bi", [
-            "desaparecido" => $desaparecido,
-            "folio" => $folio
-        ])->stream();
     });
 
     Route::get("/fichas-bis-copys/{id}", function (string $id) {
@@ -55,21 +54,6 @@ Route::middleware('auth:sanctum')->group(function() {
             "desaparecido" => $desaparecido
         ])->stream();
     });
-
-    Route::get("/fichas-lds/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
-        return Pdf::loadView("reportes.ficha_ld", [
-            "desaparecido" => $desaparecido
-        ])->stream();
-    });
-
-    Route::get("/fichas-lds-copys/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
-        return Pdf::loadView("reportes.ficha_ld_copy", [
-            "desaparecido" => $desaparecido
-        ])->stream();
-    });
-
 
     Route::get("/caratulas/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
@@ -146,6 +130,7 @@ Route::middleware('auth:sanctum')->group(function() {
             "desaparecido" => $desaparecido
         ])->setPaper($tamanoPapel)->stream();
     });
+
     Route::get("/informes-localizaciones/{id}", function (string $id) {
         $desaparecido =  Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.informe_localizacion", [

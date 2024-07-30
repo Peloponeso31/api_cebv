@@ -70,6 +70,8 @@ class Persona extends Model
         'fecha_nacimiento' => 'date',
     ];
 
+
+
     public function sexo(): BelongsTo
     {
         return $this->belongsTo(Sexo::class, 'sexo_id');

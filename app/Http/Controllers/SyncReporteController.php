@@ -6,6 +6,7 @@ use App\Helpers\SyncModules;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Apodo;
+use App\Models\Catalogos\PrendaDeVestir;
 use App\Models\Contacto;
 use App\Models\MediaFiliacion;
 use App\Models\Nacionalidad;
@@ -164,7 +165,7 @@ class SyncReporteController extends Controller
         if (isset($persona["senas_particulares"]) && $persona["senas_particulares"] != null) {
             $senas_modified = [];
             foreach ($persona["senas_particulares"] as $sena) {
-                $sena_created = SenasParticulares::updateOrCreate([
+                $senas_modified[] = SenasParticulares::updateOrCreate([
                     "id" => $sena["id"] ?? null,
                     "persona_id" => $sena["persona"]["id"] ?? $persona_created->id ?? null,
                 ], [
@@ -175,10 +176,9 @@ class SyncReporteController extends Controller
                     "cantidad" => $sena["cantidad"] ?? null,
                     "descripcion" => $sena["descripcion"] ?? null,
                     "foto" => $sena["foto"] ?? null,
-                ]);
-
-                array_push($senas_modified, $sena_created->id ?? 0);
+                ])->id;
             }
+
             $senas_eliminables = $persona_created->senasParticulares->except($senas_modified);
             if (count($senas_eliminables) > 0) {
                 $senas_eliminables->toQuery()->delete();
@@ -207,13 +207,15 @@ class SyncReporteController extends Controller
 
     public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
-        $reporte = Reporte::updateOrCreate(["id" => $request->id ?? null], [
+        $reporte = Reporte::updateOrCreate([
+            "id" => $request->id ?? null
+        ], [
             // Catalogos
             'tipo_reporte_id' => $request->tipo_reporte["id"] ?? null,
             'area_atiende_id' => $request->area_atiende["id"] ?? null,
             'medio_conocimiento_id' => $request->medio_conocimiento["id"] ?? null,
             'estado_id' => $request->estado["id"] ?? null,
-            'zona_estado_id' => $request->zona_estado["id"] ?? null,
+            'zona_estado_id' => $request->zona_estado["id"] ?? 4,
             'hipotesis_oficial_id' => $request->hipotesis_oficial["id"] ?? null,
 
             // Atributos
@@ -228,6 +230,12 @@ class SyncReporteController extends Controller
             "otro_derecho_humano" => $request->otro_derecho_humano,
             'sintesis_localizacion' => $request->sintesis_localizacion,
         ]);
+
+        if ($request->has('vehiculos') && $request->vehiculos != null) {
+            foreach ($request->vehiculos as $vehiculo) {
+
+            }
+        }
 
         if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {
             $this->syncHechosDesaparicion($reporte->id, $request);
@@ -294,7 +302,7 @@ class SyncReporteController extends Controller
                 if (isset($desaparecido["prendas_de_vestir"]) && $desaparecido["prendas_de_vestir"] != null) {
                     $prendas_modified = [];
                     foreach ($desaparecido["prendas_de_vestir"] as $prenda) {
-                        $prenda_created = SenasParticulares::updateOrCreate([
+                        $prendas_modified[] = PrendaDeVestir::updateOrCreate([
                             "id" => $prenda["id"] ?? null,
                             "desaparecido_id" => $prenda["desaparecido_id"] ?? $desaparecido_updated->id ?? null,
                         ], [
@@ -302,9 +310,7 @@ class SyncReporteController extends Controller
                             "color_id" => $prenda["color"]["id"] ?? null,
                             "marca" => $prenda["marca"] ?? null,
                             "descripcion" => $prenda["descripcion"] ?? null,
-                        ]);
-
-                        array_push($prenda_created, $prenda_created->id);
+                        ])->id;
                     }
 
                     $prendas_eliminables = $desaparecido_updated->prendasDeVestir->except($prendas_modified);

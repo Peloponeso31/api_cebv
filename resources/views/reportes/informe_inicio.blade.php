@@ -67,7 +67,7 @@
             {{ $desaparecido->persona->nombre }}
             {{ $desaparecido->persona->apellido_paterno }}
             {{ $desaparecido->persona->apellido_materno }}
-            - SAMPLE/FOLIO
+            - {{$folio->folio_cebv}}
         </mark>
     </h1>
 
@@ -96,14 +96,20 @@
 
     <p>
         Se recibe llamada telefónica del número telefónico
-        <mark style="background-color: #FEF2CD;">22 83 56 13 04</mark>
-        <!--22 81 25 92 88 TODO: Numero telefonico pendiente -->, perteneciente
-        <mark style="background-color: #FEF2CD;">al C. Ismael Matus García</mark> <!--Nombre del reportante -->
-        <!-- {{ $desaparecido->persona->genero}} C.
-            {{ $desaparecido->persona->nombre }}
-        {{ $desaparecido->persona->apellido_paterno }}
-        {{ $desaparecido->persona->apellido_materno }}  -->, quien solicita
-        del apoyo de esta Comisión, para la búsqueda y localización
+        <mark style="background-color: #FEF2CD;">{{ $reportante->persona->telefonos->first()->numero }}</mark>, perteneciente
+
+        @if($reportante->persona->sexo->nombre == 'Mujer')
+            a la
+        @else
+            al
+        @endif
+
+        <mark style="background-color: #FEF2CD;">C.
+            {{ $reportante->persona->nombre }}
+            {{ $reportante->persona->apellido_paterno }}
+            {{ $reportante->persona->apellido_materno }}
+        </mark>
+        , quien solicita del apoyo de esta Comisión, para la búsqueda y localización
         <b>
             <mark style="background-color: #FEF2CD;">del(de la) C.
                 {{ $desaparecido->persona->nombre }}
@@ -128,28 +134,7 @@
     <p>
         <b>
             <mark style="background-color: #FEF2CD;">
-                “…Mi hija tiene por nombre
-                {{ $desaparecido->persona->nombre }}
-                {{ $desaparecido->persona->apellido_paterno }}
-                {{ $desaparecido->persona->apellido_materno }}, de nacionalidad mexicana, cuenta
-                con {{ $desaparecido->persona->edad_anos() }} años de
-                edad por haber nacido el {{ $desaparecido->persona->fecha_nacimiento }},
-                CURP {{ $desaparecido->persona->curp }}, su tipo de sangre es A
-                positivo, ella es estudiante de Antropología Social en la Universidad Veracruzana, no presenta alguna
-                discapacidad, su número telefónico es el 22 82 92 35 75, pero lo dejó en casa, no consume tabaco,
-                alcohol o alguna otra sustancia. No hemos recibido llamadas de exigencia monetaria por ella. No hemos
-                hecho publicaciones por su desaparición. Respecto a la vestimenta que portaba al momento de su
-                desaparición destaca: pantalón gris y suéter gris, aunque faltan más prendas, sus documentos los dejó.
-                Respecto a los hechos puedo manifestar que: el día de ayer 13 de enero del presente año, tuvimos una
-                pequeña discusión, a razón de que ella descargo una aplicación de préstamos, de la cual desconozco el
-                nombre, pero de pronto recuerdo que tenía un “P” azul, y derivado de ello la estaban extorsionando, le
-                robaron sus contactos de WhatsApp y subieron unas publicaciones con su fotografía donde indicaban
-                que ella era sexoservidora, y que estaba dedicándose a la prostitución porque necesitaba pagar el
-                préstamo, yo la regañé por eso, y le dije que iba a estar castigada hasta febrero que entra a la
-                universidad por que ahorita estaba de vacaciones, y solo estaba de ociosa, ella se molestó, yo me fui a
-                trabajar y cuando regresé ella ya no estaba, por lo que quiero creer que se fue en la madrugada o como
-                a las 06:00 horas que es cuando yo vengo regresando apenas, ya hablé con su mamá y allá no está, y
-                con sus amigos tampoco…” (SIC).
+                {{$reporte->hechosDesaparicion->hechos_desaparicion}}
             </mark>
         </b>
     </p>
@@ -175,7 +160,8 @@
             <mark style="background-color: #FEF2CD;">del(de la) C.
                 {{ $desaparecido->persona->nombre }}
                 {{ $desaparecido->persona->apellido_paterno }}
-                {{ $desaparecido->persona->apellido_materno }}</mark>
+                {{ $desaparecido->persona->apellido_materno }}
+            </mark>
         </b>,
         a través del grupo habilitado para la comunicación con el Centro Estatal de Control, Comando, Comunicaciones y
         Cómputo (C4), solicitando el despliegue de elementos policiales próximos al lugar de No Localización.
@@ -188,6 +174,26 @@
             horas
         </mark>
         del presente día, firmando al calce los que en ella intervinieron.
+    </p>
+
+    <p>
+        ______________________
+        <br>
+
+        {{ Auth::user()->empleado->persona->nombre }} {{ Auth::user()->empleado->persona->apellido_paterno }} {{ Auth::user()->empleado->persona->apellido_materno }}
+        <br>
+        {{ Auth::user()->empleado->puesto->nombre }}
+    </p>
+
+    <p>
+        VO. BO.
+        <br>
+        ______________________
+        <br>
+
+        Dr. Evaristo Mendoza Amaro
+        <br>
+        Jefe de la oficina de busqueda inmediata.
     </p>
 </div>
 </body>

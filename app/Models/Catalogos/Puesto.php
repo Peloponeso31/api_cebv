@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Puesto extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public $timestamps = false;
+
     public function empleado():HasMany {
         return $this->hasMany(Empleado::class);
     }

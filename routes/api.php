@@ -15,6 +15,7 @@ use App\Http\Controllers\EstatusPerpetradorController;
 use App\Http\Controllers\FormaCaraController;
 use App\Http\Controllers\FormaOjoController;
 use App\Http\Controllers\FormaOrejaController;
+use App\Http\Controllers\FotosDesaparecidoController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\GrupoVulnerableController;
 use App\Http\Controllers\IntervencionQuirurgicaController;
@@ -136,9 +137,9 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      * Verbo         Ruta                        Acción     Nombre de la ruta
      * GET           /users                      index      users.index
      * POST          /users                      store      users.store
-     * GET           /users/{user}               show       users.show
-     * PUT|PATCH     /users/{user}               update     users.update
-     * DELETE        /users/{user}               destroy    users.destroy
+     * GET           /users/{user_id}            show       users.show
+     * PUT|PATCH     /users/{user_id}            update     users.update
+     * DELETE        /users/{user_id}            destroy    users.destroy
      */
 
     Route::apiResource('/usuario', UserAdminController::class);
@@ -210,6 +211,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
     Route::get('/desaparecidos_folio', [DesaparecidoController::class, 'desaparecido_persona_folio']);
+    Route::post('/desaparecidos/{desaparecido_id}/fotos/upload', [FotosDesaparecidoController::class, 'upload']);
     Route::apiResource('/documentos-legales', DocumentoLegalController::class);
 
     /**

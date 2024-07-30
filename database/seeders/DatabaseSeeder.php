@@ -16,14 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         /**
-         * System seeders
-         */
-        $this->call([
-            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
-            UserSeeder::class, // TODO: Remove this line before deploying to production
-        ]);
-
-        /**
          * Catalogs seeders
          */
         $this->call([
@@ -59,7 +51,8 @@ class DatabaseSeeder extends Seeder
             ColectivoSeeder::class,
             ColorSeeder::class,
             RazonesCurpSeeder::class,
-            TiposDomicilioSeeder::class
+            TiposDomicilioSeeder::class,
+            PuestoSeeder::class
         ]);
 
         /**
@@ -132,6 +125,14 @@ class DatabaseSeeder extends Seeder
             MetodoCapturaSeeder::class,
             MedioCapturaSeeder::class,
             EstatusPerpetradorSeeder::class,
+        ]);
+
+        /**
+         * System seeders
+         */
+        $this->call([
+            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
+            UserSeeder::class, // TODO: Remove this line before deploying to production
         ]);
     }
 }

@@ -15,6 +15,7 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\ZonaEstado;
+use App\Models\Vehiculo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -149,6 +150,11 @@ class Reporte extends Model
     public function controlOgpi(): HasOne
     {
         return $this->hasOne(ControlOgpi::class);
+    }
+
+    public function vehiculos(): HasMany
+    {
+        return $this->hasMany(Vehiculo::class);
     }
 
     /**

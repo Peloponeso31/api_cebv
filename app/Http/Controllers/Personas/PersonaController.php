@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Personas;
 
+use App\Http\Resources\PersonaConDesaparicionesResource;
+use App\Http\Resources\PersonaSinDesaparicionesResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NacionalidadRequest;
@@ -11,6 +13,7 @@ use App\Http\Resources\Personas\PersonaResource;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use App\Services\CrudService;
+use phpDocumentor\Reflection\Types\True_;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class PersonaController extends Controller
@@ -33,13 +36,38 @@ class PersonaController extends Controller
                 $personas = Persona::where('nombre', 'like', '%' . $nombre . '%')
                     ->with('desaparecidos.reporte')
                     ->paginate();
+
+                $result = $personas->map(function ($persona) {
+                    if ($persona->desaparecidos->isEmpty()) {
+                        return [
+                            'id' => $persona->id,
+                            'nombre' => $persona->nombre,
+                            'apellido_paterno' => $persona->apellido_paterno,
+                            'apellido_materno' => $persona->apellido_materno,
+                            'despariciones' => 'No se encontraron reportes de desaparicion relacionadas con esta perosna'
+                        ];
+                    }else{
+                        return [
+                            'id' => $persona->id,
+                            'nombre' => $persona->nombre,
+                            'apellido_paterno' => $persona->apellido_paterno,
+                            'apellido_materno' => $persona->apellido_materno,
+                            'desapariciones' => $persona->desaparecidos->map(function($desaparecido){
+                                return [
+                                    'id' =>$desaparecido->id,
+                                ];
+                            })
+                        ];
+                    }
+                });
+
+                return response()->json($result);
             }else
             {
-                return PersonaResource::collection(Persona::paginate(5));
+                $personas = Persona::paginate(5);
+                return PersonaResource::collection($personas);
 
             }
-
-            return PersonaResource::collection($personas);
 
     }
 

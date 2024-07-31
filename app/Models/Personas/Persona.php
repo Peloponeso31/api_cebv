@@ -161,6 +161,7 @@ class Persona extends Model implements Searchable
     }
 
     public function nacionalidads(): BelongsToMany
+    
     {
         return $this->belongsToMany(Nacionalidad::class);
     }

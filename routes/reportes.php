@@ -17,10 +17,10 @@ use App\Models\Reportes\Reporte;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
 
     Route::get("/informes-inicios/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         $reporte = Reporte::findOrFail($desaparecido->reporte_id);
         $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
 
@@ -42,97 +42,105 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     Route::get("/fichas-bis-copys/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.ficha_bi_copy", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
     Route::get("/reportes-preliminares/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.reporte_preliminar", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
     Route::get("/caratulas/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.Caratula", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
+    // Boletin de busqueda inmediata
     Route::get("/boletines/{id}", function (string $id, Request $request) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::findOrFail($id);
+        $imagen = Storage::get($desaparecido->boletin_img_path);
         $tamanoPapel = [0.0, 0.0, 2215, 2215];
 
+        //return view("reportes.boletin_BI",
+        //    [
+        //        "desaparecido" => $desaparecido,
+        //        "imagen" => "data:image/jpg;base64," . base64_encode($imagen)
+        //    ]);
 
         return Pdf::loadView("reportes.boletin_BI",
-        [
-            "desaparecido" => $desaparecido
-        ])->setPaper($tamanoPapel)->stream();
+            [
+                "desaparecido" => $desaparecido,
+                "imagen" => "data:image/jpg;base64," . base64_encode($imagen),
+            ])->setPaper($tamanoPapel)->stream();
     });
 
     Route::get("/boletines-lds/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::findOrFail($id);
+        $desaparecido = Desaparecido::findOrFail($id);
         $tamanoPapel = [0.0, 0.0, 2215, 2215];
 
         return Pdf::loadView("reportes.boletin_LD",
-        [
-            "desaparecido" => $desaparecido
-        ])->setPaper($tamanoPapel)->stream();
+            [
+                "desaparecido" => $desaparecido
+            ])->setPaper($tamanoPapel)->stream();
     });
 
     Route::get("/boletines-uis/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         $tamanoPapel = [0.0, 0.0, 1238, 956];
 
         return Pdf::loadView("reportes.boletin_UI",
-        [
-            "desaparecido" => $desaparecido
-        ])->setPaper($tamanoPapel)->stream();
+            [
+                "desaparecido" => $desaparecido
+            ])->setPaper($tamanoPapel)->stream();
     });
 
     Route::get("/indicaciones/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.indicaciones_C4", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
     Route::get("/oficios-ceis/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.oficio_CEI", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
     Route::get("/oficios-fiscalias/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.oficio_fiscalia", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
     Route::get("/oficios-ssas/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.oficios_SSA", [
             "desaparecido" => $desaparecido
         ])->stream();
     });
 
     Route::get("/tarjetas-folios/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         $tamanoPapel = [0.0, 0.0, 595.28, 420.945];
 
         return Pdf::loadView("reportes.tarjeta_de_folio",
-        [
-            "desaparecido" => $desaparecido
-        ])->setPaper($tamanoPapel)->stream();
+            [
+                "desaparecido" => $desaparecido
+            ])->setPaper($tamanoPapel)->stream();
     });
 
     Route::get("/informes-localizaciones/{id}", function (string $id) {
-        $desaparecido =  Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::whereId($id)->first();
         return Pdf::loadView("reportes.informe_localizacion", [
             "desaparecido" => $desaparecido
         ])->stream();

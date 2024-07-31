@@ -74,9 +74,10 @@
     <p>
         En la Ciudad de Xalapa de Enríquez del Estado de Veracruz, siendo las
         <mark style="background-color: #FEF2CD;">18:51 horas del día 14 de enero del 2024,</mark>
-        la suscrita
-        <mark style="background-color: #FEF2CD;">Licenciada Arantza Yolanda Garrido Contreras<!--Licenciada---> ,
-            Analista Administrativo
+        el (la) suscrita
+        <mark style="background-color: #FEF2CD;">
+            {{ Auth::user()->empleado->persona->nombre }} {{ Auth::user()->empleado->persona->apellido_paterno }} {{ Auth::user()->empleado->persona->apellido_materno }},
+            {{ Auth::user()->empleado->puesto->nombre }}
         </mark>
         adscrito a la Comisión Estatal de Búsqueda,
         con fundamento en lo dispuesto por los artículos 1, 6, 29 fracción IV, 30, 33 fracciones I, XXIII, LII y LIV,
@@ -179,7 +180,6 @@
     <p>
         ______________________
         <br>
-
         {{ Auth::user()->empleado->persona->nombre }} {{ Auth::user()->empleado->persona->apellido_paterno }} {{ Auth::user()->empleado->persona->apellido_materno }}
         <br>
         {{ Auth::user()->empleado->puesto->nombre }}
@@ -190,7 +190,6 @@
         <br>
         ______________________
         <br>
-
         Dr. Evaristo Mendoza Amaro
         <br>
         Jefe de la oficina de busqueda inmediata.

@@ -17,27 +17,24 @@ class FotosDesaparecidoController extends Controller
         $string = str_replace(['..', './'], '', $string);
         return $string;
     }
+
     public function upload($desaparecido_id, Request $request)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecido_id);
 
-        $folio = Folio::where([
-            ['reporte_id', '=', $desaparecido->reporte_id],
-            ['persona_id', '=', $desaparecido->persona_id]
-        ])->first();
-
-        if ($folio == null) return response()->json(["Los desaparecidos aun no tienen folio"])->setStatusCode(507);
-
         $paths = [];
-        foreach ($request->allFiles() as $file) {
-            $paths[] = $file->storeAs(
-                $this->sanitize($folio->folio_cebv), $file->getClientOriginalName()
-            );
+        foreach ($request->allFiles() as $key => $file) {
+            $paths[] = $file->storeAs($desaparecido->id, $file->getClientOriginalName());
+            if ($key == "boletin") {
+                $desaparecido->boletin_img_path = end($paths);
+                $desaparecido->save();
+            }
         }
 
         return response()->json([
             "mensaje" => "Fotografias guardadas correctamente",
-            "archivos" => $paths
+            "archivos" => $paths,
+            "boletin_img" => $desaparecido->boletin_img_path
         ])->setStatusCode(201);
     }
 }

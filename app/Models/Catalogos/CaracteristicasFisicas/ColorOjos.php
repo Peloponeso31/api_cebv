@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Catalogos\CaracteristicasFisicas;
+namespace App\Models\Catalogos;
 
 use App\Models\CaracteristicasFisicas;
 use App\Models\MediaFiliacion;
@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class ColorOjos extends Model
+class TipoCabello extends Model
 {
-    protected $table='colores_ojos';
-    protected $fillable=['nombre'];
-    public $timestamps= false;
-
+    use HasFactory;
+    protected $table='tipo_cabellos';
+    protected $fillable=['tipo'];
+    public $timestamps= true;
 
     public function caracteristicas_fisicas():HasMany {
         return $this->hasMany(CaracteristicasFisicas::class);

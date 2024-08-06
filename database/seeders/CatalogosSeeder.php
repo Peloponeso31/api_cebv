@@ -227,12 +227,25 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "CICATRIZ"],
             ["nombre" => "CIRCUNCISION"],
             ["nombre" => "CORTES DECORATIVOS"],
-            ["nombre" => "DEFECTO FISICO"],
+            ["nombre" => "GEFECTO FISICO"],
             ["nombre" => "LUNARES O MANCHAS"],
             ["nombre" => "MARCAS TEMPORALES"],
             ["nombre" => "OTRO"],
             ["nombre" => "PROTESIS"],
             ["nombre" => "TATUAJE"],
+         ]);
+
+        \App\Models\Catalogos\ColorCabello::insert([
+            ["colorcabellos" => "ALBINO"],
+            ["colorcabellos" => "CANO"],
+            ["colorcabellos" => "CASTAÑO CLARO"],
+            ["colorcabellos" => "CASTAÑO OSCURO"],
+            ["colorcabellos" => "ENTRECANO"],
+            ["colorcabellos" => "NEGRO"],
+            ["colorcabellos" => "PELIRROJO"],
+            ["colorcabellos" => "RUBIO"],
+            ["colorcabellos" => "TEÑIDO"],
+            ["colorcabellos" => "NO ESPECIFICA"]
         ]);
 
         \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
@@ -244,9 +257,10 @@ class CatalogosSeeder extends Seeder
             ["grupoetnico" => "OTOMIES"],
             ["grupoetnico" => "ZOQUE"],
             ["grupoetnico" => "MIXES"],
+
         ]);
 
-        \App\Models\Catalogos\Etnia\Vestimenta::insert([
+        \App\Models\Catalogos\Vestimenta::insert([
             ["vestimenta" => "HUIPIL"],
             ["vestimenta" => "CALZÓN DE MANTA"],
             ["vestimenta" => "SARAPE"],

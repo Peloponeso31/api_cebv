@@ -83,7 +83,6 @@
         font-weight: 400;
         font-style: normal;
     }
-
 </style>
 
 <body>
@@ -167,7 +166,6 @@
             <br>La búsqueda de una persona puede generar información confusa, para<br> acceder a información fidedigna,
             favor de referirse a los canales <br>oficiales.
         </td>
-
     </tr>
 </table>
 </body>

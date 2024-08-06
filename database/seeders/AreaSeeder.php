@@ -13,12 +13,8 @@ class AreaSeeder extends Seeder
             'Celula Norte',
             'Celula Centro',
             'Celula Sur',
-            'Búsqueda Inmediata',
             'Larga Data',
-            'OGPI'
         ];
-
-        sort($areas);
 
         foreach ($areas as $area) {
             Area::firstOrCreate(['nombre' => $area]);

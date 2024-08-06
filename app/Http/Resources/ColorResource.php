@@ -7,11 +7,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ColorResource extends JsonResource
 {
-    
+
     public function toArray(Request $request): array
     {
         return [
-            'nombre' => $this-> nombre,
+            'id' => $this->id,
+            'nombre' => $this->nombre,
         ];
     }
 }

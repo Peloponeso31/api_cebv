@@ -12,15 +12,12 @@ return new class extends Migration {
     {
         Schema::create('contactos', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('persona_id')->constrained(table: 'personas');
-
+            $table->foreignId('tipo_red_social_id')->nullable();
             $table->enum('tipo', ['Red Social', 'Correo Electronico']);
-            $table->string('contacto');
+            $table->string('nombre');
             $table->string('observaciones')->nullable();
         });
-
-
     }
 
     /**

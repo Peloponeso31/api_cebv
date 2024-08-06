@@ -11,18 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prenda-vestir', function (Blueprint $table) {
+        Schema::create('razones_curp', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('grupo_pertenencia_id');
-            $table->foreignId('pertenencia_id');
-            $table->foreignId('color_id');
-            $table->string("marca");
-            $table->string("descripcion");
+            $table->string('nombre');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('prenda-vestir');
+        Schema::dropIfExists('razones_curps');
     }
 };

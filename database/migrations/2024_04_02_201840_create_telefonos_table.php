@@ -12,15 +12,12 @@ return new class extends Migration {
     {
         Schema::create('telefonos', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('persona_id');
-            $table->foreignId('compania_id')->constrained(table: 'companias_telefonicas');
-
+            $table->foreignId('persona_id')->constrained(table: 'personas');
+            $table->foreignId('compania_id')->nullable()->constrained(table: 'companias_telefonicas');
             $table->string('numero', 25);
             $table->string('observaciones')->nullable();
+            $table->boolean("es_movil")->default(false);
         });
-
-
     }
 
     /**

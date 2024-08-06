@@ -10,13 +10,11 @@ class FormaOrejaSeeder extends Seeder
     public function run(): void
     {
         $formasOrejas = [
-            'Almendra',
-            'Coliflor',
-            'Lóbulo partido',
-            'Ovalada',
-            'Puntiaguda',
-            'Redonda',
-            'Triangular',
+            'CUADRADAS',
+            'OVALADAS',
+            'REDONDAS',
+            'TRIANGULARES',
+            'NO ESPECIFICA'
         ];
 
         foreach ($formasOrejas as $formaOreja) {

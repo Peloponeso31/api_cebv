@@ -2,9 +2,12 @@
 
 namespace App\Models\Reportes;
 
+use App\Models\ControlOgpi;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
+use App\Models\Perpetrador;
+use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
@@ -12,10 +15,12 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\ZonaEstado;
+use App\Models\Vehiculo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 use Illuminate\Support\Carbon;
@@ -35,6 +40,7 @@ class Reporte extends Model
         'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
+        "institucion_origen",
         'esta_terminado',
         'tipo_desaparicion',
         'fecha_localizacion',
@@ -69,6 +75,11 @@ class Reporte extends Model
     public function areaAtiende(): BelongsTo
     {
         return $this->belongsTo(Area::class, 'area_atiende_id');
+    }
+
+    public function hechosDesaparicion(): HasOne
+    {
+        return $this->hasOne(HechoDesaparicion::class, 'reporte_id');
     }
 
     /**
@@ -129,6 +140,21 @@ class Reporte extends Model
     public function hipotesis(): HasMany
     {
         return $this->hasMany(Hipotesis::class, 'reporte_id');
+    }
+
+    public function perpetradores(): HasMany
+    {
+        return $this->hasMany(Perpetrador::class);
+    }
+
+    public function controlOgpi(): HasOne
+    {
+        return $this->hasOne(ControlOgpi::class);
+    }
+
+    public function vehiculos(): HasMany
+    {
+        return $this->hasMany(Vehiculo::class);
     }
 
     /**

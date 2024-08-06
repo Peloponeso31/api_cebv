@@ -10,13 +10,12 @@ return new class extends Migration {
         Schema::create('hipotesis', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('reporte_id');
-            $table->foreignId('tipo_hipotesis_id')->constrained('tipos_hipotesis');
-            $table->foreignId('sitio_id');
-            $table->foreignId('area_asigna_sitio_id')->constrained('areas');
+            $table->foreignId('reporte_id')->constrained(table: 'reportes');
+            $table->foreignId('tipo_hipotesis_id')->nullable()->constrained(table: 'tipos_hipotesis');
+            $table->foreignId('sitio_id')->nullable()->constrained(table: 'sitios');
+            $table->foreignId('area_asigna_sitio_id')->nullable()->constrained(table: 'areas');
 
             $table->enum('etapa', ['Inicial', 'Final']);
-            $table->text('descripcion');
 
             $table->timestamps();
         });

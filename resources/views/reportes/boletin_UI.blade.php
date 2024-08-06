@@ -68,9 +68,9 @@ html, body {
     }
 
     h2{
-        text-align: left;
+        text-align: center;
         color: solid black;
-        font-size: 1.3em;
+        font-size: 1.6em;
     }
 
     h3{
@@ -126,34 +126,25 @@ html, body {
         <col width="20%">
       </colgroup>
       <tr>
-        <td class="txt"> dsad</td>
+        <td class="txt"> <br> <br> <br> <br> <br> <br></td>
       </tr>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-      <tr>
-        <td class="txt"> dsad</td>
-      </tr>
-    <th rowspan="2"></th>
+</table>
+<table>
+  <tr>
+    
     <th class="montserrat-alternates-extrabold"><h2>
-        <b>
-        {{ $desaparecido->persona->nombre }}
-        {{ $desaparecido->persona->apellido_paterno }}
-        {{ $desaparecido->persona->apellido_materno }}
-    </b>
-    </h2></th>
-    <tr>
-        <td class="montserrat-alternates-extrabold"> NO. FOLIO </td>
-    </tr>
+      <b>
+      {{ $desaparecido->persona->nombre }}
+      {{ $desaparecido->persona->apellido_paterno }}
+      {{ $desaparecido->persona->apellido_materno }}
+  </b>
+  </h2></th>
+  </tr>
+  <tr>
+    <td class="montserrat-alternates-extrabold"> <h2>NO. FOLIO</h2> </td>
+  </tr>
+</table>
+<table>
     <tr style="height: 10px;">
     <td rowspan="9"> <img src="{{ public_path('reportes/boletin_BI/foto_mia.jpg') }}" width="50%" height="50%" ></td>
         <td class="montserrat-alternates-regular"><h3><b>SEXO:</b></h3> {{ $desaparecido->persona->sexo_al_nacer }}  </td>
@@ -194,7 +185,7 @@ html, body {
     </tr>
       
 <tr>
-    <th class="montserrat-alternates-extrabold"><br>FE: 27/04/2023</th>
+    <th class="montserrat-alternates-extrabold" colspan="2"><br>FE: 27/04/2023</th>
 </tr>
 </table>
 

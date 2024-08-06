@@ -2,11 +2,13 @@
 
 namespace App\Models\Reportes\Relaciones;
 
+use App\Models\Colectivo;
 use App\Models\Personas\Parentesco;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 
 class Reportante extends Model
@@ -19,14 +21,18 @@ class Reportante extends Model
         'persona_id',
         'reporte_id',
         'parentesco_id',
+        'colectivo_id',
         'denuncia_anonima',
         'informacion_consentimiento',
         'informacion_exclusiva_busqueda',
         'publicacion_registro_nacional',
         'publicacion_boletin',
+        'informacion_relevante',
         'pertenencia_colectivo',
-        'nombre_colectivo',
-        'informacion_relevante'
+        'edad_estimada',
+        'participacion_busquedas',
+        'descripcion_extorsion',
+        'descripcion_donde_proviene',
     ];
 
     protected $casts = [
@@ -51,6 +57,11 @@ class Reportante extends Model
     protected function parentesco(): BelongsTo
     {
         return $this->belongsTo(Parentesco::class);
+    }
+
+    public function colectivo(): BelongsTo
+    {
+        return $this->belongsTo(Colectivo::class);
     }
 
     public function toSearchableArray()

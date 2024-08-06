@@ -10,33 +10,17 @@ class EstadoConyugalSeeder extends Seeder
     public function run(): void
     {
         $estadosConyugales = [
-            'Soltero',
-            'Soltera',
-            'Soltero(a)',
-            'Casado',
-            'Casada',
-            'Casado(a)',
-            'Viudo',
-            'Viuda',
-            'Viudo(a)',
-            'Concubino',
-            'Concubina',
-            'Concubino(a)',
-            'Unión Libre',
-            'Divorciado',
-            'Divorciada',
-            'Divorciado(a)',
-            'Comprometido',
-            'Comprometida',
-            'Comprometido(a)',
-            'Polígamo',
-            'Polígama',
-            'Polígamo(a)',
-            'Separado',
-            'Separada',
-            'Separado(a)',
-            'Sociedad en Convivencia',
-            'No Especifica'
+            'SOLTERO(A)',
+            'CASADO(A)',
+            'VIUDO(A),',
+            'CONCUBINATO',
+            'UNION LIBRE',
+            'DIVORCIADO',
+            'COMPROMETIDO(A)',
+            'POLIGAMO(A)',
+            'SEPARADO(A)',
+            'SOCIEDAD EN CONVIVENCIA',
+            'NO ESPECIFICA'
         ];
 
         foreach ($estadosConyugales as $estadoConyugal) {

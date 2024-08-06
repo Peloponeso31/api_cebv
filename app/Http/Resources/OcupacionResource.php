@@ -13,6 +13,7 @@ class OcupacionResource extends JsonResource
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
+            'tipo_ocupacion' => TipoOcupacionResource::make($this->tipoOcupacion)
         ];
     }
 }

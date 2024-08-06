@@ -16,14 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         /**
-         * System seeders
-         */
-        $this->call([
-            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
-            UserSeeder::class, // TODO: Remove this line before deploying to production
-        ]);
-
-        /**
          * Catalogs seeders
          */
         $this->call([
@@ -50,8 +42,17 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             LenguaSeeder::class,
             TipoRedSocialSeeder::class,
+            TipoOcupacionSeeder::class,
             OcupacionSeeder::class,
             GrupoVulnerableSeeder::class,
+            TipoHipotesisInmediataSeeder::class,
+            GrupoPertenenciaSeeder::class,
+            PertenenciaSeeder::class,
+            ColectivoSeeder::class,
+            ColorSeeder::class,
+            RazonesCurpSeeder::class,
+            TiposDomicilioSeeder::class,
+            PuestoSeeder::class
         ]);
 
         /**
@@ -83,6 +84,14 @@ class DatabaseSeeder extends Seeder
             RegionDeformacionSeeder::class,
             IntervencionQuirurgicaSeeder::class,
             EnfermedadPielSeeder::class,
+            TipoSangreSeeder::class,
+        ]);
+
+        /**
+         * Situaciones de salud
+         */
+        $this->call([
+            CondicionSaludSeeder::class,
         ]);
 
         /**
@@ -103,6 +112,27 @@ class DatabaseSeeder extends Seeder
             ReporteSeeder::class,
             TelefonoSeeder::class,
             ContactoSeeder::class,
+        ]);
+
+        /**
+         * Seeders que no sé dónde meter
+         */
+        $this->call([
+            EnfoqueDiferenciadoSeeder::class,
+            SituacionMigratoriaSeeder::class,
+            ParticularSeeder::class,
+            AutoridadSeeder::class,
+            MetodoCapturaSeeder::class,
+            MedioCapturaSeeder::class,
+            EstatusPerpetradorSeeder::class,
+        ]);
+
+        /**
+         * System seeders
+         */
+        $this->call([
+            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
+            UserSeeder::class, // TODO: Remove this line before deploying to production
         ]);
     }
 }

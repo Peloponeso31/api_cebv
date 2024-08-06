@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Personas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NacionalidadRequest;
-use App\Http\Requests\Personas\IndexPersonaRequest;
 use App\Http\Requests\Personas\PersonaRequest;
 use App\Http\Requests\Personas\UpdatePersonaRequest;
+use App\Http\Resources\FolioResource;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
 use App\Services\CrudService;
-use Request;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PersonaController extends Controller
 {
@@ -26,13 +26,11 @@ class PersonaController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
+        $personas = QueryBuilder::for(Persona::class)
+            ->allowedFilters(['nombre', 'apellido_paterno', 'apellido_materno'])
+            ->get();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
-
-        return PersonaResource::collection($query->orderByDesc('id')->paginate());
+        return PersonaResource::collection($personas);
     }
 
     public function store(PersonaRequest $request)
@@ -73,5 +71,12 @@ class PersonaController extends Controller
         $persona->nacionalidads()->detach($nacionalidad->id);
 
         return PersonaResource::make($persona);
+    }
+
+    public function getFolios($personaId)
+    {
+        $persona = Persona::findOrFail($personaId);
+
+        return FolioResource::collection($persona->folios);
     }
 }

@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    
+
     public function up(): void
     {
         Schema::create('oficina', function (Blueprint $table) {
             $table->id();
-            $table->string("oficina");
+            $table->string("nombre");
             $table->timestamps();
         });
     }

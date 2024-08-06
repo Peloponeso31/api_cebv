@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Http\Resources\FolioResource;
+use App\Http\Resources\UserAdminResource;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Reporte;
@@ -12,21 +14,14 @@ class ReporteService
 {
     /**
      * @param mixed $id
-     * @return JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getFolios(mixed $id): JsonResponse
+    public function getFolios(mixed $id): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $reporte = Reporte::findOrFail($id);
         $folios = Folio::where('reporte_id', $reporte->id)->get();
 
-        if ($folios->isEmpty()) {
-            return response()->json("No se encontraron folios para el reporte $reporte->id", 404);
-        }
-
-        return response()->json([
-            'Folios del reporte' => $reporte->id,
-            'Folios' => $folios
-        ]);
+        return FolioResource::collection($folios);
     }
 
     /**
@@ -38,8 +33,11 @@ class ReporteService
     {
         $reporte = Reporte::findOrFail($id);
 
-        if (!$reporte->esta_terminado)
-            return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
+        /**
+         * TODO: Completar la validación de los campos mínimos requeridos para asignar un folio.
+         */
+        //if (!$reporte->esta_terminado)
+         //   return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
 
         $desaparecidos = Desaparecido::where('reporte_id', $reporte->id)->get();
 
@@ -79,6 +77,7 @@ class ReporteService
         else $fechaDesaparicion = 'AA';
 
         if ($reporte->tipoReporte && in_array($reporte->tipoReporte->abreviatura, ['SC', 'SD', 'SBF'])) $terminacion = $reporte->estado->abreviatura_cebv;
+        if ($reporte->zonaEstado->abreviatura == null) return;
         else $terminacion = $reporte->zonaEstado->abreviatura;
 
         /**

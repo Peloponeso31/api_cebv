@@ -3,9 +3,11 @@
 namespace App\Models\Reportes\Hechos;
 
 use App\Models\Reportes\Reporte;
+use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 
 class HechoDesaparicion extends Model
@@ -16,8 +18,14 @@ class HechoDesaparicion extends Model
 
     protected $fillable = [
         'reporte_id',
+        'direccion_id',
         'fecha_desaparicion',
+        'fecha_desaparicion_cebv',
+        'hora_desaparicion',
         'fecha_percato',
+        'fecha_percato_cebv',
+        'hora_percato',
+        'aclaraciones_fecha_hechos',
         'cambio_comportamiento',
         'descripcion_cambio_comportamiento',
         'fue_amenazado',
@@ -27,7 +35,8 @@ class HechoDesaparicion extends Model
         'informacion_relevante',
         'hechos_desaparicion',
         'sintesis_desaparicion',
-        'reporte_id',
+        'desaparecio_acompanado',
+        'personas_mismo_evento'
     ];
 
     protected $casts = [
@@ -42,9 +51,14 @@ class HechoDesaparicion extends Model
      *
      * @return BelongsTo
      */
-    public function reportes(): BelongsTo
+    public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class, 'reporte_id');
+        return $this->belongsTo(Reporte::class, "reporte_id");
+    }
+
+    public function lugarHechos() : BelongsTo
+    {
+        return $this->belongsTo(Direccion::class, 'direccion_id');
     }
 
     public function toSearchableArray(): array

@@ -14,13 +14,12 @@ class HipotesisResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'xd' => $this->id,
-            'etapa' => $this->etapa,
-            'descripcion' => $this->descripcion,
+            'id' => $this->id,
             'reporte_id' => $this->reporte_id,
-            'tipo_hipotesis_id' => $this->tipo_hipotesis_id,
-            'sitio_id' => $this->sitio_id,
-            'area_asigna_sitio_id' => $this->area_asigna_sitio_id,
+            'etapa' => $this->etapa,
+            'tipo_hipotesis' => TipoHipotesisResource::make($this->tipoHipotesis),
+            'sitio' =>SitioResource::make($this->sitio),
+            'area_asigna_sitio' => AreaResource::make($this->areaAsignaSitio),
         ];
     }
 }

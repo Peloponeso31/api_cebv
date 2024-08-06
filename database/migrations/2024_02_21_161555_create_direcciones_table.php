@@ -9,8 +9,10 @@ return new class extends Migration {
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
-            $table->string('asentamiento_id', 9);
-            $table->string('calle');
+            $table->string('asentamiento_id', 9)->nullable();
+            $table->string('domicilio_concatenado', 9)->nullable();
+            $table->string('calle')->nullable();
+            $table->string('colonia')->nullable();
             $table->string('numero_exterior', 10)->nullable();
             $table->string('numero_interior', 10)->nullable();
             $table->string('calle_1')->nullable();
@@ -18,8 +20,6 @@ return new class extends Migration {
             $table->string('tramo_carretero', 100)->nullable();
             $table->string('codigo_postal', 5)->nullable();
             $table->text('referencia')->nullable();
-            // TODO: Coordenadas
-
             $table->foreign('asentamiento_id')
                 ->references('id')->on('asentamientos');
         });

@@ -10,7 +10,14 @@ class OcupacionController extends Controller
 {
     public function index()
     {
-        return OcupacionResource::collection(Ocupacion::all());
+
+        $query = Ocupacion::query();
+
+        if (request()->has('search')) {
+            $query = Ocupacion::search(request('search'));
+        }
+
+        return OcupacionResource::collection($query->get());
     }
 
     public function store(Request $request)

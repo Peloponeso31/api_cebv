@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Reportes;
 
+use App\Exports\ReportesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
@@ -9,6 +10,7 @@ use App\Http\Resources\ReportesDashboardResource;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
 use App\Services\ReporteService;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteController extends Controller
 {
@@ -31,7 +33,7 @@ class ReporteController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return ReporteResource::collection($query->paginate());
+        return ReporteResource::collection($query->orderByDesc("id")->get());
     }
 
     public function store(ReporteRequest $request)
@@ -64,7 +66,13 @@ class ReporteController extends Controller
         return $this->reporteService->setFolio($id, auth()->id());
     }
 
-    public function vistaReportesDashboard() {
+    public function vistaReportesDashboard()
+    {
         return ReportesDashboardResource::collection(Reporte::get());
+    }
+
+    public function exportExcell()
+    {
+        return Excel::download(new ReportesExport, 'reportes.xlsx');
     }
 }

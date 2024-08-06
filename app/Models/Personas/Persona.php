@@ -4,14 +4,22 @@ namespace App\Models\Personas;
 
 use App\Models\Apodo;
 use App\Models\CaracteristicasFisicas;
+use App\Models\Catalogos\Etnia\Lengua;
+use App\Models\Catalogos\Etnia\Religion;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Escolaridad;
+use App\Models\EstadoConyugal;
 use App\Models\Etnia;
 use App\Models\Genero;
+use App\Models\GrupoVulnerable;
+use App\Models\MediaFiliacion;
 use App\Models\Nacionalidad;
+use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
+use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
@@ -19,6 +27,7 @@ use App\Models\SenasParticulares;
 use App\Models\Sexo;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
+use App\Models\Ubicaciones\Estado;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,7 +44,14 @@ class Persona extends Model
     protected $table = 'personas';
 
     protected $fillable = [
+        'sexo_id',
+        'genero_id',
+        'media_filiacion_id',
         'lugar_nacimiento_id',
+        'religion_id',
+        'lengua_id',
+        'estado_conyugal_id',
+        'escolaridad_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
@@ -47,13 +63,14 @@ class Persona extends Model
         'observaciones_curp',
         'rfc',
         'ocupacion',
-        'sexo_al_nacer',
-        'genero',
+        'nivel_escolaridad',
     ];
 
     protected $casts = [
         'fecha_nacimiento' => 'date',
     ];
+
+
 
     public function sexo(): BelongsTo
     {
@@ -63,6 +80,10 @@ class Persona extends Model
     public function genero(): BelongsTo
     {
         return $this->belongsTo(Genero::class, 'genero_id');
+    }
+
+    public function lugar_nacimiento(): BelongsTo {
+        return $this->belongsTo(Estado::class, "lugar_nacimiento_id");
     }
 
     /**
@@ -136,22 +157,22 @@ class Persona extends Model
         return $this->hasOne(Etnia::class);
     }
 
-    public function senasparticulares(): HasMany
+    public function senasParticulares(): HasMany
     {
         return $this->hasMany(SenasParticulares::class);
     }
 
     public function desaparecidos(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'persona_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function reportantes(): HasMany
     {
-        return $this->hasMany(Reportante::class, 'persona_id');
+        return $this->hasMany(Reportante::class);
     }
 
-    public function domicilios(): BelongsToMany
+    public function direcciones(): BelongsToMany
     {
         return $this->belongsToMany(Direccion::class, 'domicilios');
     }
@@ -161,7 +182,7 @@ class Persona extends Model
         return $this->hasMany(Folio::class, 'persona_id');
     }
 
-    public function nacionalidads(): BelongsToMany
+    public function nacionalidades(): BelongsToMany
     {
         return $this->belongsToMany(Nacionalidad::class);
     }
@@ -178,12 +199,49 @@ class Persona extends Model
 
     public function apodos(): HasMany
     {
-        return $this->hasMany(Apodo::class, 'persona_id');
+        return $this->hasMany(Apodo::class);
     }
 
-    // TODO: Relacionar con el modelo de escolaridad
-    // TODO: Relacionar con estado conyugal
-    // TODO: Modelo y catalogo de redes sociales (tipo de red socual, usuario y observaciones).
+    public function redesSociales(): HasMany
+    {
+        return $this->hasMany(Redsocial::class);
+    }
+
+    public function religion(): BelongsTo
+    {
+        return $this->belongsTo(Religion::class);
+    }
+
+    public function lengua(): BelongsTo
+    {
+        return $this->belongsTo(Lengua::class);
+    }
+
+    public function estadoConyugal(): BelongsTo
+    {
+        return $this->belongsTo(EstadoConyugal::class);
+    }
+
+    public function escolaridad(): BelongsTo
+    {
+        return $this->belongsTo(Escolaridad::class);
+    }
+
+    public function ocupaciones(): BelongsToMany
+    {
+        return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
+    }
+
+    public function gruposVulnerables(): BelongsToMany
+    {
+        return $this->belongsToMany(GrupoVulnerable::class, "grupos_vulnerables_personas");
+    }
+
+    public function mediaFiliacion(): HasOne
+    {
+        return $this->hasOne(MediaFiliacion::class);
+    }
+
     // TODO: Modelo y catalogo de ocupaciones.
 
     public function toSearchableArray()

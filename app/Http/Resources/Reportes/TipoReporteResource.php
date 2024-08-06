@@ -13,6 +13,7 @@ class TipoReporteResource extends JsonResource
         return [
             'id' => $this->id,
             'nombre' => $this->nombre,
+            'abreviatura' => $this->abreviatura
         ];
     }
 }

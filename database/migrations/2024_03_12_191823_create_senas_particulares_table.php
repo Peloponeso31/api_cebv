@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId("persona_id");
             $table->foreignId("region_cuerpo_id")->nullable();
-           // $table->foreignId("region_cuerpo_rnpdno_id")->nullable();
+            //$table->foreignId("region_cuerpo_rnpdno_id")->nullable();
             $table->foreignId("vista_id")->nullable();
             $table->foreignId("lado_id")->nullable();
             $table->foreignId("tipo_id")->nullable();

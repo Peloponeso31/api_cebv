@@ -20,6 +20,7 @@ use App\Models\Reportes\Reporte;
 use App\Models\SenasParticulares;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
+use Illuminate\Support\Facades\Storage;
 
 class SyncReporteController extends Controller
 {
@@ -28,6 +29,23 @@ class SyncReporteController extends Controller
     function __construct(SyncModules $sync)
     {
         $this->sync = $sync;
+    }
+
+    private function getExtension($base64)
+    {
+        $formatos = [
+            "IVBOR" => "png",
+            "/9J/4" => "jpg",
+            "AAAAF" => "mp4",
+            "JVBER" => "pdf",
+            "AAABA" => "ico",
+            "UMFYI" => "rar",
+            "E1XYD" => "rtf",
+            "U1PKC" => "txt",
+            "77U/M" => "srt",
+        ];
+
+        return $formatos[strtoupper($base64)] ?? '';
     }
 
     private function updateOrCreatePersona($persona)
@@ -175,8 +193,15 @@ class SyncReporteController extends Controller
                     "tipo_id" => $sena["tipo"]["id"] ?? null,
                     "cantidad" => $sena["cantidad"] ?? null,
                     "descripcion" => $sena["descripcion"] ?? null,
-                    "foto" => $sena["foto"] ?? null,
                 ])->id;
+
+                if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
+                    $last_sena = SenasParticulares::findOrFail(end($senas_modified));
+                    $path = $persona_created->id. '/senas_particulares/' . $last_sena->id . '.png';
+                    Storage::put($path, base64_decode($sena['encoded_image']));
+                    $last_sena->foto = $path;
+                    $last_sena->save();
+                }
             }
 
             $senas_eliminables = $persona_created->senasParticulares->except($senas_modified);

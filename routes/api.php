@@ -211,7 +211,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);
     Route::get('/desaparecidos_folio', [DesaparecidoController::class, 'desaparecido_persona_folio']);
-    Route::post('/desaparecidos/{desaparecido_id}/fotos/upload', [FotosDesaparecidoController::class, 'upload']);
+    Route::post('/desaparecidos/fotos/{desaparecido_id}', [FotosDesaparecidoController::class, 'upload']);
+    Route::post('/desaparecidos/senas-particulares/{desaparecido_id}', [FotosDesaparecidoController::class, 'uploadSenas']);
     Route::apiResource('/documentos-legales', DocumentoLegalController::class);
 
     /**
@@ -222,7 +223,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/asentamientos', AsentamientoController::class);
     Route::apiResource('/direcciones', DireccionController::class);
     Route::apiResource('/zonas-estados', ZonaEstadoController::class);
-    Route::apiResource('/senas_particulares', SenasParticularesController::class);
+    Route::apiResource('/senas-particulares', SenasParticularesController::class);
+    Route::get('/senas-particulares/foto/{sena_id}', [FotosDesaparecidoController::class, 'getFotoSena']);
 
     Route::post('/bulk_insert/senas_particulares', [SenasParticularesController::class, 'bulkStore']);
     Route::delete('/bulk_delete/senas_particulares', [SenasParticularesController::class, 'bulkDelete']);

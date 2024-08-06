@@ -42,7 +42,7 @@ class Handler extends ExceptionHandler
                     'info_exepcion_interno' => $e,
                     'mensaje_excepcion_interno' => $e->getMessage(),
                     'error_detectado_en' => $e->getBindings(),
-                    'request' => $request->all()
+                    //'request' => $request->all()
                 ], 500);
             }
         });
@@ -55,7 +55,7 @@ class Handler extends ExceptionHandler
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
                     'campos_faltantes' => $e->validator->errors(),
-                    'request' => $request->all()
+                    //'request' => $request->all()
                 ], 422);
             }
         });
@@ -67,7 +67,7 @@ class Handler extends ExceptionHandler
                     'causa' => get_class($e),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
-                    'request' => $request->all()
+                    //'request' => $request->all()
                 ], 404);
             }
         });
@@ -79,7 +79,7 @@ class Handler extends ExceptionHandler
                     'causa' => get_class($e),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
-                    'request' => $request->all()
+                    //'request' => $request->all()
                 ], 404);
             }
         });
@@ -92,7 +92,7 @@ class Handler extends ExceptionHandler
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
                     'ir_a' => $e->redirectTo(),
-                    'request' => $request->all()
+                    //'request' => $request->all()
                 ], 401);
             }
         });
@@ -106,7 +106,7 @@ class Handler extends ExceptionHandler
                     "linea" => $e->getLine(),
                     'info_excepcion_interno' => $e->getMessage(),
                     'mensaje_excepcion_interno' => $e->getMessage(),
-                    'request' => $request->all()
+                    //'request' => $request->all()
                 ], 400);
             }
         });

@@ -213,8 +213,8 @@ class SyncReporteController extends Controller
         if (isset($persona["media_filiacion"]) && $persona["media_filiacion"] != null) {
             $media_filiacion = $persona["media_filiacion"];
             MediaFiliacion::updateOrCreate([
-                "id" => $persona["media_filiacion"]["id"] ?? null,
-                "persona_id" => $persona["persona_id"] ?? $persona_created->id ?? null,
+                "id" => $media_filiacion["id"] ?? null,
+                "persona_id" => $persona_created->id ?? null,
             ],[
                 "estatura" =>$media_filiacion["estatura"] ?? null,
                 "peso" =>$media_filiacion["peso"] ?? null,

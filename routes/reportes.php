@@ -5,6 +5,7 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use Illuminate\Support\Facades\Route;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use App\Models\Reportes\Reporte;
 
 /*
@@ -20,7 +21,7 @@ use App\Models\Reportes\Reporte;
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get("/informes-inicios/{id}", function (string $id) {
-        $desaparecido = Desaparecido::whereId($id)->first();
+        $desaparecido = Desaparecido::findOrFail($id);
         $reporte = Reporte::findOrFail($desaparecido->reporte_id);
         $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
 
@@ -70,20 +71,23 @@ Route::middleware('auth:sanctum')->group(function () {
     // Boletin de busqueda inmediata
     Route::get("/boletines/{id}", function (string $id, Request $request) {
         $desaparecido = Desaparecido::findOrFail($id);
+        $reporte = Reporte::findOrFail($desaparecido->reporte_id);
+        $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
+
+        $folio = Folio::where([
+            ["reporte_id", "=", $reporte->id],
+            ["persona_id", "=", $desaparecido->persona->id]
+        ])->first();
+
         $imagen = Storage::get($desaparecido->boletin_img_path);
         $tamanoPapel = [0.0, 0.0, 2215, 2215];
 
-        //return view("reportes.boletin_BI",
-        //    [
-        //        "desaparecido" => $desaparecido,
-        //        "imagen" => "data:image/jpg;base64," . base64_encode($imagen)
-        //    ]);
-
-        return Pdf::loadView("reportes.boletin_BI",
-            [
-                "desaparecido" => $desaparecido,
-                "imagen" => "data:image/jpg;base64," . base64_encode($imagen),
-            ])->setPaper($tamanoPapel)->stream();
+        return Pdf::loadView("reportes.boletin_BI", [
+            "desaparecido" => $desaparecido,
+            "imagen" => "data:image/jpg;base64," . base64_encode($imagen),
+            "folio" => $folio,
+            "senas" => $request->senas ?? null
+        ])->setPaper($tamanoPapel)->stream();
     });
 
     Route::get("/boletines-lds/{id}", function (string $id) {

@@ -42,7 +42,10 @@ class Desaparecido extends Model
         'fecha_desaparicion_aproximada',
         'fecha_desaparicion_cebv',
         'observaciones_fecha_desaparicion',
-        'boletin_img_path'
+        'boletin_img_path',
+        'edad_momento_desaparicion_anos',
+        'edad_momento_desaparicion_meses',
+        'edad_momento_desaparicion_dias'
     ];
 
     protected $casts = [

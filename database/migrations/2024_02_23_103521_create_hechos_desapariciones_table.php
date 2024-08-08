@@ -21,11 +21,10 @@ return new class extends Migration {
             $table->string('fecha_percato_cebv')->nullable();
             $table->string('hora_percato')->nullable();;
             $table->text('aclaraciones_fecha_hechos')->nullable();
-            $table->boolean('cambio_comportamiento')->nullable();
-            $table->text('descripcion_cambio_comportamiento')->nullable();
-            $table->boolean('fue_amenazado')->nullable();
-            $table->text('descripcion_amenaza')->nullable();
-            $table->integer('contador_desapariciones')->nullable();
+
+            $table->boolean('amenaza_cambio_comportamiento')->nullable();
+            $table->text('descripcion_amenaza_cambio_comportamiento')->nullable();
+            $table->integer('contador_desapariciones')->default(0)->nullable();
             $table->text('situacion_previa')->nullable();
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();

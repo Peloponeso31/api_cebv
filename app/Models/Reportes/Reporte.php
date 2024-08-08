@@ -3,6 +3,7 @@
 namespace App\Models\Reportes;
 
 use App\Models\ControlOgpi;
+use App\Models\Expediente;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
@@ -155,6 +156,11 @@ class Reporte extends Model
     public function vehiculos(): HasMany
     {
         return $this->hasMany(Vehiculo::class);
+    }
+
+    public function expedientes(): HasMany
+    {
+        return $this->hasMany(Expediente::class);
     }
 
     /**

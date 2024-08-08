@@ -13,6 +13,7 @@ use App\Models\ContextoSocial;
 use App\Models\Escolaridad;
 use App\Models\EstadoConyugal;
 use App\Models\Etnia;
+use App\Models\Expediente;
 use App\Models\Genero;
 use App\Models\GrupoVulnerable;
 use App\Models\MediaFiliacion;
@@ -240,6 +241,11 @@ class Persona extends Model
     public function mediaFiliacion(): HasOne
     {
         return $this->hasOne(MediaFiliacion::class);
+    }
+
+    public function expedientes(): HasMany
+    {
+        return $this->hasMany(Expediente::class);
     }
 
     // TODO: Modelo y catalogo de ocupaciones.

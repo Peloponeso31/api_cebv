@@ -52,6 +52,18 @@ class UserSeeder extends Seeder
             'email' => 'nicolas@cebv.com',
         ]);
 
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'persona_id' => Persona::create([
+                    'nombre' => 'Jonatan',
+                    'apellido_paterno' => 'Luna',
+                    'apellido_materno' => 'Franco',
+                ])->id,
+                'puesto_id' => 2,
+            ])->id,
+            'email' => 'jon@cebv.com',
+        ]);
+
         /*
          * Test users for permissions
          */

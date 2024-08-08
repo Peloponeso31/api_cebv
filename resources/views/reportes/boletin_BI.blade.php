@@ -12,7 +12,7 @@
 
 <style>
 
-    html, body {
+    html, body, {
         margin: 0;
         padding: 0;
         height: 100%;
@@ -20,6 +20,10 @@
         background-image: url("{{ public_path('reportes/boletin_BI/Edit_Busqueda Inmediata.png') }}");
         background-repeat: no-repeat;
         background-position: center center;
+        font-family: "Montserrat", sans-serif;
+    }
+
+    pre {
         font-family: "Montserrat", sans-serif;
     }
 
@@ -196,7 +200,7 @@ El div de dentro determina las dimensiones de la imagen.
 
 <div id="senas-particulares">
     @isset($senas)
-        <p class="texto"> <b class="resaltado"> Señas particulares: </b> <br> {{ $senas }}. </p>
+        <pre class="texto"><b class="resaltado">Señas particulares:</b><br>{{ $senas }}</pre>
     @endisset
 </div>
 

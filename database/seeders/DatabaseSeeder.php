@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             TipoHipotesisSeeder::class,
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
+            AreaAtiendeMunicipioSeeder::class,
             ZonaEstadoSeeder::class,
             SexoSeeder::class,
             GeneroSeeder::class,

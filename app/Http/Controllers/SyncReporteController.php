@@ -372,6 +372,10 @@ class SyncReporteController extends Controller
             $this->sync->Expediente($reporte->id, $request);
         }
 
+        if ($request->has("desaparicion_forzada") && $request->desaparicion_forzada != null) {
+            $this->sync->DesaparicionForzada($reporte->id, $request);
+        }
+
         return ReporteResource::make($reporte);
     }
 }

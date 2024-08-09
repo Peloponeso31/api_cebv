@@ -3,6 +3,7 @@
 namespace App\Models\Reportes;
 
 use App\Models\ControlOgpi;
+use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
@@ -161,6 +162,11 @@ class Reporte extends Model
     public function expedientes(): HasMany
     {
         return $this->hasMany(Expediente::class);
+    }
+
+    public function desaparicionForzada(): HasOne
+    {
+        return $this->hasOne(DesaparicionForzada::class);
     }
 
     /**

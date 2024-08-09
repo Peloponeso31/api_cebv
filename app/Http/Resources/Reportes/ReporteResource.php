@@ -4,6 +4,7 @@ namespace App\Http\Resources\Reportes;
 
 use App\Enums\TipoExpediente;
 use App\Http\Resources\ControlOgpiResource;
+use App\Http\Resources\DesaparicionForzadaResource;
 use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
@@ -58,6 +59,8 @@ class ReporteResource extends JsonResource
             'folios' => FolioResource::collection($folios),
             // Expedientes
             'expedientes' => ExpedienteResource::collection($expedientes),
+            // Desaparicion forzada
+            'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
         ];
     }
 }

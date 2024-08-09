@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Particular extends Model
 {
@@ -13,4 +14,9 @@ class Particular extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function desaparicionesForzadas(): HasMany
+    {
+        return $this->hasMany(DesaparicionForzada::class);
+    }
 }

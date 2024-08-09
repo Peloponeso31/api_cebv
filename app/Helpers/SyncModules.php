@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Http\Requests\ReporteTotalRequest;
 use App\Models\ControlOgpi;
+use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
@@ -78,6 +79,8 @@ class SyncModules
 
     public function Hipotesis($reporteId, ReporteTotalRequest $request)
     {
+        if (!isset($request->expedientes)) return;
+
         // Obtener todos los ID de los registros existentes para el reporte
         $existentesIds = Expediente::where('reporte_id', $reporteId)
             ->pluck('id')
@@ -85,8 +88,6 @@ class SyncModules
 
         // Recopilar los ID de los registros recibidos en la solicitud
         $recibidosIds = [];
-
-        if (!isset($request->expedientes)) return;
 
         foreach ($request->hipotesis as $hp) {
             $registro = Hipotesis::updateOrCreate([
@@ -117,6 +118,8 @@ class SyncModules
      */
     public function Expediente($reporteId, ReporteTotalRequest $request): void
     {
+        if (!isset($request->expedientes)) return;
+
         // Obtener todos los ID de los registros existentes para el reporte
         $existentesIds = Expediente::where('reporte_id', $reporteId)
             ->pluck('id')
@@ -124,8 +127,6 @@ class SyncModules
 
         // Recopilar los ID de los registros recibidos en la solicitud
         $recibidosIds = [];
-
-        if (!isset($request->expedientes)) return;
 
         foreach ($request->expedientes as $item) {
             $registro = Expediente::updateOrCreate(
@@ -139,7 +140,6 @@ class SyncModules
                     'parentesco_id' => $item["parentesco"]["id"] ?? null,
                 ]
             );
-
             // Guardar el ID actualizado o creado
             $recibidosIds[] = $registro->id;
         }
@@ -151,5 +151,33 @@ class SyncModules
         if (!empty($eliminablesIds)) {
             Expediente::whereIn('id', $eliminablesIds)->delete();
         }
+    }
+
+    public function DesaparicionForzada($reporteId, ReporteTotalRequest $request): void
+    {
+        if (!isset($request->desaparicion_forzada)) return;
+
+        DesaparicionForzada::updateOrCreate([
+            'id' => $request->desaparicion_forzada['id'] ?? null,
+            'reporte_id' => $reporteId,
+        ], [
+            'desaparecio_autoridad' => $request->desaparicion_forzada['desaparecio_autoridad'] ?? null,
+            'autoridad_id' => $request->desaparicion_forzada['autoridad']['id'] ?? null,
+            'descripcion_autoridad' => $request->desaparicion_forzada['descripcion_autoridad'] ?? null,
+            'desaparecio_particular' => $request->desaparicion_forzada['desaparecio_particular'] ?? null,
+            'particular_id' => $request->desaparicion_forzada['particular']['id'] ?? null,
+            'descripcion_particular' => $request->desaparicion_forzada['descripcion_particular'] ?? null,
+            'metodo_captura_id' => $request->desaparicion_forzada['metodo_captura']['id'] ?? null,
+            'descripcion_metodo_captura' => $request->desaparicion_forzada['descripcion_metodo_captura'] ?? null,
+            'medio_captura_id' => $request->desaparicion_forzada['medio_captura']['id'] ?? null,
+            'descripcion_medio_captura' => $request->desaparicion_forzada['descripcion_medio_captura'] ?? null,
+            'detencion_previa_extorsion' => $request->desaparicion_forzada['detencion_previa_extorsion'] ?? null,
+            'descripcion_detencion_previa_extorsion' => $request->desaparicion_forzada['descripcion_detencion_previa_extorsion'] ?? null,
+            'ha_sido_avistado' => $request->desaparicion_forzada['ha_sido_avistado'] ?? null,
+            'donde_ha_sido_avistado' => $request->desaparicion_forzada['donde_ha_sido_avistado'] ?? null,
+            'delitos_desaparicion' => $request->desaparicion_forzada['delitos_desaparicion'] ?? null,
+            'descripcion_delitos_desaparicion' => $request->desaparicion_forzada['descripcion_delitos_desaparicion'] ?? null,
+            'descripcion_grupo_perpetrador' => $request->desaparicion_forzada['descripcion_grupo_perpetrador'] ?? null,
+        ]);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\CejaController;
 use App\Http\Controllers\ColectivoController;
 use App\Http\Controllers\CondicionSaludController;
 use App\Http\Controllers\ControlOgpiController;
+use App\Http\Controllers\DesaparicionForzadaController;
 use App\Http\Controllers\EnfermedadPielController;
 use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
@@ -323,6 +324,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/perpetradores', PerpetradorController::class);
     Route::apiResource('/control-ogpis', ControlOgpiController::class);
     Route::apiResource('/expedientes', ExpedienteController::class);
+    Route::apiResource('/desapariciones-forzadas', DesaparicionForzadaController::class);
 
     Route::get('personas/{persona}/folios', [PersonaController::class, 'getFolios']);
 });

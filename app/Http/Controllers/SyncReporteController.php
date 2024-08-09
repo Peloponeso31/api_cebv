@@ -9,10 +9,7 @@ use App\Models\Apodo;
 use App\Models\Catalogos\PrendaDeVestir;
 use App\Models\Contacto;
 use App\Models\MediaFiliacion;
-use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
-use App\Models\Reportes\Hechos\HechoDesaparicion;
-use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -72,6 +69,7 @@ class SyncReporteController extends Controller
             'ocupacion' => $persona["ocupacion"] ?? null,
             'nacionalidades' => $persona["nacionalidades"] ?? null,
             'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
+            'numero_personas_vive' => $persona["numero_personas_vive"] ?? null,
         ]);
 
         if (isset($persona["apodos"]) && $persona["apodos"] != null) {
@@ -197,7 +195,7 @@ class SyncReporteController extends Controller
 
                 if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
                     $last_sena = SenasParticulares::findOrFail(end($senas_modified));
-                    $path = $persona_created->id. '/senas_particulares/' . $last_sena->id . '.png';
+                    $path = $persona_created->id . '/senas_particulares/' . $last_sena->id . '.png';
                     Storage::put($path, base64_decode($sena['encoded_image']));
                     $last_sena->foto = $path;
                     $last_sena->save();
@@ -213,11 +211,11 @@ class SyncReporteController extends Controller
         if (isset($persona["media_filiacion"]) && $persona["media_filiacion"] != null) {
             $media_filiacion = $persona["media_filiacion"];
             MediaFiliacion::updateOrCreate([
-                "id" => $media_filiacion["id"] ?? null,
-                "persona_id" => $persona_created->id ?? null,
-            ],[
-                "estatura" =>$media_filiacion["estatura"] ?? null,
-                "peso" =>$media_filiacion["peso"] ?? null,
+                "id" => $persona["media_filiacion"]["id"] ?? null,
+                "persona_id" => $persona["persona_id"] ?? $persona_created->id ?? null,
+            ], [
+                "estatura" => $media_filiacion["estatura"] ?? null,
+                "peso" => $media_filiacion["peso"] ?? null,
                 "complexion_id" => $media_filiacion["complexion"]["id"] ?? null,
                 "color_piel_id" => $media_filiacion["color_piel"]["id"] ?? null,
                 "color_ojos_id" => $media_filiacion["color_ojos"]["id"] ?? null,
@@ -263,11 +261,11 @@ class SyncReporteController extends Controller
         }
 
         if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {
-            $this->syncHechosDesaparicion($reporte->id, $request);
+            $this->sync->HechosDesaparicion($reporte->id, $request);
         }
 
         if ($request->has("hipotesis") && $request->hipotesis != null) {
-            $this->syncHipotesis($reporte->id, $request);
+            $this->sync->Hipotesis($reporte->id, $request);
         }
 
         if ($request->has("reportantes") && $request->reportantes != null) {
@@ -371,86 +369,22 @@ class SyncReporteController extends Controller
             $this->sync->ControlOgpi($reporte->id, $request);
         }
 
-        return ReporteResource::make($reporte);
-    }
-
-    /**
-     * Delegación de responsabilidades
-     */
-
-    /**
-     * Este método sincroniza los hechos de desaparición de un reporte,
-     * se encarga de crear, actualizar y eliminar los hechos de desaparición
-     * de un reporte según los datos que se le pasen desde el cliente.
-     *
-     * @param $reporteId
-     * @param ReporteTotalRequest $request
-     * @return void
-     */
-    public function syncHechosDesaparicion($reporteId, ReporteTotalRequest $request)
-    {
-        if (!is_int($reporteId) || $reporteId == null) return;
-
-        HechoDesaparicion::updateOrCreate([
-            'id' => $request->hechos_desaparicion["id"] ?? null,
-            'reporte_id' => $reporteId,
-        ], [
-            'direccion_id' => $this->syncLugarHechos($request->hechos_desaparicion["lugar_hechos"]) ?? null,
-            'fecha_desaparicion' => $request->hechos_desaparicion["fecha_desaparicion"] ?? null,
-            'fecha_desaparicion_cebv' => $request->hechos_desaparicion["fecha_desaparicion_cebv"] ?? null,
-            'hora_desaparicion' => $request->hechos_desaparicion["hora_desaparicion"] ?? null,
-            'fecha_percato' => $request->hechos_desaparicion["fecha_percato"] ?? null,
-            'fecha_percato_cebv' => $request->hechos_desaparicion["fecha_percato_cebv"] ?? null,
-            'hora_percato' => $request->hechos_desaparicion["hora_percato"] ?? null,
-            'aclaraciones_fecha_hechos' => $request->hechos_desaparicion["aclaraciones_fecha_hechos"] ?? null,
-            'cambio_comportamiento' => $request->hechos_desaparicion["cambio_comportamiento"] ?? false,
-            'descripcion_cambio_comportamiento' => $request->hechos_desaparicion["descripcion_cambio_comportamiento"] ?? null,
-            'fue_amenazado' => $request->hechos_desaparicion["fue_amenazado"] ?? null,
-            'descripcion_amenaza' => $request->hechos_desaparicion["descripcion_amenaza"] ?? null,
-            'contador_desapariciones' => $request->hechos_desaparicion["contador_desapariciones"] ?? null,
-            'situacion_previa' => $request->hechos_desaparicion["situacion_previa"] ?? null,
-            'informacion_relevante' => $request->hechos_desaparicion["informacion_relevante"] ?? null,
-            'hechos_desaparicion' => $request->hechos_desaparicion["hechos_desaparicion"] ?? null,
-            'sintesis_desaparicion' => $request->hechos_desaparicion["sintesis_desaparicion"] ?? null,
-            'desaparecio_acompanado' => $request->hechos_desaparicion["desaparecio_acompanado"] ?? null,
-            'personas_mismo_evento' => $request->hechos_desaparicion["personas_mismo_evento"] ?? null,
-        ]);
-    }
-
-    public function syncLugarHechos($lugar_hechos)
-    {
-        if ($lugar_hechos == null) return;
-
-        $direccion_created = Direccion::updateOrCreate([
-            "id" => $lugar_hechos["id"] ?? null
-        ], [
-            "asentamiento_id" => $lugar_hechos["asentamiento"]["id"] ?? null,
-            "calle" => $lugar_hechos["calle"] ?? null,
-            "colonia" => $lugar_hechos["colonia"] ?? null,
-            "numero_exterior" => $lugar_hechos["numero_exterior"] ?? null,
-            "numero_interior" => $lugar_hechos["numero_interior"] ?? null,
-            "calle_1" => $lugar_hechos["calle_1"] ?? null,
-            "calle_2" => $lugar_hechos["calle_2"] ?? null,
-            "tramo_carretero" => $lugar_hechos["tramo_carretero"] ?? null,
-            "codigo_postal" => $lugar_hechos["codigo_postal"] ?? null,
-            "referencia" => $lugar_hechos["referencia"] ?? null,
-        ]);
-
-        return $direccion_created->id;
-    }
-
-    public function syncHipotesis($reporteId, ReporteTotalRequest $request)
-    {
-        foreach ($request->hipotesis as $hp) {
-            Hipotesis::updateOrCreate([
-                'id' => $hp["id"] ?? null,
-                'reporte_id' => $reporteId,
-            ], [
-                'tipo_hipotesis_id' => $hp["tipo_hipotesis"]["id"] ?? null,
-                'sitio_id' => $hp["sitio"]["id"] ?? null,
-                'area_asigna_sitio_id' => $hp["area_asigna_sitio"]["id"] ?? null,
-                'etapa' => $hp["etapa"] ?? null,
-            ]);
+        if ($request->has("expedientes") && $request->expedientes != null) {
+            $this->sync->Expediente($reporte->id, $request);
         }
+
+        if ($request->has("desaparicion_forzada") && $request->desaparicion_forzada != null) {
+            $this->sync->DesaparicionForzada($reporte->id, $request);
+        }
+
+        if ($request->has("perpetradores") && $request->perpetradores != null) {
+            $this->sync->Perpetradores($reporte->id, $request);
+        }
+
+        if ($request->has("contexto_familiar") && $request->contexto_familiar != null) {
+            $this->sync->ContextoFamiliar($reporte->id, $request);
+        }
+
+        return ReporteResource::make($reporte);
     }
 }

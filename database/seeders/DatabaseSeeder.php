@@ -2,10 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\CaracteristicasFisicas;
-use App\Models\ContextoSocial;
-use App\Models\MarcaVehiculo;
-use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,7 +31,6 @@ class DatabaseSeeder extends Seeder
             CompaniaTelefonicaSeeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class,
             NacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,

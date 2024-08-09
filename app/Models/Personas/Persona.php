@@ -13,6 +13,7 @@ use App\Models\ContextoSocial;
 use App\Models\Escolaridad;
 use App\Models\EstadoConyugal;
 use App\Models\Etnia;
+use App\Models\Expediente;
 use App\Models\Genero;
 use App\Models\GrupoVulnerable;
 use App\Models\MediaFiliacion;
@@ -64,6 +65,8 @@ class Persona extends Model
         'rfc',
         'ocupacion',
         'nivel_escolaridad',
+        // Contexto social
+        'numero_personas_vive'
     ];
 
     protected $casts = [
@@ -242,7 +245,11 @@ class Persona extends Model
         return $this->hasOne(MediaFiliacion::class);
     }
 
-    // TODO: Modelo y catalogo de ocupaciones.
+    public function expedientes(): HasMany
+    {
+        return $this->hasMany(Expediente::class);
+    }
+
 
     public function toSearchableArray()
     {

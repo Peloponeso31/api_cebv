@@ -2,10 +2,15 @@
 
 namespace App\Http\Resources\Reportes;
 
+use App\Enums\TipoExpediente;
+use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\ControlOgpiResource;
+use App\Http\Resources\DesaparicionForzadaResource;
+use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\Oficialidades\AreaResource;
+use App\Http\Resources\PerpetradorResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
 use App\Http\Resources\Reportes\Hipotesis\HipotesisResource;
 use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
@@ -13,6 +18,7 @@ use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
 use App\Http\Resources\Ubicaciones\ZonaEstadoResource;
+use App\Models\Expediente;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
@@ -25,6 +31,7 @@ class ReporteResource extends JsonResource
     {
         $hecho = HechoDesaparicion::where('reporte_id', $this->id)->first();
         $folios = Folio::where('reporte_id', $this->id)->get();
+        $expedientes = Expediente::where('reporte_id', $this->id)->get();
         return [
             'id' => $this->id,
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
@@ -52,6 +59,14 @@ class ReporteResource extends JsonResource
             'control_ogpi' => ControlOgpiResource::make($this->controlOgpi),
             // Folio
             'folios' => FolioResource::collection($folios),
+            // Expedientes
+            'expedientes' => ExpedienteResource::collection($expedientes),
+            // Desaparicion forzada
+            'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
+            // Perpetradores
+            'perpetradores' => PerpetradorResource::collection($this->perpetradores),
+            // Contexto Familiar
+            'contexto_familiar' => ContextoFamiliarResource::make($this->contextoFamiliar),
         ];
     }
 }

@@ -22,16 +22,16 @@ class Perpetrador extends Model
 
     public function sexo(): BelongsTo
     {
-        return $this->belongsTo(Sexo::class);
+        return $this->belongsTo(Sexo::class, 'sexo_id');
     }
 
     public function estatusPerpetrador(): BelongsTo
     {
-        return $this->belongsTo(EstatusPerpetrador::class);
+        return $this->belongsTo(EstatusPerpetrador::class, 'estatus_perpetrador_id');
     }
 
     public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class);
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 }

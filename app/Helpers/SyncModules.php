@@ -6,6 +6,7 @@ use App\Http\Requests\ReporteTotalRequest;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
+use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Ubicaciones\Direccion;
@@ -179,5 +180,43 @@ class SyncModules
             'descripcion_delitos_desaparicion' => $request->desaparicion_forzada['descripcion_delitos_desaparicion'] ?? null,
             'descripcion_grupo_perpetrador' => $request->desaparicion_forzada['descripcion_grupo_perpetrador'] ?? null,
         ]);
+    }
+
+    public function Perpetradores($reporteId, ReporteTotalRequest $request): void
+    {
+        if (!isset($request->perpetradores)) return;
+
+        // Obtener todos los ID de los registros existentes para el reporte
+        $existentesIds = Perpetrador::where('reporte_id', $reporteId)
+            ->pluck('id')
+            ->toArray();
+
+        // Recopilar los ID de los registros recibidos en la solicitud
+        $recibidosIds = [];
+
+        foreach ($request->perpetradores as $item) {
+            $registro = Perpetrador::updateOrCreate(
+                [
+                    'id' => $item["id"] ?? null,
+                    'reporte_id' => $reporteId,
+                ],
+                [
+                    'sexo_id' => $item["sexo"]["id"] ?? null,
+                    'estatus_perpetrador_id' => $item["estatus_perpetrador"]["id"] ?? null,
+                    'nombre' => $item["nombre"] ?? null,
+                    'descripcion' => $item["descripcion"] ?? null,
+                ]
+            );
+            // Guardar el ID actualizado o creado
+            $recibidosIds[] = $registro->id;
+        }
+
+        // Identificar los ID que deben ser eliminados
+        $eliminablesIds = array_diff($existentesIds, $recibidosIds);
+
+        // Eliminar los registros que ya no están en la lista recibida
+        if (!empty($eliminablesIds)) {
+            Perpetrador::whereIn('id', $eliminablesIds)->delete();
+        }
     }
 }

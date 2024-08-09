@@ -9,6 +9,7 @@ use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\Oficialidades\AreaResource;
+use App\Http\Resources\PerpetradorResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
 use App\Http\Resources\Reportes\Hipotesis\HipotesisResource;
 use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
@@ -61,6 +62,8 @@ class ReporteResource extends JsonResource
             'expedientes' => ExpedienteResource::collection($expedientes),
             // Desaparicion forzada
             'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
+            // Perpetradores
+            'perpetradores' => PerpetradorResource::collection($this->perpetradores),
         ];
     }
 }

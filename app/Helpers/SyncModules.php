@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Http\Requests\ReporteTotalRequest;
+use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;

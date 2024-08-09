@@ -65,6 +65,8 @@ class Persona extends Model
         'rfc',
         'ocupacion',
         'nivel_escolaridad',
+        // Contexto social
+        'numero_personas_vive'
     ];
 
     protected $casts = [
@@ -248,7 +250,6 @@ class Persona extends Model
         return $this->hasMany(Expediente::class);
     }
 
-    // TODO: Modelo y catalogo de ocupaciones.
 
     public function toSearchableArray()
     {

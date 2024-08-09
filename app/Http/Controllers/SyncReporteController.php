@@ -69,6 +69,7 @@ class SyncReporteController extends Controller
             'ocupacion' => $persona["ocupacion"] ?? null,
             'nacionalidades' => $persona["nacionalidades"] ?? null,
             'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
+            'numero_personas_vive' => $persona["numero_personas_vive"] ?? null,
         ]);
 
         if (isset($persona["apodos"]) && $persona["apodos"] != null) {
@@ -378,6 +379,10 @@ class SyncReporteController extends Controller
 
         if ($request->has("perpetradores") && $request->perpetradores != null) {
             $this->sync->Perpetradores($reporte->id, $request);
+        }
+
+        if ($request->has("contexto_familiar") && $request->contexto_familiar != null) {
+            $this->sync->ContextoFamiliar($reporte->id, $request);
         }
 
         return ReporteResource::make($reporte);

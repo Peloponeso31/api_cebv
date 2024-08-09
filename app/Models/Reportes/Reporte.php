@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes;
 
+use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
@@ -9,7 +10,6 @@ use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
 use App\Models\Perpetrador;
-use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
@@ -22,10 +22,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
-use Illuminate\Support\Carbon;
 
 class Reporte extends Model
 {
@@ -167,6 +165,11 @@ class Reporte extends Model
     public function desaparicionForzada(): HasOne
     {
         return $this->hasOne(DesaparicionForzada::class);
+    }
+
+    public function contextoFamiliar(): HasOne
+    {
+        return $this->hasOne(ContextoFamiliar::class);
     }
 
     /**

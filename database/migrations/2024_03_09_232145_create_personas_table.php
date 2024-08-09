@@ -33,6 +33,8 @@ return new class extends Migration {
             $table->string('rfc', 13)->unique()->nullable();
             $table->enum('nivel_escolaridad', ['TERMINADA', 'EN CURSO', 'NO ESPECIFICA'])->nullable();
             $table->string('ocupacion')->nullable();
+            // Contexto social
+            $table->integer('numero_personas_vive')->nullable();
 
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('estados');

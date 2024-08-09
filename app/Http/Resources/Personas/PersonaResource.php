@@ -60,7 +60,9 @@ class PersonaResource extends JsonResource
             'escolaridad' => EscolaridadResource::make($this->escolaridad),
             'estado_conyugal' => EstadoConyugalResource::make($this->estadoConyugal),
             'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
-            'media_filiacion' => MediaFiliacionResource::make($this->mediaFiliacion)
+            'media_filiacion' => MediaFiliacionResource::make($this->mediaFiliacion),
+            // Contexto Familiar
+            'numero_personas_vive' => $this->numero_personas_vive,
         ];
     }
 }

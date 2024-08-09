@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contexto_familiars', function (Blueprint $table) {
+        Schema::create('contextos_familiares', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('persona_id') -> constrained(table: 'personas');
-            $table->string("personas_vive")->nullable();
-            $table->integer("hijos")->nullable();
-            $table->string("familiar_cercano")->nullable();
-            $table->string("familiar_violencia")->nullable();
-            $table->timestamps();
+            $table->foreignId('reporte_id') -> constrained(table: 'reportes');
+
+            $table->integer('numero_personas_vive')->nullable();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contexto_familiars');
+        Schema::dropIfExists('contextos_familiares');
     }
 };

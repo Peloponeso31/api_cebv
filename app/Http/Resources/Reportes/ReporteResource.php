@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Reportes;
 
 use App\Enums\TipoExpediente;
+use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\ControlOgpiResource;
 use App\Http\Resources\DesaparicionForzadaResource;
 use App\Http\Resources\ExpedienteResource;
@@ -64,6 +65,8 @@ class ReporteResource extends JsonResource
             'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
             // Perpetradores
             'perpetradores' => PerpetradorResource::collection($this->perpetradores),
+            // Contexto Familiar
+            'contexto_familiar' => ContextoFamiliarResource::make($this->contextoFamiliar),
         ];
     }
 }

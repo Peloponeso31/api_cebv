@@ -145,7 +145,6 @@ html, body {
   </tr>
 </table>
 <table>
-    
     <tr style="height: 10px;">
     <td rowspan="9"> <img src="{{ public_path('reportes/boletin_BI/foto_mia.jpg') }}" width="50%" height="50%" ></td>
         <td class="montserrat-alternates-regular"><h3><b>SEXO:</b></h3> {{ $desaparecido->persona->sexo_al_nacer }}  </td>

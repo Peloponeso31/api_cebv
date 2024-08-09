@@ -765,7 +765,6 @@ h1, h2{
                 <td></td>
             </tr>
         </table>
-
         </section>
     
     <section id="Desaparecida">
@@ -1388,7 +1387,7 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-
+        
         <section id="Orejast">
             <br> <h2>Enfermedades de la piel</h2><br>
             
@@ -1451,7 +1450,6 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-
     
         <section id="contexto familiar">
             <h2>Modo, tiempo y lugar de la desaparición</h2>
@@ -2198,12 +2196,7 @@ h1, h2{
                     <td></td>
                 </tr>
             </table>
-        </section>
-
-
-    
-    
-    
+        </section>    
     
         <div id="footer">
             <p>

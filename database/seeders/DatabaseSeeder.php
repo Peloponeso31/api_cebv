@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             InstitucionSeeder::class,
             MedioSeeder::class,
             ParentescoSeeder::class,
-            CatalogosSeeder::class,
             SitioSeeder::class,
             TipoHipotesisSeeder::class,
             TipoReporteSeeder::class,
@@ -47,7 +46,12 @@ class DatabaseSeeder extends Seeder
             ColorSeeder::class,
             RazonesCurpSeeder::class,
             TiposDomicilioSeeder::class,
-            PuestoSeeder::class
+            PuestoSeeder::class,
+            RegionCuerpoSeeder::class,
+            LadoSeeder::class,
+            OficinaSeeder::class,
+            TipoSeeder::class,
+            VistaSeeder::class
         ]);
 
         /**

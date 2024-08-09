@@ -6,9 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+
 <style>
+
+</style>
+
+<body>
+
+</body>
+
+{{-- <!-- <style>
     @page {
-        margin: 100px 50px;
+        margin: 0px 0px;
     }
 
     #header {
@@ -196,4 +205,7 @@
     </p>
 </div>
 </body>
+
+--> --}}
+
 </html>

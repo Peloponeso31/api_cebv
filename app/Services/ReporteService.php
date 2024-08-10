@@ -69,16 +69,14 @@ class ReporteService
 
     public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido): void
     {
-        if ($reporte->hechoDesaparicion)
-            $fechaDesaparicion = is_null($reporte->hechoDesaparicion->fecha_desaparicion)
-                ? 'AA'
-                : $reporte->hechoDesaparicion->fecha_desaparicion->format('y');
+        $fechaDesaparicion = $reporte->hechoDesaparicion->fecha_desaparicion;
+        if (!isset($reporte->tipoReporte)) return;
 
-        else $fechaDesaparicion = 'AA';
-
-        if ($reporte->tipoReporte && in_array($reporte->tipoReporte->abreviatura, ['SC', 'SD', 'SBF'])) $terminacion = $reporte->estado->abreviatura_cebv;
-        if ($reporte->zonaEstado->abreviatura == null) return;
-        else $terminacion = $reporte->zonaEstado->abreviatura;
+        // Si es solicitud de busqueda familiar, colaboracion, o de difusion, entonces agarrar la terminacion
+        // de donde proviene, sino, agarrarlo de la zona del estado de Veracruz: ['ZN', 'ZC', 'ZS'].
+        $terminacion = in_array($reporte->tipoReporte->abreviatura, ['SC', 'SD', 'SBF'])
+            ? $reporte->estado->abreviatura_cebv
+            : $reporte->zonaEstado->abreviatura;
 
         /**
          * Una vez que el reporte tiene los campos mínimos requeridos, se procede a crear el folio
@@ -90,7 +88,6 @@ class ReporteService
         $numeroString = strval($numero->numero);
         $serie = str_pad($numeroString, 4, '0', STR_PAD_LEFT);
 
-
         Folio::create([
             'user_id' => $userId,
             'reporte_id' => $reporte->id,
@@ -100,7 +97,7 @@ class ReporteService
                 'tipo_reporte' => $reporte->tipoReporte->abreviatura,
                 'serie' => $serie,
                 'tipo_desaparicion' => $reporte->tipo_desaparicion,
-                'fecha_desaparicion' => $fechaDesaparicion,
+                'fecha_desaparicion' => isset($fechaDesaparicion) ? $fechaDesaparicion->format('y') : 'AA',
                 'terminacion' => $terminacion,
             ]
         ]);

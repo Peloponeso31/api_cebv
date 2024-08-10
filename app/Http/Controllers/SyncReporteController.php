@@ -28,23 +28,6 @@ class SyncReporteController extends Controller
         $this->sync = $sync;
     }
 
-    private function getExtension($base64)
-    {
-        $formatos = [
-            "IVBOR" => "png",
-            "/9J/4" => "jpg",
-            "AAAAF" => "mp4",
-            "JVBER" => "pdf",
-            "AAABA" => "ico",
-            "UMFYI" => "rar",
-            "E1XYD" => "rtf",
-            "U1PKC" => "txt",
-            "77U/M" => "srt",
-        ];
-
-        return $formatos[strtoupper($base64)] ?? '';
-    }
-
     private function updateOrCreatePersona($persona)
     {
         $persona_created = Persona::updateOrCreate(["id" => $persona["id"] ?? null], [
@@ -238,7 +221,7 @@ class SyncReporteController extends Controller
             'area_atiende_id' => $request->area_atiende["id"] ?? null,
             'medio_conocimiento_id' => $request->medio_conocimiento["id"] ?? null,
             'estado_id' => $request->estado["id"] ?? null,
-            'zona_estado_id' => $request->zona_estado["id"] ?? 4,
+            'zona_estado_id' => $request->zona_estado["id"] ?? null,
             'hipotesis_oficial_id' => $request->hipotesis_oficial["id"] ?? null,
 
             // Atributos
@@ -385,6 +368,8 @@ class SyncReporteController extends Controller
             $this->sync->ContextoFamiliar($reporte->id, $request);
         }
 
-        return ReporteResource::make($reporte);
+        // Si no se hace esto, pasara solamente los valores establecidos en el update.
+        // Si hay observers modificando valores, estos no se veran reflejados.
+        return ReporteResource::make( Reporte::find($reporte->id) );
     }
 }

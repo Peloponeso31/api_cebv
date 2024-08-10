@@ -28,7 +28,7 @@ class Area extends Model
      */
     public function reportes(): HasMany
     {
-        return $this->hasMany(Reporte::class);
+        return $this->hasMany(Reporte::class, 'area_atiende_id');
     }
 
     /**

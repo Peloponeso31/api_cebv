@@ -15,7 +15,7 @@
 
 </body>
 
-{{-- <!-- <style>
+<style>
     @page {
         margin: 0px 0px;
     }
@@ -85,7 +85,8 @@
         <mark style="background-color: #FEF2CD;">18:51 horas del día 14 de enero del 2024,</mark>
         el (la) suscrita
         <mark style="background-color: #FEF2CD;">
-            {{ Auth::user()->empleado->persona->nombre }} {{ Auth::user()->empleado->persona->apellido_paterno }} {{ Auth::user()->empleado->persona->apellido_materno }},
+            {{ Auth::user()->empleado->persona->nombre }} {{ Auth::user()->empleado->persona->apellido_paterno }} {{ Auth::user()->empleado->persona->apellido_materno }}
+            ,
             {{ Auth::user()->empleado->puesto->nombre }}
         </mark>
         adscrito a la Comisión Estatal de Búsqueda,
@@ -106,7 +107,8 @@
 
     <p>
         Se recibe llamada telefónica del número telefónico
-        <mark style="background-color: #FEF2CD;">{{ $reportante->persona->telefonos->first()->numero }}</mark>, perteneciente
+        <mark style="background-color: #FEF2CD;">{{ $reportante->persona->telefonos->first()->numero }}</mark>
+        , perteneciente
 
         @if($reportante->persona->sexo->nombre == 'Mujer')
             a la
@@ -205,7 +207,5 @@
     </p>
 </div>
 </body>
-
---> --}}
 
 </html>

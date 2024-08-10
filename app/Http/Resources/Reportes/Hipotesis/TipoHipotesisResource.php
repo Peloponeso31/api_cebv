@@ -14,7 +14,7 @@ class TipoHipotesisResource extends JsonResource
             'id' => $this->id,
             'abreviatura' => $this->abreviatura,
             'descripcion' => $this->descripcion,
-            'circunstancia_id' => $this->circunstancia_id,
+            'circunstancia' => CircunstanciaResource::make($this->circunstancia),
         ];
     }
 }

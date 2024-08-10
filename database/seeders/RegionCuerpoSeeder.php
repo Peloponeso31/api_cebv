@@ -2,16 +2,19 @@
 
 namespace Database\Seeders;
 
+use App\Models\Catalogos\RegionCuerpo;
+use App\Models\Catalogos\RegionCuerpoRnpdno;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CatalogosSeeder extends Seeder
+class RegionCuerpoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        \App\Models\Catalogos\RegionCuerpo::insert([
+        $regiones_cuerpo = [
             ["nombre" => "NO ESPECIFICA",                 "color" => "3F48CC"],
             ["nombre" => "BORDE INTERNO DEL PIE",         "color" => "FF0000"],
             ["nombre" => "BORDE EXTERNO DEL PIE",         "color" => "FF6102"],
@@ -90,10 +93,10 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "REGION MUSLO",                  "color" => "FF5659"],
             ["nombre" => "REGION MUÑECA",                 "color" => "FFBCBD"],
             ["nombre" => "REGION OMOPLATO",               "color" => "FFBAE4"],
-            ["nombre" => "REGION RODILLA",                "color" => "BF09FF"],
-        ]);
+            ["nombre" => "REGION RODILLA",                "color" => "BF09FF"]
+        ];
 
-        \App\Models\Catalogos\RegionCuerpoRnpdno::insert([
+        $regiones_cuerpo_rnpdno = [
             ["nombre" => "BORDE INTERNO DEL PIE"],
             ["nombre" => "BORDE EXTERNO DEL PIE"],
             ["nombre" => "CARA DORSAL DE LA MANO"],
@@ -189,100 +192,14 @@ class CatalogosSeeder extends Seeder
             ["nombre" => "REGION ESPALDA SUPERIOR"],
             ["nombre" => "REGION CABEZA"],
             ["nombre" => "REGION NUCA"],
-        ]);
+        ];
 
-        \App\Models\Catalogos\Vista::insert([
-            ["nombre" => "DORSAL"],
-            ["nombre" => "FRONTAL"],
-            ["nombre" => "NO ESPECIFICA"],
-            ["nombre" => "INTERNO"],
-            ["nombre" => "EXTERNO"],
-        ]);
+        foreach ($regiones_cuerpo as $region) {
+            RegionCuerpo::firstOrCreate($region);
+        }
 
-        \App\Models\Catalogos\VistaRnpdno::insert([
-            ["nomvistarpndno" => "DORSAL"],
-            ["nomvistarpndno" => "FRONTAL"],
-            ["nomvistarpndno" => "NO ESPECIFICA"],
-        ]);
-
-        \App\Models\Catalogos\Lado::insert([
-            ["nombre" => "DERECHO",         "color" => "E63244"],
-            ["nombre" => "IZQUIERDO",       "color" => "ED1C24"],
-            ["nombre" => "NO ESPECIFICA",   "color" => "6C7156"],
-            ["nombre" => "UNICO",           "color" => "000000"],
-            ["nombre" => "ANTERIOR",        "color" => "FF7F27"],
-            ["nombre" => "POSTERIOR",       "color" => "FFF200"],
-        ]);
-
-        \App\Models\Catalogos\LadoRnpdno::insert([
-            ["nomladorpndno" => "DERECHO"],
-            ["nomladorpndno" => "IZQUIERDO"],
-            ["nomladorpndno" => "NO ESPECIFICA"],
-            ["nomladorpndno" => "UNICO"],
-        ]);
-
-        \App\Models\Catalogos\Tipo::insert([
-            ["nombre" => "ARETE/PERFORACIONES"],
-            ["nombre" => "CICATRIZ"],
-            ["nombre" => "CIRCUNCISION"],
-            ["nombre" => "CORTES DECORATIVOS"],
-            ["nombre" => "DEFECTO FISICO"],
-            ["nombre" => "LUNARES O MANCHAS"],
-            ["nombre" => "MARCAS TEMPORALES"],
-            ["nombre" => "OTRO"],
-            ["nombre" => "PROTESIS"],
-            ["nombre" => "TATUAJE"],
-        ]);
-
-        \App\Models\Catalogos\Etnia\GrupoEtnico::insert([
-            ["grupoetnico" => "NAHUAS"],
-            ["grupoetnico" => "TOTONACAS"],
-            ["grupoetnico" => "HUASTECO"],
-            ["grupoetnico" => "POPOLUCAS"],
-            ["grupoetnico" => "TEPEHUAS"],
-            ["grupoetnico" => "OTOMIES"],
-            ["grupoetnico" => "ZOQUE"],
-            ["grupoetnico" => "MIXES"],
-        ]);
-
-        \App\Models\Catalogos\Etnia\Vestimenta::insert([
-            ["vestimenta" => "HUIPIL"],
-            ["vestimenta" => "CALZÓN DE MANTA"],
-            ["vestimenta" => "SARAPE"],
-            ["vestimenta" => "HIPIL"],
-            ["vestimenta" => "JUBÓN"],
-            ["vestimenta" => "ENREDO"],
-            ["vestimenta" => "PICOTE"],
-            ["vestimenta" => "REBOZO"],
-
-        ]);
-
-
-        \App\Models\Catalogos\Etnia\Ascendencia::insert([
-            ["ascendencia" => "AFROAMERICANO"],
-            ["ascendencia" => "ESPAÑOLA"],
-            ["ascendencia" => "MEXICANA"],
-            ["ascendencia" => "EUROPEA"],
-            ["ascendencia" => "INDIGENA"],
-            ["ascendencia" => "MIXTA"],
-            ["ascendencia" => "AMERICANA"],
-            ["ascendencia" => "ASIATICA"],
-        ]);
-
-        \App\Models\Catalogos\Oficina::insert([
-            ["oficina" => "Celula Norte"],
-            ["oficina" => "Celula Centro"],
-            ["oficina" => "Celula Sur"],
-            ["oficina" => "Búsqueda Inmediata"],
-            ["oficina" => "Larga Data"],
-            ["oficina" => "OGPI"],
-        ]);
-
-        \App\Models\Catalogos\Puesto::insert([
-            ["nombre" => "Comisionado Estatal"],
-            ["nombre" => "Jefe de Departamento"],
-            ["nombre" => "Jefe de Oficina"],
-        ]);
-
+        foreach ($regiones_cuerpo_rnpdno as $region_rnpdno) {
+            RegionCuerpoRnpdno::firstOrCreate($region_rnpdno);
+        }
     }
 }

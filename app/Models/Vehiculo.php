@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -10,6 +11,7 @@ class Vehiculo extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'reporte_id',
         'relacion_vehiculo_id',
         'tipo_vehiculo_id',
         'uso_vehiculo_id',
@@ -28,6 +30,11 @@ class Vehiculo extends Model
     protected $casts = [
         'localizado' => 'boolean',
     ];
+
+    public function reporte(): BelongsTo
+    {
+        return $this->belongsTo(Reporte::class, 'reporte_id');
+    }
 
     public function relacionVehiculo(): BelongsTo
     {

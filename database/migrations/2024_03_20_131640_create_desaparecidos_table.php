@@ -14,7 +14,8 @@ return new class extends Migration {
             $table->foreignId('persona_id')->nullable()->constrained(table: 'personas');
             $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'estatus_personas');
             $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'estatus_personas');
-
+            $table->foreignId('ocupacion_principal_id')->nullable();
+            $table->foreignId('ocupacion_secundaria_id')->nullable();
 
             $table->string('clasificacion_persona')->nullable();
             $table->boolean('habla_espanhol')->nullable();
@@ -27,8 +28,20 @@ return new class extends Migration {
             $table->boolean('ci_nivel_federal')->default(false);
             $table->string('otro_derecho_humano')->nullable();
 
-            // TODO; Identidad resguardada (string)
-            // TODO: Edad manual al momento de la desaparicion en anios, meses y dias (int).
+            $table->date('fecha_nacimiento_aproximada')->nullable();
+            $table->string('fecha_nacimiento_cebv')->nullable();
+            $table->string('observaciones_fecha_nacimiento')->nullable();
+            $table->integer('edad_momento_desaparicion_anos')->nullable();
+            $table->integer('edad_momento_desaparicion_meses')->nullable();
+            $table->integer('edad_momento_desaparicion_dias')->nullable();
+
+            $table->text('identidad_resguardada')->nullable();
+            $table->text('alias')->nullable();
+            $table->text('descripcion_ocupacion_principal')->nullable();
+            $table->text('descripcion_ocupacion_secundaria')->nullable();
+            $table->text('otras_especificaciones_ocupacion')->nullable();
+            $table->text('nombre_pareja_conyugue')->nullable();
+            $table->text("boletin_img_path")->nullable();
 
             $table->timestamps();
         });

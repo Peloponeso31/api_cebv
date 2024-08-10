@@ -12,7 +12,7 @@ class Oficina extends Model
     use HasFactory;
 
      protected $table = 'oficina';
-     protected $fillable = ['oficina'];
+     protected $fillable = ['nombre'];
      public $timestamps = true;
 
     public function empleado(): HasMany

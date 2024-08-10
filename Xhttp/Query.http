@@ -1,15 +1,10 @@
 // @no-log
-GET http://api_cebv.test/api/vehiculos
+GET http://api_cebv.test/api/desapariciones-forzadas
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-    "marca_vehiculo_id":  1,
-    "color_id": 4,
-    "submarca":  "mi marca",
-    "placa": "123-abc",
-    "numero_motor" : "987654321",
-    "numero_permiso" : "123456",
-    "descripcion" : "vehiculo de prueba editado",
-    "localizado" : false
+
+    "reporte_id": 1
 }
+

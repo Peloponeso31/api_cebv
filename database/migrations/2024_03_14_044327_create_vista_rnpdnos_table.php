@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('vista_rnpdno', function (Blueprint $table) {
             $table->id();
-            $table->string("nomvistarpndno");
+            $table->string("nombre");
         });
     }
 

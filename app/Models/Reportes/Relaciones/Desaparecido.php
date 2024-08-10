@@ -2,6 +2,8 @@
 
 namespace App\Models\Reportes\Relaciones;
 
+use App\Models\Catalogos\PrendaDeVestir;
+use App\Models\Ocupacion;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
@@ -19,6 +21,8 @@ class Desaparecido extends Model
         'persona_id',
         'estatus_rpdno_id',
         'estatus_cebv_id',
+        'ocupacion_principal_id',
+        'ocupacion_secundaria_id',
         'clasificacion_persona',
         'habla_espanhol',
         'sabe_leer',
@@ -29,6 +33,19 @@ class Desaparecido extends Model
         'dictamen',
         'ci_nivel_federal',
         'otro_derecho_humano',
+        'identidad_resguardada',
+        'alias',
+        'descripcion_ocupacion_principal',
+        'descripcion_ocupacion_secundaria',
+        'otras_especificaciones_ocupacion',
+        'nombre_pareja_conyugue',
+        'fecha_desaparicion_aproximada',
+        'fecha_desaparicion_cebv',
+        'observaciones_fecha_desaparicion',
+        'boletin_img_path',
+        'edad_momento_desaparicion_anos',
+        'edad_momento_desaparicion_meses',
+        'edad_momento_desaparicion_dias'
     ];
 
     protected $casts = [
@@ -76,5 +93,18 @@ class Desaparecido extends Model
         return $this->hasMany(DocumentoLegal::class);
     }
 
+    public function ocupacionPrincipal(): BelongsTo
+    {
+        return $this->belongsTo(Ocupacion::class, 'ocupacion_principal_id');
+    }
 
+    public function ocupacionSecundaria(): BelongsTo
+    {
+        return $this->belongsTo(Ocupacion::class, 'ocupacion_secundaria_id');
+    }
+
+    public function prendasDeVestir(): HasMany
+    {
+        return $this->hasMany(PrendaDeVestir::class);
+    }
 }

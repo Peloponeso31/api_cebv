@@ -6,8 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ext-fileinfo": "*",
         "ext-pdo": "*",
-        "algolia/algoliasearch-client-php": "^3.4",
         "barryvdh/laravel-dompdf": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
         "hoa/regex": "~1.0",
@@ -16,8 +16,11 @@
         "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",
         "league/flysystem-sftp-v3": "^3.0",
+        "maatwebsite/excel": "^3.1",
+        "spatie/laravel-pdf": "^1.5",
         "spatie/laravel-permission": "^6.4",
-        "spatie/laravel-query-builder": "^6.0"
+        "spatie/laravel-query-builder": "^6.0",
+        "spatie/pdf-to-image": "^2.3"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.14",

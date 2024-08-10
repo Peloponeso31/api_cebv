@@ -2,6 +2,7 @@
 
 namespace App\Models\Personas;
 
+use App\Models\Expediente;
 use App\Models\Reportes\Relaciones\Reportante;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,11 @@ class Parentesco extends Model
     public function reportantes(): HasMany
     {
         return $this->hasMany(Reportante::class);
+    }
+
+    public function expedientes(): HasMany
+    {
+        return $this->hasMany(Expediente::class);
     }
 
     public function toSearchableArray()

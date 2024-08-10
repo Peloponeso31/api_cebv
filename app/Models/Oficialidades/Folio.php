@@ -23,6 +23,7 @@ class Folio extends Model
         'persona_id',
         'reporte_id',
         'user_id',
+        'autoridad_ingresa_fub',
     ];
 
     protected $casts = [
@@ -37,7 +38,6 @@ class Folio extends Model
         return Attribute::make(
             get: fn($value, array $attributes) => $value,
             set: fn($value) => $this->setFolio($value)
-
         );
     }
 
@@ -46,7 +46,6 @@ class Folio extends Model
         return $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
             $value['tipo_desaparicion'] . '-' . $value['fecha_desaparicion'] . $value['terminacion'];
     }
-
 
     protected function persona(): BelongsTo
     {
@@ -74,7 +73,4 @@ class Folio extends Model
             'user_id' => $this->user_id,
         ];
     }
-
-    // TODO: add folio request
-
 }

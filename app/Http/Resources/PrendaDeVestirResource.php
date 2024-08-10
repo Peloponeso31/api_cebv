@@ -11,9 +11,9 @@ class PrendaDeVestirResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'grupo_pertenencia_id' => $this->grupo_pertenencia_id,
-            'pertenencia_id' => $this->pertenencia_id,
-            'color_id' => $this->color_id,
+            'desaparecido_id' => $this->desaparecido_id,
+            'pertenencia' => PertenenciaResource::make($this->pertenencia),
+            'color' => ColorResource::make($this->color),
             'marca' => $this->marca,
             'descripcion' => $this->descripcion,
         ];

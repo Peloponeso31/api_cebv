@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Colectivo extends Model
 {
@@ -11,4 +13,9 @@ class Colectivo extends Model
     protected $fillable = [
         'nombre',
     ];
+
+    public function personas(): HasMany
+    {
+        return $this->hasMany(Persona::class);
+    }
 }

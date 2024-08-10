@@ -18,4 +18,9 @@ class Sexo extends Model
     {
         return $this->hasMany(Persona::class);
     }
+
+    public function perpetradores(): HasMany
+    {
+        return $this->hasMany(Perpetrador::class);
+    }
 }

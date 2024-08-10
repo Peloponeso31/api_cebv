@@ -12,6 +12,8 @@
     
 @page { margin: 100px 50px;}
 
+
+
 #header {
     position: fixed; 
     left: 0px; 
@@ -505,51 +507,54 @@ h1, h2{
     
     
     <section id="Reportante">
-        <h1>Ficha de Datos</h1>
             <div class="Fecha-Folio">
-                <p><b>Fecha:</b><p>20/03/2024</p> </p>
-                <p><b>Folio:</b><p>20/03/2024</p> </p>
-                <p><b>Hora:</b><p>10:23:45</p></p>
+                <table>
+                    <tr>
+                        <th>Fecha:</th>
+                        <td>20/03/2024</td>
+                        <th>Folio:</th>
+                        <td>No. Folio</td>
+                    </tr>
+                    <tr>
+                        <th>Hora:</th>
+                        <td colspan="3">10:23:45</td>
+                    </tr>
+            </table>
             </div> 
             <p><br>Manifiesta que la información que aporte para el RNPDNO sea utilizada exclusivamente para la búsqueda e identificación
-            de la Persona Desaparecida o No Localizada.</p><br>
+            de la Persona Desaparecida o No Localizada.  <b>SI   NO</b></p>
     
-            <p><br>¿Solicita que se haga pública la información de la Persona Desaparecida o No Localizada?
-          </p>
+            <p>¿Solicita que se haga pública la información de la Persona Desaparecida o No Localizada?   <b>SI   NO</b></p>
           <h2>DATOS DEL REPORTANTE</h2>
         
           <table>
             <tr>
                 <th>Nombre Completo*</th>
-                <th>Edad y Fecha de Nacimiento</th>
-            </tr>
-            <tr>
-                <td>Ismael Matus García</td>
-                <td>23 años, 07 de Marzo de 2001</td>
+                <td colspan="3">Ismael Matus García</td>
                 
             </tr>
             <tr>
-                <th>Sexo</th>
-                <th>Domicilio</th>
+                <th>Edad y Fecha de Nacimiento</th>
+                <td>23 años, 07 de Marzo de 2001</td>
+                <th>Sexo</th> 
+                <td>Hombre</td>
             </tr>
             <tr>
-                <td>Hombre</td>
-                <td>Lucas Martin</td> 
+                <th>Domicilio</th>
+                <td colspan="3">Lucas Martin</td> 
             </tr>
             <tr>
                 <th>Teléfono(s)*</th>
-                <th>Correo Electronico</th>
+                <td colspan="3">2283561304</td>
             </tr>
             <tr>
-                <td>2283561304</td>
-                <td>ismaelmg46@gmail.com</td> 
+                <th>Correo Electronico</th> 
+                <td colspan="3">ismaelmg46@gmail.com</td> 
             </tr>
             <tr>
                 <th>Relación con la Persona <br>Desaparecida o No Localizada*</th>
-                <th>Tipo de Reporte</th>
-            </tr>
-            <tr>
                 <td>Tio</td>
+                <th>Tipo de Reporte</th>
                 <td>Denuncia</td> 
             </tr>
 
@@ -563,66 +568,47 @@ h1, h2{
     <table>
         <tr>
             <th>Nombre Completo*</th>
+            <td colspan="3">{{ $desaparecido->persona->nombre }}
+                {{ $desaparecido->persona->apellido_paterno }}
+                {{ $desaparecido->persona->apellido_materno }}</td>
+        </tr>
+        <tr>
             <th>Genero</th>
-        </tr>
-        <tr>
-            <td>Ismael Matus García</td>
-            <td>23 años, 07 de Marzo de 2001</td>
-            
-        </tr>
-        <tr>
+            <td>(Femenino, Masculino, Otro) <br>{{ $desaparecido->persona->genero }} </td>
             <th>Nacionalidad y Estatus Migratorio</th>
+            <td></td>
+        </tr>
+        <tr>
             <th>Edad y Fecha de Nacimiento*</th>
-        </tr>
-        <tr>
-            <td>Hombre</td>
-            <td>Lucas Martin</td> 
-        </tr>
-        <tr>
+            <td>{{ $desaparecido->persona->edad_anos() }} años, {{ $desaparecido->persona->fecha_nacimiento }}</td> 
             <th>Tipo de Sangre</th>
+            <td></td>
+        </tr>
+        <tr>
             <th>Ocupación</th>
-        </tr>
-        <tr>
-            <td>2283561304</td>
-            <td>ismaelmg46@gmail.com</td> 
-        </tr>
-        <tr>
+            <td>{{ $desaparecido->persona->ocupacion }}</td> 
             <th>Escolaridad</th>
-            <th>Condición de Salud</th>
+            <td></td>
         </tr>
         <tr>
-            <td>Tio</td>
-            <td>Denuncia</td> 
+            <th>Condición de Salud</th>
+            <td colspan="3"></td>
         </tr>
-
         <tr>
             <th>Teléfono Celular*</th>
-            <th>CURP</th>
-        </tr>
-
-        <tr>
             <td>2283561304</td>
-            <td>MAGI010307HVZTR4A</td> 
+            <th>CURP</th>
+            <td>{{ $desaparecido->persona->curp }}</td> 
         </tr>
-
         <tr>
             <th>Dirección de Residencia</th>
+            <td colspan="3">Lucas Martin</td>
+        </tr>
+        <tr>
             <th>¿Tiene conocimiento de que consuma tabaco, alchol o alguna otra sustancia?</th>
-        </tr>
-
-        <tr>
-            <td>Lucas Martin</td>
-            <td>No</td> 
-        </tr>
-
-        <tr>
+            <td> ¿Si, cual? <br>No <br>¿Con qué frecuencia? <br>No</td> 
         <th>¿Ha recibido alguna llamada de exigencia monetaria?</th>
-        <th></th>
-    </tr>
-
-    <tr>
-        <td>No</td> 
-        <td></td> 
+        <td>¿Si, cuanto? <br>No <br> ¿Por qué medio?<br></td>
     </tr>
    
 </section>
@@ -633,28 +619,22 @@ h1, h2{
     <table>
         <tr>
             <th>Lugar de desaparición*</th>
-            <th>Fecha de desaparición*</th>
+            <td colspan="3">Ismael Matus García</td>
         </tr>
         <tr>
-            <td>Ismael Matus García</td>
+            <th>Fecha de desaparición*</th>
             <td>23 años, 07 de Marzo de 2001</td>
+            <th>Hora aproximada de la desaparición o última hora de contacto*</th>
+            <td>9:30:42 pm</td>
             
         </tr>
         <tr>
-            <th>Hora aproximada de la desaparición o última hora de contacto*</th>
             <th>Datos de personas que puedas brindar información y/o probablemente involucradas<</th>
-        </tr>
-        <tr>
-            <td>Hombre</td>
-            <td>Lucas Martin</td> 
+            <td colspan="3">No se</td> 
         </tr>
         <tr>
             <th>Narrativa de los hechos que se reportan*</th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>asddddddddddddddddddddddddddd</td>
-            <td></td> 
+            <td colspan="3">asddddddddddddddddddddddddddd</td>
         </tr>
         
 
@@ -667,33 +647,34 @@ h1, h2{
 
         <tr>
             <th>Vestimenta que porta</th>
-            <th>Señas particulares*</th>
+            <td>Playera verde, tenis negros, pantalon negro</td>
         </tr>
         <tr>
-            <td>Playera verde, tenis negros, pantalon negro</td>
-            <td>Ciatriz en el dedo indice</td> 
+            <th>Señas particulares*</th>
+            <td>(Tatuajes, lunares, manchas, cicatrices, perforaciones, protesis, acne, amputaciones, quemaduras, malformaciones, entre otros) <br> Ciatriz en el dedo indice</td> 
         </tr>
 
         <tr>
             <th>Tatuajes</th>
-            <th></th>
+            <td>(Ubicación, descripción) <br>Ninguno</td>
         </tr>
 
-        <tr>
-            <td>Ninguno</td>
-            <td></td> 
-        </tr>
-
-    </table>
+    </table> <br>
     
     <div class="Estatura-Peso">
-        <p><b>Estaura:</b><p>163m</p> </p>
-        <p><b>Peso:</b><p>67kg</p> </p>
+        <table>
+            <tr>
+                <th>Estaura:</th>
+                <td>{{ $desaparecido->persona->estatura }}m</td>
+                <th>Peso:</th>
+                <td>{{ $desaparecido->persona->peso }}kg</td>
+            </tr>
+        </table>
     </div> 
     </section>
     
     <section id="Complexion">
-        <br><h2>Complexión:</h2>
+        <h2>Complexión:</h2>
     <table>
         <tr>
             <th>Regular</th>
@@ -710,19 +691,15 @@ h1, h2{
        
         <table>
             <tr>
-                <th>Blanca</th>
-                <th>Moreno Claro</th>
-                <th>Moreno Obscuro</th>
-                <th>Negra</th>
-                <th>Amarillo</th>
-                <th>Albino</th> 
+                <th>{{ $desaparecido->persona->caracteristicasfisicas->color_piel ->colorpiel }}</th>
+                
             </tr>
         </table>
         </section>
     
     
         <section id="Ojos">
-            <br> <h2>Color de ojos:</h2><p>Forma de ojos:</p>
+            <br> <h2>Color de ojos: {{ $desaparecido->persona->caracteristicasfisicas->color_ojos->color }}</h2><p>Forma de ojos:</p>
             
             <table>
                 <tr>
@@ -747,14 +724,12 @@ h1, h2{
         </section>
     
         <section id="Cabello">
-            <b><h2>Color de cabello:</h2><p>Corto/largo:</p> <p>Tipo de cabello:</p>
+            <b><h2>Color de cabello: {{ $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos }}</h2><p>Corto/largo:</p> <p>Tipo de cabello:</p>
             
                 <table>
                     <tr>
-                        <th>Lacio</th>
-                        <th>Rizado</th>
-                        <th>Crespo</th>
-                        <th>Ondulado</th>
+                        <th>{{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello }}</th>
+                    
                     </tr>
                 </table>
         </section>

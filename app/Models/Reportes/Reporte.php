@@ -2,10 +2,14 @@
 
 namespace App\Models\Reportes;
 
+use App\Models\ContextoFamiliar;
+use App\Models\ControlOgpi;
+use App\Models\DesaparicionForzada;
+use App\Models\Expediente;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
-use App\Models\Personas\Persona;
+use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
@@ -13,14 +17,13 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\ZonaEstado;
+use App\Models\Vehiculo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
-use Illuminate\Support\Carbon;
 
 class Reporte extends Model
 {
@@ -37,6 +40,7 @@ class Reporte extends Model
         'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
+        "institucion_origen",
         'esta_terminado',
         'tipo_desaparicion',
         'fecha_localizacion',
@@ -68,9 +72,14 @@ class Reporte extends Model
      *
      * @return BelongsTo
      */
-    public function areaAtiende(): BelongsTo
+    public function areaAtiende(): HasOne
     {
-        return $this->belongsTo(Area::class, 'area_atiende_id');
+        return $this->hasOne(Area::class, 'id', 'area_atiende_id');
+    }
+
+    public function hechosDesaparicion(): HasOne
+    {
+        return $this->hasOne(HechoDesaparicion::class, 'reporte_id');
     }
 
     /**
@@ -131,6 +140,36 @@ class Reporte extends Model
     public function hipotesis(): HasMany
     {
         return $this->hasMany(Hipotesis::class, 'reporte_id');
+    }
+
+    public function perpetradores(): HasMany
+    {
+        return $this->hasMany(Perpetrador::class);
+    }
+
+    public function controlOgpi(): HasOne
+    {
+        return $this->hasOne(ControlOgpi::class);
+    }
+
+    public function vehiculos(): HasMany
+    {
+        return $this->hasMany(Vehiculo::class);
+    }
+
+    public function expedientes(): HasMany
+    {
+        return $this->hasMany(Expediente::class);
+    }
+
+    public function desaparicionForzada(): HasOne
+    {
+        return $this->hasOne(DesaparicionForzada::class);
+    }
+
+    public function contextoFamiliar(): HasOne
+    {
+        return $this->hasOne(ContextoFamiliar::class);
     }
 
     /**

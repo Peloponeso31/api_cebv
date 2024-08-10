@@ -19,6 +19,7 @@ return new class extends Migration {
 
             $table->string('folio_cebv', 20);
             $table->string('folio_fub', 37)->nullable();
+            $table->string('autoridad_ingresa_fub')->nullable();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();

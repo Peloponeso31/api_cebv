@@ -12,8 +12,9 @@ class ApodoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'persona_id' => $this->persona_id,
-            'apodo' => $this->apodo,
+            'nombre' => $this->nombre,
+            'apellido_paterno' => $this->apellido_paterno,
+            'apellido_materno' => $this->apellido_materno,
         ];
     }
 }

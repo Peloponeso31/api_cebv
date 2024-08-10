@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalogos\SenasParticulares;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TipoResource;
 use App\Models\Catalogos\Tipo;
 use App\Http\Requests\Catalogos\SenasParticulares\TipoSenaRequest;
 
@@ -13,7 +14,7 @@ class TipoController extends Controller
      */
     public function index()
     {
-        return Tipo::all();
+        return TipoResource::collection(Tipo::all());
     }
 
     /**
@@ -29,7 +30,7 @@ class TipoController extends Controller
      */
     public function show($id)
     {
-        return Tipo::findOrFail($id);
+        return TipoResource::make(Tipo::findOrFail($id));
     }
 
     /**

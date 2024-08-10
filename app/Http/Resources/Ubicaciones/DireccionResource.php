@@ -12,8 +12,8 @@ class DireccionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'asentamiento_id' => $this->asentamiento_id,
             'calle' => $this->calle,
+            'colonia' => $this->colonia,
             'numero_exterior' => $this->numero_exterior,
             'numero_interior' => $this->numero_interior,
             'calle_1' => $this->calle_1,
@@ -21,6 +21,7 @@ class DireccionResource extends JsonResource
             'tramo_carretero' => $this->tramo_carretero,
             'codigo_postal' => $this->codigo_postal,
             'referencia' => $this->referencia,
+            'asentamiento' => AsentamientoResource::make($this->asentamiento),
         ];
     }
 }

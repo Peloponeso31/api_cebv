@@ -13,7 +13,10 @@ use App\Models\ContextoSocial;
 use App\Models\Escolaridad;
 use App\Models\EstadoConyugal;
 use App\Models\Etnia;
+use App\Models\Expediente;
 use App\Models\Genero;
+use App\Models\GrupoVulnerable;
+use App\Models\MediaFiliacion;
 use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
@@ -25,6 +28,7 @@ use App\Models\SenasParticulares;
 use App\Models\Sexo;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
+use App\Models\Ubicaciones\Estado;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -43,6 +47,7 @@ class Persona extends Model
     protected $fillable = [
         'sexo_id',
         'genero_id',
+        'media_filiacion_id',
         'lugar_nacimiento_id',
         'religion_id',
         'lengua_id',
@@ -60,11 +65,15 @@ class Persona extends Model
         'rfc',
         'ocupacion',
         'nivel_escolaridad',
+        // Contexto social
+        'numero_personas_vive'
     ];
 
     protected $casts = [
         'fecha_nacimiento' => 'date',
     ];
+
+
 
     public function sexo(): BelongsTo
     {
@@ -74,6 +83,10 @@ class Persona extends Model
     public function genero(): BelongsTo
     {
         return $this->belongsTo(Genero::class, 'genero_id');
+    }
+
+    public function lugar_nacimiento(): BelongsTo {
+        return $this->belongsTo(Estado::class, "lugar_nacimiento_id");
     }
 
     /**
@@ -121,6 +134,11 @@ class Persona extends Model
         return $this->caracteristicasfisicas->tipo_cabello->tipocabello;
     }
 
+    public function tamaño_ojos()
+    {
+        return $this->caracteristicasfisicas->tamaño_ojos->tamañoojos;
+    }
+
     public function contexto_familiar(): HasOne
     {
         return $this->hasOne(ContextoFamiliar::class);
@@ -142,7 +160,7 @@ class Persona extends Model
         return $this->hasOne(Etnia::class);
     }
 
-    public function senasparticulares(): HasMany
+    public function senasParticulares(): HasMany
     {
         return $this->hasMany(SenasParticulares::class);
     }
@@ -157,7 +175,7 @@ class Persona extends Model
         return $this->hasMany(Reportante::class);
     }
 
-    public function domicilios(): BelongsToMany
+    public function direcciones(): BelongsToMany
     {
         return $this->belongsToMany(Direccion::class, 'domicilios');
     }
@@ -167,7 +185,7 @@ class Persona extends Model
         return $this->hasMany(Folio::class, 'persona_id');
     }
 
-    public function nacionalidads(): BelongsToMany
+    public function nacionalidades(): BelongsToMany
     {
         return $this->belongsToMany(Nacionalidad::class);
     }
@@ -184,7 +202,7 @@ class Persona extends Model
 
     public function apodos(): HasMany
     {
-        return $this->hasMany(Apodo::class, 'persona_id');
+        return $this->hasMany(Apodo::class);
     }
 
     public function redesSociales(): HasMany
@@ -217,7 +235,21 @@ class Persona extends Model
         return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
     }
 
-    // TODO: Modelo y catalogo de ocupaciones.
+    public function gruposVulnerables(): BelongsToMany
+    {
+        return $this->belongsToMany(GrupoVulnerable::class, "grupos_vulnerables_personas");
+    }
+
+    public function mediaFiliacion(): HasOne
+    {
+        return $this->hasOne(MediaFiliacion::class);
+    }
+
+    public function expedientes(): HasMany
+    {
+        return $this->hasMany(Expediente::class);
+    }
+
 
     public function toSearchableArray()
     {

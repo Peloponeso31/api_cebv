@@ -2,10 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\CaracteristicasFisicas;
-use App\Models\ContextoSocial;
-use App\Models\MarcaVehiculo;
-use App\Models\Nacionalidad;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,14 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         /**
-         * System seeders
-         */
-        $this->call([
-            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
-            UserSeeder::class, // TODO: Remove this line before deploying to production
-        ]);
-
-        /**
          * Catalogs seeders
          */
         $this->call([
@@ -32,18 +20,17 @@ class DatabaseSeeder extends Seeder
             InstitucionSeeder::class,
             MedioSeeder::class,
             ParentescoSeeder::class,
-            CatalogosSeeder::class,
             SitioSeeder::class,
             TipoHipotesisSeeder::class,
             TipoReporteSeeder::class,
             UbicacionSeeder::class,
+            AreaAtiendeMunicipioSeeder::class,
             ZonaEstadoSeeder::class,
             SexoSeeder::class,
             GeneroSeeder::class,
             CompaniaTelefonicaSeeder::class,
             ContextoSocialSeeder::class,
             ContextoEconomicoSeeder::class,
-            ContextoFamiliarSeeder::class,
             NacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
@@ -58,6 +45,14 @@ class DatabaseSeeder extends Seeder
             PertenenciaSeeder::class,
             ColectivoSeeder::class,
             ColorSeeder::class,
+            RazonesCurpSeeder::class,
+            TiposDomicilioSeeder::class,
+            PuestoSeeder::class,
+            RegionCuerpoSeeder::class,
+            LadoSeeder::class,
+            OficinaSeeder::class,
+            TipoSeeder::class,
+            VistaSeeder::class
         ]);
 
         /**
@@ -130,6 +125,14 @@ class DatabaseSeeder extends Seeder
             MetodoCapturaSeeder::class,
             MedioCapturaSeeder::class,
             EstatusPerpetradorSeeder::class,
+        ]);
+
+        /**
+         * System seeders
+         */
+        $this->call([
+            TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
+            UserSeeder::class, // TODO: Remove this line before deploying to production
         ]);
     }
 }

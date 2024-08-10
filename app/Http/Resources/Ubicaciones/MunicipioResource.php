@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources\Ubicaciones;
 
-use App\Models\Ubicaciones\Estado;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CatalogoResource;
 
 /** @mixin \App\Models\Ubicaciones\Municipio */
 class MunicipioResource extends JsonResource
@@ -13,9 +13,9 @@ class MunicipioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'estado_id' => $this->estado_id,
-            'estado_nombre' => Estado::whereId($this->estado_id)->first()->nombre,
             'nombre' => $this->nombre,
+            'estado' => EstadoResource::make($this->estado),
+            'area_atiende' => CatalogoResource::make($this->areaAtiende),
         ];
     }
 }

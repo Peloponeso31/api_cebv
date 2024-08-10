@@ -21,7 +21,7 @@ class ColorOjoSeeder extends Seeder
         ];
 
         foreach ($coloresOjos as $colorOjo) {
-            ColorOjos::create([
+            ColorOjos::firstOrCreate([
                 'nombre' => $colorOjo
             ]);
         }

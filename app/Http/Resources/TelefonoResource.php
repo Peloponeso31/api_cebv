@@ -7,13 +7,16 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TelefonoResource extends JsonResource
 {
-    
+
     public function toArray(Request $request): array
     {
         return [
-            'numero' => $this -> numero,
-            'observaciones'=> $this -> observaciones,
-            'compania_id' => $this -> compania_id,
+            'id' => $this->id,
+            'numero' => $this->numero,
+            'persona_id' => $this->persona_id,
+            'observaciones'=> $this->observaciones,
+            'es_movil' => $this->es_movil,
+            'compania' => CompaniaTelefonicaResource::make($this->compania),
         ];
     }
 }

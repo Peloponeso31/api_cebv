@@ -14,7 +14,7 @@ class Estado extends Model
      */
     use Searchable;
 
-    protected $table = 'estados';
+    protected $table = 'cat_estados';
 
     /*
      * We don't want the id to be auto-incrementing because it's a string

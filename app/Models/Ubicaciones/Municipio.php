@@ -15,7 +15,7 @@ class Municipio extends Model
      */
     use Searchable;
 
-    protected $table = 'municipios';
+    protected $table = 'cat_municipios';
 
     /*
      * We don't want the id to be auto-incrementing because it's a string

@@ -33,7 +33,7 @@ return new class extends Migration {
             $table->timestamp('fecha_actualizacion')->useCurrent()->useCurrentOnUpdate();
 
             $table->foreign('estado_id')
-                ->references('id')->on('estados');
+                ->references('id')->on('cat_estados');
         });
     }
 

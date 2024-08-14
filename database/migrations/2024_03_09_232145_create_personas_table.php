@@ -37,7 +37,7 @@ return new class extends Migration {
             $table->integer('numero_personas_vive')->nullable();
 
             $table->foreign('lugar_nacimiento_id')
-                ->references('id')->on('estados');
+                ->references('id')->on('cat_estados');
 
             $table->timestamps();
         });

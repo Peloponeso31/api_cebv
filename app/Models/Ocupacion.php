@@ -16,7 +16,7 @@ class Ocupacion extends Model
 
     public $timestamps = false;
 
-    protected $table = 'ocupaciones';
+    protected $table = 'cat_ocupaciones';
 
     protected $fillable = [
         'tipo_ocupacion_id',

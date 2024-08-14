@@ -9,7 +9,7 @@ class TipoOcupacion extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'tipos_ocupacion';
+    protected $table = 'cat_tipos_ocupacion';
 
     protected $fillable = [
         'nombre',

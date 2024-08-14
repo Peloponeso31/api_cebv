@@ -3,17 +3,15 @@
 namespace App\Models;
 
 use App\Models\Personas\Persona;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
 class Nacionalidad extends Model
 {
-    use HasFactory, Searchable;
+    use Searchable;
 
-    protected $table = 'nacionalidades';
+    protected $table = 'cat_nacionalidades';
 
     protected $fillable = [
         'nombre'
@@ -24,7 +22,7 @@ class Nacionalidad extends Model
         return $this->belongsToMany(Persona::class);
     }
 
-    public function toSearchableArray()
+    public function toSearchableArray(): array
     {
         return [
             'nombre' => $this->nombre,

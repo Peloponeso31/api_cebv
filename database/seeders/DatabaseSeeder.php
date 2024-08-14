@@ -87,6 +87,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         /**
+         * Contextos de persona
+         */
+        $this->call([
+            EstatusEscolaridadSeeder::class,
+        ]);
+
+        /**
          * Situaciones de salud
          */
         $this->call([

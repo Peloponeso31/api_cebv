@@ -10,7 +10,7 @@ class TipoRedSocial extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'tipos_redes_sociales';
+    protected $table = 'cat_tipos_redes_sociales';
 
     protected $fillable = [
         'nombre',

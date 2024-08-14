@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('contactos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('persona_id')->constrained(table: 'personas');
-            $table->foreignId('tipo_red_social_id')->nullable();
+            $table->foreignId('tipo_red_social_id')->nullable()->constrained(table: 'cat_tipos_redes_sociales');
             $table->enum('tipo', ['Red Social', 'Correo Electronico']);
             $table->string('nombre');
             $table->string('observaciones')->nullable();

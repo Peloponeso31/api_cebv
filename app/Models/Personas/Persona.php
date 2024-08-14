@@ -12,6 +12,7 @@ use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
 use App\Models\Escolaridad;
 use App\Models\EstadoConyugal;
+use App\Models\EstatusEscolaridad;
 use App\Models\Etnia;
 use App\Models\Expediente;
 use App\Models\Genero;
@@ -53,6 +54,7 @@ class Persona extends Model
         'lengua_id',
         'estado_conyugal_id',
         'escolaridad_id',
+        'estatus_escolaridad_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
@@ -64,7 +66,6 @@ class Persona extends Model
         'observaciones_curp',
         'rfc',
         'ocupacion',
-        'nivel_escolaridad',
         // Contexto social
         'numero_personas_vive'
     ];
@@ -72,7 +73,6 @@ class Persona extends Model
     protected $casts = [
         'fecha_nacimiento' => 'date',
     ];
-
 
 
     public function sexo(): BelongsTo
@@ -85,8 +85,9 @@ class Persona extends Model
         return $this->belongsTo(Genero::class, 'genero_id');
     }
 
-    public function lugar_nacimiento(): BelongsTo {
-        return $this->belongsTo(Estado::class, "lugar_nacimiento_id");
+    public function lugar_nacimiento(): BelongsTo
+    {
+        return $this->belongsTo(Estado::class, 'lugar_nacimiento_id');
     }
 
     /**
@@ -212,22 +213,22 @@ class Persona extends Model
 
     public function religion(): BelongsTo
     {
-        return $this->belongsTo(Religion::class);
+        return $this->belongsTo(Religion::class, 'religion_id');
     }
 
     public function lengua(): BelongsTo
     {
-        return $this->belongsTo(Lengua::class);
+        return $this->belongsTo(Lengua::class, 'lenuga_id');
     }
 
     public function estadoConyugal(): BelongsTo
     {
-        return $this->belongsTo(EstadoConyugal::class);
+        return $this->belongsTo(EstadoConyugal::class, 'estado_conyugal_id');
     }
 
     public function escolaridad(): BelongsTo
     {
-        return $this->belongsTo(Escolaridad::class);
+        return $this->belongsTo(Escolaridad::class, 'escolaridad_id');
     }
 
     public function ocupaciones(): BelongsToMany
@@ -248,6 +249,11 @@ class Persona extends Model
     public function expedientes(): HasMany
     {
         return $this->hasMany(Expediente::class);
+    }
+
+    public function estatusEscolaridad(): BelongsTo
+    {
+        return $this->belongsTo(EstatusEscolaridad::class, 'estatus_escolaridad_id');
     }
 
 

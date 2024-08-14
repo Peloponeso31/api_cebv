@@ -6,11 +6,11 @@ use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class EstadoConyugal extends Model
+class EstatusEscolaridad extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'cat_estados_conyugales';
+    protected $table = 'cat_estatus_escolaridades';
 
     protected $fillable = [
         'nombre',

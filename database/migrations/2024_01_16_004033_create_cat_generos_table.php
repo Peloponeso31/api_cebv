@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('cat_tipos_redes_sociales', function (Blueprint $table) {
+        Schema::create('cat_generos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
         });
@@ -15,6 +15,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('cat_tipos_redes_sociales');
+        Schema::dropIfExists('cat_generos');
     }
 };

@@ -32,6 +32,7 @@ class ReporteResource extends JsonResource
         $hecho = HechoDesaparicion::where('reporte_id', $this->id)->first();
         $folios = Folio::where('reporte_id', $this->id)->get();
         $expedientes = Expediente::where('reporte_id', $this->id)->get();
+
         return [
             'id' => $this->id,
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),

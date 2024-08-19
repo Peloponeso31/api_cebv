@@ -28,7 +28,7 @@ class ReporteSeeder extends Seeder
             ->create();
 
         Reporte::factory()
-            ->count(3)
+            ->count(50)
             ->hasReportantes()
             ->hasDesaparecidos()
             ->create();

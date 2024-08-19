@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Reportes;
 use App\Exports\ReportesExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\ReporteRequest;
+use App\Http\Resources\ReporteCompactedResource;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
 use App\Models\Reportes\Reporte;
@@ -31,6 +32,11 @@ class ReporteController extends Controller
 
         if (request()->has('search')) {
             $query = $this->model::search(request('search'));
+        }
+
+        if (request()->has('compact')) {
+            $query = $query->orderByDesc('id')->latest('fecha_creacion')->paginate();
+            return ReporteCompactedResource::collection($query);
         }
 
         return ReporteResource::collection($query->orderByDesc("id")->get());

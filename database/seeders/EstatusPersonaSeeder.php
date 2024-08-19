@@ -19,7 +19,7 @@ class EstatusPersonaSeeder extends Seeder
         sort($estatusPersonas);
 
         foreach ($estatusPersonas as $estatus) {
-            EstatusPersona::create($estatus);
+            EstatusPersona::firstOrCreate($estatus);
         }
     }
 }

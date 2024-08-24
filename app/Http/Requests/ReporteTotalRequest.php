@@ -73,7 +73,7 @@ class ReporteTotalRequest extends FormRequest
             // Reportante
             //'reportantes.*.reporte_id' => ['exists:reportes,id', 'numeric'],
             //'reportantes.*.persona.id' => ['nullable', 'exists:personas,id', 'numeric'],
-            'reportantes.*.parentesco.id' => ['nullable', 'exists:parentescos,id', 'numeric'],
+            'reportantes.*.parentesco.id' => ['nullable', 'exists:cat_parentescos,id', 'numeric'],
             'reportantes.*.denuncia_anonima' => ['nullable', 'boolean'],
             'reportantes.*.informacion_consentimiento' => ['nullable', 'boolean'],
             'reportantes.*.informacion_exclusiva_busqueda' => ['nullable', 'boolean'],

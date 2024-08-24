@@ -3,16 +3,15 @@
 namespace App\Models\Catalogos;
 
 use App\Models\SenasParticulares;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Vista extends Model
 {
-    use HasFactory;
+    protected $table = 'cat_vistas';
 
-    protected $table = "vistas";
     protected $fillable = ['nombre'];
+
     public $timestamps = false;
 
     public function senas_particulares(): HasMany {

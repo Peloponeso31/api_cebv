@@ -17,7 +17,6 @@ class ContextoFamiliarResource extends JsonResource
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
-            'reporte_id' => $this->reporte_id,
             'numero_personas_vive' => $this->numero_personas_vive,
         ];
     }

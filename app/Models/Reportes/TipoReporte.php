@@ -10,7 +10,7 @@ class TipoReporte extends Model
 {
     use Searchable;
 
-    protected $table = 'tipos_reportes';
+    protected $table = 'cat_tipos_reportes';
 
     protected $fillable = ['nombre'];
 

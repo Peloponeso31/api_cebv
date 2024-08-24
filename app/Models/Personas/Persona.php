@@ -2,29 +2,40 @@
 
 namespace App\Models\Personas;
 
-use App\Models\Apodo;
+use App\Models\Amistad;
+use App\Models\Pseudonimo;
 use App\Models\CaracteristicasFisicas;
 use App\Models\Catalogos\Etnia\Lengua;
 use App\Models\Catalogos\Etnia\Religion;
+use App\Models\Club;
+use App\Models\CondicionSalud;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
-use App\Models\Escolaridad;
+use App\Models\Embarazo;
+use App\Models\Empleado\Empleado;
+use App\Models\EnfermedadPiel;
+use App\Models\EnfoqueDiferenciado;
 use App\Models\EstadoConyugal;
-use App\Models\EstatusEscolaridad;
+use App\Models\Estudio;
 use App\Models\Etnia;
 use App\Models\Expediente;
+use App\Models\Familiar;
 use App\Models\Genero;
 use App\Models\GrupoVulnerable;
+use App\Models\IntervencionQuirurgica;
 use App\Models\MediaFiliacion;
+use App\Models\MediaFiliacionComplementaria;
 use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
+use App\Models\Pasatiempo;
 use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
+use App\Models\Salud;
 use App\Models\SenasParticulares;
 use App\Models\Sexo;
 use App\Models\Telefono;
@@ -48,26 +59,19 @@ class Persona extends Model
     protected $fillable = [
         'sexo_id',
         'genero_id',
-        'media_filiacion_id',
         'lugar_nacimiento_id',
         'religion_id',
         'lengua_id',
         'estado_conyugal_id',
-        'escolaridad_id',
-        'estatus_escolaridad_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
-        'pseudonimo_nombre',
-        'pseudonimo_apellido_paterno',
-        'pseudonimo_apellido_materno',
+        'apodo',
         'fecha_nacimiento',
         'curp',
         'observaciones_curp',
         'rfc',
         'ocupacion',
-        // Contexto social
-        'numero_personas_vive'
     ];
 
     protected $casts = [
@@ -140,17 +144,17 @@ class Persona extends Model
         return $this->caracteristicasfisicas->tamaño_ojos->tamañoojos;
     }
 
-    public function contexto_familiar(): HasOne
+    public function contextoFamiliar(): HasOne
     {
         return $this->hasOne(ContextoFamiliar::class);
     }
 
-    public function contexto_economico(): HasOne
+    public function contextoEconomico(): HasOne
     {
         return $this->hasOne(ContextoEconomico::class);
     }
 
-    public function contexto_social(): HasOne
+    public function contextoSocial(): HasOne
     {
         return $this->hasOne(ContextoSocial::class);
     }
@@ -188,7 +192,7 @@ class Persona extends Model
 
     public function nacionalidades(): BelongsToMany
     {
-        return $this->belongsToMany(Nacionalidad::class);
+        return $this->belongsToMany(Nacionalidad::class, 'nacionalidad_persona');
     }
 
     public function telefonos(): HasMany
@@ -201,9 +205,9 @@ class Persona extends Model
         return $this->hasMany(Contacto::class);
     }
 
-    public function apodos(): HasMany
+    public function pseudonimos(): HasMany
     {
-        return $this->hasMany(Apodo::class);
+        return $this->hasMany(Pseudonimo::class);
     }
 
     public function redesSociales(): HasMany
@@ -226,11 +230,6 @@ class Persona extends Model
         return $this->belongsTo(EstadoConyugal::class, 'estado_conyugal_id');
     }
 
-    public function escolaridad(): BelongsTo
-    {
-        return $this->belongsTo(Escolaridad::class, 'escolaridad_id');
-    }
-
     public function ocupaciones(): BelongsToMany
     {
         return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
@@ -246,14 +245,74 @@ class Persona extends Model
         return $this->hasOne(MediaFiliacion::class);
     }
 
+    public function mediaFiliacionComplementaria(): HasOne
+    {
+        return $this->hasOne(MediaFiliacionComplementaria::class);
+    }
+
     public function expedientes(): HasMany
     {
         return $this->hasMany(Expediente::class);
     }
 
-    public function estatusEscolaridad(): BelongsTo
+    public function intervencionesQuirurgicas(): HasMany
     {
-        return $this->belongsTo(EstatusEscolaridad::class, 'estatus_escolaridad_id');
+        return $this->hasMany(IntervencionQuirurgica::class);
+    }
+
+    public function enfermedadesPiel(): HasMany
+    {
+        return $this->hasMany(EnfermedadPiel::class);
+    }
+
+    public function condicionesSalud(): HasMany
+    {
+        return $this->hasMany(CondicionSalud::class);
+    }
+
+    public function salud(): HasOne
+    {
+        return $this->hasOne(Salud::class);
+    }
+
+    public function enfoqueDiferenciado(): HasOne
+    {
+        return $this->hasOne(EnfoqueDiferenciado::class);
+    }
+
+    public function familiares(): HasMany
+    {
+        return $this->hasMany(Familiar::class);
+    }
+
+    public function amistades(): HasMany
+    {
+        return $this->hasMany(Amistad::class);
+    }
+
+    public function pasatiempos(): BelongsToMany
+    {
+        return $this->belongsToMany(Pasatiempo::class);
+    }
+
+    public function clubes(): BelongsToMany
+    {
+        return $this->belongsToMany(Club::class);
+    }
+
+    public function estudio(): HasOne
+    {
+        return $this->hasOne(Estudio::class);
+    }
+
+    public function empleado(): HasMany
+    {
+        return $this->hasMany(Empleado::class);
+    }
+
+    public function embarazo(): HasMany
+    {
+        return $this->hasMany(Embarazo::class);
     }
 
 

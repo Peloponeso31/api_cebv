@@ -12,7 +12,9 @@ class IntervencionQuirurgicaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
+            'persona_id' => $this->persona_id,
+            'tipo_intervencion_quirurgica_id' => $this->tipo_intervencion_quirurgica_id,
+            'descripcion' => $this->descripcion,
         ];
     }
 }

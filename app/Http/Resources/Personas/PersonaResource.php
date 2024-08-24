@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Personas;
 
-use App\Http\Resources\ApodoResource;
+use App\Http\Resources\PseudonimoResource;
 use App\Http\Resources\ContactoResource;
 use App\Http\Resources\EscolaridadResource;
 use App\Http\Resources\EstadoConyugalResource;
@@ -49,7 +49,7 @@ class PersonaResource extends JsonResource
 
             'sexo' => SexoResource::make($this->sexo),
             'genero' => GeneroResource::make($this->genero),
-            'apodos' => ApodoResource::collection($this->apodos),
+            'apodos' => PseudonimoResource::collection($this->apodos),
             'nacionalidades' => NacionalidadResource::collection($this->nacionalidades),
             'religion' => ReligionResource::make($this->religion),
             'lengua' => LenguaResource::make($this->lengua),
@@ -61,8 +61,6 @@ class PersonaResource extends JsonResource
             'estado_conyugal' => EstadoConyugalResource::make($this->estadoConyugal),
             'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
             'media_filiacion' => MediaFiliacionResource::make($this->mediaFiliacion),
-            // Contexto Familiar
-            'numero_personas_vive' => $this->numero_personas_vive,
         ];
     }
 }

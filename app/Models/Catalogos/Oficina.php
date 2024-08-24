@@ -3,17 +3,17 @@
 namespace App\Models\Catalogos;
 
 use App\Models\Empleado\Empleado;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Oficina extends Model
 {
-    use HasFactory;
 
-     protected $table = 'oficina';
+     protected $table = 'cat_oficinas';
+
      protected $fillable = ['nombre'];
-     public $timestamps = true;
+
+     public $timestamps = false;
 
     public function empleado(): HasMany
     {

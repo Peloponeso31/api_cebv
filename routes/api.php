@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ApodoController;
+use App\Http\Controllers\PseudonimoController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
@@ -104,7 +104,7 @@ use App\Http\Controllers\Empleado\EmpleadoController;
 use App\Http\Controllers\GrupoPertenenciaController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\PertenenciaController;
-use App\Http\Controllers\PrendaDeVestirController;
+use App\Http\Controllers\PrendaVestirController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
@@ -175,7 +175,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/companias-telefonicas', CompaniaTelefonicaController::class);
     Route::apiResource('/telefonos', TelefonoController::class);
     Route::apiResource('/contactos', ContactoController::class);
-    Route::apiResource('/apodos', ApodoController::class);
+    Route::apiResource('/apodos', PseudonimoController::class);
     Route::apiResource('/nacionalidades', NacionalidadController::class);
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
@@ -289,7 +289,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for señas particulares module
      */
-    Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
+    Route::apiResource("/prenda_de_vestir", PrendaVestirController::class);
     Route::apiResource('/grupos-pertenencias', GrupoPertenenciaController::class);
     Route::apiResource('/pertenencias', PertenenciaController::class);
     Route::apiResource('/colores', ColorController::class);

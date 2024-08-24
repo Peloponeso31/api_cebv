@@ -14,7 +14,7 @@ class HipotesisRequest extends FormRequest
                 'reporte_id' => ['required', 'exists:reportes,id', 'integer'],
                 'tipo_hipotesis_id' => ['required', 'exists:tipos_hipotesis,id', 'integer'],
                 'sitio_id' => ['required', 'exists:sitios,id', 'integer'],
-                'area_asigna_sitio_id' => ['required', 'exists:areas,id', 'integer'],
+                'area_asigna_sitio_id' => ['required', 'exists:cat_areas,id', 'integer'],
                 'etapa' => ['required', 'string', Rule::in('Inicial', 'Final')],
                 'descripcion' => ['required', 'string'],
 
@@ -23,7 +23,7 @@ class HipotesisRequest extends FormRequest
                 'reporte_id' => ['sometimes', 'exists:reportes,id', 'integer'],
                 'tipo_hipotesis_id' => ['sometimes', 'exists:tipos_hipotesis,id', 'integer'],
                 'sitio_id' => ['sometimes', 'exists:sitios,id', 'integer'],
-                'area_asigna_sitio_id' => ['sometimes', 'exists:areas,id', 'integer'],
+                'area_asigna_sitio_id' => ['sometimes', 'exists:cat_areas,id', 'integer'],
                 'etapa' => ['sometimes', 'string', Rule::in('Inicial', 'Final')],
                 'descripcion' => ['sometimes', 'string'],
             ],

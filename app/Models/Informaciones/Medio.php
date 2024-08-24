@@ -12,7 +12,7 @@ class Medio extends Model
 {
     use Searchable;
 
-    protected $table = 'medios';
+    protected $table = 'cat_medios';
 
     protected $fillable = [
         'tipo_medio_id',

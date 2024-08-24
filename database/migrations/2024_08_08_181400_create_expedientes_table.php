@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\TipoExpediente;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,9 +13,9 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
             $table->foreignId('persona_id')->nullable()->constrained(table: 'personas');
-            $table->foreignId('parentesco_id')->constrained(table: 'parentescos');
+            $table->foreignId('parentesco_id')->constrained(table: 'cat_parentescos');
 
-            $table->enum('tipo', ['Directo', 'Indirecto']);
+            $table->enum('tipo', TipoExpediente::toList());
         });
     }
 

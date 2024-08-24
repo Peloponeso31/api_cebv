@@ -9,13 +9,13 @@ class TamanoCabello extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'tamanos_cabellos';
+    protected $table = 'cat_tamanos_cabello';
 
     protected $fillable = [
         'nombre',
     ];
 
-    public function  MediasFiliaciones(): HasMany
+    public function  mediasFiliaciones(): HasMany
     {
         return $this->hasMany(MediaFiliacion::class);
     }

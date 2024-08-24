@@ -16,9 +16,9 @@ class Empleado extends Model
     use HasFactory;
 
     protected $fillable = [
-        "persona_id",
-        "puesto_id",
-        "oficina",
+        'persona_id',
+        'puesto_id',
+        'oficina_id',
     ];
 
     public function usuario(): HasOne {
@@ -27,14 +27,14 @@ class Empleado extends Model
 
     public function persona(): BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     public function oficina(): BelongsTo {
-        return $this->belongsTo(Oficina::class);
+        return $this->belongsTo(Oficina::class, 'oficina_id');
     }
 
     public function puesto(): BelongsTo {
-        return $this->belongsTo(Puesto::class);
+        return $this->belongsTo(Puesto::class, 'puesto_id');
     }
 }

@@ -16,8 +16,8 @@ class Escolaridad extends Model
         'nombre',
     ];
 
-    public function personas(): HasMany
+    public function estudio(): HasMany
     {
-        return $this->hasMany(Persona::class);
+        return $this->hasMany(Estudio::class);
     }
 }

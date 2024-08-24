@@ -28,8 +28,6 @@ class DatabaseSeeder extends Seeder
             SexoSeeder::class,
             GeneroSeeder::class,
             CompaniaTelefonicaSeeder::class,
-            ContextoSocialSeeder::class,
-            ContextoEconomicoSeeder::class,
             NacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
@@ -81,8 +79,8 @@ class DatabaseSeeder extends Seeder
             TipoMentonSeeder::class,
 
             RegionDeformacionSeeder::class,
-            IntervencionQuirurgicaSeeder::class,
-            EnfermedadPielSeeder::class,
+            TipoIntervencionQuirurgicaSeeder::class,
+            TipoEnfermedadPielSeeder::class,
             TipoSangreSeeder::class,
         ]);
 
@@ -97,7 +95,7 @@ class DatabaseSeeder extends Seeder
          * Situaciones de salud
          */
         $this->call([
-            CondicionSaludSeeder::class,
+            TipoCondicionSaludSeeder::class,
         ]);
 
         /**
@@ -124,7 +122,7 @@ class DatabaseSeeder extends Seeder
          * Seeders que no sé dónde meter
          */
         $this->call([
-            EnfoqueDiferenciadoSeeder::class,
+            TipoEnfoqueDiferenciadoSeeder::class,
             SituacionMigratoriaSeeder::class,
             ParticularSeeder::class,
             AutoridadSeeder::class,

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\SyncModules;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
-use App\Models\Apodo;
-use App\Models\Catalogos\PrendaDeVestir;
+use App\Models\Pseudonimo;
+use App\Models\Catalogos\PrendaVestir;
 use App\Models\Contacto;
 use App\Models\MediaFiliacion;
 use App\Models\Personas\Persona;
@@ -69,13 +69,12 @@ class SyncReporteController extends Controller
             'ocupacion' => $persona["ocupacion"] ?? null,
             'nacionalidades' => $persona["nacionalidades"] ?? null,
             'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
-            'numero_personas_vive' => $persona["numero_personas_vive"] ?? null,
         ]);
 
         if (isset($persona["apodos"]) && $persona["apodos"] != null) {
             $apodos_modificados = [];
             foreach ($persona["apodos"] as $apodo) {
-                $apodo_id = Apodo::updateOrCreate([
+                $apodo_id = Pseudonimo::updateOrCreate([
                     "id" => $apodo["id"] ?? null,
                     "persona_id" => $apodo["persona_id"] ?? $persona_created->id ?? null,
                 ], [
@@ -325,7 +324,7 @@ class SyncReporteController extends Controller
                 if (isset($desaparecido["prendas_de_vestir"]) && $desaparecido["prendas_de_vestir"] != null) {
                     $prendas_modified = [];
                     foreach ($desaparecido["prendas_de_vestir"] as $prenda) {
-                        $prendas_modified[] = PrendaDeVestir::updateOrCreate([
+                        $prendas_modified[] = PrendaVestir::updateOrCreate([
                             "id" => $prenda["id"] ?? null,
                             "desaparecido_id" => $prenda["desaparecido_id"] ?? $desaparecido_updated->id ?? null,
                         ], [

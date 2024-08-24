@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('nacionalidad_id')->constrained(table: 'cat_nacionalidades');
-            $table->foreignId('persona_id');
+            $table->foreignId('persona_id')->constrained(table: 'personas');
         });
     }
 

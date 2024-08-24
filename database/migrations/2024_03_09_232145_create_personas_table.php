@@ -18,24 +18,20 @@ return new class extends Migration {
             $table->foreignId('genero_id')->nullable()->constrained(table: 'cat_generos');
             $table->foreignId('religion_id')->nullable()->constrained(table: 'cat_religiones');
             $table->foreignId('lengua_id')->nullable()->constrained(table: 'cat_lenguas');
-            $table->foreignId('estado_conyugal_id')->nullable()->constrained(table: 'cat_estados_conyugales');
-            $table->foreignId('escolaridad_id')->nullable()->constrained(table: 'cat_escolaridades');
-            $table->foreignId('estatus_escolaridad_id')->nullable()->constrained(table: 'cat_estatus_escolaridades');
+            // TODO: Eliminar estado conyugal de toda la logica de persona
+            // TODO: Eliminar escolaridad de la logica de persona
             $table->string('lugar_nacimiento_id', 2)->nullable();
 
             $table->string('nombre')->nullable();
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();
-            $table->string('pseudonimo_nombre')->nullable();
-            $table->string('pseudonimo_apellido_paterno')->nullable();
-            $table->string('pseudonimo_apellido_materno')->nullable();
+            // TODO: Corregir logica de pseudonimos
+            $table->string('apodo')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->string('curp', 18)->unique()->nullable();
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();
             $table->string('ocupacion')->nullable();
-            // Contexto social
-            $table->integer('numero_personas_vive')->nullable();
 
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('cat_estados');

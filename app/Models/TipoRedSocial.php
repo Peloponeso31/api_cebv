@@ -20,4 +20,9 @@ class TipoRedSocial extends Model
     {
         return $this->hasMany(Persona::class);
     }
+
+    public function amistades(): HasMany
+    {
+        return $this->hasMany(Amistad::class);
+    }
 }

@@ -61,7 +61,7 @@ class Reportante extends Model
 
     public function colectivo(): BelongsTo
     {
-        return $this->belongsTo(Colectivo::class);
+        return $this->belongsTo(Colectivo::class, 'colectivo_id');
     }
 
     public function toSearchableArray()

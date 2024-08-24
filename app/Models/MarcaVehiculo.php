@@ -9,7 +9,7 @@ class MarcaVehiculo extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'marcas_vehiculos';
+    protected $table = 'cat_marcas_vehiculos';
 
     protected $fillable = [
         'nombre',

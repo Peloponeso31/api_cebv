@@ -12,7 +12,11 @@ class CondicionSaludResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
+            'persona_id' => $this->persona_id,
+            'tipo_condicion_salud_id' => $this->tipo_condicion_salud_id,
+            'indole_salud' => $this->indole_salud,
+            'tratamiento' => $this->tratamiento,
+            'observaciones' => $this->observaciones,
         ];
     }
 }

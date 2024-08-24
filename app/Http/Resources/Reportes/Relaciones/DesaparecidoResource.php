@@ -5,7 +5,7 @@ namespace App\Http\Resources\Reportes\Relaciones;
 use App\Http\Resources\OcupacionResource;
 use App\Http\Resources\Personas\EstatusPersonaResource;
 use App\Http\Resources\Personas\PersonaResource;
-use App\Http\Resources\PrendaDeVestirResource;
+use App\Http\Resources\PrendaVestirResource;
 use App\Models\Oficialidades\Folio;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -28,7 +28,7 @@ class DesaparecidoResource extends JsonResource
             'documentos_legales' => DocumentoLegalResource::collection($this->documentosLegales),
             'ocupacion_principal' => OcupacionResource::make($this->ocupacionPrincipal),
             'ocupacion_secundaria' => OcupacionResource::make($this->ocupacionSecundaria),
-            'prendas_de_vestir' => PrendaDeVestirResource::collection($this->prendasDeVestir),
+            'prendas_de_vestir' => PrendaVestirResource::collection($this->prendasDeVestir),
             'clasificacion_persona' => $this->clasificacion_persona,
             'habla_espanhol' => $this->habla_espanhol,
             'sabe_leer' => $this->sabe_leer,

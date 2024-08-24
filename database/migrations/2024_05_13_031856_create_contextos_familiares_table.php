@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('persona_id') -> constrained(table: 'personas');
-            $table->foreignId('reporte_id') -> constrained(table: 'reportes');
+            $table->foreignId('estado_conyugal_id')->nullable()->constrained(table: 'cat_estados_conyugales');
 
             $table->integer('numero_personas_vive')->nullable();
+            $table->string('nombre_pareja_conyugue')->nullable();
         });
     }
 

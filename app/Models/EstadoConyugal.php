@@ -16,8 +16,8 @@ class EstadoConyugal extends Model
         'nombre',
     ];
 
-    public function personas(): HasMany
+    public function contextosFamiliares(): HasMany
     {
-        return $this->hasMany(Persona::class);
+        return $this->hasMany(ContextoFamiliar::class);
     }
 }

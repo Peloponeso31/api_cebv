@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('direccion_id')->nullable();
+            $table->foreignId('direccion_id')->nullable()->constrained(table: 'direcciones');
 
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->date('fecha_desaparicion_aproximada')->nullable();

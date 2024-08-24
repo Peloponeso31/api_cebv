@@ -3,14 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class FormaOjo extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'formas_ojos';
+    protected $table = 'cat_formas_ojos';
 
     protected $fillable = [
         'nombre',
     ];
+
+    public function mediasFiliaciones(): HasMany
+    {
+        return $this->hasMany(MediaFiliacion::class);
+    }
 }

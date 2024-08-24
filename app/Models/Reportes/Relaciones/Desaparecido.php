@@ -2,7 +2,7 @@
 
 namespace App\Models\Reportes\Relaciones;
 
-use App\Models\Catalogos\PrendaDeVestir;
+use App\Models\Catalogos\PrendaVestir;
 use App\Models\Ocupacion;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
@@ -83,11 +83,6 @@ class Desaparecido extends Model
         return $this->belongsTo(Municipio::class);
     }
 
-    public function prendaDeVestir(): HasMany
-    {
-        return $this->hasMany(Municipio::class);
-    }
-
     public function documentosLegales(): HasMany
     {
         return $this->hasMany(DocumentoLegal::class);
@@ -103,8 +98,8 @@ class Desaparecido extends Model
         return $this->belongsTo(Ocupacion::class, 'ocupacion_secundaria_id');
     }
 
-    public function prendasDeVestir(): HasMany
+    public function prendasVestir(): HasMany
     {
-        return $this->hasMany(PrendaDeVestir::class);
+        return $this->hasMany(PrendaVestir::class);
     }
 }

@@ -19,7 +19,7 @@ class Nacionalidad extends Model
 
     public function personas(): BelongsToMany
     {
-        return $this->belongsToMany(Persona::class);
+        return $this->belongsToMany(Persona::class, 'nacionalidad_persona');
     }
 
     public function toSearchableArray(): array

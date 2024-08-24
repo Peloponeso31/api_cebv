@@ -10,7 +10,7 @@ class Circunstancia extends Model
 {
     use Searchable;
 
-    protected $table = 'circunstancias';
+    protected $table = 'cat_circunstancias';
 
     protected $fillable = ['descripcion'];
 

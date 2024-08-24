@@ -40,7 +40,7 @@ return new class extends Migration {
             $table->text('descripcion_ocupacion_principal')->nullable();
             $table->text('descripcion_ocupacion_secundaria')->nullable();
             $table->text('otras_especificaciones_ocupacion')->nullable();
-            $table->text('nombre_pareja_conyugue')->nullable();
+            // TODO: Eliminar estado conyugal de toda la logica de desaparecido
             $table->text("boletin_img_path")->nullable();
 
             $table->timestamps();

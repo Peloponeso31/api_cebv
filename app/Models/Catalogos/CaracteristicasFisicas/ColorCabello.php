@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ColorCabello extends Model
 {
-    protected $table='colores_cabellos';
+    protected $table='cat_colores_cabello';
 
     protected $fillable=['nombre'];
 
@@ -19,7 +19,7 @@ class ColorCabello extends Model
         return $this->hasMany(CaracteristicasFisicas::class);
     }
 
-    public function  MediasFiliaciones(): HasMany
+    public function  mediasFiliaciones(): HasMany
     {
         return $this->hasMany(MediaFiliacion::class);
     }

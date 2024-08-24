@@ -12,9 +12,11 @@ return new class extends Migration {
     {
         Schema::create('prendas_vestir', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('desaparecido_id');
-            $table->foreignId('pertenencia_id')->nullable()->constrained(table: 'pertenencias');
-            $table->foreignId('color_id')->nullable()->constrained(table: 'colores');
+
+            $table->foreignId('desaparecido_id')->constrained(table: 'desaparecidos');
+            $table->foreignId('pertenencia_id')->nullable()->constrained(table: 'cat_pertenencias');
+            $table->foreignId('color_id')->nullable()->constrained(table: 'cat_colores');
+
             $table->string('marca')->nullable();
             $table->string('descripcion')->nullable();
         });

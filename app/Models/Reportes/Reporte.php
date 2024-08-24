@@ -9,6 +9,7 @@ use App\Models\Expediente;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
+use App\Models\Oficialidades\Institucion;
 use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
@@ -40,7 +41,7 @@ class Reporte extends Model
         'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
-        "institucion_origen",
+        'institucion_origen_id',
         'esta_terminado',
         'tipo_desaparicion',
         'fecha_localizacion',
@@ -170,6 +171,11 @@ class Reporte extends Model
     public function contextoFamiliar(): HasOne
     {
         return $this->hasOne(ContextoFamiliar::class);
+    }
+
+    public function institucion(): BelongsTo
+    {
+        return $this->belongsTo(Institucion::class);
     }
 
     /**

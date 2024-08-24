@@ -12,7 +12,9 @@ class EnfermedadPielResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre' => $this->nombre,
+            'persona_id' => $this->persona_id,
+            'tipo_enfermedad_piel_id' => $this->tipo_enfermedad_piel_id,
+            'descripcion' => $this->descripcion,
         ];
     }
 }

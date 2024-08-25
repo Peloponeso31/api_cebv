@@ -13,17 +13,11 @@ class OjoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'especificaciones_ojos' => $this->especificaciones_ojos,
-
             'persona_id' => $this->persona_id,
-            'color_ojos_id' => $this->color_ojos_id,
-            'forma_ojos_id' => $this->forma_ojos_id,
-            'tamano_ojos_id' => $this->tamano_ojos_id,
-
-            'persona' => new PersonaResource($this->whenLoaded('persona')),
-            'colorOjos' => new ColorOjoResource($this->whenLoaded('colorOjos')),
-            'formaOjos' => new FormaOjoResource($this->whenLoaded('formaOjos')),
-            'tamanoOjos' => new TamanoOjoResource($this->whenLoaded('tamanoOjos')),
+            'color_ojos' => CatalogoResource::make($this->colorOjos),
+            'forma_ojos' => CatalogoResource::make($this->formaOjos),
+            'tamano_ojos' => CatalogoResource::make($this->tamanoOjos),
+            'especificaciones_ojos' => $this->especificaciones_ojos,
         ];
     }
 }

@@ -12,6 +12,10 @@ class BocaResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'tamano_boca' => CatalogoResource::make($this->tamanoBoca),
+            'tamano_labios' => CatalogoResource::make($this->tamanoLabios),
+            'especificaciones_boca' => $this->especificaciones_boca,
         ];
     }
 }

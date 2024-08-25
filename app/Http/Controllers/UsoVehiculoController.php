@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UsoVehiculoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\UsoVehiculo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class UsoVehiculoController extends Controller
 {
     public function index()
     {
-        return UsoVehiculoResource::collection(UsoVehiculo::all());
+        return CatalogoResource::collection(UsoVehiculo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class UsoVehiculoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new UsoVehiculoResource(UsoVehiculo::create($data));
+        return new CatalogoResource(UsoVehiculo::create($data));
     }
 
     public function show(UsoVehiculo $usoVehiculo)
     {
-        return new UsoVehiculoResource($usoVehiculo);
+        return new CatalogoResource($usoVehiculo);
     }
 
     public function update(Request $request, UsoVehiculo $usoVehiculo)
@@ -35,7 +35,7 @@ class UsoVehiculoController extends Controller
 
         $usoVehiculo->update($data);
 
-        return new UsoVehiculoResource($usoVehiculo);
+        return new CatalogoResource($usoVehiculo);
     }
 
     public function destroy(UsoVehiculo $usoVehiculo)

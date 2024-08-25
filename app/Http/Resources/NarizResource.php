@@ -12,6 +12,9 @@ class NarizResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'tipo_nariz' => CatalogoResource::make($this->tipoNariz),
+            'especificaciones_nariz' => $this->especificaciones_nariz,
         ];
     }
 }

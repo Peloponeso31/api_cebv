@@ -16,7 +16,7 @@ class ContactoResource extends JsonResource
         'tipo'=> $this->tipo,
         'nombre'=> $this->nombre,
         'observaciones'=> $this->observaciones,
-        'tipo_red_social' => TipoRedSocialResource::make($this->tipoRedSocial)
+        'tipo_red_social' => CatalogoResource::make($this->tipoRedSocial)
        ];
     }
 }

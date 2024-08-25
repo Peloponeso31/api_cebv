@@ -14,7 +14,7 @@ class AmistadResource extends JsonResource
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
-            'tipo_red_social_id' => $this->tipo_red_social_id,
+            'tipo_red_social' => CatalogoResource::make($this->tipoRedSocial),
             'nombre' => $this->nombre,
             'apellido_paterno' => $this->apellido_paterno,
             'apellido_materno' => $this->apellido_materno,

@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ContextoFamiliar;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin ContextoFamiliar
+ */
 class ContextoFamiliarResource extends JsonResource
 {
     /**

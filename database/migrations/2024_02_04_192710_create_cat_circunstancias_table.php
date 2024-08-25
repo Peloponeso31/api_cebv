@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('cat_circunstancias', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion');
+            $table->string('nombre');
         });
     }
 

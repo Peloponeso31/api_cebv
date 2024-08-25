@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NacionalidadResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Nacionalidad;
 use App\Services\CrudService;
 
@@ -25,12 +25,12 @@ class NacionalidadController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return NacionalidadResource::collection($query->get());
+        return CatalogoResource::collection($query->get());
     }
 
     public function show($id)
     {
-        return $this->service->show($id, $this->model, new NacionalidadResource($this->model::class));
+        return $this->service->show($id, $this->model, new CatalogoResource($this->model::class));
     }
 
 }

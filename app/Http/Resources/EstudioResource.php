@@ -17,14 +17,9 @@ class EstudioResource extends JsonResource
             'nombre_institucion' => $this->nombre_institucion,
 
             'persona_id' => $this->persona_id,
-            'escolaridad_id' => $this->escolaridad_id,
-            'estatus_escolaridad_id' => $this->estatus_escolaridad_id,
+            'escolaridad' => CatalogoResource::make($this->escolaridad),
+            'estatus_escolaridad' => CatalogoResource::make($this->estatusEscolaridad),
             'direccion_id' => $this->direccion_id,
-
-            'persona' => new PersonaResource($this->whenLoaded('persona')),
-            'escolaridad' => new EscolaridadResource($this->whenLoaded('escolaridad')),
-            'estatusEscolaridad' => new EstatusEscolaridadResource($this->whenLoaded('estatusEscolaridad')),
-            'direccion' => new DireccionResource($this->whenLoaded('direccion')),
         ];
     }
 }

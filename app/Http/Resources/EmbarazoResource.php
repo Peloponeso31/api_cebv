@@ -12,14 +12,11 @@ class EmbarazoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'meses' => $this->meses,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'id' => $this->id,
-            'meses' => $this->meses,
-
-            'persona_id' => $this->persona_id,
-
-            'persona' => new PersonaResource($this->whenLoaded('persona')),
         ];
     }
 }

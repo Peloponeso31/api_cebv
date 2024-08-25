@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Pasatiempo extends Model
 {
-    public $timestamps = false;
+    protected $table = 'cat_pasatiempos';
 
     protected $fillable = [
         'nombre',
     ];
+
+    public $timestamps = false;
 
     public function persona(): BelongsToMany
     {

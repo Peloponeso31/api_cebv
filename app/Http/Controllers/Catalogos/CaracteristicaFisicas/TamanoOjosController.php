@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\TamanoOjosRequest;
-use App\Http\Resources\TamanoOjoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\CaracteristicasFisicas\TamanoOjos;
-use Illuminate\Http\Request;
 
 class TamanoOjosController extends Controller
 {
 
     public function index()
     {
-        return TamanoOjoResource::collection(TamanoOjos::all());
+        return CatalogoResource::collection(TamanoOjos::all());
     }
 
 

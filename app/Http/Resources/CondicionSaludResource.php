@@ -13,7 +13,7 @@ class CondicionSaludResource extends JsonResource
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
-            'tipo_condicion_salud_id' => $this->tipo_condicion_salud_id,
+            'tipo_condicion_salud' => CatalogoResource::make($this->tipoCondicionSalud),
             'indole_salud' => $this->indole_salud,
             'tratamiento' => $this->tratamiento,
             'observaciones' => $this->observaciones,

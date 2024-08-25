@@ -3,10 +3,11 @@
 namespace App\Http\Resources\Reportes\Hechos;
 
 use App\Http\Resources\Ubicaciones\DireccionResource;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Reportes\Hechos\HechoDesaparicion */
+/** @mixin HechoDesaparicion */
 class HechoDesaparicionResource extends JsonResource
 {
     public function toArray(Request $request): array

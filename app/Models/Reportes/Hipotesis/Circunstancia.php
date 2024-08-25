@@ -12,7 +12,7 @@ class Circunstancia extends Model
 
     protected $table = 'cat_circunstancias';
 
-    protected $fillable = ['descripcion'];
+    protected $fillable = ['nombre'];
 
     public $timestamps = false;
 

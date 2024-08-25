@@ -12,6 +12,10 @@ class OrejaResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'tamano_orejas' => CatalogoResource::make($this->tamanoOrejas),
+            'forma_orejas' => CatalogoResource::make($this->formaOrejas),
+            'especificaciones_orejas' => $this->especificaciones_orejas,
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MedioCapturaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\MedioCaptura;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class MedioCapturaController extends Controller
 {
     public function index()
     {
-        return MedioCapturaResource::collection(MedioCaptura::all());
+        return CatalogoResource::collection(MedioCaptura::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class MedioCapturaController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new MedioCapturaResource(MedioCaptura::create($data));
+        return new CatalogoResource(MedioCaptura::create($data));
     }
 
     public function show(MedioCaptura $medioCaptura)
     {
-        return new MedioCapturaResource($medioCaptura);
+        return new CatalogoResource($medioCaptura);
     }
 
     public function update(Request $request, MedioCaptura $medioCaptura)
@@ -35,7 +35,7 @@ class MedioCapturaController extends Controller
 
         $medioCaptura->update($data);
 
-        return new MedioCapturaResource($medioCaptura);
+        return new CatalogoResource($medioCaptura);
     }
 
     public function destroy(MedioCaptura $medioCaptura)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\EscolaridadResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Escolaridad;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class EscolaridadController extends Controller
 {
     public function index()
     {
-        return EscolaridadResource::collection(Escolaridad::all());
+        return CatalogoResource::collection(Escolaridad::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class EscolaridadController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new EscolaridadResource(Escolaridad::create($data));
+        return new CatalogoResource(Escolaridad::create($data));
     }
 
     public function show(Escolaridad $escolaridad)
     {
-        return new EscolaridadResource($escolaridad);
+        return new CatalogoResource($escolaridad);
     }
 
     public function update(Request $request, Escolaridad $escolaridad)
@@ -35,7 +35,7 @@ class EscolaridadController extends Controller
 
         $escolaridad->update($data);
 
-        return new EscolaridadResource($escolaridad);
+        return new CatalogoResource($escolaridad);
     }
 
     public function destroy(Escolaridad $escolaridad)

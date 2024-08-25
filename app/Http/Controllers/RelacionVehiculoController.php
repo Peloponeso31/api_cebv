@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\RelacionVehiculoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\RelacionVehiculo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class RelacionVehiculoController extends Controller
 {
     public function index()
     {
-        return RelacionVehiculoResource::collection(RelacionVehiculo::all());
+        return CatalogoResource::collection(RelacionVehiculo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class RelacionVehiculoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new RelacionVehiculoResource(RelacionVehiculo::create($data));
+        return new CatalogoResource(RelacionVehiculo::create($data));
     }
 
     public function show(RelacionVehiculo $relacionVehiculo)
     {
-        return new RelacionVehiculoResource($relacionVehiculo);
+        return new CatalogoResource($relacionVehiculo);
     }
 
     public function update(Request $request, RelacionVehiculo $relacionVehiculo)
@@ -35,7 +35,7 @@ class RelacionVehiculoController extends Controller
 
         $relacionVehiculo->update($data);
 
-        return new RelacionVehiculoResource($relacionVehiculo);
+        return new CatalogoResource($relacionVehiculo);
     }
 
     public function destroy(RelacionVehiculo $relacionVehiculo)

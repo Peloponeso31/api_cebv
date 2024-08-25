@@ -10,7 +10,7 @@ class EnfermedadPiel extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'enfermedades_pieles';
+    protected $table = 'enfermedades_piel';
 
     protected $fillable = [
         'persona_id',

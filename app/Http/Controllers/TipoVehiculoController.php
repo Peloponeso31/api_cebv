@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TipoVehiculoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TipoVehiculo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TipoVehiculoController extends Controller
 {
     public function index()
     {
-        return TipoVehiculoResource::collection(TipoVehiculo::all());
+        return CatalogoResource::collection(TipoVehiculo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TipoVehiculoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TipoVehiculoResource(TipoVehiculo::create($data));
+        return new CatalogoResource(TipoVehiculo::create($data));
     }
 
     public function show(TipoVehiculo $tipoVehiculo)
     {
-        return new TipoVehiculoResource($tipoVehiculo);
+        return new CatalogoResource($tipoVehiculo);
     }
 
     public function update(Request $request, TipoVehiculo $tipoVehiculo)
@@ -35,7 +35,7 @@ class TipoVehiculoController extends Controller
 
         $tipoVehiculo->update($data);
 
-        return new TipoVehiculoResource($tipoVehiculo);
+        return new CatalogoResource($tipoVehiculo);
     }
 
     public function destroy(TipoVehiculo $tipoVehiculo)

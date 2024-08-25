@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Telefono;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin Telefono
+ */
 class TelefonoResource extends JsonResource
 {
 
@@ -16,7 +20,7 @@ class TelefonoResource extends JsonResource
             'persona_id' => $this->persona_id,
             'observaciones'=> $this->observaciones,
             'es_movil' => $this->es_movil,
-            'compania' => CompaniaTelefonicaResource::make($this->compania),
+            'compania' => CatalogoResource::make($this->compania),
         ];
     }
 }

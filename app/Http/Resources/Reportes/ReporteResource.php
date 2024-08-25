@@ -3,13 +3,13 @@
 namespace App\Http\Resources\Reportes;
 
 use App\Http\Resources\BasicResource;
+use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\ControlOgpiResource;
 use App\Http\Resources\DesaparicionForzadaResource;
 use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
-use App\Http\Resources\Oficialidades\AreaResource;
 use App\Http\Resources\PerpetradorResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
 use App\Http\Resources\Reportes\Hipotesis\HipotesisResource;
@@ -20,10 +20,11 @@ use App\Http\Resources\Ubicaciones\EstadoResource;
 use App\Models\Expediente;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
+use App\Models\Reportes\Reporte;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Reportes\Reporte */
+/** @mixin Reporte */
 class ReporteResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -35,7 +36,7 @@ class ReporteResource extends JsonResource
             'id' => $this->id,
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
             'tipo_reporte' => BasicResource::make($this->tipoReporte),
-            'area_atiende' => AreaResource::make($this->areaAtiende),
+            'area_atiende' => CatalogoResource::make($this->areaAtiende),
             'estado' => EstadoResource::make($this->estado),
             'zona_estado' => BasicResource::make($this->zonaEstado),
             'hipotesis_oficial' => TipoHipotesisResource::make($this->hipotesisOficial),

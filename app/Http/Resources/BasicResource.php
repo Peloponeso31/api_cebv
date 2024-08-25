@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
+ * Clase que representa un recurso básico(catálogo) con abreviatura.
+ *
  * @property mixed $id
  * @property mixed $nombre
  * @property mixed $abreviatura

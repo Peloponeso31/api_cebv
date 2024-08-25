@@ -3,31 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TipoIntervencionQuirurgicaRequest;
-use App\Http\Resources\TipoIntervencionQuirurgicaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TipoIntervencionQuirurgica;
 
 class TipoIntervencionQuirurgicaController extends Controller
 {
     public function index()
     {
-        return TipoIntervencionQuirurgicaResource::collection(TipoIntervencionQuirurgica::all());
+        return CatalogoResource::collection(TipoIntervencionQuirurgica::all());
     }
 
     public function store(TipoIntervencionQuirurgicaRequest $request)
     {
-        return new TipoIntervencionQuirurgicaResource(TipoIntervencionQuirurgica::create($request->validated()));
+        return new CatalogoResource(TipoIntervencionQuirurgica::create($request->validated()));
     }
 
     public function show(TipoIntervencionQuirurgica $tipoIntervencionQuirurgica)
     {
-        return new TipoIntervencionQuirurgicaResource($tipoIntervencionQuirurgica);
+        return new CatalogoResource($tipoIntervencionQuirurgica);
     }
 
     public function update(TipoIntervencionQuirurgicaRequest $request, TipoIntervencionQuirurgica $tipoIntervencionQuirurgica)
     {
         $tipoIntervencionQuirurgica->update($request->validated());
 
-        return new TipoIntervencionQuirurgicaResource($tipoIntervencionQuirurgica);
+        return new CatalogoResource($tipoIntervencionQuirurgica);
     }
 
     public function destroy(TipoIntervencionQuirurgica $tipoIntervencionQuirurgica)

@@ -18,8 +18,6 @@ return new class extends Migration {
 
             $table->boolean('esta_transito_estados_unidos')->nullable();
             $table->text('descripcion_proceso_migratorio')->nullable();
-
-            $table->timestamps();
         });
     }
 

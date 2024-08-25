@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\Reportes\Relaciones;
 
+use App\Http\Resources\BasicResource;
 use App\Http\Resources\OcupacionResource;
-use App\Http\Resources\Personas\EstatusPersonaResource;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Http\Resources\PrendaVestirResource;
 use App\Models\Oficialidades\Folio;
@@ -23,8 +23,8 @@ class DesaparecidoResource extends JsonResource
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
             'persona' => PersonaResource::make($this->persona),
-            'estatus_rpdno' => EstatusPersonaResource::make($this->estatusRpdno),
-            'estatus_cebv' => EstatusPersonaResource::make($this->estatusCebv),
+            'estatus_rpdno' => BasicResource::make($this->estatusRpdno),
+            'estatus_cebv' => BasicResource::make($this->estatusCebv),
             'documentos_legales' => DocumentoLegalResource::collection($this->documentosLegales),
             'ocupacion_principal' => OcupacionResource::make($this->ocupacionPrincipal),
             'ocupacion_secundaria' => OcupacionResource::make($this->ocupacionSecundaria),

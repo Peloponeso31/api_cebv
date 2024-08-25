@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Reportes;
 
-use App\Enums\TipoExpediente;
+use App\Http\Resources\BasicResource;
 use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\ControlOgpiResource;
 use App\Http\Resources\DesaparicionForzadaResource;
@@ -17,7 +17,6 @@ use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
-use App\Http\Resources\Ubicaciones\ZonaEstadoResource;
 use App\Models\Expediente;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
@@ -35,10 +34,10 @@ class ReporteResource extends JsonResource
         return [
             'id' => $this->id,
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
-            'tipo_reporte' => TipoReporteResource::make($this->tipoReporte),
+            'tipo_reporte' => BasicResource::make($this->tipoReporte),
             'area_atiende' => AreaResource::make($this->areaAtiende),
             'estado' => EstadoResource::make($this->estado),
-            'zona_estado' => ZonaEstadoResource::make($this->zonaEstado),
+            'zona_estado' => BasicResource::make($this->zonaEstado),
             'hipotesis_oficial' => TipoHipotesisResource::make($this->hipotesisOficial),
             'reportantes' => ReportanteResource::collection($this->reportantes),
             'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),

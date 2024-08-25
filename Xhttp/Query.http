@@ -1,5 +1,5 @@
 // @no-log
-POST http://api_cebv.test/api/documentos-legales
+GET http://api_cebv.test/api/tipos-reportes
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 

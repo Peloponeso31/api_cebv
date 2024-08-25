@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes;
 
+use App\Enums\TipoDesaparicion;
 use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
@@ -38,20 +39,20 @@ class Reporte extends Model
         'tipo_reporte_id',
         'area_atiende_id',
         'medio_conocimiento_id',
-        'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
         'institucion_origen_id',
+        'estado_id',
         'esta_terminado',
         'tipo_desaparicion',
         'fecha_localizacion',
         'sintesis_localizacion',
-        'clasificacion_persona',
         'fecha_creacion',
         'fecha_actualizacion',
     ];
 
     protected $casts = [
+        'tipo_desaparicion' => TipoDesaparicion::class, // Única o múltiple
         'esta_terminado' => 'boolean',
         'fecha_localizacion' => 'datetime',
         'fecha_creacion' => 'datetime',
@@ -80,7 +81,7 @@ class Reporte extends Model
 
     public function hechosDesaparicion(): HasOne
     {
-        return $this->hasOne(HechoDesaparicion::class, 'reporte_id');
+        return $this->hasOne(HechoDesaparicion::class);
     }
 
     /**
@@ -133,10 +134,6 @@ class Reporte extends Model
         return $this->hasMany(Folio::class);
     }
 
-    public function hechoDesaparicion(): HasOne
-    {
-        return $this->hasOne(HechoDesaparicion::class);
-    }
 
     public function hipotesis(): HasMany
     {
@@ -175,16 +172,6 @@ class Reporte extends Model
 
     public function institucion(): BelongsTo
     {
-        return $this->belongsTo(Institucion::class);
-    }
-
-    /**
-     * @return array
-     */
-    public function toSearchableArray(): array
-    {
-        return [
-            'esta_terminado' => $this->esta_terminado,
-        ];
+        return $this->belongsTo(Institucion::class, 'institucion_origen_id');
     }
 }

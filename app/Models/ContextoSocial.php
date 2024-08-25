@@ -20,6 +20,8 @@ class ContextoSocial extends Model
         'descripcion_proceso_migratorio',
     ];
 
+    public $timestamps = false;
+
     public function persona(): BelongsTo
     {
         return $this->belongsTo(Persona::class, 'persona_id');

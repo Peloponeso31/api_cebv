@@ -15,8 +15,8 @@ class TamanoCabello extends Model
         'nombre',
     ];
 
-    public function  mediasFiliaciones(): HasMany
+    public function cabellos(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Cabello::class);
     }
 }

@@ -42,7 +42,7 @@ class DatabaseSeeder extends Seeder
             PertenenciaSeeder::class,
             ColectivoSeeder::class,
             ColorSeeder::class,
-            RazonesCurpSeeder::class,
+            RazonCurpSeeder::class,
             TiposDomicilioSeeder::class,
             PuestoSeeder::class,
             RegionCuerpoSeeder::class,

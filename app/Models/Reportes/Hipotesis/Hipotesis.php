@@ -25,6 +25,8 @@ class Hipotesis extends Model
         'etapa',
     ];
 
+    public $timestamps = false;
+
     protected $casts = [
         'fecha_localizacion' => 'date',
         'etapa' => EtapaHipotesis::class

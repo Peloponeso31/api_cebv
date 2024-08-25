@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes\Relaciones;
 
+use App\Enums\TipoDocumentoLegal;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -21,6 +22,7 @@ class DocumentoLegal extends Model
     ];
 
     protected $casts = [
+        'tipo_documento' => TipoDocumentoLegal::class,
         'fecha_recepcion' => 'date',
     ];
 

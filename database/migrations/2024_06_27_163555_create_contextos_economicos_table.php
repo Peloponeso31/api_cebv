@@ -26,6 +26,7 @@ return new class extends Migration {
             $table->boolean('tiene_deudas')->nullable();
             $table->float('monto_deuda')->nullable();
             $table->string('deuda_con')->nullable();
+            $table->text('otras_especificaciones_ocupacion')->nullable();
 
             $table->timestamps();
         });

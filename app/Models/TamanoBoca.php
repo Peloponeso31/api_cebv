@@ -15,8 +15,8 @@ class TamanoBoca extends Model
         'nombre',
     ];
 
-    public function mediasFiliaciones(): HasMany
+    public function bocas(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Boca::class);
     }
 }

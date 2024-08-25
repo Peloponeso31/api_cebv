@@ -15,8 +15,8 @@ class Calvicie extends Model
 
     protected $table = 'cat_calvicies';
 
-    public function mediasFiliaciones(): HasMany
+    public function cabellos(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Cabello::class);
     }
 }

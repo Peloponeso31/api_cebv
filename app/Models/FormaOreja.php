@@ -15,8 +15,8 @@ class FormaOreja extends Model
         'nombre',
     ];
 
-    public function mediasFiliaciones(): HasMany
+    public function orejas(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Oreja::class);
     }
 }

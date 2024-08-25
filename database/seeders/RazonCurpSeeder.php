@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\RazonesCurp;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\RazonCurp;
 use Illuminate\Database\Seeder;
 
-class RazonesCurpSeeder extends Seeder
+class RazonCurpSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -24,7 +23,7 @@ class RazonesCurpSeeder extends Seeder
         ];
 
         foreach ($razones as $razon) {
-            RazonesCurp::insert([
+            RazonCurp::insert([
                 "nombre" => $razon
             ]);
         }

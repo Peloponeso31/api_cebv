@@ -182,7 +182,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
     Route::apiResource('/tipos-ocupaciones', TipoOcupacionController::class);
     Route::apiResource('/ocupaciones', OcupacionController::class);
-    Route::apiResource("/razones-curp", \App\Http\Controllers\RazonesCurpController::class);
+    Route::apiResource("/razones-curp", \App\Http\Controllers\RazonCurpController::class);
 
     /**
      * Routes for the reportes module

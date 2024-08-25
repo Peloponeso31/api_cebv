@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create('vehiculos', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
             $table->foreignId('relacion_vehiculo_id')->constrained(table: 'cat_relaciones_vehiculos');
             $table->foreignId('tipo_vehiculo_id')->constrained(table: 'cat_tipos_vehiculos');

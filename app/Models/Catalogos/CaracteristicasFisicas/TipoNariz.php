@@ -4,6 +4,7 @@ namespace App\Models\Catalogos\CaracteristicasFisicas;
 
 use App\Models\CaracteristicasFisicas;
 use App\Models\MediaFiliacion;
+use App\Models\Nariz;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -15,13 +16,8 @@ class TipoNariz extends Model
 
     public $timestamps = false;
 
-    public function caracteristicas_fisicas(): HasMany
+    public function narices(): HasMany
     {
-        return $this->hasMany(CaracteristicasFisicas::class);
-    }
-
-    public function mediasFiliaciones(): HasMany
-    {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Nariz::class);
     }
 }

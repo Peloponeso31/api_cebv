@@ -25,12 +25,6 @@ return new class extends Migration {
             $table->date('fecha_localizacion')->nullable();
             $table->text('sintesis_localizacion')->nullable();
             // TODO: Corregir institucion de origen
-            $table->boolean("declaracion_especial_ausencia")->nullable();
-            $table->boolean("accion_urgente")->nullable();
-            $table->boolean("dictamen")->nullable();
-            $table->boolean("ci_nivel_federal")->nullable();
-            $table->string("otro_derecho_humano")->nullable();
-
             $table->timestamp('fecha_creacion')->useCurrent();
             $table->timestamp('fecha_actualizacion')->useCurrent()->useCurrentOnUpdate();
 

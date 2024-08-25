@@ -16,8 +16,8 @@ class Ceja extends Model
     protected $table = 'cat_cejas';
 
 
-    public function mediasFiliaciones(): HasMany
+    public function vellosFaciales(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(VelloFacial::class);
     }
 }

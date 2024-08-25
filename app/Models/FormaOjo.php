@@ -15,8 +15,8 @@ class FormaOjo extends Model
         'nombre',
     ];
 
-    public function mediasFiliaciones(): HasMany
+    public function ojos(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Ojo::class);
     }
 }

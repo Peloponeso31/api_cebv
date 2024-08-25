@@ -3,8 +3,12 @@
 namespace App\Models\Personas;
 
 use App\Models\Amistad;
+use App\Models\Boca;
+use App\Models\Cabello;
+use App\Models\Nariz;
+use App\Models\Ojo;
+use App\Models\Oreja;
 use App\Models\Pseudonimo;
-use App\Models\CaracteristicasFisicas;
 use App\Models\Catalogos\Etnia\Lengua;
 use App\Models\Catalogos\Etnia\Religion;
 use App\Models\Club;
@@ -41,6 +45,7 @@ use App\Models\Sexo;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
 use App\Models\Ubicaciones\Estado;
+use App\Models\VelloFacial;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -48,11 +53,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Laravel\Scout\Searchable;
 
 class Persona extends Model
 {
-    use HasFactory, Searchable;
+    use HasFactory;
 
     protected $table = 'personas';
 
@@ -112,11 +116,6 @@ class Persona extends Model
     public function fecha_nacimiento_legible()
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
-    }
-
-    public function caracteristicasfisicas(): HasOne
-    {
-        return $this->hasOne(CaracteristicasFisicas::class);
     }
 
     public function color_ojos()
@@ -240,10 +239,39 @@ class Persona extends Model
         return $this->belongsToMany(GrupoVulnerable::class, "grupos_vulnerables_personas");
     }
 
-    public function mediaFiliacion(): HasOne
+    /**
+     * Media Filiación
+     */
+    public function ojo(): HasOne
     {
-        return $this->hasOne(MediaFiliacion::class);
+        return $this->hasOne(Ojo::class);
     }
+
+    public function cabello(): HasOne
+    {
+        return $this->hasOne(Cabello::class);
+    }
+
+    public function velloFacial(): HasOne
+    {
+        return $this->hasOne(VelloFacial::class);
+    }
+
+    public function nariz(): HasOne
+    {
+        return $this->hasOne(Nariz::class);
+    }
+
+    public function boca(): HasOne
+    {
+        return $this->hasOne(Boca::class);
+    }
+
+    public function oreja(): HasOne
+    {
+        return $this->hasOne(Oreja::class);
+    }
+
 
     public function mediaFiliacionComplementaria(): HasOne
     {
@@ -313,18 +341,5 @@ class Persona extends Model
     public function embarazo(): HasMany
     {
         return $this->hasMany(Embarazo::class);
-    }
-
-
-    public function toSearchableArray()
-    {
-        return [
-            'nombre' => $this->nombre,
-            'apellido_paterno' => $this->apellido_paterno,
-            'apellido_materno' => $this->apellido_materno,
-            'pseudonimo_nombre' => $this->pseudonimo_nombre,
-            'pseudonimo_apellido_paterno' => $this->pseudonimo_apellido_paterno,
-            'pseudonimo_apellido_materno' => $this->pseudonimo_apellido_materno,
-        ];
     }
 }

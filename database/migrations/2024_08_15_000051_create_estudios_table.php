@@ -16,6 +16,8 @@ return new class extends Migration {
             $table->foreignId('direccion_id')->nullable()->constrained(table: 'direcciones');
 
             $table->string('nombre_institucion')->nullable();
+            $table->boolean('sabe_leer_escribir')->nullable();
+
         });
     }
 

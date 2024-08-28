@@ -14,6 +14,7 @@ return new class extends Migration {
 
             $table->foreignId('desaparecido_id')->constrained(table: 'desaparecidos');
 
+            $table->boolean('es_oficial')->nullable();
             $table->enum('tipo_documento', EnumHelper::toList(TipoDocumentoLegal::class));
             $table->string('numero_documento')->nullable();
             $table->string('donde_radica')->nullable();

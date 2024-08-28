@@ -13,6 +13,7 @@ class DocumentoLegal extends Model
     protected $table = 'documentos_legales';
 
     protected $fillable = [
+        'es_oficial',
         'desaparecido_id',
         'tipo_documento',
         'numero_documento',

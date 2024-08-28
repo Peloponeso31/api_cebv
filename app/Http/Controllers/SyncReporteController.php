@@ -53,8 +53,6 @@ class SyncReporteController extends Controller
             // Atributos
             'esta_terminado' => $request->esta_terminado ?? null,
             'tipo_desaparicion' => $request->tipo_desaparicion ?? null,
-            'fecha_creacion' => $request->fecha_creacion ?? null,
-            'fecha_actualizacion' => $request->fecha_actualizacion ?? null,
         ]);
 
         if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {

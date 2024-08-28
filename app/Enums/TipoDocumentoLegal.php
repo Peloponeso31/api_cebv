@@ -6,5 +6,5 @@ enum TipoDocumentoLegal: string
 {
     case CarpetaInvestigacion = 'CarpetaInvestigacion';
     case AmparoBuscador = 'AmparoBuscador';
-    case DerechosHumanos = 'DerechosHumanos';
+    case RecomendacionDerechos = 'RecomendacionDerechos';
 }

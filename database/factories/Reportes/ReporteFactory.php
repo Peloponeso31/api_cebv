@@ -2,8 +2,10 @@
 
 namespace Database\Factories\Reportes;
 
+use App\Enums\TipoDesaparicion;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
+use App\Models\Oficialidades\Institucion;
 use App\Models\Reportes\Hipotesis\TipoHipotesis;
 use App\Models\Reportes\Reporte;
 use App\Models\Reportes\TipoReporte;
@@ -23,9 +25,10 @@ class ReporteFactory extends Factory
             'area_atiende_id' => Area::inRandomOrder()->first()->id,
             'medio_conocimiento_id' => Medio::inRandomOrder()->first()->id,
             'estado_id' => Estado::inRandomOrder()->first()->id,
+            'institucion_origen_id' => Institucion::inRandomOrder()->first()->id,
             'zona_estado_id' => ZonaEstado::inRandomOrder()->first()->id,
             'hipotesis_oficial_id' => TipoHipotesis::inRandomOrder()->first()->id,
-            'tipo_desaparicion' => fake()->randomElement(['U', 'M']),
+            'tipo_desaparicion' => fake()->randomElement(TipoDesaparicion::cases()),
             'esta_terminado' => fake()->boolean(),
             'fecha_creacion' => Carbon::now(),
             'fecha_actualizacion' => Carbon::now(),

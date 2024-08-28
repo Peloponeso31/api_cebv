@@ -12,8 +12,8 @@ class DesaparecidoFactory extends Factory
     public function definition(): array
     {
         return [
-            'persona_id' => Persona::inRandomOrder()->first()->id,
-            'reporte_id' => Reporte::inRandomOrder()->first()->id,
+            'persona_id' => Persona::factory(),
+            'reporte_id' => Reporte::factory(),
             'clasificacion_persona' => fake()->word(),
             'estatus_rpdno_id' => EstatusPersona::inRandomOrder()->first()->id,
             'estatus_cebv_id' => EstatusPersona::inRandomOrder()->first()->id,

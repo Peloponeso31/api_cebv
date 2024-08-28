@@ -93,7 +93,7 @@ class Persona extends Model
         return $this->belongsTo(Genero::class, 'genero_id');
     }
 
-    public function lugar_nacimiento(): BelongsTo
+    public function lugarNacimiento(): BelongsTo
     {
         return $this->belongsTo(Estado::class, 'lugar_nacimiento_id');
     }

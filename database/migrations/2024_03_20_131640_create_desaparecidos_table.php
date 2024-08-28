@@ -30,8 +30,7 @@ return new class extends Migration {
             $table->integer('edad_momento_desaparicion_anos')->nullable();
             $table->integer('edad_momento_desaparicion_meses')->nullable();
             $table->integer('edad_momento_desaparicion_dias')->nullable();
-
-            $table->text('identidad_resguardada')->nullable();
+            $table->string('identidad_resguardada')->nullable();
             $table->text('alias')->nullable();
             // TODO: Eliminar estado conyugal de toda la logica de desaparecido
             $table->text("boletin_img_path")->nullable();

@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\CatalogoResource;
+use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\EstudioResource;
 use App\Http\Resources\PseudonimoResource;
 use App\Http\Resources\ContactoResource;
@@ -31,19 +32,13 @@ class PersonaResource extends JsonResource
             'nombre' => $this->nombre,
             'apellido_paterno' => $this->apellido_paterno,
             'apellido_materno' => $this->apellido_materno,
-            'pseudonimo_nombre' => $this->pseudonimo_nombre,
-            'pseudonimo_apellido_paterno' => $this->pseudonimo_apellido_paterno,
-            'pseudonimo_apellido_materno' => $this->pseudonimo_apellido_materno,
             'fecha_nacimiento' => $this->fecha_nacimiento,
             'curp' => $this->curp,
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
-            'ocupacion' => $this->ocupacion,
-            'nivel_escolaridad' => $this->nivel_escolaridad,
-
             'sexo' => CatalogoResource::make($this->sexo),
             'genero' => CatalogoResource::make($this->genero),
-            'apodos' => PseudonimoResource::collection($this->apodos),
+            'apodos' => PseudonimoResource::collection($this->pseudonimos),
             'nacionalidades' => CatalogoResource::collection($this->nacionalidades),
             'estudios' => EstudioResource::make($this->estudio),
             'religion' => CatalogoResource::make($this->religion),
@@ -53,7 +48,7 @@ class PersonaResource extends JsonResource
             'direcciones' => DireccionResource::collection($this->direcciones),
             'grupos_vulnerables' => CatalogoResource::collection($this->gruposVulnerables),
             'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
-            'media_filiacion' => MediaFiliacionResource::make($this->mediaFiliacion),
+            'contexto_familiar' => ContextoFamiliarResource::make($this->contextoFamiliar),
         ];
     }
 }

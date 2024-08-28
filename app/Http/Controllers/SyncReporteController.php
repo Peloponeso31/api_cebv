@@ -40,22 +40,21 @@ class SyncReporteController extends Controller
     public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
         $reporte = Reporte::updateOrCreate([
-            "id" => $request->id ?? null
+            'id' => $request->id ?? null
         ], [
-            // Catalogos
-            'tipo_reporte_id' => $request->tipo_reporte["id"] ?? null,
-            'area_atiende_id' => $request->area_atiende["id"] ?? null,
-            'medio_conocimiento_id' => $request->medio_conocimiento["id"] ?? null,
-            'estado_id' => $request->estado["id"] ?? null,
-            'zona_estado_id' => $request->zona_estado["id"] ?? 4,
-            'hipotesis_oficial_id' => $request->hipotesis_oficial["id"] ?? null,
-            'institucion_origen_id' => $request->institucion_origen["id"] ?? null,
-
+            // Laves foráneas
+            'tipo_reporte_id' => $request->tipo_reporte['id'] ?? null,
+            'area_atiende_id' => $request->area_atiende['id'] ?? null,
+            'medio_conocimiento_id' => $request->medio_conocimiento['id'] ?? null,
+            'zona_estado_id' => $request->zona_estado['id'] ?? null,
+            'hipotesis_oficial_id' => $request->hipotesis_oficial['id'] ?? null,
+            'institucion_origen_id' => $request->institucion_origen['id'] ?? null,
+            'estado_id' => $request->estado['id'] ?? null,
             // Atributos
-            'esta_terminado' => $request->esta_terminado ?? false,
-            'tipo_desaparicion' => $request->tipo_desaparicion,
-            'fecha_localizacion' => $request->fecha_localizacion,
-            'sintesis_localizacion' => $request->sintesis_localizacion,
+            'esta_terminado' => $request->esta_terminado ?? null,
+            'tipo_desaparicion' => $request->tipo_desaparicion ?? null,
+            'fecha_creacion' => $request->fecha_creacion ?? null,
+            'fecha_actualizacion' => $request->fecha_actualizacion ?? null,
         ]);
 
         if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {

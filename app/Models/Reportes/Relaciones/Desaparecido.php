@@ -17,41 +17,31 @@ class Desaparecido extends Model
     protected $table = 'desaparecidos';
 
     protected $fillable = [
-        'reporte_id',
-        'persona_id',
-        'estatus_rpdno_id',
-        'estatus_cebv_id',
-        'ocupacion_principal_id',
-        'ocupacion_secundaria_id',
-        'clasificacion_persona',
-        'habla_espanhol',
-        'sabe_leer',
-        'sabe_escribir',
-        'url_boletin',
-        'declaracion_especial_ausencia',
-        'accion_urgente',
-        'dictamen',
-        'ci_nivel_federal',
-        'otro_derecho_humano',
-        'identidad_resguardada',
-        'alias',
-        'descripcion_ocupacion_principal',
-        'descripcion_ocupacion_secundaria',
-        'otras_especificaciones_ocupacion',
-        'nombre_pareja_conyugue',
-        'fecha_desaparicion_aproximada',
-        'fecha_desaparicion_cebv',
-        'observaciones_fecha_desaparicion',
-        'boletin_img_path',
-        'edad_momento_desaparicion_anos',
-        'edad_momento_desaparicion_meses',
-        'edad_momento_desaparicion_dias'
+       'reporte_id',
+       'persona_id',
+       'estatus_rpdno_id',
+       'estatus_cebv_id',
+       'clasificacion_persona',
+       'habla_espanhol',
+       'url_boletin',
+       'declaracion_especial_ausencia',
+       'accion_urgente',
+       'dictamen',
+       'ci_nivel_federal',
+       'otro_derecho_humano',
+       'fecha_nacimiento_aproximada',
+       'fecha_nacimiento_cebv',
+       'observaciones_fecha_nacimiento',
+       'edad_momento_desaparicion_anos',
+       'edad_momento_desaparicion_meses',
+       'edad_momento_desaparicion_dias',
+       'identidad_resguardada',
+       'alias',
+       'boletin_img_path',
     ];
 
     protected $casts = [
         'habla_espanhol' => 'boolean',
-        'sabe_leer' => 'boolean',
-        'sabe_escribir' => 'boolean',
         'declaracion_especial_ausencia' => 'boolean',
         'accion_urgente' => 'boolean',
         'dictamen' => 'boolean',
@@ -60,12 +50,12 @@ class Desaparecido extends Model
 
     protected function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class);
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
     protected function persona(): BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     protected function estatusRpdno(): BelongsTo
@@ -76,11 +66,6 @@ class Desaparecido extends Model
     protected function estatusCebv(): BelongsTo
     {
         return $this->belongsTo(EstatusPersona::class, 'estatus_cebv_id');
-    }
-
-    public function ubicacionAmparoBuscador(): BelongsTo
-    {
-        return $this->belongsTo(Municipio::class);
     }
 
     public function documentosLegales(): HasMany

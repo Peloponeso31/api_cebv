@@ -113,7 +113,6 @@ class DatabaseSeeder extends Seeder
          */
         $this->call([
             PersonaSeeder::class,
-            ReporteSeeder::class,
             TelefonoSeeder::class,
             ContactoSeeder::class,
         ]);
@@ -137,6 +136,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
+        ]);
+
+        /**
+         * Reportes seeders
+         */
+        $this->call([
+            ReporteSeeder::class,
         ]);
     }
 }

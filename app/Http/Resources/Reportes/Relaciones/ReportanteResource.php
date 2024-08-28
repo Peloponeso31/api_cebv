@@ -16,7 +16,7 @@ class ReportanteResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
-            'persona' => new PersonaResource($this->persona),
+            'persona' =>  PersonaResource::make($this->persona),
             'parentesco' => CatalogoResource::make($this->parentesco),
             'colectivo' => CatalogoResource::make($this->colectivo),
             'denuncia_anonima' => $this->denuncia_anonima,

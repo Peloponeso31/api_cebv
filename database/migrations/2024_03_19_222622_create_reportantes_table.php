@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->text('descripcion_extorsion')->nullable();
             $table->text('descripcion_donde_proviene')->nullable();
 
-            $table->integer('edad_estimada')->nullable();
+            $table->integer('edad_estimada_anhos')->nullable();
 
             $table->timestamps();
         });

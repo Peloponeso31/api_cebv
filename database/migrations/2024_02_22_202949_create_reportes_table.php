@@ -27,8 +27,7 @@ return new class extends Migration {
             $table->enum('tipo_desaparicion', EnumHelper::toList(TipoDesaparicion::class))
                 ->default(TipoDesaparicion::Unica->value)
                 ->nullable();
-            $table->date('fecha_localizacion')->nullable();
-            $table->text('sintesis_localizacion')->nullable();
+            // TODO: Colocar fecha y sintesis de localización
             $table->timestamp('fecha_creacion')->useCurrent();
             $table->timestamp('fecha_actualizacion')->useCurrent()->useCurrentOnUpdate();
 

@@ -45,8 +45,6 @@ class Reporte extends Model
         'estado_id',
         'esta_terminado',
         'tipo_desaparicion',
-        'fecha_localizacion',
-        'sintesis_localizacion',
         'fecha_creacion',
         'fecha_actualizacion',
     ];
@@ -54,7 +52,6 @@ class Reporte extends Model
     protected $casts = [
         'tipo_desaparicion' => TipoDesaparicion::class, // Única o múltiple
         'esta_terminado' => 'boolean',
-        'fecha_localizacion' => 'datetime',
         'fecha_creacion' => 'datetime',
         'fecha_actualizacion' => 'datetime',
     ];
@@ -121,12 +118,12 @@ class Reporte extends Model
 
     public function reportantes(): HasMany
     {
-        return $this->hasMany(Reportante::class, 'reporte_id');
+        return $this->hasMany(Reportante::class);
     }
 
     public function desaparecidos(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'reporte_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function folios(): HasMany
@@ -163,11 +160,6 @@ class Reporte extends Model
     public function desaparicionForzada(): HasOne
     {
         return $this->hasOne(DesaparicionForzada::class);
-    }
-
-    public function contextoFamiliar(): HasOne
-    {
-        return $this->hasOne(ContextoFamiliar::class);
     }
 
     public function institucion(): BelongsTo

@@ -23,7 +23,7 @@ class TipoHipotesisSeeder extends Seeder
 
         foreach ($circunstancias as $circunstancia) {
             Circunstancia::firstOrCreate([
-                'descripcion' => $circunstancia
+                'nombre' => $circunstancia
             ]);
         }
 

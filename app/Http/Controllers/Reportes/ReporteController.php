@@ -9,7 +9,9 @@ use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
+use App\Services\ReporteFilters;
 use App\Services\ReporteService;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReporteController extends Controller
@@ -25,15 +27,16 @@ class ReporteController extends Controller
         $this->model = $model;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $query = $this->model::query();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
+        $reporteFilter = new ReporteFilters($request);
+        $query = $reporteFilter->appplyFilter($query);
 
-        return ReporteResource::collection($query->orderByDesc("id")->get());
+        $query->orderByDesc("id");
+
+        return ReporteResource::collection($query->get());
     }
 
     public function store(ReporteRequest $request)

@@ -17,6 +17,7 @@ class Estudio extends Model
         'estatus_escolaridad_id',
         'direccion_id',
         'nombre_institucion',
+        'sabe_leer_escribir',
     ];
 
     public function persona(): BelongsTo

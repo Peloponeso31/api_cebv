@@ -17,7 +17,6 @@ class DesaparecidoFactory extends Factory
             'clasificacion_persona' => fake()->word(),
             'estatus_rpdno_id' => EstatusPersona::inRandomOrder()->first()->id,
             'estatus_cebv_id' => EstatusPersona::inRandomOrder()->first()->id,
-            'habla_espanhol' => fake()->boolean,
             'url_boletin' => fake()->imageUrl(1080, 720, 'boletín'),
         ];
     }

@@ -22,7 +22,6 @@ class Desaparecido extends Model
        'estatus_rpdno_id',
        'estatus_cebv_id',
        'clasificacion_persona',
-       'habla_espanhol',
        'url_boletin',
        'declaracion_especial_ausencia',
        'accion_urgente',
@@ -36,12 +35,10 @@ class Desaparecido extends Model
        'edad_momento_desaparicion_meses',
        'edad_momento_desaparicion_dias',
        'identidad_resguardada',
-       'alias',
        'boletin_img_path',
     ];
 
     protected $casts = [
-        'habla_espanhol' => 'boolean',
         'declaracion_especial_ausencia' => 'boolean',
         'accion_urgente' => 'boolean',
         'dictamen' => 'boolean',

@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'estatus_personas');
 
             $table->string('clasificacion_persona')->nullable();
-            $table->boolean('habla_espanhol')->nullable();
             $table->string('url_boletin')->nullable();
             $table->boolean('declaracion_especial_ausencia')->default(false)->nullable();
             $table->boolean('accion_urgente')->default(false)->nullable();
@@ -31,7 +30,6 @@ return new class extends Migration {
             $table->integer('edad_momento_desaparicion_meses')->nullable();
             $table->integer('edad_momento_desaparicion_dias')->nullable();
             $table->string('identidad_resguardada')->nullable();
-            $table->text('alias')->nullable();
             // TODO: Eliminar estado conyugal de toda la logica de desaparecido
             $table->text("boletin_img_path")->nullable();
 

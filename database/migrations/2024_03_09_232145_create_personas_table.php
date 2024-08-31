@@ -19,19 +19,19 @@ return new class extends Migration {
             $table->foreignId('religion_id')->nullable()->constrained(table: 'cat_religiones');
             $table->foreignId('lengua_id')->nullable()->constrained(table: 'cat_lenguas');
             $table->foreignId('razon_curp_id')->nullable()->constrained(table: 'cat_razones_curp');
-            // TODO: Eliminar estado conyugal de toda la logica de persona
-            // TODO: Eliminar escolaridad de la logica de persona
             $table->string('lugar_nacimiento_id', 2)->nullable();
 
             $table->string('nombre')->nullable();
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();
-            // TODO: Corregir logica de pseudonimos
             $table->string('apodo')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->string('curp', 18)->unique()->nullable();
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();
+            $table->boolean('habla_espanhol')->nullable();
+            $table->text('especificaciones_ocupacion')->nullable();
+
 
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('cat_estados');

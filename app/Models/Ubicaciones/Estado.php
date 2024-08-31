@@ -2,6 +2,7 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -46,6 +47,11 @@ class Estado extends Model
     public function reportes(): HasMany
     {
         return $this->hasMany(Reporte::class);
+    }
+
+    public function personas(): HasMany
+    {
+        return $this->hasMany(Persona::class);
     }
 
     /**

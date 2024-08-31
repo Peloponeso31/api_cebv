@@ -80,7 +80,7 @@ class SyncReporteController extends Controller
                     "pertenencia_colectivo" => $reportante["pertenencia_colectivo"] ?? null,
                     "nombre_colectivo" => $reportante["nombre_colectivo"] ?? null,
                     "informacion_relevante" => $reportante["informacion_relevante"] ?? null,
-                    "edad_estimada" => $reportante["edad_estimada"] ?? null,
+                    "edad_estimada_anhos" => $reportante["edad_estimada"] ?? null,
                     "participacion_busquedas" => $reportante["participacion_busquedas"] ?? null,
                     "descripcion_extorsion" => $reportante["descripcion_extorsion"] ?? null,
                     "descripcion_donde_proviene" => $reportante["descripcion_donde_proviene"] ?? null
@@ -141,14 +141,15 @@ class SyncReporteController extends Controller
                     $documentos_modificados = [];
                     foreach ($desaparecido["documentos_legales"] as $documento) {
                         $documento_updated = DocumentoLegal::updateOrCreate([
-                            "id" => $documento["id"] ?? null,
-                            "desaparecido_id" => $documento["desaparecido_id"] ?? $desaparecido_updated["id"] ?? null,
+                            'id' => $documento["id"] ?? null,
+                            'desaparecido_id' => $documento["desaparecido_id"] ?? $desaparecido_updated["id"] ?? null,
                         ], [
-                            "tipo_documento" => $documento["tipo_documento"],
-                            "numero_documento" => $documento["numero_documento"],
-                            'donde_radica' => $documento["donde_radica"],
-                            'nombre_servidor_publico' => $documento["nombre_servidor_publico"],
-                            'fecha_recepcion' => $documento["fecha_recepcion"],
+                            'es_oficial' => $documento['es_oficial'],
+                            'tipo_documento' => $documento['tipo_documento'],
+                            'numero_documento' => $documento['numero_documento'],
+                            'donde_radica' => $documento['donde_radica'],
+                            'nombre_servidor_publico' => $documento['nombre_servidor_publico'],
+                            'fecha_recepcion' => $documento['fecha_recepcion'],
                         ]);
                         array_push($documentos_modificados, $documento_updated->id);
                     }

@@ -21,7 +21,9 @@ class ContextoFamiliarResource extends JsonResource
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
+            'estado_conyugal' => CatalogoResource::make($this->estadoConyugal),
             'numero_personas_vive' => $this->numero_personas_vive,
+            'nombre_pareja_conyugue' => $this->nombre_pareja_conyugue,
         ];
     }
 }

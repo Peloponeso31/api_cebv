@@ -35,6 +35,7 @@ use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
 use App\Models\Pasatiempo;
+use App\Models\RazonCurp;
 use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -63,10 +64,10 @@ class Persona extends Model
     protected $fillable = [
         'sexo_id',
         'genero_id',
-        'lugar_nacimiento_id',
         'religion_id',
         'lengua_id',
-        'estado_conyugal_id',
+        'razon_curp_id',
+        'lugar_nacimiento_id',
         'nombre',
         'apellido_paterno',
         'apellido_materno',
@@ -75,49 +76,29 @@ class Persona extends Model
         'curp',
         'observaciones_curp',
         'rfc',
-        'ocupacion',
+        'habla_espanhol',
+        'especificaciones_ocupacion',
     ];
 
     protected $casts = [
         'fecha_nacimiento' => 'date',
+        'habla_espanhol' => 'boolean',
     ];
 
-
-    public function sexo(): BelongsTo
-    {
-        return $this->belongsTo(Sexo::class, 'sexo_id');
-    }
-
-    public function genero(): BelongsTo
-    {
-        return $this->belongsTo(Genero::class, 'genero_id');
-    }
-
-    public function lugarNacimiento(): BelongsTo
-    {
-        return $this->belongsTo(Estado::class, 'lugar_nacimiento_id');
-    }
-
     /**
-     * The reportes that belong to the persona.
-     *
-     * @return BelongsToMany
+     * Atributos propios de persona
      */
-    public function reportes(): BelongsToMany
-    {
-        return $this->belongsToMany(Reporte::class);
-    }
-
-    public function edad_anos()
+    public function edadAnhos(): int
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->age;
     }
 
-    public function fecha_nacimiento_legible()
+    public function fechaNacimientoLegible(): string
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
 
+    // TODO: Revisar todo este bloque pq creo que me lo desmadré
     public function color_ojos()
     {
         return $this->caracteristicasfisicas->color_ojos->color;
@@ -143,6 +124,60 @@ class Persona extends Model
         return $this->caracteristicasfisicas->tamaño_ojos->tamañoojos;
     }
 
+    /**
+     * LLaves foráneas
+     */
+    /**
+     * @return BelongsTo
+     */
+    public function sexo(): BelongsTo
+    {
+        return $this->belongsTo(Sexo::class, 'sexo_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function genero(): BelongsTo
+    {
+        return $this->belongsTo(Genero::class, 'genero_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function religion(): BelongsTo
+    {
+        return $this->belongsTo(Religion::class, 'religion_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function lengua(): BelongsTo
+    {
+        return $this->belongsTo(Lengua::class, 'lengua_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function razonCurp(): BelongsTo
+    {
+        return $this->belongsTo(RazonCurp::class, 'razon_curp_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function lugarNacimiento(): BelongsTo
+    {
+        return $this->belongsTo(Estado::class, 'lugar_nacimiento_id');
+    }
+
+    /**
+     * Relaciones
+     */
     public function contextoFamiliar(): HasOne
     {
         return $this->hasOne(ContextoFamiliar::class);
@@ -214,15 +249,6 @@ class Persona extends Model
         return $this->hasMany(Redsocial::class);
     }
 
-    public function religion(): BelongsTo
-    {
-        return $this->belongsTo(Religion::class, 'religion_id');
-    }
-
-    public function lengua(): BelongsTo
-    {
-        return $this->belongsTo(Lengua::class, 'lenuga_id');
-    }
 
     public function estadoConyugal(): BelongsTo
     {

@@ -14,12 +14,12 @@ class EstudioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nombre_institucion' => $this->nombre_institucion,
-
             'persona_id' => $this->persona_id,
             'escolaridad' => CatalogoResource::make($this->escolaridad),
             'estatus_escolaridad' => CatalogoResource::make($this->estatusEscolaridad),
             'direccion_id' => $this->direccion_id,
+            'nombre_institucion' => $this->nombre_institucion,
+            'sabe_leer_escribir' => $this->sabe_leer_escribir,
         ];
     }
 }

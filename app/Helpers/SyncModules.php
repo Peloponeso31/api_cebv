@@ -20,34 +20,34 @@ use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
-use PhpParser\Node\Expr\AssignOp\Mod;
 
 class SyncModules
 {
+
     public function UpdateOrCreatePersona($persona)
     {
-        $persona_created = Persona::updateOrCreate(["id" => $persona["id"] ?? null], [
-            'nombre' => $persona["nombre"] ?? null,
-            'lugar_nacimiento_id' => $persona["lugar_nacimiento"]["id"] ?? null,
+        $personaCreated = Persona::updateOrCreate([
+            "id" => $persona["id"] ?? null
+        ], [
+            // Llaves foráneas
             'sexo_id' => $persona["sexo"]["id"] ?? null,
-            'genero_id' => $persona["sexo"]["id"] ?? null,
+            'genero_id' => $persona["genero"]["id"] ?? null,
             'religion_id' => $persona["religion"]["id"] ?? null,
             'lengua_id' => $persona["lengua"]["id"] ?? null,
-            'escolaridad_id' => $persona["escolaridad"]["id"] ?? null,
-            'estado_conyugal_id' => $persona["estado_conyugal"]["id"] ?? null,
+            'razon_curp_id' => $persona["razon_curp"]["id"] ?? null,
+            'lugar_nacimiento_id' => $persona["lugar_nacimiento"]["id"] ?? null,
 
+            // Atributos
+            'nombre' => $persona["nombre"] ?? null,
             'apellido_paterno' => $persona["apellido_paterno"] ?? null,
             'apellido_materno' => $persona["apellido_materno"] ?? null,
-            'pseudonimo_nombre' => $persona["pseudonimo_nombre"] ?? null,
-            'pseudonimo_apellido_paterno' => $persona["pseudonimo_apellido_paterno"] ?? null,
-            'pseudonimo_apellido_materno' => $persona["pseudonimo_apellido_materno"] ?? null,
+            'apodo' => $persona["apodo"] ?? null,
             'fecha_nacimiento' => $persona["fecha_nacimiento"] ?? null,
             'curp' => $persona["curp"] ?? null,
             'observaciones_curp' => $persona["observaciones_curp"] ?? null,
             'rfc' => $persona["rfc"] ?? null,
-            'ocupacion' => $persona["ocupacion"] ?? null,
-            'nacionalidades' => $persona["nacionalidades"] ?? null,
-            'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
+            'habla_espanhol' => $persona["habla_espanhol"] ?? null,
+            'especificaciones_ocupacion' => $persona["especificaciones_ocupacion"] ?? null,
         ]);
 
         if (isset($persona["apodos"]) && $persona["apodos"] != null) {
@@ -55,7 +55,7 @@ class SyncModules
             foreach ($persona["apodos"] as $apodo) {
                 $apodo_id = Pseudonimo::updateOrCreate([
                     "id" => $apodo["id"] ?? null,
-                    "persona_id" => $apodo["persona_id"] ?? $persona_created->id ?? null,
+                    "persona_id" => $apodo["persona_id"] ?? $personaCreated->id ?? null,
                 ], [
                     'nombre' => $apodo['nombre'],
                     'apellido_paterno' => $apodo['apellido_paterno'],
@@ -64,7 +64,7 @@ class SyncModules
                 array_push($apodos_modificados, $apodo_id);
             }
 
-            $apodos_eliminables = $persona_created->apodos->except($apodos_modificados);
+            $apodos_eliminables = $personaCreated->apodos->except($apodos_modificados);
             if (count($apodos_eliminables) > 0) {
                 $apodos_eliminables->toQuery()->delete();
             }
@@ -77,7 +77,7 @@ class SyncModules
                     array_push($nacionalidades, $nacionalidad["id"]);
                 }
             }
-            $persona_created->nacionalidades()->sync($nacionalidades);
+            $personaCreated->nacionalidades()->sync($nacionalidades);
         }
 
         if (isset($persona["grupos_vulnerables"]) && $persona["grupos_vulnerables"] != null) {
@@ -87,7 +87,7 @@ class SyncModules
                     array_push($grupos_vulnerables, $grupoVulnerable["id"]);
                 }
             }
-            $persona_created->gruposVulnerables()->sync($grupos_vulnerables);
+            $personaCreated->gruposVulnerables()->sync($grupos_vulnerables);
         }
 
         if (isset($persona["telefonos"]) && $persona["telefonos"] != null) {
@@ -95,7 +95,7 @@ class SyncModules
             foreach ($persona["telefonos"] as $telefono) {
                 $telefono_id = Telefono::updateOrCreate([
                     "id" => $telefono["id"] ?? null,
-                    "persona_id" => $telefono["persona_id"] ?? $persona_created->id ?? null,
+                    "persona_id" => $telefono["persona_id"] ?? $personaCreated->id ?? null,
                 ], [
                     'compania_id' => $telefono["compania"]["id"] ?? null,
                     'numero' => $telefono["numero"] ?? null,
@@ -105,7 +105,7 @@ class SyncModules
                 array_push($telefonos_modificados, $telefono_id);
             }
 
-            $telefonos_eliminables = $persona_created->telefonos->except($telefonos_modificados);
+            $telefonos_eliminables = $personaCreated->telefonos->except($telefonos_modificados);
             if (count($telefonos_eliminables) > 0) {
                 $telefonos_eliminables->toQuery()->delete();
             }
@@ -116,7 +116,7 @@ class SyncModules
             foreach ($persona["contactos"] as $contacto) {
                 $contacto_id = Contacto::updateOrCreate([
                     "id" => $contacto["id"] ?? null,
-                    "persona_id" => $contacto["persona_id"] ?? $persona_created->id ?? null,
+                    "persona_id" => $contacto["persona_id"] ?? $personaCreated->id ?? null,
                 ], [
                     'tipo' => $contacto["tipo"] ?? null,
                     'tipo_red_social_id' => $contacto["tipo_red_social"]["id"] ?? null,
@@ -126,7 +126,7 @@ class SyncModules
                 array_push($contactos_modificados, $contacto_id);
             }
 
-            $contactos_eliminables = $persona_created->contactos->except($contactos_modificados);
+            $contactos_eliminables = $personaCreated->contactos->except($contactos_modificados);
             if (count($contactos_eliminables) > 0) {
                 $contactos_eliminables->toQuery()->delete();
             }
@@ -153,7 +153,7 @@ class SyncModules
 
                 array_push($direcciones, $direccion_created->id);
             }
-            $persona_created->direcciones()->sync($direcciones);
+            $personaCreated->direcciones()->sync($direcciones);
         }
 
         if (isset($persona["senas_particulares"]) && $persona["senas_particulares"] != null) {
@@ -161,7 +161,7 @@ class SyncModules
             foreach ($persona["senas_particulares"] as $sena) {
                 $senas_modified[] = SenasParticulares::updateOrCreate([
                     "id" => $sena["id"] ?? null,
-                    "persona_id" => $sena["persona"]["id"] ?? $persona_created->id ?? null,
+                    "persona_id" => $sena["persona"]["id"] ?? $personaCreated->id ?? null,
                 ], [
                     "region_cuerpo_id" => $sena["region_cuerpo"]["id"] ?? null,
                     "lado_id" => $sena["lado"]["id"] ?? null,
@@ -173,14 +173,14 @@ class SyncModules
 
                 if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
                     $last_sena = SenasParticulares::findOrFail(end($senas_modified));
-                    $path = $persona_created->id . '/senas_particulares/' . $last_sena->id . '.png';
+                    $path = $personaCreated->id . '/senas_particulares/' . $last_sena->id . '.png';
                     Storage::put($path, base64_decode($sena['encoded_image']));
                     $last_sena->foto = $path;
                     $last_sena->save();
                 }
             }
 
-            $senas_eliminables = $persona_created->senasParticulares->except($senas_modified);
+            $senas_eliminables = $personaCreated->senasParticulares->except($senas_modified);
             if (count($senas_eliminables) > 0) {
                 $senas_eliminables->toQuery()->delete();
             }
@@ -190,7 +190,7 @@ class SyncModules
             $media_filiacion = $persona["media_filiacion"];
             MediaFiliacion::updateOrCreate([
                 "id" => $persona["media_filiacion"]["id"] ?? null,
-                "persona_id" => $persona["persona_id"] ?? $persona_created->id ?? null,
+                "persona_id" => $persona["persona_id"] ?? $personaCreated->id ?? null,
             ], [
                 "estatura" => $media_filiacion["estatura"] ?? null,
                 "peso" => $media_filiacion["peso"] ?? null,
@@ -203,7 +203,31 @@ class SyncModules
             ]);
         }
 
-        return $persona_created->id;
+        if (isset($persona['estudios']) && $persona["estudios"] != null) {
+            $request = $persona['estudios'];
+
+            $request['persona_id'] = $personaCreated->id;
+
+            $patterns = [
+                'estado_conyugal_id' => 'estado_conyugal.id',
+            ];
+
+            ArrayHelpers::asyncHandler(new ContextoFamiliar, $request, $patterns);
+        }
+
+        if (isset($persona['contexto_familiar'])) {
+            $request = $persona['contexto_familiar'];
+
+            $request['persona_id'] = $personaCreated->id;
+
+            $patterns = [
+                'estado_conyugal_id' => 'estado_conyugal.id',
+            ];
+
+            ArrayHelpers::asyncHandler(new ContextoFamiliar, $request, $patterns);
+        }
+
+        return $personaCreated->id;
     }
 
     public function ControlOgpi($reporteId, ReporteTotalRequest $request): void
@@ -425,7 +449,7 @@ class SyncModules
         }
 
         return $model->newQuery() // Crea una nueva consulta para evitar usar una instancia existente
-            ->where($foreignKey, $foreignValue)
+        ->where($foreignKey, $foreignValue)
             ->pluck('id')
             ->toArray();
     }

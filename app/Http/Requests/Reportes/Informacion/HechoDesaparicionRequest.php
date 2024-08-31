@@ -18,7 +18,7 @@ class HechoDesaparicionRequest extends FormRequest
                 'aclaraciones_fecha_hechos' => ['nullable', 'string'],
                 'amenaza_cambio_comportamiento' => ['nullable', 'boolean'],
                 'descripcion_amenaza_cambio_comportamiento' => ['nullable', 'string'],
-                'contador_desapariciones' => ['required', 'integer'],
+                'contador_desapariciones' => ['nullable', 'integer'],
                 'situacion_previa' => ['nullable', 'string'],
                 'informacion_relevante' => ['nullable', 'string'],
                 'hechos_desaparicion' => ['nullable', 'string'],

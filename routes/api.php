@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EstatusEscolaridadController;
 use App\Http\Controllers\PseudonimoController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
@@ -168,6 +169,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/estatus-personas', EstatusPersonaController::class);
     Route::apiResource('/estados-conyugales', EstadoConyugalController::class);
     Route::apiResource('/escolaridades', EscolaridadController::class);
+    Route::apiResource('/estatus-escolaridades', EstatusEscolaridadController::class);
     Route::apiResource('/parentescos', ParentescoController::class);
     Route::apiResource('/personas', PersonaController::class);
     Route::apiResource('/generos', GeneroController::class);

@@ -8,6 +8,7 @@ use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
 use App\Models\Reportes\Reporte;
+use App\Models\Ubicaciones\Estado;
 use App\Services\CrudService;
 use App\Services\ReporteFilters;
 use App\Services\ReporteService;
@@ -31,10 +32,14 @@ class ReporteController extends Controller
     {
         $query = $this->model::query();
 
-        $reporteFilter = new ReporteFilters($request);
-        $query = $reporteFilter->appplyFilter($query);
-
-        $query->orderByDesc("id");
+        if (empty($request->all())) {
+            if (request()->has('search')) {
+                $query = $this->model::search(request('search'));
+            }
+        }else {
+            $reporteFilter = new ReporteFilters($request);
+            $query = $reporteFilter->applyFilter($query);
+        }
 
         return ReporteResource::collection($query->get());
     }

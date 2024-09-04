@@ -5,6 +5,8 @@ namespace App\Helpers;
 use Generator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\Expr\AssignOp\Mod;
 use Psy\Readline\Hoa\Console;
 
 class ArrayHelpers
@@ -55,7 +57,15 @@ class ArrayHelpers
         fclose($file);
     }
 
-    public static function asyncHandler(Model $model, array $request, array $patterns): void
+    /**
+     * Procesa la información de un modelo para su almacenamiento en la base de datos
+     *
+     * @param Model $model
+     * @param array $request
+     * @param array $patterns
+     * @return Model
+     */
+    public static function asyncHandler(Model $model, array $request, array $patterns = []): Model
     {
         $columns = $model->getFillable();
 
@@ -72,13 +82,77 @@ class ArrayHelpers
             }
         }
 
-        try {
-            // TODO: Implementar la lógica de validación
-            // Crear o actualizar el modelo
-            $model::updateOrCreate(['id' => $request['id'] ?? null], $data);
+        return $model->newQuery()
+            ->updateOrCreate(
+                ['id' => $request['id'] ?? null],
+                $data
+            );
+    }
 
-        } catch (\Exception $e) {
-            Log::error("Error al procesar el modelo: " . $e->getMessage());
+    /**
+     * Obtener los ID existentes de un modelo
+     * @param Model $model
+     * @param string $foreignKey
+     * @param mixed $foreignValue
+     * @return array
+     */
+    public static function getExistingId(Model $model, string $foreignKey, mixed $foreignValue): array
+    {
+        $table = $model->getTable();
+
+        if (!Schema::hasColumn($table, $foreignKey)) {
+            throw new \InvalidArgumentException("La tabla $table no tiene la columna $foreignKey en la base de datos.");
         }
+
+        return $model->newQuery() // Crea una nueva consulta para evitar usar una instancia existente
+        ->where($foreignKey, $foreignValue)
+            ->pluck('id')
+            ->toArray();
+    }
+
+
+    public static function syncList(Model $model, array $request, string $foreignKey, mixed $foreignValue, array $patterns = []): void
+    {
+        // Obtener todos los ID de los registros existentes para el modelo
+        $IdExistentes = ArrayHelpers::getExistingId($model, $foreignKey, $foreignValue);
+
+        // Recopilar los ID de los registros recibidos en la solicitud
+        $IdRecibidos = [];
+
+        foreach ($request as $item) {
+            $registro = ArrayHelpers::asyncHandler($model, $item, $patterns);
+
+            // Guardar el ID actualizado o creado
+            $IdRecibidos[] = $registro->id ?? null;
+        }
+
+        // Identificar los ID que deben ser eliminados
+        $eliminablesIds = array_diff($IdExistentes, $IdRecibidos);
+
+        // Eliminar los registros que ya no están en la lista recibida
+        if (!empty($eliminablesIds)) {
+            $model->newQuery()
+                ->whereIn('id', $eliminablesIds)
+                ->delete();
+        }
+    }
+
+    /**
+     * Cambia el valor en un arreglo
+     *
+     * @param array $data
+     * @param string $key
+     * @param mixed $value
+     * @return array
+     */
+    public static function setArrayValue(array $data, string $key, mixed $value): array
+    {
+        if (array_key_exists($key, $data)) {
+            $data[$key] = $value;
+
+            return $data;
+        }
+
+        return $data;
     }
 }

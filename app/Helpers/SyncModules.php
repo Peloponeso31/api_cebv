@@ -2,11 +2,13 @@
 
 namespace App\Helpers;
 
+use App\Enums\ForeignKey as FK;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Models\Contacto;
 use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
+use App\Models\Estudio;
 use App\Models\Expediente;
 use App\Models\MediaFiliacion;
 use App\Models\Perpetrador;
@@ -18,122 +20,71 @@ use App\Models\SenasParticulares;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class SyncModules
 {
-
-    public function UpdateOrCreatePersona($persona)
+    public function Persona($request) : Model
     {
-        $personaCreated = Persona::updateOrCreate([
-            "id" => $persona["id"] ?? null
-        ], [
-            // Llaves foráneas
-            'sexo_id' => $persona["sexo"]["id"] ?? null,
-            'genero_id' => $persona["genero"]["id"] ?? null,
-            'religion_id' => $persona["religion"]["id"] ?? null,
-            'lengua_id' => $persona["lengua"]["id"] ?? null,
-            'razon_curp_id' => $persona["razon_curp"]["id"] ?? null,
-            'lugar_nacimiento_id' => $persona["lugar_nacimiento"]["id"] ?? null,
 
-            // Atributos
-            'nombre' => $persona["nombre"] ?? null,
-            'apellido_paterno' => $persona["apellido_paterno"] ?? null,
-            'apellido_materno' => $persona["apellido_materno"] ?? null,
-            'apodo' => $persona["apodo"] ?? null,
-            'fecha_nacimiento' => $persona["fecha_nacimiento"] ?? null,
-            'curp' => $persona["curp"] ?? null,
-            'observaciones_curp' => $persona["observaciones_curp"] ?? null,
-            'rfc' => $persona["rfc"] ?? null,
-            'habla_espanhol' => $persona["habla_espanhol"] ?? null,
-            'especificaciones_ocupacion' => $persona["especificaciones_ocupacion"] ?? null,
-        ]);
+        $persona = ArrayHelpers::asyncHandler(new Persona, $request, config('patterns.persona'));
 
-        if (isset($persona["apodos"]) && $persona["apodos"] != null) {
-            $apodos_modificados = [];
-            foreach ($persona["apodos"] as $apodo) {
-                $apodo_id = Pseudonimo::updateOrCreate([
-                    "id" => $apodo["id"] ?? null,
-                    "persona_id" => $apodo["persona_id"] ?? $personaCreated->id ?? null,
-                ], [
-                    'nombre' => $apodo['nombre'],
-                    'apellido_paterno' => $apodo['apellido_paterno'],
-                    'apellido_materno' => $apodo['apellido_materno'],
-                ])->id;
-                array_push($apodos_modificados, $apodo_id);
-            }
+        if (isset($request['pseudonimos'])) {
+            $data = $request['pseudonimos'];
 
-            $apodos_eliminables = $personaCreated->apodos->except($apodos_modificados);
-            if (count($apodos_eliminables) > 0) {
-                $apodos_eliminables->toQuery()->delete();
-            }
+            ArrayHelpers::syncList(new Pseudonimo, $data, FK::PersonaId->value, $persona->getAttribute('id'));
         }
 
-        if (isset($persona["nacionalidades"]) && $persona["nacionalidades"] != null) {
+        if (isset($request["nacionalidades"])) {
             $nacionalidades = [];
-            foreach ($persona["nacionalidades"] as $nacionalidad) {
+
+            foreach ($request["nacionalidades"] as $nacionalidad) {
                 if (isset($nacionalidad["id"]) && $nacionalidad["id"] != null) {
-                    array_push($nacionalidades, $nacionalidad["id"]);
+                    $nacionalidades[] = $nacionalidad["id"];
                 }
             }
-            $personaCreated->nacionalidades()->sync($nacionalidades);
+
+            $persona->nacionalidades()->sync($nacionalidades);
         }
 
-        if (isset($persona["grupos_vulnerables"]) && $persona["grupos_vulnerables"] != null) {
+        if (isset($request["grupos_vulnerables"])) {
             $grupos_vulnerables = [];
-            foreach ($persona["grupos_vulnerables"] as $grupoVulnerable) {
+
+            foreach ($request["grupos_vulnerables"] as $grupoVulnerable) {
                 if (isset($grupoVulnerable["id"]) && $grupoVulnerable["id"] != null) {
-                    array_push($grupos_vulnerables, $grupoVulnerable["id"]);
+                    $grupos_vulnerables[] = $grupoVulnerable["id"];
                 }
             }
-            $personaCreated->gruposVulnerables()->sync($grupos_vulnerables);
+            $persona->gruposVulnerables()->sync($grupos_vulnerables);
         }
 
-        if (isset($persona["telefonos"]) && $persona["telefonos"] != null) {
-            $telefonos_modificados = [];
-            foreach ($persona["telefonos"] as $telefono) {
-                $telefono_id = Telefono::updateOrCreate([
-                    "id" => $telefono["id"] ?? null,
-                    "persona_id" => $telefono["persona_id"] ?? $personaCreated->id ?? null,
-                ], [
-                    'compania_id' => $telefono["compania"]["id"] ?? null,
-                    'numero' => $telefono["numero"] ?? null,
-                    'observaciones' => $telefono["observaciones"] ?? null,
-                    'es_movil' => $telefono["es_movil"] ?? null,
-                ])->id;
-                array_push($telefonos_modificados, $telefono_id);
+        if (isset($request['telefonos']) ) {
+            $data = $request['telefonos'];
+            $dataModified = [];
+
+            foreach ($data as $item) {
+                $item['persona_id'] = $persona->getAttribute('id');
+                $dataModified[] = $item;
             }
 
-            $telefonos_eliminables = $personaCreated->telefonos->except($telefonos_modificados);
-            if (count($telefonos_eliminables) > 0) {
-                $telefonos_eliminables->toQuery()->delete();
-            }
+            ArrayHelpers::syncList(new Telefono, $dataModified, FK::PersonaId->value, $persona->getAttribute('id'));
         }
 
-        if (isset($persona["contactos"]) && $persona["contactos"] != null) {
-            $contactos_modificados = [];
-            foreach ($persona["contactos"] as $contacto) {
-                $contacto_id = Contacto::updateOrCreate([
-                    "id" => $contacto["id"] ?? null,
-                    "persona_id" => $contacto["persona_id"] ?? $personaCreated->id ?? null,
-                ], [
-                    'tipo' => $contacto["tipo"] ?? null,
-                    'tipo_red_social_id' => $contacto["tipo_red_social"]["id"] ?? null,
-                    'nombre' => $contacto["nombre"] ?? null,
-                    'observaciones' => $contacto["observaciones"] ?? null,
-                ])->id;
-                array_push($contactos_modificados, $contacto_id);
+        if (isset($request['contactos'])) {
+            $data = $request['contactos'];
+            $dataModified = [];
+
+            foreach ($data as $item) {
+                $item['persona_id'] = $persona->getAttribute('id');
+                $dataModified[] = $item;
             }
 
-            $contactos_eliminables = $personaCreated->contactos->except($contactos_modificados);
-            if (count($contactos_eliminables) > 0) {
-                $contactos_eliminables->toQuery()->delete();
-            }
+            ArrayHelpers::syncList(new Telefono, $dataModified, FK::PersonaId->value, $persona->getAttribute('id'));
         }
 
-        if (isset($persona["direcciones"]) && $persona["direcciones"] != null) {
+        if (isset($request["direcciones"])) {
             $direcciones = [];
+
             foreach ($persona["direcciones"] as $direccion) {
                 $direccion_created = Direccion::updateOrCreate([
                     "id" => $direccion["id"] ?? null
@@ -151,17 +102,18 @@ class SyncModules
                     "referencia" => $direccion["referencia"],
                 ]);
 
-                array_push($direcciones, $direccion_created->id);
+                $direcciones[] = $direccion_created->id;
             }
-            $personaCreated->direcciones()->sync($direcciones);
+            $persona->direcciones()->sync($direcciones);
         }
 
-        if (isset($persona["senas_particulares"]) && $persona["senas_particulares"] != null) {
+        if (isset($request["senas_particulares"])) {
             $senas_modified = [];
+
             foreach ($persona["senas_particulares"] as $sena) {
                 $senas_modified[] = SenasParticulares::updateOrCreate([
                     "id" => $sena["id"] ?? null,
-                    "persona_id" => $sena["persona"]["id"] ?? $personaCreated->id ?? null,
+                    "persona_id" => $sena["persona"]["id"] ?? $personaId->id ?? null,
                 ], [
                     "region_cuerpo_id" => $sena["region_cuerpo"]["id"] ?? null,
                     "lado_id" => $sena["lado"]["id"] ?? null,
@@ -173,24 +125,24 @@ class SyncModules
 
                 if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
                     $last_sena = SenasParticulares::findOrFail(end($senas_modified));
-                    $path = $personaCreated->id . '/senas_particulares/' . $last_sena->id . '.png';
+                    $path = $persona->getAttribute('id') . '/senas_particulares/' . $last_sena->id . '.png';
                     Storage::put($path, base64_decode($sena['encoded_image']));
                     $last_sena->foto = $path;
                     $last_sena->save();
                 }
             }
 
-            $senas_eliminables = $personaCreated->senasParticulares->except($senas_modified);
+            $senas_eliminables = $persona->senasParticulares->except($senas_modified);
             if (count($senas_eliminables) > 0) {
                 $senas_eliminables->toQuery()->delete();
             }
         }
 
-        if (isset($persona["media_filiacion"]) && $persona["media_filiacion"] != null) {
+        if (isset($request["media_filiacion"])) {
             $media_filiacion = $persona["media_filiacion"];
             MediaFiliacion::updateOrCreate([
                 "id" => $persona["media_filiacion"]["id"] ?? null,
-                "persona_id" => $persona["persona_id"] ?? $personaCreated->id ?? null,
+                "persona_id" => $persona["persona_id"] ?? $personaId->id ?? null,
             ], [
                 "estatura" => $media_filiacion["estatura"] ?? null,
                 "peso" => $media_filiacion["peso"] ?? null,
@@ -203,31 +155,23 @@ class SyncModules
             ]);
         }
 
-        if (isset($persona['estudios']) && $persona["estudios"] != null) {
-            $request = $persona['estudios'];
+        if (isset($request['estudios'])) {
+            $data = $persona['estudios'];
 
-            $request['persona_id'] = $personaCreated->id;
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
 
-            $patterns = [
-                'estado_conyugal_id' => 'estado_conyugal.id',
-            ];
-
-            ArrayHelpers::asyncHandler(new ContextoFamiliar, $request, $patterns);
+            ArrayHelpers::asyncHandler(new Estudio, $data, config('patterns.estudios'));
         }
 
-        if (isset($persona['contexto_familiar'])) {
-            $request = $persona['contexto_familiar'];
+        if (isset($request['contexto_familiar'])) {
+            $data = $persona['contexto_familiar'];
 
-            $request['persona_id'] = $personaCreated->id;
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
 
-            $patterns = [
-                'estado_conyugal_id' => 'estado_conyugal.id',
-            ];
-
-            ArrayHelpers::asyncHandler(new ContextoFamiliar, $request, $patterns);
+            ArrayHelpers::asyncHandler(new ContextoFamiliar, $data, config('patterns.contexto_familiar'));
         }
 
-        return $personaCreated->id;
+        return $persona;
     }
 
     public function ControlOgpi($reporteId, ReporteTotalRequest $request): void
@@ -245,7 +189,7 @@ class SyncModules
         ]);
     }
 
-    public function HechosDesaparicion($reporteId, ReporteTotalRequest $request)
+    public function HechosDesaparicion($reporteId, ReporteTotalRequest $request) : void
     {
         if (!is_int($reporteId) || $reporteId == null) return;
 
@@ -275,7 +219,7 @@ class SyncModules
 
     public function LugarHechos($lugar_hechos)
     {
-        if ($lugar_hechos == null) return;
+        if ($lugar_hechos == null) return null;
 
         $direccion_created = Direccion::updateOrCreate([
             "id" => $lugar_hechos["id"] ?? null
@@ -295,7 +239,7 @@ class SyncModules
         return $direccion_created->id;
     }
 
-    public function Hipotesis($reporteId, ReporteTotalRequest $request)
+    public function Hipotesis($reporteId, ReporteTotalRequest $request) : void
     {
         if (!isset($request->expedientes)) return;
 
@@ -404,10 +348,10 @@ class SyncModules
         if (!isset($request->perpetradores)) return;
 
         // Obtener todos los ID de los registros existentes para el reporte
-        $existentesIds = $this->getExistingIds(new Perpetrador, 'reporte_id', $reporteId);
+        $IdExistentes = ArrayHelpers::getExistingId(new Perpetrador, 'reporte_id', $reporteId);
 
         // Recopilar los ID de los registros recibidos en la solicitud
-        $recibidosIds = [];
+        $IdRecibidos = [];
 
         foreach ($request->perpetradores as $item) {
             $registro = Perpetrador::updateOrCreate(
@@ -424,33 +368,15 @@ class SyncModules
             );
 
             // Guardar el ID actualizado o creado
-            $recibidosIds[] = $registro->id;
+            $IdRecibidos[] = $registro->id;
         }
 
         // Identificar los ID que deben ser eliminados
-        $eliminablesIds = array_diff($existentesIds, $recibidosIds);
+        $eliminablesIds = array_diff($IdExistentes, $IdRecibidos);
 
         // Eliminar los registros que ya no están en la lista recibida
         if (!empty($eliminablesIds)) {
             Perpetrador::whereIn('id', $eliminablesIds)->delete();
         }
-    }
-
-    /**
-     * Funciones para reducir líneas de código :)
-     */
-    // TODO: Renombrar o mover este método a un lugar más adecuado
-    private function getExistingIds(Model $model, string $foreignKey, $foreignValue): array
-    {
-        $table = $model->getTable();
-
-        if (!Schema::hasColumn($table, $foreignKey)) {
-            throw new \InvalidArgumentException("La tabla $table no tiene la columna $foreignKey en la base de datos.");
-        }
-
-        return $model->newQuery() // Crea una nueva consulta para evitar usar una instancia existente
-        ->where($foreignKey, $foreignValue)
-            ->pluck('id')
-            ->toArray();
     }
 }

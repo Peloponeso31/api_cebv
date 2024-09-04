@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TipoDesaparicion;
+use App\Helpers\EnumHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -35,7 +37,7 @@ class ReporteTotalRequest extends FormRequest
             // Atributos
 
             'esta_terminado' => ['nullable', 'boolean'],
-            'tipo_desaparicion' => ['nullable', 'string', Rule::in('U', 'M'), 'max:1'],
+            'tipo_desaparicion' => ['nullable', 'string', Rule::in(EnumHelper::toList(TipoDesaparicion::class)), 'max:1'],
 
 
             //hechos de_desaparicion

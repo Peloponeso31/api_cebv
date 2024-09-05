@@ -20,6 +20,7 @@ use App\Models\MediaFiliacion;
 use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
 use App\Models\Oficialidades\Folio;
+use App\Models\RazonesCurp;
 use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -45,6 +46,9 @@ class Persona extends Model
     protected $table = 'personas';
 
     protected $fillable = [
+        'nombre',
+        'apellido_paterno',
+        'apellido_materno',
         'sexo_id',
         'genero_id',
         'media_filiacion_id',
@@ -53,12 +57,7 @@ class Persona extends Model
         'lengua_id',
         'estado_conyugal_id',
         'escolaridad_id',
-        'nombre',
-        'apellido_paterno',
-        'apellido_materno',
-        'pseudonimo_nombre',
-        'pseudonimo_apellido_paterno',
-        'pseudonimo_apellido_materno',
+        'razon_no_presenta_curp_id',
         'fecha_nacimiento',
         'curp',
         'observaciones_curp',
@@ -73,8 +72,6 @@ class Persona extends Model
         'fecha_nacimiento' => 'date',
     ];
 
-
-
     public function sexo(): BelongsTo
     {
         return $this->belongsTo(Sexo::class, 'sexo_id');
@@ -83,6 +80,11 @@ class Persona extends Model
     public function genero(): BelongsTo
     {
         return $this->belongsTo(Genero::class, 'genero_id');
+    }
+
+    public function razon_no_presenta_curp(): HasOne
+    {
+        return $this->hasOne(RazonesCurp::class, 'id', 'razon_no_presenta_curp_id');
     }
 
     public function lugar_nacimiento(): BelongsTo {

@@ -199,12 +199,34 @@ class SyncReporteController extends Controller
             ], [
                 "estatura" => $media_filiacion["estatura"] ?? null,
                 "peso" => $media_filiacion["peso"] ?? null,
+
                 "complexion_id" => $media_filiacion["complexion"]["id"] ?? null,
                 "color_piel_id" => $media_filiacion["color_piel"]["id"] ?? null,
+                "forma_cara_id" => $media_filiacion["forma_cara"]["id"] ?? null,
                 "color_ojos_id" => $media_filiacion["color_ojos"]["id"] ?? null,
+                "forma_ojos_id" => $media_filiacion["forma_ojos"]["id"] ?? null,
+                "tamano_ojos_id" => $media_filiacion["tamano_ojos"]["id"] ?? null,
+                "calvicie_id" => $media_filiacion["calvicie"]["id"] ?? null,
                 "color_cabello_id" => $media_filiacion["color_cabello"]["id"] ?? null,
                 "tamano_cabello_id" => $media_filiacion["tamano_cabello"]["id"] ?? null,
                 "tipo_cabello_id" => $media_filiacion["tipo_cabello"]["id"] ?? null,
+                "tipo_ceja_id" => $media_filiacion["tipo_ceja"]["id"] ?? null,
+                "tipo_nariz_id" => $media_filiacion["tipo_nariz"]["id"] ?? null,
+                "tamano_boca_id" => $media_filiacion["tamano_boca"]["id"] ?? null,
+                "tamano_labios_id" => $media_filiacion["tamano_labios"]["id"] ?? null,
+                "tamano_orejas_id" => $media_filiacion["tamano_orejas"]["id"] ?? null,
+                "forma_orejas_id" => $media_filiacion["forma_orejas"]["id"] ?? null,
+
+                "observaciones_ojos" => $media_filiacion["observaciones_ojos"] ?? null,
+                "observaciones_cabello" => $media_filiacion["observaciones_cabello"] ?? null,
+                "bigote" => $media_filiacion["bigote"] ?? null,
+                "barba" => $media_filiacion["barba"] ?? null,
+                "observaciones_cejas" => $media_filiacion["observaciones_cejas"] ?? null,
+                "observaciones_barba" => $media_filiacion["observaciones_barba"] ?? null,
+                "observaciones_bigote" => $media_filiacion["observaciones_bigote"] ?? null,
+                "observaciones_nariz" => $media_filiacion["observaciones_nariz"] ?? null,
+                "observaciones_boca" => $media_filiacion["observaciones_boca"] ?? null,
+                "observaciones_oreja" => $media_filiacion["observaciones_oreja"] ?? null,
             ]);
         }
 

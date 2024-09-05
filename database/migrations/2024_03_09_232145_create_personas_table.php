@@ -19,14 +19,13 @@ return new class extends Migration {
             $table->foreignId('lengua_id')->nullable()->constrained(table: 'lenguas');
             $table->foreignId('estado_conyugal_id')->nullable()->constrained(table: 'estados_conyugales');
             $table->foreignId('escolaridad_id')->nullable()->constrained(table: 'escolaridades');
+            //$table->foreignId('razon_no_presenta_curp_id', 18)->nullable()->constrained('razones_curp');
+            $table->foreignId('razon_no_presenta_curp_id', 18)->nullable();
             $table->string('lugar_nacimiento_id', 2)->nullable();
 
             $table->string('nombre')->nullable();
             $table->string('apellido_paterno')->nullable();
             $table->string('apellido_materno')->nullable();
-            $table->string('pseudonimo_nombre')->nullable();
-            $table->string('pseudonimo_apellido_paterno')->nullable();
-            $table->string('pseudonimo_apellido_materno')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->string('curp', 18)->unique()->nullable();
             $table->text('observaciones_curp')->nullable();

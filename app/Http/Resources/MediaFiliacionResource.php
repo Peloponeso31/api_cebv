@@ -18,14 +18,48 @@ class MediaFiliacionResource extends JsonResource
         return [
             "id" => $this->id,
             "persona_id" => $this->persona_id,
+
+            // Perfil corporal
             "estatura" => $this->estatura,
             "peso" => $this->peso,
-            "complexion" => ComplexionResource::make($this->complexion),
-            "color_piel" => ColorPielResource::make($this->colorPiel),
-            "color_ojos" => ColorPielResource::make($this->colorOjos),
-            "color_cabello" => ColorCabelloResource::make($this->colorCabello),
-            "tamano_cabello" => TamanoCabelloResource::make($this->tamanoCabello),
-            "tipo_cabello" => TipoCabelloResource::make($this->tipoCabello),
+            "complexion" => CatalogoResource::make($this->complexion),
+            "color_piel" => CatalogoResource::make($this->colorPiel),
+            "forma_cara" => CatalogoResource::make($this->formaCara),
+
+            // Ojos
+            "color_ojos" => CatalogoResource::make($this->colorOjos),
+            "forma_ojos" => CatalogoResource::make($this->formaOjos),
+            "tamano_ojos" => CatalogoResource::make($this->tamanoOjos),
+            "observaciones_ojos" => $this->observaciones_ojos,
+
+            // Cabello
+            "calvicie" => CatalogoResource::make($this->calvicie),
+            "color_cabello" => CatalogoResource::make($this->colorCabello),
+            "tamano_cabello" => CatalogoResource::make($this->tamanoCabello),
+            "tipo_cabello" => CatalogoResource::make($this->tipoCabello),
+            "observaciones_cabello" => $this->observaciones_cabello,
+
+            // Vello facial
+            "tipo_ceja" => CatalogoResource::make($this->tipoCeja),
+            "bigote" => $this->bigote,
+            "barba" => $this->barba,
+            "observaciones_cejas" => $this->observaciones_cejas,
+            "observaciones_barba" => $this->observaciones_barba,
+            "observaciones_bigote" => $this->observaciones_bigote,
+
+            // Nariz
+            "tipo_nariz" => CatalogoResource::make($this->tipoNariz),
+            "observaciones_nariz" => $this->observaciones_nariz,
+
+            // Boca
+            "tamano_boca" => CatalogoResource::make($this->tamanoBoca),
+            "tamano_labios" => CatalogoResource::make($this->tamanoLabios),
+            "observaciones_boca" => $this->observaciones_boca,
+
+            // Orejas
+            "tamano_orejas" => CatalogoResource::make($this->tamanoOrejas),
+            "forma_orejas" => CatalogoResource::make($this->formaOrejas),
+            "observaciones_oreja" => $this->observaciones_oreja,
         ];
     }
 }

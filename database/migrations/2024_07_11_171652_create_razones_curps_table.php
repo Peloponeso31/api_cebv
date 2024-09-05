@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('razones_curps');
+        Schema::dropIfExists('razones_curp');
     }
 };

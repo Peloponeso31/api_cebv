@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Personas;
 
 use App\Http\Resources\ApodoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ContactoResource;
 use App\Http\Resources\EscolaridadResource;
 use App\Http\Resources\EstadoConyugalResource;
@@ -61,6 +62,7 @@ class PersonaResource extends JsonResource
             'estado_conyugal' => EstadoConyugalResource::make($this->estadoConyugal),
             'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
             'media_filiacion' => MediaFiliacionResource::make($this->mediaFiliacion),
+            'razon_no_presenta_curp' => CatalogoResource::make($this->razon_no_presenta_curp),
             // Contexto Familiar
             'numero_personas_vive' => $this->numero_personas_vive,
         ];

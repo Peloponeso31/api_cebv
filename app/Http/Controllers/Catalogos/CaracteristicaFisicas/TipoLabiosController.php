@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class TipoLabiosController extends Controller
 {
-
     public function index()
     {
        return TipoLabioResource::collection(TipoLabios::all());

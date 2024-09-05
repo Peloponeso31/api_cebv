@@ -16,7 +16,7 @@ class RazonesCurpSeeder extends Seeder
         $razones = [
             "EL REPORTANTE NO PROPORCIONO LA INFORMACION NECESARIA",
             "LA CURP PRESENTA IRREGULARIDADES ANTE EL REGISTRO NACIONAL DE POBLACIÓN",
-            "LA DESAPARICION SUCEDIO ANTES DE 1996",
+            "LA DESAPARICIÓN SUCEDIO ANTES DE 1996",
             "LA PERSONA NO SE ENCUETRA REGISTRADA POR MOTIVOS DE MARGINACIÓN",
             "LA VICTIMA ES EXTRANJERO/A",
             "MENOR DE EDAD NO REGISTRADO",
@@ -24,7 +24,7 @@ class RazonesCurpSeeder extends Seeder
         ];
 
         foreach ($razones as $razon) {
-            RazonesCurp::insert([
+            RazonesCurp::firstOrCreate([
                 "nombre" => $razon
             ]);
         }

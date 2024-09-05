@@ -8,7 +8,6 @@ use App\Http\Requests\Reportes\ReporteRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
 use App\Models\Reportes\Reporte;
-use App\Models\Ubicaciones\Estado;
 use App\Services\CrudService;
 use App\Services\ReporteFilters;
 use App\Services\ReporteService;

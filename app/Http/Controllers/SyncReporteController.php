@@ -60,7 +60,6 @@ class SyncReporteController extends Controller
                 $reportante = ArrayHelpers::setArrayValue($reportante, FK::ReporteId->value, $reporteId);
 
                 $reportante['persona'] = $this->sync->Persona($reportante['persona']);
-                Log::info("Reportante: " . json_encode($reportante));
 
                 ArrayHelpers::asyncHandler(new Reportante, $reportante, config('patterns.reportante'));
             }

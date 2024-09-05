@@ -2,15 +2,19 @@
 
 namespace App\Http\Resources\Personas;
 
+use App\Http\Resources\CabelloResource;
 use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\EstudioResource;
+use App\Http\Resources\OjoResource;
 use App\Http\Resources\PseudonimoResource;
 use App\Http\Resources\ContactoResource;
+use App\Http\Resources\SaludResource;
 use App\Http\Resources\SenasParticularesResource;
 use App\Http\Resources\TelefonoResource;
 use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
+use App\Http\Resources\VelloFacialResource;
 use App\Models\Personas\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -63,6 +67,10 @@ class PersonaResource extends JsonResource
             'estudios' => EstudioResource::make($this->estudio),
             'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
             'contexto_familiar' => ContextoFamiliarResource::make($this->contextoFamiliar),
+            'salud' => SaludResource::make($this->salud),
+            'ojos' => OjoResource::make($this->ojos),
+            'cabello' => CabelloResource::make($this->cabello),
+            'vello_facial' => VelloFacialResource::make($this->velloFacial),
         ];
     }
 }

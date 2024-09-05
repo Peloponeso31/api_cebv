@@ -20,6 +20,11 @@ class VelloFacial extends Model
         'especificaciones_barba',
     ];
 
+    protected $casts = [
+        'tiene_bigote' => 'boolean',
+        'tiene_barba' => 'boolean',
+    ];
+
     public $timestamps = false;
 
     public function persona(): BelongsTo

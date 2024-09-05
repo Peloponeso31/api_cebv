@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Enums\ForeignKey as FK;
 use App\Http\Requests\ReporteTotalRequest;
+use App\Models\Cabello;
 use App\Models\Contacto;
 use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
@@ -11,20 +12,23 @@ use App\Models\DesaparicionForzada;
 use App\Models\Estudio;
 use App\Models\Expediente;
 use App\Models\MediaFiliacion;
+use App\Models\Ojo;
 use App\Models\Perpetrador;
 use App\Models\Personas\Persona;
 use App\Models\Pseudonimo;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
+use App\Models\Salud;
 use App\Models\SenasParticulares;
 use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
+use App\Models\VelloFacial;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class SyncModules
 {
-    public function Persona($request) : Model
+    public function Persona($request): Model
     {
 
         $persona = ArrayHelpers::asyncHandler(new Persona, $request, config('patterns.persona'));
@@ -58,7 +62,7 @@ class SyncModules
             $persona->gruposVulnerables()->sync($grupos_vulnerables);
         }
 
-        if (isset($request['telefonos']) ) {
+        if (isset($request['telefonos'])) {
             $data = $request['telefonos'];
             $dataModified = [];
 
@@ -79,7 +83,7 @@ class SyncModules
                 $dataModified[] = $item;
             }
 
-            ArrayHelpers::syncList(new Telefono, $dataModified, FK::PersonaId->value, $persona->getAttribute('id'));
+            ArrayHelpers::syncList(new Contacto, $dataModified, FK::PersonaId->value, $persona->getAttribute('id'));
         }
 
         if (isset($request["direcciones"])) {
@@ -110,7 +114,7 @@ class SyncModules
         if (isset($request["senas_particulares"])) {
             $senas_modified = [];
 
-            foreach ($persona["senas_particulares"] as $sena) {
+            foreach ($request["senas_particulares"] as $sena) {
                 $senas_modified[] = SenasParticulares::updateOrCreate([
                     "id" => $sena["id"] ?? null,
                     "persona_id" => $sena["persona"]["id"] ?? $personaId->id ?? null,
@@ -156,7 +160,7 @@ class SyncModules
         }
 
         if (isset($request['estudios'])) {
-            $data = $persona['estudios'];
+            $data = $request['estudios'];
 
             $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
 
@@ -164,11 +168,45 @@ class SyncModules
         }
 
         if (isset($request['contexto_familiar'])) {
-            $data = $persona['contexto_familiar'];
+            $data = $request['contexto_familiar'];
 
             $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
 
             ArrayHelpers::asyncHandler(new ContextoFamiliar, $data, config('patterns.contexto_familiar'));
+        }
+
+        if (isset($request['salud'])) {
+            $data = $request['salud'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+
+            ArrayHelpers::asyncHandler(new Salud, $data, config('patterns.salud'));
+        }
+
+        if (isset($request['ojos'])) {
+            $data = $request['ojos'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+
+            ArrayHelpers::asyncHandler(new Ojo, $data, config('patterns.ojos'));
+        }
+
+        if (isset($request['cabello'])) {
+            $data = $request['cabello'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+
+            ArrayHelpers::asyncHandler(new Cabello, $data, config('patterns.cabello'));
+
+        }
+
+        if (isset($request['vello_facial']))
+        {
+            $data = $request['vello_facial'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+
+            ArrayHelpers::asyncHandler(new VelloFacial, $data, config('patterns.vello_facial'));
         }
 
         return $persona;
@@ -189,7 +227,7 @@ class SyncModules
         ]);
     }
 
-    public function HechosDesaparicion($reporteId, ReporteTotalRequest $request) : void
+    public function HechosDesaparicion($reporteId, ReporteTotalRequest $request): void
     {
         if (!is_int($reporteId) || $reporteId == null) return;
 
@@ -239,7 +277,7 @@ class SyncModules
         return $direccion_created->id;
     }
 
-    public function Hipotesis($reporteId, ReporteTotalRequest $request) : void
+    public function Hipotesis($reporteId, ReporteTotalRequest $request): void
     {
         if (!isset($request->expedientes)) return;
 

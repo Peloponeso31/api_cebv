@@ -44,4 +44,28 @@ return [
     'contexto_familiar' => [
         'estado_conyugal_id' => 'estado_conyugal.id',
     ],
+
+    'salud' => [
+        'tipo_sangre_id' => 'tipo_sangre.id',
+        'complexion_id' => 'complexion.id',
+        'color_piel_id' => 'color_piel.id',
+        'forma_cara_id' => 'forma_cara.id',
+    ],
+
+    'ojos' => [
+        'color_ojos_id' => 'color_ojos.id',
+        'forma_ojos_id' => 'forma_ojos.id',
+        'tamano_ojos_id' => 'tamano_ojos.id',
+    ],
+
+    'cabello' => [
+        'calvicie_id' => 'calvicie.id',
+        'color_cabello_id' => 'color_cabello.id',
+        'tamano_cabello_id' => 'tamano_cabello.id',
+        'tipo_cabello_id' => 'tipo_cabello.id',
+    ],
+
+    'vello_facial' => [
+        'cejas_id' => 'cejas.id',
+    ],
 ];

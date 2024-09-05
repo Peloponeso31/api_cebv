@@ -15,8 +15,8 @@ class FormaCara extends Model
         'nombre',
     ];
 
-    public function mediasFiliaciones(): HasMany
+    public function salud(): HasMany
     {
-        return $this->hasMany(MediaFiliacion::class);
+        return $this->hasMany(Salud::class);
     }
 }

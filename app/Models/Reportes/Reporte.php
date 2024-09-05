@@ -3,7 +3,6 @@
 namespace App\Models\Reportes;
 
 use App\Enums\TipoDesaparicion;
-use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;

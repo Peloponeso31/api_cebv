@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('persona_id')->constrained(table: 'personas');
-            $table->foreignId('tipo_sangre_id')->constrained(table: 'cat_tipos_sangre');
+            $table->foreignId('tipo_sangre_id')->nullable()->constrained(table: 'cat_tipos_sangre');
 
             // Perfil Corporal
             $table->foreignId('complexion_id')->nullable()->constrained(table: 'cat_complexiones');

@@ -32,7 +32,6 @@ return new class extends Migration {
             $table->boolean('habla_espanhol')->nullable();
             $table->text('especificaciones_ocupacion')->nullable();
 
-
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('cat_estados');
 

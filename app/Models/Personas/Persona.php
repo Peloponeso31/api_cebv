@@ -268,7 +268,7 @@ class Persona extends Model
     /**
      * Media Filiación
      */
-    public function ojo(): HasOne
+    public function ojos(): HasOne
     {
         return $this->hasOne(Ojo::class);
     }

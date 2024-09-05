@@ -14,7 +14,7 @@ class VelloFacialResource extends JsonResource
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
-            'cejas_id' => $this->cejas_id,
+            'cejas' => CatalogoResource::make($this->cejas),
             'especificaciones_cejas' => $this->especificaciones_cejas,
             'tiene_bigote' => $this->tiene_bigote,
             'especificaciones_bigote' => $this->especificaciones_bigote,

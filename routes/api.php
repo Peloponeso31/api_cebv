@@ -251,21 +251,21 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      */
     Route::apiResource('/caracteristicas-fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/complexiones', ComplexionController::class);
-    Route::apiResource('/colores-pieles', ColorPielController::class);
-    Route::apiResource('/formas-caras', FormaCaraController::class);
+    Route::apiResource('/colores-piel', ColorPielController::class);
+    Route::apiResource('/formas-cara', FormaCaraController::class);
 
     Route::apiResource('/colores-ojos', ColorOjosController::class);
     Route::apiResource('/formas-ojos', FormaOjoController::class);
     Route::apiResource('/tamanos-ojos', TamanoOjosController::class);
 
-    Route::apiResource('/tipos-calvicies', CalvicieController::class);
-    Route::apiResource('/colores-cabellos', ColorCabelloController::class);
-    Route::apiResource('/tamanos-cabellos', TamanoCabelloController::class);
-    Route::apiResource('/tipos-cabellos', TipoCabelloController::class);
+    Route::apiResource('/tipos-calvicie', CalvicieController::class);
+    Route::apiResource('/colores-cabello', ColorCabelloController::class);
+    Route::apiResource('/tamanos-cabello', TamanoCabelloController::class);
+    Route::apiResource('/tipos-cabello', TipoCabelloController::class);
     Route::apiResource('/tipos-cejas', CejaController::class);
 
-    Route::apiResource('/tipos-narices', TipoNarizController::class);
-    Route::apiResource('/tamanos-bocas', TamanoBocaController::class);
+    Route::apiResource('/tipos-nariz', TipoNarizController::class);
+    Route::apiResource('/tamanos-boca', TamanoBocaController::class);
     Route::apiResource('/tamanos-labios', TipoLabiosController::class);
 
     Route::apiResource('/tamanos-orejas', TamanoOrejasController::class);

@@ -68,4 +68,35 @@ return [
     'vello_facial' => [
         'cejas_id' => 'cejas.id',
     ],
+
+    'nariz' => [
+        'tipo_nariz_id' => 'tipo_nariz.id',
+    ],
+
+    'boca' => [
+        'tamano_boca_id' => 'tamano_boca.id',
+        'tamano_labios_id' => 'tamano_labios.id',
+    ],
+
+    'orejas' => [
+        'tamano_orejas_id' => 'tamano_orejas.id',
+        'forma_orejas_id' => 'forma_orejas.id',
+    ],
+
+    'media_filiacion_complementaria' => [
+        'tipo_menton_id' => 'tipo_menton.id',
+    ],
+
+    'intervencion_quirurgica' => [
+        'tipo_intervencion_quirurgica_id' => 'tipo_intervencion_quirurgica.id',
+    ],
+
+    'enfermedad_piel' => [
+        'tipo_enfermedad_piel_id' => 'tipo_enfermedad_piel.id',
+    ],
+
+    'prenda_vestir' => [
+        'pertenencia_id' => 'pertenencia.id',
+        'color_id' => 'color.id',
+    ],
 ];

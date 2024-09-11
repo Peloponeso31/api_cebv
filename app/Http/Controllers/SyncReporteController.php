@@ -8,7 +8,6 @@ use App\Helpers\SyncModules;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
-use App\Models\Personas\Persona;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -68,26 +67,25 @@ class SyncReporteController extends Controller
         if ($request->has('desaparecidos')) {
             foreach ($request->desaparecidos as $desaparecido) {
                 $desaparecido = ArrayHelpers::setArrayValue($desaparecido, FK::ReporteId->value, $reporteId);
-
-                if (isset($desaparecido['persona'])) {
-                    $desaparecido['persona']['id'] = $this->sync->Persona($desaparecido['persona']);
-                }
-
+                $desaparecido['persona'] = $this->sync->Persona($desaparecido['persona']);
                 $desaparecidoUpdated = ArrayHelpers::asyncHandler(new Desaparecido, $desaparecido, config('patterns.desaparecido'));
+                $desaparecidoId = $desaparecidoUpdated->getAttribute('id');
 
-                if (isset($desaparecido['prendas_de_vestir'])) {
-                    $prendas_modified = [];
-                    foreach ($desaparecido["prendas_de_vestir"] as $prenda) {
-                        $prendas_modified[] = PrendaVestir::updateOrCreate([
-                            "id" => $prenda["id"] ?? null,
-                            "desaparecido_id" => $prenda["desaparecido_id"] ?? $desaparecidoUpdated->id ?? null,
-                        ], [
-                            "pertenencia_id" => $prenda["pertenencia"]["id"] ?? null,
-                            "color_id" => $prenda["color"]["id"] ?? null,
-                            "marca" => $prenda["marca"] ?? null,
-                            "descripcion" => $prenda["descripcion"] ?? null,
-                        ])->id;
+                if (isset($desaparecido['prendas_vestir'])) {
+                    $data = $desaparecido['prendas_vestir'];
+                    $dataModificada = [];
+
+                    foreach ($data as $item) {
+                        $item['desaparecido_id'] = $desaparecidoId;
+                        $dataModificada[] = $item;
                     }
+
+                    ArrayHelpers::syncList(
+                        new PrendaVestir,
+                        $dataModificada,
+                        FK::DesaparecidoId->value,
+                        $desaparecidoId,
+                        config('patterns.prenda_vestir'));
 
                 }
 

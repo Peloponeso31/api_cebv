@@ -20,4 +20,9 @@ class EnumHelper
 
         return array_map(fn($case) => $case->value, $enumClass::cases());
     }
+
+    public static function toString($enumClass): string
+    {
+        return $enumClass->value;
+    }
 }

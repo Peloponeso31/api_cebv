@@ -3,11 +3,10 @@
 namespace App\Models\Reportes\Relaciones;
 
 use App\Models\Catalogos\PrendaVestir;
-use App\Models\Ocupacion;
+use App\Models\Oficialidades\Folio;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
-use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,25 +16,25 @@ class Desaparecido extends Model
     protected $table = 'desaparecidos';
 
     protected $fillable = [
-       'reporte_id',
-       'persona_id',
-       'estatus_rpdno_id',
-       'estatus_cebv_id',
-       'clasificacion_persona',
-       'url_boletin',
-       'declaracion_especial_ausencia',
-       'accion_urgente',
-       'dictamen',
-       'ci_nivel_federal',
-       'otro_derecho_humano',
-       'fecha_nacimiento_aproximada',
-       'fecha_nacimiento_cebv',
-       'observaciones_fecha_nacimiento',
-       'edad_momento_desaparicion_anos',
-       'edad_momento_desaparicion_meses',
-       'edad_momento_desaparicion_dias',
-       'identidad_resguardada',
-       'boletin_img_path',
+        'reporte_id',
+        'persona_id',
+        'estatus_rpdno_id',
+        'estatus_cebv_id',
+        'clasificacion_persona',
+        'url_boletin',
+        'declaracion_especial_ausencia',
+        'accion_urgente',
+        'dictamen',
+        'ci_nivel_federal',
+        'otro_derecho_humano',
+        'fecha_nacimiento_aproximada',
+        'fecha_nacimiento_cebv',
+        'observaciones_fecha_nacimiento',
+        'edad_momento_desaparicion_anos',
+        'edad_momento_desaparicion_meses',
+        'edad_momento_desaparicion_dias',
+        'identidad_resguardada',
+        'boletin_img_path',
     ];
 
     protected $casts = [
@@ -70,18 +69,16 @@ class Desaparecido extends Model
         return $this->hasMany(DocumentoLegal::class);
     }
 
-    public function ocupacionPrincipal(): BelongsTo
-    {
-        return $this->belongsTo(Ocupacion::class, 'ocupacion_principal_id');
-    }
-
-    public function ocupacionSecundaria(): BelongsTo
-    {
-        return $this->belongsTo(Ocupacion::class, 'ocupacion_secundaria_id');
-    }
-
     public function prendasVestir(): HasMany
     {
         return $this->hasMany(PrendaVestir::class);
     }
+
+    public function folio(): ?Model
+    {
+        return Folio::where('persona_id', $this->persona_id)
+            ->where('reporte_id', $this->reporte_id)
+            ->first();
+    }
+
 }

@@ -12,8 +12,8 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
             $table->foreignId('persona_id')->nullable()->constrained(table: 'personas');
-            $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'estatus_personas');
-            $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'estatus_personas');
+            $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'cat_estatus_personas');
+            $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'cat_estatus_personas');
 
             $table->string('clasificacion_persona')->nullable();
             $table->string('url_boletin')->nullable();

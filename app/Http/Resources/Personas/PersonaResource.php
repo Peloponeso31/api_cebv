@@ -2,11 +2,17 @@
 
 namespace App\Http\Resources\Personas;
 
+use App\Http\Resources\BocaResource;
 use App\Http\Resources\CabelloResource;
 use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ContextoFamiliarResource;
+use App\Http\Resources\EnfermedadPielResource;
 use App\Http\Resources\EstudioResource;
+use App\Http\Resources\IntervencionQuirurgicaResource;
+use App\Http\Resources\MediaFiliacionComplementariaResource;
+use App\Http\Resources\NarizResource;
 use App\Http\Resources\OjoResource;
+use App\Http\Resources\OrejaResource;
 use App\Http\Resources\PseudonimoResource;
 use App\Http\Resources\ContactoResource;
 use App\Http\Resources\SaludResource;
@@ -71,6 +77,12 @@ class PersonaResource extends JsonResource
             'ojos' => OjoResource::make($this->ojos),
             'cabello' => CabelloResource::make($this->cabello),
             'vello_facial' => VelloFacialResource::make($this->velloFacial),
+            'nariz' => NarizResource::make($this->nariz),
+            'boca' => BocaResource::make($this->boca),
+            'orejas' => OrejaResource::make($this->oreja),
+            'media_filiacion_complementaria' => MediaFiliacionComplementariaResource::make($this->mediaFiliacionComplementaria),
+            'intervenciones_quirurgicas' => IntervencionQuirurgicaResource::collection($this->intervencionesQuirurgicas),
+            'enfermedades_piel' => EnfermedadPielResource::collection($this->enfermedadesPiel),
         ];
     }
 }

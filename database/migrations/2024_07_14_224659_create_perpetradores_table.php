@@ -12,7 +12,7 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
             $table->foreignId('sexo_id')->nullable()->constrained(table: 'cat_sexos');
-            $table->foreignId('estatus_perpetrador_id')->nullable()->constrained(table: 'estatus_perpetradores');
+            $table->foreignId('estatus_perpetrador_id')->nullable()->constrained(table: 'cat_estatus_perpetradores');
 
             $table->string('nombre');
             $table->string('descripcion')->nullable();

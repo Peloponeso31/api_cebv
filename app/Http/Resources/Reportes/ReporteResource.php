@@ -59,8 +59,6 @@ class ReporteResource extends JsonResource
              * Relaciones
              */
             'control_ogpi' => ControlOgpiResource::make($this->controlOgpi),
-            // Folio
-            'folios' => FolioResource::collection($folios),
             // Expedientes
             'expedientes' => ExpedienteResource::collection($expedientes),
             // Desaparicion forzada

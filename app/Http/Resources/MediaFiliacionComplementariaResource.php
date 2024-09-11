@@ -13,6 +13,7 @@ class MediaFiliacionComplementariaResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'persona_id' => $this->persona_id,
             'tiene_ausencia_dental' => $this->tiene_ausencia_dental,
             'descripcion_ausencia_dental' => $this->descripcion_ausencia_dental,
             'tiene_tratamiento_dental' => $this->tiene_tratamiento_dental,

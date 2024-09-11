@@ -120,10 +120,7 @@ class ArrayHelpers
         $IdRecibidos = [];
 
         foreach ($request as $item) {
-            $registro = ArrayHelpers::asyncHandler($model, $item, $patterns);
-
-            // Guardar el ID actualizado o creado
-            $IdRecibidos[] = $registro->id ?? null;
+            $IdRecibidos[] = ArrayHelpers::asyncHandler($model, $item, $patterns)->getAttribute('id');
         }
 
         // Identificar los ID que deben ser eliminados

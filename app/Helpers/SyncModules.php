@@ -4,15 +4,20 @@ namespace App\Helpers;
 
 use App\Enums\ForeignKey as FK;
 use App\Http\Requests\ReporteTotalRequest;
+use App\Models\Boca;
 use App\Models\Cabello;
 use App\Models\Contacto;
 use App\Models\ContextoFamiliar;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
+use App\Models\EnfermedadPiel;
 use App\Models\Estudio;
 use App\Models\Expediente;
-use App\Models\MediaFiliacion;
+use App\Models\IntervencionQuirurgica;
+use App\Models\MediaFiliacionComplementaria;
+use App\Models\Nariz;
 use App\Models\Ojo;
+use App\Models\Oreja;
 use App\Models\Perpetrador;
 use App\Models\Personas\Persona;
 use App\Models\Pseudonimo;
@@ -30,13 +35,15 @@ class SyncModules
 {
     public function Persona($request): Model
     {
-
         $persona = ArrayHelpers::asyncHandler(new Persona, $request, config('patterns.persona'));
+        $personaId = $persona->getAttribute('id');
+
+        \Log::info("Persona ID: " . $personaId);
 
         if (isset($request['pseudonimos'])) {
             $data = $request['pseudonimos'];
 
-            ArrayHelpers::syncList(new Pseudonimo, $data, FK::PersonaId->value, $persona->getAttribute('id'));
+            ArrayHelpers::syncList(new Pseudonimo, $data, FK::PersonaId->value, $personaId);
         }
 
         if (isset($request["nacionalidades"])) {
@@ -67,11 +74,11 @@ class SyncModules
             $dataModified = [];
 
             foreach ($data as $item) {
-                $item['persona_id'] = $persona->getAttribute('id');
+                $item['persona_id'] = $personaId;
                 $dataModified[] = $item;
             }
 
-            ArrayHelpers::syncList(new Telefono, $dataModified, FK::PersonaId->value, $persona->getAttribute('id'));
+            ArrayHelpers::syncList(new Telefono, $dataModified, FK::PersonaId->value, $personaId);
         }
 
         if (isset($request['contactos'])) {
@@ -79,11 +86,11 @@ class SyncModules
             $dataModified = [];
 
             foreach ($data as $item) {
-                $item['persona_id'] = $persona->getAttribute('id');
+                $item['persona_id'] = $personaId;
                 $dataModified[] = $item;
             }
 
-            ArrayHelpers::syncList(new Contacto, $dataModified, FK::PersonaId->value, $persona->getAttribute('id'));
+            ArrayHelpers::syncList(new Contacto, $dataModified, FK::PersonaId->value, $personaId);
         }
 
         if (isset($request["direcciones"])) {
@@ -142,27 +149,10 @@ class SyncModules
             }
         }
 
-        if (isset($request["media_filiacion"])) {
-            $media_filiacion = $persona["media_filiacion"];
-            MediaFiliacion::updateOrCreate([
-                "id" => $persona["media_filiacion"]["id"] ?? null,
-                "persona_id" => $persona["persona_id"] ?? $personaId->id ?? null,
-            ], [
-                "estatura" => $media_filiacion["estatura"] ?? null,
-                "peso" => $media_filiacion["peso"] ?? null,
-                "complexion_id" => $media_filiacion["complexion"]["id"] ?? null,
-                "color_piel_id" => $media_filiacion["color_piel"]["id"] ?? null,
-                "color_ojos_id" => $media_filiacion["color_ojos"]["id"] ?? null,
-                "color_cabello_id" => $media_filiacion["color_cabello"]["id"] ?? null,
-                "tamano_cabello_id" => $media_filiacion["tamano_cabello"]["id"] ?? null,
-                "tipo_cabello_id" => $media_filiacion["tipo_cabello"]["id"] ?? null,
-            ]);
-        }
-
         if (isset($request['estudios'])) {
             $data = $request['estudios'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
 
             ArrayHelpers::asyncHandler(new Estudio, $data, config('patterns.estudios'));
         }
@@ -170,7 +160,7 @@ class SyncModules
         if (isset($request['contexto_familiar'])) {
             $data = $request['contexto_familiar'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
 
             ArrayHelpers::asyncHandler(new ContextoFamiliar, $data, config('patterns.contexto_familiar'));
         }
@@ -178,7 +168,7 @@ class SyncModules
         if (isset($request['salud'])) {
             $data = $request['salud'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
 
             ArrayHelpers::asyncHandler(new Salud, $data, config('patterns.salud'));
         }
@@ -186,7 +176,7 @@ class SyncModules
         if (isset($request['ojos'])) {
             $data = $request['ojos'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
 
             ArrayHelpers::asyncHandler(new Ojo, $data, config('patterns.ojos'));
         }
@@ -194,20 +184,88 @@ class SyncModules
         if (isset($request['cabello'])) {
             $data = $request['cabello'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
 
             ArrayHelpers::asyncHandler(new Cabello, $data, config('patterns.cabello'));
 
         }
 
-        if (isset($request['vello_facial']))
-        {
+        if (isset($request['vello_facial'])) {
             $data = $request['vello_facial'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $persona->getAttribute('id'));
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
 
             ArrayHelpers::asyncHandler(new VelloFacial, $data, config('patterns.vello_facial'));
         }
+
+        if (isset($request['nariz'])) {
+            $data = $request['nariz'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+
+            ArrayHelpers::asyncHandler(new Nariz, $data, config('patterns.nariz'));
+        }
+
+        if (isset($request['boca'])) {
+            $data = $request['boca'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+
+            ArrayHelpers::asyncHandler(new Boca, $data, config('patterns.boca'));
+        }
+
+        if (isset($request['orejas'])) {
+            $data = $request['orejas'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+
+            ArrayHelpers::asyncHandler(new Oreja, $data, config('patterns.orejas'));
+        }
+
+        if (isset($request['media_filiacion_complementaria'])) {
+            $data = $request['media_filiacion_complementaria'];
+
+            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+
+            ArrayHelpers::asyncHandler(new MediaFiliacionComplementaria, $data, config('patterns.media_filiacion_complementaria'));
+        }
+
+
+        if (isset($request['intervenciones_quirurgicas'])) {
+            $data = $request['intervenciones_quirurgicas'];
+            $dataModified = [];
+
+            foreach ($data as $item) {
+                $item['persona_id'] = $personaId;
+                $dataModified[] = $item;
+            }
+
+            ArrayHelpers::syncList(
+                new IntervencionQuirurgica,
+                $dataModified,
+                FK::PersonaId->value,
+                $personaId,
+                config('patterns.intervencion_quirurgica'));
+        }
+
+        if (isset($request['enfermedades_piel']))
+        {
+            $data = $request['enfermedades_piel'];
+            $dataModified = [];
+
+            foreach ($data as $item) {
+                $item['persona_id'] = $personaId;
+                $dataModified[] = $item;
+            }
+
+            ArrayHelpers::syncList(
+                new EnfermedadPiel,
+                $dataModified,
+                FK::PersonaId->value,
+                $personaId,
+                config('patterns.enfermedad_piel'));
+        }
+
 
         return $persona;
     }

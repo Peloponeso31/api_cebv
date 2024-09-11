@@ -21,7 +21,7 @@ class PrendaVestir extends Model
         'pertenencia_id',
         'color_id',
         'marca',
-        'descripcion'
+        'descripcion',
     ];
 
     public $timestamps = false;

@@ -14,11 +14,11 @@ class MediaFiliacionComplementaria extends Model
 
     protected $fillable = [
         'persona_id',
+        'tipo_menton_id',
         'tiene_ausencia_dental',
         'descripcion_ausencia_dental',
         'tiene_tratamiento_dental',
         'descripcion_tratamiento_dental',
-        'tipo_menton_id',
         'especificaciones_menton',
         'observaciones_generales',
     ];

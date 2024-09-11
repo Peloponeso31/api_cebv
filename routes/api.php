@@ -37,7 +37,9 @@ use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\SyncReporteController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
+use App\Http\Controllers\TipoEnfermedadPielController;
 use App\Http\Controllers\TipoHipotesisInmediataController;
+use App\Http\Controllers\TipoIntervencionQuirurgicaController;
 use App\Http\Controllers\TipoMentonController;
 use App\Http\Controllers\TipoOcupacionController;
 use App\Http\Controllers\TipoRedSocialController;
@@ -57,11 +59,6 @@ use App\Http\Controllers\Oficialidades\InstitucionController;
 use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
 use App\Http\Controllers\Personas\PersonaController;
-use App\Http\Controllers\CaracteristicasFisicasController;
-use App\Http\Controllers\RegionVellofacialController;
-use App\Http\Controllers\ColorVellofacialController;
-use App\Http\Controllers\CorteVellofacialController;
-use App\Http\Controllers\VolumenVellofacialController;
 use App\Http\Controllers\VelloFacialController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\ContactoController;
@@ -249,7 +246,6 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for the caracteristicas fisicas module
      */
-    Route::apiResource('/caracteristicas-fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/complexiones', ComplexionController::class);
     Route::apiResource('/colores-piel', ColorPielController::class);
     Route::apiResource('/formas-cara', FormaCaraController::class);
@@ -273,9 +269,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-mentones', TipoMentonController::class);
 
     Route::apiResource('/regiones-deformaciones', RegionDeformacionController::class);
-    Route::apiResource('/intervenciones-quirurgicas', IntervencionQuirurgicaController::class);
-    Route::apiResource('/enfermedades-pieles', EnfermedadPielController::class);
-
+    Route::apiResource('/tipos-intervenciones-quirurgicas', TipoIntervencionQuirurgicaController::class);
+    Route::apiResource('/tipos-enfermedades-piel', TipoEnfermedadPielController::class);
     Route::apiResource('/condiciones-salud', CondicionSaludController::class);
 
     /**
@@ -295,12 +290,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/grupos-pertenencias', GrupoPertenenciaController::class);
     Route::apiResource('/pertenencias', PertenenciaController::class);
     Route::apiResource('/colores', ColorController::class);
-
     Route::apiResource("/velloFacial", VelloFacialController::class);
-    Route::apiResource("/regionvello", RegionVelloFacialController::class);
-    Route::apiResource("/colorvello", ColorVelloFacialController::class);
-    Route::apiResource("/cortevello", CorteVelloFacialController::class);
-    Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
 
     /**
      * Routes for the Vehiculos module

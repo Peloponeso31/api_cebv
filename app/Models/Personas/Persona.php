@@ -81,7 +81,7 @@ class Persona extends Model
     ];
 
     protected $casts = [
-        'fecha_nacimiento' => 'date',
+        'fecha_nacimiento' => 'datetime',
         'habla_espanhol' => 'boolean',
     ];
 

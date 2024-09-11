@@ -31,11 +31,7 @@ class ReporteController extends Controller
     {
         $query = $this->model::query();
 
-        if (empty($request->all())) {
-            if (request()->has('search')) {
-                $query = $this->model::search(request('search'));
-            }
-        }else {
+        if ($request->all()) {
             $reporteFilter = new ReporteFilters($request);
             $query = $reporteFilter->applyFilter($query);
         }

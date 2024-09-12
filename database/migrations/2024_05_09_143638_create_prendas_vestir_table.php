@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->foreignId('color_id')->nullable()->constrained(table: 'cat_colores');
 
             $table->string('marca')->nullable();
-            $table->string('descripcion')->nullable();
+            $table->text('descripcion')->nullable();
         });
     }
 

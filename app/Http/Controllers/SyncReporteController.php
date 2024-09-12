@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ForeignKey as FK;
 use App\Helpers\ArrayHelpers;
+use App\Helpers\JsonAttributes as A;
 use App\Helpers\SyncModules;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
@@ -23,92 +23,73 @@ class SyncReporteController extends Controller
         $this->sync = $sync;
     }
 
-    private function getExtension($base64)
-    {
-        $formatos = [
-            "IVBOR" => "png",
-            "/9J/4" => "jpg",
-            "AAAAF" => "mp4",
-            "JVBER" => "pdf",
-            "AAABA" => "ico",
-            "UMFYI" => "rar",
-            "E1XYD" => "rtf",
-            "U1PKC" => "txt",
-            "77U/M" => "srt",
-        ];
-
-        return $formatos[strtoupper($base64)] ?? '';
-    }
-
     public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
         $data = $request->toArray();
 
         // TODO: Mover todo a SyncModules
-        if (!isset($data['esta_terminado'])) {
+        if (!isset($data[A::EstaTerminado])) {
             /* 'esta_terminado' no puede ser null */
-            $data['esta_terminado'] = false;
+            $data[A::EstaTerminado] = false;
         }
 
         $reporteId = ArrayHelpers::asyncHandler(new Reporte, $data, config('patterns.reporte'))->getAttribute('id');
 
         Log::info("Reporte: " . json_encode($data));
 
-        if ($request->has('reportantes')) {
+        if ($request->has(A::Reportantes)) {
+            Log::info("Reportantes: " . json_encode($request->reportantes));
             foreach ($request->reportantes as $reportante) {
-                $reportante = ArrayHelpers::setArrayValue($reportante, FK::ReporteId->value, $reporteId);
+                $reportante = ArrayHelpers::setArrayValue($reportante, A::ReporteId, $reporteId);
 
-                $reportante['persona'] = $this->sync->Persona($reportante['persona']);
+                $reportante[A::Persona] = $this->sync->Persona($reportante[A::Persona]);
 
                 ArrayHelpers::asyncHandler(new Reportante, $reportante, config('patterns.reportante'));
             }
         }
 
-        if ($request->has('desaparecidos')) {
+        if ($request->has(A::Desaparecidos)) {
+            Log::info("Desaparecidos: " . json_encode($request->desaparecidos));
             foreach ($request->desaparecidos as $desaparecido) {
-                $desaparecido = ArrayHelpers::setArrayValue($desaparecido, FK::ReporteId->value, $reporteId);
-                $desaparecido['persona'] = $this->sync->Persona($desaparecido['persona']);
-                $desaparecidoUpdated = ArrayHelpers::asyncHandler(new Desaparecido, $desaparecido, config('patterns.desaparecido'));
-                $desaparecidoId = $desaparecidoUpdated->getAttribute('id');
+                $desaparecido = ArrayHelpers::setArrayValue($desaparecido, A::ReporteId, $reporteId);
 
-                if (isset($desaparecido['prendas_vestir'])) {
-                    $data = $desaparecido['prendas_vestir'];
+                $desaparecido['persona'] = $this->sync->Persona($desaparecido['persona']);
+
+                $desaparecidoId = ArrayHelpers::asyncHandler(new Desaparecido, $desaparecido, config('patterns.desaparecido'))
+                    ->getAttribute('id');
+
+                if (isset($desaparecido[A::PrendasVestir])) {
+                    $data = $desaparecido[A::PrendasVestir];
                     $dataModificada = [];
 
                     foreach ($data as $item) {
-                        $item['desaparecido_id'] = $desaparecidoId;
+                        $item[A::DesaparecidoId] = $desaparecidoId;
                         $dataModificada[] = $item;
                     }
 
                     ArrayHelpers::syncList(
                         new PrendaVestir,
                         $dataModificada,
-                        FK::DesaparecidoId->value,
+                        A::DesaparecidoId,
                         $desaparecidoId,
                         config('patterns.prenda_vestir'));
 
                 }
 
-                if (isset($desaparecido["documentos_legales"]) && $desaparecido["documentos_legales"] != null) {
-                    $documentos_modificados = [];
-                    foreach ($desaparecido["documentos_legales"] as $documento) {
-                        $documento_updated = DocumentoLegal::updateOrCreate([
-                            'id' => $documento["id"] ?? null,
-                            'desaparecido_id' => $documento["desaparecido_id"] ?? $desaparecidoUpdated["id"] ?? null,
-                        ], [
-                            'es_oficial' => $documento['es_oficial'],
-                            'tipo_documento' => $documento['tipo_documento'],
-                            'numero_documento' => $documento['numero_documento'],
-                            'donde_radica' => $documento['donde_radica'],
-                            'nombre_servidor_publico' => $documento['nombre_servidor_publico'],
-                            'fecha_recepcion' => $documento['fecha_recepcion'],
-                        ]);
-                        array_push($documentos_modificados, $documento_updated->id);
+                if (isset($desaparecido["documentos_legales"])) {
+                    $data = $desaparecido["documentos_legales"];
+                    $dataModificada = [];
+
+                    foreach ($data as $item) {
+                        $item[A::DesaparecidoId] = $desaparecidoId;
+                        $dataModificada[] = $item;
                     }
-                    $documentos_eliminables = $desaparecidoUpdated->documentosLegales->except($documentos_modificados);
-                    if (count($documentos_eliminables) > 0) {
-                        $documentos_eliminables->toQuery()->delete();
-                    }
+
+                    ArrayHelpers::syncList(
+                        new DocumentoLegal,
+                        $dataModificada,
+                        A::DesaparecidoId,
+                        $desaparecidoId);
                 }
             }
         }

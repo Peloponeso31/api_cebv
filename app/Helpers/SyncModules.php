@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-use App\Enums\ForeignKey as FK;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Models\Boca;
 use App\Models\Cabello;
@@ -43,7 +42,7 @@ class SyncModules
         if (isset($request['pseudonimos'])) {
             $data = $request['pseudonimos'];
 
-            ArrayHelpers::syncList(new Pseudonimo, $data, FK::PersonaId->value, $personaId);
+            ArrayHelpers::syncList(new Pseudonimo, $data, JsonAttributes::PersonaId, $personaId);
         }
 
         if (isset($request["nacionalidades"])) {
@@ -78,7 +77,7 @@ class SyncModules
                 $dataModified[] = $item;
             }
 
-            ArrayHelpers::syncList(new Telefono, $dataModified, FK::PersonaId->value, $personaId);
+            ArrayHelpers::syncList(new Telefono, $dataModified, JsonAttributes::PersonaId, $personaId);
         }
 
         if (isset($request['contactos'])) {
@@ -90,7 +89,7 @@ class SyncModules
                 $dataModified[] = $item;
             }
 
-            ArrayHelpers::syncList(new Contacto, $dataModified, FK::PersonaId->value, $personaId);
+            ArrayHelpers::syncList(new Contacto, $dataModified, JsonAttributes::PersonaId, $personaId);
         }
 
         if (isset($request["direcciones"])) {
@@ -152,7 +151,7 @@ class SyncModules
         if (isset($request['estudios'])) {
             $data = $request['estudios'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Estudio, $data, config('patterns.estudios'));
         }
@@ -160,7 +159,7 @@ class SyncModules
         if (isset($request['contexto_familiar'])) {
             $data = $request['contexto_familiar'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new ContextoFamiliar, $data, config('patterns.contexto_familiar'));
         }
@@ -168,7 +167,7 @@ class SyncModules
         if (isset($request['salud'])) {
             $data = $request['salud'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Salud, $data, config('patterns.salud'));
         }
@@ -176,7 +175,7 @@ class SyncModules
         if (isset($request['ojos'])) {
             $data = $request['ojos'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Ojo, $data, config('patterns.ojos'));
         }
@@ -184,7 +183,7 @@ class SyncModules
         if (isset($request['cabello'])) {
             $data = $request['cabello'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Cabello, $data, config('patterns.cabello'));
 
@@ -193,7 +192,7 @@ class SyncModules
         if (isset($request['vello_facial'])) {
             $data = $request['vello_facial'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new VelloFacial, $data, config('patterns.vello_facial'));
         }
@@ -201,7 +200,7 @@ class SyncModules
         if (isset($request['nariz'])) {
             $data = $request['nariz'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Nariz, $data, config('patterns.nariz'));
         }
@@ -209,7 +208,7 @@ class SyncModules
         if (isset($request['boca'])) {
             $data = $request['boca'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Boca, $data, config('patterns.boca'));
         }
@@ -217,7 +216,7 @@ class SyncModules
         if (isset($request['orejas'])) {
             $data = $request['orejas'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new Oreja, $data, config('patterns.orejas'));
         }
@@ -225,7 +224,7 @@ class SyncModules
         if (isset($request['media_filiacion_complementaria'])) {
             $data = $request['media_filiacion_complementaria'];
 
-            $data = ArrayHelpers::setArrayValue($data, FK::PersonaId->value, $personaId);
+            $data = ArrayHelpers::setArrayValue($data, JsonAttributes::PersonaId, $personaId);
 
             ArrayHelpers::asyncHandler(new MediaFiliacionComplementaria, $data, config('patterns.media_filiacion_complementaria'));
         }
@@ -243,7 +242,7 @@ class SyncModules
             ArrayHelpers::syncList(
                 new IntervencionQuirurgica,
                 $dataModified,
-                FK::PersonaId->value,
+                JsonAttributes::PersonaId,
                 $personaId,
                 config('patterns.intervencion_quirurgica'));
         }
@@ -261,7 +260,7 @@ class SyncModules
             ArrayHelpers::syncList(
                 new EnfermedadPiel,
                 $dataModified,
-                FK::PersonaId->value,
+                JsonAttributes::PersonaId,
                 $personaId,
                 config('patterns.enfermedad_piel'));
         }

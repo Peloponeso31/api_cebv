@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\ReporteFilter;
 
 use App\Models\Reportes\Reporte;
 use Illuminate\Http\Request;
-use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ReporteFilters
 {

@@ -9,7 +9,7 @@ use App\Http\Resources\Reportes\ReporteResource;
 use App\Http\Resources\ReportesDashboardResource;
 use App\Models\Reportes\Reporte;
 use App\Services\CrudService;
-use App\Services\ReporteFilters;
+use App\Services\ReporteFilter\ReporteFilters;
 use App\Services\ReporteService;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;

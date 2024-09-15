@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ArrayHelpers;
 use App\Helpers\JsonAttributes as A;
-use App\Helpers\SyncModules;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
@@ -12,13 +11,14 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
+use App\Services\SyncPersonaService;
 use Illuminate\Support\Facades\Log;
 
 class SyncReporteController extends Controller
 {
-    protected SyncModules $sync;
+    protected SyncPersonaService $sync;
 
-    function __construct(SyncModules $sync)
+    function __construct(SyncPersonaService $sync)
     {
         $this->sync = $sync;
     }
@@ -27,67 +27,51 @@ class SyncReporteController extends Controller
     {
         $data = $request->toArray();
 
-        // TODO: Mover todo a SyncModules
         if (!isset($data[A::EstaTerminado])) {
-            /* 'esta_terminado' no puede ser null */
+            /* El atributo 'esta_terminado' no puede ser null */
             $data[A::EstaTerminado] = false;
         }
 
-        $reporteId = ArrayHelpers::asyncHandler(new Reporte, $data, config('patterns.reporte'))->getAttribute('id');
+        $reporteId = ArrayHelpers::asyncHandler(Reporte::class, $data, config('patterns.reporte'))->getAttribute('id');
 
         Log::info("Reporte: " . json_encode($data));
 
         if ($request->has(A::Reportantes)) {
-            Log::info("Reportantes: " . json_encode($request->reportantes));
             foreach ($request->reportantes as $reportante) {
                 $reportante = ArrayHelpers::setArrayValue($reportante, A::ReporteId, $reporteId);
 
                 $reportante[A::Persona] = $this->sync->Persona($reportante[A::Persona]);
 
-                ArrayHelpers::asyncHandler(new Reportante, $reportante, config('patterns.reportante'));
+                ArrayHelpers::asyncHandler(Reportante::class, $reportante, config('patterns.reportante'));
             }
         }
 
         if ($request->has(A::Desaparecidos)) {
-            Log::info("Desaparecidos: " . json_encode($request->desaparecidos));
             foreach ($request->desaparecidos as $desaparecido) {
                 $desaparecido = ArrayHelpers::setArrayValue($desaparecido, A::ReporteId, $reporteId);
 
-                $desaparecido['persona'] = $this->sync->Persona($desaparecido['persona']);
+                $desaparecido[A::Persona] = $this->sync->Persona($desaparecido[A::Persona]);
 
-                $desaparecidoId = ArrayHelpers::asyncHandler(new Desaparecido, $desaparecido, config('patterns.desaparecido'))
+                $desaparecidoId = ArrayHelpers::asyncHandler(Desaparecido::class, $desaparecido, config('patterns.desaparecido'))
                     ->getAttribute('id');
 
                 if (isset($desaparecido[A::PrendasVestir])) {
-                    $data = $desaparecido[A::PrendasVestir];
-                    $dataModificada = [];
-
-                    foreach ($data as $item) {
-                        $item[A::DesaparecidoId] = $desaparecidoId;
-                        $dataModificada[] = $item;
-                    }
+                    $data = ArrayHelpers::setArrayRecursive($desaparecido[A::PrendasVestir], A::DesaparecidoId, $desaparecidoId);
 
                     ArrayHelpers::syncList(
-                        new PrendaVestir,
-                        $dataModificada,
+                        PrendaVestir::class,
+                        $data,
                         A::DesaparecidoId,
                         $desaparecidoId,
                         config('patterns.prenda_vestir'));
-
                 }
 
-                if (isset($desaparecido["documentos_legales"])) {
-                    $data = $desaparecido["documentos_legales"];
-                    $dataModificada = [];
-
-                    foreach ($data as $item) {
-                        $item[A::DesaparecidoId] = $desaparecidoId;
-                        $dataModificada[] = $item;
-                    }
+                if (isset($desaparecido[A::DocumentosLegales])) {
+                    $data = ArrayHelpers::setArrayRecursive($desaparecido[A::DocumentosLegales], A::DesaparecidoId, $desaparecidoId);
 
                     ArrayHelpers::syncList(
-                        new DocumentoLegal,
-                        $dataModificada,
+                        DocumentoLegal::class,
+                        $data,
                         A::DesaparecidoId,
                         $desaparecidoId);
                 }

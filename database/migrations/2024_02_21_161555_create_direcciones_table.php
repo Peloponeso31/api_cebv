@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->string('asentamiento_id', 9)->nullable();
+
             $table->string('domicilio_concatenado', 9)->nullable();
             $table->string('calle')->nullable();
             $table->string('colonia')->nullable();

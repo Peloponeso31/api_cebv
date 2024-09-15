@@ -7,6 +7,7 @@ class JsonAttributes
     /**
      * Atributos del request
      */
+
     /** @var string */
     const Reportantes = 'reportantes';
 
@@ -14,9 +15,12 @@ class JsonAttributes
     const Desaparecidos = 'desaparecidos';
 
     /** @var string */
-    const Persona = 'persona';
+    const DocumentosLegales = 'documentos_legales';
 
     const PrendasVestir = 'prendas_vestir';
+
+    /** @var string */
+    const Persona = 'persona';
 
     /** @var string */
     const EstaTerminado = 'esta_terminado';
@@ -24,9 +28,10 @@ class JsonAttributes
     /**
      * Llaves foráneas
      */
-    const PersonaId = 'persona_id';
 
+    /** @var string */
     const ReporteId = 'reporte_id';
 
+    /** @var string */
     const DesaparecidoId = 'desaparecido_id';
 }

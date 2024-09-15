@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use DB;
 use Generator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Log;
@@ -60,17 +61,23 @@ class ArrayHelpers
     /**
      * Procesa la información de un modelo para su almacenamiento en la base de datos
      *
-     * @param Model $model
+     * @param string $model
      * @param array $request
      * @param array $patterns
      * @return Model
      */
-    public static function asyncHandler(Model $model, array $request, array $patterns = []): Model
+    public static function asyncHandler(string $model, array $request, array $patterns = []): Model
     {
-        $columns = $model->getFillable();
+        // Crear una instancia del modelo
+        $instance = new $model;
 
+        // Obtener las columnas que se pueden llenar
+        $columns = $instance->getFillable();
+
+        // Crear un arreglo para almacenar los datos
         $data = [];
 
+        // Iterar sobre cada campo fillable del modelo
         foreach ($columns as $column) {
             // Verificar si existe un patrón para el campo actual
             if (isset($patterns[$column])) {
@@ -82,7 +89,8 @@ class ArrayHelpers
             }
         }
 
-        return $model->newQuery()
+        // Crear o actualizar el registro en la base de datos
+        return $instance->newQuery()
             ->updateOrCreate(
                 ['id' => $request['id'] ?? null],
                 $data
@@ -91,30 +99,49 @@ class ArrayHelpers
 
     /**
      * Obtener los ID existentes de un modelo
-     * @param Model $model
+     * @param string $model
      * @param string $foreignKey
      * @param mixed $foreignValue
-     * @return array
+     * @return array|null
      */
-    public static function getExistingId(Model $model, string $foreignKey, mixed $foreignValue): array
+    public static function getExistingId(string $model, string $foreignKey, mixed $foreignValue): ?array
     {
-        $table = $model->getTable();
+        // Crear una instancia del modelo
+        $instance = new $model;
 
-        if (!Schema::hasColumn($table, $foreignKey)) {
-            throw new \InvalidArgumentException("La tabla $table no tiene la columna $foreignKey en la base de datos.");
-        }
+        // Obtener el nombre de la tabla
+        $table = $instance->getTable();
 
-        return $model->newQuery() // Crea una nueva consulta para evitar usar una instancia existente
-        ->where($foreignKey, $foreignValue)
+        if (!Schema::hasColumn($table, $foreignKey)) return null;
+
+        // Obtener los ID de los registros existentes
+        return $instance->newQuery()
+            ->where($foreignKey, $foreignValue)
+            ->pluck('id')
+            ->toArray();
+    }
+
+    public static function getExistingIdOnPivotTable(string $tableName, string $foreignKey, mixed $foreignValue): ?array
+    {
+        if (!Schema::hasColumn($tableName, $foreignKey)) return null;
+
+        // Obtener los ID de los registros existentes
+        return DB::table($tableName)
+            ->where($foreignKey, $foreignValue)
             ->pluck('id')
             ->toArray();
     }
 
 
-    public static function syncList(Model $model, array $request, string $foreignKey, mixed $foreignValue, array $patterns = []): void
+    public static function syncList(string $model, array $request, string $foreignKey, mixed $foreignValue, array $patterns = []): void
     {
+        // Crear una instancia del modelo
+        $instance = new $model;
+
         // Obtener todos los ID de los registros existentes para el modelo
         $IdExistentes = ArrayHelpers::getExistingId($model, $foreignKey, $foreignValue);
+
+        if ($IdExistentes === null) return;
 
         // Recopilar los ID de los registros recibidos en la solicitud
         $IdRecibidos = [];
@@ -128,7 +155,7 @@ class ArrayHelpers
 
         // Eliminar los registros que ya no están en la lista recibida
         if (!empty($eliminablesIds)) {
-            $model->newQuery()
+            $instance->newQuery()
                 ->whereIn('id', $eliminablesIds)
                 ->delete();
         }
@@ -146,8 +173,23 @@ class ArrayHelpers
     {
         if (array_key_exists($key, $data)) {
             $data[$key] = $value;
+        }
 
-            return $data;
+        return $data;
+    }
+
+    public static function setArrayRecursive(array $data, string $key, mixed $value): array
+    {
+        foreach ($data as $k => &$v) {
+            // Si encuentra la clave en el nivel actual, actualiza el valor.
+            if ($k === $key) {
+                $v = $value;
+            }
+
+            // Si el valor es un array, busca recursivamente dentro de él.
+            if (is_array($v)) {
+                $v = self::setArrayRecursive($v, $key, $value);
+            }
         }
 
         return $data;

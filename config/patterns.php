@@ -32,6 +32,10 @@ return [
         'lugar_nacimiento_id' => 'lugar_nacimiento.id',
     ],
 
+    'direccion' => [
+        'asentamiento_id' => 'asentamiento.id',
+    ],
+
     'telefono' => [
         'compania_id' => 'compania.id',
     ],
@@ -98,5 +102,12 @@ return [
     'prenda_vestir' => [
         'pertenencia_id' => 'pertenencia.id',
         'color_id' => 'color.id',
+    ],
+
+    'sena_particular' => [
+        'region_cuerpo_id' => 'region_cuerpo.id',
+        'vista_id' => 'vista.id',
+        'lado_id' => 'lado.id',
+        'tipo_id' => 'tipo.id',
     ],
 ];

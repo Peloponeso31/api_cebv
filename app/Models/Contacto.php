@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\TipoContacto;
 use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,7 @@ class Contacto extends Model
     use HasFactory;
 
     protected $table = 'contactos';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -20,6 +22,10 @@ class Contacto extends Model
         'tipo',
         'nombre',
         'observaciones',
+    ];
+
+    protected $casts = [
+        'tipo' => TipoContacto::class,
     ];
 
     public function tipoRedSocial(): BelongsTo

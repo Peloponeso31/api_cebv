@@ -34,4 +34,22 @@ class JsonAttributes
 
     /** @var string */
     const DesaparecidoId = 'desaparecido_id';
+
+    /** @var string */
+    const HechosDesaparicion = 'hechos_desaparicion';
+
+    /** @var string */
+    const Hipotesis = 'hipotesis';
+
+    /** @var string */
+    const ControlOgpi = 'control_ogpi';
+
+    /** @var string */
+    const Expedientes = 'expedientes';
+
+    /** @var string */
+    const DesaparicionForzada = 'desaparicion_forzada';
+
+    /** @var string */
+    const Perpetradores = 'perpetradores';
 }

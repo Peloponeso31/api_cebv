@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CatalogoResource;
+use App\Http\Resources\EnfoqueDiferenciadoResource;
 use App\Models\EnfoqueDiferenciado;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class EnfoqueDiferenciadoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(EnfoqueDiferenciado::all());
+        return EnfoqueDiferenciadoResource::collection(EnfoqueDiferenciado::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class EnfoqueDiferenciadoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new CatalogoResource(EnfoqueDiferenciado::create($data));
+        return new EnfoqueDiferenciadoResource(EnfoqueDiferenciado::create($data));
     }
 
     public function show(EnfoqueDiferenciado $enfoqueDiferenciado)
     {
-        return new CatalogoResource($enfoqueDiferenciado);
+        return new EnfoqueDiferenciadoResource($enfoqueDiferenciado);
     }
 
     public function update(Request $request, EnfoqueDiferenciado $enfoqueDiferenciado)
@@ -35,7 +35,7 @@ class EnfoqueDiferenciadoController extends Controller
 
         $enfoqueDiferenciado->update($data);
 
-        return new CatalogoResource($enfoqueDiferenciado);
+        return new EnfoqueDiferenciadoResource($enfoqueDiferenciado);
     }
 
     public function destroy(EnfoqueDiferenciado $enfoqueDiferenciado)

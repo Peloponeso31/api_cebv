@@ -21,7 +21,7 @@ class ContextoSocialResource extends JsonResource
         return [
             'id' => $this->id,
             'persona_id' => $this->persona_id,
-            'situacion_migratoria_id' => $this->situacion_migratoria_id,
+            'situacion_migratoria' => CatalogoResource::make($this->situacionMigratoria),
             'esta_transito_estados_unidos' => $this->esta_transito_estados_unidos,
             'descripcion_proceso_migratorio' => $this->descripcion_proceso_migratorio,
         ];

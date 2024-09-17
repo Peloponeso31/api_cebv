@@ -5,6 +5,7 @@ namespace App\Models\Personas;
 use App\Models\Amistad;
 use App\Models\Boca;
 use App\Models\Cabello;
+use App\Models\EnfoquePersonal;
 use App\Models\Nariz;
 use App\Models\Ojo;
 use App\Models\Oreja;
@@ -39,11 +40,11 @@ use App\Models\RazonCurp;
 use App\Models\RedSocial;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
-use App\Models\Reportes\Reporte;
 use App\Models\Salud;
 use App\Models\SenasParticulares;
 use App\Models\Sexo;
 use App\Models\Telefono;
+use App\Models\TipoEnfoqueDiferenciado;
 use App\Models\Ubicaciones\Direccion;
 use App\Models\Ubicaciones\Estado;
 use App\Models\VelloFacial;
@@ -367,5 +368,15 @@ class Persona extends Model
     public function embarazo(): HasMany
     {
         return $this->hasMany(Embarazo::class);
+    }
+
+    public function enfoquesPersonales(): BelongsToMany
+    {
+        return $this->belongsToMany(TipoEnfoqueDiferenciado::class)->using(EnfoquePersonal::class);
+    }
+
+    public function getEnfoquesPersonales()
+    {
+        return EnfoquePersonal::where('persona_id', $this->id)->get();
     }
 }

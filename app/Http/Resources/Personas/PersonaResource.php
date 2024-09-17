@@ -5,8 +5,11 @@ namespace App\Http\Resources\Personas;
 use App\Http\Resources\BocaResource;
 use App\Http\Resources\CabelloResource;
 use App\Http\Resources\CatalogoResource;
+use App\Http\Resources\CondicionSaludResource;
 use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\EnfermedadPielResource;
+use App\Http\Resources\EnfoqueDiferenciadoResource;
+use App\Http\Resources\EnfoquePersonalResource;
 use App\Http\Resources\EstudioResource;
 use App\Http\Resources\IntervencionQuirurgicaResource;
 use App\Http\Resources\MediaFiliacionComplementariaResource;
@@ -83,6 +86,9 @@ class PersonaResource extends JsonResource
             'media_filiacion_complementaria' => MediaFiliacionComplementariaResource::make($this->mediaFiliacionComplementaria),
             'intervenciones_quirurgicas' => IntervencionQuirurgicaResource::collection($this->intervencionesQuirurgicas),
             'enfermedades_piel' => EnfermedadPielResource::collection($this->enfermedadesPiel),
+            'condiciones_salud' => CondicionSaludResource::collection($this->condicionesSalud),
+            'enfoque_diferenciado' => EnfoqueDiferenciadoResource::make($this->enfoqueDiferenciado),
+            'enfoques_personales' => EnfoquePersonalResource::collection($this->getEnfoquesPersonales()),
         ];
     }
 }

@@ -37,7 +37,9 @@ use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\SyncReporteController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
+use App\Http\Controllers\TipoCondicionSaludController;
 use App\Http\Controllers\TipoEnfermedadPielController;
+use App\Http\Controllers\TipoEnfoqueDiferenciadoController;
 use App\Http\Controllers\TipoHipotesisInmediataController;
 use App\Http\Controllers\TipoIntervencionQuirurgicaController;
 use App\Http\Controllers\TipoMentonController;
@@ -272,6 +274,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-intervenciones-quirurgicas', TipoIntervencionQuirurgicaController::class);
     Route::apiResource('/tipos-enfermedades-piel', TipoEnfermedadPielController::class);
     Route::apiResource('/condiciones-salud', CondicionSaludController::class);
+    Route::apiResource('/tipos-condiciones-salud', TipoCondicionSaludController::class);
 
     /**
      * Routes for the contextos sociales module
@@ -307,7 +310,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/colectivos', ColectivoController::class);
     Route::apiResource('/tipos-sangre', TipoSangreController::class);
     Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
-    Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
+    Route::apiResource('/tipos-enfoque-diferenciado', TipoEnfoqueDiferenciadoController::class);
     Route::apiResource('/autoridades', AutoridadController::class);
     Route::apiResource('/particulares', ParticularController::class);
     Route::apiResource('/metodos-captura', MetodoCapturaController::class);

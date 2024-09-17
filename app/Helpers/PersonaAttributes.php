@@ -65,4 +65,16 @@ class PersonaAttributes
 
     /** @var string */
     const EnfermedadesPiel = 'enfermedades_piel';
+
+    /** @var string */
+    const CondicionesSalud = 'condiciones_salud';
+
+    /** @var string */
+    const EnfoqueDiferenciado = 'enfoque_diferenciado';
+
+    /** @var string */
+    const ContextoSocial = 'contexto_social';
+
+    /** @var string */
+    const EnfoquesPersonales = 'enfoques_personales';
 }

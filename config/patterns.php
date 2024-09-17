@@ -23,6 +23,33 @@ return [
         'estatus_cebv_id' => 'estatus_cebv.id',
     ],
 
+    'hecho_desaparicion' => [
+        'direccion_id' => 'direccion.id',
+    ],
+
+    'hipotesis' => [
+        'tipo_hipotesis_id' => 'tipo_hipotesis.id',
+        'sitio_id' => 'sitio.id',
+        'area_asigna_sitio_id' => 'area_asigna_sitio.id',
+    ],
+
+    'expediente' => [
+        'persona_id' => 'persona.id',
+        'parentesco_id' => 'parentesco.id',
+    ],
+
+    'desaparicion_forzada' => [
+        'autoridad_id' => 'autoridad.id',
+        'particular_id' => 'particular.id',
+        'metodo_captura_id' => 'metodo_captura.id',
+        'medio_captura_id' => 'medio_captura.id',
+    ],
+
+    'perpetrador' => [
+        'sexo_id' => 'sexo.id',
+        'estatus_perpetrador_id' => 'estatus_perpetrador.id',
+    ],
+
     'persona' => [
         'sexo_id' => 'sexo.id',
         'genero_id' => 'genero.id',
@@ -30,6 +57,10 @@ return [
         'lengua_id' => 'lengua.id',
         'razon_curp_id' => 'razon_curp.id',
         'lugar_nacimiento_id' => 'lugar_nacimiento.id',
+    ],
+
+    'condicion_salud' => [
+        'tipo_condicion_salud_id' => 'tipo_condicion_salud.id',
     ],
 
     'direccion' => [
@@ -109,5 +140,13 @@ return [
         'vista_id' => 'vista.id',
         'lado_id' => 'lado.id',
         'tipo_id' => 'tipo.id',
+    ],
+
+    'contexto_social' => [
+        'situacion_migratoria_id' => 'situacion_migratoria.id',
+    ],
+
+    'enfoque_personal' => [
+        'tipo_enfoque_diferenciado_id' => 'tipo_enfoque_diferenciado.id',
     ],
 ];

@@ -7,27 +7,35 @@ use App\Helpers\JsonAttributes as A;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
+use App\Models\DesaparicionForzada;
+use App\Models\Expediente;
+use App\Models\Perpetrador;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Services\SyncPersonaService;
+use App\Services\SyncReporteService;
 use Illuminate\Support\Facades\Log;
 
 class SyncReporteController extends Controller
 {
-    protected SyncPersonaService $sync;
+    protected SyncReporteService $syncReporte;
+    protected SyncPersonaService $syncPersona;
 
-    function __construct(SyncPersonaService $sync)
+    function __construct(SyncReporteService $syncReporte, SyncPersonaService $syncPersona)
     {
-        $this->sync = $sync;
+        $this->syncReporte = $syncReporte;
+        $this->syncPersona = $syncPersona;
     }
 
     public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
         $data = $request->toArray();
 
-        if (!isset($data[A::EstaTerminado])) {
+        if (is_null($data[A::EstaTerminado])) {
             /* El atributo 'esta_terminado' no puede ser null */
             $data[A::EstaTerminado] = false;
         }
@@ -36,21 +44,21 @@ class SyncReporteController extends Controller
 
         Log::info("Reporte: " . json_encode($data));
 
-        if ($request->has(A::Reportantes)) {
+        if ($request->has(A::Reportantes) && !is_null($request->reportantes)) {
             foreach ($request->reportantes as $reportante) {
                 $reportante = ArrayHelpers::setArrayValue($reportante, A::ReporteId, $reporteId);
 
-                $reportante[A::Persona] = $this->sync->Persona($reportante[A::Persona]);
+                $reportante[A::Persona] = $this->syncPersona->persona($reportante[A::Persona]);
 
                 ArrayHelpers::asyncHandler(Reportante::class, $reportante, config('patterns.reportante'));
             }
         }
 
-        if ($request->has(A::Desaparecidos)) {
+        if ($request->has(A::Desaparecidos) && !is_null($request->desaparecidos)) {
             foreach ($request->desaparecidos as $desaparecido) {
                 $desaparecido = ArrayHelpers::setArrayValue($desaparecido, A::ReporteId, $reporteId);
 
-                $desaparecido[A::Persona] = $this->sync->Persona($desaparecido[A::Persona]);
+                $desaparecido[A::Persona] = $this->syncPersona->persona($desaparecido[A::Persona]);
 
                 $desaparecidoId = ArrayHelpers::asyncHandler(Desaparecido::class, $desaparecido, config('patterns.desaparecido'))
                     ->getAttribute('id');
@@ -78,33 +86,37 @@ class SyncReporteController extends Controller
             }
         }
 
-        if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {
-            $this->sync->HechosDesaparicion($reporteId, $request);
+        if (isset($request[A::HechosDesaparicion]) && !is_null($request[A::HechosDesaparicion])) {
+            $data = ArrayHelpers::setArrayValue($request[A::HechosDesaparicion], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(HechoDesaparicion::class, $data, config('patterns.hecho_desaparicion'));
         }
 
-        if ($request->has("hipotesis") && $request->hipotesis != null) {
-            $this->sync->Hipotesis($reporteId, $request);
+        if (isset($request[A::Hipotesis]) && !is_null($request[A::Hipotesis])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Hipotesis], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Hipotesis::class, $data, A::ReporteId, $reporteId, config('patterns.hipotesis'));
         }
 
-        if ($request->has("control_ogpi") && $request->control_ogpi != null) {
-            $this->sync->ControlOgpi($reporteId, $request);
+        if (isset($request[A::ControlOgpi]) && !is_null($request[A::ControlOgpi])) {
+            $data = ArrayHelpers::setArrayValue($request[A::ControlOgpi], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(Reporte::class, $data);
         }
 
-        if ($request->has("expedientes") && $request->expedientes != null) {
-            $this->sync->Expediente($reporteId, $request);
+        if (isset($request[A::Expedientes]) && !is_null($request[A::Expedientes])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Expedientes], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Expediente::class, $data, A::ReporteId, $reporteId, config('patterns.expediente'));
         }
 
-        if ($request->has("desaparicion_forzada") && $request->desaparicion_forzada != null) {
-            $this->sync->DesaparicionForzada($reporteId, $request);
+        if (isset($request[A::DesaparicionForzada]) && !is_null($request[A::DesaparicionForzada])) {
+            $data = ArrayHelpers::setArrayValue($request[A::DesaparicionForzada], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(DesaparicionForzada::class, $data, config('patterns.desaparicion_forzada'));
         }
 
-        if ($request->has("perpetradores") && $request->perpetradores != null) {
-            $this->sync->Perpetradores($reporteId, $request);
+        if (isset($request[A::Perpetradores]) && !is_null($request[A::Perpetradores])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Perpetradores], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Perpetrador::class, $data, A::ReporteId, $reporteId, config('patterns.perpetrador'));
         }
 
         $reporte = Reporte::find($reporteId);
-
         return ReporteResource::make($reporte);
-
     }
 }

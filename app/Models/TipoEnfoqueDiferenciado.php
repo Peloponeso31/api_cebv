@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class TipoEnfoqueDiferenciado extends Model
 {
@@ -15,8 +16,9 @@ class TipoEnfoqueDiferenciado extends Model
         'nombre',
     ];
 
-    public function enfoqueDiferenciado(): HasMany
+    public function personas(): BelongsToMany
     {
-        return $this->hasMany(EnfoqueDiferenciado::class);
+        return $this->belongsToMany(Persona::class)
+            ->using(EnfoquePersonal::class);
     }
 }

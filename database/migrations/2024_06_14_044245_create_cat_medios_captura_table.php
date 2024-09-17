@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('metodos_captura', function (Blueprint $table) {
+        Schema::create('cat_medios_captura', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
         });
@@ -15,6 +15,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('metodos_captura');
+        Schema::dropIfExists('cat_medios_captura');
     }
 };

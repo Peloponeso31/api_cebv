@@ -1,5 +1,5 @@
 // @no-log
-GET http://api_cebv.test/api/pertenencias?filter[grupo_pertenencia_id]=3
+GET http://api_cebv.test/api/reportes/14
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 

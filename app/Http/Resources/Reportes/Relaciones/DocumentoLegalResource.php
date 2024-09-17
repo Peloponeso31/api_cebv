@@ -20,7 +20,6 @@ class DocumentoLegalResource extends JsonResource
             'nombre_servidor_publico' => $this->nombre_servidor_publico,
             'fecha_recepcion' => $this->fecha_recepcion,
             'desaparecido_id' => $this->desaparecido_id,
-            //'desaparecido' => new DesaparecidoResource($this->whenLoaded('desaparecido')),
         ];
     }
 }

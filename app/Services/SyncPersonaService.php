@@ -37,7 +37,8 @@ class SyncPersonaService
         $personaId = $persona->getAttribute('id');
 
         if (isset($request[P::Pseudonimos]) && !is_null($request[P::Pseudonimos])) {
-            ArrayHelpers::syncList(Pseudonimo::class, $request[P::Pseudonimos], P::PersonaId, $personaId);
+            $data = ArrayHelpers::setArrayRecursive($request[P::Pseudonimos], P::PersonaId, $personaId);
+            ArrayHelpers::syncList(Pseudonimo::class, $data, P::PersonaId, $personaId);
         }
 
         if (isset($request[P::Nacionalidades]) && !is_null($request[P::Nacionalidades])) {
@@ -67,7 +68,7 @@ class SyncPersonaService
         if (isset($request[P::Telefonos]) && !is_null($request[P::Telefonos])) {
             $data = ArrayHelpers::setArrayRecursive($request[P::Telefonos], P::PersonaId, $personaId);
 
-            ArrayHelpers::syncList(Telefono::class, $data, P::PersonaId, $personaId);
+            ArrayHelpers::syncList(Telefono::class, $data, P::PersonaId, $personaId, config('patterns.telefono'));
         }
 
         if (isset($request[P::Contactos]) && !is_null($request[P::Contactos])) {

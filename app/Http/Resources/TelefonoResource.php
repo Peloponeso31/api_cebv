@@ -16,11 +16,11 @@ class TelefonoResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'numero' => $this->numero,
             'persona_id' => $this->persona_id,
-            'observaciones'=> $this->observaciones,
-            'es_movil' => $this->es_movil,
             'compania' => CatalogoResource::make($this->compania),
+            'numero' => $this->numero,
+            'observaciones' => $this->observaciones,
+            'es_movil' => $this->es_movil,
         ];
     }
 }

@@ -63,7 +63,7 @@ class SyncReporteController extends Controller
                 $desaparecidoId = ArrayHelpers::asyncHandler(Desaparecido::class, $desaparecido, config('patterns.desaparecido'))
                     ->getAttribute('id');
 
-                if (isset($desaparecido[A::PrendasVestir])) {
+                if (isset($desaparecido[A::PrendasVestir]) && !is_null($desaparecido[A::PrendasVestir])) {
                     $data = ArrayHelpers::setArrayRecursive($desaparecido[A::PrendasVestir], A::DesaparecidoId, $desaparecidoId);
 
                     ArrayHelpers::syncList(
@@ -74,7 +74,7 @@ class SyncReporteController extends Controller
                         config('patterns.prenda_vestir'));
                 }
 
-                if (isset($desaparecido[A::DocumentosLegales])) {
+                if (isset($desaparecido[A::DocumentosLegales]) && !is_null($desaparecido[A::DocumentosLegales])) {
                     $data = ArrayHelpers::setArrayRecursive($desaparecido[A::DocumentosLegales], A::DesaparecidoId, $desaparecidoId);
 
                     ArrayHelpers::syncList(

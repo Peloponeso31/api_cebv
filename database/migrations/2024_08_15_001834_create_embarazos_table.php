@@ -13,7 +13,6 @@ return new class extends Migration {
             $table->foreignId('persona_id')->constrained(table: 'personas');
 
             $table->integer('meses');
-            $table->timestamps();
         });
     }
 

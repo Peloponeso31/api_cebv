@@ -7,6 +7,7 @@ use App\Models\Boca;
 use App\Models\Cabello;
 use App\Models\EnfoquePersonal;
 use App\Models\Nariz;
+use App\Models\OcupacionPersona;
 use App\Models\Ojo;
 use App\Models\Oreja;
 use App\Models\Pseudonimo;
@@ -30,7 +31,6 @@ use App\Models\Familiar;
 use App\Models\Genero;
 use App\Models\GrupoVulnerable;
 use App\Models\IntervencionQuirurgica;
-use App\Models\MediaFiliacion;
 use App\Models\MediaFiliacionComplementaria;
 use App\Models\Nacionalidad;
 use App\Models\Ocupacion;
@@ -258,7 +258,12 @@ class Persona extends Model
 
     public function ocupaciones(): BelongsToMany
     {
-        return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona');
+        return $this->belongsToMany(Ocupacion::class, 'ocupacion_persona')->using(OcupacionPersona::class);
+    }
+
+    public function getOcupaciones()
+    {
+        return OcupacionPersona::where('persona_id', $this->id)->get();
     }
 
     public function gruposVulnerables(): BelongsToMany
@@ -365,9 +370,9 @@ class Persona extends Model
         return $this->hasMany(Empleado::class);
     }
 
-    public function embarazo(): HasMany
+    public function embarazo(): HasOne
     {
-        return $this->hasMany(Embarazo::class);
+        return $this->hasOne(Embarazo::class);
     }
 
     public function enfoquesPersonales(): BelongsToMany

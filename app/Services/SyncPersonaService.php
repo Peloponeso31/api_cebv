@@ -17,6 +17,7 @@ use App\Models\Estudio;
 use App\Models\IntervencionQuirurgica;
 use App\Models\MediaFiliacionComplementaria;
 use App\Models\Nariz;
+use App\Models\OcupacionPersona;
 use App\Models\Ojo;
 use App\Models\Oreja;
 use App\Models\Personas\Persona;
@@ -214,6 +215,11 @@ class SyncPersonaService
             ArrayHelpers::syncList(EnfoquePersonal::class, $data, P::PersonaId, $personaId, config('patterns.enfoque_personal'));
         }
 
-        return $persona;
+        if(isset($request[P::Ocupaciones]) && !is_null($request[P::Ocupaciones])) {
+            $data = ArrayHelpers::setArrayRecursive($request[P::Ocupaciones], P::PersonaId, $personaId);
+            ArrayHelpers::syncList(OcupacionPersona::class, $data, P::PersonaId, $personaId, config('patterns.ocupacion'));
+        }
+
+        return Persona::findOrFail($personaId);
     }
 }

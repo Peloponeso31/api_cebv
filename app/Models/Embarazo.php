@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Embarazo extends Model
 {
+    protected $table = 'embarazos';
+
     protected $fillable = [
         'persona_id',
         'meses',
     ];
+
+    public $timestamps = false;
 
     public function persona(): BelongsTo
     {

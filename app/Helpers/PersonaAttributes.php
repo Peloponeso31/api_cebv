@@ -77,4 +77,8 @@ class PersonaAttributes
 
     /** @var string */
     const EnfoquesPersonales = 'enfoques_personales';
+
+    const Ocupaciones = 'ocupaciones';
+
+    const Embarazo = 'embarazo';
 }

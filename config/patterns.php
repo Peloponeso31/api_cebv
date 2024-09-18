@@ -149,4 +149,8 @@ return [
     'enfoque_personal' => [
         'tipo_enfoque_diferenciado_id' => 'tipo_enfoque_diferenciado.id',
     ],
+
+    'ocupacion' => [
+        'ocupacion_id' => 'ocupacion.id',
+    ],
 ];

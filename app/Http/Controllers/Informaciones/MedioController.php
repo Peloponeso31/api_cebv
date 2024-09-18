@@ -27,8 +27,7 @@ class MedioController extends Controller
             ->allowedFilters([
                 AllowedFilter::exact('id'),
                 AllowedFilter::exact('tipo_medio_id')
-            ])
-            ->get();
+            ])->get();
 
         return MedioResource::collection($query);
     }

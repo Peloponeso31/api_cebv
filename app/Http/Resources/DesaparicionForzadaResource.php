@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Reportes\ReporteResource;
+use App\Models\DesaparicionForzada;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\DesaparicionForzada */
+/** @mixin DesaparicionForzada */
 class DesaparicionForzadaResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -15,14 +15,14 @@ class DesaparicionForzadaResource extends JsonResource
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
             'desaparecio_autoridad' => $this->desaparecio_autoridad,
-            'autoridad' => AutoridadResource::make($this->autoridad),
+            'autoridad' => CatalogoResource::make($this->autoridad),
             'descripcion_autoridad' => $this->descripcion_autoridad,
             'desaparecio_particular' => $this->desaparecio_particular,
-            'particular' => ParticularResource::make($this->particular),
+            'particular' => CatalogoResource::make($this->particular),
             'descripcion_particular' => $this->descripcion_particular,
-            'metodo_captura' => MetodoCapturaResource::make($this->metodoCaptura),
+            'metodo_captura' => CatalogoResource::make($this->metodoCaptura),
             'descripcion_metodo_captura' => $this->descripcion_metodo_captura,
-            'medio_captura' => MedioCapturaResource::make($this->medioCaptura),
+            'medio_captura' => CatalogoResource::make($this->medioCaptura),
             'descripcion_medio_captura' => $this->descripcion_medio_captura,
             'detencion_previa_extorsion' => $this->detencion_previa_extorsion,
             'descripcion_detencion_previa_extorsion' => $this->descripcion_detencion_previa_extorsion,

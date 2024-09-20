@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Informaciones;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Informaciones\SitioRequest;
-use App\Http\Resources\Informaciones\SitioResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Informaciones\Sitio;
 use App\Services\CrudService;
 
@@ -28,22 +28,22 @@ class SitioController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return SitioResource::collection($query->get());
+        return CatalogoResource::collection($query->get());
     }
 
     public function store(SitioRequest $request)
     {
-        return $this->service->store($request, $this->model, new SitioResource($this->model::class));
+        return $this->service->store($request, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function show($id)
     {
-        return $this->service->show($id, $this->model, new SitioResource($this->model::class));
+        return $this->service->show($id, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function update($id, SitioRequest $request)
     {
-        return $this->service->update($id, $request, $this->model, new SitioResource($this->model::class));
+        return $this->service->update($id, $request, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function destroy($id)

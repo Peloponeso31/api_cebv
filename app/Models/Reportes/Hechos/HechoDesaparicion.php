@@ -51,7 +51,7 @@ class HechoDesaparicion extends Model
      */
     public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class);
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
     public function lugarHechos() : BelongsTo

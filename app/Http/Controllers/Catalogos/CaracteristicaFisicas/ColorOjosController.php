@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\ColorOjosRequest;
-use App\Http\Resources\ColorOjoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\CaracteristicasFisicas\ColorOjos;
-use Illuminate\Http\Request;
 
 class ColorOjosController extends Controller
 {
 
     public function index()
     {
-        return ColorOjoResource::collection(ColorOjos::all());
+        return CatalogoResource::collection(ColorOjos::all());
     }
 
 

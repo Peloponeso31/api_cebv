@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Reportes\Relaciones;
 
+use App\Enums\TipoDocumentoLegal;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DocumentoLegalRequest extends FormRequest
 {
@@ -10,7 +12,7 @@ class DocumentoLegalRequest extends FormRequest
     {
         return [
             'desaparecido_id' => ['required', 'exists:desaparecidos,id'],
-            'tipo_documento' => ['required', 'in:CI,AB,DH'],
+            'tipo_documento' => ['required', Rule::in(TipoDocumentoLegal::cases())],
             'numero_documento' => ['nullable'],
             'donde_radica' => ['nullable'],
             'nombre_servidor_publico' => ['nullable'],

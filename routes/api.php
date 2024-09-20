@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ApodoController;
+use App\Http\Controllers\EstatusEscolaridadController;
+use App\Http\Controllers\PseudonimoController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
 use App\Http\Controllers\CejaController;
@@ -36,7 +37,11 @@ use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\SyncReporteController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
+use App\Http\Controllers\TipoCondicionSaludController;
+use App\Http\Controllers\TipoEnfermedadPielController;
+use App\Http\Controllers\TipoEnfoqueDiferenciadoController;
 use App\Http\Controllers\TipoHipotesisInmediataController;
+use App\Http\Controllers\TipoIntervencionQuirurgicaController;
 use App\Http\Controllers\TipoMentonController;
 use App\Http\Controllers\TipoOcupacionController;
 use App\Http\Controllers\TipoRedSocialController;
@@ -56,11 +61,6 @@ use App\Http\Controllers\Oficialidades\InstitucionController;
 use App\Http\Controllers\Personas\EstatusPersonaController;
 use App\Http\Controllers\Personas\ParentescoController;
 use App\Http\Controllers\Personas\PersonaController;
-use App\Http\Controllers\CaracteristicasFisicasController;
-use App\Http\Controllers\RegionVellofacialController;
-use App\Http\Controllers\ColorVellofacialController;
-use App\Http\Controllers\CorteVellofacialController;
-use App\Http\Controllers\VolumenVellofacialController;
 use App\Http\Controllers\VelloFacialController;
 use App\Http\Controllers\EtniaController;
 use App\Http\Controllers\ContactoController;
@@ -104,7 +104,7 @@ use App\Http\Controllers\Empleado\EmpleadoController;
 use App\Http\Controllers\GrupoPertenenciaController;
 use App\Http\Controllers\OficinaController;
 use App\Http\Controllers\PertenenciaController;
-use App\Http\Controllers\PrendaDeVestirController;
+use App\Http\Controllers\PrendaVestirController;
 use App\Http\Controllers\SenasParticularesController;
 use App\Http\Controllers\TelefonoController;
 use App\Http\Controllers\Ubicaciones\EstadoController;
@@ -168,6 +168,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/estatus-personas', EstatusPersonaController::class);
     Route::apiResource('/estados-conyugales', EstadoConyugalController::class);
     Route::apiResource('/escolaridades', EscolaridadController::class);
+    Route::apiResource('/estatus-escolaridades', EstatusEscolaridadController::class);
     Route::apiResource('/parentescos', ParentescoController::class);
     Route::apiResource('/personas', PersonaController::class);
     Route::apiResource('/generos', GeneroController::class);
@@ -175,14 +176,14 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/companias-telefonicas', CompaniaTelefonicaController::class);
     Route::apiResource('/telefonos', TelefonoController::class);
     Route::apiResource('/contactos', ContactoController::class);
-    Route::apiResource('/apodos', ApodoController::class);
+    Route::apiResource('/apodos', PseudonimoController::class);
     Route::apiResource('/nacionalidades', NacionalidadController::class);
     Route::post('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'addNacionality']);
     Route::delete('/personas/{personaId}/nacionalidades/{nacionalidadId}', [PersonaController::class, 'removeNacionality']);
     Route::apiResource('/tipos-redes-sociales', TipoRedSocialController::class);
     Route::apiResource('/tipos-ocupaciones', TipoOcupacionController::class);
     Route::apiResource('/ocupaciones', OcupacionController::class);
-    Route::apiResource("/razones-curp", \App\Http\Controllers\RazonesCurpController::class);
+    Route::apiResource("/razones-curp", \App\Http\Controllers\RazonCurpController::class);
 
     /**
      * Routes for the reportes module
@@ -247,23 +248,22 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for the caracteristicas fisicas module
      */
-    Route::apiResource('/caracteristicas-fisicas', CaracteristicasFisicasController::class);
     Route::apiResource('/complexiones', ComplexionController::class);
-    Route::apiResource('/colores-pieles', ColorPielController::class);
-    Route::apiResource('/formas-caras', FormaCaraController::class);
+    Route::apiResource('/colores-piel', ColorPielController::class);
+    Route::apiResource('/formas-cara', FormaCaraController::class);
 
     Route::apiResource('/colores-ojos', ColorOjosController::class);
     Route::apiResource('/formas-ojos', FormaOjoController::class);
     Route::apiResource('/tamanos-ojos', TamanoOjosController::class);
 
-    Route::apiResource('/tipos-calvicies', CalvicieController::class);
-    Route::apiResource('/colores-cabellos', ColorCabelloController::class);
-    Route::apiResource('/tamanos-cabellos', TamanoCabelloController::class);
-    Route::apiResource('/tipos-cabellos', TipoCabelloController::class);
+    Route::apiResource('/tipos-calvicie', CalvicieController::class);
+    Route::apiResource('/colores-cabello', ColorCabelloController::class);
+    Route::apiResource('/tamanos-cabello', TamanoCabelloController::class);
+    Route::apiResource('/tipos-cabello', TipoCabelloController::class);
     Route::apiResource('/tipos-cejas', CejaController::class);
 
-    Route::apiResource('/tipos-narices', TipoNarizController::class);
-    Route::apiResource('/tamanos-bocas', TamanoBocaController::class);
+    Route::apiResource('/tipos-nariz', TipoNarizController::class);
+    Route::apiResource('/tamanos-boca', TamanoBocaController::class);
     Route::apiResource('/tamanos-labios', TipoLabiosController::class);
 
     Route::apiResource('/tamanos-orejas', TamanoOrejasController::class);
@@ -271,10 +271,10 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/tipos-mentones', TipoMentonController::class);
 
     Route::apiResource('/regiones-deformaciones', RegionDeformacionController::class);
-    Route::apiResource('/intervenciones-quirurgicas', IntervencionQuirurgicaController::class);
-    Route::apiResource('/enfermedades-pieles', EnfermedadPielController::class);
-
+    Route::apiResource('/tipos-intervenciones-quirurgicas', TipoIntervencionQuirurgicaController::class);
+    Route::apiResource('/tipos-enfermedades-piel', TipoEnfermedadPielController::class);
     Route::apiResource('/condiciones-salud', CondicionSaludController::class);
+    Route::apiResource('/tipos-condiciones-salud', TipoCondicionSaludController::class);
 
     /**
      * Routes for the contextos sociales module
@@ -289,16 +289,11 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     /**
      * Routes for señas particulares module
      */
-    Route::apiResource("/prenda_de_vestir", PrendaDeVestirController::class);
+    Route::apiResource("/prenda_de_vestir", PrendaVestirController::class);
     Route::apiResource('/grupos-pertenencias', GrupoPertenenciaController::class);
     Route::apiResource('/pertenencias', PertenenciaController::class);
     Route::apiResource('/colores', ColorController::class);
-
     Route::apiResource("/velloFacial", VelloFacialController::class);
-    Route::apiResource("/regionvello", RegionVelloFacialController::class);
-    Route::apiResource("/colorvello", ColorVelloFacialController::class);
-    Route::apiResource("/cortevello", CorteVelloFacialController::class);
-    Route::apiResource("/volumenvello", VolumenVelloFacialController::class);
 
     /**
      * Routes for the Vehiculos module
@@ -315,7 +310,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/colectivos', ColectivoController::class);
     Route::apiResource('/tipos-sangre', TipoSangreController::class);
     Route::apiResource('/situaciones-migratorias', SituacionMigratoriaController::class);
-    Route::apiResource('/enfoques-diferenciados', EnfoqueDiferenciadoController::class);
+    Route::apiResource('/tipos-enfoque-diferenciado', TipoEnfoqueDiferenciadoController::class);
     Route::apiResource('/autoridades', AutoridadController::class);
     Route::apiResource('/particulares', ParticularController::class);
     Route::apiResource('/metodos-captura', MetodoCapturaController::class);

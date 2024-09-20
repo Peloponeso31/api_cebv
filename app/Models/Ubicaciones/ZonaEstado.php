@@ -13,7 +13,7 @@ class ZonaEstado extends Model
 
     public $timestamps = false;
 
-    protected $table = 'zonas_estados';
+    protected $table = 'cat_zonas_estados';
 
     protected $fillable = [
         'nombre',

@@ -15,7 +15,7 @@ class Asentamiento extends Model
      */
     use Searchable;
 
-    protected $table = 'asentamientos';
+    protected $table = 'cat_asentamientos';
 
     /*
      * We don't want the id to be auto-incrementing because it's a string

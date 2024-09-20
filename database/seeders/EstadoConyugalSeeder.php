@@ -12,7 +12,7 @@ class EstadoConyugalSeeder extends Seeder
         $estadosConyugales = [
             'SOLTERO(A)',
             'CASADO(A)',
-            'VIUDO(A),',
+            'VIUDO(A)',
             'CONCUBINATO',
             'UNION LIBRE',
             'DIVORCIADO',

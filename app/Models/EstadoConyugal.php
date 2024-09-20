@@ -10,14 +10,14 @@ class EstadoConyugal extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'estados_conyugales';
+    protected $table = 'cat_estados_conyugales';
 
     protected $fillable = [
         'nombre',
     ];
 
-    public function personas(): HasMany
+    public function contextosFamiliares(): HasMany
     {
-        return $this->hasMany(Persona::class);
+        return $this->hasMany(ContextoFamiliar::class);
     }
 }

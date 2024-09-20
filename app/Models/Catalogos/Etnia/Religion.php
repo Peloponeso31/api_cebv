@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Religion extends Model
 {
-    protected $table = 'religiones';
+    protected $table = 'cat_religiones';
 
     protected $fillable = ['nombre'];
 

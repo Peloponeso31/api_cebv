@@ -9,7 +9,7 @@ class Autoridad extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'autoridades';
+    protected $table = 'cat_autoridades';
 
     protected $fillable = [
         'nombre',

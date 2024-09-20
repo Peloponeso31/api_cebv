@@ -2,6 +2,7 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +15,7 @@ class Estado extends Model
      */
     use Searchable;
 
-    protected $table = 'estados';
+    protected $table = 'cat_estados';
 
     /*
      * We don't want the id to be auto-incrementing because it's a string
@@ -46,6 +47,11 @@ class Estado extends Model
     public function reportes(): HasMany
     {
         return $this->hasMany(Reporte::class);
+    }
+
+    public function personas(): HasMany
+    {
+        return $this->hasMany(Persona::class);
     }
 
     /**

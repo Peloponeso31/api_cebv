@@ -10,7 +10,7 @@ class RelacionVehiculo extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'relaciones_vehiculos';
+    protected $table = 'cat_relaciones_vehiculos';
 
     protected $fillable = [
         'nombre',

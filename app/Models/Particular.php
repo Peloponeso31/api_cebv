@@ -9,7 +9,7 @@ class Particular extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'particulares';
+    protected $table = 'cat_particulares';
 
     protected $fillable = [
         'nombre',

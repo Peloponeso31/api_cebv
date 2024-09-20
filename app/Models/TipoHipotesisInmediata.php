@@ -11,7 +11,7 @@ class TipoHipotesisInmediata extends Model
     protected $table = 'tipos_hipotesis_inmediatas';
 
     protected $fillable = [
-        'abreviatura',
         'nombre',
+        'abreviatura',
     ];
 }

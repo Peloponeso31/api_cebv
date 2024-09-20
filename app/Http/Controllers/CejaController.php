@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CejaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Ceja;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class CejaController extends Controller
 {
     public function index()
     {
-        return CejaResource::collection(Ceja::all());
+        return CatalogoResource::collection(Ceja::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class CejaController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new CejaResource(Ceja::create($data));
+        return new CatalogoResource(Ceja::create($data));
     }
 
     public function show(Ceja $ceja)
     {
-        return new CejaResource($ceja);
+        return new CatalogoResource($ceja);
     }
 
     public function update(Request $request, Ceja $ceja)
@@ -35,7 +35,7 @@ class CejaController extends Controller
 
         $ceja->update($data);
 
-        return new CejaResource($ceja);
+        return new CatalogoResource($ceja);
     }
 
     public function destroy(Ceja $ceja)

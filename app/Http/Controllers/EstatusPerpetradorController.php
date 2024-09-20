@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\EstatusPerpetradorResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\EstatusPerpetrador;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class EstatusPerpetradorController extends Controller
 {
     public function index()
     {
-        return EstatusPerpetradorResource::collection(EstatusPerpetrador::all());
+        return CatalogoResource::collection(EstatusPerpetrador::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class EstatusPerpetradorController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new EstatusPerpetradorResource(EstatusPerpetrador::create($data));
+        return new CatalogoResource(EstatusPerpetrador::create($data));
     }
 
     public function show(EstatusPerpetrador $estatusPerpetrador)
     {
-        return new EstatusPerpetradorResource($estatusPerpetrador);
+        return new CatalogoResource($estatusPerpetrador);
     }
 
     public function update(Request $request, EstatusPerpetrador $estatusPerpetrador)
@@ -35,7 +35,7 @@ class EstatusPerpetradorController extends Controller
 
         $estatusPerpetrador->update($data);
 
-        return new EstatusPerpetradorResource($estatusPerpetrador);
+        return new CatalogoResource($estatusPerpetrador);
     }
 
     public function destroy(EstatusPerpetrador $estatusPerpetrador)

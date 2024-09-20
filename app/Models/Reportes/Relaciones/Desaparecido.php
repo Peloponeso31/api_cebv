@@ -2,12 +2,11 @@
 
 namespace App\Models\Reportes\Relaciones;
 
-use App\Models\Catalogos\PrendaDeVestir;
-use App\Models\Ocupacion;
+use App\Models\Catalogos\PrendaVestir;
+use App\Models\Oficialidades\Folio;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
-use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,37 +20,24 @@ class Desaparecido extends Model
         'persona_id',
         'estatus_rpdno_id',
         'estatus_cebv_id',
-        'ocupacion_principal_id',
-        'ocupacion_secundaria_id',
         'clasificacion_persona',
-        'habla_espanhol',
-        'sabe_leer',
-        'sabe_escribir',
         'url_boletin',
         'declaracion_especial_ausencia',
         'accion_urgente',
         'dictamen',
         'ci_nivel_federal',
         'otro_derecho_humano',
-        'identidad_resguardada',
-        'alias',
-        'descripcion_ocupacion_principal',
-        'descripcion_ocupacion_secundaria',
-        'otras_especificaciones_ocupacion',
-        'nombre_pareja_conyugue',
-        'fecha_desaparicion_aproximada',
-        'fecha_desaparicion_cebv',
-        'observaciones_fecha_desaparicion',
-        'boletin_img_path',
+        'fecha_nacimiento_aproximada',
+        'fecha_nacimiento_cebv',
+        'observaciones_fecha_nacimiento',
         'edad_momento_desaparicion_anos',
         'edad_momento_desaparicion_meses',
-        'edad_momento_desaparicion_dias'
+        'edad_momento_desaparicion_dias',
+        'identidad_resguardada',
+        'boletin_img_path',
     ];
 
     protected $casts = [
-        'habla_espanhol' => 'boolean',
-        'sabe_leer' => 'boolean',
-        'sabe_escribir' => 'boolean',
         'declaracion_especial_ausencia' => 'boolean',
         'accion_urgente' => 'boolean',
         'dictamen' => 'boolean',
@@ -60,12 +46,12 @@ class Desaparecido extends Model
 
     protected function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class);
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
     protected function persona(): BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     protected function estatusRpdno(): BelongsTo
@@ -78,33 +64,21 @@ class Desaparecido extends Model
         return $this->belongsTo(EstatusPersona::class, 'estatus_cebv_id');
     }
 
-    public function ubicacionAmparoBuscador(): BelongsTo
-    {
-        return $this->belongsTo(Municipio::class);
-    }
-
-    public function prendaDeVestir(): HasMany
-    {
-        return $this->hasMany(Municipio::class);
-    }
-
     public function documentosLegales(): HasMany
     {
         return $this->hasMany(DocumentoLegal::class);
     }
 
-    public function ocupacionPrincipal(): BelongsTo
+    public function prendasVestir(): HasMany
     {
-        return $this->belongsTo(Ocupacion::class, 'ocupacion_principal_id');
+        return $this->hasMany(PrendaVestir::class);
     }
 
-    public function ocupacionSecundaria(): BelongsTo
+    public function folio(): ?Model
     {
-        return $this->belongsTo(Ocupacion::class, 'ocupacion_secundaria_id');
+        return Folio::where('persona_id', $this->persona_id)
+            ->where('reporte_id', $this->reporte_id)
+            ->first();
     }
 
-    public function prendasDeVestir(): HasMany
-    {
-        return $this->hasMany(PrendaDeVestir::class);
-    }
 }

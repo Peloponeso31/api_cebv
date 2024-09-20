@@ -13,7 +13,7 @@ class Sitio extends Model
 
     public $timestamps = false;
 
-    protected $table = 'sitios';
+    protected $table = 'cat_sitios';
 
     protected $fillable = [
         'nombre',

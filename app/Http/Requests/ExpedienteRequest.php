@@ -13,7 +13,7 @@ class ExpedienteRequest extends FormRequest
         return [
             'reporte_id' => ['required', 'exists:reportes,id'],
             'persona_id' => ['nullable', 'exists:personas,id'],
-            'parentesco_id' => ['required', 'exists:parentescos,id'],
+            'parentesco_id' => ['required', 'exists:cat_parentescos,id'],
             'tipo' => ['required', Rule::in(TipoExpediente::cases())],
         ];
     }

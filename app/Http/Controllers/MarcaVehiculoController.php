@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MarcaVehiculoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\MarcaVehiculo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class MarcaVehiculoController extends Controller
 {
     public function index()
     {
-        return MarcaVehiculoResource::collection(MarcaVehiculo::all());
+        return CatalogoResource::collection(MarcaVehiculo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class MarcaVehiculoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new MarcaVehiculoResource(MarcaVehiculo::create($data));
+        return new CatalogoResource(MarcaVehiculo::create($data));
     }
 
     public function show(MarcaVehiculo $marcaVehiculo)
     {
-        return new MarcaVehiculoResource($marcaVehiculo);
+        return new CatalogoResource($marcaVehiculo);
     }
 
     public function update(Request $request, MarcaVehiculo $marcaVehiculo)
@@ -35,7 +35,7 @@ class MarcaVehiculoController extends Controller
 
         $marcaVehiculo->update($data);
 
-        return new MarcaVehiculoResource($marcaVehiculo);
+        return new CatalogoResource($marcaVehiculo);
     }
 
     public function destroy(MarcaVehiculo $marcaVehiculo)

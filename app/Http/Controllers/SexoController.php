@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SexoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Sexo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class SexoController extends Controller
 {
     public function index()
     {
-        return SexoResource::collection(Sexo::all());
+        return CatalogoResource::collection(Sexo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class SexoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new SexoResource(Sexo::create($data));
+        return new CatalogoResource(Sexo::create($data));
     }
 
     public function show(Sexo $sexo)
     {
-        return new SexoResource($sexo);
+        return new CatalogoResource($sexo);
     }
 
     public function update(Request $request, Sexo $sexo)
@@ -35,7 +35,7 @@ class SexoController extends Controller
 
         $sexo->update($data);
 
-        return new SexoResource($sexo);
+        return new CatalogoResource($sexo);
     }
 
     public function destroy(Sexo $sexo)

@@ -15,10 +15,12 @@ class ContextoFamiliar extends Model
 
     protected $table = 'contextos_familiares';
 
+    // TODO: Completar model, controlador y resource
     protected $fillable = [
         'persona_id',
-        'reporte_id',
-        'numero_personas_vive'
+        'estado_conyugal_id',
+        'numero_personas_vive',
+        'nombre_pareja_conyugue',
     ];
 
     public $timestamps = false;
@@ -28,8 +30,8 @@ class ContextoFamiliar extends Model
         return $this->belongsTo(Persona::class, 'persona_id');
     }
 
-    public function reporte(): BelongsTo
+    public function estadoConyugal(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class, 'reporte_id');
+        return $this->belongsTo(EstadoConyugal::class, 'estado_conyugal_id');
     }
 }

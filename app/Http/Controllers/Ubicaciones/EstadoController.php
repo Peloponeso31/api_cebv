@@ -5,18 +5,19 @@ namespace App\Http\Controllers\Ubicaciones;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Ubicaciones\EstadoResource;
 use App\Models\Ubicaciones\Estado;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class EstadoController extends Controller
 {
     public function index()
     {
-        $query = Estado::query();
+        $query = QueryBuilder::for(Estado::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+            ])->get();
 
-        if (request()->has('search')) {
-            $query = Estado::search(request('search'));
-        }
-
-        return EstadoResource::collection($query->get());
+        return EstadoResource::collection($query);
     }
 
     public function show($id)

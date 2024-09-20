@@ -4,24 +4,20 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\TipoCabelloRequest;
-use App\Http\Resources\TipoCabelloResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\CaracteristicasFisicas\TipoCabello;
-use Illuminate\Http\Request;
 
 class TipoCabelloController extends Controller
 {
-
     public function index()
     {
-        return TipoCabelloResource::collection(TipoCabello::all());
+        return CatalogoResource::collection(TipoCabello::all());
     }
-
 
     public function store(TipoCabelloRequest $request)
     {
         return TipoCabello::create($request->all());
     }
-
 
     public function show( $id)
     {
@@ -33,7 +29,6 @@ class TipoCabelloController extends Controller
         $tipocabello= TipoCabello::findOrFail($id);
         return $tipocabello->update($request->all());
     }
-
 
     public function destroy( $id)
     {

@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\RedSocial;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\RedSocial */
+/** @mixin RedSocial */
 class RedSocialResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -14,10 +15,7 @@ class RedSocialResource extends JsonResource
             'id' => $this->id,
             'usuario' => $this->usuario,
             'observaciones' => $this->observaciones,
-
-            'tipo_red_social_id' => $this->tipo_red_social_id,
-
-            'tipoRedSocial' => new TipoRedSocialResource($this->whenLoaded('tipoRedSocial')),
+            'tipo_red_social' => CatalogoResource::make($this->tipoRedSocial),
         ];
     }
 }

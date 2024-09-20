@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\GrupoVulnerableResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\GrupoVulnerable;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class GrupoVulnerableController extends Controller
 {
     public function index()
     {
-        return GrupoVulnerableResource::collection(GrupoVulnerable::all());
+        return CatalogoResource::collection(GrupoVulnerable::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class GrupoVulnerableController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new GrupoVulnerableResource(GrupoVulnerable::create($data));
+        return new CatalogoResource(GrupoVulnerable::create($data));
     }
 
     public function show(GrupoVulnerable $grupoVulnerable)
     {
-        return new GrupoVulnerableResource($grupoVulnerable);
+        return new CatalogoResource($grupoVulnerable);
     }
 
     public function update(Request $request, GrupoVulnerable $grupoVulnerable)
@@ -35,7 +35,7 @@ class GrupoVulnerableController extends Controller
 
         $grupoVulnerable->update($data);
 
-        return new GrupoVulnerableResource($grupoVulnerable);
+        return new CatalogoResource($grupoVulnerable);
     }
 
     public function destroy(GrupoVulnerable $grupoVulnerable)

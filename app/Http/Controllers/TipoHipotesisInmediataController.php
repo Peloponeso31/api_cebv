@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TipoHipotesisInmediataResource;
+use App\Http\Resources\BasicResource;
 use App\Models\TipoHipotesisInmediata;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TipoHipotesisInmediataController extends Controller
 {
     public function index()
     {
-        return TipoHipotesisInmediataResource::collection(TipoHipotesisInmediata::all());
+        return BasicResource::collection(TipoHipotesisInmediata::all());
     }
 
     public function store(Request $request)
@@ -20,12 +20,12 @@ class TipoHipotesisInmediataController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TipoHipotesisInmediataResource(TipoHipotesisInmediata::create($data));
+        return new BasicResource(TipoHipotesisInmediata::create($data));
     }
 
     public function show(TipoHipotesisInmediata $tipoHipotesisInmediata)
     {
-        return new TipoHipotesisInmediataResource($tipoHipotesisInmediata);
+        return new BasicResource($tipoHipotesisInmediata);
     }
 
     public function update(Request $request, TipoHipotesisInmediata $tipoHipotesisInmediata)
@@ -37,7 +37,7 @@ class TipoHipotesisInmediataController extends Controller
 
         $tipoHipotesisInmediata->update($data);
 
-        return new TipoHipotesisInmediataResource($tipoHipotesisInmediata);
+        return new BasicResource($tipoHipotesisInmediata);
     }
 
     public function destroy(TipoHipotesisInmediata $tipoHipotesisInmediata)

@@ -29,8 +29,6 @@ class DatabaseSeeder extends Seeder
             SexoSeeder::class,
             GeneroSeeder::class,
             CompaniaTelefonicaSeeder::class,
-            ContextoSocialSeeder::class,
-            ContextoEconomicoSeeder::class,
             NacionalidadSeeder::class,
             EscolaridadSeeder::class,
             EstadoConyugalSeeder::class,
@@ -45,7 +43,7 @@ class DatabaseSeeder extends Seeder
             PertenenciaSeeder::class,
             ColectivoSeeder::class,
             ColorSeeder::class,
-            RazonesCurpSeeder::class,
+            RazonCurpSeeder::class,
             TiposDomicilioSeeder::class,
             PuestoSeeder::class,
             RegionCuerpoSeeder::class,
@@ -82,16 +80,23 @@ class DatabaseSeeder extends Seeder
             TipoMentonSeeder::class,
 
             RegionDeformacionSeeder::class,
-            IntervencionQuirurgicaSeeder::class,
-            EnfermedadPielSeeder::class,
+            TipoIntervencionQuirurgicaSeeder::class,
+            TipoEnfermedadPielSeeder::class,
             TipoSangreSeeder::class,
+        ]);
+
+        /**
+         * Contextos de persona
+         */
+        $this->call([
+            EstatusEscolaridadSeeder::class,
         ]);
 
         /**
          * Situaciones de salud
          */
         $this->call([
-            CondicionSaludSeeder::class,
+            TipoCondicionSaludSeeder::class,
         ]);
 
         /**
@@ -109,7 +114,6 @@ class DatabaseSeeder extends Seeder
          */
         $this->call([
             PersonaSeeder::class,
-            ReporteSeeder::class,
             TelefonoSeeder::class,
             ContactoSeeder::class,
         ]);
@@ -118,7 +122,7 @@ class DatabaseSeeder extends Seeder
          * Seeders que no sé dónde meter
          */
         $this->call([
-            EnfoqueDiferenciadoSeeder::class,
+            TipoEnfoqueDiferenciadoSeeder::class,
             SituacionMigratoriaSeeder::class,
             ParticularSeeder::class,
             AutoridadSeeder::class,
@@ -133,6 +137,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TestPermissionSeeder::class, // TODO: Remove this line before deploying to production
             UserSeeder::class, // TODO: Remove this line before deploying to production
+        ]);
+
+        /**
+         * Reportes seeders
+         */
+        $this->call([
+            ReporteSeeder::class,
         ]);
     }
 }

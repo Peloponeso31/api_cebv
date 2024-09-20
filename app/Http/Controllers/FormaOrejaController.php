@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\FormaOrejaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\FormaOreja;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class FormaOrejaController extends Controller
 {
     public function index()
     {
-        return FormaOrejaResource::collection(FormaOreja::all());
+        return CatalogoResource::collection(FormaOreja::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class FormaOrejaController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new FormaOrejaResource(FormaOreja::create($data));
+        return new CatalogoResource(FormaOreja::create($data));
     }
 
     public function show(FormaOreja $formaOreja)
     {
-        return new FormaOrejaResource($formaOreja);
+        return new CatalogoResource($formaOreja);
     }
 
     public function update(Request $request, FormaOreja $formaOreja)
@@ -35,7 +35,7 @@ class FormaOrejaController extends Controller
 
         $formaOreja->update($data);
 
-        return new FormaOrejaResource($formaOreja);
+        return new CatalogoResource($formaOreja);
     }
 
     public function destroy(FormaOreja $formaOreja)

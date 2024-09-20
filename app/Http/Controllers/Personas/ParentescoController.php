@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Personas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Personas\ParentescoRequest;
-use App\Http\Resources\Personas\ParentescoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Personas\Parentesco;
 use App\Services\CrudService;
 
@@ -27,22 +27,22 @@ class ParentescoController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return ParentescoResource::collection($query->get());
+        return CatalogoResource::collection($query->get());
     }
 
     public function store(ParentescoRequest $request)
     {
-        return $this->service->store($request, $this->model, new ParentescoResource($this->model::class));
+        return $this->service->store($request, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function show($id)
     {
-        return $this->service->show($id, $this->model, new ParentescoResource($this->model::class));
+        return $this->service->show($id, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function update($id, ParentescoRequest $request)
     {
-        return $this->service->update($id, $request, $this->model, new ParentescoResource($this->model::class));
+        return $this->service->update($id, $request, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function destroy($id)

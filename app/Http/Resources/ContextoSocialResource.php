@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ContextoSocial;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin ContextoSocial
+ */
 class ContextoSocialResource extends JsonResource
 {
     /**
@@ -15,16 +19,11 @@ class ContextoSocialResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'persona_id'=> $this -> persona_id,
-        "pasatiempos"=> $this-> pasatiempos,
-        "club_organizacion"=> $this-> club_organizacion,
-        "estudio"=> $this-> estudio,
-        "amistades"=> $this-> amistades,
-        "amistades_municipio"=> $this-> amistades_municipio,
-        "correo_electronico"=> $this-> correo_electronico,
-        "nombre_redes_sociales"=> $this-> nombre_redes_sociales,
-        "lugares_frecuentes"=> $this-> lugares_frecuentes,
-        "vivienda_estado" => $this-> vivienda_estado
+            'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'situacion_migratoria' => CatalogoResource::make($this->situacionMigratoria),
+            'esta_transito_estados_unidos' => $this->esta_transito_estados_unidos,
+            'descripcion_proceso_migratorio' => $this->descripcion_proceso_migratorio,
         ];
     }
 }

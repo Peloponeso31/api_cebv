@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Resources\OcupacionResource;
 use App\Models\Ocupacion;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class OcupacionController extends Controller
 {
     public function index()
     {
+        $query = QueryBuilder::for(Ocupacion::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('tipo_ocupacion_id')
+            ])->get();
 
-        $query = Ocupacion::query();
-
-        if (request()->has('search')) {
-            $query = Ocupacion::search(request('search'));
-        }
-
-        return OcupacionResource::collection($query->get());
+        return OcupacionResource::collection($query);
     }
 
     public function store(Request $request)

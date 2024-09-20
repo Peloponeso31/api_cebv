@@ -9,7 +9,7 @@ class MetodoCaptura extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'metodos_captura';
+    protected $table = 'cat_metodos_captura';
 
     protected $fillable = [
         'nombre',

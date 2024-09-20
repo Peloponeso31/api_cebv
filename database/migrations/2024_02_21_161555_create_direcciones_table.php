@@ -9,7 +9,9 @@ return new class extends Migration {
     {
         Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
+
             $table->string('asentamiento_id', 9)->nullable();
+
             $table->string('domicilio_concatenado', 9)->nullable();
             $table->string('calle')->nullable();
             $table->string('colonia')->nullable();
@@ -20,8 +22,12 @@ return new class extends Migration {
             $table->string('tramo_carretero', 100)->nullable();
             $table->string('codigo_postal', 5)->nullable();
             $table->text('referencia')->nullable();
+
             $table->foreign('asentamiento_id')
-                ->references('id')->on('asentamientos');
+                ->references('id')->on('cat_asentamientos');
+
+            $table->timestamp('fecha_creacion')->useCurrent();
+            $table->timestamp('fecha_actualizacion')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

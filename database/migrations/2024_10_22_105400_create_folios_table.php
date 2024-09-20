@@ -15,6 +15,8 @@ return new class extends Migration {
 
             $table->foreignId('persona_id')->constrained(table: 'personas');
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
+            $table->foreignId('razon_cancelacion_id')->nullable()->constrained(table: 'reportes');
+            $table->boolean('cancelado')->default(false);
             $table->foreignId('user_id')->constrained(table: 'users');
 
             $table->boolean('activo')->default(true);

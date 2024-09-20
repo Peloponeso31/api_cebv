@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Catalogos\PrendaDeVestir;
+use App\Models\Catalogos\PrendaVestir;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +13,7 @@ class Pertenencia extends Model
 {
     use Searchable;
 
-    protected $table = 'pertenencias';
+    protected $table = 'cat_pertenencias';
 
     protected $fillable = [
         'grupo_pertenencia_id',
@@ -22,9 +22,9 @@ class Pertenencia extends Model
 
     public $timestamps = false;
 
-    public function PrendaDeVestir(): HasMany
+    public function prendaVestir(): HasMany
     {
-        return $this->hasMany(PrendaDeVestir::class);
+        return $this->hasMany(PrendaVestir::class);
     }
 
     public function grupoPertenencia(): BelongsTo

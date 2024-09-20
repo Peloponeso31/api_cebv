@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TipoOcupacionResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TipoOcupacion;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TipoOcupacionController extends Controller
 {
     public function index()
     {
-        return TipoOcupacionResource::collection(TipoOcupacion::all());
+        return CatalogoResource::collection(TipoOcupacion::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TipoOcupacionController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TipoOcupacionResource(TipoOcupacion::create($data));
+        return new CatalogoResource(TipoOcupacion::create($data));
     }
 
     public function show(TipoOcupacion $tipoOcupacion)
     {
-        return new TipoOcupacionResource($tipoOcupacion);
+        return new CatalogoResource($tipoOcupacion);
     }
 
     public function update(Request $request, TipoOcupacion $tipoOcupacion)
@@ -35,7 +35,7 @@ class TipoOcupacionController extends Controller
 
         $tipoOcupacion->update($data);
 
-        return new TipoOcupacionResource($tipoOcupacion);
+        return new CatalogoResource($tipoOcupacion);
     }
 
     public function destroy(TipoOcupacion $tipoOcupacion)

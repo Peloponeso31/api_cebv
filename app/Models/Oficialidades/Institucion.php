@@ -2,7 +2,9 @@
 
 namespace App\Models\Oficialidades;
 
+use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
 class Institucion extends Model
@@ -11,12 +13,17 @@ class Institucion extends Model
 
     public $timestamps = false;
 
-    protected $table = 'instituciones';
+    protected $table = 'cat_instituciones';
 
     protected $fillable = [
         'descripcion',
         'nombre',
     ];
+
+    public function reportes(): HasMany
+    {
+        return $this->hasMany(Reporte::class);
+    }
 
     public function toSearchableArray(): array
     {

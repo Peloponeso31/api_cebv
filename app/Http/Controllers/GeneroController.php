@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\GeneroResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Genero;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class GeneroController extends Controller
 {
     public function index()
     {
-        return GeneroResource::collection(Genero::all());
+        return CatalogoResource::collection(Genero::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class GeneroController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new GeneroResource(Genero::create($data));
+        return new CatalogoResource(Genero::create($data));
     }
 
     public function show(Genero $genero)
     {
-        return new GeneroResource($genero);
+        return new CatalogoResource($genero);
     }
 
     public function update(Request $request, Genero $genero)
@@ -35,7 +35,7 @@ class GeneroController extends Controller
 
         $genero->update($data);
 
-        return new GeneroResource($genero);
+        return new CatalogoResource($genero);
     }
 
     public function destroy(Genero $genero)

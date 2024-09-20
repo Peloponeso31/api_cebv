@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('direccion_id')->nullable();
+            $table->foreignId('direccion_id')->nullable()->constrained(table: 'direcciones');
 
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->date('fecha_desaparicion_aproximada')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration {
 
             $table->boolean('amenaza_cambio_comportamiento')->nullable();
             $table->text('descripcion_amenaza_cambio_comportamiento')->nullable();
-            $table->integer('contador_desapariciones')->default(0)->nullable();
+            $table->integer('contador_desapariciones')->nullable();
             $table->text('situacion_previa')->nullable();
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();

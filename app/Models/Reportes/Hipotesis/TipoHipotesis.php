@@ -12,7 +12,7 @@ class TipoHipotesis extends Model
 {
     use Searchable;
 
-    protected $table = 'tipos_hipotesis';
+    protected $table = 'cat_tipos_hipotesis';
 
     protected $fillable = [
         'circunstancia_id',

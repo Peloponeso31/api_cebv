@@ -21,9 +21,9 @@ class SenasParticularesResource extends JsonResource
             "descripcion" => $this->descripcion,
             "foto" => $this->foto,
             "region_cuerpo" => RegionCuerpoResource::make($this->region_cuerpo),
-            "vista"=> VistaResource::make($this->vista),
+            "vista"=> CatalogoResource::make($this->vista),
             "lado"=> LadoResource::make($this->lado),
-            "tipo"=> TipoResource::make($this->tipo),
+            "tipo"=> CatalogoResource::make($this->tipo),
             //"region_cuerpo_rnpdno" => $this->region_cuerpo_rnpdno->nombre,
         ];
     }

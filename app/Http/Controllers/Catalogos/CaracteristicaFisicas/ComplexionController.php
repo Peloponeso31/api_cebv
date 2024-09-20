@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\ComplexionRequest;
-use App\Http\Resources\ComplexionResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\CaracteristicasFisicas\Complexion;
-use Illuminate\Http\Request;
 
 class ComplexionController extends Controller
 {
 
     public function index()
     {
-        return ComplexionResource::collection(Complexion::all());
+        return CatalogoResource::collection(Complexion::all());
     }
 
 

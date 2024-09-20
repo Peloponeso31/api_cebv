@@ -15,7 +15,7 @@ class Area extends Model
 {
     use Searchable;
 
-    protected $table = 'areas';
+    protected $table = 'cat_areas';
 
     protected $fillable = ['nombre'];
 

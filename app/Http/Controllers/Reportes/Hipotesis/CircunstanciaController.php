@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Reportes\Hipotesis;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\Hipotesis\CircunstanciaRequest;
-use App\Http\Resources\Reportes\Hipotesis\CircunstanciaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Reportes\Hipotesis\Circunstancia;
 use App\Services\CrudService;
 
@@ -27,22 +27,22 @@ class CircunstanciaController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return CircunstanciaResource::collection($query->get());
+        return CatalogoResource::collection($query->get());
     }
 
     public function store(CircunstanciaRequest $request)
     {
-        return $this->service->store($request, $this->model, new CircunstanciaResource($this->model::class));
+        return $this->service->store($request, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function show($id)
     {
-        return $this->service->show($id, $this->model, new CircunstanciaResource($this->model::class));
+        return $this->service->show($id, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function update($id, CircunstanciaRequest $request)
     {
-        return $this->service->update($id, $request, $this->model, new CircunstanciaResource($this->model::class));
+        return $this->service->update($id, $request, $this->model, new CatalogoResource($this->model::class));
     }
 
     public function destroy($id)

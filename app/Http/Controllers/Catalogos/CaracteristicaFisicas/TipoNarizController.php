@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\TipoNarizRequest;
-use App\Http\Resources\TipoNarizResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\CaracteristicasFisicas\TipoNariz;
-use Illuminate\Http\Request;
 
 class TipoNarizController extends Controller
 {
 
     public function index()
     {
-        return TipoNarizResource::collection(TipoNariz::all());
+        return CatalogoResource::collection(TipoNariz::all());
     }
 
 

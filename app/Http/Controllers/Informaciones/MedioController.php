@@ -7,26 +7,29 @@ use App\Http\Requests\Informaciones\MedioRequest;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Models\Informaciones\Medio;
 use App\Services\CrudService;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class MedioController extends Controller
 {
     protected CrudService $service;
     protected Medio $model;
 
-    public function __construct(CrudService $service, Medio $model) {
+    public function __construct(CrudService $service, Medio $model)
+    {
         $this->service = $service;
         $this->model = $model;
     }
 
     public function index()
     {
-        $query = $this->model::query();
+        $query = QueryBuilder::for(Medio::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('tipo_medio_id')
+            ])->get();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
-
-        return MedioResource::collection($query->get());
+        return MedioResource::collection($query);
     }
 
     public function store(MedioRequest $request)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ParticularResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Particular;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class ParticularController extends Controller
 {
     public function index()
     {
-        return ParticularResource::collection(Particular::all());
+        return CatalogoResource::collection(Particular::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class ParticularController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new ParticularResource(Particular::create($data));
+        return new CatalogoResource(Particular::create($data));
     }
 
     public function show(Particular $particular)
     {
-        return new ParticularResource($particular);
+        return new CatalogoResource($particular);
     }
 
     public function update(Request $request, Particular $particular)
@@ -35,7 +35,7 @@ class ParticularController extends Controller
 
         $particular->update($data);
 
-        return new ParticularResource($particular);
+        return new CatalogoResource($particular);
     }
 
     public function destroy(Particular $particular)

@@ -16,10 +16,8 @@ class EstatusPersonaSeeder extends Seeder
             ['nombre' => 'Localizada sin vida', 'abreviatura' => 'LSV'],
         ];
 
-        sort($estatusPersonas);
-
         foreach ($estatusPersonas as $estatus) {
-            EstatusPersona::create($estatus);
+            EstatusPersona::firstOrCreate($estatus);
         }
     }
 }

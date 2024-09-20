@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\EstadoConyugalResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\EstadoConyugal;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class EstadoConyugalController extends Controller
 {
     public function index()
     {
-        return EstadoConyugalResource::collection(EstadoConyugal::all());
+        return CatalogoResource::collection(EstadoConyugal::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class EstadoConyugalController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new EstadoConyugalResource(EstadoConyugal::create($data));
+        return new CatalogoResource(EstadoConyugal::create($data));
     }
 
     public function show(EstadoConyugal $estadoConyugal)
     {
-        return new EstadoConyugalResource($estadoConyugal);
+        return new CatalogoResource($estadoConyugal);
     }
 
     public function update(Request $request, EstadoConyugal $estadoConyugal)
@@ -35,7 +35,7 @@ class EstadoConyugalController extends Controller
 
         $estadoConyugal->update($data);
 
-        return new EstadoConyugalResource($estadoConyugal);
+        return new CatalogoResource($estadoConyugal);
     }
 
     public function destroy(EstadoConyugal $estadoConyugal)

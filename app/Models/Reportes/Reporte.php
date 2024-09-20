@@ -2,13 +2,14 @@
 
 namespace App\Models\Reportes;
 
-use App\Models\ContextoFamiliar;
+use App\Enums\TipoDesaparicion;
 use App\Models\ControlOgpi;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
+use App\Models\Oficialidades\Institucion;
 use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
@@ -37,22 +38,19 @@ class Reporte extends Model
         'tipo_reporte_id',
         'area_atiende_id',
         'medio_conocimiento_id',
-        'estado_id',
         'zona_estado_id',
         'hipotesis_oficial_id',
-        "institucion_origen",
+        'institucion_origen_id',
+        'estado_id',
         'esta_terminado',
         'tipo_desaparicion',
-        'fecha_localizacion',
-        'sintesis_localizacion',
-        'clasificacion_persona',
         'fecha_creacion',
         'fecha_actualizacion',
     ];
 
     protected $casts = [
+        'tipo_desaparicion' => TipoDesaparicion::class, // Única o múltiple
         'esta_terminado' => 'boolean',
-        'fecha_localizacion' => 'datetime',
         'fecha_creacion' => 'datetime',
         'fecha_actualizacion' => 'datetime',
     ];
@@ -79,7 +77,7 @@ class Reporte extends Model
 
     public function hechosDesaparicion(): HasOne
     {
-        return $this->hasOne(HechoDesaparicion::class, 'reporte_id');
+        return $this->hasOne(HechoDesaparicion::class);
     }
 
     /**
@@ -119,12 +117,12 @@ class Reporte extends Model
 
     public function reportantes(): HasMany
     {
-        return $this->hasMany(Reportante::class, 'reporte_id');
+        return $this->hasMany(Reportante::class);
     }
 
     public function desaparecidos(): HasMany
     {
-        return $this->hasMany(Desaparecido::class, 'reporte_id');
+        return $this->hasMany(Desaparecido::class);
     }
 
     public function folios(): HasMany
@@ -132,10 +130,6 @@ class Reporte extends Model
         return $this->hasMany(Folio::class);
     }
 
-    public function hechoDesaparicion(): HasOne
-    {
-        return $this->hasOne(HechoDesaparicion::class);
-    }
 
     public function hipotesis(): HasMany
     {
@@ -167,18 +161,8 @@ class Reporte extends Model
         return $this->hasOne(DesaparicionForzada::class);
     }
 
-    public function contextoFamiliar(): HasOne
+    public function institucion(): BelongsTo
     {
-        return $this->hasOne(ContextoFamiliar::class);
-    }
-
-    /**
-     * @return array
-     */
-    public function toSearchableArray(): array
-    {
-        return [
-            'esta_terminado' => $this->esta_terminado,
-        ];
+        return $this->belongsTo(Institucion::class, 'institucion_origen_id');
     }
 }

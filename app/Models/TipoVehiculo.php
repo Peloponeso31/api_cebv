@@ -9,7 +9,7 @@ class TipoVehiculo extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'tipos_vehiculos';
+    protected $table = 'cat_tipos_vehiculos';
 
     protected $fillable = [
         'nombre',

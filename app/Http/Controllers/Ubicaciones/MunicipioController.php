@@ -5,18 +5,20 @@ namespace App\Http\Controllers\Ubicaciones;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Ubicaciones\MunicipioResource;
 use App\Models\Ubicaciones\Municipio;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class MunicipioController extends Controller
 {
     public function index()
     {
-        $query = Municipio::query();
+        $query = QueryBuilder::for(Municipio::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('estado_id')
+            ])->get();
 
-        if (request()->has('search')) {
-            $query = Municipio::search(request('search'));
-        }
-
-        return MunicipioResource::collection($query->get());
+        return MunicipioResource::collection($query);
     }
 
     public function show($id)

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CalvicieResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Calvicie;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class CalvicieController extends Controller
 {
     public function index()
     {
-        return CalvicieResource::collection(Calvicie::all());
+        return CatalogoResource::collection(Calvicie::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class CalvicieController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new CalvicieResource(Calvicie::create($data));
+        return new CatalogoResource(Calvicie::create($data));
     }
 
     public function show(Calvicie $calvicie)
     {
-        return new CalvicieResource($calvicie);
+        return new CatalogoResource($calvicie);
     }
 
     public function update(Request $request, Calvicie $calvicie)
@@ -35,7 +35,7 @@ class CalvicieController extends Controller
 
         $calvicie->update($data);
 
-        return new CalvicieResource($calvicie);
+        return new CatalogoResource($calvicie);
     }
 
     public function destroy(Calvicie $calvicie)

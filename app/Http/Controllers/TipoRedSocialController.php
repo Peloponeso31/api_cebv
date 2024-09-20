@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TipoRedSocialResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TipoRedSocial;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TipoRedSocialController extends Controller
 {
     public function index()
     {
-        return TipoRedSocialResource::collection(TipoRedSocial::all());
+        return CatalogoResource::collection(TipoRedSocial::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TipoRedSocialController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TipoRedSocialResource(TipoRedSocial::create($data));
+        return new CatalogoResource(TipoRedSocial::create($data));
     }
 
     public function show(TipoRedSocial $tipoRedSocial)
     {
-        return new TipoRedSocialResource($tipoRedSocial);
+        return new CatalogoResource($tipoRedSocial);
     }
 
     public function update(Request $request, TipoRedSocial $tipoRedSocial)
@@ -35,7 +35,7 @@ class TipoRedSocialController extends Controller
 
         $tipoRedSocial->update($data);
 
-        return new TipoRedSocialResource($tipoRedSocial);
+        return new CatalogoResource($tipoRedSocial);
     }
 
     public function destroy(TipoRedSocial $tipoRedSocial)

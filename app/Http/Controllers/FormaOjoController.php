@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\FormaOjoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\FormaOjo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class FormaOjoController extends Controller
 {
     public function index()
     {
-        return FormaOjoResource::collection(FormaOjo::all());
+        return CatalogoResource::collection(FormaOjo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class FormaOjoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new FormaOjoResource(FormaOjo::create($data));
+        return new CatalogoResource(FormaOjo::create($data));
     }
 
     public function show(FormaOjo $formaOjo)
     {
-        return new FormaOjoResource($formaOjo);
+        return new CatalogoResource($formaOjo);
     }
 
     public function update(Request $request, FormaOjo $formaOjo)
@@ -35,7 +35,7 @@ class FormaOjoController extends Controller
 
         $formaOjo->update($data);
 
-        return new FormaOjoResource($formaOjo);
+        return new CatalogoResource($formaOjo);
     }
 
     public function destroy(FormaOjo $formaOjo)

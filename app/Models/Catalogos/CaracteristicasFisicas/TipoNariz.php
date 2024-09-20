@@ -3,18 +3,21 @@
 namespace App\Models\Catalogos\CaracteristicasFisicas;
 
 use App\Models\CaracteristicasFisicas;
+use App\Models\MediaFiliacion;
+use App\Models\Nariz;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TipoNariz extends Model
 {
-    protected $table='tipos_narices';
+    protected $table = 'cat_tipos_narices';
 
-    protected $fillable=['nombre'];
+    protected $fillable = ['nombre'];
 
-    public $timestamps= false;
+    public $timestamps = false;
 
-    public function caracteristicas_fisicas():HasMany {
-        return $this->hasMany(CaracteristicasFisicas::class);
+    public function narices(): HasMany
+    {
+        return $this->hasMany(Nariz::class);
     }
 }

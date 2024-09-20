@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ColectivoResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Colectivo;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class ColectivoController extends Controller
 {
     public function index()
     {
-        return ColectivoResource::collection(Colectivo::all());
+        return CatalogoResource::collection(Colectivo::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class ColectivoController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new ColectivoResource(Colectivo::create($data));
+        return new CatalogoResource(Colectivo::create($data));
     }
 
     public function show(Colectivo $colectivo)
     {
-        return new ColectivoResource($colectivo);
+        return new CatalogoResource($colectivo);
     }
 
     public function update(Request $request, Colectivo $colectivo)
@@ -35,7 +35,7 @@ class ColectivoController extends Controller
 
         $colectivo->update($data);
 
-        return new ColectivoResource($colectivo);
+        return new CatalogoResource($colectivo);
     }
 
     public function destroy(Colectivo $colectivo)

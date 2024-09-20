@@ -2,20 +2,20 @@
 
 namespace App\Models\Catalogos\CaracteristicasFisicas;
 
-use App\Models\CaracteristicasFisicas;
+use App\Models\Cabello;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TipoCabello extends Model
 {
-    protected $table = 'tipo_cabellos';
+    protected $table = 'cat_tipos_cabello';
 
     protected $fillable = ['nombre'];
 
     public $timestamps = false;
 
-    public function caracteristicas_fisicas(): HasMany
+    public function cabellos(): HasMany
     {
-        return $this->hasMany(CaracteristicasFisicas::class);
+        return $this->hasMany(Cabello::class);
     }
 }

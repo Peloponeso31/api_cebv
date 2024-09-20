@@ -2,10 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Vehiculo;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Vehiculo */
+/** @mixin Vehiculo */
 class VehiculoResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -21,16 +22,11 @@ class VehiculoResource extends JsonResource
             'descripcion' => $this->descripcion,
             'localizado' => $this->localizado,
 
-            'relacion_vehiculo_id' => $this->relacion_vehiculo_id,
-            'tipo_vehiculo_id' => $this->tipo_vehiculo_id,
-            'uso_vehiculo_id' => $this->uso_vehiculo_id,
-            'marca_vehiculo_id' => $this->marca_vehiculo_id,
-            'color_id' => $this->color_id,
-
-            'relacionVehiculo' => new RelacionVehiculoResource($this->whenLoaded('relacionVehiculo')),
-            'tipoVehiculo' => new TipoVehiculoResource($this->whenLoaded('tipoVehiculo')),
-            'usoVehiculo' => new UsoVehiculoResource($this->whenLoaded('usoVehiculo')),
-            'marcaVehiculo' => new MarcaVehiculoResource($this->whenLoaded('marcaVehiculo')),
+            'relacion_vehiculo' => CatalogoResource::make($this->relacionVehiculo),
+            'tipo_vehiculo' => CatalogoResource::make($this->tipoVehiculo),
+            'uso_vehiculo' => CatalogoResource::make($this->usoVehiculo),
+            'marca_vehiculo' => CatalogoResource::make($this->marcaVehiculo),
+            'color' => CatalogoResource::make($this->color),
         ];
     }
 }

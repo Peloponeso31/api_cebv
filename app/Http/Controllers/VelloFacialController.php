@@ -2,56 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreVelloFacialRequest;
-use App\Http\Requests\UpdateVelloFacialRequest;
+use App\Http\Requests\VelloFacialRequest;
 use App\Http\Resources\VelloFacialResource;
-use App\Models\Catalogos\VelloFacial;
+use App\Models\VelloFacial;
 
 class VelloFacialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return VelloFacialResource::collection(VelloFacial::all());
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreVelloFacialRequest $request)
+    public function store(VelloFacialRequest $request)
     {
-        return new VelloFacialResource(VelloFacial::create($request->all()));
+        return new VelloFacialResource(VelloFacial::create($request->validated()));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
+    public function show(VelloFacial $velloFacial)
     {
-        return new VelloFacialResource(VelloFacial::findOrFail($id));
-
+        return new VelloFacialResource($velloFacial);
     }
 
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update($id, UpdateVelloFacialRequest $request)
+    public function update(VelloFacialRequest $request, VelloFacial $velloFacial)
     {
-        $model = VelloFacial::findOrFail($id);
-        $model->update($request->all());
+        $velloFacial->update($request->validated());
+
+        return new VelloFacialResource($velloFacial);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(VelloFacial $velloFacial)
     {
-        if (VelloFacial::findOrFail($id)->delete()) {
-            return response()->json(['mensaje' => 'Borrado correcto']);
-        }
+        $velloFacial->delete();
+
+        return response()->json();
     }
 }

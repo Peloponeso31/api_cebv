@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TamanoBocaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TamanoBoca;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TamanoBocaController extends Controller
 {
     public function index()
     {
-        return TamanoBocaResource::collection(TamanoBoca::all());
+        return CatalogoResource::collection(TamanoBoca::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TamanoBocaController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TamanoBocaResource(TamanoBoca::create($data));
+        return new CatalogoResource(TamanoBoca::create($data));
     }
 
     public function show(TamanoBoca $tamanoBoca)
     {
-        return new TamanoBocaResource($tamanoBoca);
+        return new CatalogoResource($tamanoBoca);
     }
 
     public function update(Request $request, TamanoBoca $tamanoBoca)
@@ -35,7 +35,7 @@ class TamanoBocaController extends Controller
 
         $tamanoBoca->update($data);
 
-        return new TamanoBocaResource($tamanoBoca);
+        return new CatalogoResource($tamanoBoca);
     }
 
     public function destroy(TamanoBoca $tamanoBoca)

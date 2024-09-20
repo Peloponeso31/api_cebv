@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\RegionDeformacionResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\RegionDeformacion;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class RegionDeformacionController extends Controller
 {
     public function index()
     {
-        return RegionDeformacionResource::collection(RegionDeformacion::all());
+        return CatalogoResource::collection(RegionDeformacion::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class RegionDeformacionController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new RegionDeformacionResource(RegionDeformacion::create($data));
+        return new CatalogoResource(RegionDeformacion::create($data));
     }
 
     public function show(RegionDeformacion $regionDeformacion)
     {
-        return new RegionDeformacionResource($regionDeformacion);
+        return new CatalogoResource($regionDeformacion);
     }
 
     public function update(Request $request, RegionDeformacion $regionDeformacion)
@@ -35,7 +35,7 @@ class RegionDeformacionController extends Controller
 
         $regionDeformacion->update($data);
 
-        return new RegionDeformacionResource($regionDeformacion);
+        return new CatalogoResource($regionDeformacion);
     }
 
     public function destroy(RegionDeformacion $regionDeformacion)

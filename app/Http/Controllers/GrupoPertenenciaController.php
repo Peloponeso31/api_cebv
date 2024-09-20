@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGrupoPertenenciaRequest;
 use App\Http\Requests\UpdateGrupoPertenenciaRequest;
-use App\Http\Resources\GrupoPertenenciaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\GrupoPertenencia;
 use App\Services\CrudService;
-use Request;
 
 class GrupoPertenenciaController extends Controller
 {
@@ -28,24 +27,21 @@ class GrupoPertenenciaController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return GrupoPertenenciaResource::collection($query->get());
+        return CatalogoResource::collection($query->get());
     }
 
-    
     public function store(StoreGrupoPertenenciaRequest $request)
     {
-        return new GrupoPertenenciaResource(GrupoPertenencia::create($request->all()));
+        return new CatalogoResource(GrupoPertenencia::create($request->all()));
     }
 
-    
     public function show($id)
     {
         $model = GrupoPertenencia::findOrFail($id);
 
-        return new GrupoPertenenciaResource($model);
+        return new CatalogoResource($model);
     }
 
-    
     public function update($id, UpdateGrupoPertenenciaRequest $request)
     {
         $model = GrupoPertenencia::findOrFail($id);
@@ -53,7 +49,6 @@ class GrupoPertenenciaController extends Controller
         $model->update($request->all());
     }
 
-    
     public function destroy($id)
     {
             $model = GrupoPertenencia::findOrFail($id);

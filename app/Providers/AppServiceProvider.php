@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Reportes\Hechos\HechoDesaparicion;
+use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Observers\DesaparecidoObserver;
 use App\Observers\HechoDesaparicionObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,5 +24,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         HechoDesaparicion::observe(HechoDesaparicionObserver::class);
+        Desaparecido::observe(DesaparecidoObserver::class);
     }
 }

@@ -16,7 +16,9 @@ class IntervencionQuirurgicaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nombre' => ['required'],
+            'persona_id' => ['required'],
+            'tipo_intervencion_quirurgica_id' => ['required'],
+            'descripcion' => ['nullable'],
         ]);
 
         return new IntervencionQuirurgicaResource(IntervencionQuirurgica::create($data));
@@ -30,7 +32,9 @@ class IntervencionQuirurgicaController extends Controller
     public function update(Request $request, IntervencionQuirurgica $intervencionQuirurgica)
     {
         $data = $request->validate([
-            'nombre' => ['required'],
+            'persona_id' => ['sometimes'],
+            'tipo_intervencion_quirurgica_id' => ['sometimes'],
+            'descripcion' => ['sometimes'],
         ]);
 
         $intervencionQuirurgica->update($data);

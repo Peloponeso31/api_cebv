@@ -16,7 +16,11 @@ class CondicionSaludController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nombre' => ['required'],
+            'persona_id' => ['required', 'exists:personas,id'],
+            'tipo_condicion_salud_id' => ['required', 'exists:cat_tipos_condiciones_salud,id'],
+            'indole_salud' => ['required'],
+            'tratamiento' => ['nullable'],
+            'observaciones' => ['nullable'],
         ]);
 
         return new CondicionSaludResource(CondicionSalud::create($data));
@@ -30,7 +34,11 @@ class CondicionSaludController extends Controller
     public function update(Request $request, CondicionSalud $condicionSalud)
     {
         $data = $request->validate([
-            'nombre' => ['required'],
+            'persona_id' => ['sometimes', 'exists:personas,id'],
+            'tipo_condicion_salud_id' => ['sometimes', 'exists:cat_tipos_condiciones_salud,id'],
+            'indole_salud' => ['sometimes'],
+            'tratamiento' => ['sometimes'],
+            'observaciones' => ['sometimes'],
         ]);
 
         $condicionSalud->update($data);

@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\EtapaHipotesis;
+use App\Helpers\EnumHelper;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,13 +13,11 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('tipo_hipotesis_id')->nullable()->constrained(table: 'tipos_hipotesis');
-            $table->foreignId('sitio_id')->nullable()->constrained(table: 'sitios');
-            $table->foreignId('area_asigna_sitio_id')->nullable()->constrained(table: 'areas');
+            $table->foreignId('tipo_hipotesis_id')->nullable()->constrained(table: 'cat_tipos_hipotesis');
+            $table->foreignId('sitio_id')->nullable()->constrained(table: 'cat_sitios');
+            $table->foreignId('area_asigna_sitio_id')->nullable()->constrained(table: 'cat_areas');
 
-            $table->enum('etapa', ['Inicial', 'Final']);
-
-            $table->timestamps();
+            $table->enum('etapa', EnumHelper::toList(EtapaHipotesis::class));
         });
     }
 

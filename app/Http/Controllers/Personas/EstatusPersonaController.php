@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Personas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Personas\EstatusPersonaRequest;
-use App\Http\Resources\Personas\EstatusPersonaResource;
+use App\Http\Resources\BasicResource;
 use App\Models\Personas\EstatusPersona;
 use App\Services\CrudService;
 
@@ -27,22 +27,22 @@ class EstatusPersonaController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return EstatusPersonaResource::collection($query->get());
+        return BasicResource::collection($query->get());
     }
 
     public function store(EstatusPersonaRequest $request)
     {
-        return $this->service->store($request, $this->model, new EstatusPersonaResource($this->model::class));
+        return $this->service->store($request, $this->model, new BasicResource($this->model::class));
     }
 
     public function show($id)
     {
-        return $this->service->show($id, $this->model, new EstatusPersonaResource($this->model::class));
+        return $this->service->show($id, $this->model, new BasicResource($this->model::class));
     }
 
     public function update($id, EstatusPersonaRequest $request)
     {
-        return $this->service->update($id, $request, $this->model, new EstatusPersonaResource($this->model::class));
+        return $this->service->update($id, $request, $this->model, new BasicResource($this->model::class));
     }
 
     public function destroy($id)

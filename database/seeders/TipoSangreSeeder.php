@@ -10,15 +10,11 @@ class TipoSangreSeeder extends Seeder
     public function run(): void
     {
         $tiposSangre = [
-            'A+',
-            'A-',
-            'B+',
-            'B-',
-            'AB+',
-            'AB-',
-            'O+',
-            'O-',
-            'No especifica'
+            'A',
+            'B',
+            'AB',
+            'O',
+            'NO ESPECIFICA'
         ];
 
         foreach ($tiposSangre as $tipoSangre) {

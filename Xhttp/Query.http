@@ -1,10 +1,6 @@
 // @no-log
-GET http://api_cebv.test/api/desapariciones-forzadas
+GET http://api_cebv.test/api/reportes/14
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
-{
-
-    "reporte_id": 1
-}
 

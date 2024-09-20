@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes\Hipotesis;
 
+use App\Enums\EtapaHipotesis;
 use App\Models\Informaciones\Sitio;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
@@ -24,8 +25,11 @@ class Hipotesis extends Model
         'etapa',
     ];
 
+    public $timestamps = false;
+
     protected $casts = [
         'fecha_localizacion' => 'date',
+        'etapa' => EtapaHipotesis::class
     ];
 
     /**

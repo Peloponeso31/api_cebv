@@ -9,7 +9,13 @@ return new class extends Migration {
     {
         Schema::create('enfoques_diferenciados', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+
+            $table->foreignId('persona_id')->constrained(table: 'personas');
+
+            $table->boolean('pertenencia_grupal_etnica')->nullable();
+            $table->text('descripcion_vulnerabilidad')->nullable();
+            $table->text('informacion_relevante_busqueda')->nullable();
+
         });
     }
 

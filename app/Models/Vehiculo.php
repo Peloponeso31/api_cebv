@@ -38,26 +38,26 @@ class Vehiculo extends Model
 
     public function relacionVehiculo(): BelongsTo
     {
-        return $this->belongsTo(RelacionVehiculo::class);
+        return $this->belongsTo(RelacionVehiculo::class, 'relacion_vehiculo_id');
     }
 
     public function tipoVehiculo(): BelongsTo
     {
-        return $this->belongsTo(TipoVehiculo::class);
+        return $this->belongsTo(TipoVehiculo::class, 'tipo_vehiculo_id');
     }
 
     public function usoVehiculo(): BelongsTo
     {
-        return $this->belongsTo(UsoVehiculo::class);
+        return $this->belongsTo(UsoVehiculo::class, 'uso_vehiculo_id');
     }
 
     public function marcaVehiculo(): BelongsTo
     {
-        return $this->belongsTo(MarcaVehiculo::class);
+        return $this->belongsTo(MarcaVehiculo::class, 'marca_vehiculo_id');
     }
 
     public function color(): BelongsTo
     {
-        return $this->belongsTo(Color::class);
+        return $this->belongsTo(Color::class, 'color_id');
     }
 }

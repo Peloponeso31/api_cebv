@@ -12,7 +12,7 @@ class ReportanteRequest extends FormRequest
             'POST', 'PUT' => [
                 'reporte_id' => ['required', 'exists:reportes,id', 'numeric'],
                 'persona_id' => ['nullable', 'exists:personas,id', 'numeric'],
-                'parentesco_id' => ['nullable', 'exists:parentescos,id', 'numeric'],
+                'parentesco_id' => ['nullable', 'exists:cat_parentescos,id', 'numeric'],
                 'denuncia_anonima' => ['nullable', 'boolean'],
                 'informacion_consentimiento' => ['nullable', 'boolean'],
                 'informacion_exclusiva_busqueda' => ['nullable', 'boolean'],
@@ -25,7 +25,7 @@ class ReportanteRequest extends FormRequest
             default => [
                 'reporte_id' => ['sometimes', 'exists:reportes,id', 'numeric'],
                 'persona_id' => ['sometimes', 'exists:personas,id', 'numeric'],
-                'parentesco_id' => ['sometimes', 'exists:parentescos,id', 'numeric'],
+                'parentesco_id' => ['sometimes', 'exists:cat_parentescos,id', 'numeric'],
                 'denuncia_anonima' => ['sometimes', 'boolean'],
                 'informacion_consentimiento' => ['sometimes', 'boolean'],
                 'informacion_exclusiva_busqueda' => ['sometimes', 'boolean'],

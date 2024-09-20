@@ -12,7 +12,7 @@ class ReporteRequest extends FormRequest
         return match ($this->method()) {
             'POST', 'PUT' => [
                 'tipo_reporte_id' => ['required', 'exists:tipos_reportes,id', 'numeric'],
-                'area_atiende_id' => ['nullable', 'exists:areas,id', 'numeric'],
+                'area_atiende_id' => ['nullable', 'exists:cat_areas,id', 'numeric'],
                 'medio_conocimiento_id' => ['nullable', 'exists:medios,id', 'numeric'],
                 'estado_id' => ['nullable', 'exists:estados,id', 'numeric'],
                 'zona_estado_id' => ['nullable', 'exists:zonas_estados,id', 'numeric'],
@@ -30,7 +30,7 @@ class ReporteRequest extends FormRequest
             ],
             default => [
                 'tipo_reporte_id' => ['sometimes', 'exists:tipos_reportes,id', 'numeric'],
-                'area_atiende_id' => ['sometimes', 'exists:areas,id', 'numeric'],
+                'area_atiende_id' => ['sometimes', 'exists:cat_areas,id', 'numeric'],
                 'medio_conocimiento_id' => ['sometimes', 'exists:medios,id', 'numeric'],
                 'estado_id' => ['nullable', 'exists:estados,id', 'numeric'],
                 'zona_estado_id' => ['sometimes', 'exists:zonas_estados,id', 'numeric'],

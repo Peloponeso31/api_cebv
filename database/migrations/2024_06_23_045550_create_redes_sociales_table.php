@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('persona_id')->constrained(table: 'personas');
-            $table->foreignId('tipo_red_social_id')->constrained(table: 'tipos_redes_sociales');
+            $table->foreignId('tipo_red_social_id')->constrained(table: 'cat_tipos_redes_sociales');
 
             $table->string('usuario');
             $table->string('observaciones')->nullable();

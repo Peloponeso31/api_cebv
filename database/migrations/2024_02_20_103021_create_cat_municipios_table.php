@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->string('id', 5)->primary();
             $table->string('estado_id', 2);
             $table->string('nombre', 100);
+            $table->foreignId('area_atiende_id')->nullable();
 
             $table->foreign('estado_id')
                 ->references('id')->on('cat_estados');

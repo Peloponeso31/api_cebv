@@ -9,7 +9,6 @@ use App\Models\Catalogos\CaracteristicasFisicas\TipoLabios;
 
 class TipoLabiosController extends Controller
 {
-
     public function index()
     {
        return CatalogoResource::collection(TipoLabios::all());

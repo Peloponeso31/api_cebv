@@ -2,10 +2,12 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 
 class Municipio extends Model
@@ -57,6 +59,10 @@ class Municipio extends Model
     public function desaparecidos(): HasMany
     {
         return $this->hasMany(Desaparecido::class);
+    }
+
+    public function areaAtiende(): HasOne {
+        return $this->hasOne(Area::class, 'id', 'area_atiende_id');
     }
 
     public function toSearchableArray()

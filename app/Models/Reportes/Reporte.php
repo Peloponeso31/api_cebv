@@ -70,9 +70,9 @@ class Reporte extends Model
      *
      * @return BelongsTo
      */
-    public function areaAtiende(): BelongsTo
+    public function areaAtiende(): HasOne
     {
-        return $this->belongsTo(Area::class, 'area_atiende_id');
+        return $this->hasOne(Area::class, 'id', 'area_atiende_id');
     }
 
     public function hechosDesaparicion(): HasOne

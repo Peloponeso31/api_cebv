@@ -17,7 +17,7 @@ class EstatusPersonaSeeder extends Seeder
         ];
 
         foreach ($estatusPersonas as $estatus) {
-            EstatusPersona::create($estatus);
+            EstatusPersona::firstOrCreate($estatus);
         }
     }
 }

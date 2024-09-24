@@ -33,7 +33,7 @@ class ReporteController extends Controller
 
         if ($request->all()) {
             $reporteFilter = new ReporteFilters($request);
-            $query = $reporteFilter->applyFilter($query);
+            $query = $reporteFilter->applyFilter();
         }
 
         return ReporteResource::collection($query->get());

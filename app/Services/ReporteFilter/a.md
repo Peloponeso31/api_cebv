@@ -162,18 +162,19 @@ Por ejemplo `Filter[reportante/lengua_id]=2`
 | `desaparecido/lengua_id`            | `desaparecido/fecha_nacimiento_aproximada`  | `desaparecido/descripcion_ocupacion_principal`  |
 | `desaparecido/lengua`               | `desaparecido/fecha_nacimiento_cebv`        | `desaparecido/descripcion_ocupacion_secundaria` |
 
-| **Telefono**                             | **Edad**                                             | **Comunicacion**                    |
-|------------------------------------------|------------------------------------------------------|-------------------------------------|
-| `desaparecido/telefono`                  | `desaparecido/edad_anos`                             | `desaparecido/habla_espanhol`       |
-| `desaparecido/telefono/compania_id`      | `desaparecido/edad_meses`                            | `desaparecido/sabe_leer`            |
-| `desaparecido/telefono/compania`         | `desaparecido/edad_dias`                             | `desaparecido/sabe_escribir`        |
-| **Estatus**                              | **Ocupacion**                                        | **Telefono**                        |
-| `desaparecido/estatus_rpdno_id`          | `desaparecido/ocupacion_principal_id`                | `desaparecido/telefono`             |
-| `desaparecido/estatus_rpdno`             | `desaparecido/ocupacion_principal`                   | `desaparecido/telefono/compania_id` |
-| `desaparecido/estatus_rpdno/abreviatura` | `desaparecido/ocupacion_principal/tipo_ocupacion_id` | `desaparecido/telefono/compania`    |
-| `desaparecido/estatus_cebv_id`           | `desaparecido/ocupacion_principal/tipo_ocupacion`    | `desaparecido/telefono/es_movil`    |
-| `desaparecido/estatus_cebv`              |                                                      |                                     |
-| `desaparecido/estatus_cebv/abreviatura`  |                                                      |                                     |
+| **Telefono**                             | **Edad**             | **Comunicacion** |
+|------------------------------------------|----------------------|----------|
+| `desaparecido/telefono`                  | `desaparecido/edad_anos` | `desaparecido/habla_espanhol` |
+| `desaparecido/telefono/compania_id`      | `desaparecido/edad_meses` | `desaparecido/sabe_leer` |
+| `desaparecido/telefono/compania`         | `desaparecido/edad_dias` | `desaparecido/sabe_escribir` |
+| `desaparecido/telefono/es_movil`         |                      |
+| **Estatus**                              | **Ocupacion**        |
+| `desaparecido/estatus_rpdno_id`          | `desaparecido/ocupacion_principal_id` |
+| `desaparecido/estatus_rpdno`             | `desaparecido/ocupacion_principal` |
+| `desaparecido/estatus_rpdno/abreviatura` | `desaparecido/ocupacion_principal/tipo_ocupacion_id` |
+| `desaparecido/estatus_cebv_id`           | `desaparecido/ocupacion_principal/tipo_ocupacion` |
+| `desaparecido/estatus_cebv`              |                      |
+| `desaparecido/estatus_cebv/abreviatura`  |                      |
 
 | **Desaparecido (otros)**                     |                                       |
 |----------------------------------------------|---------------------------------------|
@@ -243,12 +244,11 @@ Por ejemplo `Filter[reportante/lengua_id]=2`
   </table>
 </div>
 
-| `hechoDesaparicion/direccion_id`                              | `hechoDesaparicion/situacion_previa`      |
-|---------------------------------------------------------------|-------------------------------------------|
-| `hechoDesaparicion/aclaraciones_fecha_hechos`                 | `hechoDesaparicion/informacion_relevante` |
-| `hechoDesaparicion/amenaza_cambio_comportamiento`             | `hechoDesaparicion/sintesis_desaparicion` |
-| `hechoDesaparicion/descripcion/amenaza_cambio_comportamiento` | `hechoDesaparicion/personas_mismo_evento` |
-| `hechoDesaparicion/contador_desapariciones`                   |
+| `hechoDesaparicion/direccion_id`                            | `hechoDesaparicion/situacion_previa`      |
+|-------------------------------------------------------------|-------------------------------------------|
+| `hechoDesaparicion/aclaraciones_fecha_hechos`               | `hechoDesaparicion/informacion_relevante` |
+|    `hechoDesaparicion/sintesis_desaparicion`       | `hechoDesaparicion/personas_mismo_evento` |
+| `hechoDesaparicion/contador_desapariciones` |
 
 **Hipotesis oficial**
 

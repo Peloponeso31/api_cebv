@@ -10,6 +10,7 @@ use App\Models\CondicionSalud;
 use App\Models\Contacto;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Embarazo;
 use App\Models\EnfermedadPiel;
 use App\Models\EnfoqueDiferenciado;
 use App\Models\EnfoquePersonal;
@@ -218,6 +219,11 @@ class SyncPersonaService
         if(isset($request[P::Ocupaciones]) && !is_null($request[P::Ocupaciones])) {
             $data = ArrayHelpers::setArrayRecursive($request[P::Ocupaciones], P::PersonaId, $personaId);
             ArrayHelpers::syncList(OcupacionPersona::class, $data, P::PersonaId, $personaId, config('patterns.ocupacion'));
+        }
+
+        if(isset($request[P::Embarazo]) && !is_null($request[P::Embarazo])) {
+            $data = ArrayHelpers::setArrayValue($request[P::Embarazo], P::PersonaId, $personaId);
+            ArrayHelpers::asyncHandler(Embarazo::class, $data);
         }
 
         return Persona::findOrFail($personaId);

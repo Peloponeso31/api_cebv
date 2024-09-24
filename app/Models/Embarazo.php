@@ -12,6 +12,7 @@ class Embarazo extends Model
 
     protected $fillable = [
         'persona_id',
+        'esta_embarazada',
         'meses',
     ];
 

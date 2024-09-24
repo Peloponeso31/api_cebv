@@ -8,6 +8,7 @@ use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\CondicionSaludResource;
 use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\ContextoSocialResource;
+use App\Http\Resources\EmbarazoResource;
 use App\Http\Resources\EnfermedadPielResource;
 use App\Http\Resources\EnfoqueDiferenciadoResource;
 use App\Http\Resources\EnfoquePersonalResource;
@@ -96,6 +97,7 @@ class PersonaResource extends JsonResource
             'enfoque_diferenciado' => EnfoqueDiferenciadoResource::make($this->enfoqueDiferenciado),
             'enfoques_personales' => EnfoquePersonalResource::collection($this->getEnfoquesPersonales()),
             'ocupaciones' => OcupacionPersonaResource::collection($this->getOcupaciones()),
+            'embarazo' => EmbarazoResource::make($this->embarazo)
         ];
     }
 }

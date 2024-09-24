@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignId('sitio_id')->nullable()->constrained(table: 'cat_sitios');
             $table->foreignId('area_asigna_sitio_id')->nullable()->constrained(table: 'cat_areas');
 
-            $table->boolean('fecha_desaparicion_desconocida');
+            $table->boolean('fecha_desaparicion_desconocida')->default(false);
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
             $table->string('hora_desaparicion')->nullable();

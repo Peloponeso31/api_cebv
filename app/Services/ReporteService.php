@@ -37,7 +37,7 @@ class ReporteService
          * TODO: Completar la validación de los campos mínimos requeridos para asignar un folio.
          */
         //if (!$reporte->esta_terminado)
-         //   return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
+        //   return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
 
         $desaparecidos = Desaparecido::where('reporte_id', $reporte->id)->get();
 
@@ -69,11 +69,16 @@ class ReporteService
 
     public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido): void
     {
-        $fechaDesaparicion = $reporte->hechoDesaparicion->fecha_desaparicion;
+        $fechaD = $reporte->hechosDesaparicion->fecha_desaparicion;
+
+        if (is_null($fechaD)) $fechaDesaparicion = 'AA';
+        else $fechaDesaparicion = $fechaD->format('y');
+
+
         if (!isset($reporte->tipoReporte)) return;
 
         // Si es solicitud de busqueda familiar, colaboracion, o de difusion, entonces agarrar la terminacion
-        // de donde proviene, sino, agarrarlo de la zona del estado de Veracruz: ['ZN', 'ZC', 'ZS'].
+        // de donde proviene, si no, agarrarlo de la zona del estado de Veracruz: ['ZN', 'ZC', 'ZS'].
         $terminacion = in_array($reporte->tipoReporte->abreviatura, ['SC', 'SD', 'SBF'])
             ? $reporte->estado->abreviatura_cebv
             : $reporte->zonaEstado->abreviatura;
@@ -97,7 +102,7 @@ class ReporteService
                 'tipo_reporte' => $reporte->tipoReporte->abreviatura,
                 'serie' => $serie,
                 'tipo_desaparicion' => $reporte->tipo_desaparicion,
-                'fecha_desaparicion' => isset($fechaDesaparicion) ? $fechaDesaparicion->format('y') : 'AA',
+                'fecha_desaparicion' => $fechaDesaparicion,
                 'terminacion' => $terminacion,
             ]
         ]);

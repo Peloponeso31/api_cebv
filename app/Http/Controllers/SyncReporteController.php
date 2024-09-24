@@ -16,6 +16,7 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
+use App\Models\Ubicaciones\Direccion;
 use App\Services\SyncPersonaService;
 use App\Services\SyncReporteService;
 use Illuminate\Support\Facades\Log;
@@ -88,6 +89,13 @@ class SyncReporteController extends Controller
 
         if (isset($request[A::HechosDesaparicion]) && !is_null($request[A::HechosDesaparicion])) {
             $data = ArrayHelpers::setArrayValue($request[A::HechosDesaparicion], A::ReporteId, $reporteId);
+
+            if (isset($data[A::Direccion]) && !is_null($data[A::Direccion])) {
+                $data[A::Direccion] = ArrayHelpers::asyncHandler(Direccion::class, $data[A::Direccion], config('patterns.direccion'));
+
+                Log::info("Direccion: " . json_encode($data[A::Direccion]));
+            }
+
             ArrayHelpers::asyncHandler(HechoDesaparicion::class, $data, config('patterns.hecho_desaparicion'));
         }
 

@@ -17,6 +17,7 @@ class HechoDesaparicionObserver
 
         // Si sucedio en el estado de Veracruz:
         if (is_null($hechoDesaparicion->lugarHechos)) return;
+
         if ($hechoDesaparicion->lugarHechos->asentamiento->municipio->estado->id == "30") {
             // Comportamiento indefinido, funcionara siempre y cuando los
             // ids 'zonas-estados' y 'areas' coincidan el uno con el otro.

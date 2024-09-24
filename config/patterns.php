@@ -153,4 +153,8 @@ return [
     'ocupacion' => [
         'ocupacion_id' => 'ocupacion.id',
     ],
+
+    'direccion' => [
+        'asentamiento_id' => 'asentamiento.id'
+    ],
 ];

@@ -2,19 +2,14 @@
 
 namespace App\Models\Oficialidades;
 
-use App\Models\Reportes\Hipotesis\Hipotesis;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Municipio;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravel\Scout\Searchable;
 
 class Area extends Model
 {
-    use Searchable;
-
     protected $table = 'cat_areas';
 
     protected $fillable = ['nombre'];
@@ -36,20 +31,13 @@ class Area extends Model
      *
      * @return HasMany
      */
-    public function hipotesis(): HasMany
+    public function hechosDesaparicion(): HasMany
     {
-        return $this->hasMany(Hipotesis::class);
+        return $this->hasMany(HechoDesaparicion::class);
     }
 
     public function municipios(): HasMany
     {
         return $this->hasMany(Municipio::class, 'area_atiende_id', 'id');
-    }
-
-    public function toSearchableArray()
-    {
-        return [
-            'id' => $this->id
-        ];
     }
 }

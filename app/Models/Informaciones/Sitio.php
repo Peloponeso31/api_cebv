@@ -2,15 +2,12 @@
 
 namespace App\Models\Informaciones;
 
-use App\Models\Reportes\Hipotesis\Hipotesis;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravel\Scout\Searchable;
 
 class Sitio extends Model
 {
-    use Searchable;
-
     public $timestamps = false;
 
     protected $table = 'cat_sitios';
@@ -19,16 +16,8 @@ class Sitio extends Model
         'nombre',
     ];
 
-    public function hipotesis(): HasMany
+    public function hechosDesaparicion(): HasMany
     {
-        return $this->HasMany(Hipotesis::class, 'sitio_id');
-    }
-
-    public function toSearchableArray()
-    {
-        return [
-            'id' => $this->id,
-            'nombre' => $this->nombre,
-        ];
+        return $this->hasMany(HechoDesaparicion::class);
     }
 }

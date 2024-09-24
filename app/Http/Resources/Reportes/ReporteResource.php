@@ -7,7 +7,6 @@ use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ControlOgpiResource;
 use App\Http\Resources\DesaparicionForzadaResource;
 use App\Http\Resources\ExpedienteResource;
-use App\Http\Resources\FolioResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\PerpetradorResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;

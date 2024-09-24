@@ -25,12 +25,12 @@ return [
 
     'hecho_desaparicion' => [
         'direccion_id' => 'direccion.id',
+        'sitio_id' => 'sitio.id',
+        'area_asigna_sitio_id' => 'area_asigna_sitio.id',
     ],
 
     'hipotesis' => [
         'tipo_hipotesis_id' => 'tipo_hipotesis.id',
-        'sitio_id' => 'sitio.id',
-        'area_asigna_sitio_id' => 'area_asigna_sitio.id',
     ],
 
     'expediente' => [

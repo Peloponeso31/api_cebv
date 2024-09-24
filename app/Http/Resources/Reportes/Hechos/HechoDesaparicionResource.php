@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Reportes\Hechos;
 
+use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
@@ -16,8 +17,10 @@ class HechoDesaparicionResource extends JsonResource
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
             'direccion' => DireccionResource::make($this->lugarHechos),
+            'sitio' => CatalogoResource::make($this->sitio),
+            'area_asigna_sitio' => CatalogoResource::make($this->areaAsignaSitio),
+            'fecha_desaparicion_desconocida' => $this->fecha_desaparicion_desconocida,
             'fecha_desaparicion' => $this->fecha_desaparicion,
-            'fecha_desaparicion_aproximada' => $this->fecha_desaparicion_aproximada,
             'fecha_desaparicion_cebv' => $this->fecha_desaparicion_cebv,
             'hora_desaparicion' => $this->hora_desaparicion,
             'fecha_percato' => $this->fecha_percato,

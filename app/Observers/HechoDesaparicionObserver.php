@@ -16,6 +16,7 @@ class HechoDesaparicionObserver
         $fecha_desaparicion = $hechoDesaparicion->fecha_desaparicion;
 
         // Si sucedio en el estado de Veracruz:
+        if (is_null($hechoDesaparicion->lugarHechos)) return;
         if ($hechoDesaparicion->lugarHechos->asentamiento->municipio->estado->id == "30") {
             // Comportamiento indefinido, funcionara siempre y cuando los
             // ids 'zonas-estados' y 'areas' coincidan el uno con el otro.
@@ -25,8 +26,7 @@ class HechoDesaparicionObserver
                 'area_atiende_id' => $id,
                 'zona_estado_id' => $id
             ]);
-        }
-        else {
+        } else {
             $reporte->update([
                 'zona_estado_id' => ZonaEstado::firstWhere('nombre', 'No aplica')->id,
             ]);

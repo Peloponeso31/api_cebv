@@ -216,13 +216,16 @@ class SyncPersonaService
             ArrayHelpers::syncList(EnfoquePersonal::class, $data, P::PersonaId, $personaId, config('patterns.enfoque_personal'));
         }
 
-        if(isset($request[P::Ocupaciones]) && !is_null($request[P::Ocupaciones])) {
+        if (isset($request[P::Ocupaciones]) && !is_null($request[P::Ocupaciones])) {
             $data = ArrayHelpers::setArrayRecursive($request[P::Ocupaciones], P::PersonaId, $personaId);
             ArrayHelpers::syncList(OcupacionPersona::class, $data, P::PersonaId, $personaId, config('patterns.ocupacion'));
         }
 
-        if(isset($request[P::Embarazo]) && !is_null($request[P::Embarazo])) {
+        if (isset($request[P::Embarazo]) && !is_null($request[P::Embarazo])) {
             $data = ArrayHelpers::setArrayValue($request[P::Embarazo], P::PersonaId, $personaId);
+            if ($data['meses'] >= 9) $data['meses'] = 9;
+            if ($data['meses'] <= 0) $data['meses'] = 0;
+
             ArrayHelpers::asyncHandler(Embarazo::class, $data);
         }
 

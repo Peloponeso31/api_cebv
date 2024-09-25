@@ -15,9 +15,6 @@ use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
-use App\Models\Expediente;
-use App\Models\Oficialidades\Folio;
-use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -27,9 +24,6 @@ class ReporteResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        $hecho = HechoDesaparicion::where('reporte_id', $this->id)->first();
-        $folios = Folio::where('reporte_id', $this->id)->get();
-        $expedientes = Expediente::where('reporte_id', $this->id)->get();
         return [
             'id' => $this->id,
             /**
@@ -46,7 +40,7 @@ class ReporteResource extends JsonResource
 
             'desaparecidos' => DesaparecidoResource::collection($this->desaparecidos),
             'reportantes' => ReportanteResource::collection($this->reportantes),
-            'hechos_desaparicion' => HechoDesaparicionResource::make($hecho),
+            'hechos_desaparicion' => HechoDesaparicionResource::make($this->hechosDesaparicion),
             'hipotesis' => HipotesisResource::collection($this->hipotesis),
             // Atributos
             'esta_terminado' => $this->esta_terminado,
@@ -59,7 +53,7 @@ class ReporteResource extends JsonResource
              */
             'control_ogpi' => ControlOgpiResource::make($this->controlOgpi),
             // Expedientes
-            'expedientes' => ExpedienteResource::collection($expedientes),
+            'expedientes' => ExpedienteResource::collection($this->expedientes),
             // Desaparicion forzada
             'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
             // Perpetradores

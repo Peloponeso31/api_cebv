@@ -81,4 +81,14 @@ class PersonaAttributes
     const Ocupaciones = 'ocupaciones';
 
     const Embarazo = 'embarazo';
+
+    const Familiares = 'familiares';
+
+    const ContextoEconomico = 'contexto_economico';
+
+    const Pasatiempos = 'pasatiempos';
+
+    const Clubes = 'clubes';
+
+    const Amistades = 'amistades';
 }

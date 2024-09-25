@@ -2,10 +2,13 @@
 
 namespace App\Http\Resources\Personas;
 
+use App\Http\Resources\AmistadResource;
 use App\Http\Resources\BocaResource;
 use App\Http\Resources\CabelloResource;
 use App\Http\Resources\CatalogoResource;
+use App\Http\Resources\ClubPersonaResource;
 use App\Http\Resources\CondicionSaludResource;
+use App\Http\Resources\ContextoEconomicoResource;
 use App\Http\Resources\ContextoFamiliarResource;
 use App\Http\Resources\ContextoSocialResource;
 use App\Http\Resources\EmbarazoResource;
@@ -13,13 +16,14 @@ use App\Http\Resources\EnfermedadPielResource;
 use App\Http\Resources\EnfoqueDiferenciadoResource;
 use App\Http\Resources\EnfoquePersonalResource;
 use App\Http\Resources\EstudioResource;
+use App\Http\Resources\FamiliarResource;
 use App\Http\Resources\IntervencionQuirurgicaResource;
 use App\Http\Resources\MediaFiliacionComplementariaResource;
 use App\Http\Resources\NarizResource;
 use App\Http\Resources\OcupacionPersonaResource;
-use App\Http\Resources\OcupacionResource;
 use App\Http\Resources\OjoResource;
 use App\Http\Resources\OrejaResource;
+use App\Http\Resources\PasatiempoPersonaResource;
 use App\Http\Resources\PseudonimoResource;
 use App\Http\Resources\ContactoResource;
 use App\Http\Resources\SaludResource;
@@ -58,7 +62,6 @@ class PersonaResource extends JsonResource
             'observaciones_curp' => $this->observaciones_curp,
             'rfc' => $this->rfc,
             'habla_espanhol' => $this->habla_espanhol,
-            'especificaciones_ocupacion' => $this->especificaciones_ocupacion,
 
             /**
              * Llaves foráneas
@@ -83,6 +86,7 @@ class PersonaResource extends JsonResource
             'senas_particulares' => SenasParticularesResource::collection($this->senasParticulares),
             'contexto_familiar' => ContextoFamiliarResource::make($this->contextoFamiliar),
             'contexto_social' => ContextoSocialResource::make($this->contextoSocial),
+            'contexto_economico' => ContextoEconomicoResource::make($this->contextoEconomico),
             'salud' => SaludResource::make($this->salud),
             'ojos' => OjoResource::make($this->ojos),
             'cabello' => CabelloResource::make($this->cabello),
@@ -97,7 +101,11 @@ class PersonaResource extends JsonResource
             'enfoque_diferenciado' => EnfoqueDiferenciadoResource::make($this->enfoqueDiferenciado),
             'enfoques_personales' => EnfoquePersonalResource::collection($this->getEnfoquesPersonales()),
             'ocupaciones' => OcupacionPersonaResource::collection($this->getOcupaciones()),
-            'embarazo' => EmbarazoResource::make($this->embarazo)
+            'embarazo' => EmbarazoResource::make($this->embarazo),
+            'familiares' => FamiliarResource::collection($this->familiares),
+            'pasatiempos' => PasatiempoPersonaResource::collection($this->getPasatiempos()),
+            'clubes' => ClubPersonaResource::collection($this->getClubes()),
+            'amistades' => AmistadResource::collection($this->amistades),
         ];
     }
 }

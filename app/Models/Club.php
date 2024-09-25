@@ -19,7 +19,7 @@ class Club extends Model
 
     public function persona(): BelongsToMany
     {
-        return $this->belongsToMany(Persona::class);
+        return $this->belongsToMany(Persona::class)->using(ClubPersona::class);
     }
 
 }

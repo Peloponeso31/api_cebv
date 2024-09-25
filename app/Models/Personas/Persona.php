@@ -5,11 +5,13 @@ namespace App\Models\Personas;
 use App\Models\Amistad;
 use App\Models\Boca;
 use App\Models\Cabello;
+use App\Models\ClubPersona;
 use App\Models\EnfoquePersonal;
 use App\Models\Nariz;
 use App\Models\OcupacionPersona;
 use App\Models\Ojo;
 use App\Models\Oreja;
+use App\Models\PasatiempoPersona;
 use App\Models\Pseudonimo;
 use App\Models\Catalogos\Etnia\Lengua;
 use App\Models\Catalogos\Etnia\Religion;
@@ -78,7 +80,6 @@ class Persona extends Model
         'observaciones_curp',
         'rfc',
         'habla_espanhol',
-        'especificaciones_ocupacion',
     ];
 
     protected $casts = [
@@ -352,12 +353,22 @@ class Persona extends Model
 
     public function pasatiempos(): BelongsToMany
     {
-        return $this->belongsToMany(Pasatiempo::class);
+        return $this->belongsToMany(Pasatiempo::class, 'pasatiempo_persona')->using(PasatiempoPersona::class);
+    }
+
+    public function getPasatiempos()
+    {
+        return PasatiempoPersona::where('persona_id', $this->id)->get();
     }
 
     public function clubes(): BelongsToMany
     {
-        return $this->belongsToMany(Club::class);
+        return $this->belongsToMany(Club::class, 'club_persona')->using(ClubPersona::class);
+    }
+
+    public function getClubes()
+    {
+        return ClubPersona::where('persona_id', $this->id)->get();
     }
 
     public function estudio(): HasOne

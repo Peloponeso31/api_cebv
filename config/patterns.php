@@ -157,4 +157,20 @@ return [
     'direccion' => [
         'asentamiento_id' => 'asentamiento.id'
     ],
+
+    'familiar' => [
+        'parentesco_id' => 'parentesco.id',
+    ],
+
+    'pasatiempo' => [
+        'pasatiempo_id' => 'pasatiempo.id',
+    ],
+
+    'club' => [
+        'club_id' => 'club.id',
+    ],
+
+    'amistad' => [
+        'tipo_red_social_id' => 'tipo_red_social.id',
+    ],
 ];

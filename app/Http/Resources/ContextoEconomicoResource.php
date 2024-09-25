@@ -32,8 +32,6 @@ class ContextoEconomicoResource extends JsonResource
             'monto_deuda' => $this->monto_deuda,
             'deuda_con' => $this->deuda_con,
             'otras_especificaciones_ocupacion' => $this->otras_especificaciones_ocupacion,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

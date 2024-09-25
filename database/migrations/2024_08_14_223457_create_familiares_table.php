@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->foreignId('parentesco_id')->constrained(table: 'cat_parentescos');
 
             $table->string('nombre');
-            $table->boolean('ha_ejercido_violencia')->nullable();
-            $table->boolean('es_familiar_cercano')->nullable();
+            $table->boolean('ha_ejercido_violencia')->default(false);
+            $table->boolean('es_familiar_cercano')->default(false);
             $table->text('observaciones');
         });
     }

@@ -4,10 +4,14 @@ namespace App\Services;
 
 use App\Helpers\ArrayHelpers;
 use App\Helpers\PersonaAttributes as P;
+use App\Models\Amistad;
+use App\Models\Familiar;
 use App\Models\Boca;
 use App\Models\Cabello;
+use App\Models\ClubPersona;
 use App\Models\CondicionSalud;
 use App\Models\Contacto;
+use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
 use App\Models\Embarazo;
@@ -21,6 +25,7 @@ use App\Models\Nariz;
 use App\Models\OcupacionPersona;
 use App\Models\Ojo;
 use App\Models\Oreja;
+use App\Models\PasatiempoPersona;
 use App\Models\Personas\Persona;
 use App\Models\Pseudonimo;
 use App\Models\Salud;
@@ -227,6 +232,31 @@ class SyncPersonaService
             if ($data['meses'] <= 0) $data['meses'] = 0;
 
             ArrayHelpers::asyncHandler(Embarazo::class, $data);
+        }
+
+        if (isset($request[P::Familiares]) && !is_null($request[P::Familiares])) {
+            $data = ArrayHelpers::setArrayRecursive($request[P::Familiares], P::PersonaId, $personaId);
+            ArrayHelpers::syncList(Familiar::class, $data, P::PersonaId, $personaId, config('patterns.familiar'));
+        }
+
+        if (isset($request[P::ContextoEconomico]) && !is_null($request[P::ContextoEconomico])) {
+            $data = ArrayHelpers::setArrayValue($request[P::ContextoEconomico], P::PersonaId, $personaId);
+            ArrayHelpers::asyncHandler(ContextoEconomico::class, $data);
+        }
+
+        if (isset($request[P::Pasatiempos]) && !is_null($request[P::Pasatiempos])) {
+            $data = ArrayHelpers::setArrayRecursive($request[P::Pasatiempos], P::PersonaId, $personaId);
+            ArrayHelpers::syncList(PasatiempoPersona::class, $data, P::PersonaId, $personaId, config('patterns.pasatiempo'));
+        }
+
+        if (isset($request[P::Clubes]) && !is_null($request[P::Clubes])) {
+            $data = ArrayHelpers::setArrayRecursive($request[P::Clubes], P::PersonaId, $personaId);
+            ArrayHelpers::syncList(ClubPersona::class, $data, P::PersonaId, $personaId, config('patterns.club'));
+        }
+
+        if (isset($request[P::Amistades]) && !is_null($request[P::Amistades])) {
+            $data = ArrayHelpers::setArrayRecursive($request[P::Amistades], P::PersonaId, $personaId);
+            ArrayHelpers::syncList(Amistad::class, $data, P::PersonaId, $personaId, config('patterns.amistad'));
         }
 
         return Persona::findOrFail($personaId);

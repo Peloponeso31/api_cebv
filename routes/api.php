@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\EstatusEscolaridadController;
+use App\Http\Controllers\PasatiempoController;
 use App\Http\Controllers\PseudonimoController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
@@ -322,6 +324,13 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/desapariciones-forzadas', DesaparicionForzadaController::class);
 
     Route::get('personas/{persona}/folios', [PersonaController::class, 'getFolios']);
+
+
+    /**
+     * Mas rutas que no sé dónde meter
+     */
+    Route::apiResource('/pasatiempos', PasatiempoController::class);
+    Route::apiResource('/clubes', ClubController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

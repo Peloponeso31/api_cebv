@@ -53,5 +53,5 @@ class JsonAttributes
     /** @var string */
     const Perpetradores = 'perpetradores';
 
-    const Direccion = 'estado_id';
+    const Direccion = 'direccion';
 }

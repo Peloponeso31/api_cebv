@@ -17,10 +17,10 @@ return new class extends Migration {
 
             $table->string('clasificacion_persona')->nullable();
             $table->string('url_boletin')->nullable();
-            $table->boolean('declaracion_especial_ausencia')->default(false)->nullable();
-            $table->boolean('accion_urgente')->default(false)->nullable();
-            $table->boolean('dictamen')->default(false)->nullable();
-            $table->boolean('ci_nivel_federal')->default(false)->nullable();
+            $table->boolean('declaracion_especial_ausencia')->default(false);
+            $table->boolean('accion_urgente')->default(false);
+            $table->boolean('dictamen')->default(false);
+            $table->boolean('ci_nivel_federal')->default(false);
             $table->string('otro_derecho_humano')->nullable();
 
             $table->date('fecha_nacimiento_aproximada')->nullable();
@@ -30,8 +30,7 @@ return new class extends Migration {
             $table->integer('edad_momento_desaparicion_meses')->nullable();
             $table->integer('edad_momento_desaparicion_dias')->nullable();
             $table->string('identidad_resguardada')->nullable();
-            // TODO: Eliminar estado conyugal de toda la logica de desaparecido
-            $table->text("boletin_img_path")->nullable();
+            $table->text('boletin_img_path')->nullable();
 
             $table->timestamps();
         });

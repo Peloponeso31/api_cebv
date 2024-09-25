@@ -396,12 +396,20 @@ class ReporteFilters
                         ->where('epa.abreviatura', 'LIKE', ["%{$value}%"]);
                 }),
                 AllowedFilter::callback('desaparecido/ocupacion_principal_id', function ($query, $value) {
-                    $query->where('d.estatus_cebv_id', 'LIKE', ["%{$value}%"]);
+                    $query->where('d.ocupacion_principal_id', 'LIKE', ["%{$value}%"]);
                 }),
                 AllowedFilter::callback('desaparecido/ocupacion_principal', function ($query, $value) {
                     $query->join('ocupacion_principal as op', 'd.ocupacion_principal_id', '=', 'op.id')
-                        ->join('ocupaciones as o', 'op.ocupacion_id', '=', 'o.id')
+                        ->join('ocupaciones as oc', 'op.ocupacion_id', '=', 'oc.id')
                         ->where('op.nombre', 'LIKE', ["%{$value}%"]);
+                }),
+                AllowedFilter::callback('desaparecido/ocupacion_secundaria_id', function ($query, $value) {
+                    $query->where('d.ocupacion_secundaria_id', 'LIKE', ["%{$value}%"]);
+                }),
+                AllowedFilter::callback('desaparecido/ocupacion_secundaria', function ($query, $value) {
+                    $query->join('ocupacion_secundaria as os', 'd.ocupacion_secundaria_id', '=', 'os.id')
+                        ->join('ocupaciones as o', 'os.ocupacion_id', '=', 'o.id')
+                        ->where('os.nombre', 'LIKE', ["%{$value}%"]);
                 }),
                 AllowedFilter::callback('desaparecido/ocupacion_principal/tipo_ocupacion_id', function ($query, $value) {
                     $query->join('ocupacion_principal as top', 'd.ocupacion_principal_id', '=', 'op.id')

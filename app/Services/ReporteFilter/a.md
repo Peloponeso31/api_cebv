@@ -162,19 +162,19 @@ Por ejemplo `Filter[reportante/lengua_id]=2`
 | `desaparecido/lengua_id`            | `desaparecido/fecha_nacimiento_aproximada`  | `desaparecido/descripcion_ocupacion_principal`  |
 | `desaparecido/lengua`               | `desaparecido/fecha_nacimiento_cebv`        | `desaparecido/descripcion_ocupacion_secundaria` |
 
-| **Telefono**                             | **Edad**             | **Comunicacion** |
-|------------------------------------------|----------------------|----------|
-| `desaparecido/telefono`                  | `desaparecido/edad_anos` | `desaparecido/habla_espanhol` |
-| `desaparecido/telefono/compania_id`      | `desaparecido/edad_meses` | `desaparecido/sabe_leer` |
-| `desaparecido/telefono/compania`         | `desaparecido/edad_dias` | `desaparecido/sabe_escribir` |
-| `desaparecido/telefono/es_movil`         |                      |
-| **Estatus**                              | **Ocupacion**        |
-| `desaparecido/estatus_rpdno_id`          | `desaparecido/ocupacion_principal_id` |
-| `desaparecido/estatus_rpdno`             | `desaparecido/ocupacion_principal` |
+| **Telefono**                             | **Edad**                                           | **Comunicacion**                     |
+|------------------------------------------|----------------------------------------------------|--------------------------------------|
+| `desaparecido/telefono`                  | `desaparecido/edad_anos`                           | `desaparecido/habla_espanhol`        |
+| `desaparecido/telefono/compania_id`      | `desaparecido/edad_meses`                          | `desaparecido/sabe_leer`             |
+| `desaparecido/telefono/compania`         | `desaparecido/edad_dias`                           | `desaparecido/sabe_escribir`         |
+| `desaparecido/telefono/es_movil`         |                                                    |
+| **Estatus**                              | **Ocupacion**                                      |
+| `desaparecido/estatus_rpdno_id`          | `desaparecido/ocupacion_principal_id`              | 
+| `desaparecido/estatus_rpdno`             | `desaparecido/ocupacion_principal`                 |
 | `desaparecido/estatus_rpdno/abreviatura` | `desaparecido/ocupacion_principal/tipo_ocupacion_id` |
-| `desaparecido/estatus_cebv_id`           | `desaparecido/ocupacion_principal/tipo_ocupacion` |
-| `desaparecido/estatus_cebv`              |                      |
-| `desaparecido/estatus_cebv/abreviatura`  |                      |
+| `desaparecido/estatus_cebv_id`           | `desaparecido/ocupacion_principal/tipo_ocupacion`  |
+| `desaparecido/estatus_cebv`              | `desaparecido/ocupacion_secundaria_id`             | `desaparecido/ocupacion_secundaria/tipo_ocupacion_id` |
+| `desaparecido/estatus_cebv/abreviatura`  | `desaparecido/ocupacion_secundaria`                | `desaparecido/ocupacion_secundaria/tipo_ocupacion` |
 
 | **Desaparecido (otros)**                     |                                       |
 |----------------------------------------------|---------------------------------------|

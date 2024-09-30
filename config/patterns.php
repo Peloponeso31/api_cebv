@@ -173,4 +173,8 @@ return [
     'amistad' => [
         'tipo_red_social_id' => 'tipo_red_social.id',
     ],
+
+    'dato_complementario' => [
+        'direccion_id' => 'direccion.id',
+    ],
 ];

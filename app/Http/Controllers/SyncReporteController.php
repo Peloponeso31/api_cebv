@@ -18,17 +18,14 @@ use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Direccion;
 use App\Services\SyncPersonaService;
-use App\Services\SyncReporteService;
 use Illuminate\Support\Facades\Log;
 
 class SyncReporteController extends Controller
 {
-    protected SyncReporteService $syncReporte;
     protected SyncPersonaService $syncPersona;
 
-    function __construct(SyncReporteService $syncReporte, SyncPersonaService $syncPersona)
+    function __construct(SyncPersonaService $syncPersona)
     {
-        $this->syncReporte = $syncReporte;
         $this->syncPersona = $syncPersona;
     }
 
@@ -122,6 +119,15 @@ class SyncReporteController extends Controller
         if (isset($request[A::Perpetradores]) && !is_null($request[A::Perpetradores])) {
             $data = ArrayHelpers::setArrayRecursive($request[A::Perpetradores], A::ReporteId, $reporteId);
             ArrayHelpers::syncList(Perpetrador::class, $data, A::ReporteId, $reporteId, config('patterns.perpetrador'));
+        }
+
+        if (isset($request[A::DatoComplementario]) && !is_null($request[A::DatoComplementario])) {
+            $data = ArrayHelpers::setArrayValue($request[A::DatoComplementario], A::ReporteId, $reporteId);
+
+            if (isset($data[A::Direccion]) && !is_null($data[A::Direccion]))
+                $data[A::Direccion] = ArrayHelpers::asyncHandler(Direccion::class, $data[A::Direccion], config('patterns.direccion'));
+
+            ArrayHelpers::asyncHandler(Reporte::class, $data, config('patterns.dato_complementario'));
         }
 
         $reporte = Reporte::find($reporteId);

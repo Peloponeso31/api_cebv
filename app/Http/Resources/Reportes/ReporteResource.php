@@ -5,6 +5,7 @@ namespace App\Http\Resources\Reportes;
 use App\Http\Resources\BasicResource;
 use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ControlOgpiResource;
+use App\Http\Resources\DatoComplementarioResource;
 use App\Http\Resources\DesaparicionForzadaResource;
 use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\Informaciones\MedioResource;
@@ -27,9 +28,8 @@ class ReporteResource extends JsonResource
         return [
             'id' => $this->id,
             /**
-             * Atributos propios de reporte
+             * Relaciones
              */
-            // Llaves foráneas
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
             'institucion_origen' => CatalogoResource::make($this->institucion),
             'tipo_reporte' => BasicResource::make($this->tipoReporte),
@@ -42,7 +42,9 @@ class ReporteResource extends JsonResource
             'reportantes' => ReportanteResource::collection($this->reportantes),
             'hechos_desaparicion' => HechoDesaparicionResource::make($this->hechosDesaparicion),
             'hipotesis' => HipotesisResource::collection($this->hipotesis),
-            // Atributos
+            /**
+             * Atributos
+             */
             'esta_terminado' => $this->esta_terminado,
             'tipo_desaparicion' => $this->tipo_desaparicion,
             'fecha_creacion' => $this->fecha_creacion,
@@ -58,6 +60,8 @@ class ReporteResource extends JsonResource
             'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
             // Perpetradores
             'perpetradores' => PerpetradorResource::collection($this->perpetradores),
+            // Dato complementario
+            'dato_complementario' => DatoComplementarioResource::make($this->datoComplementario),
         ];
     }
 }

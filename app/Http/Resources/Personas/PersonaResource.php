@@ -32,8 +32,6 @@ use App\Http\Resources\TelefonoResource;
 use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
 use App\Http\Resources\VelloFacialResource;
-use App\Models\ContextoSocial;
-use App\Models\OcupacionPersona;
 use App\Models\Personas\Persona;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

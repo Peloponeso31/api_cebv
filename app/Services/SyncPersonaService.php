@@ -88,9 +88,7 @@ class SyncPersonaService
             $direcciones = [];
 
             foreach ($persona[P::Direcciones] as $direccion) {
-                $direccionId = ArrayHelpers::asyncHandler(Direccion::class, $direccion, config('patterns.direccion'))->getAttribute('id');
-
-                $direcciones[] = $direccionId;
+                $direcciones[] = ArrayHelpers::asyncHandler(Direccion::class, $direccion, config('patterns.direccion'))->getAttribute('id');
             }
 
             $persona->direcciones()->sync($direcciones);

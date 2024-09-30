@@ -4,6 +4,7 @@ namespace App\Models\Reportes;
 
 use App\Enums\TipoDesaparicion;
 use App\Models\ControlOgpi;
+use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\Informaciones\Medio;
@@ -164,5 +165,10 @@ class Reporte extends Model
     public function institucion(): BelongsTo
     {
         return $this->belongsTo(Institucion::class, 'institucion_origen_id');
+    }
+
+    public function datoComplementario(): HasOne
+    {
+        return $this->hasOne(DatoComplementario::class);
     }
 }

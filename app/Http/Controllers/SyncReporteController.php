@@ -7,6 +7,7 @@ use App\Helpers\JsonAttributes as A;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
+use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\Perpetrador;
@@ -127,7 +128,7 @@ class SyncReporteController extends Controller
             if (isset($data[A::Direccion]) && !is_null($data[A::Direccion]))
                 $data[A::Direccion] = ArrayHelpers::asyncHandler(Direccion::class, $data[A::Direccion], config('patterns.direccion'));
 
-            ArrayHelpers::asyncHandler(Reporte::class, $data, config('patterns.dato_complementario'));
+            ArrayHelpers::asyncHandler(DatoComplementario::class, $data, config('patterns.dato_complementario'));
         }
 
         $reporte = Reporte::find($reporteId);

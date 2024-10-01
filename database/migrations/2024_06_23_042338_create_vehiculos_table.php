@@ -16,11 +16,11 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('relacion_vehiculo_id')->constrained(table: 'cat_relaciones_vehiculos');
-            $table->foreignId('tipo_vehiculo_id')->constrained(table: 'cat_tipos_vehiculos');
-            $table->foreignId('uso_vehiculo_id')->constrained(table: 'cat_usos_vehiculos');
+            $table->foreignId('relacion_vehiculo_id')->nullable()->constrained(table: 'cat_relaciones_vehiculos');
+            $table->foreignId('tipo_vehiculo_id')->nullable()->constrained(table: 'cat_tipos_vehiculos');
+            $table->foreignId('uso_vehiculo_id')->nullable()->constrained(table: 'cat_usos_vehiculos');
             $table->foreignId('marca_vehiculo_id')->nullable()->constrained(table: 'cat_marcas_vehiculos');
-            $table->foreignId('color_id')->constrained(table: 'cat_colores');
+            $table->foreignId('color_id')->nullable()->constrained(table: 'cat_colores');
 
             $table->string('submarca')->nullable();
             $table->string('placa')->nullable();

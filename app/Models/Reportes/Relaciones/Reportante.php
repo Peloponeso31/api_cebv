@@ -27,11 +27,14 @@ class Reportante extends Model
         'informacion_exclusiva_busqueda',
         'publicacion_registro_nacional',
         'publicacion_boletin',
-        'pertenencia_colectivo',
         'informacion_relevante',
-        'participacion_busquedas',
-        'descripcion_extorsion',
-        'descripcion_donde_proviene',
+        'pertenencia_colectivo',
+        'participacion_previa_busquedas',
+        'descripcion_participacion_busquedas',
+        'victima_extorsion_fraude',
+        'descripcion_extorsion_fraude',
+        'recibio_amenazas',
+        'descripcion_origen_amenazas',
         'edad_estimada_anhos',
     ];
 

@@ -63,10 +63,6 @@ return [
         'tipo_condicion_salud_id' => 'tipo_condicion_salud.id',
     ],
 
-    'direccion' => [
-        'asentamiento_id' => 'asentamiento.id',
-    ],
-
     'telefono' => [
         'compania_id' => 'compania.id',
     ],
@@ -176,5 +172,13 @@ return [
 
     'dato_complementario' => [
         'direccion_id' => 'direccion.id',
+    ],
+
+    'vehiculo' => [
+        'relacion_vehiculo_id' => 'relacion_vehiculo.id',
+        'tipo_vehiculo_id' => 'tipo_vehiculo.id',
+        'uso_vehiculo_id' => 'uso_vehiculo.id',
+        'marca_vehiculo_id' => 'marca_vehiculo.id',
+        'color_id' => 'color.id',
     ],
 ];

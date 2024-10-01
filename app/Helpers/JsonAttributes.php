@@ -50,4 +50,6 @@ class JsonAttributes
 
     /** @var string */
     const DatoComplementario = 'dato_complementario';
+
+    const Vehiculos = 'vehiculos';
 }

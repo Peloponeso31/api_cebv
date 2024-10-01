@@ -13,8 +13,8 @@ class OcupacionPersonaResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'ocupacion' => OcupacionResource::make($this->ocupacion),
             'persona_id' => $this->persona_id,
+            'ocupacion' => OcupacionResource::make($this->ocupacion),
             'prioridad' => $this->prioridad,
             'observaciones' => $this->observaciones,
         ];

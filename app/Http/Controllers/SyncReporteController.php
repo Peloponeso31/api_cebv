@@ -18,6 +18,7 @@ use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Direccion;
+use App\Models\Vehiculo;
 use App\Services\SyncPersonaService;
 use Illuminate\Support\Facades\Log;
 
@@ -131,7 +132,11 @@ class SyncReporteController extends Controller
             ArrayHelpers::asyncHandler(DatoComplementario::class, $data, config('patterns.dato_complementario'));
         }
 
-        $reporte = Reporte::find($reporteId);
-        return ReporteResource::make($reporte);
+        if (isset($request[A::Vehiculos]) && !is_null($request[A::Vehiculos])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Vehiculos], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Vehiculo::class, $data, A::ReporteId, $reporteId, config('patterns.vehiculo'));
+        }
+
+        return ReporteResource::make(Reporte::findOrFail($reporteId));
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
 use App\Http\Resources\Reportes\Relaciones\DesaparecidoResource;
 use App\Http\Resources\Reportes\Relaciones\ReportanteResource;
 use App\Http\Resources\Ubicaciones\EstadoResource;
+use App\Http\Resources\VehiculoResource;
 use App\Models\Reportes\Reporte;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -62,6 +63,8 @@ class ReporteResource extends JsonResource
             'perpetradores' => PerpetradorResource::collection($this->perpetradores),
             // Dato complementario
             'dato_complementario' => DatoComplementarioResource::make($this->datoComplementario),
+            // Vehiculos
+            'vehiculos' => VehiculoResource::collection($this->vehiculos),
         ];
     }
 }

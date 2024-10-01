@@ -15,7 +15,6 @@ class EstadoResource extends JsonResource
             'nombre' => $this->nombre,
             'abreviatura_inegi' => $this->abreviatura_inegi,
             'abreviatura_cebv' => $this->abreviatura_cebv,
-            'municipios_count' => $this->whenCounted('municipios')
         ];
     }
 }

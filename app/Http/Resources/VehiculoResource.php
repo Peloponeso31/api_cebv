@@ -13,6 +13,12 @@ class VehiculoResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'reporte_id' => $this->reporte_id,
+            'relacion_vehiculo' => CatalogoResource::make($this->relacionVehiculo),
+            'tipo_vehiculo' => CatalogoResource::make($this->tipoVehiculo),
+            'uso_vehiculo' => CatalogoResource::make($this->usoVehiculo),
+            'marca_vehiculo' => CatalogoResource::make($this->marcaVehiculo),
+            'color' => CatalogoResource::make($this->color),
             'submarca' => $this->submarca,
             'placa' => $this->placa,
             'modelo' => $this->modelo,
@@ -21,12 +27,6 @@ class VehiculoResource extends JsonResource
             'numero_permiso' => $this->numero_permiso,
             'descripcion' => $this->descripcion,
             'localizado' => $this->localizado,
-
-            'relacion_vehiculo' => CatalogoResource::make($this->relacionVehiculo),
-            'tipo_vehiculo' => CatalogoResource::make($this->tipoVehiculo),
-            'uso_vehiculo' => CatalogoResource::make($this->usoVehiculo),
-            'marca_vehiculo' => CatalogoResource::make($this->marcaVehiculo),
-            'color' => CatalogoResource::make($this->color),
         ];
     }
 }

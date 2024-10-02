@@ -280,6 +280,45 @@ Por ejemplo `Filter[reportante/lengua_id]=2`
 | `desaparecido/media_filiacion/tipo_cabello`      |
 
 
+**Vehiculos involucrados**
+
+| **`vehiculos_involucrados/relacion_vehiculo_id`** | **`vehiculos_involucrados/relacion_vehiculo`** |
+|--------------------------------------------------|----------------------------------------------|
+|    `vehiculos_involucrados/uso_Vehiculo_id`     | `vehiculos_involucrados/uso_Vehiculo`        |
+| `vehiculos_involucrados/tipo_vehiculo_id`         | `vehiculos_involucrados/tipo_vehiculo`   |
+|      `vehiculos_involucrados/marca_vehiculo_id`       | `vehiculos_involucrados/marca_vehiculo`      |
+| `vehiculos_involucrados/color_id`                 | `vehiculos_involucrados/color`               |
+
+- `vehiculos_involucrados/vehiculo_id`
+- `vehiculos_involucrados/submarca`
+- `vehiculos_involucrados/modelo`
+- `vehiculos_involucrados/placas`
+- `vehiculos_involucrados/numero_serie`
+- `vehiculos_involucrados/numero_motor`
+- `vehiculos_involucrados/numero_permiso`
+- `vehiculos_involucrados/descripcion`
+- `vehiculos_involucrados/localizado`
+
+**Prendas vestir**
+
+| **`prendas_vestir/pertenencia_id`**  | **`prendas_vestir/pertenencia`** |
+|--------------------------------|-----------------------------|
+| **`prendas_vestir/color_id`**  | **`prendas_vestir/color`** |
+| **`prendas_vestir/grupo_pertenencia_id`** | **`prendas_vestir/grupo_pertenencia`** |
+
+- `prendas_vestir/prenda_id`
+- `prendas_vestir/marca`
+- `prendas_vestir/descripcion`
+
+**Documentos**
+
+- `documentos/documento_id`
+- `documentos/tipo_documento`
+- `documentos/numero_documento`
+- `documentos/donde_radica`
+- `documentos/nombre_servidor_publico`
+- `documentos/fecha_recepcion`
+
 **FIltros reporte (Otros)**
 - `fecha_localizacion`
 - `sintesis_localizacion`

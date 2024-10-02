@@ -90,10 +90,9 @@ class SyncReporteController extends Controller
                 }
 
                 if (isset($desaparecido[A::Localizacion]) && !is_null($desaparecido[A::Localizacion])) {
-                    $data = ArrayHelpers::setArrayValue($desaparecido[A::Localizacion], P::PersonaId, $desaparecidoId);
+                    $data = ArrayHelpers::setArrayValue($desaparecido[A::Localizacion], A::DesaparecidoId, $desaparecidoId);
                     ArrayHelpers::asyncHandler(Localizacion::class, $data, config('patterns.localizacion'));
                 }
-
             }
         }
 

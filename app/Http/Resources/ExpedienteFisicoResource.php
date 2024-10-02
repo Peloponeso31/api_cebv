@@ -15,7 +15,7 @@ class ExpedienteFisicoResource extends JsonResource
            'id' => $this->id,
            'reporte_id' => $this->reporte_id,
            'area_receptora' => CatalogoResource::make($this->area),
-           'solicitante_expediente_id' => UserAdminResource::make($this->usuario),
+           'solicitante_expediente' => UserAdminResource::make($this->usuario),
            'fecha_cambio_area' => $this->fecha_cambio_area,
            'fecha_prestamo' => $this->fecha_prestamo,
            'fecha_devolucion' => $this->fecha_devolucion,

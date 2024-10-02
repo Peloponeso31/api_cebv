@@ -1,5 +1,5 @@
 // @no-log
-GET http://api_cebv.test/api/filtar-hechos?nombre=&apellidoPaterno=izquierdo
+GET http://api_cebv.test/api/filtar-hechos?nombre=jonatan&apellidoPaterno=luna
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 

@@ -69,7 +69,7 @@ class HechoDesaparicionController extends Controller
         }
 
         // Esta es la cosa más puerca que jamás he escrito en mi vida
-        // pero funciona mejor que nada
+        // pero funciona mejor que nada.
         $query = DB::table('hechos_desapariciones as h')
             ->join('desaparecidos as d', 'h.reporte_id', '=', 'd.reporte_id')
             ->join('personas as p', 'd.persona_id', '=', 'p.id')

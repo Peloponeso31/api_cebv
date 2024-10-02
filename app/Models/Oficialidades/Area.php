@@ -2,6 +2,8 @@
 
 namespace App\Models\Oficialidades;
 
+use App\Models\ExpedienteFisico;
+use App\Models\Localizacion;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Municipio;
@@ -39,5 +41,15 @@ class Area extends Model
     public function municipios(): HasMany
     {
         return $this->hasMany(Municipio::class, 'area_atiende_id', 'id');
+    }
+
+    public function expedienteFisicos(): HasMany
+    {
+        return $this->hasMany(ExpedienteFisico::class, 'area_receptora_id');
+    }
+
+    public function localizaciones(): HasMany
+    {
+        return $this->hasMany(Localizacion::class);
     }
 }

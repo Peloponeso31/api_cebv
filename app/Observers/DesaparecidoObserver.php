@@ -15,8 +15,8 @@ class DesaparecidoObserver
         $id = 1;
 
         $desaparecido->update([
-            'estatus_cebv_id' => $id,
-            'estatus_rpdno_id' => $id
+            'estatus_preliminar_id' => $id,
+            'estatus_formalizado_id' => $id
         ]);
     }
 

@@ -7,6 +7,7 @@ use App\Http\Resources\CatalogoResource;
 use App\Http\Resources\ControlOgpiResource;
 use App\Http\Resources\DatoComplementarioResource;
 use App\Http\Resources\DesaparicionForzadaResource;
+use App\Http\Resources\ExpedienteFisicoResource;
 use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\PerpetradorResource;
@@ -65,6 +66,8 @@ class ReporteResource extends JsonResource
             'dato_complementario' => DatoComplementarioResource::make($this->datoComplementario),
             // Vehiculos
             'vehiculos' => VehiculoResource::collection($this->vehiculos),
+            // Control de los expedientes fisicos
+            'expediente_fisico' => ExpedienteFisicoResource::make($this->expedienteFisico),
         ];
     }
 }

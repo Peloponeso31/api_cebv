@@ -12,8 +12,8 @@ return new class extends Migration {
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
             $table->foreignId('persona_id')->nullable()->constrained(table: 'personas');
-            $table->foreignId('estatus_rpdno_id')->nullable()->constrained(table: 'cat_estatus_personas');
-            $table->foreignId('estatus_cebv_id')->nullable()->constrained(table: 'cat_estatus_personas');
+            $table->foreignId('estatus_preliminar_id')->nullable()->constrained(table: 'cat_estatus_personas');
+            $table->foreignId('estatus_formalizado_id')->nullable()->constrained(table: 'cat_estatus_personas');
 
             $table->string('clasificacion_persona')->nullable();
             $table->string('url_boletin')->nullable();
@@ -30,7 +30,14 @@ return new class extends Migration {
             $table->integer('edad_momento_desaparicion_meses')->nullable();
             $table->integer('edad_momento_desaparicion_dias')->nullable();
             $table->string('identidad_resguardada')->nullable();
+            $table->text('senas_particulares_boletin')->nullable();
+            $table->text('informacion_adicional_boletin')->nullable();
             $table->text('boletin_img_path')->nullable();
+
+            $table->date('fecha_estatus_preliminar')->nullable()->useCurrent();
+            $table->date('fecha_estatus_formalizado')->nullable();
+            $table->date('fecha_captura_estatus_formalizado')->nullable()->useCurrentOnUpdate();
+            $table->text('observaciones_actualizacion_estatus')->nullable();
 
             $table->timestamps();
         });

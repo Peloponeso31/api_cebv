@@ -2,6 +2,7 @@
 
 namespace App\Models\Informaciones;
 
+use App\Models\Localizacion;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,5 +20,10 @@ class Sitio extends Model
     public function hechosDesaparicion(): HasMany
     {
         return $this->hasMany(HechoDesaparicion::class);
+    }
+
+    public function localizaciones(): HasMany
+    {
+        return $this->hasMany(Localizacion::class);
     }
 }

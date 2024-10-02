@@ -50,7 +50,8 @@ class DatabaseSeeder extends Seeder
             LadoSeeder::class,
             OficinaSeeder::class,
             TipoSeeder::class,
-            VistaSeeder::class
+            VistaSeeder::class,
+            TipoBoletinSeeder::class,
         ]);
 
         /**

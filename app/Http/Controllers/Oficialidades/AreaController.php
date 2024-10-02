@@ -21,13 +21,11 @@ class AreaController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
-
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
+        if (request()->has('all')) {
+            return CatalogoResource::collection($this->model->all());
         }
 
-        return CatalogoResource::collection($query->get());
+        return CatalogoResource::collection($this->model->all()->except(5));
     }
 
     public function store(AreaRequest $request)

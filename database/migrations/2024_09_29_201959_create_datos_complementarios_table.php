@@ -12,8 +12,8 @@ return new class extends Migration {
         Schema::create('datos_complementarios', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('reporte_id');
-            $table->foreignId('direccion_id')->nullable();
+            $table->foreignId('reporte_id')->constrained(table: 'reportes');
+            $table->foreignId('direccion_id')->nullable()->constrained(table: 'direcciones');
         });
     }
 

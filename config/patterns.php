@@ -19,8 +19,8 @@ return [
 
     'desaparecido' => [
         'persona_id' => 'persona.id',
-        'estatus_rpdno_id' => 'estatus_rpdno.id',
-        'estatus_cebv_id' => 'estatus_cebv.id',
+        'estatus_preliminar_id' => 'estatus_preliminar.id',
+        'estatus_formalizado_id' => 'estatus_formalizado.id',
     ],
 
     'hecho_desaparicion' => [
@@ -180,5 +180,21 @@ return [
         'uso_vehiculo_id' => 'uso_vehiculo.id',
         'marca_vehiculo_id' => 'marca_vehiculo.id',
         'color_id' => 'color.id',
+    ],
+
+    'expediente_fisico' => [
+        'area_receptora_id' => 'area_receptora.id',
+        'solicitante_expediente_id' => 'solicitante_expediente.id',
+    ],
+
+    'localizacion' => [
+        'sitio_id' => 'sitio.id',
+        'area_id' => 'area.id',
+        'municipio_localizacion_id' => 'municipio_localizacion.id',
+        'hipotesis_deb_id' => 'hipotesis_deb.id',
+    ],
+
+    'control_ogpi' => [
+        'estatus_rndpno_id' => 'estatus_rndpno.id',
     ],
 ];

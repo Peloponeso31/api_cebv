@@ -4,6 +4,7 @@ namespace App\Http\Resources\Reportes\Relaciones;
 
 use App\Http\Resources\BasicResource;
 use App\Http\Resources\FolioResource;
+use App\Http\Resources\LocalizacionResource;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Http\Resources\PrendaVestirResource;
 use App\Models\Reportes\Relaciones\Desaparecido;
@@ -21,11 +22,11 @@ class DesaparecidoResource extends JsonResource
              */
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
-            'identidad_resguardada' => $this->identidad_resguardada,
             'persona' => PersonaResource::make($this->persona),
-            'estatus_rpdno' => BasicResource::make($this->estatusRpdno),
-            'estatus_cebv' => BasicResource::make($this->estatusCebv),
+            'estatus_preliminar' => BasicResource::make($this->estatusPreliminar),
+            'estatus_formalizado' => BasicResource::make($this->estatusFormalizado),
             'clasificacion_persona' => $this->clasificacion_persona,
+            'url_boletin' => $this->url_boletin,
             'declaracion_especial_ausencia' => $this->declaracion_especial_ausencia,
             'accion_urgente' => $this->accion_urgente,
             'dictamen' => $this->dictamen,
@@ -37,7 +38,14 @@ class DesaparecidoResource extends JsonResource
             'edad_momento_desaparicion_anos' => $this->edad_momento_desaparicion_anos,
             'edad_momento_desaparicion_meses' => $this->edad_momento_desaparicion_meses,
             'edad_momento_desaparicion_dias' => $this->edad_momento_desaparicion_dias,
-            'url_boletin' => $this->url_boletin,
+            'identidad_resguardada' => $this->identidad_resguardada,
+            'senas_particulares_boletin' => $this->senas_particulares_boletin,
+            'informacion_adicional_boletin' => $this->informacion_adicional_boletin,
+            'boletin_img_path' => $this->boletin_img_path,
+            'fecha_estatus_preliminar' => $this->fecha_estatus_preliminar,
+            'fecha_estatus_formalizado' => $this->fecha_estatus_formalizado,
+            'fecha_captura_estatus_formalizado' => $this->fecha_captura_estatus_formalizado,
+            'observaciones_actualizacion_estatus' => $this->observaciones_actualizacion_estatus,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
 
@@ -47,6 +55,7 @@ class DesaparecidoResource extends JsonResource
             'documentos_legales' => DocumentoLegalResource::collection($this->documentosLegales),
             'folios' => FolioResource::make($this->folio()),
             'prendas_vestir' => PrendaVestirResource::collection($this->prendasVestir),
+            'localizacion' => LocalizacionResource::make($this->localizacion),
         ];
     }
 }

@@ -15,8 +15,8 @@ class DesaparecidoFactory extends Factory
             'persona_id' => Persona::factory(),
             'reporte_id' => Reporte::factory(),
             'clasificacion_persona' => fake()->word(),
-            'estatus_rpdno_id' => EstatusPersona::inRandomOrder()->first()->id,
-            'estatus_cebv_id' => EstatusPersona::inRandomOrder()->first()->id,
+            'estatus_preliminar_id' => EstatusPersona::inRandomOrder()->first()->id,
+            'estatus_formalizado_id' => EstatusPersona::inRandomOrder()->first()->id,
             'url_boletin' => fake()->imageUrl(1080, 720, 'boletín'),
         ];
     }

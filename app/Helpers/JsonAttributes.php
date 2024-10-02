@@ -5,6 +5,9 @@ namespace App\Helpers;
 class JsonAttributes
 {
     /** @var string */
+    const Id = 'id';
+
+    /** @var string */
     const Reportantes = 'reportantes';
 
     /** @var string */
@@ -52,4 +55,8 @@ class JsonAttributes
     const DatoComplementario = 'dato_complementario';
 
     const Vehiculos = 'vehiculos';
+    const ExpedienteFisico = 'expediente_fisico';
+
+    const Localizacion = 'localizacion';
+    const Folios = 'folios';
 }

@@ -77,6 +77,7 @@ class PersonaAttributes
     const EnfoquesPersonales = 'enfoques_personales';
 
     const Ocupaciones = 'ocupaciones';
+    const Ocupacion = 'ocupacion';
 
     const Embarazo = 'embarazo';
 

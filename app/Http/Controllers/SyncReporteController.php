@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ArrayHelpers;
 use App\Helpers\JsonAttributes as A;
+use App\Helpers\PersonaAttributes as P;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
+use App\Models\ControlOgpi;
 use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
+use App\Models\ExpedienteFisico;
+use App\Models\Localizacion;
+use App\Models\Oficialidades\Folio;
 use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
@@ -83,6 +88,12 @@ class SyncReporteController extends Controller
                         A::DesaparecidoId,
                         $desaparecidoId);
                 }
+
+                if (isset($desaparecido[A::Localizacion]) && !is_null($desaparecido[A::Localizacion])) {
+                    $data = ArrayHelpers::setArrayValue($desaparecido[A::Localizacion], P::PersonaId, $desaparecidoId);
+                    ArrayHelpers::asyncHandler(Localizacion::class, $data, config('patterns.localizacion'));
+                }
+
             }
         }
 
@@ -91,8 +102,6 @@ class SyncReporteController extends Controller
 
             if (isset($data[A::Direccion]) && !is_null($data[A::Direccion])) {
                 $data[A::Direccion] = ArrayHelpers::asyncHandler(Direccion::class, $data[A::Direccion], config('patterns.direccion'));
-
-                Log::info("Direccion: " . json_encode($data[A::Direccion]));
             }
 
             ArrayHelpers::asyncHandler(HechoDesaparicion::class, $data, config('patterns.hecho_desaparicion'));
@@ -105,7 +114,7 @@ class SyncReporteController extends Controller
 
         if (isset($request[A::ControlOgpi]) && !is_null($request[A::ControlOgpi])) {
             $data = ArrayHelpers::setArrayValue($request[A::ControlOgpi], A::ReporteId, $reporteId);
-            ArrayHelpers::asyncHandler(Reporte::class, $data);
+            ArrayHelpers::asyncHandler(ControlOgpi::class, $data, config('patterns.control_ogpi'));
         }
 
         if (isset($request[A::Expedientes]) && !is_null($request[A::Expedientes])) {
@@ -135,6 +144,11 @@ class SyncReporteController extends Controller
         if (isset($request[A::Vehiculos]) && !is_null($request[A::Vehiculos])) {
             $data = ArrayHelpers::setArrayRecursive($request[A::Vehiculos], A::ReporteId, $reporteId);
             ArrayHelpers::syncList(Vehiculo::class, $data, A::ReporteId, $reporteId, config('patterns.vehiculo'));
+        }
+
+        if (isset($request[A::ExpedienteFisico]) && !is_null($request[A::ExpedienteFisico])) {
+            $data = ArrayHelpers::setArrayValue($request[A::ExpedienteFisico], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(ExpedienteFisico::class, $data, config('patterns.expediente_fisico'));
         }
 
         return ReporteResource::make(Reporte::findOrFail($reporteId));

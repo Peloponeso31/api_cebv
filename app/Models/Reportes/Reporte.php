@@ -7,6 +7,7 @@ use App\Models\ControlOgpi;
 use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
+use App\Models\ExpedienteFisico;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
@@ -170,5 +171,10 @@ class Reporte extends Model
     public function datoComplementario(): HasOne
     {
         return $this->hasOne(DatoComplementario::class);
+    }
+
+    public function expedienteFisico(): HasOne
+    {
+        return $this->hasOne(ExpedienteFisico::class, 'reporte_id');
     }
 }

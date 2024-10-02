@@ -54,28 +54,27 @@ class ReporteService
             if (Folio::where('persona_id', $desaparecido->persona_id)->where('reporte_id', $reporte->id)->exists()) {
                 $foliosRepetidos[] = "$desaparecido->persona_id";
             } else {
-                $foliosAsignados[] = "$desaparecido->persona_id";
-
-                $this->createFolio($userId, $reporte, $desaparecido);
+                if ($this->createFolio($userId, $reporte, $desaparecido))
+                    $foliosAsignados[] = "$desaparecido->persona_id";
             }
         }
 
-        return response()->json([
-            "Se asignaron los folios correctamente para el reporte" => $reporte->id,
-            "Folios asignados a personas: " => $foliosAsignados,
-            "Folios existentes a personas: " => $foliosRepetidos,
-        ]);
+        if (empty($foliosAsignados) && empty($foliosRepetidos))
+            return response()->json(["error" => "No se asignaron folios"], 401);
+
+        return response()->json(["success" => "Folios asignados correctamente"]);
     }
 
-    public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido): void
+    public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido): bool
     {
-        $fechaD = $reporte->hechosDesaparicion->fecha_desaparicion;
 
-        if (is_null($fechaD)) $fechaDesaparicion = 'AA';
-        else $fechaDesaparicion = $fechaD->format('y');
+        if (!isset($reporte->hechosDesaparicion->fecha_desaparicion) || is_null($reporte->hechosDesaparicion->fecha_desaparicion)) {
+            $fechaDesaparicion = 'AA';
+        } else {
+            $fechaDesaparicion = $reporte->hechosDesaparicion->fecha_desaparicion->format('y');
+        }
 
-
-        if (!isset($reporte->tipoReporte)) return;
+        if (!isset($reporte->tipoReporte) || is_null($reporte->tipoReporte)) return false;
 
         // Si es solicitud de busqueda familiar, colaboracion, o de difusion, entonces agarrar la terminacion
         // de donde proviene, si no, agarrarlo de la zona del estado de Veracruz: ['ZN', 'ZC', 'ZS'].
@@ -106,5 +105,7 @@ class ReporteService
                 'terminacion' => $terminacion,
             ]
         ]);
+
+        return true;
     }
 }

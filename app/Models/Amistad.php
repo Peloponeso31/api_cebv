@@ -24,6 +24,8 @@ class Amistad extends Model
         'observaciones_red_social',
     ];
 
+    public $timestamps = false;
+
     public function persona(): BelongsTo
     {
         return $this->belongsTo(Persona::class, 'persona_id');

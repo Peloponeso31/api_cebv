@@ -2,14 +2,19 @@
 
 namespace App\Services;
 
-use App\Helpers\ArrayHelpers;
+use App\Helpers\ArrayHelpers as AH;
 use App\Helpers\PersonaAttributes as P;
+use App\Models\Amistad;
+use App\Models\Familiar;
 use App\Models\Boca;
 use App\Models\Cabello;
+use App\Models\ClubPersona;
 use App\Models\CondicionSalud;
 use App\Models\Contacto;
+use App\Models\ContextoEconomico;
 use App\Models\ContextoFamiliar;
 use App\Models\ContextoSocial;
+use App\Models\Embarazo;
 use App\Models\EnfermedadPiel;
 use App\Models\EnfoqueDiferenciado;
 use App\Models\EnfoquePersonal;
@@ -20,6 +25,7 @@ use App\Models\Nariz;
 use App\Models\OcupacionPersona;
 use App\Models\Ojo;
 use App\Models\Oreja;
+use App\Models\PasatiempoPersona;
 use App\Models\Personas\Persona;
 use App\Models\Pseudonimo;
 use App\Models\Salud;
@@ -34,12 +40,12 @@ class SyncPersonaService
 {
     public function persona(array $request): Model
     {
-        $persona = ArrayHelpers::asyncHandler(Persona::class, $request, config('patterns.persona'));
+        $persona = AH::asyncHandler(Persona::class, $request, config('patterns.persona'));
         $personaId = $persona->getAttribute('id');
 
         if (isset($request[P::Pseudonimos]) && !is_null($request[P::Pseudonimos])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::Pseudonimos], P::PersonaId, $personaId);
-            ArrayHelpers::syncList(Pseudonimo::class, $data, P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::Pseudonimos], P::PersonaId, $personaId);
+            AH::syncList(Pseudonimo::class, $data, P::PersonaId, $personaId);
         }
 
         if (isset($request[P::Nacionalidades]) && !is_null($request[P::Nacionalidades])) {
@@ -67,24 +73,22 @@ class SyncPersonaService
         }
 
         if (isset($request[P::Telefonos]) && !is_null($request[P::Telefonos])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::Telefonos], P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::Telefonos], P::PersonaId, $personaId);
 
-            ArrayHelpers::syncList(Telefono::class, $data, P::PersonaId, $personaId, config('patterns.telefono'));
+            AH::syncList(Telefono::class, $data, P::PersonaId, $personaId, config('patterns.telefono'));
         }
 
         if (isset($request[P::Contactos]) && !is_null($request[P::Contactos])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::Contactos], P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::Contactos], P::PersonaId, $personaId);
 
-            ArrayHelpers::syncList(Contacto::class, $data, P::PersonaId, $personaId);
+            AH::syncList(Contacto::class, $data, P::PersonaId, $personaId);
         }
 
         if (isset($request[P::Direcciones]) && !is_null($request[P::Direcciones])) {
             $direcciones = [];
 
             foreach ($persona[P::Direcciones] as $direccion) {
-                $direccionId = ArrayHelpers::asyncHandler(Direccion::class, $direccion, config('patterns.direccion'))->getAttribute('id');
-
-                $direcciones[] = $direccionId;
+                $direcciones[] = AH::asyncHandler(Direccion::class, $direccion, config('patterns.direccion'))->getAttribute('id');
             }
 
             $persona->direcciones()->sync($direcciones);
@@ -92,10 +96,10 @@ class SyncPersonaService
 
         if (isset($request[P::SenasParticulares]) && !is_null($request[P::SenasParticulares])) {
             $senasModified = [];
-            $data = ArrayHelpers::setArrayRecursive($request[P::SenasParticulares], P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::SenasParticulares], P::PersonaId, $personaId);
 
             foreach ($data as $sena) {
-                $senasModified[] = ArrayHelpers::asyncHandler(SenasParticulares::class, $sena, config('patterns.senas_particulares'))->getAttribute('id');
+                $senasModified[] = AH::asyncHandler(SenasParticulares::class, $sena, config('patterns.senas_particulares'))->getAttribute('id');
 
                 if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
                     $last_sena = SenasParticulares::findOrFail(end($senasModified));
@@ -113,69 +117,69 @@ class SyncPersonaService
         }
 
         if (isset($request[P::Estudios]) && !is_null($request[P::Estudios])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Estudios], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Estudios], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Estudio::class, $data, config('patterns.estudios'));
+            AH::asyncHandler(Estudio::class, $data, config('patterns.estudios'));
         }
 
         if (isset($request[P::ContextoFamiliar]) && !is_null($request[P::ContextoFamiliar])) {
-            $data = ArrayHelpers::setArrayValue($request[P::ContextoFamiliar], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::ContextoFamiliar], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(ContextoFamiliar::class, $data, config('patterns.contexto_familiar'));
+            AH::asyncHandler(ContextoFamiliar::class, $data, config('patterns.contexto_familiar'));
         }
 
         if (isset($request[P::Salud]) && !is_null($request[P::Salud])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Salud], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Salud], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Salud::class, $data, config('patterns.salud'));
+            AH::asyncHandler(Salud::class, $data, config('patterns.salud'));
         }
 
         if (isset($request[P::Ojos]) && !is_null($request[P::Ojos])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Ojos], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Ojos], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Ojo::class, $data, config('patterns.ojos'));
+            AH::asyncHandler(Ojo::class, $data, config('patterns.ojos'));
         }
 
         if (isset($request[P::Cabello]) && !is_null($request[P::Cabello])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Cabello], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Cabello], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Cabello::class, $data, config('patterns.cabello'));
+            AH::asyncHandler(Cabello::class, $data, config('patterns.cabello'));
         }
 
         if (isset($request[P::VelloFacial]) && !is_null($request[P::VelloFacial])) {
-            $data = ArrayHelpers::setArrayValue($request[P::VelloFacial], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::VelloFacial], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(VelloFacial::class, $data, config('patterns.vello_facial'));
+            AH::asyncHandler(VelloFacial::class, $data, config('patterns.vello_facial'));
         }
 
         if (isset($request[P::Nariz]) && !is_null($request[P::Nariz])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Nariz], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Nariz], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Nariz::class, $data, config('patterns.nariz'));
+            AH::asyncHandler(Nariz::class, $data, config('patterns.nariz'));
         }
 
         if (isset($request[P::Boca]) && !is_null($request[P::Boca])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Boca], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Boca], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Boca::class, $data, config('patterns.boca'));
+            AH::asyncHandler(Boca::class, $data, config('patterns.boca'));
         }
 
         if (isset($request[P::Orejas]) && !is_null($request[P::Orejas])) {
-            $data = ArrayHelpers::setArrayValue($request[P::Orejas], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::Orejas], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(Oreja::class, $data, config('patterns.orejas'));
+            AH::asyncHandler(Oreja::class, $data, config('patterns.orejas'));
         }
 
         if (isset($request[P::MediaFiliacionComplementaria]) && !is_null($request[P::MediaFiliacionComplementaria])) {
-            $data = ArrayHelpers::setArrayValue($request[P::MediaFiliacionComplementaria], P::PersonaId, $personaId);
+            $data = AH::setArrayValue($request[P::MediaFiliacionComplementaria], P::PersonaId, $personaId);
 
-            ArrayHelpers::asyncHandler(MediaFiliacionComplementaria::class, $data, config('patterns.media_filiacion_complementaria'));
+            AH::asyncHandler(MediaFiliacionComplementaria::class, $data, config('patterns.media_filiacion_complementaria'));
         }
 
         if (isset($request[P::IntervencionesQuirurgicas]) && !is_null($request[P::IntervencionesQuirurgicas])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::IntervencionesQuirurgicas], P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::IntervencionesQuirurgicas], P::PersonaId, $personaId);
 
-            ArrayHelpers::syncList(
+            AH::syncList(
                 IntervencionQuirurgica::class,
                 $data,
                 P::PersonaId,
@@ -184,9 +188,9 @@ class SyncPersonaService
         }
 
         if (isset($request[P::EnfermedadesPiel]) && !is_null($request[P::EnfermedadesPiel])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::EnfermedadesPiel], P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::EnfermedadesPiel], P::PersonaId, $personaId);
 
-            ArrayHelpers::syncList(
+            AH::syncList(
                 EnfermedadPiel::class,
                 $data,
                 P::PersonaId,
@@ -195,29 +199,62 @@ class SyncPersonaService
         }
 
         if (isset($request[P::CondicionesSalud]) && !is_null($request[P::CondicionesSalud])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::CondicionesSalud], P::PersonaId, $personaId);
+            $data = AH::setArrayRecursive($request[P::CondicionesSalud], P::PersonaId, $personaId);
 
-            ArrayHelpers::syncList(CondicionSalud::class, $data, P::PersonaId, $personaId, config('patterns.condicion_salud'));
+            AH::syncList(CondicionSalud::class, $data, P::PersonaId, $personaId, config('patterns.condicion_salud'));
         }
 
         if (isset($request[P::EnfoqueDiferenciado]) && !is_null($request[P::EnfoqueDiferenciado])) {
-            $data = ArrayHelpers::setArrayValue($request[P::EnfoqueDiferenciado], P::PersonaId, $personaId);
-            ArrayHelpers::asyncHandler(EnfoqueDiferenciado::class, $data);
+            $data = AH::setArrayValue($request[P::EnfoqueDiferenciado], P::PersonaId, $personaId);
+            AH::asyncHandler(EnfoqueDiferenciado::class, $data);
         }
 
         if (isset($request[P::ContextoSocial]) && !is_null($request[P::ContextoSocial])) {
-            $data = ArrayHelpers::setArrayValue($request[P::ContextoSocial], P::PersonaId, $personaId);
-            ArrayHelpers::asyncHandler(ContextoSocial::class, $data, config('patterns.contexto_social'));
+            $data = AH::setArrayValue($request[P::ContextoSocial], P::PersonaId, $personaId);
+            AH::asyncHandler(ContextoSocial::class, $data, config('patterns.contexto_social'));
         }
 
         if (isset($request[P::EnfoquesPersonales]) && !is_null($request[P::EnfoquesPersonales])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::EnfoquesPersonales], P::PersonaId, $personaId);
-            ArrayHelpers::syncList(EnfoquePersonal::class, $data, P::PersonaId, $personaId, config('patterns.enfoque_personal'));
+            $data = AH::setArrayRecursive($request[P::EnfoquesPersonales], P::PersonaId, $personaId);
+            AH::syncList(EnfoquePersonal::class, $data, P::PersonaId, $personaId, config('patterns.enfoque_personal'));
         }
 
-        if(isset($request[P::Ocupaciones]) && !is_null($request[P::Ocupaciones])) {
-            $data = ArrayHelpers::setArrayRecursive($request[P::Ocupaciones], P::PersonaId, $personaId);
-            ArrayHelpers::syncList(OcupacionPersona::class, $data, P::PersonaId, $personaId, config('patterns.ocupacion'));
+        if (isset($request[P::Ocupaciones]) && !is_null($request[P::Ocupaciones])) {
+            $data = AH::setArrayRecursive($request[P::Ocupaciones], P::PersonaId, $personaId);
+            AH::syncList(OcupacionPersona::class, $data, P::PersonaId, $personaId, config('patterns.ocupacion'));
+        }
+
+        if (isset($request[P::Embarazo]) && !is_null($request[P::Embarazo])) {
+            $data = AH::setArrayValue($request[P::Embarazo], P::PersonaId, $personaId);
+            if ($data['meses'] >= 9) $data['meses'] = 9;
+            if ($data['meses'] <= 0) $data['meses'] = 0;
+
+            AH::asyncHandler(Embarazo::class, $data);
+        }
+
+        if (isset($request[P::Familiares]) && !is_null($request[P::Familiares])) {
+            $data = AH::setArrayRecursive($request[P::Familiares], P::PersonaId, $personaId);
+            AH::syncList(Familiar::class, $data, P::PersonaId, $personaId, config('patterns.familiar'));
+        }
+
+        if (isset($request[P::ContextoEconomico]) && !is_null($request[P::ContextoEconomico])) {
+            $data = AH::setArrayValue($request[P::ContextoEconomico], P::PersonaId, $personaId);
+            AH::asyncHandler(ContextoEconomico::class, $data);
+        }
+
+        if (isset($request[P::Pasatiempos]) && !is_null($request[P::Pasatiempos])) {
+            $data = AH::setArrayRecursive($request[P::Pasatiempos], P::PersonaId, $personaId);
+            AH::syncList(PasatiempoPersona::class, $data, P::PersonaId, $personaId, config('patterns.pasatiempo'));
+        }
+
+        if (isset($request[P::Clubes]) && !is_null($request[P::Clubes])) {
+            $data = AH::setArrayRecursive($request[P::Clubes], P::PersonaId, $personaId);
+            AH::syncList(ClubPersona::class, $data, P::PersonaId, $personaId, config('patterns.club'));
+        }
+
+        if (isset($request[P::Amistades]) && !is_null($request[P::Amistades])) {
+            $data = AH::setArrayRecursive($request[P::Amistades], P::PersonaId, $personaId);
+            AH::syncList(Amistad::class, $data, P::PersonaId, $personaId, config('patterns.amistad'));
         }
 
         return Persona::findOrFail($personaId);

@@ -3,11 +3,11 @@
 namespace App\Models\Ubicaciones;
 
 use App\Models\Amistad;
+use App\Models\DatoComplementario;
 use App\Models\Estudio;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -75,6 +75,12 @@ class Direccion extends Model
     {
         return $this->hasMany(Estudio::class);
     }
+
+    public function datoComplementario(): HasMany
+    {
+        return $this->hasMany(DatoComplementario::class);
+    }
+
 
     public function toSearchableArray()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Models\Personas;
 
+use App\Models\ControlOgpi;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,5 +26,10 @@ class EstatusPersona extends Model
     public function desaparecidosCebv(): HasMany
     {
         return $this->hasMany(Desaparecido::class);
+    }
+
+    public function controlOgpis(): HasMany
+    {
+        return $this->hasMany(ControlOgpi::class);
     }
 }

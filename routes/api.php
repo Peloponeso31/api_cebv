@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\EstatusEscolaridadController;
+use App\Http\Controllers\PasatiempoController;
 use App\Http\Controllers\PseudonimoController;
 use App\Http\Controllers\AutoridadController;
 use App\Http\Controllers\CalvicieController;
@@ -37,6 +39,7 @@ use App\Http\Controllers\SituacionMigratoriaController;
 use App\Http\Controllers\SyncReporteController;
 use App\Http\Controllers\TamanoBocaController;
 use App\Http\Controllers\TamanoCabelloController;
+use App\Http\Controllers\TipoBoletinController;
 use App\Http\Controllers\TipoCondicionSaludController;
 use App\Http\Controllers\TipoEnfermedadPielController;
 use App\Http\Controllers\TipoEnfoqueDiferenciadoController;
@@ -322,6 +325,15 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/desapariciones-forzadas', DesaparicionForzadaController::class);
 
     Route::get('personas/{persona}/folios', [PersonaController::class, 'getFolios']);
+    Route::get('/filtar-hechos', [HechoDesaparicionController::class, 'filtrarPersonas']);
+
+
+    /**
+     * Mas rutas que no sé dónde meter
+     */
+    Route::apiResource('/pasatiempos', PasatiempoController::class);
+    Route::apiResource('/clubes', ClubController::class);
+    Route::apiResource('/tipos-boletines', TipoBoletinController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

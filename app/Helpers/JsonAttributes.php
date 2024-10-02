@@ -4,9 +4,8 @@ namespace App\Helpers;
 
 class JsonAttributes
 {
-    /**
-     * Atributos del request
-     */
+    /** @var string */
+    const Id = 'id';
 
     /** @var string */
     const Reportantes = 'reportantes';
@@ -24,10 +23,6 @@ class JsonAttributes
 
     /** @var string */
     const EstaTerminado = 'esta_terminado';
-
-    /**
-     * Llaves foráneas
-     */
 
     /** @var string */
     const ReporteId = 'reporte_id';
@@ -52,4 +47,16 @@ class JsonAttributes
 
     /** @var string */
     const Perpetradores = 'perpetradores';
+
+    /** @var string */
+    const Direccion = 'direccion';
+
+    /** @var string */
+    const DatoComplementario = 'dato_complementario';
+
+    const Vehiculos = 'vehiculos';
+    const ExpedienteFisico = 'expediente_fisico';
+
+    const Localizacion = 'localizacion';
+    const Folios = 'folios';
 }

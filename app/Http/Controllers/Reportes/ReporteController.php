@@ -39,7 +39,7 @@ class ReporteController extends Controller
             return ReporteCompactedResource::collection($query);
         }
 
-        return ReporteResource::collection($query->orderByDesc("id")->get());
+        return ReporteResource::collection($query->orderByDesc('id')->get());
     }
 
     public function store(ReporteRequest $request)

@@ -30,7 +30,6 @@ return new class extends Migration {
             $table->text('observaciones_curp')->nullable();
             $table->string('rfc', 13)->unique()->nullable();
             $table->boolean('habla_espanhol')->nullable();
-            $table->text('especificaciones_ocupacion')->nullable();
 
             $table->foreign('lugar_nacimiento_id')
                 ->references('id')->on('cat_estados');

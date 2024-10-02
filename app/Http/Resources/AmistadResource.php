@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Personas\PersonaResource;
+use App\Models\Amistad;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Amistad */
+/** @mixin Amistad */
 class AmistadResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -22,8 +22,6 @@ class AmistadResource extends JsonResource
             'telefono' => $this->telefono,
             'usuario_red_social' => $this->usuario_red_social,
             'observaciones_red_social' => $this->observaciones_red_social,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ];
     }
 }

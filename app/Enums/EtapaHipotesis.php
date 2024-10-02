@@ -4,7 +4,8 @@ namespace App\Enums;
 
 enum EtapaHipotesis: string
 {
-    case Inicial = 'Inicial';
-
-    case Final = 'Final';
+    case InicialPrimaria = 'Inicial Primaria';
+    case InicialSecundaria = 'Inicial Secundaria';
+    case FinalPrimaria = 'Final Primaria';
+    case FinalSecundaria = 'Final Secundaria';
 }

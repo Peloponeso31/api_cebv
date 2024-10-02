@@ -3,6 +3,7 @@
 namespace App\Models\Reportes\Relaciones;
 
 use App\Models\Catalogos\PrendaVestir;
+use App\Models\Localizacion;
 use App\Models\Oficialidades\Folio;
 use App\Models\Personas\EstatusPersona;
 use App\Models\Personas\Persona;
@@ -10,6 +11,7 @@ use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Desaparecido extends Model
 {
@@ -18,8 +20,8 @@ class Desaparecido extends Model
     protected $fillable = [
         'reporte_id',
         'persona_id',
-        'estatus_rpdno_id',
-        'estatus_cebv_id',
+        'estatus_preliminar_id',
+        'estatus_formalizado_id',
         'clasificacion_persona',
         'url_boletin',
         'declaracion_especial_ausencia',
@@ -34,7 +36,13 @@ class Desaparecido extends Model
         'edad_momento_desaparicion_meses',
         'edad_momento_desaparicion_dias',
         'identidad_resguardada',
+        'senas_particulares_boletin',
+        'informacion_adicional_boletin',
         'boletin_img_path',
+        'fecha_estatus_preliminar',
+        'fecha_estatus_formalizado',
+        'fecha_captura_estatus_formalizado',
+        'observaciones_actualizacion_estatus',
     ];
 
     protected $casts = [
@@ -42,6 +50,9 @@ class Desaparecido extends Model
         'accion_urgente' => 'boolean',
         'dictamen' => 'boolean',
         'ci_nivel_federal' => 'boolean',
+        'fecha_estatus_preliminar' => 'date',
+        'fecha_estatus_formalizado' => 'date',
+        'fecha_captura_estatus_formalizado' => 'date',
     ];
 
     protected function reporte(): BelongsTo
@@ -54,14 +65,14 @@ class Desaparecido extends Model
         return $this->belongsTo(Persona::class, 'persona_id');
     }
 
-    protected function estatusRpdno(): BelongsTo
+    public function estatusPreliminar(): BelongsTo
     {
-        return $this->belongsTo(EstatusPersona::class, 'estatus_rpdno_id');
+        return $this->belongsTo(EstatusPersona::class, 'estatus_preliminar_id');
     }
 
-    protected function estatusCebv(): BelongsTo
+    public function estatusFormalizado(): BelongsTo
     {
-        return $this->belongsTo(EstatusPersona::class, 'estatus_cebv_id');
+        return $this->belongsTo(EstatusPersona::class, 'estatus_formalizado_id');
     }
 
     public function documentosLegales(): HasMany
@@ -74,11 +85,16 @@ class Desaparecido extends Model
         return $this->hasMany(PrendaVestir::class);
     }
 
-    public function folio(): ?Model
+    public function folio(): ?Folio
     {
         return Folio::where('persona_id', $this->persona_id)
             ->where('reporte_id', $this->reporte_id)
             ->first();
+    }
+
+    public function localizacion(): HasOne
+    {
+        return $this->hasOne(Localizacion::class);
     }
 
 }

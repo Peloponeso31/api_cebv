@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\EtapaHipotesis;
 use App\Enums\TipoDesaparicion;
 use App\Helpers\EnumHelper;
 use Illuminate\Foundation\Http\FormRequest;
@@ -62,10 +63,8 @@ class ReporteTotalRequest extends FormRequest
 
             //hipotesis
             'hipotesis.*.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
-            'hipotesis.*.tipo_hipotesis_id' => ['nullable', 'exists:tipos_hipotesis,id', 'numeric'],
-            'hipotesis.*.sitio_id' => ['nullable', 'exists:sitios,id', 'numeric'],
-            'hipotesis.*.area_asigna_sitio_id' => ['nullable', 'exists:areas,id', 'numeric'],
-            'hipotesis.*.etapa' => ['nullable', Rule::in('Inicial', 'Final')],
+            'hipotesis.*.tipo_hipotesis_id' => ['nullable', 'exists:cat_tipos_hipotesis,id', 'numeric'],
+            'hipotesis.*.etapa' => ['nullable', Rule::in(EnumHelper::toList(EtapaHipotesis::class))],
 
             // Reportante
             //'reportantes.*.reporte_id' => ['exists:reportes,id', 'numeric'],

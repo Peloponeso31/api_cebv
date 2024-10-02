@@ -2,8 +2,6 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Collection;
-
 class PersonaAttributes
 {
     /** @var string */
@@ -79,6 +77,17 @@ class PersonaAttributes
     const EnfoquesPersonales = 'enfoques_personales';
 
     const Ocupaciones = 'ocupaciones';
+    const Ocupacion = 'ocupacion';
 
     const Embarazo = 'embarazo';
+
+    const Familiares = 'familiares';
+
+    const ContextoEconomico = 'contexto_economico';
+
+    const Pasatiempos = 'pasatiempos';
+
+    const Clubes = 'clubes';
+
+    const Amistades = 'amistades';
 }

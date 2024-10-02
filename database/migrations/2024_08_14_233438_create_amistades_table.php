@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('persona_id')->constrained(table: 'personas');
-            $table->foreignId('tipo_red_social_id')->constrained(table: 'cat_tipos_redes_sociales');
+            $table->foreignId('tipo_red_social_id')->nullable()->constrained(table: 'cat_tipos_redes_sociales');
 
             $table->string('nombre');
             $table->string('apellido_paterno')->nullable();
@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->string('telefono', 10)->nullable();
             $table->string('usuario_red_social')->nullable();
             $table->string('observaciones_red_social')->nullable();
-            $table->timestamps();
         });
     }
 

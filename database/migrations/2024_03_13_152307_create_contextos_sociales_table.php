@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('persona_id')->constrained(table: 'personas');
-            $table->foreignId('situacion_migratoria_id')->constrained(table: 'cat_situaciones_migratorias');
+            $table->foreignId('situacion_migratoria_id')->nullable()->constrained(table: 'cat_situaciones_migratorias');
 
             $table->boolean('esta_transito_estados_unidos')->nullable();
             $table->text('descripcion_proceso_migratorio')->nullable();

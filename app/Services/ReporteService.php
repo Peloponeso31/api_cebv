@@ -37,7 +37,7 @@ class ReporteService
          * TODO: Completar la validación de los campos mínimos requeridos para asignar un folio.
          */
         //if (!$reporte->esta_terminado)
-         //   return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
+        //   return response()->json("El reporte $reporte->id es un borrador, no se puede asignar un folio", 400);
 
         $desaparecidos = Desaparecido::where('reporte_id', $reporte->id)->get();
 
@@ -54,26 +54,30 @@ class ReporteService
             if (Folio::where('persona_id', $desaparecido->persona_id)->where('reporte_id', $reporte->id)->exists()) {
                 $foliosRepetidos[] = "$desaparecido->persona_id";
             } else {
-                $foliosAsignados[] = "$desaparecido->persona_id";
-
-                $this->createFolio($userId, $reporte, $desaparecido);
+                if ($this->createFolio($userId, $reporte, $desaparecido))
+                    $foliosAsignados[] = "$desaparecido->persona_id";
             }
         }
 
-        return response()->json([
-            "Se asignaron los folios correctamente para el reporte" => $reporte->id,
-            "Folios asignados a personas: " => $foliosAsignados,
-            "Folios existentes a personas: " => $foliosRepetidos,
-        ]);
+        if (empty($foliosAsignados) && empty($foliosRepetidos))
+            return response()->json(["error" => "No se asignaron folios"], 401);
+
+        return response()->json(["success" => "Folios asignados correctamente"]);
     }
 
-    public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido): void
+    public function createFolio($userId, Reporte $reporte, Desaparecido $desaparecido): bool
     {
-        $fechaDesaparicion = $reporte->hechoDesaparicion->fecha_desaparicion;
-        if (!isset($reporte->tipoReporte)) return;
+
+        if (!isset($reporte->hechosDesaparicion->fecha_desaparicion) || is_null($reporte->hechosDesaparicion->fecha_desaparicion)) {
+            $fechaDesaparicion = 'AA';
+        } else {
+            $fechaDesaparicion = $reporte->hechosDesaparicion->fecha_desaparicion->format('y');
+        }
+
+        if (!isset($reporte->tipoReporte) || is_null($reporte->tipoReporte)) return false;
 
         // Si es solicitud de busqueda familiar, colaboracion, o de difusion, entonces agarrar la terminacion
-        // de donde proviene, sino, agarrarlo de la zona del estado de Veracruz: ['ZN', 'ZC', 'ZS'].
+        // de donde proviene, si no, agarrarlo de la zona del estado de Veracruz: ['ZN', 'ZC', 'ZS'].
         $terminacion = in_array($reporte->tipoReporte->abreviatura, ['SC', 'SD', 'SBF'])
             ? $reporte->estado->abreviatura_cebv
             : $reporte->zonaEstado->abreviatura;
@@ -97,9 +101,11 @@ class ReporteService
                 'tipo_reporte' => $reporte->tipoReporte->abreviatura,
                 'serie' => $serie,
                 'tipo_desaparicion' => $reporte->tipo_desaparicion,
-                'fecha_desaparicion' => isset($fechaDesaparicion) ? $fechaDesaparicion->format('y') : 'AA',
+                'fecha_desaparicion' => $fechaDesaparicion,
                 'terminacion' => $terminacion,
             ]
         ]);
+
+        return true;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Localizacion;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Illuminate\Database\Eloquent\Model;
@@ -63,6 +64,11 @@ class Municipio extends Model
 
     public function areaAtiende(): HasOne {
         return $this->hasOne(Area::class, 'id', 'area_atiende_id');
+    }
+
+    public function localizaciones(): HasMany
+    {
+        return $this->hasMany(Localizacion::class);
     }
 
     public function toSearchableArray()

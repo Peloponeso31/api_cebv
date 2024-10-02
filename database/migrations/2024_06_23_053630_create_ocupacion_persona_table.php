@@ -12,7 +12,7 @@ return new class extends Migration {
         Schema::create('ocupacion_persona', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('ocupacion_id')->constrained(table: 'cat_ocupaciones');
+            $table->foreignId('ocupacion_id')->nullable()->constrained(table: 'cat_ocupaciones');
             $table->foreignId('persona_id')->constrained(table: 'personas');
 
             $table->enum('prioridad', EnumHelper::toList(PrioridadOcupacion::class));

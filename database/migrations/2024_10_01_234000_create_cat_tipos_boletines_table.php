@@ -7,15 +7,14 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('tipos_hipotesis_inmediatas', function (Blueprint $table) {
+        Schema::create('cat_tipos_boletines', function (Blueprint $table) {
             $table->id();
-            $table->string('abreviatura');
             $table->string('nombre');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('tipos_hipotesis_inmediatas');
+        Schema::dropIfExists('cat_tipos_boletines');
     }
 };

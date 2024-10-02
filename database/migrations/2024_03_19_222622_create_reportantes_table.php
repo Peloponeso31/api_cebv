@@ -20,13 +20,15 @@ return new class extends Migration {
             $table->boolean('informacion_exclusiva_busqueda')->nullable();
             $table->boolean('publicacion_registro_nacional')->nullable();
             $table->boolean('publicacion_boletin')->nullable();
-            $table->boolean('pertenencia_colectivo')->nullable();
-
             $table->text('informacion_relevante')->nullable();
-            $table->text('participacion_busquedas')->nullable();
-            $table->text('descripcion_extorsion')->nullable();
-            $table->text('descripcion_donde_proviene')->nullable();
 
+            $table->boolean('pertenencia_colectivo')->nullable();
+            $table->boolean('participacion_previa_busquedas')->nullable();
+            $table->text('descripcion_participacion_busquedas')->nullable();
+            $table->boolean('victima_extorsion_fraude')->nullable();
+            $table->text('descripcion_extorsion_fraude')->nullable();
+            $table->boolean('recibio_amenazas')->nullable();
+            $table->text('descripcion_origen_amenazas')->nullable();
             $table->integer('edad_estimada_anhos')->nullable();
 
             $table->timestamps();

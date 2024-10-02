@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained(table: 'users');
 
             $table->boolean('activo')->default(true);
-            $table->string('folio_cebv', 20);
+            $table->string('folio_cebv', 20)->nullable();
             $table->string('folio_fub', 37)->nullable();
             $table->string('autoridad_ingresa_fub')->nullable();
 

@@ -13,7 +13,6 @@ return new class extends Migration {
         Schema::create('contextos_economicos', function (Blueprint $table) {
             $table->id();
 
-            // TODO: Corregir logica
             $table->foreignId('persona_id')->constrained(table: 'personas');
 
             $table->string('donde_trabaja')->nullable();
@@ -27,8 +26,6 @@ return new class extends Migration {
             $table->float('monto_deuda')->nullable();
             $table->string('deuda_con')->nullable();
             $table->text('otras_especificaciones_ocupacion')->nullable();
-
-            $table->timestamps();
         });
     }
 

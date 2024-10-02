@@ -19,18 +19,18 @@ return [
 
     'desaparecido' => [
         'persona_id' => 'persona.id',
-        'estatus_rpdno_id' => 'estatus_rpdno.id',
-        'estatus_cebv_id' => 'estatus_cebv.id',
+        'estatus_preliminar_id' => 'estatus_preliminar.id',
+        'estatus_formalizado_id' => 'estatus_formalizado.id',
     ],
 
     'hecho_desaparicion' => [
         'direccion_id' => 'direccion.id',
+        'sitio_id' => 'sitio.id',
+        'area_asigna_sitio_id' => 'area_asigna_sitio.id',
     ],
 
     'hipotesis' => [
         'tipo_hipotesis_id' => 'tipo_hipotesis.id',
-        'sitio_id' => 'sitio.id',
-        'area_asigna_sitio_id' => 'area_asigna_sitio.id',
     ],
 
     'expediente' => [
@@ -61,10 +61,6 @@ return [
 
     'condicion_salud' => [
         'tipo_condicion_salud_id' => 'tipo_condicion_salud.id',
-    ],
-
-    'direccion' => [
-        'asentamiento_id' => 'asentamiento.id',
     ],
 
     'telefono' => [
@@ -152,5 +148,53 @@ return [
 
     'ocupacion' => [
         'ocupacion_id' => 'ocupacion.id',
+    ],
+
+    'direccion' => [
+        'asentamiento_id' => 'asentamiento.id'
+    ],
+
+    'familiar' => [
+        'parentesco_id' => 'parentesco.id',
+    ],
+
+    'pasatiempo' => [
+        'pasatiempo_id' => 'pasatiempo.id',
+    ],
+
+    'club' => [
+        'club_id' => 'club.id',
+    ],
+
+    'amistad' => [
+        'tipo_red_social_id' => 'tipo_red_social.id',
+    ],
+
+    'dato_complementario' => [
+        'direccion_id' => 'direccion.id',
+    ],
+
+    'vehiculo' => [
+        'relacion_vehiculo_id' => 'relacion_vehiculo.id',
+        'tipo_vehiculo_id' => 'tipo_vehiculo.id',
+        'uso_vehiculo_id' => 'uso_vehiculo.id',
+        'marca_vehiculo_id' => 'marca_vehiculo.id',
+        'color_id' => 'color.id',
+    ],
+
+    'expediente_fisico' => [
+        'area_receptora_id' => 'area_receptora.id',
+        'solicitante_expediente_id' => 'solicitante_expediente.id',
+    ],
+
+    'localizacion' => [
+        'sitio_id' => 'sitio.id',
+        'area_id' => 'area.id',
+        'municipio_localizacion_id' => 'municipio_localizacion.id',
+        'hipotesis_deb_id' => 'hipotesis_deb.id',
+    ],
+
+    'control_ogpi' => [
+        'estatus_rndpno_id' => 'estatus_rndpno.id',
     ],
 ];

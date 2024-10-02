@@ -25,6 +25,7 @@ class ContextoEconomico extends Model
         'tiene_deudas',
         'monto_deuda',
         'deuda_con',
+        'otras_especificaciones_ocupacion',
     ];
 
     protected $casts = [
@@ -33,6 +34,8 @@ class ContextoEconomico extends Model
         'violencia_laboral' => 'boolean',
         'tiene_deudas' => 'boolean',
     ];
+
+    public $timestamps = false;
 
 
     public function persona(): BelongsTo

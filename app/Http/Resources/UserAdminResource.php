@@ -2,9 +2,11 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/** @mixin User */
 class UserAdminResource extends JsonResource
 {
     /**
@@ -14,12 +16,11 @@ class UserAdminResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-         return [
+        return [
             'id' => $this->id,
-            'name' => $this->name,
             'email' => $this->email,
             'status' => $this->status,
-            // Agrega cualquier otro campo que desees incluir en la respuesta
+            'nombre_completo' => $this->empleado->persona->nombreCompleto(),
         ];
     }
 }

@@ -90,4 +90,5 @@ class PersonaAttributes
     const Clubes = 'clubes';
 
     const Amistades = 'amistades';
+    const FusionesRegistros = 'fusiones_registros';
 }

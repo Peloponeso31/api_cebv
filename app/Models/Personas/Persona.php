@@ -5,8 +5,8 @@ namespace App\Models\Personas;
 use App\Models\Amistad;
 use App\Models\Boca;
 use App\Models\Cabello;
-use App\Models\ClubPersona;
 use App\Models\EnfoquePersonal;
+use App\Models\FusionRegistro;
 use App\Models\Nariz;
 use App\Models\OcupacionPersona;
 use App\Models\Ojo;
@@ -15,7 +15,6 @@ use App\Models\PasatiempoPersona;
 use App\Models\Pseudonimo;
 use App\Models\Catalogos\Etnia\Lengua;
 use App\Models\Catalogos\Etnia\Religion;
-use App\Models\Club;
 use App\Models\CondicionSalud;
 use App\Models\Contacto;
 use App\Models\ContextoEconomico;
@@ -316,11 +315,6 @@ class Persona extends Model
         return $this->hasOne(MediaFiliacionComplementaria::class);
     }
 
-    public function expedientes(): HasMany
-    {
-        return $this->hasMany(Expediente::class);
-    }
-
     public function intervencionesQuirurgicas(): HasMany
     {
         return $this->hasMany(IntervencionQuirurgica::class);
@@ -366,16 +360,6 @@ class Persona extends Model
         return PasatiempoPersona::where('persona_id', $this->id)->get();
     }
 
-    public function clubes(): BelongsToMany
-    {
-        return $this->belongsToMany(Club::class, 'club_persona')->using(ClubPersona::class);
-    }
-
-    public function getClubes()
-    {
-        return ClubPersona::where('persona_id', $this->id)->get();
-    }
-
     public function estudio(): HasOne
     {
         return $this->hasOne(Estudio::class);
@@ -399,5 +383,15 @@ class Persona extends Model
     public function getEnfoquesPersonales()
     {
         return EnfoquePersonal::where('persona_id', $this->id)->get();
+    }
+
+    public function funcionRegistroUno(): HasMany
+    {
+        return $this->hasMany(FusionRegistro::class, 'persona_uno_id');
+    }
+
+    public function funcionRegistroDos(): HasMany
+    {
+        return $this->hasMany(FusionRegistro::class, 'persona_dos_id');
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ClubController;
 use App\Http\Controllers\EstatusEscolaridadController;
 use App\Http\Controllers\PasatiempoController;
 use App\Http\Controllers\PseudonimoController;
@@ -11,8 +10,6 @@ use App\Http\Controllers\ColectivoController;
 use App\Http\Controllers\CondicionSaludController;
 use App\Http\Controllers\ControlOgpiController;
 use App\Http\Controllers\DesaparicionForzadaController;
-use App\Http\Controllers\EnfermedadPielController;
-use App\Http\Controllers\EnfoqueDiferenciadoController;
 use App\Http\Controllers\EscolaridadController;
 use App\Http\Controllers\EstadoConyugalController;
 use App\Http\Controllers\EstatusPerpetradorController;
@@ -23,7 +20,6 @@ use App\Http\Controllers\FormaOrejaController;
 use App\Http\Controllers\FotosDesaparecidoController;
 use App\Http\Controllers\GeneroController;
 use App\Http\Controllers\GrupoVulnerableController;
-use App\Http\Controllers\IntervencionQuirurgicaController;
 use App\Http\Controllers\MarcaVehiculoController;
 use App\Http\Controllers\MedioCapturaController;
 use App\Http\Controllers\MetodoCapturaController;
@@ -325,14 +321,13 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/desapariciones-forzadas', DesaparicionForzadaController::class);
 
     Route::get('personas/{persona}/folios', [PersonaController::class, 'getFolios']);
-    Route::get('/filtar-hechos', [HechoDesaparicionController::class, 'filtrarPersonas']);
+    Route::get('/filtrar-hechos', [HechoDesaparicionController::class, 'filtrarPersonas']);
 
 
     /**
      * Mas rutas que no sé dónde meter
      */
     Route::apiResource('/pasatiempos', PasatiempoController::class);
-    Route::apiResource('/clubes', ClubController::class);
     Route::apiResource('/tipos-boletines', TipoBoletinController::class);
 });
 

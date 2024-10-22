@@ -133,13 +133,18 @@ class ArrayHelpers
     }
 
 
-    public static function syncList(string $model, array $request, string $foreignKey, mixed $foreignValue, array $patterns = []): void
+    public static function syncList(string $model, array $request, string $foreignKey = null, mixed $foreignValue = null, array $patterns = [], bool $useForeignKey = true): void
     {
         // Crear una instancia del modelo
         $instance = new $model;
 
-        // Obtener todos los ID de los registros existentes para el modelo
-        $IdExistentes = ArrayHelpers::getExistingId($model, $foreignKey, $foreignValue);
+        $idExistentes = [];
+        if ($useForeignKey){
+            // Obtener todos los ID de los registros existentes para el modelo
+            $IdExistentes = ArrayHelpers::getExistingId($model, $foreignKey, $foreignValue);
+        } else{
+            $IdExistentes = $instance->all()->pluck('id')->toArray();
+        }
 
         if ($IdExistentes === null) return;
 

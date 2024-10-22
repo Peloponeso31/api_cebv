@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Helpers\ArrayHelpers as AH;
+use App\Helpers\JsonAttributes as A;
 use App\Helpers\PersonaAttributes as P;
 use App\Models\Amistad;
 use App\Models\Familiar;
@@ -245,11 +246,6 @@ class SyncPersonaService
         if (isset($request[P::Pasatiempos]) && !is_null($request[P::Pasatiempos])) {
             $data = AH::setArrayRecursive($request[P::Pasatiempos], P::PersonaId, $personaId);
             AH::syncList(PasatiempoPersona::class, $data, P::PersonaId, $personaId, config('patterns.pasatiempo'));
-        }
-
-        if (isset($request[P::Clubes]) && !is_null($request[P::Clubes])) {
-            $data = AH::setArrayRecursive($request[P::Clubes], P::PersonaId, $personaId);
-            AH::syncList(ClubPersona::class, $data, P::PersonaId, $personaId, config('patterns.club'));
         }
 
         if (isset($request[P::Amistades]) && !is_null($request[P::Amistades])) {

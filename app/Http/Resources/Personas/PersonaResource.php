@@ -6,7 +6,6 @@ use App\Http\Resources\AmistadResource;
 use App\Http\Resources\BocaResource;
 use App\Http\Resources\CabelloResource;
 use App\Http\Resources\CatalogoResource;
-use App\Http\Resources\ClubPersonaResource;
 use App\Http\Resources\CondicionSaludResource;
 use App\Http\Resources\ContextoEconomicoResource;
 use App\Http\Resources\ContextoFamiliarResource;
@@ -102,7 +101,6 @@ class PersonaResource extends JsonResource
             'embarazo' => EmbarazoResource::make($this->embarazo),
             'familiares' => FamiliarResource::collection($this->familiares),
             'pasatiempos' => PasatiempoPersonaResource::collection($this->getPasatiempos()),
-            'clubes' => ClubPersonaResource::collection($this->getClubes()),
             'amistades' => AmistadResource::collection($this->amistades),
         ];
     }

@@ -18,6 +18,8 @@ class ContextoSocial extends Model
         'situacion_migratoria_id',
         'esta_transito_estados_unidos',
         'descripcion_proceso_migratorio',
+        'descripcion_pasatiempos',
+        'descripcion_clubes_organizaciones',
     ];
 
     public $timestamps = false;

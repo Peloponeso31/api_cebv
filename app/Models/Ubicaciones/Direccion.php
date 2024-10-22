@@ -8,6 +8,7 @@ use App\Models\Estudio;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -16,7 +17,7 @@ use Laravel\Scout\Searchable;
 
 class Direccion extends Model
 {
-    use Searchable;
+    use HasFactory, Searchable;
 
     protected $table = 'direcciones';
 

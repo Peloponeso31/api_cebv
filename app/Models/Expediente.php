@@ -4,20 +4,20 @@ namespace App\Models;
 
 use App\Enums\TipoExpediente;
 use App\Models\Personas\Parentesco;
-use App\Models\Personas\Persona;
-use App\Models\Reportes\Reporte;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Expediente extends Model
+class Expediente extends Pivot
 {
+    public $incrementing = true;
+
     protected $table = 'expedientes';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'reporte_id',
-        'persona_id',
+        'reporte_uno_id',
+        'reporte_dos_id',
         'parentesco_id',
         'tipo',
     ];
@@ -25,16 +25,6 @@ class Expediente extends Model
     protected $casts = [
         'tipo' => TipoExpediente::class,
     ];
-
-    public function reporte(): BelongsTo
-    {
-        return $this->belongsTo(Reporte::class, 'reporte_id');
-    }
-
-    public function persona(): BelongsTo
-    {
-        return $this->belongsTo(Persona::class, 'persona_id');
-    }
 
     public function parentesco(): BelongsTo
     {

@@ -1,5 +1,5 @@
 // @no-log
-GET http://api_cebv.test/api/reportes/60
+GET http://api_cebv.test/api/filtrar-hechos?nombre=jo
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 

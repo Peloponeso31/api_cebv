@@ -16,6 +16,7 @@ class ReporteHechoResource extends JsonResource
         return [
             'id' => $this->id,
             'folios' => FolioResource::collection($this->folios),
+            'desaparecidos' => DesaparecidoPrettyResource::collection($this->desaparecidos),
             'hechos_desaparicion' => HechoDesaparicionResource::make($this->hechosDesaparicion),
         ];
     }

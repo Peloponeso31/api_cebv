@@ -73,4 +73,9 @@ class HechoDesaparicion extends Model
     {
         return $this->belongsTo(Direccion::class, 'direccion_id');
     }
+
+    public function desaparecidos()
+    {
+        return $this->reporte->desaparecidos;
+    }
 }

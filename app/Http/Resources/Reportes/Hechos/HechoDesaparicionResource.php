@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Reportes\Hechos;
 
 use App\Http\Resources\CatalogoResource;
+use App\Http\Resources\DesaparecidoPrettyResource;
 use App\Http\Resources\Ubicaciones\DireccionResource;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ class HechoDesaparicionResource extends JsonResource
             'sintesis_desaparicion' => $this->sintesis_desaparicion,
             'desaparecio_acompanado' => $this->desaparecio_acompanado,
             'personas_mismo_evento' => $this->personas_mismo_evento,
+            'desaparecidos' => DesaparecidoPrettyResource::collection($this->desaparecidos()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

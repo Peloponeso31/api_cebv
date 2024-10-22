@@ -13,7 +13,7 @@
 
 <style>
 
-    html, body, {
+    html, body {
         margin: 0;
         padding: 0;
         height: 100%;
@@ -63,7 +63,7 @@
         color: #5b352d;
         font-size: 7em;
         display: inline-block;
-        line-height: 0.73;
+        line-height: 0.8;
         font-weight: 450;
         margin: 0;
     }
@@ -98,7 +98,7 @@
     #nombre-folio {
         position: absolute;
         left: 1500px;
-        top: 100px;;
+        top: 100px;
     }
 
     #atributos {
@@ -166,11 +166,6 @@ El div de dentro determina las dimensiones de la imagen.
 </div>
 
 <div id="atributos">
-    <!--
-    isset significa: Si existe, y a su vez no es nulo.
-    Refierase a las directivas de blade para mas informacion sobre la utilizacion de directivas.
-    https://laravel.com/docs/11.x/blade#blade-directives
-    -->
     @isset($desaparecido->persona->sexo->nombre)
         <p class="texto"><b class="resaltado"> Sexo: </b> {{ $desaparecido->persona->sexo->nombre }}. </p>
     @endisset
@@ -178,13 +173,11 @@ El div de dentro determina las dimensiones de la imagen.
     @if($desaparecido->persona->fecha_nacimiento != null)
         <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->persona->edadAnhos() }} años. </p>
     @elseif($desaparecido->edad_estimada_anos != null)
-        <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->edad_momento_desaparicion_anos }}.
-        </p>
+        <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->edad_momento_desaparicion_anos }}.</p>
     @endif
 
-    @isset($desaparecido->persona->mediaFiliacion->estatura)
-        <p class="texto"><b class="resaltado"> Estatura: </b> {{ $desaparecido->persona->mediaFiliacion->estatura }}.
-        </p>
+    @isset($desaparecido->persona->salud->estatura)
+        <p class="texto"><b class="resaltado"> Estatura: </b> {{ $desaparecido->persona->salud->estatura }}.</p>
     @endisset
 
     @isset($desaparecido->persona->mediaFiliacion->color_ojos_id)
@@ -197,11 +190,7 @@ El div de dentro determina las dimensiones de la imagen.
                 piel: </b> {{ $desaparecido->persona->mediaFiliacion->colorPiel->nombre }}. </p>
     @endisset
 
-    @if($desaparecido->persona->mediaFiliacion->color_cabello_id || $desaparecido->persona->mediaFiliacion->tamano_cabello_id || $desaparecido->persona->mediaFiliacion->tipo_cabello_id)
-        <p class="texto"><b class="resaltado">
-                Cabello: </b> {{ $desaparecido->persona->mediaFiliacion->colorCabello->nombre . ', ' }}{{ $desaparecido->persona->mediaFiliacion->tamanoCabello->nombre . ', ' }}{{ $desaparecido->persona->mediaFiliacion->tipoCabello->nombre }}
-            . </p>
-    @endif
+
 
 </div>
 
@@ -222,88 +211,5 @@ El div de dentro determina las dimensiones de la imagen.
         información fidedigna, favor de referirse a los canales soficiales.
     </p>
 </div>
-
-<!--
-{{--
-<img id="imagen-desaparecido" src="{{ $imagen }}" alt="">
-<table>
-    <th rowspan="2"></th>
-    <th class="montserrat-alternates-extrabold"><h2>
-            {{ $desaparecido->persona->nombre }}
-            {{ $desaparecido->persona->apellido_paterno }}
-            {{ $desaparecido->persona->apellido_materno }}
-        </h2></th>
-    <tr>
-        <td class="montserrat-alternates-extrabold"> {{ $folio->folio_cebv  }} </td>
-    </tr>
-
-    <tr style="height: 10px;  margin: 5em;">
-        <td style="text-align: center; background-image: url('{{-- $imagen --}}'); background-repeat: no-repeat; background-size: cover; background-position: center;" rowspan="9">
-        </td>
-        <td>
-            <h3>SEXO:</h3> {{--  --}}
-</td>
-<tr>
-
-<td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">EDAD ACTUAL:</h3>
-{{ $desaparecido->persona->edadAnhos() }} años
-        </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">FECHA DE NACIMIENTO:</h3>
-            {{ $desaparecido->persona->fechaNacimientoLegible() }}
-</td>
-</tr>
-<tr>
-<td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">
-        ESTATURA:</h3> {{ $desaparecido->persona->estatura }} </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">COLOR DE
-                OJOS:</h3> {{ $desaparecido->persona->caracteristicasfisicas->color_ojos->color ?? "" }} </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">COLOR DE
-                PIEL:</h3> {{ $desaparecido->persona->caracteristicasfisicas->color_piel ->colorpiel ?? "" }} </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">
-                CABELLO:</h3> {{ $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos ?? "" }}
-, {{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello ?? "" }} </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">LUGAR DE
-                DESAPARICIÓN:</h3> Veracruz, Ver.
-        </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">FECHA DE
-                DESAPARICIÓN:</h3> 6 de marzo de 2022
-        </td>
-    </tr>
-    </tr>
-    <tr>
-        <th colspan="2"><h3 class="montserrat-alternates-extrabold">SEÑAS PARTICULARES:</h3></th>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular" colspan="2">Requiere trtamiento médico especializado. Cicatriz en la
-            pierna derecha, lunar en el pecho, tatuaje en mano derecha,<br> pieza dental frontal inferior fracturada.
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" class="desc-nula"><br> <br> <br> <br></td>
-    </tr>
-
-    <tr>
-        <td colspan="2" class="montserrat-alternates-regular" class="desc-vulnerabilidad">Se considera que la integridad
-            fisica de la persona puede encontrarse<br> en riesgo, toda vez que pueda ser victima de la comisión de un
-            delito. <br>
-            <br>La búsqueda de una persona puede generar información confusa, para<br> acceder a información fidedigna,
-            favor de referirse a los canales <br>oficiales.
-        </td>
-    </tr>
-</table>
---}}
--->
 </body>
 </html>

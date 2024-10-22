@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('reportantes', function (Blueprint $table) {
@@ -13,27 +12,24 @@ return new class extends Migration
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
             $table->foreignId('persona_id')->nullable()->constrained(table: 'personas');
-            $table->foreignId('parentesco_id')->nullable()->constrained(table: 'parentescos');
-            $table->foreignId('colectivo_id')->nullable()->constrained(table: 'colectivos');
+            $table->foreignId('parentesco_id')->nullable()->constrained(table: 'cat_parentescos');
+            $table->foreignId('colectivo_id')->nullable()->constrained(table: 'cat_colectivos');
 
             $table->boolean('denuncia_anonima')->default(false);
             $table->boolean('informacion_consentimiento')->nullable();
             $table->boolean('informacion_exclusiva_busqueda')->nullable();
             $table->boolean('publicacion_registro_nacional')->nullable();
             $table->boolean('publicacion_boletin')->nullable();
-            $table->boolean('pertenencia_colectivo')->nullable();
-
             $table->text('informacion_relevante')->nullable();
-            $table->text('participacion_busquedas')->nullable();
-            $table->text('descripcion_extorsion')->nullable();
-            $table->text('descripcion_donde_proviene')->nullable();
 
-            $table->integer("edad_estimada")->nullable();
-
-            // TODO: Edad en años
-            // TODO: Informacion relevante
-            // TODO: Si el reportante ha realizado busquedas previas, en donde y si pertenece a un colectivo y a cual
-            // TODO: Datos de posible estorsion o amenaza en la pestaña de reportante
+            $table->boolean('pertenencia_colectivo')->nullable();
+            $table->boolean('participacion_previa_busquedas')->nullable();
+            $table->text('descripcion_participacion_busquedas')->nullable();
+            $table->boolean('victima_extorsion_fraude')->nullable();
+            $table->text('descripcion_extorsion_fraude')->nullable();
+            $table->boolean('recibio_amenazas')->nullable();
+            $table->text('descripcion_origen_amenazas')->nullable();
+            $table->integer('edad_estimada_anhos')->nullable();
 
             $table->timestamps();
         });

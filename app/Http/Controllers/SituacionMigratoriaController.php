@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\SituacionMigratoriaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\SituacionMigratoria;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class SituacionMigratoriaController extends Controller
 {
     public function index()
     {
-        return SituacionMigratoriaResource::collection(SituacionMigratoria::all());
+        return CatalogoResource::collection(SituacionMigratoria::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class SituacionMigratoriaController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new SituacionMigratoriaResource(SituacionMigratoria::create($data));
+        return new CatalogoResource(SituacionMigratoria::create($data));
     }
 
     public function show(SituacionMigratoria $situacionMigratoria)
     {
-        return new SituacionMigratoriaResource($situacionMigratoria);
+        return new CatalogoResource($situacionMigratoria);
     }
 
     public function update(Request $request, SituacionMigratoria $situacionMigratoria)
@@ -35,7 +35,7 @@ class SituacionMigratoriaController extends Controller
 
         $situacionMigratoria->update($data);
 
-        return new SituacionMigratoriaResource($situacionMigratoria);
+        return new CatalogoResource($situacionMigratoria);
     }
 
     public function destroy(SituacionMigratoria $situacionMigratoria)

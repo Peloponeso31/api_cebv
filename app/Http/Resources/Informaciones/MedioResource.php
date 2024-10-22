@@ -2,8 +2,7 @@
 
 namespace App\Http\Resources\Informaciones;
 
-use App\Http\Resources\Reportes\ReporteResource;
-use App\Models\Informaciones\Medio;
+use App\Http\Resources\CatalogoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,7 +13,7 @@ class MedioResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'tipo_medio' => TipoMedioResource::make($this->tipoMedio),
+            'tipo_medio' => CatalogoResource::make($this->tipoMedio),
             'nombre' => $this->nombre,
         ];
     }

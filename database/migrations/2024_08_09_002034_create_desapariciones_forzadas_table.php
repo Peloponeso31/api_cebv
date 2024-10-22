@@ -11,10 +11,10 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('autoridad_id')->nullable()->constrained(table: 'autoridades');
-            $table->foreignId('particular_id')->nullable()->constrained(table: 'particulares');
-            $table->foreignId('metodo_captura_id')->nullable()->constrained(table: 'metodos_captura');
-            $table->foreignId('medio_captura_id')->nullable()->constrained(table: 'medios_captura');
+            $table->foreignId('autoridad_id')->nullable()->constrained(table: 'cat_autoridades');
+            $table->foreignId('particular_id')->nullable()->constrained(table: 'cat_particulares');
+            $table->foreignId('metodo_captura_id')->nullable()->constrained(table: 'cat_metodos_captura');
+            $table->foreignId('medio_captura_id')->nullable()->constrained(table: 'cat_medios_captura');
 
             $table->boolean('desaparecio_autoridad')->nullable();
             $table->text('descripcion_autoridad')->nullable();

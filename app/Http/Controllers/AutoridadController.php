@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AutoridadResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Autoridad;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class AutoridadController extends Controller
 {
     public function index()
     {
-        return AutoridadResource::collection(Autoridad::all());
+        return CatalogoResource::collection(Autoridad::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class AutoridadController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new AutoridadResource(Autoridad::create($data));
+        return new CatalogoResource(Autoridad::create($data));
     }
 
     public function show(Autoridad $autoridad)
     {
-        return new AutoridadResource($autoridad);
+        return new CatalogoResource($autoridad);
     }
 
     public function update(Request $request, Autoridad $autoridad)
@@ -35,7 +35,7 @@ class AutoridadController extends Controller
 
         $autoridad->update($data);
 
-        return new AutoridadResource($autoridad);
+        return new CatalogoResource($autoridad);
     }
 
     public function destroy(Autoridad $autoridad)

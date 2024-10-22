@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Catalogos\PrendaDeVestir;
+use App\Models\Catalogos\PrendaVestir;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +11,7 @@ class Color extends Model
 {
     use HasFactory;
 
-    protected $table = 'colores';
+    protected $table = 'cat_colores';
 
     protected $fillable = [
         'nombre'
@@ -19,9 +19,9 @@ class Color extends Model
 
     public $timestamps = false;
 
-    public function PrendaDeVestir(): HasMany
+    public function prendaVestir(): HasMany
     {
-        return $this->hasMany(PrendaDeVestir::class);
+        return $this->hasMany(PrendaVestir::class);
     }
 
     public function vehiculos(): HasMany

@@ -7,14 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('enfermedades_pieles', function (Blueprint $table) {
+        Schema::create('enfermedades_piel', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+
+            $table->foreignId('persona_id')->constrained('personas');
+            $table->foreignId('tipo_enfermedad_piel_id')->constrained('cat_tipos_enfermedades_piel');
+
+            $table->text('descripcion')->nullable();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('enfermedades_pieles');
+        Schema::dropIfExists('enfermedades_piel');
     }
 };

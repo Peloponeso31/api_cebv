@@ -11,10 +11,12 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('reporte_id')->constrained(table: 'reportes');
-            $table->foreignId('direccion_id')->nullable();
+            $table->foreignId('direccion_id')->nullable()->constrained(table: 'direcciones');
+            $table->foreignId('sitio_id')->nullable()->constrained(table: 'cat_sitios');
+            $table->foreignId('area_asigna_sitio_id')->nullable()->constrained(table: 'cat_areas');
 
+            $table->boolean('fecha_desaparicion_desconocida')->default(false);
             $table->dateTime('fecha_desaparicion')->nullable();
-            $table->date('fecha_desaparicion_aproximada')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
             $table->string('hora_desaparicion')->nullable();
             $table->dateTime('fecha_percato')->nullable();
@@ -24,13 +26,13 @@ return new class extends Migration {
 
             $table->boolean('amenaza_cambio_comportamiento')->nullable();
             $table->text('descripcion_amenaza_cambio_comportamiento')->nullable();
-            $table->integer('contador_desapariciones')->default(0)->nullable();
+            $table->integer('contador_desapariciones')->nullable();
             $table->text('situacion_previa')->nullable();
             $table->text('informacion_relevante')->nullable();
             $table->text('hechos_desaparicion')->nullable();
             $table->text('sintesis_desaparicion')->nullable();
             $table->boolean('desaparecio_acompanado')->nullable();
-            $table->integer('personas_mismo_evento')->nullable();
+            $table->integer('personas_mismo_evento')->nullable()->default(1);
 
             $table->timestamps();
         });

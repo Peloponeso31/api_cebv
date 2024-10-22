@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Reportes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Reportes\TipoReporteRequest;
-use App\Http\Resources\Reportes\TipoReporteResource;
+use App\Http\Resources\BasicResource;
 use App\Models\Reportes\TipoReporte;
 use App\Services\CrudService;
 
@@ -27,22 +27,22 @@ class TipoReporteController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return TipoReporteResource::collection($query->get());
+        return BasicResource::collection($query->get());
     }
 
     public function store(TipoReporteRequest $request)
     {
-        return $this->service->store($request, $this->model, new TipoReporteResource($this->model::class));
+        return $this->service->store($request, $this->model, new BasicResource($this->model::class));
     }
 
     public function show($id)
     {
-        return $this->service->show($id, $this->model, new TipoReporteResource($this->model::class));
+        return $this->service->show($id, $this->model, new BasicResource($this->model::class));
     }
 
     public function update($id, TipoReporteRequest $request)
     {
-        return $this->service->update($id, $request, $this->model, new TipoReporteResource($this->model::class));
+        return $this->service->update($id, $request, $this->model, new BasicResource($this->model::class));
     }
 
     public function destroy($id)

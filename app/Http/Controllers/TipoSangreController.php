@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TipoSangreResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TipoSangre;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TipoSangreController extends Controller
 {
     public function index()
     {
-        return TipoSangreResource::collection(TipoSangre::all());
+        return CatalogoResource::collection(TipoSangre::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TipoSangreController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TipoSangreResource(TipoSangre::create($data));
+        return new CatalogoResource(TipoSangre::create($data));
     }
 
     public function show(TipoSangre $tipoSangre)
     {
-        return new TipoSangreResource($tipoSangre);
+        return new CatalogoResource($tipoSangre);
     }
 
     public function update(Request $request, TipoSangre $tipoSangre)
@@ -35,7 +35,7 @@ class TipoSangreController extends Controller
 
         $tipoSangre->update($data);
 
-        return new TipoSangreResource($tipoSangre);
+        return new CatalogoResource($tipoSangre);
     }
 
     public function destroy(TipoSangre $tipoSangre)

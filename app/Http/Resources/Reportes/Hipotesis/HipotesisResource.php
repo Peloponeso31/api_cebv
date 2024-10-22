@@ -2,13 +2,11 @@
 
 namespace App\Http\Resources\Reportes\Hipotesis;
 
-use App\Http\Resources\Informaciones\SitioResource;
-use App\Http\Resources\Oficialidades\AreaResource;
-use App\Http\Resources\Reportes\ReporteResource;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Reportes\Hipotesis\Hipotesis */
+/** @mixin Hipotesis */
 class HipotesisResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -16,10 +14,8 @@ class HipotesisResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
-            'etapa' => $this->etapa,
             'tipo_hipotesis' => TipoHipotesisResource::make($this->tipoHipotesis),
-            'sitio' =>SitioResource::make($this->sitio),
-            'area_asigna_sitio' => AreaResource::make($this->areaAsignaSitio),
+            'etapa' => $this->etapa,
         ];
     }
 }

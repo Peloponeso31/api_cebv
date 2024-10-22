@@ -8,6 +8,8 @@ use App\Http\Resources\PertenenciaResource;
 use App\Models\Pertenencia;
 use App\Services\CrudService;
 use Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PertenenciaController extends Controller
 {
@@ -23,22 +25,23 @@ class PertenenciaController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
+        $query = QueryBuilder::for(Pertenencia::class)
+            ->allowedFilters([
+                AllowedFilter::exact('id'),
+                AllowedFilter::exact('grupo_pertenencia_id')
+            ])
+            ->get();
 
-        if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
-        }
-
-        return PertenenciaResource::collection($query->get());
+        return PertenenciaResource::collection($query);
     }
 
-    
+
     public function store(StorePertenenciaRequest $request)
     {
         return new PertenenciaResource(Pertenencia::create($request->all()));
     }
 
-    
+
     public function show($id)
     {
         $model = Pertenencia::findOrFail($id);
@@ -46,7 +49,7 @@ class PertenenciaController extends Controller
         return new PertenenciaResource($model);
     }
 
-    
+
     public function update($id, UpdatePertenenciaRequest $request)
     {
         $model = Pertenencia::findOrFail($id);
@@ -54,7 +57,7 @@ class PertenenciaController extends Controller
         $model->update($request->all());
     }
 
-    
+
     public function destroy($id)
     {
             $model = Pertenencia::findOrFail($id);

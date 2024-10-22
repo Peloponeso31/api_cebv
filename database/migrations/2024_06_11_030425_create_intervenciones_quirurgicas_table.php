@@ -9,7 +9,13 @@ return new class extends Migration {
     {
         Schema::create('intervenciones_quirurgicas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+
+            $table->foreignId('persona_id')->constrained(table: 'personas');
+            $table->foreignId('tipo_intervencion_quirurgica_id')->constrained(
+                table: 'cat_tipos_intervencion_quirurgica',
+                indexName: 'fk_interv_quirurgica_tipo_intervencion_quirurgica_id');
+
+            $table->text('descripcion')->nullable();
         });
     }
 

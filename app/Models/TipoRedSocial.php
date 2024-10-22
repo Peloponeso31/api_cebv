@@ -10,7 +10,7 @@ class TipoRedSocial extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'tipos_redes_sociales';
+    protected $table = 'cat_tipos_redes_sociales';
 
     protected $fillable = [
         'nombre',
@@ -19,5 +19,10 @@ class TipoRedSocial extends Model
     public function personas(): HasMany
     {
         return $this->hasMany(Persona::class);
+    }
+
+    public function amistades(): HasMany
+    {
+        return $this->hasMany(Amistad::class);
     }
 }

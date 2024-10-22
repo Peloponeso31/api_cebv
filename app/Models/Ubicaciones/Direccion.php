@@ -2,6 +2,9 @@
 
 namespace App\Models\Ubicaciones;
 
+use App\Models\Amistad;
+use App\Models\DatoComplementario;
+use App\Models\Estudio;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Reporte;
@@ -14,7 +17,7 @@ use Laravel\Scout\Searchable;
 
 class Direccion extends Model
 {
-    use Searchable;
+    use HasFactory, Searchable;
 
     protected $table = 'direcciones';
 
@@ -63,6 +66,22 @@ class Direccion extends Model
     {
         return $this->hasMany(HechoDesaparicion::class);
     }
+
+    public function amistad(): BelongsToMany
+    {
+        return $this->belongsToMany(Amistad::class);
+    }
+
+    public function estudio(): HasMany
+    {
+        return $this->hasMany(Estudio::class);
+    }
+
+    public function datoComplementario(): HasMany
+    {
+        return $this->hasMany(DatoComplementario::class);
+    }
+
 
     public function toSearchableArray()
     {

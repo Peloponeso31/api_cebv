@@ -14,6 +14,8 @@ class Sexo extends Model
         'nombre',
     ];
 
+    protected $table = 'cat_sexos';
+
     public function personas(): HasMany
     {
         return $this->hasMany(Persona::class);

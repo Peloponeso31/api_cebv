@@ -13,6 +13,9 @@ class ControlOgpiResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
+            'estatus_rndpno' => BasicResource::make($this->estatusRndpno),
+            'folio_fub' => $this->folio_fub,
+            'autoridad_ingresa_fub' => $this->autoridad_ingresa_fub,
             'fecha_codificacion' => $this->fecha_codificacion,
             'nombre_codificador' => $this->nombre_codificador,
             'observaciones' => $this->observaciones,

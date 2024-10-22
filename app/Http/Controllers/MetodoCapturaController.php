@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MetodoCapturaResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\MetodoCaptura;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class MetodoCapturaController extends Controller
 {
     public function index()
     {
-        return MetodoCapturaResource::collection(MetodoCaptura::all());
+        return CatalogoResource::collection(MetodoCaptura::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class MetodoCapturaController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new MetodoCapturaResource(MetodoCaptura::create($data));
+        return new CatalogoResource(MetodoCaptura::create($data));
     }
 
     public function show(MetodoCaptura $metodoCaptura)
     {
-        return new MetodoCapturaResource($metodoCaptura);
+        return new CatalogoResource($metodoCaptura);
     }
 
     public function update(Request $request, MetodoCaptura $metodoCaptura)
@@ -35,7 +35,7 @@ class MetodoCapturaController extends Controller
 
         $metodoCaptura->update($data);
 
-        return new MetodoCapturaResource($metodoCaptura);
+        return new CatalogoResource($metodoCaptura);
     }
 
     public function destroy(MetodoCaptura $metodoCaptura)

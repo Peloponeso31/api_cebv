@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\EtapaHipotesis;
+use App\Enums\TipoDesaparicion;
+use App\Helpers\EnumHelper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,28 +27,21 @@ class ReporteTotalRequest extends FormRequest
     {
         return [
             // Llaves foraneas directas
-            'medio_conocimiento.id' => ['nullable', 'exists:medios,id', 'numeric'],
-            'tipo_reporte.id' => ['nullable', 'exists:tipos_reportes,id', 'numeric'],
-            'area.id' => ['nullable', 'exists:areas,id', 'numeric'],
-            'estado.id' => ['nullable', 'exists:estados,id', 'numeric'],
-            'zona_estado.id' => ['nullable', 'exists:zonas_estados,id', 'numeric'],
-            'hipotesis_oficial.id' => ['nullable', 'exists:tipos_hipotesis,id', 'numeric'],
+            'medio_conocimiento.id' => ['nullable', 'exists:cat_medios,id', 'numeric'],
+            'tipo_reporte.id' => ['nullable', 'exists:cat_tipos_reportes,id', 'numeric'],
+            'area.id' => ['nullable', 'exists:cat_areas,id', 'numeric'],
+            'estado.id' => ['nullable', 'exists:cat_estados,id', 'numeric'],
+            'zona_estado.id' => ['nullable', 'exists:cat_zonas_estados,id', 'numeric'],
+            'institucion_origen.id' => ['nullable', 'exists:cat_instituciones,id', 'numeric'],
+            'hipotesis_oficial.id' => ['nullable', 'exists:cat_tipos_hipotesis,id', 'numeric'],
 
             // Atributos
+
             'esta_terminado' => ['nullable', 'boolean'],
-            'institucion_origen' => ['nullable', 'string'],
-            'tipo_desaparicion' => ['nullable', 'string', Rule::in('U', 'M'), 'max:1'],
-            'declaracion_especial_ausencia' => ['nullable', 'boolean'],
-            'accion_urgente' => ['nullable', 'boolean'],
-            'dictamen' => ['nullable', 'boolean'],
-            'ci_nivel_federal' => ['nullable', 'boolean'],
-            'otro_derecho_humano' => ['nullable', 'string'],
-            'sintesis_localizacion' => ['nullable', 'string'],
-            'fecha_localizacion' => ['nullable', 'date'],
+            'tipo_desaparicion' => ['nullable', 'string', Rule::in(EnumHelper::toList(TipoDesaparicion::class)), 'max:1'],
+
 
             //hechos de_desaparicion
-            'hechos_desaparicion.id' => ['nullable', 'exists:hechos_desapariciones,id', 'numeric'],
-            'hechos_desaparicion.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
             'hechos_desaparicion.fecha_desaparicion' => ['nullable', 'date'],
             'hechos_desaparicion.fecha_desaparicion_cebv' => ['nullable', 'string'],
             'hechos_desaparicion.fecha_percato' => ['nullable', 'date'],
@@ -65,15 +61,13 @@ class ReporteTotalRequest extends FormRequest
 
             //hipotesis
             'hipotesis.*.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
-            'hipotesis.*.tipo_hipotesis_id' => ['nullable', 'exists:tipos_hipotesis,id', 'numeric'],
-            'hipotesis.*.sitio_id' => ['nullable', 'exists:sitios,id', 'numeric'],
-            'hipotesis.*.area_asigna_sitio_id' => ['nullable', 'exists:areas,id', 'numeric'],
-            'hipotesis.*.etapa' => ['nullable', Rule::in('Inicial', 'Final')],
+            'hipotesis.*.tipo_hipotesis_id' => ['nullable', 'exists:cat_tipos_hipotesis,id', 'numeric'],
+            'hipotesis.*.etapa' => ['nullable', Rule::in(EnumHelper::toList(EtapaHipotesis::class))],
 
             // Reportante
             //'reportantes.*.reporte_id' => ['exists:reportes,id', 'numeric'],
             //'reportantes.*.persona.id' => ['nullable', 'exists:personas,id', 'numeric'],
-            'reportantes.*.parentesco.id' => ['nullable', 'exists:parentescos,id', 'numeric'],
+            'reportantes.*.parentesco.id' => ['nullable', 'exists:cat_parentescos,id', 'numeric'],
             'reportantes.*.denuncia_anonima' => ['nullable', 'boolean'],
             'reportantes.*.informacion_consentimiento' => ['nullable', 'boolean'],
             'reportantes.*.informacion_exclusiva_busqueda' => ['nullable', 'boolean'],

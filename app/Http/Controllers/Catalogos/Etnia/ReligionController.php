@@ -4,16 +4,15 @@ namespace App\Http\Controllers\Catalogos\Etnia;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\Etnia\ReligionRequest;
-use App\Http\Resources\ReligionResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\Etnia\Religion;
-use Illuminate\Http\Request;
 
 class ReligionController extends Controller
 {
 
     public function index()
     {
-        return ReligionResource::collection(Religion::all());
+        return CatalogoResource::collection(Religion::all());
     }
 
     public function store(ReligionRequest $request)

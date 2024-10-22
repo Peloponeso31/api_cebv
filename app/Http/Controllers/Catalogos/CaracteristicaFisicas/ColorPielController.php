@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Catalogos\CaracteristicaFisicas;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Catalogos\CaracteristicasFisicas\ColorPielRequest;
-use App\Http\Resources\ColorPielResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\CaracteristicasFisicas\ColorPiel;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class ColorPielController extends Controller
 
     public function index()
     {
-        return ColorPielResource::collection(ColorPiel::all());
+        return CatalogoResource::collection(ColorPiel::all());
     }
 
 

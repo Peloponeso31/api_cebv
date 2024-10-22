@@ -19,7 +19,7 @@ class Serie extends Model
         return $this->belongsTo(TipoReporte::class);
     }
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 

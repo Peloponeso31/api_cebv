@@ -16,7 +16,9 @@ class EnfermedadPielController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nombre' => ['required'],
+            'persona_id' => ['required', 'exists:personas,id'],
+            'tipo_enfermedad_piel_id' => ['required', 'exists:cat_tipos_enfermedades_piel,id'],
+            'descripcion' => ['nullable'],
         ]);
 
         return new EnfermedadPielResource(EnfermedadPiel::create($data));
@@ -30,7 +32,9 @@ class EnfermedadPielController extends Controller
     public function update(Request $request, EnfermedadPiel $enfermedadPiel)
     {
         $data = $request->validate([
-            'nombre' => ['required'],
+            'persona_id' => ['sometimes', 'exists:personas,id'],
+            'tipo_enfermedad_piel_id' => ['sometimes', 'exists:cat_tipos_enfermedades_piel,id'],
+            'descripcion' => ['sometimes'],
         ]);
 
         $enfermedadPiel->update($data);

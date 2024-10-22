@@ -56,6 +56,11 @@ class User extends Authenticatable
 
     public function empleado(): BelongsTo
     {
-        return $this->belongsTo(Empleado::class);
+        return $this->belongsTo(Empleado::class, 'empleado_id');
+    }
+
+    public function expedienteFisicos(): HasMany
+    {
+        return $this->hasMany(ExpedienteFisico::class, 'solicitante_expediente_id');
     }
 }

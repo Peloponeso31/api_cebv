@@ -2,6 +2,8 @@
 
 namespace App\Models\Oficialidades;
 
+use App\Helpers\ArrayHelpers;
+use App\Helpers\EnumHelper;
 use App\Models\Personas\Persona;
 use App\Models\Reportes\Reporte;
 use App\Models\User;
@@ -44,7 +46,7 @@ class Folio extends Model
     protected function setFolio($value): string
     {
         return $value['fecha_registro'] . '/' . $value['tipo_reporte'] . ' ' . $value['serie'] .
-            $value['tipo_desaparicion'] . '-' . $value['fecha_desaparicion'] . $value['terminacion'];
+            EnumHelper::toString($value['tipo_desaparicion']) . '-' . $value['fecha_desaparicion'] . $value['terminacion'];
     }
 
     protected function persona(): BelongsTo

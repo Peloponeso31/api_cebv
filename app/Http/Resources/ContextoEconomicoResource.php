@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\ContextoEconomico;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin ContextoEconomico
+ */
 class ContextoEconomicoResource extends JsonResource
 {
     /**
@@ -15,32 +19,19 @@ class ContextoEconomicoResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'persona_id'=> $this -> persona_id,
-            "empresa" => $this->empresa,
-            "puesto" => $this->puesto,
-            "fecha_ingreso" => $this->fecha_ingreso,
-            "relacion_colegas" => $this->relacion,
-            "conflictos_trabajo" => $this->conflictos_trabajo,
-            "cambiosFinanzas" => $this->cambiosFinanzas,
-            "deudas" => $this->deudas,
-            "actividadesExtralaborales" => $this->actividadesExtralaborales,
-            "emprendimientos" => $this->emprendimientos,
-            "saludMental" => $this->saludMental,
-            "ausenciaPrevia" => $this->ausenciaPrevia,
-            "contactosRelevantes" => $this->contactosRelevantes,
-            "beneficios" => $this->beneficios,
-            "cambiosBeneficios" => $this->cambiosBeneficios,
-            "ultimoContactoTrabajo" => $this->ultimoContacto,
-            "sindicato" => $this->sindicato,
-            "fecha_ingreso_sindicato" => $this->fecha_ingreso_sindicato,
-            "idSindicato" => $this->idSindicato,
-            "posicionSindicato" => $this->posicionSindicato,
-            "participacion" => $this->participacion,
-            "relacion_sindicato" => $this->relacion,
-            "conflictos_sindicato" => $this->conflictos_sindicato,
-            "desacuerdos" => $this->desacuerdos,
-            "amenazasIntimidacion" => $this->amenazasIntimidacion,
-            "ult_cont_sindi" => $this->ult_cont_sindi
+            'id' => $this->id,
+            'persona_id' => $this->persona_id,
+            'donde_trabaja' => $this->donde_trabaja,
+            'antiguedad_trabajo' => $this->antiguedad_trabajo,
+            'gusta_trabajo' => $this->gusta_trabajo,
+            'desea_trabajo_foraneo' => $this->desea_trabajo_foraneo,
+            'ubicacion_trabajo_foraneo' => $this->ubicacion_trabajo_foraneo,
+            'violencia_laboral' => $this->violencia_laboral,
+            'violentador_laboral' => $this->violentador_laboral,
+            'tiene_deudas' => $this->tiene_deudas,
+            'monto_deuda' => $this->monto_deuda,
+            'deuda_con' => $this->deuda_con,
+            'otras_especificaciones_ocupacion' => $this->otras_especificaciones_ocupacion,
         ];
     }
 }

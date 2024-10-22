@@ -9,7 +9,7 @@ class MedioCaptura extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'medios_captura';
+    protected $table = 'cat_medios_captura';
 
     protected $fillable = [
         'nombre',

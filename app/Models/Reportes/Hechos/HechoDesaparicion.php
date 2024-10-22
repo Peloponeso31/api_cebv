@@ -2,12 +2,13 @@
 
 namespace App\Models\Reportes\Hechos;
 
+use App\Models\Informaciones\Sitio;
+use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Scout\Searchable;
 
 class HechoDesaparicion extends Model
@@ -19,6 +20,9 @@ class HechoDesaparicion extends Model
     protected $fillable = [
         'reporte_id',
         'direccion_id',
+        'sitio_id',
+        'area_asigna_sitio_id',
+        'fecha_desaparicion_desconocida',
         'fecha_desaparicion',
         'fecha_desaparicion_cebv',
         'hora_desaparicion',
@@ -34,10 +38,11 @@ class HechoDesaparicion extends Model
         'hechos_desaparicion',
         'sintesis_desaparicion',
         'desaparecio_acompanado',
-        'personas_mismo_evento'
+        'personas_mismo_evento',
     ];
 
     protected $casts = [
+        'fecha_desaparicion_desconocida' => 'boolean',
         'fecha_desaparicion' => 'datetime',
         'fecha_percato' => 'datetime',
         'cambio_comportamiento' => 'boolean',
@@ -51,30 +56,26 @@ class HechoDesaparicion extends Model
      */
     public function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class, "reporte_id");
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
-    public function lugarHechos() : BelongsTo
+    public function sitio(): BelongsTo
+    {
+        return $this->belongsTo(Sitio::class, 'sitio_id');
+    }
+
+    public function areaAsignaSitio(): BelongsTo
+    {
+        return $this->belongsTo(Area::class, 'area_asigna_sitio_id');
+    }
+
+    public function lugarHechos(): BelongsTo
     {
         return $this->belongsTo(Direccion::class, 'direccion_id');
     }
 
-    public function toSearchableArray(): array
+    public function desaparecidos()
     {
-        return [
-            'id' => $this->id,
-            'reporte_id' => $this->reporte_id,
-            'fecha_desaparicion' => $this->fecha_desaparicion,
-            'fecha_percato' => $this->fecha_percato,
-            'cambio_comportamiento' => $this->cambio_comportamiento,
-            'descripcion_cambio_comportamiento' => $this->descripcion_cambio_comportamiento,
-            'fue_amenazado' => $this->fue_amenazado,
-            'descripcion_amenaza' => $this->descripcion_amenaza,
-            'contador_desapariciones' => $this->contador_desapariciones,
-            'situacion_previa' => $this->situacion_previa,
-            'informacion_relevante' => $this->informacion_relevante,
-            'hechos_desaparicion' => $this->hechos_desaparicion,
-            'sintesis_desaparicion' => $this->sintesis_desaparicion,
-        ];
+        return $this->reporte->desaparecidos;
     }
 }

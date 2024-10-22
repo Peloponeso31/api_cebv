@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\FormaCaraResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\FormaCara;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class FormaCaraController extends Controller
 {
     public function index()
     {
-        return FormaCaraResource::collection(FormaCara::all());
+        return CatalogoResource::collection(FormaCara::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class FormaCaraController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new FormaCaraResource(FormaCara::create($data));
+        return new CatalogoResource(FormaCara::create($data));
     }
 
     public function show(FormaCara $formaCara)
     {
-        return new FormaCaraResource($formaCara);
+        return new CatalogoResource($formaCara);
     }
 
     public function update(Request $request, FormaCara $formaCara)
@@ -35,7 +35,7 @@ class FormaCaraController extends Controller
 
         $formaCara->update($data);
 
-        return new FormaCaraResource($formaCara);
+        return new CatalogoResource($formaCara);
     }
 
     public function destroy(FormaCara $formaCara)

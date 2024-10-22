@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TamanoCabelloResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TamanoCabello;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TamanoCabelloController extends Controller
 {
     public function index()
     {
-        return TamanoCabelloResource::collection(TamanoCabello::all());
+        return CatalogoResource::collection(TamanoCabello::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TamanoCabelloController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TamanoCabelloResource(TamanoCabello::create($data));
+        return new CatalogoResource(TamanoCabello::create($data));
     }
 
     public function show(TamanoCabello $tamanoCabello)
     {
-        return new TamanoCabelloResource($tamanoCabello);
+        return new CatalogoResource($tamanoCabello);
     }
 
     public function update(Request $request, TamanoCabello $tamanoCabello)
@@ -35,7 +35,7 @@ class TamanoCabelloController extends Controller
 
         $tamanoCabello->update($data);
 
-        return new TamanoCabelloResource($tamanoCabello);
+        return new CatalogoResource($tamanoCabello);
     }
 
     public function destroy(TamanoCabello $tamanoCabello)

@@ -2,17 +2,14 @@
 
 namespace App\Models\Personas;
 
+use App\Models\ControlOgpi;
 use App\Models\Reportes\Relaciones\Desaparecido;
-use App\Models\Reportes\Reporte;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Laravel\Scout\Searchable;
 
 class EstatusPersona extends Model
 {
-    use Searchable;
-
-    protected $table = 'estatus_personas';
+    protected $table = 'cat_estatus_personas';
 
     public $timestamps = false;
 
@@ -31,12 +28,8 @@ class EstatusPersona extends Model
         return $this->hasMany(Desaparecido::class);
     }
 
-    public function toSearchableArray(): array
+    public function controlOgpis(): HasMany
     {
-        return [
-            'id' => $this->id,
-            'nombre' => $this->nombre,
-            'abreviatura' => $this->abreviatura
-        ];
+        return $this->hasMany(ControlOgpi::class);
     }
 }

@@ -11,37 +11,35 @@ class ContextoEconomico extends Model
 {
     use HasFactory;
 
+    protected $table = 'contextos_economicos';
+
     protected $fillable = [
         'persona_id',
-        "empresa",
-        "puesto",
-        "fecha_ingreso",
-        "relacion_colegas",
-        "conflictos_trabajo",
-        "deudas",
-        "cambiosFinanzas",
-        "actividadesExtralaborales",
-        "emprendimientos",
-        "saludMental",
-        "ausenciaPrevia",
-        "contactosRelevantes",
-        "beneficios",
-        "cambiosBeneficios",
-        "ultimoContactoTrabajo",
-        "sindicato",
-        "fecha_ingreso_sindicato",
-        "idSindicato",
-        "posicionSindicato",
-        "participacion",
-        "relacion_sindicato",
-        "conflictos_sindicato",
-        "desacuerdos",
-        "amenazasIntimidacion",
-        "ult_cont_sindi"
+        'donde_trabaja',
+        'antiguedad_trabajo',
+        'gusta_trabajo',
+        'desea_trabajo_foraneo',
+        'ubicacion_trabajo_foraneo',
+        'violencia_laboral',
+        'violentador_laboral',
+        'tiene_deudas',
+        'monto_deuda',
+        'deuda_con',
+        'otras_especificaciones_ocupacion',
     ];
+
+    protected $casts = [
+        'gusta_trabajo' => 'boolean',
+        'desea_trabajo_foraneo' => 'boolean',
+        'violencia_laboral' => 'boolean',
+        'tiene_deudas' => 'boolean',
+    ];
+
+    public $timestamps = false;
+
 
     public function persona(): BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 }

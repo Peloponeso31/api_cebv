@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lengua extends Model
 {
-    protected $table = 'lenguas';
+    protected $table = 'cat_lenguas';
 
     protected $fillable = ['nombre'];
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Resources\Reportes\Hechos;
 
+use App\Http\Resources\CatalogoResource;
+use App\Http\Resources\DesaparecidoPrettyResource;
 use App\Http\Resources\Ubicaciones\DireccionResource;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Reportes\Hechos\HechoDesaparicion */
+/** @mixin HechoDesaparicion */
 class HechoDesaparicionResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -14,6 +17,10 @@ class HechoDesaparicionResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
+            'direccion' => DireccionResource::make($this->lugarHechos),
+            'sitio' => CatalogoResource::make($this->sitio),
+            'area_asigna_sitio' => CatalogoResource::make($this->areaAsignaSitio),
+            'fecha_desaparicion_desconocida' => $this->fecha_desaparicion_desconocida,
             'fecha_desaparicion' => $this->fecha_desaparicion,
             'fecha_desaparicion_cebv' => $this->fecha_desaparicion_cebv,
             'hora_desaparicion' => $this->hora_desaparicion,
@@ -30,9 +37,7 @@ class HechoDesaparicionResource extends JsonResource
             'sintesis_desaparicion' => $this->sintesis_desaparicion,
             'desaparecio_acompanado' => $this->desaparecio_acompanado,
             'personas_mismo_evento' => $this->personas_mismo_evento,
-            'lugar_hechos' => DireccionResource::make($this->lugarHechos),
-            'fecha_desaparicion_aproximada' => $this->fecha_desaparicion_aproximada,
-            'observaciones_fecha_desaparicion' => $this->observaciones_fecha_desaparicion,
+            'desaparecidos' => DesaparecidoPrettyResource::collection($this->desaparecidos()),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

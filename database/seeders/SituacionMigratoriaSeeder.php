@@ -10,12 +10,12 @@ class SituacionMigratoriaSeeder extends Seeder
     public function run(): void
     {
         $situacionesMigratorias = [
-            'Visitante',
-            'Residente temporal',
-            'Residente permanente',
-            'Refugiado',
-            'Proceso de regularización migratoria',
-            'No tiene estatus migratorio'
+            'VISITANTE',
+            'RESIDENTE TEMPORAL',
+            'RESIDENTE PERMANENTE',
+            'REFUGIADO',
+            'PROCESO DE REGULARIZACIÓN MIGRATORIA',
+            'NO TIENE ESTATUS MIGRATORIO',
         ];
 
         foreach ($situacionesMigratorias as $situacionMigratoria) {

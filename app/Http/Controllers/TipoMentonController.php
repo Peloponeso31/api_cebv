@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TipoMentonResource;
+use App\Http\Resources\CatalogoResource;
 use App\Models\TipoMenton;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class TipoMentonController extends Controller
 {
     public function index()
     {
-        return TipoMentonResource::collection(TipoMenton::all());
+        return CatalogoResource::collection(TipoMenton::all());
     }
 
     public function store(Request $request)
@@ -19,12 +19,12 @@ class TipoMentonController extends Controller
             'nombre' => ['required'],
         ]);
 
-        return new TipoMentonResource(TipoMenton::create($data));
+        return new CatalogoResource(TipoMenton::create($data));
     }
 
     public function show(TipoMenton $tipoMenton)
     {
-        return new TipoMentonResource($tipoMenton);
+        return new CatalogoResource($tipoMenton);
     }
 
     public function update(Request $request, TipoMenton $tipoMenton)
@@ -35,7 +35,7 @@ class TipoMentonController extends Controller
 
         $tipoMenton->update($data);
 
-        return new TipoMentonResource($tipoMenton);
+        return new CatalogoResource($tipoMenton);
     }
 
     public function destroy(TipoMenton $tipoMenton)

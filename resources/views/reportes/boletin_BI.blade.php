@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -171,29 +172,35 @@ El div de dentro determina las dimensiones de la imagen.
     https://laravel.com/docs/11.x/blade#blade-directives
     -->
     @isset($desaparecido->persona->sexo->nombre)
-        <p class="texto"> <b class="resaltado"> Sexo: </b> {{ $desaparecido->persona->sexo->nombre }}. </p>
+        <p class="texto"><b class="resaltado"> Sexo: </b> {{ $desaparecido->persona->sexo->nombre }}. </p>
     @endisset
 
     @if($desaparecido->persona->fecha_nacimiento != null)
-        <p class="texto"> <b class="resaltado"> Edad actual: </b> {{ $desaparecido->persona->edad_anos() }} años. </p>
+        <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->persona->edadAnhos() }} años. </p>
     @elseif($desaparecido->edad_estimada_anos != null)
-        <p class="texto"> <b class="resaltado"> Edad actual: </b> {{ $desaparecido->edad_momento_desaparicion_anos }}. </p>
+        <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->edad_momento_desaparicion_anos }}.
+        </p>
     @endif
 
     @isset($desaparecido->persona->mediaFiliacion->estatura)
-        <p class="texto"> <b class="resaltado"> Estatura: </b> {{ $desaparecido->persona->mediaFiliacion->estatura }}. </p>
+        <p class="texto"><b class="resaltado"> Estatura: </b> {{ $desaparecido->persona->mediaFiliacion->estatura }}.
+        </p>
     @endisset
 
     @isset($desaparecido->persona->mediaFiliacion->color_ojos_id)
-        <p class="texto"> <b class="resaltado"> Color de ojos: </b> {{ $desaparecido->persona->mediaFiliacion->colorOjos->nombre }}. </p>
+        <p class="texto"><b class="resaltado"> Color de
+                ojos: </b> {{ $desaparecido->persona->mediaFiliacion->colorOjos->nombre }}. </p>
     @endisset
 
     @isset($desaparecido->persona->mediaFiliacion->color_piel_id)
-        <p class="texto"> <b class="resaltado"> Color de piel: </b> {{ $desaparecido->persona->mediaFiliacion->colorPiel->nombre }}. </p>
+        <p class="texto"><b class="resaltado"> Color de
+                piel: </b> {{ $desaparecido->persona->mediaFiliacion->colorPiel->nombre }}. </p>
     @endisset
 
     @if($desaparecido->persona->mediaFiliacion->color_cabello_id || $desaparecido->persona->mediaFiliacion->tamano_cabello_id || $desaparecido->persona->mediaFiliacion->tipo_cabello_id)
-        <p class="texto"> <b class="resaltado"> Cabello: </b> {{ $desaparecido->persona->mediaFiliacion->colorCabello->nombre . ', ' }}{{ $desaparecido->persona->mediaFiliacion->tamanoCabello->nombre . ', ' }}{{ $desaparecido->persona->mediaFiliacion->tipoCabello->nombre }}. </p>
+        <p class="texto"><b class="resaltado">
+                Cabello: </b> {{ $desaparecido->persona->mediaFiliacion->colorCabello->nombre . ', ' }}{{ $desaparecido->persona->mediaFiliacion->tamanoCabello->nombre . ', ' }}{{ $desaparecido->persona->mediaFiliacion->tipoCabello->nombre }}
+            . </p>
     @endif
 
 </div>
@@ -235,21 +242,21 @@ El div de dentro determina las dimensiones de la imagen.
         </td>
         <td>
             <h3>SEXO:</h3> {{--  --}}
-        </td>
-    <tr>
+</td>
+<tr>
 
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">EDAD ACTUAL:</h3>
-            {{ $desaparecido->persona->edad_anos() }} años
+<td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">EDAD ACTUAL:</h3>
+{{ $desaparecido->persona->edadAnhos() }} años
         </td>
     </tr>
     <tr>
         <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">FECHA DE NACIMIENTO:</h3>
-            {{ $desaparecido->persona->fecha_nacimiento_legible() }}
-        </td>
-    </tr>
-    <tr>
-        <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">
-                ESTATURA:</h3> {{ $desaparecido->persona->estatura }} </td>
+            {{ $desaparecido->persona->fechaNacimientoLegible() }}
+</td>
+</tr>
+<tr>
+<td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">
+        ESTATURA:</h3> {{ $desaparecido->persona->estatura }} </td>
     </tr>
     <tr>
         <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">COLOR DE
@@ -262,7 +269,7 @@ El div de dentro determina las dimensiones de la imagen.
     <tr>
         <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">
                 CABELLO:</h3> {{ $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos ?? "" }}
-            , {{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello ?? "" }} </td>
+, {{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello ?? "" }} </td>
     </tr>
     <tr>
         <td class="montserrat-alternates-regular"><h3 class="montserrat-alternates-extrabold">LUGAR DE

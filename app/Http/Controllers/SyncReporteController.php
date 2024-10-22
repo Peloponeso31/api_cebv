@@ -2,374 +2,152 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\SyncModules;
+use App\Helpers\ArrayHelpers;
+use App\Helpers\JsonAttributes as A;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
-use App\Models\Apodo;
-use App\Models\Catalogos\PrendaDeVestir;
-use App\Models\Contacto;
-use App\Models\MediaFiliacion;
-use App\Models\Personas\Persona;
+use App\Models\Catalogos\PrendaVestir;
+use App\Models\ControlOgpi;
+use App\Models\DatoComplementario;
+use App\Models\DesaparicionForzada;
+use App\Models\Expediente;
+use App\Models\ExpedienteFisico;
+use App\Models\Localizacion;
+use App\Models\Perpetrador;
+use App\Models\Reportes\Hechos\HechoDesaparicion;
+use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\DocumentoLegal;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Reportes\Reporte;
-use App\Models\SenasParticulares;
-use App\Models\Telefono;
 use App\Models\Ubicaciones\Direccion;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Vehiculo;
+use App\Services\SyncPersonaService;
+use Illuminate\Support\Facades\Log;
 
 class SyncReporteController extends Controller
 {
-    protected SyncModules $sync;
+    protected SyncPersonaService $syncPersona;
 
-    function __construct(SyncModules $sync)
+    function __construct(SyncPersonaService $syncPersona)
     {
-        $this->sync = $sync;
-    }
-
-    private function updateOrCreatePersona($persona)
-    {
-        $persona_created = Persona::updateOrCreate(["id" => $persona["id"] ?? null], [
-            'nombre' => $persona["nombre"] ?? null,
-            'lugar_nacimiento_id' => $persona["lugar_nacimiento"]["id"] ?? null,
-            'sexo_id' => $persona["sexo"]["id"] ?? null,
-            'genero_id' => $persona["sexo"]["id"] ?? null,
-            'religion_id' => $persona["religion"]["id"] ?? null,
-            'lengua_id' => $persona["lengua"]["id"] ?? null,
-            'escolaridad_id' => $persona["escolaridad"]["id"] ?? null,
-            'estado_conyugal_id' => $persona["estado_conyugal"]["id"] ?? null,
-
-            'apellido_paterno' => $persona["apellido_paterno"] ?? null,
-            'apellido_materno' => $persona["apellido_materno"] ?? null,
-            'pseudonimo_nombre' => $persona["pseudonimo_nombre"] ?? null,
-            'pseudonimo_apellido_paterno' => $persona["pseudonimo_apellido_paterno"] ?? null,
-            'pseudonimo_apellido_materno' => $persona["pseudonimo_apellido_materno"] ?? null,
-            'fecha_nacimiento' => $persona["fecha_nacimiento"] ?? null,
-            'curp' => $persona["curp"] ?? null,
-            'observaciones_curp' => $persona["observaciones_curp"] ?? null,
-            'rfc' => $persona["rfc"] ?? null,
-            'ocupacion' => $persona["ocupacion"] ?? null,
-            'nacionalidades' => $persona["nacionalidades"] ?? null,
-            'nivel_escolaridad' => $persona["nivel_escolaridad"] ?? null,
-            'numero_personas_vive' => $persona["numero_personas_vive"] ?? null,
-        ]);
-
-        if (isset($persona["apodos"]) && $persona["apodos"] != null) {
-            $apodos_modificados = [];
-            foreach ($persona["apodos"] as $apodo) {
-                $apodo_id = Apodo::updateOrCreate([
-                    "id" => $apodo["id"] ?? null,
-                    "persona_id" => $apodo["persona_id"] ?? $persona_created->id ?? null,
-                ], [
-                    'nombre' => $apodo['nombre'],
-                    'apellido_paterno' => $apodo['apellido_paterno'],
-                    'apellido_materno' => $apodo['apellido_materno'],
-                ])->id;
-                array_push($apodos_modificados, $apodo_id);
-            }
-
-            $apodos_eliminables = $persona_created->apodos->except($apodos_modificados);
-            if (count($apodos_eliminables) > 0) {
-                $apodos_eliminables->toQuery()->delete();
-            }
-        }
-
-        if (isset($persona["nacionalidades"]) && $persona["nacionalidades"] != null) {
-            $nacionalidades = [];
-            foreach ($persona["nacionalidades"] as $nacionalidad) {
-                if (isset($nacionalidad["id"]) && $nacionalidad["id"] != null) {
-                    array_push($nacionalidades, $nacionalidad["id"]);
-                }
-            }
-            $persona_created->nacionalidades()->sync($nacionalidades);
-        }
-
-        if (isset($persona["grupos_vulnerables"]) && $persona["grupos_vulnerables"] != null) {
-            $grupos_vulnerables = [];
-            foreach ($persona["grupos_vulnerables"] as $grupoVulnerable) {
-                if (isset($grupoVulnerable["id"]) && $grupoVulnerable["id"] != null) {
-                    array_push($grupos_vulnerables, $grupoVulnerable["id"]);
-                }
-            }
-            $persona_created->gruposVulnerables()->sync($grupos_vulnerables);
-        }
-
-        if (isset($persona["telefonos"]) && $persona["telefonos"] != null) {
-            $telefonos_modificados = [];
-            foreach ($persona["telefonos"] as $telefono) {
-                $telefono_id = Telefono::updateOrCreate([
-                    "id" => $telefono["id"] ?? null,
-                    "persona_id" => $telefono["persona_id"] ?? $persona_created->id ?? null,
-                ], [
-                    'compania_id' => $telefono["compania"]["id"] ?? null,
-                    'numero' => $telefono["numero"] ?? null,
-                    'observaciones' => $telefono["observaciones"] ?? null,
-                    'es_movil' => $telefono["es_movil"] ?? null,
-                ])->id;
-                array_push($telefonos_modificados, $telefono_id);
-            }
-
-            $telefonos_eliminables = $persona_created->telefonos->except($telefonos_modificados);
-            if (count($telefonos_eliminables) > 0) {
-                $telefonos_eliminables->toQuery()->delete();
-            }
-        }
-
-        if (isset($persona["contactos"]) && $persona["contactos"] != null) {
-            $contactos_modificados = [];
-            foreach ($persona["contactos"] as $contacto) {
-                $contacto_id = Contacto::updateOrCreate([
-                    "id" => $contacto["id"] ?? null,
-                    "persona_id" => $contacto["persona_id"] ?? $persona_created->id ?? null,
-                ], [
-                    'tipo' => $contacto["tipo"] ?? null,
-                    'tipo_red_social_id' => $contacto["tipo_red_social"]["id"] ?? null,
-                    'nombre' => $contacto["nombre"] ?? null,
-                    'observaciones' => $contacto["observaciones"] ?? null,
-                ])->id;
-                array_push($contactos_modificados, $contacto_id);
-            }
-
-            $contactos_eliminables = $persona_created->contactos->except($contactos_modificados);
-            if (count($contactos_eliminables) > 0) {
-                $contactos_eliminables->toQuery()->delete();
-            }
-        }
-
-        if (isset($persona["direcciones"]) && $persona["direcciones"] != null) {
-            $direcciones = [];
-            foreach ($persona["direcciones"] as $direccion) {
-                $direccion_created = Direccion::updateOrCreate([
-                    "id" => $direccion["id"] ?? null
-                ], [
-                    "asentamiento_id" => $direccion["asentamiento"]["id"] ?? null,
-                    "calle" => $direccion["calle"],
-                    "domicilio_concatenado" => $direccion["domicilio_concatenado"] ?? null,
-                    "colonia" => $direccion["colonia"],
-                    "numero_exterior" => $direccion["numero_exterior"],
-                    "numero_interior" => $direccion["numero_interior"],
-                    "calle_1" => $direccion["calle_1"],
-                    "calle_2" => $direccion["calle_2"],
-                    "tramo_carretero" => $direccion["tramo_carretero"],
-                    "codigo_postal" => $direccion["codigo_postal"],
-                    "referencia" => $direccion["referencia"],
-                ]);
-
-                array_push($direcciones, $direccion_created->id);
-            }
-            $persona_created->direcciones()->sync($direcciones);
-        }
-
-        if (isset($persona["senas_particulares"]) && $persona["senas_particulares"] != null) {
-            $senas_modified = [];
-            foreach ($persona["senas_particulares"] as $sena) {
-                $senas_modified[] = SenasParticulares::updateOrCreate([
-                    "id" => $sena["id"] ?? null,
-                    "persona_id" => $sena["persona"]["id"] ?? $persona_created->id ?? null,
-                ], [
-                    "region_cuerpo_id" => $sena["region_cuerpo"]["id"] ?? null,
-                    "lado_id" => $sena["lado"]["id"] ?? null,
-                    "vista_id" => $sena["vista"]["id"] ?? null,
-                    "tipo_id" => $sena["tipo"]["id"] ?? null,
-                    "cantidad" => $sena["cantidad"] ?? null,
-                    "descripcion" => $sena["descripcion"] ?? null,
-                ])->id;
-
-                if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
-                    $last_sena = SenasParticulares::findOrFail(end($senas_modified));
-                    $path = $persona_created->id . '/senas_particulares/' . $last_sena->id . '.png';
-                    Storage::put($path, base64_decode($sena['encoded_image']));
-                    $last_sena->foto = $path;
-                    $last_sena->save();
-                }
-            }
-
-            $senas_eliminables = $persona_created->senasParticulares->except($senas_modified);
-            if (count($senas_eliminables) > 0) {
-                $senas_eliminables->toQuery()->delete();
-            }
-        }
-
-        if (isset($persona["media_filiacion"]) && $persona["media_filiacion"] != null) {
-            $media_filiacion = $persona["media_filiacion"];
-            MediaFiliacion::updateOrCreate([
-                "id" => $persona["media_filiacion"]["id"] ?? null,
-                "persona_id" => $persona["persona_id"] ?? $persona_created->id ?? null,
-            ], [
-                "estatura" => $media_filiacion["estatura"] ?? null,
-                "peso" => $media_filiacion["peso"] ?? null,
-                "complexion_id" => $media_filiacion["complexion"]["id"] ?? null,
-                "color_piel_id" => $media_filiacion["color_piel"]["id"] ?? null,
-                "color_ojos_id" => $media_filiacion["color_ojos"]["id"] ?? null,
-                "color_cabello_id" => $media_filiacion["color_cabello"]["id"] ?? null,
-                "tamano_cabello_id" => $media_filiacion["tamano_cabello"]["id"] ?? null,
-                "tipo_cabello_id" => $media_filiacion["tipo_cabello"]["id"] ?? null,
-            ]);
-        }
-
-        return $persona_created->id;
+        $this->syncPersona = $syncPersona;
     }
 
     public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
-        $reporte = Reporte::updateOrCreate([
-            "id" => $request->id ?? null
-        ], [
-            // Catalogos
-            'tipo_reporte_id' => $request->tipo_reporte["id"] ?? null,
-            'area_atiende_id' => $request->area_atiende["id"] ?? null,
-            'medio_conocimiento_id' => $request->medio_conocimiento["id"] ?? null,
-            'estado_id' => $request->estado["id"] ?? null,
-            'zona_estado_id' => $request->zona_estado["id"] ?? null,
-            'hipotesis_oficial_id' => $request->hipotesis_oficial["id"] ?? null,
+        $data = $request->toArray();
 
-            // Atributos
-            'esta_terminado' => $request->esta_terminado ?? false,
-            'institucion_origen' => $request->institucion_origen,
-            'tipo_desaparicion' => $request->tipo_desaparicion,
-            'fecha_localizacion' => $request->fecha_localizacion,
-            "declaracion_especial_ausencia" => $request->declaracion_especial_ausencia ?? false,
-            "accion_urgente" => $request->accion_urgente,
-            "dictamen" => $request->dictamen,
-            "ci_nivel_federal" => $request->ci_nivel_federal,
-            "otro_derecho_humano" => $request->otro_derecho_humano,
-            'sintesis_localizacion' => $request->sintesis_localizacion,
-        ]);
-
-        if ($request->has('vehiculos') && $request->vehiculos != null) {
-            foreach ($request->vehiculos as $vehiculo) {
-
-            }
+        if (is_null($data[A::EstaTerminado])) {
+            /* El atributo 'esta_terminado' no puede ser null */
+            $data[A::EstaTerminado] = false;
         }
 
-        if ($request->has("hechos_desaparicion") && $request->hechos_desaparicion != null) {
-            $this->sync->HechosDesaparicion($reporte->id, $request);
-        }
+        $reporteId = ArrayHelpers::asyncHandler(Reporte::class, $data, config('patterns.reporte'))->getAttribute('id');
 
-        if ($request->has("hipotesis") && $request->hipotesis != null) {
-            $this->sync->Hipotesis($reporte->id, $request);
-        }
+        Log::info("Reporte: " . json_encode($data));
 
-        if ($request->has("reportantes") && $request->reportantes != null) {
+        if ($request->has(A::Reportantes) && !is_null($request->reportantes)) {
             foreach ($request->reportantes as $reportante) {
-                Reportante::updateOrCreate([
-                    "id" => $reportante["id"] ?? null,
-                    "reporte_id" => $reportante["reporte_id"] ?? $reporte->id ?? null
-                ], [
-                    "parentesco_id" => $reportante["parentesco"]["id"] ?? null,
-                    "colectivo_id" => $reportante["colectivo"]["id"] ?? null,
-                    "persona_id" => $this->updateOrCreatePersona($reportante["persona"]) ?? null,
-                    "denuncia_anonima" => $reportante["denuncia_anonima"] ?? null,
-                    "informacion_consentimiento" => $reportante["informacion_consentimiento"] ?? null,
-                    "informacion_exclusiva_busqueda" => $reportante["informacion_exclusiva_busqueda"] ?? null,
-                    "publicacion_registro_nacional" => $reportante["publicacion_registro_nacional"] ?? null,
-                    "publicacion_boletin" => $reportante["publicacion_boletin"] ?? null,
-                    "pertenencia_colectivo" => $reportante["pertenencia_colectivo"] ?? null,
-                    "nombre_colectivo" => $reportante["nombre_colectivo"] ?? null,
-                    "informacion_relevante" => $reportante["informacion_relevante"] ?? null,
-                    "edad_estimada" => $reportante["edad_estimada"] ?? null,
-                    "participacion_busquedas" => $reportante["participacion_busquedas"] ?? null,
-                    "descripcion_extorsion" => $reportante["descripcion_extorsion"] ?? null,
-                    "descripcion_donde_proviene" => $reportante["descripcion_donde_proviene"] ?? null
-                ]);
+                $reportante = ArrayHelpers::setArrayValue($reportante, A::ReporteId, $reporteId);
+
+                $reportante[A::Persona] = $this->syncPersona->persona($reportante[A::Persona]);
+
+                ArrayHelpers::asyncHandler(Reportante::class, $reportante, config('patterns.reportante'));
             }
         }
 
-        if ($request->has("desaparecidos") && $request->desaparecidos != null) {
+        if ($request->has(A::Desaparecidos) && !is_null($request->desaparecidos)) {
             foreach ($request->desaparecidos as $desaparecido) {
-                $desaparecido_updated = Desaparecido::updateOrCreate([
-                    "id" => $desaparecido["id"] ?? null,
-                    "reporte_id" => $desaparecido["reporte_id"] ?? $reporte->id ?? null
-                ], [
-                    'estatus_rpdno_id' => $desaparecido["estatus_rpdno"]["id"] ?? null,
-                    'estatus_cebv_id' => $desaparecido["estatus_cebv"]["id"] ?? null,
-                    'ocupacion_principal_id' => $desaparecido["ocupacion_principal"]["id"] ?? null,
-                    'ocupacion_secundaria_id' => $desaparecido["ocupacion_secundaria"]["id"] ?? null,
-                    "persona_id" => $this->updateOrCreatePersona($desaparecido["persona"]) ?? null,
-                    'clasificacion_persona' => $desaparecido["clasificacion_persona"] ?? null,
-                    'habla_espanhol' => $desaparecido["habla_espanhol"] ?? null,
-                    'sabe_leer' => $desaparecido["sabe_leer"] ?? null,
-                    'sabe_escribir' => $desaparecido["sabe_escribir"] ?? null,
-                    'url_boletin' => $desaparecido["url_boletin"] ?? null,
-                    'declaracion_especial_ausencia' => $desaparecido["declaracion_especial_ausencia"] ?? null,
-                    'accion_urgente' => $desaparecido["accion_urgente"] ?? null,
-                    'dictamen' => $desaparecido["dictamen"] ?? null,
-                    'ci_nivel_federal' => $desaparecido["ci_nivel_federal"] ?? null,
-                    'otro_derecho_humano' => $desaparecido["otro_derecho_humano"] ?? null,
-                    'identidad_resguardada' => $desaparecido["identidad_resguardada"] ?? null,
-                    'alias' => $desaparecido["alias"] ?? null,
-                    'descripcion_ocupacion_principal' => $desaparecido["descripcion_ocupacion_principal"] ?? null,
-                    'descripcion_ocupacion_secundaria' => $desaparecido["descripcion_ocupacion_secundaria"] ?? null,
-                    'otras_especificaciones_ocupacion' => $desaparecido["otras_especificaciones_ocupacion"] ?? null,
-                    'nombre_pareja_conyugue' => $desaparecido["nombre_pareja_conyugue"] ?? null,
-                ]);
+                $desaparecido = ArrayHelpers::setArrayValue($desaparecido, A::ReporteId, $reporteId);
 
-                if (isset($desaparecido["prendas_de_vestir"]) && $desaparecido["prendas_de_vestir"] != null) {
-                    $prendas_modified = [];
-                    foreach ($desaparecido["prendas_de_vestir"] as $prenda) {
-                        $prendas_modified[] = PrendaDeVestir::updateOrCreate([
-                            "id" => $prenda["id"] ?? null,
-                            "desaparecido_id" => $prenda["desaparecido_id"] ?? $desaparecido_updated->id ?? null,
-                        ], [
-                            "pertenencia_id" => $prenda["pertenencia"]["id"] ?? null,
-                            "color_id" => $prenda["color"]["id"] ?? null,
-                            "marca" => $prenda["marca"] ?? null,
-                            "descripcion" => $prenda["descripcion"] ?? null,
-                        ])->id;
-                    }
+                $desaparecido[A::Persona] = $this->syncPersona->persona($desaparecido[A::Persona]);
 
-                    $prendas_eliminables = $desaparecido_updated->prendasDeVestir->except($prendas_modified);
-                    if (count($prendas_eliminables) > 0) {
-                        $prendas_eliminables->toQuery()->delete();
-                    }
+                $desaparecidoId = ArrayHelpers::asyncHandler(Desaparecido::class, $desaparecido, config('patterns.desaparecido'))
+                    ->getAttribute('id');
+
+                if (isset($desaparecido[A::PrendasVestir]) && !is_null($desaparecido[A::PrendasVestir])) {
+                    $data = ArrayHelpers::setArrayRecursive($desaparecido[A::PrendasVestir], A::DesaparecidoId, $desaparecidoId);
+
+                    ArrayHelpers::syncList(
+                        PrendaVestir::class,
+                        $data,
+                        A::DesaparecidoId,
+                        $desaparecidoId,
+                        config('patterns.prenda_vestir'));
                 }
 
-                if (isset($desaparecido["documentos_legales"]) && $desaparecido["documentos_legales"] != null) {
-                    $documentos_modificados = [];
-                    foreach ($desaparecido["documentos_legales"] as $documento) {
-                        $documento_updated = DocumentoLegal::updateOrCreate([
-                            "id" => $documento["id"] ?? null,
-                            "desaparecido_id" => $documento["desaparecido_id"] ?? $desaparecido_updated["id"] ?? null,
-                        ], [
-                            "tipo_documento" => $documento["tipo_documento"],
-                            "numero_documento" => $documento["numero_documento"],
-                            'donde_radica' => $documento["donde_radica"],
-                            'nombre_servidor_publico' => $documento["nombre_servidor_publico"],
-                            'fecha_recepcion' => $documento["fecha_recepcion"],
-                        ]);
-                        array_push($documentos_modificados, $documento_updated->id);
-                    }
-                    $documentos_eliminables = $desaparecido_updated->documentosLegales->except($documentos_modificados);
-                    if (count($documentos_eliminables) > 0) {
-                        $documentos_eliminables->toQuery()->delete();
-                    }
+                if (isset($desaparecido[A::DocumentosLegales]) && !is_null($desaparecido[A::DocumentosLegales])) {
+                    $data = ArrayHelpers::setArrayRecursive($desaparecido[A::DocumentosLegales], A::DesaparecidoId, $desaparecidoId);
+
+                    ArrayHelpers::syncList(
+                        DocumentoLegal::class,
+                        $data,
+                        A::DesaparecidoId,
+                        $desaparecidoId);
+                }
+
+                if (isset($desaparecido[A::Localizacion]) && !is_null($desaparecido[A::Localizacion])) {
+                    $data = ArrayHelpers::setArrayValue($desaparecido[A::Localizacion], A::DesaparecidoId, $desaparecidoId);
+                    ArrayHelpers::asyncHandler(Localizacion::class, $data, config('patterns.localizacion'));
                 }
             }
         }
 
-        if ($request->has("control_ogpi") && $request->control_ogpi != null) {
-            $this->sync->ControlOgpi($reporte->id, $request);
+        if (isset($request[A::HechosDesaparicion]) && !is_null($request[A::HechosDesaparicion])) {
+            $data = ArrayHelpers::setArrayValue($request[A::HechosDesaparicion], A::ReporteId, $reporteId);
+
+            if (isset($data[A::Direccion]) && !is_null($data[A::Direccion])) {
+                $data[A::Direccion] = ArrayHelpers::asyncHandler(Direccion::class, $data[A::Direccion], config('patterns.direccion'));
+            }
+
+            ArrayHelpers::asyncHandler(HechoDesaparicion::class, $data, config('patterns.hecho_desaparicion'));
         }
 
-        if ($request->has("expedientes") && $request->expedientes != null) {
-            $this->sync->Expediente($reporte->id, $request);
+        if (isset($request[A::Hipotesis]) && !is_null($request[A::Hipotesis])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Hipotesis], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Hipotesis::class, $data, A::ReporteId, $reporteId, config('patterns.hipotesis'));
         }
 
-        if ($request->has("desaparicion_forzada") && $request->desaparicion_forzada != null) {
-            $this->sync->DesaparicionForzada($reporte->id, $request);
+        if (isset($request[A::ControlOgpi]) && !is_null($request[A::ControlOgpi])) {
+            $data = ArrayHelpers::setArrayValue($request[A::ControlOgpi], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(ControlOgpi::class, $data, config('patterns.control_ogpi'));
         }
 
-        if ($request->has("perpetradores") && $request->perpetradores != null) {
-            $this->sync->Perpetradores($reporte->id, $request);
+        if (isset($request[A::Expedientes]) && !is_null($request[A::Expedientes])) {
+            $data = $request[A::Expedientes];
+            ArrayHelpers::syncList(Expediente::class, $data, null, null, config('patterns.expediente'), false);
         }
 
-        if ($request->has("contexto_familiar") && $request->contexto_familiar != null) {
-            $this->sync->ContextoFamiliar($reporte->id, $request);
+        if (isset($request[A::DesaparicionForzada]) && !is_null($request[A::DesaparicionForzada])) {
+            $data = ArrayHelpers::setArrayValue($request[A::DesaparicionForzada], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(DesaparicionForzada::class, $data, config('patterns.desaparicion_forzada'));
         }
 
-        // Si no se hace esto, pasara solamente los valores establecidos en el update.
-        // Si hay observers modificando valores, estos no se veran reflejados.
-        return ReporteResource::make( Reporte::find($reporte->id) );
+        if (isset($request[A::Perpetradores]) && !is_null($request[A::Perpetradores])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Perpetradores], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Perpetrador::class, $data, A::ReporteId, $reporteId, config('patterns.perpetrador'));
+        }
+
+        if (isset($request[A::DatoComplementario]) && !is_null($request[A::DatoComplementario])) {
+            $data = ArrayHelpers::setArrayValue($request[A::DatoComplementario], A::ReporteId, $reporteId);
+
+            if (isset($data[A::Direccion]) && !is_null($data[A::Direccion]))
+                $data[A::Direccion] = ArrayHelpers::asyncHandler(Direccion::class, $data[A::Direccion], config('patterns.direccion'));
+
+            ArrayHelpers::asyncHandler(DatoComplementario::class, $data, config('patterns.dato_complementario'));
+        }
+
+        if (isset($request[A::Vehiculos]) && !is_null($request[A::Vehiculos])) {
+            $data = ArrayHelpers::setArrayRecursive($request[A::Vehiculos], A::ReporteId, $reporteId);
+            ArrayHelpers::syncList(Vehiculo::class, $data, A::ReporteId, $reporteId, config('patterns.vehiculo'));
+        }
+
+        if (isset($request[A::ExpedienteFisico]) && !is_null($request[A::ExpedienteFisico])) {
+            $data = ArrayHelpers::setArrayValue($request[A::ExpedienteFisico], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(ExpedienteFisico::class, $data, config('patterns.expediente_fisico'));
+        }
+
+        return ReporteResource::make(Reporte::findOrFail($reporteId));
     }
 }

@@ -18,8 +18,8 @@ class Reportante extends Model
     protected $table = 'reportantes';
 
     protected $fillable = [
-        'persona_id',
         'reporte_id',
+        'persona_id',
         'parentesco_id',
         'colectivo_id',
         'denuncia_anonima',
@@ -29,10 +29,13 @@ class Reportante extends Model
         'publicacion_boletin',
         'informacion_relevante',
         'pertenencia_colectivo',
-        'edad_estimada',
-        'participacion_busquedas',
-        'descripcion_extorsion',
-        'descripcion_donde_proviene',
+        'participacion_previa_busquedas',
+        'descripcion_participacion_busquedas',
+        'victima_extorsion_fraude',
+        'descripcion_extorsion_fraude',
+        'recibio_amenazas',
+        'descripcion_origen_amenazas',
+        'edad_estimada_anhos',
     ];
 
     protected $casts = [
@@ -46,22 +49,22 @@ class Reportante extends Model
 
     protected function reporte(): BelongsTo
     {
-        return $this->belongsTo(Reporte::class);
+        return $this->belongsTo(Reporte::class, 'reporte_id');
     }
 
     protected function persona(): BelongsTo
     {
-        return $this->belongsTo(Persona::class);
+        return $this->belongsTo(Persona::class, 'persona_id');
     }
 
     protected function parentesco(): BelongsTo
     {
-        return $this->belongsTo(Parentesco::class);
+        return $this->belongsTo(Parentesco::class, 'parentesco_id');
     }
 
     public function colectivo(): BelongsTo
     {
-        return $this->belongsTo(Colectivo::class);
+        return $this->belongsTo(Colectivo::class, 'colectivo_id');
     }
 
     public function toSearchableArray()

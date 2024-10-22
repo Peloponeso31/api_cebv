@@ -34,7 +34,8 @@ return [
     ],
 
     'expediente' => [
-        'persona_id' => 'persona.id',
+        'reporte_uno_id' => 'reporte_uno.id',
+        'reporte_dos_id' => 'reporte_dos.id',
         'parentesco_id' => 'parentesco.id',
     ],
 
@@ -160,10 +161,6 @@ return [
 
     'pasatiempo' => [
         'pasatiempo_id' => 'pasatiempo.id',
-    ],
-
-    'club' => [
-        'club_id' => 'club.id',
     ],
 
     'amistad' => [

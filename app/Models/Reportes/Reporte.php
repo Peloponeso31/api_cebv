@@ -3,11 +3,13 @@
 namespace App\Models\Reportes;
 
 use App\Enums\TipoDesaparicion;
+use App\Http\Resources\ExpedienteResource;
 use App\Models\ControlOgpi;
 use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\ExpedienteFisico;
+use App\Models\FusionRegistro;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
@@ -21,11 +23,15 @@ use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\ZonaEstado;
 use App\Models\Vehiculo;
+use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
 
 class Reporte extends Model
@@ -114,7 +120,7 @@ class Reporte extends Model
 
     public function hipotesisOficial(): BelongsTo
     {
-        return $this->belongsTo(TipoHipotesis::class, 'hipotesis_oficial_id',);
+        return $this->belongsTo(TipoHipotesis::class, 'hipotesis_oficial_id');
     }
 
     public function reportantes(): HasMany
@@ -153,9 +159,22 @@ class Reporte extends Model
         return $this->hasMany(Vehiculo::class);
     }
 
-    public function expedientes(): HasMany
+    public function expedientesPadre(): BelongsToMany
     {
-        return $this->hasMany(Expediente::class);
+        return $this->belongsToMany(self::class, 'expedientes', 'reporte_uno_id', 'reporte_dos_id')
+            ->withPivot('id','parentesco_id', 'tipo');
+    }
+
+    public function expedientesHijo(): BelongsToMany
+    {
+        return $this->belongsToMany(self::class, 'expedientes', 'reporte_dos_id', 'reporte_uno_id')
+            ->withPivot('id','parentesco_id', 'tipo');
+    }
+
+    public function expedientes(): Collection
+    {
+        $reportes = $this->expedientesPadre->merge($this->expedientesHijo);
+        return $reportes;
     }
 
     public function desaparicionForzada(): HasOne
@@ -177,4 +196,11 @@ class Reporte extends Model
     {
         return $this->hasOne(ExpedienteFisico::class, 'reporte_id');
     }
+
+    public function fusionRegistros(): HasMany
+    {
+        return $this->hasMany(FusionRegistro::class, 'reporte_id');
+    }
+
+
 }

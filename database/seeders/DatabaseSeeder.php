@@ -92,7 +92,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EstatusEscolaridadSeeder::class,
             PasatiempoSeeder::class,
-            ClubSeeder::class,
         ]);
 
         /**

@@ -9,6 +9,7 @@ use App\Models\Reportes\Hipotesis\Hipotesis;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Direccion;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class HechoDesaparicionFactory extends Factory
 {
@@ -17,22 +18,22 @@ class HechoDesaparicionFactory extends Factory
     public function definition(): array
     {
         $amenaza = fake()->boolean(40);
-        $comportamiento = fake()->boolean(40);
-        $fechaDesaparicion = fake()->boolean ? fake()->dateTimeThisYear() : null;
 
         return [
             'reporte_id' => Reporte::factory(),
-            'fecha_desaparicion' => $fechaDesaparicion,
-            'fecha_percato' => fake()->dateTimeBetween('-1 week'),
-            'cambio_comportamiento' => $comportamiento,
-            'descripcion_cambio_comportamiento' => $comportamiento ? fake()->sentence() : null,
-            'fue_amenazado' => $amenaza,
-            'descripcion_amenaza' => $amenaza ? fake()->sentence() : null,
+            'direccion_id' => Direccion::factory(),
+            'sitio_id' => null,
+            'fecha_desaparicion_desconocida' => fake()->boolean(40),
+            'aclaraciones_fecha_hechos' => fake()->sentence(),
+            'amenaza_cambio_comportamiento' => $amenaza,
+            'descripcion_amenaza_cambio_comportamiento' => $amenaza ? fake()->sentence() : null,
             'contador_desapariciones' => fake()->numberBetween(1, 10),
-            'situacion_previa' => fake()->text(),
-            'informacion_relevante' => fake()->text(),
+            'situacion_previa' => fake()->sentence(),
+            'informacion_relevante' => fake()->sentence(),
             'hechos_desaparicion' => fake()->text(),
             'sintesis_desaparicion' => fake()->text(),
+            'desaparecio_acompanado' => fake()->boolean(40),
+            'personas_mismo_evento' => fake()->numberBetween(1, 10),
         ];
     }
 }

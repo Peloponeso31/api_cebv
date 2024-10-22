@@ -11,6 +11,7 @@ use App\Http\Resources\ExpedienteFisicoResource;
 use App\Http\Resources\ExpedienteResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\PerpetradorResource;
+use App\Http\Resources\ReporteHechoResource;
 use App\Http\Resources\Reportes\Hechos\HechoDesaparicionResource;
 use App\Http\Resources\Reportes\Hipotesis\HipotesisResource;
 use App\Http\Resources\Reportes\Hipotesis\TipoHipotesisResource;
@@ -57,7 +58,7 @@ class ReporteResource extends JsonResource
              */
             'control_ogpi' => ControlOgpiResource::make($this->controlOgpi),
             // Expedientes
-            'expedientes' => ExpedienteResource::collection($this->expedientes),
+            'expedientes' => ExpedienteResource::collection($this->expedientes()),
             // Desaparicion forzada
             'desaparicion_forzada' => DesaparicionForzadaResource::make($this->desaparicionForzada),
             // Perpetradores

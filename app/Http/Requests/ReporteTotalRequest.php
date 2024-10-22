@@ -42,8 +42,6 @@ class ReporteTotalRequest extends FormRequest
 
 
             //hechos de_desaparicion
-            'hechos_desaparicion.id' => ['nullable', 'exists:hechos_desapariciones,id', 'numeric'],
-            'hechos_desaparicion.reporte_id' => ['nullable', 'exists:reportes,id', 'numeric'],
             'hechos_desaparicion.fecha_desaparicion' => ['nullable', 'date'],
             'hechos_desaparicion.fecha_desaparicion_cebv' => ['nullable', 'string'],
             'hechos_desaparicion.fecha_percato' => ['nullable', 'date'],

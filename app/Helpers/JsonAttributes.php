@@ -26,6 +26,9 @@ class JsonAttributes
 
     /** @var string */
     const ReporteId = 'reporte_id';
+    const ReporteUnoId = 'reporte_uno_id';
+
+    const ReporteDosId = 'reporte_dos_id';
 
     /** @var string */
     const DesaparecidoId = 'desaparecido_id';

@@ -1,7 +1,11 @@
 // @no-log
-GET http://api_cebv.test/api/filtar-hechos?nombre=jonatan&apellidoPaterno=luna
+GET http://api_cebv.test/api/reportes/60
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
+{
+    "reporte_id": 1,
+    "hechos_desaparicion": "Hechos de desaparición"
+}
 
 

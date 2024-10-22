@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ArrayHelpers;
 use App\Helpers\JsonAttributes as A;
-use App\Helpers\PersonaAttributes as P;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
@@ -14,7 +13,6 @@ use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\ExpedienteFisico;
 use App\Models\Localizacion;
-use App\Models\Oficialidades\Folio;
 use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Hipotesis\Hipotesis;
@@ -117,8 +115,8 @@ class SyncReporteController extends Controller
         }
 
         if (isset($request[A::Expedientes]) && !is_null($request[A::Expedientes])) {
-            $data = ArrayHelpers::setArrayRecursive($request[A::Expedientes], A::ReporteId, $reporteId);
-            ArrayHelpers::syncList(Expediente::class, $data, A::ReporteId, $reporteId, config('patterns.expediente'));
+            $data = $request[A::Expedientes];
+            ArrayHelpers::syncList(Expediente::class, $data, null, null, config('patterns.expediente'), false);
         }
 
         if (isset($request[A::DesaparicionForzada]) && !is_null($request[A::DesaparicionForzada])) {

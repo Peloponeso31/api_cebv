@@ -7,6 +7,7 @@ use App\Http\Requests\NacionalidadRequest;
 use App\Http\Requests\Personas\PersonaRequest;
 use App\Http\Requests\Personas\UpdatePersonaRequest;
 use App\Http\Resources\FolioResource;
+use App\Http\Resources\PersonaCompactResource;
 use App\Http\Resources\Personas\PersonaResource;
 use App\Models\Nacionalidad;
 use App\Models\Personas\Persona;
@@ -29,6 +30,10 @@ class PersonaController extends Controller
         $personas = QueryBuilder::for(Persona::class)
             ->allowedFilters(['nombre', 'apellido_paterno', 'apellido_materno'])
             ->get();
+
+        if (request()->has('filter')) {
+            return PersonaCompactResource::collection($personas);
+        }
 
         return PersonaResource::collection($personas);
     }

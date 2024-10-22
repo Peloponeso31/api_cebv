@@ -24,6 +24,8 @@ class ContextoSocialResource extends JsonResource
             'situacion_migratoria' => CatalogoResource::make($this->situacionMigratoria),
             'esta_transito_estados_unidos' => $this->esta_transito_estados_unidos,
             'descripcion_proceso_migratorio' => $this->descripcion_proceso_migratorio,
+            'descripcion_pasatiempos' => $this->descripcion_pasatiempos,
+            'descripcion_clubes_organizaciones' => $this->descripcion_clubes_organizaciones,
         ];
     }
 }

@@ -115,7 +115,7 @@ class SyncReporteController extends Controller
         }
 
         if (isset($request[A::Expedientes]) && !is_null($request[A::Expedientes])) {
-            $data = $request[A::Expedientes];
+            $data = ArrayHelpers::setArrayRecursive($request[A::Expedientes], A::ReporteUnoId, $reporteId);
             ArrayHelpers::syncList(Expediente::class, $data, null, null, config('patterns.expediente'), false);
         }
 

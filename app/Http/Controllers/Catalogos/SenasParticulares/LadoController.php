@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalogos\SenasParticulares;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CatalogoColorResource;
 use App\Http\Resources\LadoResource;
 use App\Models\Catalogos\Lado;
 use App\Http\Requests\Catalogos\SenasParticulares\LadoSenaRequest;
@@ -14,7 +15,7 @@ class LadoController extends Controller
      */
     public function index()
     {
-        return LadoResource::collection(Lado::all());
+        return CatalogoColorResource::collection(Lado::all());
     }
 
 

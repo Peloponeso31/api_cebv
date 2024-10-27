@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use App\Helpers\ArrayHelpers;
 use App\Models\Catalogos\RegionCuerpo;
-use App\Models\Catalogos\RegionCuerpoRnpdno;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RegionCuerpoSeeder extends Seeder

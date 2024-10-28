@@ -24,7 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(BoletinController::class)->group(function () {
         Route::get('/boletines/busqueda-inmediata/{id}', 'busquedaInmediata');
-
     });
 
     Route::get("/informes-inicios/{id}", function (string $id) {

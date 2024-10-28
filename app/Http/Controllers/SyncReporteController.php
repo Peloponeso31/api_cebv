@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ArrayHelpers;
 use App\Helpers\JsonAttributes as A;
-use App\Helpers\PersonaAttributes as P;
 use App\Http\Requests\ReporteTotalRequest;
 use App\Http\Resources\Reportes\ReporteResource;
 use App\Models\Catalogos\PrendaVestir;
@@ -26,6 +25,7 @@ use App\Models\Ubicaciones\Direccion;
 use App\Models\Vehiculo;
 use App\Services\SyncPersonaService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 
 class SyncReporteController extends Controller
 {
@@ -36,7 +36,7 @@ class SyncReporteController extends Controller
         $this->syncPersona = $syncPersona;
     }
 
-    public function actualizarReporteCascade(ReporteTotalRequest $request)
+    public function actualizarReporteCascade(Request $request)
     {
         $data = $request->toArray();
 

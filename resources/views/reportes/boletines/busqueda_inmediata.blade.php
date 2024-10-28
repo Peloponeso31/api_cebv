@@ -8,11 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
+
     <title>Document</title>
 </head>
 
 <style>
-
     html, body {
         margin: 0;
         padding: 0;
@@ -156,9 +156,7 @@ El div de dentro determina las dimensiones de la imagen.
 
 <div id="nombre-folio">
     <h2>
-        {{ $desaparecido->persona->nombre }}
-        {{ $desaparecido->persona->apellido_paterno }}
-        {{ $desaparecido->persona->apellido_materno }}
+        {{ $desaparecido->persona->nombre }} {{ $desaparecido->persona->apellido_paterno }} {{ $desaparecido->persona->apellido_materno }}
     </h2>
     <h4>
         {{ $folio->folio_cebv }}
@@ -173,7 +171,7 @@ El div de dentro determina las dimensiones de la imagen.
     @if($desaparecido->persona->fecha_nacimiento != null)
         <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->persona->edadAnhos() }} años. </p>
     @elseif($desaparecido->edad_estimada_anos != null)
-        <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->edad_momento_desaparicion_anos }}.</p>
+        <p class="texto"><b class="resaltado"> Edad actual: </b> {{ $desaparecido->edad_momento_desaparicion_anos }}. </p>
     @endif
 
     @isset($desaparecido->persona->salud->estatura)
@@ -181,22 +179,17 @@ El div de dentro determina las dimensiones de la imagen.
     @endisset
 
     @isset($desaparecido->persona->mediaFiliacion->color_ojos_id)
-        <p class="texto"><b class="resaltado"> Color de
-                ojos: </b> {{ $desaparecido->persona->mediaFiliacion->colorOjos->nombre }}. </p>
+        <p class="texto"><b class="resaltado"> Color de ojos: </b> {{ $desaparecido->persona->mediaFiliacion->colorOjos->nombre }}. </p>
     @endisset
 
     @isset($desaparecido->persona->mediaFiliacion->color_piel_id)
-        <p class="texto"><b class="resaltado"> Color de
-                piel: </b> {{ $desaparecido->persona->mediaFiliacion->colorPiel->nombre }}. </p>
+        <p class="texto"><b class="resaltado"> Color de piel: </b> {{ $desaparecido->persona->mediaFiliacion->colorPiel->nombre }}. </p>
     @endisset
-
-
-
 </div>
 
 <div id="senas-particulares">
-    @isset($senas)
-        <pre class="texto"><b class="resaltado">Señas particulares:</b><br>{{ $senas }}</pre>
+    @isset($desaparecido->senas_particulares_boletin)
+        <pre class="texto"><b class="resaltado">Señas particulares:</b><br>{{ $desaparecido->senas_particulares_boletin }}</pre>
     @endisset
 </div>
 

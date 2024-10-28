@@ -15,25 +15,13 @@ class VistaSeeder extends Seeder
     public function run(): void
     {
         $vistas = [
-            ["nombre" => "DORSAL"],
-            ["nombre" => "FRONTAL"],
-            ["nombre" => "NO ESPECIFICA"],
-            ["nombre" => "INTERNO"],
-            ["nombre" => "EXTERNO"],
-        ];
-
-        $vistas_rnpdno = [
-            ["nombre" => "DORSAL"],
-            ["nombre" => "FRONTAL"],
+            ["nombre" => "DORSAL", 'color' => '7F3F98'],
+            ["nombre" => "FRONTAL", 'color' => 'F26522'],
             ["nombre" => "NO ESPECIFICA"],
         ];
 
         foreach ($vistas as $vista) {
             Vista::firstOrCreate($vista);
-        }
-
-        foreach ($vistas_rnpdno as $vista_rnpdno) {
-            VistaRnpdno::firstOrCreate($vista_rnpdno);
         }
     }
 }

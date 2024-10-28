@@ -1,11 +1,13 @@
 // @no-log
-GET http://api_cebv.test/api/filtrar-hechos?nombre=jo
+GET http://api_cebv.test/api/lados
 Content-Type: application/json
 Authorization: Bearer {{auth_token}}
 
 {
-    "reporte_id": 1,
-    "hechos_desaparicion": "Hechos de desaparición"
+    "reporte_uno_id": 3,
+    "reporte_dos_id": 1,
+    "tipo": "Directo",
+    "parentesco_id": 5
 }
 
 

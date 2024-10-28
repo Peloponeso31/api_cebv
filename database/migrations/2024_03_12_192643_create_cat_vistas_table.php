@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('cat_vistas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('color', 6)->nullable();
         });
     }
 

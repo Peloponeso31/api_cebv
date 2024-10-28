@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Catalogos\SenasParticulares;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\RegionCuerpoResource;
+use App\Http\Resources\CatalogoColorResource;
 use App\Models\Catalogos\RegionCuerpo;
 use App\Http\Requests\Catalogos\SenasParticulares\RegionCuerpoSenaRequest;
 
@@ -14,7 +14,7 @@ class RegionCuerpoController extends Controller
      */
     public function index()
     {
-        return RegionCuerpoResource::collection(RegionCuerpo::all());
+        return CatalogoColorResource::collection(RegionCuerpo::all());
     }
 
 
@@ -31,7 +31,7 @@ class RegionCuerpoController extends Controller
      */
     public function show($id)
     {
-        return RegionCuerpoResource::make(RegionCuerpo::findOrFail($id));
+        return CatalogoColorResource::make(RegionCuerpo::findOrFail($id));
     }
 
     /**

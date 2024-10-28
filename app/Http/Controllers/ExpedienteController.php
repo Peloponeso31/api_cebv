@@ -15,6 +15,7 @@ class ExpedienteController extends Controller
 
     public function store(ExpedienteRequest $request)
     {
+        
         return new ExpedienteResource(Expediente::create($request->validated()));
     }
 

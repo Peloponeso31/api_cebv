@@ -34,8 +34,7 @@ return [
     ],
 
     'expediente' => [
-        'reporte_uno_id' => 'reporte_uno.id',
-        'reporte_dos_id' => 'reporte_dos.id',
+        'reporte_dos_id' => 'reporte.id',
         'parentesco_id' => 'parentesco.id',
     ],
 

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BoletinController;
+use App\Http\Controllers\PdfController;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -19,6 +21,10 @@ use App\Models\Reportes\Reporte;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::controller(BoletinController::class)->group(function () {
+        Route::get('/boletines/busqueda-inmediata/{id}', 'busquedaInmediata');
+    });
 
     Route::get("/informes-inicios/{id}", function (string $id) {
         $desaparecido = Desaparecido::findOrFail($id);

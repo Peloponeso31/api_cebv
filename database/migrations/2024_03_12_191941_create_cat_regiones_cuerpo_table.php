@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cat_regiones_cuerpo', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('color', length:6);
+            $table->string('color', length:6)->nullable();
         });
     }
 

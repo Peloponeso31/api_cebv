@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalogos\SenasParticulares;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CatalogoColorResource;
 use App\Http\Resources\CatalogoResource;
 use App\Models\Catalogos\Vista;
 use App\Http\Requests\Catalogos\SenasParticulares\VistaSenaRequest;
@@ -14,7 +15,7 @@ class VistaController extends Controller
      */
     public function index()
     {
-        return CatalogoResource::collection(Vista::all());
+        return CatalogoColorResource::collection(Vista::all());
     }
 
     /**

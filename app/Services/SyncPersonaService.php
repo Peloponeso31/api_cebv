@@ -100,7 +100,7 @@ class SyncPersonaService
             $data = AH::setArrayRecursive($request[P::SenasParticulares], P::PersonaId, $personaId);
 
             foreach ($data as $sena) {
-                $senasModified[] = AH::asyncHandler(SenasParticulares::class, $sena, config('patterns.senas_particulares'))->getAttribute('id');
+                $senasModified[] = AH::asyncHandler(SenasParticulares::class, $sena, config('patterns.sena_particular'))->getAttribute('id');
 
                 if (isset($sena['encoded_image']) && $sena['encoded_image'] != null) {
                     $last_sena = SenasParticulares::findOrFail(end($senasModified));

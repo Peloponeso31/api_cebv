@@ -24,6 +24,7 @@ use App\Models\Ubicaciones\Direccion;
 use App\Models\Vehiculo;
 use App\Services\SyncPersonaService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 
 class SyncReporteController extends Controller
 {
@@ -34,7 +35,7 @@ class SyncReporteController extends Controller
         $this->syncPersona = $syncPersona;
     }
 
-    public function actualizarReporteCascade(ReporteTotalRequest $request)
+    public function actualizarReporteCascade(Request $request)
     {
         $data = $request->toArray();
 
@@ -115,7 +116,7 @@ class SyncReporteController extends Controller
         }
 
         if (isset($request[A::Expedientes]) && !is_null($request[A::Expedientes])) {
-            $data = $request[A::Expedientes];
+            $data = ArrayHelpers::setArrayRecursive($request[A::Expedientes], A::ReporteUnoId, $reporteId);
             ArrayHelpers::syncList(Expediente::class, $data, null, null, config('patterns.expediente'), false);
         }
 

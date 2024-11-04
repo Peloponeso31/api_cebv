@@ -19,11 +19,13 @@ use App\Models\Reportes\Reporte;
 |
 */
 
+Route::controller(DocumentoController::class)->group(function () {
+    Route::get('/documentos/informes-inicio/{desaparecido_id}', 'informeInicio');
+});
+
 Route::middleware('auth:sanctum')->group(function ()
 {
-    Route::controller(DocumentoController::class)->group(function () {
-        Route::get('/documentos/informe-inicio/{desaparecido_id}', 'informeInicio');
-    });
+
 
     Route::get("/ficha_de_datos", function () {
         return Pdf::loadView("reportes.ficha_de_datos")->stream();

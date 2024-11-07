@@ -10,20 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class FotosDesaparecidoController extends Controller
 {
-    // Generado con Gemini.
-    private function sanitize($string) {
-        $string = preg_replace('/[^a-zA-Z0-9._-]/', '', $string);
-        $string = trim($string, '. ');
-        $string = preg_replace('/[\/\\\]+/', '/', $string);
-        $string = str_replace(['..', './'], '', $string);
-        return $string;
-    }
-
     public function index($desaparecido_id)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecido_id);
         //Storage para acceder al repositorio del servidor,
-        $files = Storage::allFiles($desaparecido->id);
+        $files = Storage::allFiles($desaparecido->persona->id);
         $content = [];
         $acc = 0;
 
@@ -34,7 +25,6 @@ class FotosDesaparecidoController extends Controller
         }
         return $content;
     }
-
 
     public function upload($desaparecido_id, Request $request)
     {
@@ -48,7 +38,6 @@ class FotosDesaparecidoController extends Controller
                 $desaparecido->save();
             }
         }
-
 
         return response()->json([
             "mensaje" => "Fotografias guardadas correctamente",

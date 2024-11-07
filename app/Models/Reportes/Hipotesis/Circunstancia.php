@@ -36,6 +36,7 @@ class Circunstancia extends Model
         return $this->hasMany(Hipotesis::class);
     }
 
+
     public function toSearchableArray()
     {
         return [

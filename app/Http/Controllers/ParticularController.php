@@ -10,7 +10,9 @@ class ParticularController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Particular::all());
+        $particulares = Particular::withParticularesCount()->orderBy('desapariciones_forzadas_count','desc')->get();
+
+        return CatalogoResource::collection($particulares);
     }
 
     public function store(Request $request)

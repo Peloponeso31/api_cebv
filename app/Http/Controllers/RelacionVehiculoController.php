@@ -10,7 +10,8 @@ class RelacionVehiculoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(RelacionVehiculo::all());
+        $relacionesvehiculos = RelacionVehiculo::withRelacionVehiculoCount()->orderBy('vehiculos_count','desc')->get();
+        return CatalogoResource::collection($relacionesvehiculos);
     }
 
     public function store(Request $request)

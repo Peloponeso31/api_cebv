@@ -19,4 +19,9 @@ class TipoSangre extends Model
     {
         return $this->hasMany(Salud::class);
     }
+
+    public function scopeWithTiposSangreCount($query)
+    {
+        return $query->withCount('salud');
+    }
 }

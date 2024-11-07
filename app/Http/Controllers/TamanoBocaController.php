@@ -10,7 +10,9 @@ class TamanoBocaController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TamanoBoca::all());
+        $tamanosbocas = TamanoBoca::withTamanosbocasCount()->orderBy('bocas_count','desc')->get();
+
+        return CatalogoResource::collection($tamanosbocas);
     }
 
     public function store(Request $request)

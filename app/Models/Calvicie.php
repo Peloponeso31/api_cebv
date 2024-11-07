@@ -19,4 +19,9 @@ class Calvicie extends Model
     {
         return $this->hasMany(Cabello::class);
     }
+
+    public function scopeWithCalviciesCount($query)
+    {
+        return $query->withCount('cabellos');
+    }
 }

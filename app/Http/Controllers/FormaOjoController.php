@@ -10,7 +10,9 @@ class FormaOjoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(FormaOjo::all());
+        $formasojos = FormaOjo::withFormasojosCount()->orderBy('ojos_count','desc')->get();
+
+        return CatalogoResource::collection($formasojos);
     }
 
     public function store(Request $request)

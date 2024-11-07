@@ -21,4 +21,9 @@ class TipoEnfoqueDiferenciado extends Model
         return $this->belongsToMany(Persona::class)
             ->using(EnfoquePersonal::class);
     }
+
+    public function scopeWithTiposenfoquesdif($query)
+    {
+        return $query->withCount('personas');
+    }
 }

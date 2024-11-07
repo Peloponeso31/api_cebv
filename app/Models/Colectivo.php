@@ -21,4 +21,9 @@ class Colectivo extends Model
     {
         return $this->hasMany(Reportante::class);
     }
+
+    public function scopeWithColectivosCount($query)
+    {
+        return $query->withCount('reportantes');
+    }
 }

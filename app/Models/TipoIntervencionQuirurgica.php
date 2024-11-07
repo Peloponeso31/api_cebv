@@ -19,4 +19,9 @@ class TipoIntervencionQuirurgica extends Model
     {
         return $this->hasMany(IntervencionQuirurgica::class);
     }
+
+    public function scopeWithTiposintervencionesquirurgicasCount($query)
+    {
+        return $query->withCount('intervencionesQuirurgicas');
+    }
 }

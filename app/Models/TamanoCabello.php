@@ -19,4 +19,9 @@ class TamanoCabello extends Model
     {
         return $this->hasMany(Cabello::class);
     }
+
+    public function scopeWithTamanoscabellosCount($query)
+    {
+        return $query->withCount('cabellos');
+    }
 }

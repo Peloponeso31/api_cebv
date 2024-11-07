@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use mysql_xdevapi\Table;
 
 class RelacionVehiculo extends Model
 {
@@ -19,6 +18,11 @@ class RelacionVehiculo extends Model
     public function vehiculos(): HasMany
     {
         return $this->hasMany(Vehiculo::class);
+    }
+
+    public function scopeWithRelacionVehiculoCount($query)
+    {
+        return $query->withCount('vehiculos');
     }
 
 }

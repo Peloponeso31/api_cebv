@@ -25,4 +25,9 @@ class TipoRedSocial extends Model
     {
         return $this->hasMany(Amistad::class);
     }
+
+    public function scopeWithRedessocialesCount($query)
+    {
+        return $query->withCount('amistades');
+    }
 }

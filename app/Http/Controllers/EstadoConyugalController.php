@@ -10,7 +10,10 @@ class EstadoConyugalController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(EstadoConyugal::all());
+        $estadosconyugales = EstadoConyugal::withEstadosConyugalesCount()->orderBy('contextos_Familiares_count','desc')->get();
+
+
+        return response()->json($estadosconyugales);
     }
 
     public function store(Request $request)

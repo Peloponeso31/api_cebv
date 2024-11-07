@@ -13,7 +13,9 @@ class LenguaController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(Lengua::all());
+        $lenguas = Lengua::withLenguasCount()->orderBy('personas_count','desc')->get();
+
+        return CatalogoResource::collection($lenguas);
     }
 
 

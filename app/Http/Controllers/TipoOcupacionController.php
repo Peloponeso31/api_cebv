@@ -10,7 +10,9 @@ class TipoOcupacionController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoOcupacion::all());
+        $tiposocupaciones = TipoOcupacion::withTipoocupacionesCount()->orderBy('ocupaciones_count','desc')->get();
+
+        return CatalogoResource::collection($tiposocupaciones);
     }
 
     public function store(Request $request)

@@ -24,4 +24,9 @@ class Lengua extends Model
     {
         return $this->hasMany(Persona::class);
     }
+
+    public function scopeWithLenguasCount($query)
+    {
+        return $query->withCount('personas');
+    }
 }

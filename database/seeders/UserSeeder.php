@@ -101,5 +101,17 @@ class UserSeeder extends Seeder
             ])->id,
             'email' => 'armando@cebv.com',
         ]);
+
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'persona_id' => Persona::create([
+                    'nombre' => 'Uriel',
+                    'apellido_paterno' => 'Garcia',
+                    'apellido_materno' => 'Garcia',
+                ])->id,
+                'puesto_id' => 2,
+            ])->id,
+            'email' => 'uriel@cebv.com',
+        ]);
     }
 }

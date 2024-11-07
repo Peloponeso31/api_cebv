@@ -10,7 +10,8 @@ class TipoEnfermedadPielController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoEnfermedadPiel::all());
+        $tipoenfermedadespiel = TipoEnfermedadPiel::withEnfermedadespielCount()->orderBy('enferdades_piel_count','desc')->get();
+        return CatalogoResource::collection($tipoenfermedadespiel);
     }
 
     public function store(TipoEnfermedadPielRequest $request)

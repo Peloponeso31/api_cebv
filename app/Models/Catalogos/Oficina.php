@@ -19,4 +19,9 @@ class Oficina extends Model
     {
         return $this->hasMany(Empleado::class);
     }
+
+    public function scopeWithOficinasCount($query)
+    {
+        return $query->withCount('empleado');
+    }
 }

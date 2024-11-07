@@ -19,4 +19,10 @@ class Autoridad extends Model
     {
         return $this->hasMany(DesaparicionForzada::class);
     }
+
+    public function scopeWithAutoridadesCount($query)
+    {
+        return $query->withCount('desaparicionesForzadas');
+    }
+
 }

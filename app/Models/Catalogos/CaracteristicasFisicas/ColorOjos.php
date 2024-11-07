@@ -19,4 +19,9 @@ class ColorOjos extends Model
         return $this->hasMany(Ojo::class);
     }
 
+    public function scopeWithColoresojosCount($query)
+    {
+        return $query->withCount('ojos');
+    }
+
 }

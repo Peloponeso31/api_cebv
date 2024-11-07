@@ -28,7 +28,9 @@ class SitioController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return CatalogoResource::collection($query->get());
+        $query = $query->withSitiosCount()->orderBy('hechos_desaparicion_count','desc')->get();
+        return CatalogoResource::collection($query);
+
     }
 
     public function store(SitioRequest $request)

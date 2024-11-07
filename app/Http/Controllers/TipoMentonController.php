@@ -10,7 +10,8 @@ class TipoMentonController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoMenton::all());
+        $tiposmentones = TipoMenton::withTiposmentonesCount()->orderBy('medias_filiaciones_complementarias_count','desc')->get();
+        return CatalogoResource::collection($tiposmentones);
     }
 
     public function store(Request $request)

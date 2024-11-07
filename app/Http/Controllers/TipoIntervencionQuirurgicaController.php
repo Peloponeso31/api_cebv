@@ -10,7 +10,9 @@ class TipoIntervencionQuirurgicaController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoIntervencionQuirurgica::all());
+        $tiposinterveciones = TipoIntervencionQuirurgica::withTiposintervencionesquirurgicasCount()->orderBy('intervenciones_quirurgicas_count','desc')->get();
+
+        return CatalogoResource::collection($tiposinterveciones);
     }
 
     public function store(TipoIntervencionQuirurgicaRequest $request)

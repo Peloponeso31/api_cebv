@@ -10,7 +10,9 @@ class CalvicieController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Calvicie::all());
+        $calvicies = Calvicie::withCalviciesCount()->orderBy('cabellos_count','desc')->get();
+
+        return CatalogoResource::collection($calvicies);
     }
 
     public function store(Request $request)

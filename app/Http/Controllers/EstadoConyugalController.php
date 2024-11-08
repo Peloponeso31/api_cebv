@@ -13,7 +13,7 @@ class EstadoConyugalController extends Controller
         $estadosconyugales = EstadoConyugal::withEstadosConyugalesCount()->orderBy('contextos_Familiares_count','desc')->get();
 
 
-        return response()->json($estadosconyugales);
+        return CatalogoResource::collection($estadosconyugales);
     }
 
     public function store(Request $request)

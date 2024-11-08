@@ -776,9 +776,9 @@
             <th>Identidad resguardada:</th>
         </tr>
         <tr>
-            <td>{{ $desaparecido->persona->nombre }}</td>
-            <td>{{ $desaparecido->persona->apellido_paterno }}</td>
-            <td>{{ $desaparecido->persona->apellido_materno }}</td>
+            <td>{{-- $desaparecido->persona->nombre --}}</td>
+            <td>{{-- $desaparecido->persona->apellido_paterno --}}</td>
+            <td>{{-- $desaparecido->persona->apellido_materno --}}</td>
             <td></td>
         </tr>
         <tr>
@@ -799,7 +799,7 @@
         <tr>
             <td></td>
             <td></td>
-            <td colspan="2">{{ $desaparecido->persona->genero }}</td>
+            <td colspan="2">{{-- $desaparecido->persona->genero --}}</td>
         </tr>
         <tr>
             <th colspan="3">¿Se desconoce fecha exacta?</th>
@@ -809,7 +809,7 @@
             <th colspan="4">Fecha de nacimiento específica:</th>
         </tr>
         <tr>
-            <td colspan="4">{{ $desaparecido->persona->fecha_nacimiento }}</td>
+            <td colspan="4">{{-- $desaparecido->persona->fecha_nacimiento --}}</td>
         </tr>
         <tr>
             <th colspan="4">Edad al momento de la desaparición</th>
@@ -820,7 +820,7 @@
             <th colspan="2">Edad(Días):</th>
         </tr>
         <tr>
-            <td>{{ $desaparecido->persona->edadAnhos() }} años</td>
+            <td>{{-- $desaparecido->persona->edadAnhos() --}} años</td>
             <td> meses</td>
             <td colspan="2"> días</td>
         </tr>
@@ -833,7 +833,7 @@
             <th colspan="2">Edad(Días):</th>
         </tr>
         <tr>
-            <td>{{ $desaparecido->persona->edadAnhos() }} años</td>
+            <td>{{-- $desaparecido->persona->edadAnhos() --}} años</td>
             <td> meses</td>
             <td colspan="2"> días</td>
         </tr>
@@ -860,7 +860,7 @@
         </tr>
         <tr>
             <td></td>
-            <td colspan="3">{{ $desaparecido->persona->curp }}</td>
+            <td colspan="3">{{-- $desaparecido->persona->curp --}}</td>
         </tr>
         <tr>
             <th colspan="4">Observaciones del CURP:</th>
@@ -1089,8 +1089,8 @@
             <th>Forma de la cara:</th>
         </tr>
         <tr>
-            <td>{{ $desaparecido->persona->estatura }}m</td>
-            <td>{{ $desaparecido->persona->peso }}kg</td>
+            <td>{{-- $desaparecido->persona->estatura --}}m</td>
+            <td>{{-- $desaparecido->persona->peso --}}kg</td>
             <td></td>
             <td></td>
             <td></td>

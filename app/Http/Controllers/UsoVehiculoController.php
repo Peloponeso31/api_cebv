@@ -10,7 +10,9 @@ class UsoVehiculoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(UsoVehiculo::all());
+        $usosvehiculos = UsoVehiculo::withUsosvehiculosCount()->orderBy('vehiculos_count','desc')->get();
+
+        return CatalogoResource::collection($usosvehiculos);
     }
 
     public function store(Request $request)

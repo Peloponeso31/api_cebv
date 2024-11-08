@@ -17,6 +17,11 @@ class FormaOreja extends Model
 
     public function orejas(): HasMany
     {
-        return $this->hasMany(Oreja::class);
+        return $this->hasMany(Oreja::class,'forma_orejas_id');
+    }
+
+    public function scopeWithFormasorejasCount($query)
+    {
+        return $query->withCount('orejas');
     }
 }

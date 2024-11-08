@@ -10,7 +10,8 @@ class TipoVehiculoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoVehiculo::all());
+        $tiposvehiculos = TipoVehiculo::withTiposvehiculosCount()->orderBy('vehiculos_count','desc')->get();
+        return CatalogoResource::collection($tiposvehiculos);
     }
 
     public function store(Request $request)

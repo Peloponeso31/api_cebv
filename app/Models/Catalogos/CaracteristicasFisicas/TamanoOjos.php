@@ -18,4 +18,9 @@ class TamanoOjos extends Model
     {
         return $this->hasMany(Ojo::class);
     }
+
+    public function scopeWithTamanoojosCount($query)
+    {
+        return $query->withCount('ojos');
+    }
 }

@@ -2,8 +2,6 @@
 
 namespace App\Models\Catalogos\CaracteristicasFisicas;
 
-use App\Models\CaracteristicasFisicas;
-use App\Models\MediaFiliacion;
 use App\Models\Salud;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,5 +18,10 @@ class ColorPiel extends Model
     public function salud(): HasMany
     {
         return $this->hasMany(Salud::class);
+    }
+
+    public function scopeWithColorespielCount($query)
+    {
+        return $query->withCount('Salud');
     }
 }

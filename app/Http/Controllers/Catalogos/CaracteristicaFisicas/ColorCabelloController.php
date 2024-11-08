@@ -12,7 +12,9 @@ class ColorCabelloController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(ColorCabello::all());
+        $cabelloscolor = ColorCabello::withColorescabellosCount()->orderBy('cabellos_count','desc')->get();
+
+        return CatalogoResource::collection($cabelloscolor);
     }
 
     public function store(ColorCabelloRequest $request)

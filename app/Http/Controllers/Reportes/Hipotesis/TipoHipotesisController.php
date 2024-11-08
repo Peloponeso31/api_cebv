@@ -27,7 +27,9 @@ class TipoHipotesisController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return TipoHipotesisResource::collection($query->get());
+        $query = $query->withCount('reportes')->orderBy('reportes_count','desc')->get();
+
+        return TipoHipotesisResource::collection($query);
     }
 
     public function store(TipoHipotesisRequest $request)

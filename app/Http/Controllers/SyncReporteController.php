@@ -35,7 +35,7 @@ class SyncReporteController extends Controller
         $this->syncPersona = $syncPersona;
     }
 
-    public function actualizarReporteCascade(Request $request)
+    public function actualizarReporteCascade(ReporteTotalRequest $request)
     {
         $data = $request->toArray();
 

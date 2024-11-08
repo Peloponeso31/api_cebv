@@ -11,7 +11,9 @@ class TamanoOrejasController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TamanoOrejas::all());
+        $tamanoorejas = TamanoOrejas::withTamanosorejasCount()->orderBy('orejas_count','desc')->get();
+
+        return CatalogoResource::collection($tamanoorejas);
     }
 
     public function store(TamanoOrejasRequest $request)

@@ -20,4 +20,9 @@ class EstatusEscolaridad extends Model
     {
         return $this->hasMany(Estudio::class);
     }
+
+    public function scopeWithEstudiosCount($query)
+    {
+        return $query->withCount('estudio');
+    }
 }

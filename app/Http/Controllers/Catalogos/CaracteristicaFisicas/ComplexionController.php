@@ -12,7 +12,9 @@ class ComplexionController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(Complexion::all());
+        $complexiones = Complexion::withComplexionesCount()->orderBy('salud_count','desc')->get();
+
+        return CatalogoResource::collection($complexiones);
     }
 
 

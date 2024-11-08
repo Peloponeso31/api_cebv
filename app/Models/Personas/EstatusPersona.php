@@ -20,7 +20,7 @@ class EstatusPersona extends Model
 
     public function desaparecidosRpdno(): HasMany
     {
-        return $this->hasMany(Desaparecido::class);
+        return $this->hasMany(Desaparecido::class,'estatus_preliminar_id');
     }
 
     public function desaparecidosCebv(): HasMany

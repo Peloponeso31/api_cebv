@@ -21,11 +21,14 @@ class AreaController extends Controller
 
     public function index()
     {
+
+        $areas = Area::withAreasCount()->orderBy('reportes_count','desc')->get();
+
         if (request()->has('all')) {
-            return CatalogoResource::collection($this->model->all());
+            return CatalogoResource::collection($areas);
         }
 
-        return CatalogoResource::collection($this->model->all()->except(5));
+        return CatalogoResource::collection($areas->except(5));
     }
 
     public function store(AreaRequest $request)

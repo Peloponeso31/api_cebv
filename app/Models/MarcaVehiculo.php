@@ -19,4 +19,9 @@ class MarcaVehiculo extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
+
+    public function scopeWithMarcasVehiculosCount($query)
+    {
+        return $query->withCount('vehiculos');
+    }
 }

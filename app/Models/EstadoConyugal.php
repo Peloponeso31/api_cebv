@@ -20,4 +20,9 @@ class EstadoConyugal extends Model
     {
         return $this->hasMany(ContextoFamiliar::class);
     }
+
+    public function scopeWithEstadosConyugalesCount($query)
+    {
+        return $query->withCount('contextosFamiliares');
+    }
 }

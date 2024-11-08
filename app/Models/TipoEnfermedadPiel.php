@@ -19,4 +19,9 @@ class TipoEnfermedadPiel extends Model
     {
         return $this->hasMany(EnfermedadPiel::class);
     }
+
+    public function scopeWithEnfermedadespielCount($query)
+    {
+        return $query->withCount('enferdadesPiel');
+    }
 }

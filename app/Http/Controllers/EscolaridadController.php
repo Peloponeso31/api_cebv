@@ -10,7 +10,9 @@ class EscolaridadController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Escolaridad::all());
+        $escolaridades = Escolaridad::withEscolaridadesCount()->orderBy('estudio_count','desc')->get();
+
+        return CatalogoResource::collection($escolaridades);
     }
 
     public function store(Request $request)

@@ -7,9 +7,10 @@ use App\Http\Requests\UpdatePertenenciaRequest;
 use App\Http\Resources\PertenenciaResource;
 use App\Models\Pertenencia;
 use App\Services\CrudService;
-use Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use Illuminate\Http\Request;
+
 
 class PertenenciaController extends Controller
 {
@@ -23,14 +24,22 @@ class PertenenciaController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
         $query = QueryBuilder::for(Pertenencia::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
                 AllowedFilter::exact('grupo_pertenencia_id')
-            ])
-            ->get();
+            ]);
+
+
+        // Verifica si ninguno de los filtros 'id' o 'grupo_pertenencia_id' está presente
+        if (!$request->has('id') && !$request->has('grupo_pertenencia_id')) {
+            $query->withPrendasCount()->orderBy('prenda_vestir_count', 'desc');
+        }
+
+
+        $query = $query->get();
 
         return PertenenciaResource::collection($query);
     }

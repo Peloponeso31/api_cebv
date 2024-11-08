@@ -28,6 +28,12 @@ class Area extends Model
         return $this->hasMany(Reporte::class, 'area_atiende_id');
     }
 
+
+    public function scopeWithAreasCount($query)
+    {
+        return $query->withCount('reportes');
+    }
+
     /**
      * Get the hipotesis for the area.
      *

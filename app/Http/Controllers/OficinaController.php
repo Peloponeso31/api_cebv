@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OficinaRequest;
+use App\Http\Resources\OficinaResource;
 use App\Models\Catalogos\Oficina;
 
 class OficinaController extends Controller
@@ -10,7 +11,9 @@ class OficinaController extends Controller
 
     public function index()
     {
-        return Oficina::all();
+        $oficinas = Oficina::withOficinasCount()->orderBy('empleado_count','desc')->get();
+
+        return OficinaResource::collection($oficinas)->resolve();
     }
 
     public function store(OficinaRequest $request)

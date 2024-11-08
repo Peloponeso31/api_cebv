@@ -24,8 +24,10 @@ class NacionalidadController extends Controller
         if (request()->has('search')) {
             $query = $this->model::search(request('search'));
         }
+        $query = $query->withCount('personas')->orderBy('personas_count', 'desc')->get();
 
-        return CatalogoResource::collection($query->get());
+
+        return CatalogoResource::collection($query);
     }
 
     public function show($id)

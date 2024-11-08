@@ -10,7 +10,9 @@ class FormaCaraController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(FormaCara::all());
+        $formascaras = FormaCara::withFormascaraCount()->orderBy('salud_count','desc')->get();
+
+        return CatalogoResource::collection($formascaras);
     }
 
     public function store(Request $request)

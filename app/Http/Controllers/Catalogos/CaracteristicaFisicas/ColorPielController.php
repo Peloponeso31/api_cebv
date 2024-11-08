@@ -13,7 +13,8 @@ class ColorPielController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(ColorPiel::all());
+        $colorespiel = ColorPiel::withColorespielCount()->orderBy('salud_count','desc')->get();
+        return CatalogoResource::collection($colorespiel);
     }
 
 

@@ -10,7 +10,9 @@ class TamanoCabelloController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TamanoCabello::all());
+        $tamanoscabellos = TamanoCabello::withTamanoscabellosCount()->orderBy('cabellos_count','desc')->get();
+
+        return CatalogoResource::collection($tamanoscabellos);
     }
 
     public function store(Request $request)

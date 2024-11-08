@@ -27,7 +27,9 @@ class ZonaEstadoController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return BasicResource::collection($query->get());
+        $query = $query->withZonasEstadosCount()->orderBy('reportes_count','desc')->get();
+
+        return BasicResource::collection($query);
     }
 
     public function store(ZonaEstadoRequest $request)

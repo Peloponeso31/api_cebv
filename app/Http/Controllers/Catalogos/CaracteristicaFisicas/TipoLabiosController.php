@@ -11,7 +11,8 @@ class TipoLabiosController extends Controller
 {
     public function index()
     {
-       return CatalogoResource::collection(TipoLabios::all());
+        $tiposlabios = TipoLabios::withTiposlabiosCount()->orderBy('bocas_count','desc')->get();
+        return CatalogoResource::collection($tiposlabios);
     }
 
     public function store(TipoLabiosRequest $request)

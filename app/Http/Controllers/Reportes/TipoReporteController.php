@@ -27,7 +27,9 @@ class TipoReporteController extends Controller
             $query = $this->model::search(request('search'));
         }
 
-        return BasicResource::collection($query->get());
+        $query = $query->withCount('reportes')->orderBy('reportes_count', 'desc')->get();
+        return BasicResource::collection($query);
+
     }
 
     public function store(TipoReporteRequest $request)

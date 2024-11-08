@@ -26,4 +26,9 @@ class Sitio extends Model
     {
         return $this->hasMany(Localizacion::class);
     }
+
+    public function scopeWithSitiosCount($query)
+    {
+        return $query->withCount('hechosDesaparicion');
+    }
 }

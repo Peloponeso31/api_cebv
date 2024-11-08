@@ -19,4 +19,9 @@ class TipoVehiculo extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
+
+    public function scopeWithTiposvehiculosCount($query)
+    {
+        return $query->withCount('vehiculos');
+    }
 }

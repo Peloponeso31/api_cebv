@@ -16,6 +16,11 @@ class TipoLabios extends Model
 
     public function bocas(): HasMany
     {
-        return $this->hasMany(Boca::class);
+        return $this->hasMany(Boca::class, 'tamano_labios_id');
+    }
+
+    public function scopeWithTiposlabiosCount($query)
+    {
+        return $query->withCount('bocas');
     }
 }

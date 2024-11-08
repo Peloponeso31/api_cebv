@@ -19,4 +19,11 @@ class TamanoBoca extends Model
     {
         return $this->hasMany(Boca::class);
     }
+
+    public function scopeWithTamanosbocasCount($query)
+    {
+        return $query->withCount('bocas');
+    }
+
+
 }

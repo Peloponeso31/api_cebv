@@ -11,7 +11,9 @@ class ColorController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Color::all());
+        $colores = Color::withColoresCount()->orderby('prenda_vestir_count','desc')->get();
+
+        return CatalogoResource::collection($colores);
     }
 
 

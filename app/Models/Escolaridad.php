@@ -20,4 +20,9 @@ class Escolaridad extends Model
     {
         return $this->hasMany(Estudio::class);
     }
+
+    public function scopeWithEscolaridadesCount($query)
+    {
+        return $query->withCount('estudio');
+    }
 }

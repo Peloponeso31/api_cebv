@@ -19,4 +19,9 @@ class Particular extends Model
     {
         return $this->hasMany(DesaparicionForzada::class);
     }
+
+    public function scopeWithParticularesCount($query)
+    {
+        return $query->withCount('desaparicionesForzadas');
+    }
 }

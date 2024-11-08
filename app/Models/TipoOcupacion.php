@@ -19,4 +19,9 @@ class TipoOcupacion extends Model
     {
         return $this->hasMany(Ocupacion::class);
     }
+
+    public function scopeWithTipoocupacionesCount($query)
+    {
+        return $query->withCount('ocupaciones');
+    }
 }

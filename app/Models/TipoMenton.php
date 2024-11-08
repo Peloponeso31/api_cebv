@@ -19,4 +19,9 @@ class TipoMenton extends Model
     {
         return $this->hasMany(MediaFiliacionComplementaria::class);
     }
+
+    public function scopeWithTiposmentonesCount($query)
+    {
+        return $query->withCount('mediasFiliacionesComplementarias');
+    }
 }

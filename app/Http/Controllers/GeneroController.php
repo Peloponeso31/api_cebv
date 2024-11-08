@@ -10,7 +10,8 @@ class GeneroController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Genero::all());
+        $generos = Genero::withGenerosCount()->orderby('personas_count','desc')->get();
+        return CatalogoResource::collection($generos);
     }
 
     public function store(Request $request)

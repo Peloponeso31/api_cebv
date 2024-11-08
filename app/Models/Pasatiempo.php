@@ -21,4 +21,9 @@ class Pasatiempo extends Model
     {
         return $this->belongsToMany(Persona::class)->using(PasatiempoPersona::class);
     }
+
+    public function scopeWithPasatiemposCount($query)
+    {
+        return $query->withCount('persona');
+    }
 }

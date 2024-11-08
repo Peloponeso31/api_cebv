@@ -26,8 +26,11 @@ class CircunstanciaController extends Controller
         if (request()->has('search')) {
             $query = $this->model::search(request('search'));
         }
+        //Usando solo withCount dentro del controller
+        $query = $query->withCount('tiposHipotesis')->orderBy('tipos_hipotesis_count', 'desc')->get();
 
-        return CatalogoResource::collection($query->get());
+        return CatalogoResource::collection($query);
+
     }
 
     public function store(CircunstanciaRequest $request)

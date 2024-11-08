@@ -10,7 +10,8 @@ class FormaOrejaController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(FormaOreja::all());
+        $formasorejas= FormaOreja::withFormasorejasCount()->orderBy('orejas_count','desc')->get();
+        return CatalogoResource::collection($formasorejas);
     }
 
     public function store(Request $request)

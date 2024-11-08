@@ -12,7 +12,9 @@ class TipoNarizController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(TipoNariz::all());
+        $tiposnariz = TipoNariz::withTiposnarizCount()->orderBy('narices_count','desc')->get();
+
+        return CatalogoResource::collection($tiposnariz);
     }
 
 

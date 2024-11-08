@@ -12,7 +12,9 @@ class TamanoOjosController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(TamanoOjos::all());
+        $tamanoojos = TamanoOjos::withTamanoojosCount()->orderBy('ojos_count','desc')->get();
+
+        return CatalogoResource::collection($tamanoojos);
     }
 
 

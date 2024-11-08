@@ -12,7 +12,10 @@ class ColorOjosController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(ColorOjos::all());
+
+        $coloresojos = ColorOjos::withColoresojosCount()->orderBy('ojos_count','desc')->get();
+
+        return CatalogoResource::collection($coloresojos);
     }
 
 

@@ -18,6 +18,11 @@ class Ceja extends Model
 
     public function vellosFaciales(): HasMany
     {
-        return $this->hasMany(VelloFacial::class);
+        return $this->hasMany(VelloFacial::class,'cejas_id');
+    }
+
+    public function scopeWithTiposcejasCount($query)
+    {
+        return $query->withCount('vellosFaciales');
     }
 }

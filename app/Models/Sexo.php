@@ -25,4 +25,12 @@ class Sexo extends Model
     {
         return $this->hasMany(Perpetrador::class);
     }
+
+    public function scopeWithSexosCount($query)
+    {
+        return $query->withCount('personas');
+    }
+
 }
+
+

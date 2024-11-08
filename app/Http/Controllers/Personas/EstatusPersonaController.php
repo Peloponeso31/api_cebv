@@ -21,10 +21,10 @@ class EstatusPersonaController extends Controller
 
     public function index()
     {
-        $query = $this->model::query();
+        $query = $this->model::withCount(['desaparecidosRpdno']);
 
         if (request()->has('search')) {
-            $query = $this->model::search(request('search'));
+            $query->search(request('search'));
         }
 
         return BasicResource::collection($query->get());

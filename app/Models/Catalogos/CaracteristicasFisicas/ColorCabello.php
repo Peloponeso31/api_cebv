@@ -18,4 +18,9 @@ class ColorCabello extends Model
     {
         return $this->hasMany(Cabello::class);
     }
+
+    public function scopeWithColorescabellosCount($query)
+    {
+        return $query->withCount('cabellos');
+    }
 }

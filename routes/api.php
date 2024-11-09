@@ -203,12 +203,10 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::apiResource('/medios', MedioController::class);
     Route::apiResource('/hechos-desapariciones', HechoDesaparicionController::class);
     Route::apiResource('/tipos-domicilio', TiposDomicilioController::class);
-
     Route::apiResource('/circunstancias', CircunstanciaController::class);
     Route::apiResource('/tipos-hipotesis', TipoHipotesisController::class);
     Route::apiResource('/tipos-hipotesis-inmediata', TipoHipotesisInmediataController::class);
     Route::apiResource('/hipotesis', HipotesisController::class);
-
     Route::apiResource('/reportantes', ReportanteController::class);
     Route::get('/vista/reportantes/{id}', [ReportanteController::class, 'vista']);
     Route::apiResource('/desaparecidos', DesaparecidoController::class);

@@ -17,11 +17,9 @@ class FotosDesaparecidoController extends Controller
         $files = Storage::allFiles($desaparecido->persona->id);
         $content = [];
         $acc = 0;
-
         foreach ($files as $file) {
             $bytes = Storage::get($file);
             $content[] = base64_encode($bytes);
-
         }
         return $content;
     }

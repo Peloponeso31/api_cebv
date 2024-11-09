@@ -215,6 +215,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
     Route::get('/desaparecidos_folio', [DesaparecidoController::class, 'desaparecido_persona_folio']);
     Route::post('/desaparecidos/fotos/{desaparecido_id}', [FotosDesaparecidoController::class, 'upload']);
     Route::get('/desaparecidos/fotos/{desaparecido_id}', [FotosDesaparecidoController::class, 'index']);
+    Route::delete('/desaparecidos/fotos/{desaparecido_id}', [FotosDesaparecidoController::class, 'deleteFotos']);
     Route::post('/desaparecidos/senas-particulares/{desaparecido_id}', [FotosDesaparecidoController::class, 'uploadSenas']);
     Route::apiResource('/documentos-legales', DocumentoLegalController::class);
 

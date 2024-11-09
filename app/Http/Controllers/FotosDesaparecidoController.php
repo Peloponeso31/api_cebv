@@ -20,10 +20,24 @@ class FotosDesaparecidoController extends Controller
 
         foreach ($files as $file) {
             $bytes = Storage::get($file);
-            $content += [base64_encode($bytes)];
+            $content[] = base64_encode($bytes);
 
         }
         return $content;
+    }
+    public function deleteFotos($desaparecido_id)
+    {
+        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+        $directory = $desaparecido->persona->id;
+        if (Storage::exists($directory)) {
+            Storage::deleteDirectory($directory);
+            return response()->json([
+                "mensaje" => "Todos los archivos han sido eliminados."
+            ])->setStatusCode(200);
+        }
+        return response()->json([
+            "mensaje" => "El directorio no existe"
+        ])->setStatusCode(404);
     }
 
     public function upload($desaparecido_id, Request $request)

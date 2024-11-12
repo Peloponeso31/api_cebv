@@ -10,7 +10,9 @@ class SituacionMigratoriaController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(SituacionMigratoria::all());
+        $situaciones = SituacionMigratoria::withSituacionesmigratoriasCount()->orderBy('contextos_Sociales_count','desc')->get();
+
+        return CatalogoResource::collection($situaciones);
     }
 
     public function store(Request $request)

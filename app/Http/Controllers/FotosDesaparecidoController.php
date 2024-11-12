@@ -10,13 +10,34 @@ use Illuminate\Support\Facades\Storage;
 
 class FotosDesaparecidoController extends Controller
 {
-    // Generado con Gemini.
-    private function sanitize($string) {
-        $string = preg_replace('/[^a-zA-Z0-9\._-]/', '', $string);
-        $string = trim($string, '. ');
-        $string = preg_replace('/[\/\\\]+/', '/', $string);
-        $string = str_replace(['..', './'], '', $string);
-        return $string;
+    public function index($desaparecido_id)
+    {
+        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+        //Storage para acceder al repositorio del servidor,
+        $files = Storage::allFiles($desaparecido->persona->id);
+        $content = [];
+        $acc = 0;
+
+        foreach ($files as $file) {
+            $bytes = Storage::get($file);
+            $content[] = base64_encode($bytes);
+
+        }
+        return $content;
+    }
+    public function deleteFotos($desaparecido_id)
+    {
+        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+        $directory = $desaparecido->persona->id;
+        if (Storage::exists($directory)) {
+            Storage::deleteDirectory($directory);
+            return response()->json([
+                "mensaje" => "Todos los archivos han sido eliminados."
+            ])->setStatusCode(200);
+        }
+        return response()->json([
+            "mensaje" => "El directorio no existe"
+        ])->setStatusCode(404);
     }
 
     public function upload($desaparecido_id, Request $request)
@@ -30,25 +51,6 @@ class FotosDesaparecidoController extends Controller
                 $desaparecido->boletin_img_path = end($paths);
                 $desaparecido->save();
             }
-        }
-
-        return response()->json([
-            "mensaje" => "Fotografias guardadas correctamente",
-            "archivos" => $paths,
-            "boletin_img" => $desaparecido->boletin_img_path
-        ])->setStatusCode(201);
-    }
-
-    public function uploadSenas($desaparecido_id, Request $request)
-    {
-        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
-
-        $paths = [];
-        foreach ($request->allFiles() as $key => $file) {
-            $sena = SenasParticulares::findOrFail($key);
-            $paths[] = $file->storeAs($desaparecido->id.'/senas_particulares/', $sena->id);
-            $sena->foto = end($paths);
-            $sena->save();
         }
 
         return response()->json([

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CatalogoResource;
+use App\Models\Catalogos\Etnia\Religion;
 use App\Models\Colectivo;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,9 @@ class ColectivoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Colectivo::all());
+        $colectivos = Colectivo::withColectivosCount()->orderBy('reportantes_count','desc')->get();
+
+        return CatalogoResource::collection($colectivos);
     }
 
     public function store(Request $request)

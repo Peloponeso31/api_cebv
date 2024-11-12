@@ -64,6 +64,18 @@ class UserSeeder extends Seeder
             'email' => 'jon@cebv.com',
         ]);
 
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'persona_id' => Persona::create([
+                    'nombre' => 'Mizar Janai',
+                    'apellido_paterno' => 'Chiquito',
+                    'apellido_materno' => 'Espino',
+                ])->id,
+                'puesto_id' => 2,
+            ])->id,
+            'email' => 'mizar@cebv.com',
+        ]);
+
 
         // Usuarios de la CEBV
         User::factory()->create([
@@ -100,6 +112,18 @@ class UserSeeder extends Seeder
                 'puesto_id' => 2,
             ])->id,
             'email' => 'armando@cebv.com',
+        ]);
+
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'persona_id' => Persona::create([
+                    'nombre' => 'Uriel',
+                    'apellido_paterno' => 'Garcia',
+                    'apellido_materno' => 'Garcia',
+                ])->id,
+                'puesto_id' => 2,
+            ])->id,
+            'email' => 'uriel@cebv.com',
         ]);
     }
 }

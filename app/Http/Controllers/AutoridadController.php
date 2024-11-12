@@ -10,7 +10,9 @@ class AutoridadController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Autoridad::all());
+        $autoridades = Autoridad::withAutoridadesCount()->orderBy('desapariciones_forzadas_count','desc')->get();
+
+        return CatalogoResource::collection($autoridades);
     }
 
     public function store(Request $request)

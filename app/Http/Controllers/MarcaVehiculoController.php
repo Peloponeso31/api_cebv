@@ -10,7 +10,8 @@ class MarcaVehiculoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(MarcaVehiculo::all());
+        $marcasvehiculos = MarcaVehiculo::withMarcasVehiculosCount()->orderBy('vehiculos_count','desc')->get();
+        return CatalogoResource::collection($marcasvehiculos);
     }
 
     public function store(Request $request)

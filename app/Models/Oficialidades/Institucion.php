@@ -22,7 +22,7 @@ class Institucion extends Model
 
     public function reportes(): HasMany
     {
-        return $this->hasMany(Reporte::class);
+        return $this->hasMany(Reporte::class,'institucion_origen_id');
     }
 
     public function toSearchableArray(): array

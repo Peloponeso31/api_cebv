@@ -10,7 +10,8 @@ class TipoEnfoqueDiferenciadoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoEnfoqueDiferenciado::all());
+        $tiposenfoquesdif = TipoEnfoqueDiferenciado::withTiposenfoquesdif()->orderBy('personas_count','desc')->get();
+        return CatalogoResource::collection($tiposenfoquesdif);
     }
 
     public function store(TipoEnfoqueDiferenciadoRequest $request)

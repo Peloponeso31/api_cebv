@@ -10,7 +10,9 @@ class TipoRedSocialController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoRedSocial::all());
+        $redessociales = TipoRedSocial::withRedessocialesCount()->orderBy('amistades_count','desc')->get();
+
+        return CatalogoResource::collection($redessociales);
     }
 
     public function store(Request $request)

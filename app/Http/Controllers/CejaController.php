@@ -10,7 +10,9 @@ class CejaController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Ceja::all());
+        $tiposcejas = Ceja::withTiposcejasCount()->orderBy('vellos_faciales_count','desc')->get();
+
+        return CatalogoResource::collection($tiposcejas);
     }
 
     public function store(Request $request)

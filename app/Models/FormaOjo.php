@@ -17,6 +17,11 @@ class FormaOjo extends Model
 
     public function ojos(): HasMany
     {
-        return $this->hasMany(Ojo::class);
+        return $this->hasMany(Ojo::class,'forma_ojos_id');
+    }
+
+    public function scopeWithFormasojosCount($query)
+    {
+        return $query->withCount('ojos');
     }
 }

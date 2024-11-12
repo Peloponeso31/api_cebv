@@ -9,33 +9,33 @@
 
 <style>
 
-    
+
 @page { margin: 100px 50px;}
 
 
 
 #header {
-    position: fixed; 
-    left: 0px; 
-    top: -100px; 
-    right: 0px; 
-    height: 100px; 
-    text-align: center; 
+    position: fixed;
+    left: 0px;
+    top: -100px;
+    right: 0px;
+    height: 100px;
+    text-align: center;
 }
 
 
 #footer {
-    position: fixed; 
+    position: fixed;
     left: 0px;
-     bottom: -100px; 
+     bottom: -100px;
     right: 0px;
-     height: 100px;  
-    display: inline-block; 
+     height: 100px;
+    display: inline-block;
   }
 
 
   #footer .page:after { content: counter(page, upper-roman); }
-    
+
 
 
 h1, h2{
@@ -47,7 +47,7 @@ h1, h2{
     font-size: 1.5em;
     text-align: left;
   }
-  
+
   h2{
     font-size: 1em;
     text-align: left;
@@ -131,7 +131,7 @@ h1, h2{
 .Hora,
 .Datos,
 .Narrativa{
-    border: 1px solid black; 
+    border: 1px solid black;
     padding: 5px;
     text-align: justify;
 }
@@ -151,13 +151,13 @@ h1, h2{
 
 .Vestimenta,
 .Tatuajes{
-    border: 1px solid black; 
+    border: 1px solid black;
     padding: 5px;
     text-align: justify;
 }
 
 .Señas{
-    border: 1px solid black; 
+    border: 1px solid black;
     padding: 5px;
     text-align: justify;
 }
@@ -446,7 +446,7 @@ h1, h2{
 .FueraCiudad,
 .VioTrabajo,
 .Deudas{
-    border: 1px solid black; 
+    border: 1px solid black;
     padding: 5px;
     text-align: justify;
 }
@@ -469,7 +469,7 @@ h1, h2{
 .Amistades,
 .AMuniEsta,
 .Redes{
-    border: 1px solid black; 
+    border: 1px solid black;
     padding: 5px;
     text-align: justify;
 }
@@ -484,28 +484,28 @@ h1, h2{
             padding: 8px;
             text-align: left;
         }
-    
-
-   
 
 
 
-    </style> 
+
+
+
+    </style>
 
 <body>
-    
-    
+
+
 
     <section id="header">
         <div id="header">
             <header>
-                <img src="{{ public_path("reportes/ficha_de_datos/Logos-header.png") }}" width="700"/> 
-        </div> 
-        </header>     
+                <img src="{{-- public_path("reportes/ficha_de_datos/Logos-header.png") --}}" width="700"/>
+        </div>
+        </header>
         </section>
-        
-    
-    
+
+
+
     <section id="Reportante">
             <div class="Fecha-Folio">
                 <table>
@@ -520,73 +520,73 @@ h1, h2{
                         <td colspan="3">10:23:45</td>
                     </tr>
             </table>
-            </div> 
+            </div>
             <p><br>Manifiesta que la información que aporte para el RNPDNO sea utilizada exclusivamente para la búsqueda e identificación
             de la Persona Desaparecida o No Localizada.  <b>SI   NO</b></p>
-    
+
             <p>¿Solicita que se haga pública la información de la Persona Desaparecida o No Localizada?   <b>SI   NO</b></p>
           <h2>DATOS DEL REPORTANTE</h2>
-        
+
           <table>
             <tr>
                 <th>Nombre Completo*</th>
                 <td colspan="3">Ismael Matus García</td>
-                
+
             </tr>
             <tr>
                 <th>Edad y Fecha de Nacimiento</th>
                 <td>23 años, 07 de Marzo de 2001</td>
-                <th>Sexo</th> 
+                <th>Sexo</th>
                 <td>Hombre</td>
             </tr>
             <tr>
                 <th>Domicilio</th>
-                <td colspan="3">Lucas Martin</td> 
+                <td colspan="3">Lucas Martin</td>
             </tr>
             <tr>
                 <th>Teléfono(s)*</th>
                 <td colspan="3">2283561304</td>
             </tr>
             <tr>
-                <th>Correo Electronico</th> 
-                <td colspan="3">ismaelmg46@gmail.com</td> 
+                <th>Correo Electronico</th>
+                <td colspan="3">ismaelmg46@gmail.com</td>
             </tr>
             <tr>
                 <th>Relación con la Persona <br>Desaparecida o No Localizada*</th>
                 <td>Tio</td>
                 <th>Tipo de Reporte</th>
-                <td>Denuncia</td> 
+                <td>Denuncia</td>
             </tr>
 
         </table>
 
         </section>
-    
+
     <section id="Desaparecida">
         <h2>DATOS DE LA PERSONA DESAPARECIDA O NO LOCALIZADA</h2>
 
     <table>
         <tr>
             <th>Nombre Completo*</th>
-            <td colspan="3">{{ $desaparecido->persona->nombre }}
-                {{ $desaparecido->persona->apellido_paterno }}
-                {{ $desaparecido->persona->apellido_materno }}</td>
+            <td colspan="3">{{-- $desaparecido->persona->nombre --}}
+                {{-- $desaparecido->persona->apellido_paterno --}}
+                {{-- $desaparecido->persona->apellido_materno --}}</td>
         </tr>
         <tr>
             <th>Genero</th>
-            <td>(Femenino, Masculino, Otro) <br>{{ $desaparecido->persona->genero }} </td>
+            <td>(Femenino, Masculino, Otro) <br>{{-- $desaparecido->persona->genero --}} </td>
             <th>Nacionalidad y Estatus Migratorio</th>
             <td></td>
         </tr>
         <tr>
             <th>Edad y Fecha de Nacimiento*</th>
-            <td>{{ $desaparecido->persona->edad_anos() }} años, {{ $desaparecido->persona->fecha_nacimiento }}</td> 
+            <td>{{-- $desaparecido->persona->edad_anos() --}} años, {{-- $desaparecido->persona->fecha_nacimiento --}}</td>
             <th>Tipo de Sangre</th>
             <td></td>
         </tr>
         <tr>
             <th>Ocupación</th>
-            <td>{{ $desaparecido->persona->ocupacion }}</td> 
+            <td>{{-- $desaparecido->persona->ocupacion --}}</td>
             <th>Escolaridad</th>
             <td></td>
         </tr>
@@ -598,7 +598,7 @@ h1, h2{
             <th>Teléfono Celular*</th>
             <td>2283561304</td>
             <th>CURP</th>
-            <td>{{ $desaparecido->persona->curp }}</td> 
+            <td>{{-- $desaparecido->persona->curp --}}</td>
         </tr>
         <tr>
             <th>Dirección de Residencia</th>
@@ -606,13 +606,13 @@ h1, h2{
         </tr>
         <tr>
             <th>¿Tiene conocimiento de que consuma tabaco, alchol o alguna otra sustancia?</th>
-            <td> ¿Si, cual? <br>No <br>¿Con qué frecuencia? <br>No</td> 
+            <td> ¿Si, cual? <br>No <br>¿Con qué frecuencia? <br>No</td>
         <th>¿Ha recibido alguna llamada de exigencia monetaria?</th>
         <td>¿Si, cuanto? <br>No <br> ¿Por qué medio?<br></td>
     </tr>
-   
+
 </section>
-    
+
     <section id="información desaparición">
         <h2>INFORMACIÓN SOBRE LA DESAPARICIÓN</h2>
 
@@ -626,20 +626,20 @@ h1, h2{
             <td>23 años, 07 de Marzo de 2001</td>
             <th>Hora aproximada de la desaparición o última hora de contacto*</th>
             <td>9:30:42 pm</td>
-            
+
         </tr>
         <tr>
             <th>Datos de personas que puedas brindar información y/o probablemente involucradas<</th>
-            <td colspan="3">No se</td> 
+            <td colspan="3">No se</td>
         </tr>
         <tr>
             <th>Narrativa de los hechos que se reportan*</th>
             <td colspan="3">asddddddddddddddddddddddddddd</td>
         </tr>
-        
+
 
     </section>
-    
+
     <section id="caracteristicas afiliacion">
         <h2>CARACTERISTICAS DE MEDIA AFILIACION DE LA PERSONA DESAPARECIDA O NO LOCALIZADA</h2>
 
@@ -651,7 +651,7 @@ h1, h2{
         </tr>
         <tr>
             <th>Señas particulares*</th>
-            <td>(Tatuajes, lunares, manchas, cicatrices, perforaciones, protesis, acne, amputaciones, quemaduras, malformaciones, entre otros) <br> Ciatriz en el dedo indice</td> 
+            <td>(Tatuajes, lunares, manchas, cicatrices, perforaciones, protesis, acne, amputaciones, quemaduras, malformaciones, entre otros) <br> Ciatriz en el dedo indice</td>
         </tr>
 
         <tr>
@@ -660,19 +660,19 @@ h1, h2{
         </tr>
 
     </table> <br>
-    
+
     <div class="Estatura-Peso">
         <table>
             <tr>
                 <th>Estaura:</th>
-                <td>{{ $desaparecido->persona->estatura }}m</td>
+                <td>{{-- $desaparecido->persona->estatura --}}m</td>
                 <th>Peso:</th>
-                <td>{{ $desaparecido->persona->peso }}kg</td>
+                <td>{{-- $desaparecido->persona->peso --}}kg</td>
             </tr>
         </table>
-    </div> 
+    </div>
     </section>
-    
+
     <section id="Complexion">
         <h2>Complexión:</h2>
     <table>
@@ -685,22 +685,22 @@ h1, h2{
         </tr>
     </table>
     </section>
-    
+
     <section id="Piel">
         <br><h2>Color de piel:</h2>
-       
+
         <table>
             <tr>
-                <th>{{ $desaparecido->persona->caracteristicasfisicas->color_piel ->colorpiel }}</th>
-                
+                <th>{{-- $desaparecido->persona->caracteristicasfisicas->color_piel ->colorpiel --}}</th>
+
             </tr>
         </table>
         </section>
-    
-    
+
+
         <section id="Ojos">
-            <br> <h2>Color de ojos: {{ $desaparecido->persona->caracteristicasfisicas->color_ojos->color }}</h2><p>Forma de ojos:</p>
-            
+            <br> <h2>Color de ojos: {{-- $desaparecido->persona->caracteristicasfisicas->color_ojos->color --}}</h2><p>Forma de ojos:</p>
+
             <table>
                 <tr>
                     <th>Redondos</th>
@@ -710,10 +710,10 @@ h1, h2{
                 </tr>
             </table>
         </section>
-    
+
         <section id="TamañoO">
             <br> <h2>Tamaño de ojos:</h2><br>
-            
+
                 <table>
                     <tr>
                         <th>Grandes</th>
@@ -722,21 +722,21 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Cabello">
-            <b><h2>Color de cabello: {{ $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos }}</h2><p>Corto/largo:</p> <p>Tipo de cabello:</p>
-            
+            <b><h2>Color de cabello: {{-- $desaparecido->persona->caracteristicasfisicas->color_cabello ->colorcabellos --}}</h2><p>Corto/largo:</p> <p>Tipo de cabello:</p>
+
                 <table>
                     <tr>
-                        <th>{{ $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello }}</th>
-                    
+                        <th>{{-- $desaparecido->persona->caracteristicasfisicas->tipo_cabello ->tipocabello --}}</th>
+
                     </tr>
                 </table>
         </section>
-       
+
         <section id="CantidadC">
             <br><b><h2>Cantidad de cabello:</h2></b>
-           
+
                 <table>
                     <tr>
                         <th>Abundante</th>
@@ -746,10 +746,10 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Fcara">
             <br><h2>Forma de cara:</h2>
-        
+
         <table>
             <tr>
                 <th>Redonda</th>
@@ -760,7 +760,7 @@ h1, h2{
             </tr>
         </table>
         </section>
-       
+
         <section id="Tceja">
             <br><h2>Tipo de ceja:</h2>
         <table>
@@ -773,10 +773,10 @@ h1, h2{
             </tr>
         </table>
         </section>
-    
+
         <section id="Mcejas">
             <br> <h2>Modificaciones de la ceja:</h2><br>
-            
+
                  <table>
                     <tr>
                         <th>Tatuadas</th>
@@ -785,10 +785,10 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Orejasf">
             <br> <h2>Orejas de su forma:</h2><br>
-            
+
             <table>
                 <tr>
                     <th>Cuadrada</th>
@@ -798,11 +798,11 @@ h1, h2{
                 </tr>
             </table>
         </section>
-    
-    
+
+
         <section id="Orejast">
             <br> <h2>Orejas por su tamaño:</h2><br>
-            
+
                  <table>
                     <tr>
                         <th>Chica</th>
@@ -811,10 +811,10 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Narizf">
             <br> <h2>Nariz por su forma:</h2><br>
-           
+
                  <table>
                     <tr>
                         <th>Chata</th>
@@ -823,10 +823,10 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Boca">
             <br> <h2>Boca:</h2><br>
-            
+
                  <table>
                     <tr>
                         <th>Chica</th>
@@ -835,10 +835,10 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Labios">
             <br> <h2>Labios:</h2><br>
-         
+
                  <table>
                     <tr>
                         <th>Delgados</th>
@@ -847,10 +847,10 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="Dientes">
             <br> <h2>Dientes:</h2><br>
-            
+
                     <table>
                         <tr>
                             <th>Ausencia</th>
@@ -858,10 +858,10 @@ h1, h2{
                         </tr>
                     </table>
         </section>
-    
+
         <section id="Bigote">
             <br> <h2>Bigote:</h2><br>
-            
+
                  <table>
                     <tr>
                         <th>Lampiño</th>
@@ -870,19 +870,19 @@ h1, h2{
                     </tr>
                 </table>
         </section>
-    
+
         <section id="morfologia">
             <br> <h2>Ubicación y descripción morfológica (caracteristicas, tatuajes):</h2><br>
             <div class="Morfologica">
-                <div class="L"> <img src="{{ public_path("reportes/ficha_de_datos/CuerpoUNIXMejorado.png") }}"
+                <div class="L"> <img src="{{-- public_path("reportes/ficha_de_datos/CuerpoUNIXMejorado.png") --}}"
                     width="500"
-                    height="500"/> </div> 
+                    height="500"/> </div>
                  </div><br>
         </section>
-    
+
         <section id="contexto familiar">
             <h2>CONTEXTO FAMILIAR</h2>
-    
+
         <table>
             <tr>
                 <th>Estado conyugal</th>
@@ -910,10 +910,10 @@ h1, h2{
             </tr>
         </table>
         </section>
-    
+
         <section id="contexto economico-laboral">
             <h2>CONTEXTO ECONÓMICO-LABORAL</h2>
-       
+
         <table>
             <tr>
                 <th>¿Dónde trabaja o cuál es su medio de subsistencia?</th>
@@ -941,10 +941,10 @@ h1, h2{
             </tr>
         </table>
         </section>
-    
+
         <section id="contexto social">
             <h2>CONTEXTO SOCIAL</h2>
-        
+
         <table>
             <tr>
                 <th>¿Qué pasatiempos tiene?</th>
@@ -972,12 +972,12 @@ h1, h2{
             </tr>
         </table>
         </section>
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
         <div id="footer">
             <p>
                 Enríquez s/n, Zona Centro <br>
@@ -985,9 +985,9 @@ h1, h2{
                 Tel: 01 228 841 7400 ext. 3531 <br>
                 <b>www.segobver.gob.mx</b>
             </p>
-            
+
         </div>
-   
-    
+
+
 </body>
 </html>

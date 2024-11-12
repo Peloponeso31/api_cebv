@@ -12,7 +12,9 @@ class ReligionController extends Controller
 
     public function index()
     {
-        return CatalogoResource::collection(Religion::all());
+        $religiones = Religion::withReligionesCount()->orderBy('personas_count','desc')->get();
+
+        return CatalogoResource::collection($religiones);
     }
 
     public function store(ReligionRequest $request)

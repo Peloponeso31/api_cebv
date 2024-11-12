@@ -19,4 +19,9 @@ class SituacionMigratoria extends Model
     {
         return $this->hasMany(ContextoSocial::class);
     }
+
+    public function scopeWithSituacionesmigratoriasCount($query)
+    {
+        return $query->withCount('contextosSociales');
+    }
 }

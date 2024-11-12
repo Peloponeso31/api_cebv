@@ -26,4 +26,10 @@ class Religion extends Model
     {
         return $this->hasMany(Persona::class);
     }
+
+    public function scopeWithReligionesCount($query)
+    {
+        return $query->withCount('personas');
+    }
+
 }

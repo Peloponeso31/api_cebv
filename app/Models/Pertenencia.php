@@ -27,6 +27,11 @@ class Pertenencia extends Model
         return $this->hasMany(PrendaVestir::class);
     }
 
+    public function scopeWithPrendasCount($query)
+    {
+        return $query->withCount('prendaVestir');  // Cuenta las prendas asociadas a cada pertenencia
+    }
+
     public function grupoPertenencia(): BelongsTo
     {
         return $this->belongsTo(GrupoPertenencia::class);

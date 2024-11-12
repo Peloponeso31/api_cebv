@@ -28,4 +28,9 @@ class Color extends Model
     {
         return $this->hasMany(Vehiculo::class);
     }
+
+    public function scopeWithColoresCount($query)
+    {
+        return $query->withCount('prendaVestir');
+    }
 }

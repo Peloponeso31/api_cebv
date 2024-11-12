@@ -20,4 +20,9 @@ class Genero extends Model
     {
         return $this->hasMany(Persona::class);
     }
+
+    public function scopeWithGenerosCount($query)
+    {
+       return $query->withCount('personas');
+    }
 }

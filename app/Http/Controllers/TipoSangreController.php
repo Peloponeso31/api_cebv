@@ -10,7 +10,9 @@ class TipoSangreController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(TipoSangre::all());
+        $tipossangre = TipoSangre::withTipossangreCount()->orderBy('salud_count','desc')->get();
+
+        return CatalogoResource::collection($tipossangre);
     }
 
     public function store(Request $request)

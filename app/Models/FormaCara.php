@@ -19,4 +19,9 @@ class FormaCara extends Model
     {
         return $this->hasMany(Salud::class);
     }
+
+    public function scopeWithFormascaraCount($query)
+    {
+        return $query->withCount('salud');
+    }
 }

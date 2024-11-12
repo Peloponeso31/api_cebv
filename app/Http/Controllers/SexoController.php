@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CatalogoResource;
+use App\Models\FormaCara;
 use App\Models\Sexo;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,10 @@ class SexoController extends Controller
 {
     public function index()
     {
-        return CatalogoResource::collection(Sexo::all());
+        //Usando scope en el modelo 'Sexo'
+        $sexos = Sexo::withSexosCount()->orderBy('personas_count','desc')->get();
+
+        return CatalogoResource::collection($sexos);
     }
 
     public function store(Request $request)

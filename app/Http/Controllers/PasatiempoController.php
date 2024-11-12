@@ -10,6 +10,8 @@ class PasatiempoController extends Controller
 {
     public function index()
     {
+        $pasatiempos = Pasatiempo::withPasatiemposCount()->orderBy('persona_count','desc')->get();
+
         return CatalogoResource::collection(Pasatiempo::all());
     }
 

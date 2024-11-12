@@ -14,6 +14,11 @@
             margin: 2cm 3cm 1cm 3cm;
         }
 
+        @font-face {
+            font-family: "Verdana";
+            src: url("{{ public_path('storage/fonts/verda.ttf') }}") format('truetype');
+        }
+
         body {
             margin-top: 3cm;
             margin-bottom: 3cm;
@@ -25,6 +30,7 @@
             background-position: center;
             display: flex;
             flex-direction: column;
+            line-height: 1.6pt;
         }
 
         p {
@@ -142,7 +148,8 @@
 <p>
     Se lleva a cabo una búsqueda remota en la base de datos del Registro Nacional de Detenciones (RND), consultada en
     <b>consultasdetenciones.sspc.gob.mx</b> obteniendo resultado @yield('resultado-RND'), respecto a la
-    búsqueda {{$sexoCiudadano}} @yield('nombre-completo-desaparecido')
+    búsqueda
+    <mark>{{$sexoCiudadano}} @yield('nombre-completo-desaparecido')</mark>
 </p>
 <div class="texto-centrado">
     <u>Despliegue Operativo</u>
@@ -151,25 +158,30 @@
 <p>
     El mismo día que inició la presente, se alertó a la Secretaría de Seguridad Pública (SSP), sobre la No localización
     <mark>{{$sexoCiudadano}} @yield('nombre-completo-desaparecido')</mark>
-    , a través del grupo habilitado para la comunicación con el Centro Estatal de
-    Control, Comando, Comunicaciones y Cómputo (C4), solicitando el despliegue de elementos policiales próximos al lugar
-    de No Localización.
+    , a través del grupo habilitado para la
+    comunicación con el Centro Estatal de Control, Comando, Comunicaciones y Cómputo (C4), solicitando el despliegue de
+    elementos policiales próximos al lugar de No Localización.
+</p>
+
+<p>
+    Se turna al área jurídica para las acciones inmediatas con apego a los Principios Rectores para la Búsqueda de
+    Personas Desaparecidas, las autoridades integrantes de mecanismo, dándose por terminada la presente, siendo las
+    <mark>@yield('hora') horas</mark>
+    del presente día, firmando al calce los que en ella intervinieron.
+
 </p>
 
 <div style="text-align: center;">
+    <br>
     <span style="text-decoration: overline;">Jonatan Luna Franco</span> <br>
     Analista administrativo
 </div>
 
 <div style="text-align: right;">
-    <p style="text-align: right">Vo.  Bo.</p><br>
-    <span style="text-decoration: overline;">Jonatan Luna Franco</span> <br>
-    <span>Analista administrativo</span>
+    <p style="text-align: right">Vo. Bo.</p><br>
+    <span style="text-decoration: overline;">DR. EVARISTO MENDOZA AMARO</span> <br>
+    <span>Jefe De La Oficina De Búsqueda Inmediata</span>
 </div>
-
-
-
-
 </body>
 </html>
 

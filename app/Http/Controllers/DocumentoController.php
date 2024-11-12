@@ -1,9 +1,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reportes\Relaciones\Desaparecido;
-use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
 
 class DocumentoController extends Controller
 {

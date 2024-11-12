@@ -1,6 +1,6 @@
 @extends('layouts.informe-inicio-layout')
 
-@section('nombre-completo-desaparecido', $desaparecido->persona->nombreCompleto())
+@section('nombre-completo-desaparecido', strtoupper($desaparecido->persona->nombreCompleto()))
 @section('folio')
     {{ $folio->folio_cebv ?? 'Sin folio' }}
 @endsection

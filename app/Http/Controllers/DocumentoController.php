@@ -1,6 +1,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
@@ -17,6 +18,10 @@ class DocumentoController extends Controller
 
         $hora = now()->format('H:i');
         $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
+        $nombreUsuario = 'Jonatan Luna Franco'; // TODO: Hacer esto dinámico
+        $nombrePuesto = 'Ingeniero'; // TODO: Hacer esto dinámico
+        $resultadoRND = 'NEGATIVO';
+
 
         return Pdf::loadView("reportes.documentos.informe-inicio", [
             'desaparecido' => $desaparecido,
@@ -25,6 +30,9 @@ class DocumentoController extends Controller
             'folio' => $folio,
             'hora' => $hora,
             'fecha' => $fecha,
+            'nombreUsuario' => $nombreUsuario,
+            'nombrePuesto' => $nombrePuesto,
+            'resultadoRND' => $resultadoRND,
         ])->stream();
     }
 

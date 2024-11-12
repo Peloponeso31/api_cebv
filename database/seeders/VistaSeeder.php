@@ -15,7 +15,7 @@ class VistaSeeder extends Seeder
     public function run(): void
     {
         $vistas = [
-            ["nombre" => "DORSAL", 'color' => '7F3F98'],
+            ["nombre" => "DORSAL", 'color' => '662D91'],
             ["nombre" => "FRONTAL", 'color' => 'F26522'],
             ["nombre" => "NO ESPECIFICA"],
         ];

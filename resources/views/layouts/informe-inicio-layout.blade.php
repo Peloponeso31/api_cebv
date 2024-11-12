@@ -14,95 +14,17 @@
             margin: 2cm 3cm 1cm 3cm;
         }
 
-        @media print {
-            table.paging thead td, table.paging tfoot td {
-                height: .5in;
-            }
-        }
-
-        #header {
-            position: fixed;
-            left: 0px;
-            top: -100px;
-            right: 0px;
-            height: 100px;
-            text-align: center;
-        }
-
-        #footer {
-            position: fixed;
-            left: 0px;
-            bottom: -100px;
-            right: 0px;
-            height: 100px;
-            display: inline-block;
-        }
-
-        #footer .page:after {
-            content: counter(page, upper-roman);
-        }
-
-        header {
-            height: 3cm;
-            width: 15.5cm;
-            background-image: url('{{ public_path('reportes/informe_de_inicio/header.png') }}');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: lightblue;
-        }
-
-        .header-image {
-            object-fit: contain;
-        }
-
-        footer {
-            position: absolute;
-            height: 3cm;
-            bottom: 0;
-            width: 15.5cm;
-            background-color: lightblue;
-        }
-
-        @media print {
-            header, footer {
-                position: fixed;
-            }
-
-            footer {
-                bottom: 0;
-            }
-        }
-
         body {
+            margin-top: 3cm;
+            margin-bottom: 3cm;
             height: 100%;
             width: 100%;
-            background-image: url( {{ public_path('reportes/informe_de_inicio/bg.png') }});
+            background-image: url('{{ public_path('reportes/informe_de_inicio/bg.png') }}');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-position: center;
-        }
-
-        .column {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            height: auto;
-            float: left;
-            width: 50%;
-        }
-
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .imagen-centrada {
-            width: auto;
-            height: 2cm;
+            display: flex;
+            flex-direction: column;
         }
 
         p {
@@ -118,22 +40,67 @@
             text-align: center;
         }
 
+        /* Estas líneas de código son el resultado de una búsqueda por internet de 40 días y 40 noches */
+        .header, .footer {
+            position: fixed;
+            height: 3cm;
+            width: 15.5cm;
+        }
+
+        .header {
+            top: 0;
+            background-color: lightblue;
+        }
+
+        .footer {
+            bottom: 0;
+            background-color: lightblue;
+        }
+
+        .watermark {
+            position: fixed;
+            /*
+            ** Estos valores son para eliminar el margin declarado en @page
+            ** pues se espera que este al borde inferior derecha
+            */
+            bottom: -1cm;
+            right: -3cm;
+            z-index: -2;
+        }
     </style>
 </head>
 
-<!-- Header -->
-<header>
-
-</header>
-
 <body>
-<div id="header">Hola mundo</div>
-<div id="footer">Hola mundo</div>
+<!--Header-->
+<div class="header">
+    <img style="width: 100%" src="{{ public_path('reportes/informe_de_inicio/header.png') }}"
+         alt="header-image">
+</div>
+<!--Footer-->
+<div class="footer">
+    <p style="position: absolute">
+        Enríquez s/n, Zona Centro <br>
+        C.P. 91000, Xalapa, Veracruz, México <br>
+        Tel. 01 (228) 841 7400 Ext. 3531 <br>
+        <b>www.segobver.gob.mx</b>
+    </p>
+    <img style="position: absolute; width: 100%" src="{{ public_path('reportes/informe_de_inicio/footer_1.png') }}"
+         alt="banda-footer">
+
+    <img style="width: 1.6in; position: absolute; right: .8in; top: .2in"
+         src="{{ public_path('reportes/informe_de_inicio/footer_2.png') }}"
+         alt="leyenda-veracruz">
+</div>
+<!--Watermark-->
+<div class="watermark">
+    <img style="width: 2in" src="{{ public_path('reportes/informe_de_inicio/footer_3.png') }}"
+         alt="leyenda-200-años">
+</div>
+<!--Content-->
 <div class="texto-centrado">INFORME DE INICIO</div>
 <div class="texto-centrado">
     <mark>@yield('nombre-completo-desaparecido') - @yield('folio')</mark>
 </div>
-
 <p>
     <br>
     En la Ciudad de Xalapa de Enríquez del Estado de Veracruz, siendo las
@@ -183,32 +150,26 @@
 
 <p>
     El mismo día que inició la presente, se alertó a la Secretaría de Seguridad Pública (SSP), sobre la No localización
-    <mark>{{$sexoCiudadano}} @yield('nombre-completo-desaparecido')</mark>, a través del grupo habilitado para la comunicación con el Centro Estatal de
+    <mark>{{$sexoCiudadano}} @yield('nombre-completo-desaparecido')</mark>
+    , a través del grupo habilitado para la comunicación con el Centro Estatal de
     Control, Comando, Comunicaciones y Cómputo (C4), solicitando el despliegue de elementos policiales próximos al lugar
     de No Localización.
-
 </p>
 
-<footer>
-    <p>
-        Enríquez s/n, Zona Centro
-        <br>
-        C.P. 91000 Xalapa, Veracruz
-        <br>
-        Tel: 01 228 841 7400 ext. 3531
-        <br>
-        <b>www.segobver.gob.mx</b>
-    </p>
+<div style="text-align: center;">
+    <span style="text-decoration: overline;">Jonatan Luna Franco</span> <br>
+    Analista administrativo
+</div>
 
-    <img
-        style="position: absolute;right: -3cm; margin: 0; bottom: -1cm; align-content: end; height: 3.15in; width: 2.01in;"
-        src="{{ public_path('reportes/informe_de_inicio/footer_3.png') }}"
-        alt="200years">
+<div style="text-align: right;">
+    <p style="text-align: right">Vo.  Bo.</p><br>
+    <span style="text-decoration: overline;">Jonatan Luna Franco</span> <br>
+    <span>Analista administrativo</span>
+</div>
 
-    <img style="position: absolute; top: .5cm; width: 30%; padding-left: 8cm"
-         src="{{ public_path('reportes/informe_de_inicio/footer_2.png') }}"
-         alt="footer-image2">
-</footer>
+
+
+
 </body>
 </html>
 

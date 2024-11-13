@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Request;
 
 class DocumentoController extends Controller
 {

@@ -21,14 +21,14 @@ use App\Models\Reportes\Reporte;
 |
 */
 
+Route::controller(DocumentoController::class)->group(function () {
+    Route::get('/ficha-busqueda-inmediata/{id}', 'fichaBusquedaInmediata');
+});
+
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(BoletinController::class)->prefix('boletines')->group(function () {
         Route::get('/busqueda-inmediata/{id}', 'busquedaInmediata');
-    });
-
-    Route::controller(DocumentoController::class)->prefix('documentos')->group(function () {
-        Route::get('/ficha-busqueda-inmediata/{id}', 'fichaBusquedaInmediata');
     });
 
     Route::get("/informes-inicios/{id}", function (string $id) {

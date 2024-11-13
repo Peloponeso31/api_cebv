@@ -124,6 +124,9 @@ use App\Http\Resources\UserAdminResource;
 */
 
 Route::get('/excel/reportes', [ReporteController::class, 'exportExcell']);
+Route::get('/test', function () {
+    return "<h1>Test</h1>";
+});
 
 /**
  * Rutas protegidas por autenticacion.

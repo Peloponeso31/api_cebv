@@ -1,5 +1,9 @@
+<?php
+/** @noinspection PhpMultipleClassDeclarationsInspection */
+
 namespace App\Http\Controllers;
 
+use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Barryvdh\DomPDF\Facade\Pdf;
 

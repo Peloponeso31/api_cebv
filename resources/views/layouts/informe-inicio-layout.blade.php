@@ -1,8 +1,4 @@
-@php
-    $sexoCiudadano = $desaparecido->persona->sexo->id == 1 ? 'del C.' : 'de la C.';
-@endphp
-
-    <!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -12,11 +8,6 @@
         @page {
             size: letter;
             margin: 2cm 3cm 1cm 3cm;
-        }
-
-        @font-face {
-            font-family: "Verdana";
-            src: url("{{ public_path('storage/fonts/verda.ttf') }}") format('truetype');
         }
 
         body {
@@ -30,7 +21,6 @@
             background-position: center;
             display: flex;
             flex-direction: column;
-            line-height: 1.6pt;
         }
 
         p {
@@ -45,64 +35,15 @@
         .texto-centrado {
             text-align: center;
         }
-
-        /* Estas líneas de código son el resultado de una búsqueda por internet de 40 días y 40 noches */
-        .header, .footer {
-            position: fixed;
-            height: 3cm;
-            width: 15.5cm;
-        }
-
-        .header {
-            top: 0;
-            background-color: lightblue;
-        }
-
-        .footer {
-            bottom: 0;
-            background-color: lightblue;
-        }
-
-        .watermark {
-            position: fixed;
-            /*
-            ** Estos valores son para eliminar el margin declarado en @page
-            ** pues se espera que este al borde inferior derecha
-            */
-            bottom: -1cm;
-            right: -3cm;
-            z-index: -2;
-        }
     </style>
 </head>
 
 <body>
-<!--Header-->
-<div class="header">
-    <img style="width: 100%" src="{{ public_path('reportes/informe_de_inicio/header.png') }}"
-         alt="header-image">
-</div>
-<!--Footer-->
-<div class="footer">
-    <p style="position: absolute">
-        Enríquez s/n, Zona Centro <br>
-        C.P. 91000, Xalapa, Veracruz, México <br>
-        Tel. 01 (228) 841 7400 Ext. 3531 <br>
-        <b>www.segobver.gob.mx</b>
-    </p>
-    <img style="position: absolute; width: 100%" src="{{ public_path('reportes/informe_de_inicio/footer_1.png') }}"
-         alt="banda-footer">
+<!-- Estos tres componentes van por defecto para membretar el documento -->
+<x-header/>
+<x-footer/>
+<x-watermark/>
 
-    <img style="width: 1.6in; position: absolute; right: .8in; top: .2in"
-         src="{{ public_path('reportes/informe_de_inicio/footer_2.png') }}"
-         alt="leyenda-veracruz">
-</div>
-<!--Watermark-->
-<div class="watermark">
-    <img style="width: 2in" src="{{ public_path('reportes/informe_de_inicio/footer_3.png') }}"
-         alt="leyenda-200-años">
-</div>
-<!--Content-->
 <div class="texto-centrado">INFORME DE INICIO</div>
 <div class="texto-centrado">
     <mark>@yield('nombre-completo-desaparecido') - @yield('folio')</mark>
@@ -149,7 +90,7 @@
     Se lleva a cabo una búsqueda remota en la base de datos del Registro Nacional de Detenciones (RND), consultada en
     <b>consultasdetenciones.sspc.gob.mx</b> obteniendo resultado @yield('resultado-RND'), respecto a la
     búsqueda
-    <mark>{{$sexoCiudadano}} @yield('nombre-completo-desaparecido')</mark>
+    <mark> RANDOM @yield('nombre-completo-desaparecido')</mark>
 </p>
 <div class="texto-centrado">
     <u>Despliegue Operativo</u>
@@ -157,7 +98,7 @@
 
 <p>
     El mismo día que inició la presente, se alertó a la Secretaría de Seguridad Pública (SSP), sobre la No localización
-    <mark>{{$sexoCiudadano}} @yield('nombre-completo-desaparecido')</mark>
+    <mark> RANDOM @yield('nombre-completo-desaparecido')</mark>
     , a través del grupo habilitado para la
     comunicación con el Centro Estatal de Control, Comando, Comunicaciones y Cómputo (C4), solicitando el despliegue de
     elementos policiales próximos al lugar de No Localización.

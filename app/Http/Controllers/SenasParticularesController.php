@@ -35,9 +35,9 @@ class SenasParticularesController extends Controller
 
     public function bulkDelete(DeleteSenasParticularesRequest $request)
     {
-    $ids = $request->input('ids');
-    SenasParticulares::whereIn('id', $ids)->delete();
-    return response()->json(['message' => 'Registros eliminados exitosamente'], 200);
+        $ids = $request->input('ids');
+        SenasParticulares::whereIn('id', $ids)->delete();
+        return response()->json(['message' => 'Registros eliminados exitosamente'], 200);
     }
 
 

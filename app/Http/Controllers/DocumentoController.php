@@ -1,6 +1,11 @@
+<?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Models\Reportes\Relaciones\Reportante;
+use App\Models\Reportes\Reporte;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class DocumentoController extends Controller
@@ -34,11 +39,16 @@ class DocumentoController extends Controller
         ])->stream();
     }
 
-    public function fichaBusquedaInmediata(string $desaparecido)
-    {
-        $desaparecido = Desaparecido::findOrFail($desaparecido);
 
-        // TODO: Nicolas: El que esta bien es el copy, el que generes renombralo de manera que tenga sentido
-        return Pdf::loadView('reportes.ficha_bi_copy')->stream();
+    public function fichaDatos(string $desaparecido_id)
+    {
+        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+        $reporte = Reporte::findOrFail($desaparecido->reporte->id);
+        $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
+
+        return Pdf::loadView('reportes.documentos.ficha-datos', [
+            "desaparecido" => $desaparecido,
+            "reportante" => $reportante
+        ])->stream("nombre.pdf");
     }
 }

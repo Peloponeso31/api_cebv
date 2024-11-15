@@ -2,7 +2,7 @@
     $sexoCiudadano = $desaparecido->persona->sexo->id == 1 ? 'del C.' : 'de la C.';
 @endphp
 
-    <!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -30,7 +30,6 @@
             background-position: center;
             display: flex;
             flex-direction: column;
-            line-height: 1.6pt;
         }
 
         p {
@@ -55,12 +54,12 @@
 
         .header {
             top: 0;
-            background-color: lightblue;
+
         }
 
         .footer {
             bottom: 0;
-            background-color: lightblue;
+
         }
 
         .watermark {
@@ -173,7 +172,7 @@
 
 <div style="text-align: center;">
     <br>
-    <span style="text-decoration: overline;">Jonatan Luna Franco</span> <br>
+    <span style="text-decoration: overline;"> {{-- Auth::user()->empleado->persona->nombre --}} {{-- Auth::user()->empleado->persona->apellido_paterno --}} {{-- Auth::user()->empleado->persona->apellido_materno --}}</span> <br>
     Analista administrativo
 </div>
 

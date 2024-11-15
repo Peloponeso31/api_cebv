@@ -256,6 +256,196 @@
             <td>Ondulado</td>
         </tr>
     </table>
+    <p>Cantidad de cabello</p>
+    <table>
+        <tr>
+            <td>Abundante</td>
+            <td>Regular</td>
+            <td>Escaso</td>
+            <td>Calvicie</td>
+        </tr>
+    </table>
+    <p>Forma e cara:</p>
+    <table>
+        <tr>
+            <td>Redonda</td>
+            <td>Ovalada</td>
+            <td>Triangular</td>
+            <td>Cuadrada/rectangular</td>
+            <td>Alargada</td>
+        </tr>
+    </table>
+    <p>Tipo de ceja:</p>
+    <table>
+        <tr>
+            <td>Poblada</td>
+            <td>Regulares</td>
+            <td>Escasa</td>
+            <td>Depilada</td>
+            <td>Raurada</td>
+        </tr>
+    </table>
+    <p>Modificaciones de la ceja:</p>
+    <table>
+        <tr>
+            <td>Tatuadas</td>
+            <td>Perforadas</td>
+            <td>Teñidas</td>
+        </tr>
+    </table>
+    <p>Orejas por su forma</p>
+    <table>
+        <tr>
+            <td>Cuadrada</td>
+            <td>Ovalada</td>
+            <td>Redonda</td>
+            <td>Triangular</td>
+        </tr>
+    </table>
+    <p>Orejas por su tamaño</p>
+    <table>
+        <tr>
+            <td>Chica</td>
+            <td>Mediana</td>
+            <td>Grande</td>
+        </tr>
+    </table>
+    <br>
+    <p>Nariz por su forma</p>
+    <table>
+        <tr>
+            <td>Chata</td>
+            <td>Aguileña</td>
+            <td>Recta</td>
+        </tr>
+    </table>
+    <p>Boca</p>
+    <table>
+        <tr>
+            <td>Chica</td>
+            <td>Mediana</td>
+            <td>Grande</td>
+        </tr>
+    </table>
+    <p>Labios</p>
+    <table>
+        <tr>
+            <td>Delgados</td>
+            <td>Grueso</td>
+            <td>Mistos</td>
+        </tr>
+    </table>
+    <p>Dientes:</p>
+    <table>
+        <tr>
+            <td>Ausencia</td>
+            <td>No ausencia</td>
+        </tr>
+    </table>
+    <p>Bigote:</p>
+    <table>
+        <tr>
+            <td>Lampiño</td>
+            <td>Poblado</td>
+            <td>Recortado</td>
+        </tr>
+    </table>
+    <!--Señas particulares-->
+</section>
+
+<section id="Contexto familiar">
+    <h2>CONTEXTO FAMILIAR</h2>
+    <table>
+        <tr>
+            <th>Estado conyugal</th>
+            <td>(Soltera (o), casada (o), viuda (o),<br>
+                divorciada (o) o en unión libre)</td>
+            <th>¿Con qué personas<br>
+                vive?</th>
+            <td>¿Quiénes? ¿Cuántas (os)?</td>
+        </tr>
+        <tr>
+            <th>Datos de la última<br>
+                pareja sentimental<br>
+                conocida</th>
+            <td>(Nombre, apodo, edad, teléfono,<br>
+                dirección)</td>
+            <th>Hijas (os)</th>
+            <td>Edades, viven juntos…</td>
+        </tr>
+        <tr>
+            <th>¿Quién es el integrante<br>
+                de su familia más<br>
+                cercano?</th>
+            <td></td>
+            <th>¿Conoce si ha<br>
+                sufrido algún tipo de<br>
+                violencia por parte de<br>
+                algún integrante de la<br>
+                familia</th>
+            <td>¿Por prte de quién?</td>
+        </tr>
+    </table>
+</section>
+
+<section id="Contexto economico-laboral">
+    <h2>CONTEXTO ECONÓMICO-LABORAL</h2>
+    <table>
+        <tr>
+            <th>¿Dónde trabaja o cuál
+                es su medio de
+                subsistencia?</th>
+            <td>(Empresa, institución, tiempo,
+                dirección, teléfono)</td>
+            <th>¿Sabe si le gusta su<br>
+                trabajo</th>
+            <td></td>
+            <th>¿Ha manifestado la<br>
+                intensión de irse a<br>
+                trabajar fuera de la<br>
+                ciudad?</th>
+            <td>¿Si, a dónde?</td>
+            <th¿Conoce si ha<br>
+            sufrido algún tipo<br>
+            de violencia por<br>
+            parte de algún<br>
+            integrante de su<br>
+            trabajo?></th>
+            <td>¿Por quién?</td>
+            <th>¿Sae si tiene<br>deudas?</th>
+            <td>¿Por qué monto, con quién?</td>
+        </tr>
+    </table>
+</section>
+
+<section id="contexto social">
+    <h2>CONTEXTO SOCIAL</h2>
+    <table>
+        <tr>
+            <th>¿Qué pasatiempos<br>tiene?</th>
+            <td>(Deportes, viajes, hobbies)</td>
+            <th>¿Pertenece a algún<br>
+                club u organización?</th>
+            <td>¿Sí, cuál? ¿Con qué frecuencia?</td>
+        </tr>
+        <tr>
+            <th>¿Estudia?</th>
+            <td>(Nivel, institución, horario, dirección)</td>
+            <th>¿Puede mencionar<br>
+                sus amistades más<br>
+                cercanas?</th>
+            <td>(Nombre, apodo, teléfono, dirección)</td>
+            <th>¿Ha manifestado<br>
+                tener amistades<br>
+                en otro municipio<br>
+                o Estado?</th>
+            <td>¿Dónde?</td>
+            <th>Correo electrónico,<br>
+                nombre en sus Redes<br>
+                Sociales</th>
+            <td>(Facebook, Twitter, Instagram, otro)</td>
+        </tr>
+    </table>
 </section>
 </body>
 </html>

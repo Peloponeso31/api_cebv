@@ -47,8 +47,8 @@ class DocumentoController extends Controller
         $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
 
         return Pdf::loadView('reportes.documentos.ficha-datos', [
+            "reportante" => $reportante,
             "desaparecido" => $desaparecido,
-            "reportante" => $reportante
         ])->stream("nombre.pdf");
     }
 }

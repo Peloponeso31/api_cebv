@@ -70,6 +70,15 @@
             z-index: -2;
         }
 
+        .etiqueta {
+            font-weight: bold;
+        }
+
+        .dato {
+            text-align: center;
+            font-size: 12px;
+        }
+
         table, th, td {
             border: 1px solid;
             border-collapse: collapse;
@@ -113,58 +122,63 @@
 </div>
 
 <!--Content-->
-<p>  </p>
-<p> Fecha y hora: {{ \Carbon\Carbon::parse(\Carbon\Carbon::now())->translatedFormat("d \d\\e F \d\\e Y") }}. </p>
+<p> Lugar: Xalapa, Ver..</p>
+<p> Fecha y hora: @yield('fecha-actual'). </p>
 
 <h1> Datos del reportante </h1>
 
 <table>
     <tr>
-        <td> Nombre completo: </td>
-        <td colspan="3" style="text-align: center;"> @yield('nombre-completo-reportante') </td>
+        <td class="etiqueta"> Nombre completo: </td>
+        <td colspan="3" class="dato"> @yield('nombre-completo-reportante') </td>
     </tr>
 
     <tr>
-        <td> Edad y fecha de nacimiento: </td>
-        <td style="text-align: center;"> @yield('fecha-nacimiento-reportante') </td>
-        <td> Sexo y género: </td>
-        <td style="text-align: center;"> {{ "Masculino" }} </td>
+        <td class="etiqueta"> Edad y fecha de nacimiento: </td>
+        <td class="dato"> @yield('edad-reportante') @yield('fecha-nacimiento-reportante')</td>
+        <td class="etiqueta"> Sexo y género: </td>
+        <td class="dato"> @yield('sexo-reportante') </td>
     </tr>
 
     <tr>
-        <td> CURP: </td>
-        <td style="text-align: center;"> {{ "IUCT910921HVZZRN08" }} </td>
-        <td> INE: </td>
-        <td style="text-align: center;"> {{ "987987AASDAS" }} </td>
+        <td class="etiqueta"> CURP: </td>
+        <td class="dato"> @yield('curp-reportante') </td>
+        <td class="etiqueta"> INE: </td>
+        <td class="dato"> {{ "987987AASDAS" }} </td>
     </tr>
 
     <tr>
-        <td> Estado civil: </td>
-        <td colspan="3" style="text-align: center;"> {{ "Soltero" }} </td>
+        <td class="etiqueta"> Estado civil: </td>
+        <td colspan="3" class="dato"> {{ "Soltero" }} </td>
     </tr>
 
     <tr>
-        <td> Religión: </td>
-        <td style="text-align: center;"> {{ "IUCT910921HVZZRN08" }} </td>
-        <td> Lengua: </td>
-        <td style="text-align: center;"> {{ "987987AASDAS" }} </td>
+        <td class="etiqueta"> Religión: </td>
+        <td class="dato"> @yield('religion-reportante') </td>
+        <td class="etiqueta"> Lengua: </td>
+        <td class="dato"> @yield('lengua-reportante') </td>
     </tr>
 
     <tr>
-        <td> Escolaridad: </td>
-        <td style="text-align: center;"> {{ "IUCT910921HVZZRN08" }} </td>
-        <td> Ocupación: </td>
-        <td style="text-align: center;"> {{ "987987AASDAS" }} </td>
+        <td class="etiqueta"> Escolaridad: </td>
+        <td class="dato"> {{ "IUCT910921HVZZRN08" }} </td>
+        <td class="etiqueta"> Ocupación: </td>
+        <td class="dato"> {{ "987987AASDAS" }} </td>
     </tr>
 
     <tr>
-        <td> Domicilio: </td>
-        <td colspan="3" style="text-align: center;"> {{ "IUCT910921HVZZRN08" }} </td>
+        <td class="etiqueta"> Domicilio: </td>
+        <td colspan="3" class="dato"> {{ "IUCT910921HVZZRN08" }} </td>
     </tr>
 
     <tr>
-        <td> Telefonos: </td>
-        <td colspan="3" style="text-align: center;"> @yield("telefonos") </td>
+        <td class="etiqueta"> Telefonos: </td>
+        <td colspan="3" class="dato"> @yield("telefonos-reportante") </td>
+    </tr>
+
+    <tr>
+        <td class="etiqueta"> Correos electronicos: </td>
+        <td colspan="3" class="dato"> @yield("correos-reportante") </td>
     </tr>
 </table>
 

@@ -15,7 +15,7 @@ use App\Models\Reportes\Reporte;
 | Rutas de reportes
 |--------------------------------------------------------------------------
 |
-| Aqui es donde iran las rutas que esten relacionadas a la generacion de
+| Aquí es donde iran las rutas que estén relacionadas a la generación de
 | reportes en formato PDF.
 |
 */

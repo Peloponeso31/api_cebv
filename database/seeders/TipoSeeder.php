@@ -14,22 +14,22 @@ class TipoSeeder extends Seeder
     public function run(): void
     {
         $tipos = [
-            ["nombre" => "ARETE/PERFORACIONES"],
-            ["nombre" => "CICATRIZ"],
-            ["nombre" => "CIRCUNCISION"],
-            ["nombre" => "CORTES DECORATIVOS"],
-            ["nombre" => "DEFECTO FISICO"],
-            ["nombre" => "LUNARES O MANCHAS"],
-            ["nombre" => "MARCAS TEMPORALES"],
-            ["nombre" => "OTRO"],
-            ["nombre" => "PROTESIS"],
-            ["nombre" => "TATUAJE"],
+            'ARETE / PERFORACIONES',
+            'CICATRIZ',
+            'CIRCUNCISIÓN',
+            'CORTES DECORATIVOS',
+            'DEFECTO FÍSICO / DEFORMATION',
+            'LUNARES O MANCHAS',
+            'MARCAS TEMPORALES',
+            'OTRO',
+            'PRÓTESIS',
+            'TATUAJE',
         ];
 
         sort($tipos);
 
         foreach ($tipos as $tipo) {
-            Tipo::firstOrCreate($tipo);
+            Tipo::firstOrCreate(['nombre' => $tipo]);
         }
     }
 }

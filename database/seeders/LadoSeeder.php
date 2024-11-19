@@ -15,9 +15,10 @@ class LadoSeeder extends Seeder
     public function run(): void
     {
         $lados = [
-            ["nombre" => "IZQUIERDO", "color" => "2E3192"],
-            ["nombre" => "DERECHO", "color" => "C1272D"],
-            ["nombre" => "NO ESPECIFICA"],
+            ['nombre' => 'IZQUIERDO', 'color' => '2E3192'],
+            ['nombre' => 'DERECHO', 'color' => 'C1272D'],
+            ['nombre' => 'ÚNICO'],
+            ['nombre' => 'NO ESPECIFICA'],
         ];
 
         foreach ($lados as $lado) {

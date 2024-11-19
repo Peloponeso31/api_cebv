@@ -30,7 +30,13 @@
         En la Ciudad de Xalapa de Enríquez del Estado de Veracruz, siendo las
         <mark>@yield('hora') horas del día @yield('fecha')</mark>
         el (la) suscrito(a)
-        <mark>@yield('nombre-completo-usuario'), @yield('nombre-puesto')</mark>
+        <mark>
+            @guest
+                <p>HOLA MUNDO</p> <!-- TODO -->
+            @else
+                {{ auth()->user()->empleado->persona->nombreCompleto() }}
+            @endguest
+        </mark>
         adscrito a la Comisión Estatal de Búsqueda, con fundamento en lo dispuesto por los artículos 1, 6, 29 fracción
         IV,
         30, 33 fracciones I, XXIII, LII y LIV, 62, 63 y demás relativos y aplicables de la Ley Número 677 en Materia de

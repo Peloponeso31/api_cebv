@@ -52,7 +52,7 @@
     Estado de Veracruz de Ignacio de la Llave; 92 de la Ley Número 677 en Materia de Desaparición de Personas para el Estado
     de Veracruz, y lo dispuesto por el artículo 348 segundo párrafo del Código Penal para el Estado de Veracruz.  <br><br>
     Sin otro particular, aprovecho la ocasión para hacerle presente mi más distinguida consideración. <br><br>
-    A t e n t a m e n t e <br><br>
+    A t e n t a m e n t e<br><br>
     <mark>@yield('nombre-serv-pub')</mark> <br>
     Jefe de Oficina de Búsqueda Inmediata<br><br><br><br><br><br>
 </p>

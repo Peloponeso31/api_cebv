@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\BoletinController;
-use App\Http\Controllers\DocumentoController;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
@@ -15,7 +13,7 @@ use App\Models\Reportes\Reporte;
 | Rutas de reportes
 |--------------------------------------------------------------------------
 |
-| Aquí es donde iran las rutas que estén relacionadas a la generación de
+| Aqui es donde iran las rutas que esten relacionadas a la generacion de
 | reportes en formato PDF.
 |
 */
@@ -34,6 +32,24 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::controller(BoletinController::class)->prefix('boletines')->group(function () {
         Route::get('/busqueda-inmediata/{id}', 'busquedaInmediata');
+    });
+
+    Route::get("/informes-inicios/{id}", function (string $id) {
+        $desaparecido = Desaparecido::findOrFail($id);
+        $reporte = Reporte::findOrFail($desaparecido->reporte_id);
+        $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
+
+        $folio = Folio::where([
+            ["reporte_id", "=", $reporte->id],
+            ["persona_id", "=", $desaparecido->persona->id]
+        ])->first();
+
+        return Pdf::loadView("reportes.informe_inicio", [
+            "desaparecido" => $desaparecido,
+            "reporte" => $reporte,
+            "reportante" => $reportante,
+            "folio" => $folio
+        ])->stream();
     });
 
     Route::get("/ficha_de_datos", function () {

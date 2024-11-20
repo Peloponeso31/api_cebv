@@ -1,5 +1,4 @@
 <?php
-/** @noinspection PhpMultipleClassDeclarationsInspection */
 
 namespace App\Http\Controllers;
 
@@ -304,12 +303,15 @@ class DocumentoController extends Controller
         ])->stream();
     }
 
-
-    public function fichaBusquedaInmediata(string $desaparecido)
+    public function fichaDatos(string $desaparecido_id)
     {
-        $desaparecido = Desaparecido::findOrFail($desaparecido);
+        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+        $reporte = Reporte::findOrFail($desaparecido->reporte->id);
+        $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
 
-        // TODO: Nicolas: El que esta bien es el copy, el que generes renombralo de manera que tenga sentido
-        return Pdf::loadView('reportes.ficha_bi_copy')->stream();
+        return Pdf::loadView('reportes.documentos.ficha-datos', [
+            "reportante" => $reportante,
+            "desaparecido" => $desaparecido,
+        ])->stream("nombre.pdf");
     }
 }

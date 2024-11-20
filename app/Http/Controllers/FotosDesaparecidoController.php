@@ -14,14 +14,12 @@ class FotosDesaparecidoController extends Controller
     {
         $desaparecido = Desaparecido::findOrFail($desaparecido_id);
         //Storage para acceder al repositorio del servidor,
-        $files = Storage::allFiles($desaparecido->persona->id);
+        $files = Storage::files($desaparecido->persona->id);
         $content = [];
-        $acc = 0;
 
         foreach ($files as $file) {
             $bytes = Storage::get($file);
             $content[] = base64_encode($bytes);
-
         }
         return $content;
     }
@@ -29,15 +27,13 @@ class FotosDesaparecidoController extends Controller
     {
         $desaparecido = Desaparecido::findOrFail($desaparecido_id);
         $directory = $desaparecido->persona->id;
+
         if (Storage::exists($directory)) {
-            Storage::deleteDirectory($directory);
-            return response()->json([
-                "mensaje" => "Todos los archivos han sido eliminados."
-            ])->setStatusCode(200);
+            Storage::delete(Storage::files($directory));
+            $status = 200;
         }
-        return response()->json([
-            "mensaje" => "El directorio no existe"
-        ])->setStatusCode(404);
+
+        return response([], $status ?? 404);
     }
 
     public function upload($desaparecido_id, Request $request)

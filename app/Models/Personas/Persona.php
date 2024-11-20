@@ -86,9 +86,23 @@ class Persona extends Model
         'habla_espanhol' => 'boolean',
     ];
 
-    public function nombreCompleto()
+    public function nombreCompleto(): string
     {
         return $this->nombre . ' ' . $this->apellido_paterno . ' ' . $this->apellido_materno;
+    }
+
+    public function nombreCompletoSinEspacios(): string
+    {
+        return $this->nombre . '-' . $this->apellido_paterno . '-' . $this->apellido_materno;
+    }
+
+    public function proNombre(): string
+    {
+        return match ($this->sexo_id) {
+            1 => 'del C. ',
+            2 => 'de la C. ',
+            default => 'del (de la) C. '
+        };
     }
 
 
@@ -109,7 +123,7 @@ class Persona extends Model
     {
         $partes = explode(' ', $nombreCompleto);
 
-        $partes = array_filter($partes, function($parte) {
+        $partes = array_filter($partes, function ($parte) {
             return !empty($parte) && !in_array(strtoupper(trim($parte)), ['DE', 'DEL', 'LA', 'LAS', 'LOS', 'Y']);
         });
 
@@ -121,7 +135,6 @@ class Persona extends Model
 
         return $iniciales;
     }
-
 
 
     // TODO: Revisar todo este bloque pq creo que me lo desmadré

@@ -18,6 +18,7 @@ use App\Models\Reportes\Reporte;
 |
 */
 
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::controller(DocumentoController::class)->prefix('documentos')->group(function () {
         Route::get('/informes-inicio/{desaparecido_id}', 'informeInicio');

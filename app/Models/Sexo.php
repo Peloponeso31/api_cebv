@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Empleado\Empleado;
 use App\Models\Personas\Persona;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,11 @@ class Sexo extends Model
     public function perpetradores(): HasMany
     {
         return $this->hasMany(Perpetrador::class);
+    }
+
+    public function empleados(): HasMany
+    {
+        return $this->hasMany(Empleado::class);
     }
 
     public function scopeWithSexosCount($query)

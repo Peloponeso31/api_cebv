@@ -38,6 +38,8 @@ class HechoDesaparicionResource extends JsonResource
             'desaparecio_acompanado' => $this->desaparecio_acompanado,
             'personas_mismo_evento' => $this->personas_mismo_evento,
             'desaparecidos' => DesaparecidoPrettyResource::collection($this->desaparecidos()),
+            'resultado_rnd' => $this->resultado_rnd,
+            'contexto_desaparicion' => $this->contexto_desaparicion,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -12,9 +12,15 @@ return new class extends Migration {
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('persona_id')->constrained(table: 'personas');
+
             $table->foreignId('puesto_id')->nullable()->constrained(table: 'cat_puestos');
             $table->foreignId('oficina_id')->nullable()->constrained(table: 'cat_oficinas');
+            $table->foreignId('sexo_id')->nullable()->constrained(table: 'cat_sexos');
+
+            $table->string('nombre');
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
+
             $table->timestamps();
         });
     }

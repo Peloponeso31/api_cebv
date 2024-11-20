@@ -1,5 +1,8 @@
 <?php
 
+use App\Enums\FactorRhesus;
+use App\Enums\ResultadoRnd;
+use App\Helpers\EnumHelper;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -33,6 +36,11 @@ return new class extends Migration {
             $table->text('sintesis_desaparicion')->nullable();
             $table->boolean('desaparecio_acompanado')->nullable();
             $table->integer('personas_mismo_evento')->nullable()->default(1);
+
+            $table->string('contexto_desaparicion')->nullable();
+            $table->enum('resultado_rnd', EnumHelper::toList(FactorRhesus::class))
+                ->default(FactorRhesus::NoEspecifica->value)
+                ->nullable();
 
             $table->timestamps();
         });

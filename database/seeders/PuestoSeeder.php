@@ -14,10 +14,16 @@ class PuestoSeeder extends Seeder
     public function run(): void
     {
         $puestos = [
-            "Abogado",
-            "Analista de datos",
-            "Especialista en búsqueda y rescate",
-            "Personal administrativo",
+            'Comisionado Estatal de Búsqueda de Personas',
+            'Jefe de Departamento Especializado de Búsqueda',
+            'Jefe de Departamento de Análisis de Contexto',
+            'Jefe de Departamento de Vinculación Interinstitucional y Asuntos Jurídicos',
+            'Jefe de Oficina de Búsqueda Inmediata',
+            'Jefe de Oficina de Gestión Procesamiento de Información',
+            'Jefe de Oficina de Larga Data',
+            'Jefe de Oficina de Análisis de Contexto',
+            'Jefe de Oficina de Vinculación Interinstitucional',
+            'Jefe de Oficina de Asuntos Jurídicos',
         ];
 
         foreach ($puestos as $puesto) {

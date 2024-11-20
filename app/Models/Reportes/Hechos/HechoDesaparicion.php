@@ -2,6 +2,7 @@
 
 namespace App\Models\Reportes\Hechos;
 
+use App\Enums\FactorRhesus;
 use App\Models\Informaciones\Sitio;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
@@ -39,6 +40,7 @@ class HechoDesaparicion extends Model
         'sintesis_desaparicion',
         'desaparecio_acompanado',
         'personas_mismo_evento',
+        'contexto_desaparicion',
     ];
 
     protected $casts = [
@@ -47,6 +49,7 @@ class HechoDesaparicion extends Model
         'fecha_percato' => 'datetime',
         'cambio_comportamiento' => 'boolean',
         'fue_amenazado' => 'boolean',
+        'resultado_rnd' => FactorRhesus::class,
     ];
 
     /**

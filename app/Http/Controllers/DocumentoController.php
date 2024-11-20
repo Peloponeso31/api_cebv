@@ -3,10 +3,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\StringHelper;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Auth;
 
 class DocumentoController extends Controller
 {
@@ -19,22 +19,32 @@ class DocumentoController extends Controller
             ->where('persona_id', $desaparecido->persona->id)
             ->first();
 
-        $hora = now()->format('H:i');
-        $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
-        $nombrePuesto = 'Ingeniero'; // TODO: Hacer esto dinámico
-        $resultadoRND = 'NEGATIVO';
+        $horaInicial = $reporte->fecha_creacion->format('H:i');
+        $fechaInicial = $reporte->fecha_creacion->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
 
+        $horaFinal = '';
+        $fechaFinal = '';
+
+        if (isset($folio->created_at)) {
+            $horaFinal = $folio->created_at->subHours(6)->format('H:i');
+            $fechaFinal = $folio->created_at->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
+        } else {
+            $horaFinal = $reporte->fecha_actualizacion->format('H:i');
+            $fechaFinal = $reporte->fecha_actualizacion->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
+        }
+
+        $folioLimpio = StringHelper::removeSlashes($folio) ?? $desaparecido->persona->nombreCompletoSinEspacios();
 
         return Pdf::loadView("reportes.documentos.informe-inicio", [
             'desaparecido' => $desaparecido,
             'reporte' => $reporte,
             'reportante' => $reportante,
             'folio' => $folio,
-            'hora' => $hora,
-            'fecha' => $fecha,
-            'nombrePuesto' => $nombrePuesto,
-            'resultadoRND' => $resultadoRND,
-        ])->stream();
+            'horaInicial' => $horaInicial,
+            'horaFinal' => $horaFinal,
+            'fechaInicial' => $fechaInicial,
+            'fechaFinal' => $fechaFinal,
+        ])->stream("InformeInicio_" . $folioLimpio . ".pdf");
     }
 
     public function oficioparac4(string $desaparecidoId)
@@ -50,10 +60,10 @@ class DocumentoController extends Controller
         $year = now()->locale('es')->isoFormat('YYYY');
         $nombresersegpub = 'Cap. Manuel Salvador Palma Valdovinos';
 
-        if($desaparecido->persona->edadAnhos()>=18){
-            $edad=',';
-        }else{
-            $edad=',7,8,9,10,12,';
+        if ($desaparecido->persona->edadAnhos() >= 18) {
+            $edad = ',';
+        } else {
+            $edad = ',7,8,9,10,12,';
         }
 
         $nombrecompleto = $desaparecido->persona->nombreCompleto();
@@ -78,7 +88,7 @@ class DocumentoController extends Controller
             $sexo = ' capítulo 1 numeral 6 inciso XIV del Protocolo de Atención, Reacción y Coordinación entre Autoridades Federales,
             Estatales y Municipales en Caso de Desaparición de Mujeres, Adolescentes y Niñas para el Estado de Veracruz de Ignacio de
             la Llave, (Protocolo Alba) publicado en la Gaceta Oficial Extraordinaria número 480 del 30 Nov. 2018 ;';
-        }else{
+        } else {
             $sexo = '';
         }
 
@@ -145,7 +155,7 @@ class DocumentoController extends Controller
             $sexo = 'capítulo 1 numeral 6 inciso XIV del Protocolo de Atención, Reacción y Coordinación entre Autoridades Federales,
             Estatales y Municipales en Caso de Desaparición de Mujeres, Adolescentes y Niñas para el Estado de Veracruz de Ignacio de
             la Llave, (Protocolo Alba) publicado en la Gaceta Oficial Extraordinaria número 480 del 30 Nov. 2018, ';
-        }else{
+        } else {
             $sexo = '';
         }
 
@@ -157,13 +167,13 @@ class DocumentoController extends Controller
             'folio' => $folio,
             'fecha' => $fecha,
             'nombreServidorPublicEnv' => $nombreservenvia,
-            'firmaAusencia'=> $firmaporausencia,
+            'firmaAusencia' => $firmaporausencia,
             'sexo' => $sexo,
             'carpeta' => $carpeta,
             'nombrecompleto' => $nombrecompleto,
             'fechaDesaparicion' => $fechaDesaparicion,
             'lugarDesaparicion' => $lugardesaparicion,
-            'curp'=>$curp,
+            'curp' => $curp,
             'senasParticulares' => $senasparticulares,
             'medioDifusion' => $mediodifusion,
             'carpeta1' => $carpeta1,
@@ -182,13 +192,13 @@ class DocumentoController extends Controller
             $primerReportante = $reporte->reportantes->first();
             $nombreCompletoReportante = $primerReportante->persona->nombreCompleto();
         } else {
-            return response()->json('No hay reportantes asociados.') ;
+            return response()->json('No hay reportantes asociados.');
         }
 
-        if(!$primerReportante->persona->telefonos->first()){
+        if (!$primerReportante->persona->telefonos->first()) {
             $telefonoReportante = 'Número no disponible';
 
-        }else{
+        } else {
             $telefonoReportante = $primerReportante->persona->telefonos->first();
         }
 
@@ -207,20 +217,20 @@ class DocumentoController extends Controller
         $lugardesaparicion = $desaparecido->reporte->hechosDesaparicion->sitio_id ?? 'Lugar no disponible';
         $casoformato = 'TLACUACHE';
 
-         return Pdf::loadView("reportes.documentos.oficio-para-fiscalia", [
-        'numeroOficio'=> $numerooficio,
-        'year' => $year,
-        'folio' => $folio,
-        'fecha' => $fecha,
-        'nombreServPubEnv' => $nombreservenvia,
-        'nombreCompleto' => $nombrecompletodes,
-        'lugarDesaparicion' => $lugardesaparicion,
-        'fechaDesaparicion' => $fechaDesaparicion,
-        'numeroReporte' => $telefonoReportante,
-        'nombreReportante' => $nombreCompletoReportante,
-        'casoFormato' => $casoformato,
-        'nombreServPublico' => $nombreservpubcebv,
-        'iniciales' => $iniciales,
+        return Pdf::loadView("reportes.documentos.oficio-para-fiscalia", [
+            'numeroOficio' => $numerooficio,
+            'year' => $year,
+            'folio' => $folio,
+            'fecha' => $fecha,
+            'nombreServPubEnv' => $nombreservenvia,
+            'nombreCompleto' => $nombrecompletodes,
+            'lugarDesaparicion' => $lugardesaparicion,
+            'fechaDesaparicion' => $fechaDesaparicion,
+            'numeroReporte' => $telefonoReportante,
+            'nombreReportante' => $nombreCompletoReportante,
+            'casoFormato' => $casoformato,
+            'nombreServPublico' => $nombreservpubcebv,
+            'iniciales' => $iniciales,
         ])->stream();
     }
 
@@ -232,10 +242,10 @@ class DocumentoController extends Controller
             ->where('persona_id', $desaparecido->persona->id)
             ->first();
 
-        if($desaparecido->persona->edadAnhos()>=18){
-            $edad=',';
-        }else{
-            $edad=',7,8,9,10,12,';
+        if ($desaparecido->persona->edadAnhos() >= 18) {
+            $edad = ',';
+        } else {
+            $edad = ',7,8,9,10,12,';
         }
 
         $numerooficio = str_pad($desaparecidoId, 5, '0', STR_PAD_LEFT);
@@ -268,7 +278,7 @@ class DocumentoController extends Controller
             $sexo = 'capítulo 1 numeral 6 inciso XIV del Protocolo de Atención, Reacción y Coordinación entre Autoridades Federales,
             Estatales y Municipales en Caso de Desaparición de Mujeres, Adolescentes y Niñas para el Estado de Veracruz de Ignacio de
             la Llave, (Protocolo Alba) publicado en la Gaceta Oficial Extraordinaria número 480 del 30 Nov. 2018, ';
-        }else{
+        } else {
             $sexo = '';
         }
 
@@ -281,7 +291,7 @@ class DocumentoController extends Controller
             'fecha' => $fecha,
             'edad' => $edad,
             'nombreServidorPublicEnv' => $nombreservenvia,
-            'firmaAusencia'=> $firmaporausencia,
+            'firmaAusencia' => $firmaporausencia,
             'sexo' => $sexo,
             'carpeta' => $carpeta,
             'nombrecompleto' => $nombrecompleto,

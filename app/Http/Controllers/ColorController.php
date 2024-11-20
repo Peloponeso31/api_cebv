@@ -16,12 +16,10 @@ class ColorController extends Controller
         return CatalogoResource::collection($colores);
     }
 
-
     public function store(StoreColorRequest $request)
     {
         return new CatalogoResource(Color::create($request->all()));
     }
-
 
     public function show($id)
     {
@@ -30,14 +28,12 @@ class ColorController extends Controller
         return new CatalogoResource($model);
     }
 
-
     public function update($id, UpdateColorRequest $request)
     {
         $model = Color::findOrFail($id);
 
         $model->update($request->all());
     }
-
 
     public function destroy($id)
     {

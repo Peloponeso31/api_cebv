@@ -1,12 +1,9 @@
 <?php
-/** @noinspection PhpMultipleClassDeclarationsInspection */
 
 namespace App\Http\Controllers;
 
-use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\Auth;
 
 class DocumentoController extends Controller
 {
@@ -21,6 +18,7 @@ class DocumentoController extends Controller
 
         $hora = now()->format('H:i');
         $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
+        $nombreUsuario = 'Jonatan Luna Franco'; // TODO: Hacer esto dinámico
         $nombrePuesto = 'Ingeniero'; // TODO: Hacer esto dinámico
         $resultadoRND = 'NEGATIVO';
 
@@ -32,6 +30,7 @@ class DocumentoController extends Controller
             'folio' => $folio,
             'hora' => $hora,
             'fecha' => $fecha,
+            'nombreUsuario' => $nombreUsuario,
             'nombrePuesto' => $nombrePuesto,
             'resultadoRND' => $resultadoRND,
         ])->stream();
@@ -294,12 +293,15 @@ class DocumentoController extends Controller
         ])->stream();
     }
 
-
-    public function fichaBusquedaInmediata(string $desaparecido)
+    public function fichaDatos(string $desaparecido_id)
     {
-        $desaparecido = Desaparecido::findOrFail($desaparecido);
+        $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+        $reporte = Reporte::findOrFail($desaparecido->reporte->id);
+        $reportante = Reportante::findOrFail($reporte->reportantes->first()->id);
 
-        // TODO: Nicolas: El que esta bien es el copy, el que generes renombralo de manera que tenga sentido
-        return Pdf::loadView('reportes.ficha_bi_copy')->stream();
+        return Pdf::loadView('reportes.documentos.ficha-datos', [
+            "reportante" => $reportante,
+            "desaparecido" => $desaparecido,
+        ])->stream("nombre.pdf");
     }
 }

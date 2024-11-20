@@ -85,7 +85,7 @@ class Reporte extends Model
 
     public function hechosDesaparicion(): HasOne
     {
-        return $this->hasOne(HechoDesaparicion::class);
+        return $this->hasOne(HechoDesaparicion::class,'reporte_id','id');
     }
 
     /**

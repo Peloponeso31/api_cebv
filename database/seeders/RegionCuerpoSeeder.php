@@ -13,7 +13,7 @@ class RegionCuerpoSeeder extends Seeder
      */
     public function run(): void
     {
-        $regionesPath = database_path('files/body-map.csv');
+        $regionesPath = database_path('files/RegionesCuerpoV4.csv');
 
         $regionesGenerator = static function (array $row): array {
             return [

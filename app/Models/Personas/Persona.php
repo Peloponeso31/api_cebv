@@ -91,6 +91,7 @@ class Persona extends Model
         return $this->nombre . ' ' . $this->apellido_paterno . ' ' . $this->apellido_materno;
     }
 
+
     /**
      * Atributos propios de persona
      */
@@ -103,6 +104,25 @@ class Persona extends Model
     {
         return Carbon::parse($this->attributes['fecha_nacimiento'])->translatedFormat("d \d\\e F \d\\e Y");
     }
+
+    public function inicialesNombresApellidos($nombreCompleto)
+    {
+        $partes = explode(' ', $nombreCompleto);
+
+        $partes = array_filter($partes, function($parte) {
+            return !empty($parte) && !in_array(strtoupper(trim($parte)), ['DE', 'DEL', 'LA', 'LAS', 'LOS', 'Y']);
+        });
+
+        $iniciales = '';
+
+        foreach ($partes as $parte) {
+            $iniciales .= strtoupper(mb_substr(trim($parte), 0, 1));
+        }
+
+        return $iniciales;
+    }
+
+
 
     // TODO: Revisar todo este bloque pq creo que me lo desmadré
     public function color_ojos()

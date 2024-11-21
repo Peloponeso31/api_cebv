@@ -619,13 +619,13 @@
 
 </table>
 <h2 class="texto-centrado"> Observaciones generales </h2>
-<table>
-    <tr>
-        <td colspan="2" class="etiqueta">Observaciones:</td>
 
-        <td colspan="2" class="dato">@yield('desaparecido-observaciones-generales')</td>
+<table >
+    <tr>
+        <td>@yield('desaparecido-observaciones-generales')</td>
     </tr>
 </table>
+
 <h6 class="texto-centrado"><br><br><br>__________________________________________________________________________________________<br>Nombre y firma de la persona de la Comisión Estatal de Búsqueda que realizó la entrevista.  </h6>
 
 </body>

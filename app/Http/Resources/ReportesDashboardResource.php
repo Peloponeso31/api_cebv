@@ -19,12 +19,12 @@ class ReportesDashboardResource extends JsonResource
         $fechaDesaparicion = $this->hechosDesapariciones->last()->fecha_desaparicion;
 
         foreach ($this->reportantes as $reportante) {
-            $nombre = $reportante->persona->nombre.' '.$reportante->persona->apellido_paterno.' '.$reportante->persona->apellido_materno;
+            $nombre = $reportante->persona->nombreCompleto();
             array_push($reportantes, $nombre);
         }
 
         foreach ($this->desaparecidos as $desaparecido) {
-            $nombre = $desaparecido->persona->nombre.' '.$desaparecido->persona->apellido_paterno.' '.$desaparecido->persona->apellido_materno;
+            $nombre = $desaparecido->persona->nombreCompleto();
             array_push($desaparecidos, $nombre);
         }
 

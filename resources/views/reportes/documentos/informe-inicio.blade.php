@@ -3,7 +3,7 @@
 @section('nombre-completo-desaparecido', strtoupper($desaparecido->persona->nombreCompleto()) )
 
 @section('pronombre-completo-desaparecido')
-    {{ $desaparecido->persona->proNombre() . strtoupper($desaparecido->persona->nombreCompleto()) }}
+    {{ $desaparecido->persona->preposicion() . $desaparecido->persona->sustantivo() . strtoupper($desaparecido->persona->nombreCompleto()) }}
 @endsection
 
 @section('folio')

@@ -24,6 +24,7 @@ class PuestoSeeder extends Seeder
             'Jefe de Oficina de Análisis de Contexto',
             'Jefe de Oficina de Vinculación Interinstitucional',
             'Jefe de Oficina de Asuntos Jurídicos',
+            'Analista Administrativo',
         ];
 
         foreach ($puestos as $puesto) {

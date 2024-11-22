@@ -40,6 +40,7 @@ class HechoDesaparicion extends Model
         'sintesis_desaparicion',
         'desaparecio_acompanado',
         'personas_mismo_evento',
+        'resultado_rnd',
         'contexto_desaparicion',
     ];
 

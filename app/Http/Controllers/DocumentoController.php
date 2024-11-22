@@ -1,10 +1,12 @@
-<?php
+<?php /** @noinspection PhpMultipleClassDeclarationsInspection */
 
 namespace App\Http\Controllers;
 
 use App\Helpers\StringHelper;
 use App\Models\Oficialidades\Folio;
 use App\Models\Reportes\Relaciones\Desaparecido;
+use App\Models\Reportes\Relaciones\Reportante;
+use App\Models\Reportes\Reporte;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class DocumentoController extends Controller
@@ -14,22 +16,18 @@ class DocumentoController extends Controller
         $desaparecido = Desaparecido::findOrFail($desaparecidoId);
         $reporte = $desaparecido->reporte;
         $reportante = $reporte->reportantes->first;
-        $folio = Folio::where('reporte_id', $reporte->id)
-            ->where('persona_id', $desaparecido->persona->id)
-            ->first();
+        $folio = Folio::getFolio($reporte->id, $desaparecido->persona->id);
 
-        $horaInicial = $reporte->fecha_creacion->format('H:i');
-        $fechaInicial = $reporte->fecha_creacion->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
-
-        $horaFinal = '';
-        $fechaFinal = '';
+        // ToDo: Remove merge hours and dates in a single variable
+        $horaInicial = $reporte->created_at->format('H:i');
+        $fechaInicial = $reporte->created_at->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
 
         if (isset($folio->created_at)) {
-            $horaFinal = $folio->created_at->subHours(6)->format('H:i');
+            $horaFinal = $folio->created_at->format('H:i');
             $fechaFinal = $folio->created_at->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
         } else {
-            $horaFinal = $reporte->fecha_actualizacion->format('H:i');
-            $fechaFinal = $reporte->fecha_actualizacion->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
+            $horaFinal = $reporte->updated_at->format('H:i');
+            $fechaFinal = $reporte->updated_at->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
         }
 
         $folioLimpio = StringHelper::removeSlashes($folio) ?? $desaparecido->persona->nombreCompletoSinEspacios();
@@ -66,7 +64,7 @@ class DocumentoController extends Controller
         }
 
         $nombrecompleto = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'TLACUACHE';
+        $fechaDesaparicion = 'PENDIENTE';
         $numeroRastreo = $desaparecido->persona->telefonos->first() ? $desaparecido->persona->telefonos->first()->numero : 'Número no disponible';
         $nombreservpubcebv = 'Mtra. Fernanda Isabel Figueroa Cruz';
         $logueado = 'Angel Daniel Méndez Juarez de la Luz del Cielo'; // Usuario logueado
@@ -91,7 +89,7 @@ class DocumentoController extends Controller
             $sexo = '';
         }
 
-        $mediodifusion = 'TLACUACHE';
+        $mediodifusion = 'PENDIENTE';
 
         return Pdf::loadView("reportes.documentos.oficio-para-c4", [
             'numerooficio' => $numerooficio,
@@ -125,9 +123,9 @@ class DocumentoController extends Controller
         $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
         $year = now()->locale('es')->isoFormat('YYYY');
         $nombreservenvia = 'L.I. Rafael Ochoa Campos';
-        $firmaporausencia = 'TLACUACHE';
+        $firmaporausencia = 'PENDIENTE';
         $nombrecompleto = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'TLACUACHE';
+        $fechaDesaparicion = 'PENDIENTE';
         $curp = $desaparecido->persona->curp;
         $senasparticulares = $desaparecido->persona->senasParticulares;
         $nombreservpubcebv = 'Mtra. Fernanda Isabel Figueroa Cruz';
@@ -158,7 +156,7 @@ class DocumentoController extends Controller
             $sexo = '';
         }
 
-        $mediodifusion = 'TLACUACHE';
+        $mediodifusion = 'PENDIENTE';
 
         return Pdf::loadView("reportes.documentos.oficio-para-cei", [
             'numerooficio' => $numerooficio,
@@ -209,12 +207,12 @@ class DocumentoController extends Controller
         $year = now()->locale('es')->isoFormat('YYYY');
         $nombreservenvia = 'Mtra. Silveria Morales Solano';
         $nombrecompletodes = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'TLACUACHE';
+        $fechaDesaparicion = 'PENDIENTE';
         $nombreservpubcebv = 'Dr. Evaristo Mendoza Amaro';
         $logueado = 'Angel Daniel Luna de la Luz del Cielo'; // Usuario logueado
         $iniciales = $desaparecido->persona->inicialesNombresApellidos($logueado);
         $lugardesaparicion = $desaparecido->reporte->hechosDesaparicion->sitio_id ?? 'Lugar no disponible';
-        $casoformato = 'TLACUACHE';
+        $casoformato = 'PENDIENTE';
 
         return Pdf::loadView("reportes.documentos.oficio-para-fiscalia", [
             'numeroOficio' => $numerooficio,
@@ -251,9 +249,9 @@ class DocumentoController extends Controller
         $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
         $year = now()->locale('es')->isoFormat('YYYY');
         $nombreservenvia = 'Dra. Guadalupe Díaz del Castillo Flores';
-        $firmaporausencia = 'TLACUACHE';
+        $firmaporausencia = 'PENDIENTE';
         $nombrecompleto = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'TLACUACHE';
+        $fechaDesaparicion = 'PENDIENTE';
         $nombreservpubcebv = 'Mtra. Fernanda Isabel Figueroa Cruz';
         $logueado = 'Angel Daniel Luna de la Luz del Cielo'; // Usuario logueado
         $iniciales = $desaparecido->persona->inicialesNombresApellidos($logueado);
@@ -281,7 +279,7 @@ class DocumentoController extends Controller
             $sexo = '';
         }
 
-        $mediodifusion = 'TLACUACHE';
+        $mediodifusion = 'PENDIENTE';
 
         return Pdf::loadView("reportes.documentos.oficio-para-ssa", [
             'numerooficio' => $numerooficio,

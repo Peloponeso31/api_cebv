@@ -20,7 +20,7 @@ class UserAdminResource extends JsonResource
             'id' => $this->id,
             'email' => $this->email,
             'status' => $this->status,
-            'nombre_completo' => $this->empleado->persona->nombreCompleto(),
+            'nombre_completo' => $this->empleado->nombreCompleto(),
         ];
     }
 }

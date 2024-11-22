@@ -4,9 +4,11 @@
 
 @section('content')
     <div class="texto-centrado">INFORME DE INICIO</div>
+
     <div class="texto-centrado">
         <mark>@yield('nombre-completo-desaparecido') - @yield('folio')</mark>
     </div>
+
     <p>
         <br>
         En la Ciudad de Xalapa de Enríquez del Estado de Veracruz, siendo las
@@ -54,39 +56,17 @@
         El mismo día que inició la presente, se alertó a la Secretaría de Seguridad Pública (SSP), sobre la No
         localización
         <mark>@yield('pronombre-completo-desaparecido')</mark>
-        , a través del grupo habilitado para la
-        comunicación con el Centro Estatal de Control, Comando, Comunicaciones y Cómputo (C4), solicitando el despliegue
-        de
-        elementos policiales próximos al lugar de No Localización.
+        , a través del grupo habilitado para la comunicación con el Centro Estatal de Control, Comando, Comunicaciones y
+        Cómputo (C4), solicitando el despliegue de elementos policiales próximos al lugar de No Localización.
     </p>
 
     <p>
         Se turna al área jurídica para las acciones inmediatas con apego a los Principios Rectores para la Búsqueda de
         Personas Desaparecidas, las autoridades integrantes de mecanismo, dándose por terminada la presente, siendo las
         <mark>@yield('hora-final') horas del día @yield('fecha-final')</mark>
-        del presente día, firmando al calce los que en ella intervinieron.
-
+        , firmando al calce los que en ella intervinieron.
     </p>
 
-    <div style="text-align: center;">
-        <br>
-        <span style="text-decoration: overline;">
-            @auth
-                {{ auth()->user()->empleado->nombreCompleto() }}
-            @else
-                Invitado del Sistema.
-            @endauth
-        </span> <br>
-        @auth
-            {{ auth()->user()->empleado->puesto->nombre }}
-        @else
-            Sin puesto en la CEBV
-        @endauth
-    </div>
-
-    <div style="text-align: right;">
-        <p style="text-align: right">Vo. Bo.</p><br>
-        <span style="text-decoration: overline;">DR. EVARISTO MENDOZA AMARO</span> <br>
-        <span>Jefe De La Oficina De Búsqueda Inmediata</span>
-    </div>
+    <x-firma-usuario/>
+    <x-firma-jefe-oficina/>
 @endsection

@@ -30,8 +30,6 @@ class ReporteFactory extends Factory
             'hipotesis_oficial_id' => TipoHipotesis::inRandomOrder()->first()->id,
             'tipo_desaparicion' => fake()->randomElement(TipoDesaparicion::cases()),
             'esta_terminado' => fake()->boolean(),
-            'fecha_creacion' => Carbon::now(),
-            'fecha_actualizacion' => Carbon::now(),
         ];
     }
 }

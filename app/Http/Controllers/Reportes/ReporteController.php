@@ -35,7 +35,7 @@ class ReporteController extends Controller
         }
 
         if (request()->has('compact')) {
-            $query = $query->orderByDesc('id')->latest('fecha_creacion')->paginate();
+            $query = $query->orderByDesc('id')->latest('created_at')->paginate();
             return ReporteCompactedResource::collection($query);
         }
 

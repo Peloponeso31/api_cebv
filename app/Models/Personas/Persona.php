@@ -96,12 +96,23 @@ class Persona extends Model
         return $this->nombre . '-' . $this->apellido_paterno . '-' . $this->apellido_materno;
     }
 
-    public function proNombre(): string
+    public function preposicion(): string
     {
         return match ($this->sexo_id) {
-            1 => 'del C. ',
-            2 => 'de la C. ',
-            default => 'del (de la) C. '
+            1 => 'del ',
+            2 => 'de la ',
+            default => 'del (de la) '
+        };
+    }
+
+    public function sustantivo(): string
+    {
+        return match (true) {
+            $this->edadAnhos() >= 18 => 'C. ',
+            $this->edadAnhos() >= 12 && $this->edadAnhos() <= 17 => 'adolescente ',
+            $this->edadAnhos() < 12 && $this->sexo_id == 1 => 'niño ',
+            $this->edadAnhos() < 12 && $this->sexo_id == 2 => 'niña ',
+            default => 'persona '
         };
     }
 

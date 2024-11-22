@@ -97,7 +97,7 @@ class ReporteService
             'reporte_id' => $reporte->id,
             'persona_id' => $desaparecido->persona_id,
             'folio_cebv' => [
-                'fecha_registro' => $reporte->fecha_creacion->format('y'),
+                'fecha_registro' => $reporte->created_at->format('y'),
                 'tipo_reporte' => $reporte->tipoReporte->abreviatura,
                 'serie' => $serie,
                 'tipo_desaparicion' => $reporte->tipo_desaparicion,

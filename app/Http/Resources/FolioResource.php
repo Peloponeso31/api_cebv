@@ -3,11 +3,12 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\Empleado\EmpleadoResource;
+use App\Models\Oficialidades\Folio;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Oficialidades\Folio */
+/** @mixin Folio */
 class FolioResource extends JsonResource
 {
     public function toArray(Request $request): array

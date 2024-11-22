@@ -40,7 +40,7 @@ class Reporte extends Model
 
     protected $table = 'reportes';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'tipo_reporte_id',
@@ -52,15 +52,11 @@ class Reporte extends Model
         'estado_id',
         'esta_terminado',
         'tipo_desaparicion',
-        'fecha_creacion',
-        'fecha_actualizacion',
     ];
 
     protected $casts = [
         'tipo_desaparicion' => TipoDesaparicion::class, // Única o múltiple
         'esta_terminado' => 'boolean',
-        'fecha_creacion' => 'datetime',
-        'fecha_actualizacion' => 'datetime',
     ];
 
     /**

@@ -50,8 +50,8 @@ class ReporteResource extends JsonResource
              */
             'esta_terminado' => $this->esta_terminado,
             'tipo_desaparicion' => $this->tipo_desaparicion,
-            'fecha_creacion' => $this->fecha_creacion,
-            'fecha_actualizacion' => $this->fecha_actualizacion,
+            'fecha_creacion' => $this->created_at,
+            'fecha_actualizacion' => $this->updated_at,
 
             /**
              * Relaciones

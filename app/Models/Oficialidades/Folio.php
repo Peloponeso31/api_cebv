@@ -33,7 +33,7 @@ class Folio extends Model
         'updated_at' => 'datetime',
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected function folioCebv(): Attribute
     {
@@ -62,6 +62,13 @@ class Folio extends Model
     protected function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getFolio($reporteId, $personaId): Folio|null
+    {
+        return $this->where('reporte_id', $reporteId)
+            ->where('persona_id', $personaId)
+            ->first();
     }
 
     public function toSearchableArray()

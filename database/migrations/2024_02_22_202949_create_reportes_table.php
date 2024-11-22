@@ -28,11 +28,10 @@ return new class extends Migration {
                 ->default(TipoDesaparicion::Unica->value)
                 ->nullable();
 
-            $table->timestamp('fecha_creacion')->useCurrent();
-            $table->timestamp('fecha_actualizacion')->useCurrent()->useCurrentOnUpdate();
-
             $table->foreign('estado_id')
                 ->references('id')->on('cat_estados');
+
+            $table->timestamps();
         });
     }
 

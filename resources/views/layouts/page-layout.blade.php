@@ -10,6 +10,15 @@
             margin: 2cm 3cm 1cm 3cm;
         }
 
+        @font-face {
+            font-family: 'Verdana';
+            src: url("{{ public_path('fonts/Verdana.ttf') }}") format('truetype');
+        }
+
+        html {
+            font-family: 'Verdana';
+        }
+
         body {
             margin-top: 3cm;
             margin-bottom: 3cm;

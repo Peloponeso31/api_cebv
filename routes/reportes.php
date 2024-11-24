@@ -19,7 +19,6 @@ use App\Models\Reportes\Reporte;
 | reportes en formato PDF.
 |
 */
-
 Route::controller(DocumentoController::class)->prefix('documentos')->group(function () {
     Route::get('/informes-inicio/{desaparecido_id}', 'informeInicio');
     Route::get('/oficio-c4/{id}', 'oficioC4');
@@ -31,6 +30,7 @@ Route::controller(DocumentoController::class)->prefix('documentos')->group(funct
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::controller(BoletinController::class)->prefix('boletines')->group(function () {
         Route::get('/busqueda-inmediata/{id}', 'busquedaInmediata');
     });

@@ -49,4 +49,10 @@ class Empleado extends Model
     {
         return $this->nombre . ' ' . $this->apellido_paterno . ' ' . $this->apellido_materno;
     }
+
+    public function Iniciales(): string
+    {
+        preg_match_all('/[A-Z]/', $this->nombreCompleto(), $coincidencias);
+        return implode('', $coincidencias[0]);
+    }
 }

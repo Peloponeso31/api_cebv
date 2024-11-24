@@ -64,9 +64,9 @@ class Folio extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function getFolio($reporteId, $personaId): Folio|null
+    public static function getFolio($reporteId, $personaId): Folio|null
     {
-        return $this->where('reporte_id', $reporteId)
+        return Folio::where('reporte_id', $reporteId)
             ->where('persona_id', $personaId)
             ->first();
     }
@@ -81,5 +81,14 @@ class Folio extends Model
             'reporte_id' => $this->reporte_id,
             'user_id' => $this->user_id,
         ];
+    }
+
+    /**
+     * Funciones de ayuda para consultar información de la persona
+     * de manera más sencilla
+     */
+    public function getFechaCreacion(): string
+    {
+        return $this->created_at->locale('es')->isoFormat(config('constants.date_iso_format'));
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EstatusEscolaridadController;
+use App\Http\Controllers\MedioDifusionController;
 use App\Http\Controllers\PasatiempoController;
 use App\Http\Controllers\PseudonimoController;
 use App\Http\Controllers\AutoridadController;
@@ -331,6 +332,7 @@ Route::middleware('auth:sanctum')->group(callback: function () {
      */
     Route::apiResource('/pasatiempos', PasatiempoController::class);
     Route::apiResource('/tipos-boletines', TipoBoletinController::class);
+    Route::apiResource('/medios-difusion', MedioDifusionController::class);
 });
 
 Route::controller(AuthController::class)->group(function () {

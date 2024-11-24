@@ -2,7 +2,7 @@
 
 namespace App\Models\Reportes\Hechos;
 
-use App\Enums\FactorRhesus;
+use App\Enums\OpcionesCebv;
 use App\Models\Informaciones\Sitio;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
@@ -50,7 +50,7 @@ class HechoDesaparicion extends Model
         'fecha_percato' => 'datetime',
         'cambio_comportamiento' => 'boolean',
         'fue_amenazado' => 'boolean',
-        'resultado_rnd' => FactorRhesus::class,
+        'resultado_rnd' => OpcionesCebv::class,
     ];
 
     /**
@@ -81,5 +81,30 @@ class HechoDesaparicion extends Model
     public function desaparecidos()
     {
         return $this->reporte->desaparecidos;
+    }
+
+    /**
+     * Funciones de ayuda para consultar información de la persona
+     * de manera más sencilla
+     */
+    public function getSoloFechaDesaparicion(): string
+    {
+        return $this->fecha_desaparicion
+            ? $this->fecha_desaparicion->locale('es')->isoFormat(config('constants.only_date_iso_format'))
+            : 'Fecha no disponible';
+    }
+
+    public function getMunicipioDesaparicion()
+    {
+        return $this->lugarHechos->asentamiento
+            ? $this->lugarHechos->asentamiento->municipio->nombre
+            : 'Lugar no disponible';
+    }
+
+    public function fundamentoNiniasMujeresDesaparicion72h(int|null $sexoId): bool
+    {
+        if ($sexoId != 2) return false;
+
+        return true;
     }
 }

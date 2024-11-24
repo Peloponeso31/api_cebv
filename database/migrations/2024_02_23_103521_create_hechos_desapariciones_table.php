@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\FactorRhesus;
+use App\Enums\OpcionesCebv;
 use App\Enums\ResultadoRnd;
 use App\Helpers\EnumHelper;
 use Illuminate\Database\Migrations\Migration;
@@ -38,8 +38,8 @@ return new class extends Migration {
             $table->integer('personas_mismo_evento')->nullable()->default(1);
 
             $table->string('contexto_desaparicion')->nullable();
-            $table->enum('resultado_rnd', EnumHelper::toList(FactorRhesus::class))
-                ->default(FactorRhesus::NoEspecifica->value)
+            $table->enum('resultado_rnd', EnumHelper::toList(OpcionesCebv::class))
+                ->default(OpcionesCebv::NoEspecifica->value)
                 ->nullable();
 
             $table->timestamps();

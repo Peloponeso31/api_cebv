@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum FactorRhesus: string
+enum OpcionesCebv: string
 {
     case Positivo = 'Positivo';
     case Negativo = 'Negativo';

@@ -3,22 +3,18 @@
 @section('nombre-completo-desaparecido', strtoupper($desaparecido->persona->nombreCompleto()) )
 
 @section('pronombre-completo-desaparecido')
-    {{ $desaparecido->persona->preposicion() . $desaparecido->persona->sustantivo() . strtoupper($desaparecido->persona->nombreCompleto()) }}
+    <x-pronombre-completo-desaparecido :desaparecido="$desaparecido"/>
 @endsection
 
-@section('folio')
-    {{ $folio->folio_cebv ?? 'Sin folio' }}
-@endsection
+@section('folio', ($folio->folio_cebv ?? 'Sin folio' ))
 
-@section('hora-inicial', $horaInicial)
 @section('fecha-inicial', $fechaInicial)
 
-@section('hora-final', $horaFinal)
 @section('fecha-final', $fechaFinal)
 
-@section('contexto-desaparicion', $reporte->hechosDesaparicion->contexto_desaparicion)
+@section('contexto-desaparicion', $reporte?->hechosDesaparicion?->contexto_desaparicion)
 
-@section('hechos-desaparicion', $reporte->hechosDesaparicion->hechos_desaparicion)
+@section('hechos-desaparicion', $reporte?->hechosDesaparicion?->hechos_desaparicion)
 @section('resultado-RND')
-    {{ strtoupper($reporte->hechosDesaparicion->resultado_rnd->value) }}
+    {{ strtoupper($reporte?->hechosDesaparicion?->resultado_rnd?->value) }}
 @endsection

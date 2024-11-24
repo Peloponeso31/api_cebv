@@ -105,15 +105,30 @@ class Persona extends Model
         };
     }
 
-    public function sustantivo(): string
+    public function sustantivo(int|null $edad): string
     {
+        $edadActual = $this->edadAnhos();
+        $edadFinal = $edad ?? $edadActual;
+        $esMayorDeEdad = $edadFinal >= 18;
+        $esAdolescente = $edadFinal >= 12 && $edadFinal <= 17;
+        $esNino = $edadFinal < 12 && $this->sexo_id == 1;
+        $esNina = $edadFinal < 12 && $this->sexo_id == 2;
+
         return match (true) {
-            $this->edadAnhos() >= 18 => 'C. ',
-            $this->edadAnhos() >= 12 && $this->edadAnhos() <= 17 => 'adolescente ',
-            $this->edadAnhos() < 12 && $this->sexo_id == 1 => 'niño ',
-            $this->edadAnhos() < 12 && $this->sexo_id == 2 => 'niña ',
-            default => 'persona '
+            $esMayorDeEdad => 'C. ',
+            $esAdolescente => 'adolescente ',
+            $esNino => 'niño ',
+            $esNina => 'niña ',
+            default => 'persona ',
         };
+    }
+
+    public function esMayorEdad(int|null $edad): bool
+    {
+        $edadActual = $this->edadAnhos();
+        $edadFinal = $edad ?? $edadActual;
+
+        return $edadFinal >= 18;
     }
 
 
@@ -145,33 +160,6 @@ class Persona extends Model
         }
 
         return $iniciales;
-    }
-
-
-    // TODO: Revisar todo este bloque pq creo que me lo desmadré
-    public function color_ojos()
-    {
-        return $this->caracteristicasfisicas->color_ojos->color;
-    }
-
-    public function color_piel()
-    {
-        return $this->caracteristicasfisicas->color_piel->colorpiel;
-    }
-
-    public function color_cabello()
-    {
-        return $this->caracteristicasfisicas->color_cabello->colorcabellos;
-    }
-
-    public function tipo_cabello()
-    {
-        return $this->caracteristicasfisicas->tipo_cabello->tipocabello;
-    }
-
-    public function tamaño_ojos()
-    {
-        return $this->caracteristicasfisicas->tamaño_ojos->tamañoojos;
     }
 
     /**
@@ -437,5 +425,15 @@ class Persona extends Model
     public function funcionRegistroDos(): HasMany
     {
         return $this->hasMany(FusionRegistro::class, 'persona_dos_id');
+    }
+
+    /**
+     * Funciones de ayuda para consultar información de la persona
+     * de manera más sencilla
+     */
+
+    public function getTelefono(): Telefono|null
+    {
+        return $this->telefonos->first();
     }
 }

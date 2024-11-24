@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\FactorRhesus;
+use App\Enums\OpcionesCebv;
 use App\Helpers\EnumHelper;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->foreignId('forma_cara_id')->nullable()->constrained(table: 'cat_formas_caras');
             $table->integer('estatura_centimetros')->nullable();
             $table->float('peso_kilogramos')->nullable();
-            $table->enum('factor_rhesus', EnumHelper::toList(FactorRhesus::class))->nullable();
+            $table->enum('factor_rhesus', EnumHelper::toList(OpcionesCebv::class))->nullable();
         });
     }
 

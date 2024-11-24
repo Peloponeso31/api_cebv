@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\FactorRhesus;
+use App\Enums\OpcionesCebv;
 use App\Models\Catalogos\CaracteristicasFisicas\ColorPiel;
 use App\Models\Catalogos\CaracteristicasFisicas\Complexion;
 use App\Models\Personas\Persona;
@@ -27,7 +27,7 @@ class Salud extends Model
     ];
 
     protected $casts = [
-        'factor_rhesus' => FactorRhesus::class,
+        'factor_rhesus' => OpcionesCebv::class,
     ];
 
     public function persona(): BelongsTo

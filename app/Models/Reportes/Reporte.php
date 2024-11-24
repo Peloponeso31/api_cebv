@@ -10,6 +10,7 @@ use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\ExpedienteFisico;
 use App\Models\FusionRegistro;
+use App\Models\GeneracionDocumento;
 use App\Models\Informaciones\Medio;
 use App\Models\Oficialidades\Area;
 use App\Models\Oficialidades\Folio;
@@ -81,7 +82,7 @@ class Reporte extends Model
 
     public function hechosDesaparicion(): HasOne
     {
-        return $this->hasOne(HechoDesaparicion::class,'reporte_id','id');
+        return $this->hasOne(HechoDesaparicion::class, 'reporte_id', 'id');
     }
 
     /**
@@ -158,13 +159,13 @@ class Reporte extends Model
     public function expedientesPadre(): BelongsToMany
     {
         return $this->belongsToMany(self::class, 'expedientes', 'reporte_uno_id', 'reporte_dos_id')
-            ->withPivot('id','parentesco_id', 'tipo');
+            ->withPivot('id', 'parentesco_id', 'tipo');
     }
 
     public function expedientesHijo(): BelongsToMany
     {
         return $this->belongsToMany(self::class, 'expedientes', 'reporte_dos_id', 'reporte_uno_id')
-            ->withPivot('id','parentesco_id', 'tipo');
+            ->withPivot('id', 'parentesco_id', 'tipo');
     }
 
     public function expedientes(): Collection
@@ -198,5 +199,23 @@ class Reporte extends Model
         return $this->hasMany(FusionRegistro::class, 'reporte_id');
     }
 
+    public function generacionDocumento(): HasOne
+    {
+        return $this->hasOne(GeneracionDocumento::class, 'reporte_id');
+    }
+
+    /**
+     * Funciones de ayuda para consultar información de la persona
+     * de manera más sencilla
+     */
+    public function getFechaCreacion(): string
+    {
+        return $this->created_at->locale('es')->isoFormat(config('constants.date_iso_format'));
+    }
+
+    public function getFechaActualizacion(): string
+    {
+        return $this->updated_at->locale('es')->isoFormat(config('constants.date_iso_format'));
+    }
 
 }

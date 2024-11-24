@@ -52,6 +52,7 @@ class DatabaseSeeder extends Seeder
             TipoSeeder::class,
             VistaSeeder::class,
             TipoBoletinSeeder::class,
+            MedioDifusionSeeder::class,
         ]);
 
         /**

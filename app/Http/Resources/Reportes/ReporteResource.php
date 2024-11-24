@@ -9,6 +9,7 @@ use App\Http\Resources\DatoComplementarioResource;
 use App\Http\Resources\DesaparicionForzadaResource;
 use App\Http\Resources\ExpedienteFisicoResource;
 use App\Http\Resources\ExpedienteResource;
+use App\Http\Resources\GeneracionDocumentoResource;
 use App\Http\Resources\Informaciones\MedioResource;
 use App\Http\Resources\PerpetradorResource;
 use App\Http\Resources\ReporteHechoResource;
@@ -69,6 +70,7 @@ class ReporteResource extends JsonResource
             'vehiculos' => VehiculoResource::collection($this->vehiculos),
             // Control de los expedientes fisicos
             'expediente_fisico' => ExpedienteFisicoResource::make($this->expedienteFisico),
+            'generacion_documento' => GeneracionDocumentoResource::make($this->generacionDocumento),
         ];
     }
 }

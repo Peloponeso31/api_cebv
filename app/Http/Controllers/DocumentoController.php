@@ -16,23 +16,20 @@ class DocumentoController extends Controller
     {
         $desaparecido = Desaparecido::findOrFail($desaparecidoId);
         $reporte = $desaparecido->reporte;
-        $reportante = $reporte->reportantes->first();
         $folio = Folio::getFolio($reporte->id, $desaparecido->persona->id);
+        $folioLimpio = StringHelper::removeSlashes($folio?->folio_cebv) ?? $desaparecido->persona->nombreCompleto();
 
         $fechaInicial = $reporte->getFechaCreacion();
 
-        if (isset($folio->created_at)) {
+        if (isset($folio->created_at))
             $fechaFinal = $folio->getFechaCreacion();
-            $folioLimpio = StringHelper::removeSlashes($folio->folio_cebv);
-        } else {
+        else
             $fechaFinal = $reporte->getFechaActualizacion();
-            $folioLimpio = $desaparecido->persona->nombreCompleto();
-        }
 
         return Pdf::loadView("reportes.documentos.informe-inicio", [
             'desaparecido' => $desaparecido,
             'reporte' => $reporte,
-            'reportante' => $reportante,
+            'reportante' => $reporte->reportantes->first(),
             'folio' => $folio,
             'fechaInicial' => $fechaInicial,
             'fechaFinal' => $fechaFinal,
@@ -60,6 +57,8 @@ class DocumentoController extends Controller
 
         $firmaAusencia = $reporte->generacionDocumento?->firma_ausencia;
 
+        $fundamentoMujeres72h = $reporte->hechosDesaparicion?->desaparicionMujerMenor72h($desaparecido?->persona?->sexo?->id);
+
         return Pdf::loadView("reportes.documentos.oficio-c4", [
             'desaparecido' => $desaparecido,
             'folio' => $folio,
@@ -70,11 +69,11 @@ class DocumentoController extends Controller
             'medioDifusion' => $medioDifusion,
             'numeroCarpeta' => $numeroCarpeta,
             'firmaAusencia' => $firmaAusencia,
+            'fundamentoMujeres72h' => $fundamentoMujeres72h,
         ])->stream("Oficio para C4 " . $folioLimpio . ".pdf");
     }
 
-    public
-    function oficioparacei(string $desaparecidoId)
+    public function oficioparacei(string $desaparecidoId)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecidoId);
         $reporte = $desaparecido->reporte;

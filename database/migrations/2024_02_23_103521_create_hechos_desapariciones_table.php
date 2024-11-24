@@ -21,10 +21,10 @@ return new class extends Migration {
             $table->boolean('fecha_desaparicion_desconocida')->default(false);
             $table->dateTime('fecha_desaparicion')->nullable();
             $table->string('fecha_desaparicion_cebv')->nullable();
-            $table->string('hora_desaparicion')->nullable();
+            $table->time('hora_desaparicion')->nullable();
             $table->dateTime('fecha_percato')->nullable();
             $table->string('fecha_percato_cebv')->nullable();
-            $table->string('hora_percato')->nullable();;
+            $table->time('hora_percato')->nullable();;
             $table->text('aclaraciones_fecha_hechos')->nullable();
 
             $table->boolean('amenaza_cambio_comportamiento')->nullable();

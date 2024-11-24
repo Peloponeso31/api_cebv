@@ -10,6 +10,7 @@ use App\Models\Reportes\Hechos\HechoDesaparicion;
 use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Services\CrudService;
 use DB;
+use Illuminate\Foundation\Http\FormRequest;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -43,7 +44,7 @@ class HechoDesaparicionController extends Controller
         return $this->service->show($id, $this->model, new HechoDesaparicionResource($this->model::class));
     }
 
-    public function update($id, HechoDesaparicionRequest $request)
+    public function update($id, FormRequest $request)
     {
         return $this->service->update($id, $request, $this->model, new HechoDesaparicionResource($this->model::class));
     }

@@ -7,6 +7,8 @@ use App\Models\Informaciones\Sitio;
 use App\Models\Oficialidades\Area;
 use App\Models\Reportes\Reporte;
 use App\Models\Ubicaciones\Direccion;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,10 +28,10 @@ class HechoDesaparicion extends Model
         'fecha_desaparicion_desconocida',
         'fecha_desaparicion',
         'fecha_desaparicion_cebv',
-        'hora_desaparicion',
+        'hora_desaparicion', // Cast to time
         'fecha_percato',
         'fecha_percato_cebv',
-        'hora_percato',
+        'hora_percato', // Cast to time
         'aclaraciones_fecha_hechos',
         'amenaza_cambio_comportamiento',
         'descripcion_amenaza_cambio_comportamiento',
@@ -101,10 +103,34 @@ class HechoDesaparicion extends Model
             : 'Lugar no disponible';
     }
 
-    public function fundamentoNiniasMujeresDesaparicion72h(int|null $sexoId): bool
+
+    /**
+     * Este metodo verifica si la desaparición de una mujer o una niña ha sido
+     * menor a 72 horas.
+     * @param int|null $sexoId Id del sexo de la persona, se espera que sea 2
+     * @return bool Retorna <b>true</b> si persona desaparecida es mujer y han pasado menos de 72 horas
+     * desde su desaparición, de lo contrario retorna <b>false</b>.
+     */
+    public function desaparicionMujerMenor72h(int|null $sexoId): bool
     {
         if ($sexoId != 2) return false;
 
-        return true;
+        $reporte = $this->reporte;
+
+        if ($reporte->hechosDesaparicion->fecha_desaparicion == null) return false;
+        if ($reporte->hechosDesaparicion->hora_desaparicion == null) return false;
+
+        $fechaDesaparicion = Carbon::parse($reporte?->hechosDesaparicion?->fecha_desaparicion);
+        $horaDesaparicion = Carbon::parse($reporte?->hechosDesaparicion?->hora_desaparicion);
+
+        $fechaActualizada = $fechaDesaparicion->setTime(
+            $horaDesaparicion?->hour,
+            $horaDesaparicion?->minute,
+            $horaDesaparicion?->second
+        );
+
+        $diferenciaHoras = $fechaActualizada->diffInHours(Carbon::now());
+
+        return $diferenciaHoras < 72;
     }
 }

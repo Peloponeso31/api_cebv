@@ -14,7 +14,7 @@
 @endsection
 
 @section('fundamento-ninias-mujeres-72h')
-    <x-fundamento-ninias-mujeres-72h/>
+    <x-fundamento-ninias-mujeres-72h :mostrar="$fundamentoMujeres72h"/>
 @endsection
 
 @section('carpeta-investigacion')

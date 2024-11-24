@@ -10,9 +10,10 @@ class ReporteSeeder extends Seeder
     public function run(): void
     {
         Reporte::factory()
-            ->count(100)
+            ->count(10)
             ->hasReportantes()
             ->hasDesaparecidos()
+            ->hasHechosDesaparicion()
             ->create();
     }
 }

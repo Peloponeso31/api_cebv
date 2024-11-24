@@ -34,6 +34,9 @@ class HechoDesaparicionFactory extends Factory
             'sintesis_desaparicion' => fake()->text(),
             'desaparecio_acompanado' => fake()->boolean(40),
             'personas_mismo_evento' => fake()->numberBetween(1, 10),
+            'fecha_desaparicion' => fake()->date(),
+            'hora_desaparicion' => fake()->time(),
+            'hora_percato' => fake()->time(),
         ];
     }
 }

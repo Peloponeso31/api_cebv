@@ -24,7 +24,6 @@ use App\Models\Ubicaciones\Direccion;
 use App\Models\Vehiculo;
 use App\Services\SyncPersonaService;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
 
 class SyncReporteController extends Controller
 {

@@ -16,7 +16,7 @@ class ReportesDashboardResource extends JsonResource
     {
         $reportantes = [];
         $desaparecidos = [];
-        $fechaDesaparicion = $this->hechosDesapariciones->last()->fecha_desaparicion;
+        $fechaDesaparicion = $this?->hechosDesapariciones?->fecha_desaparicion;
 
         foreach ($this->reportantes as $reportante) {
             $nombre = $reportante->persona->nombreCompleto();

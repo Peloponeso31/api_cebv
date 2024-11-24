@@ -30,6 +30,8 @@ class HechoDesaparicionRequest extends FormRequest
                 'fecha_desaparicion_cebv' => ['sometimes', 'string'],
                 'fecha_percato' => ['sometimes', 'date'],
                 'fecha_percato_cebv' => ['sometimes', 'string'],
+                'hora_desaparicion' => ['sometimes', 'string'],
+                'hora_percato' => ['sometimes', 'string'],
                 'aclaraciones_fecha_hechos' => ['sometimes', 'string'],
                 'amenaza_cambio_comportamiento' => ['sometimes', 'boolean'],
                 'descripcion_amenaza_cambio_comportamiento' => ['sometimes', 'string'],

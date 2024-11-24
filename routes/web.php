@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Reportes\Hechos\HechoDesaparicion;
+use App\Models\Reportes\Reporte;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+    $reporte = Reporte::findOrFail(1);
+    $model = $reporte?->hechosDesaparicion;
+    return $model->desaparicionMujerMenor72h(2) ? 'True' : 'False';
 });
 
 Route::get('/setup', function () {

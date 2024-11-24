@@ -11,6 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CrudService
 {
+    // ToDo: Esta madre se rompió de alguna forma, no sé cómo :(. Revisar y corregir.
     /**
      * Create and save a new model instance or register on database.
      *
@@ -59,10 +60,12 @@ class CrudService
     public function update(mixed $id, FormRequest $request, Model $model, JsonResource $resource): JsonResponse|JsonResource
     {
         // Retrieve the model with the specified ID, or throw a ModelNotFoundException if not found.
+
         $model = $model->findOrFail($id);
 
         // Update the model with the data from the request.
-        $model->update($request->all());
+        $model->update();
+
 
         // Return the updated resource.
         return new $resource($model);

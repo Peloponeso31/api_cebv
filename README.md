@@ -78,7 +78,7 @@ Cuando el anterior termina de ejecutarse (empiezan a salir logs de sistema), qui
 
 Se genera una llave para la aplicacion:
 ```sh
-sail artisan generate:key
+sail artisan key:generate
 ```
 
 Se ejecutan las migraciones:

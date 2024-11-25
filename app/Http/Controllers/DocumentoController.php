@@ -73,200 +73,119 @@ class DocumentoController extends Controller
         ])->stream("Oficio para C4 " . $folioLimpio . ".pdf");
     }
 
-    public function oficioparacei(string $desaparecidoId)
+    public function oficioCei(string $desaparecidoId)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecidoId);
         $reporte = $desaparecido->reporte;
-        $folio = Folio::where('reporte_id', $reporte->id)
-            ->where('persona_id', $desaparecido->persona->id)
-            ->first();
+        $reportante = $reporte->reportantes->first();
+        $folio = Folio::getFolio($reporte->id, $desaparecido->persona->id);
+        $folioLimpio = StringHelper::removeSlashes($folio?->folio_cebv) ?? $desaparecido->persona->nombreCompleto();
 
-        $numerooficio = str_pad($desaparecidoId, 5, '0', STR_PAD_LEFT);
-        $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
-        $year = now()->locale('es')->isoFormat('YYYY');
-        $nombreservenvia = 'L.I. Rafael Ochoa Campos';
-        $firmaporausencia = 'PENDIENTE';
-        $nombrecompleto = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'PENDIENTE';
-        $curp = $desaparecido->persona->curp;
-        $senasparticulares = $desaparecido->persona->senasParticulares;
-        $nombreservpubcebv = 'Mtra. Fernanda Isabel Figueroa Cruz';
+        $fecha = $reporte->getFechaCreacion();
+        $fechaDesaparicion = $reporte->hechosDesaparicion?->getSoloFechaDesaparicion() ?? 'Fecha no disponible';
+        $lugarDesaparicion = $reporte->hechosDesaparicion?->getMunicipioDesaparicion() ?? 'Lugar no disponible';
 
-        $logueado = 'Angel Daniel Luna de la Luz del Cielo'; // Usuario logueado
-        $iniciales = $desaparecido->persona->inicialesNombresApellidos($logueado);
+        $numeroRastreo = $reportante?->persona?->getTelefono()?->numero ?? 'Número no disponible';
+        $medioDifusion = $reporte->generacionDocumento?->medioDifusion;
 
-        // Buscar si existe algún documento con tipo 'CarpetaInvestigacion'
-        $documentoCarpeta = $desaparecido->documentosLegales->firstWhere('tipo_documento', 'CarpetaInvestigacion');
+        $numeroCarpeta = $desaparecido?->documentosLegales
+            ?->firstWhere('tipo_documento', TipoDocumento::CarpetaInvestigacion)
+            ?->numero_documento;
 
-        //TODO: HACER DINÁMICO LO QUE VAS DESPUÉS DE 'número'
-        if ($documentoCarpeta) {
-            $carpeta = 'recibió  la carpeta de investigación número FEADPD/ZS/021/2021';
-            $carpeta1 = 'VIII';
-        } else {
-            $carpeta = '';
-            $carpeta1 = '';
+        $firmaAusencia = $reporte->generacionDocumento?->firma_ausencia;
 
-        }
+        $fundamentoMujeres72h = $reporte->hechosDesaparicion?->desaparicionMujerMenor72h($desaparecido?->persona?->sexo?->id);
 
-        $lugardesaparicion = $desaparecido->reporte->hechosDesaparicion->sitio_id ?? 'Lugar no disponible';
-
-        if ($desaparecido->persona->sexo->nombre == 'Mujer') {
-            $sexo = 'capítulo 1 numeral 6 inciso XIV del Protocolo de Atención, Reacción y Coordinación entre Autoridades Federales,
-            Estatales y Municipales en Caso de Desaparición de Mujeres, Adolescentes y Niñas para el Estado de Veracruz de Ignacio de
-            la Llave, (Protocolo Alba) publicado en la Gaceta Oficial Extraordinaria número 480 del 30 Nov. 2018, ';
-        } else {
-            $sexo = '';
-        }
-
-        $mediodifusion = 'PENDIENTE';
-
-        return Pdf::loadView("reportes.documentos.oficio-para-cei", [
-            'numerooficio' => $numerooficio,
-            'year' => $year,
+        return Pdf::loadView("reportes.documentos.oficio-cei", [
+            'desaparecido' => $desaparecido,
             'folio' => $folio,
             'fecha' => $fecha,
-            'nombreServidorPublicEnv' => $nombreservenvia,
-            'firmaAusencia' => $firmaporausencia,
-            'sexo' => $sexo,
-            'carpeta' => $carpeta,
-            'nombrecompleto' => $nombrecompleto,
             'fechaDesaparicion' => $fechaDesaparicion,
-            'lugarDesaparicion' => $lugardesaparicion,
-            'curp' => $curp,
-            'senasParticulares' => $senasparticulares,
-            'medioDifusion' => $mediodifusion,
-            'carpeta1' => $carpeta1,
-            'nombreServidorPublico' => $nombreservpubcebv,
-            'iniciales' => $iniciales,
-        ])->stream();
+            'lugarDesaparicion' => $lugarDesaparicion,
+            'numeroRastreo' => $numeroRastreo,
+            'medioDifusion' => $medioDifusion,
+            'numeroCarpeta' => $numeroCarpeta,
+            'firmaAusencia' => $firmaAusencia,
+            'fundamentoMujeres72h' => $fundamentoMujeres72h,
+        ])->stream("Oficio para CEI " . $folioLimpio . ".pdf");
 
     }
 
-    public
-    function oficioparafiscalia(string $desaparecidoId)
+    public function oficioFiscalia(string $desaparecidoId)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecidoId);
         $reporte = $desaparecido->reporte;
+        $reportante = $reporte->reportantes->first();
+        $folio = Folio::getFolio($reporte->id, $desaparecido->persona->id);
+        $folioLimpio = StringHelper::removeSlashes($folio?->folio_cebv) ?? $desaparecido->persona->nombreCompleto();
 
-        if ($reporte && $reporte->reportantes->isNotEmpty()) {
-            $primerReportante = $reporte->reportantes->first();
-            $nombreCompletoReportante = $primerReportante->persona->nombreCompleto();
-        } else {
-            return response()->json('No hay reportantes asociados.');
-        }
+        $fecha = $reporte->getFechaCreacion();
+        $fechaDesaparicion = $reporte->hechosDesaparicion?->getSoloFechaDesaparicion() ?? 'Fecha no disponible';
+        $lugarDesaparicion = $reporte->hechosDesaparicion?->getMunicipioDesaparicion() ?? 'Lugar no disponible';
 
-        if (!$primerReportante->persona->telefonos->first()) {
-            $telefonoReportante = 'Número no disponible';
+        $numeroRastreo = $reportante?->persona?->getTelefono()?->numero ?? 'Número no disponible';
+        $medioDifusion = $reporte->generacionDocumento?->medioDifusion;
 
-        } else {
-            $telefonoReportante = $primerReportante->persona->telefonos->first();
-        }
+        $numeroCarpeta = $desaparecido?->documentosLegales
+            ?->firstWhere('tipo_documento', TipoDocumento::CarpetaInvestigacion)
+            ?->numero_documento;
 
-        $folio = Folio::where('reporte_id', $reporte->id)
-            ->where('persona_id', $desaparecido->persona->id)
-            ->first();
-        $numerooficio = str_pad($desaparecidoId, 5, '0', STR_PAD_LEFT);
-        $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
-        $year = now()->locale('es')->isoFormat('YYYY');
-        $nombreservenvia = 'Mtra. Silveria Morales Solano';
-        $nombrecompletodes = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'PENDIENTE';
-        $nombreservpubcebv = 'Dr. Evaristo Mendoza Amaro';
-        $logueado = 'Angel Daniel Luna de la Luz del Cielo'; // Usuario logueado
-        $iniciales = $desaparecido->persona->inicialesNombresApellidos($logueado);
-        $lugardesaparicion = $desaparecido->reporte->hechosDesaparicion->sitio_id ?? 'Lugar no disponible';
-        $casoformato = 'PENDIENTE';
+        $firmaAusencia = $reporte->generacionDocumento?->firma_ausencia;
 
-        return Pdf::loadView("reportes.documentos.oficio-para-fiscalia", [
-            'numeroOficio' => $numerooficio,
-            'year' => $year,
+        $fundamentoMujeres72h = $reporte->hechosDesaparicion?->desaparicionMujerMenor72h($desaparecido?->persona?->sexo?->id);
+
+        return Pdf::loadView("reportes.documentos.oficio-fiscalia", [
+            'desaparecido' => $desaparecido,
             'folio' => $folio,
             'fecha' => $fecha,
-            'nombreServPubEnv' => $nombreservenvia,
-            'nombreCompleto' => $nombrecompletodes,
-            'lugarDesaparicion' => $lugardesaparicion,
             'fechaDesaparicion' => $fechaDesaparicion,
-            'numeroReporte' => $telefonoReportante,
-            'nombreReportante' => $nombreCompletoReportante,
-            'casoFormato' => $casoformato,
-            'nombreServPublico' => $nombreservpubcebv,
-            'iniciales' => $iniciales,
-        ])->stream();
+            'lugarDesaparicion' => $lugarDesaparicion,
+            'numeroRastreo' => $numeroRastreo,
+            'medioDifusion' => $medioDifusion,
+            'numeroCarpeta' => $numeroCarpeta,
+            'firmaAusencia' => $firmaAusencia,
+            'fundamentoMujeres72h' => $fundamentoMujeres72h,
+        ])->stream("Oficio para Fiscalía " . $folioLimpio . ".pdf");
     }
 
-    public
-    function oficioparassa(string $desaparecidoId)
+    public function oficioSsa(string $desaparecidoId)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecidoId);
         $reporte = $desaparecido->reporte;
-        $folio = Folio::where('reporte_id', $reporte->id)
-            ->where('persona_id', $desaparecido->persona->id)
-            ->first();
+        $reportante = $reporte->reportantes->first();
+        $folio = Folio::getFolio($reporte->id, $desaparecido->persona->id);
+        $folioLimpio = StringHelper::removeSlashes($folio?->folio_cebv) ?? $desaparecido->persona->nombreCompleto();
 
-        if ($desaparecido->persona->edadAnhos() >= 18) {
-            $edad = ',';
-        } else {
-            $edad = ',7,8,9,10,12,';
-        }
+        $fecha = $reporte->getFechaCreacion();
+        $fechaDesaparicion = $reporte->hechosDesaparicion?->getSoloFechaDesaparicion() ?? 'Fecha no disponible';
+        $lugarDesaparicion = $reporte->hechosDesaparicion?->getMunicipioDesaparicion() ?? 'Lugar no disponible';
 
-        $numerooficio = str_pad($desaparecidoId, 5, '0', STR_PAD_LEFT);
-        $fecha = now()->locale('es')->isoFormat('D [de] MMMM [del] YYYY');
-        $year = now()->locale('es')->isoFormat('YYYY');
-        $nombreservenvia = 'Dra. Guadalupe Díaz del Castillo Flores';
-        $firmaporausencia = 'PENDIENTE';
-        $nombrecompleto = $desaparecido->persona->nombreCompleto();
-        $fechaDesaparicion = 'PENDIENTE';
-        $nombreservpubcebv = 'Mtra. Fernanda Isabel Figueroa Cruz';
-        $logueado = 'Angel Daniel Luna de la Luz del Cielo'; // Usuario logueado
-        $iniciales = $desaparecido->persona->inicialesNombresApellidos($logueado);
+        $numeroRastreo = $reportante?->persona?->getTelefono()?->numero ?? 'Número no disponible';
+        $medioDifusion = $reporte->generacionDocumento?->medioDifusion;
 
-        // Buscar si existe algún documento con tipo 'CarpetaInvestigacion'
-        $documentoCarpeta = $desaparecido->documentosLegales->firstWhere('tipo_documento', 'CarpetaInvestigacion');
+        $numeroCarpeta = $desaparecido?->documentosLegales
+            ?->firstWhere('tipo_documento', TipoDocumento::CarpetaInvestigacion)
+            ?->numero_documento;
 
-        //TODO: HACER DINÁMICO LO QUE VAS DESPUÉS DE 'número'
-        if ($documentoCarpeta) {
-            $carpeta = 'recibió  la carpeta de investigación número FEADPD/ZS/021/2021';
-            $carpeta1 = 'VIII';
-        } else {
-            $carpeta = '';
-            $carpeta1 = '';
+        $firmaAusencia = $reporte->generacionDocumento?->firma_ausencia;
 
-        }
+        $fundamentoMujeres72h = $reporte->hechosDesaparicion?->desaparicionMujerMenor72h($desaparecido?->persona?->sexo?->id);
 
-        $lugardesaparicion = $desaparecido->reporte->hechosDesaparicion->sitio_id ?? 'Lugar no disponible';
-
-        if ($desaparecido->persona->sexo->nombre == 'Mujer') {
-            $sexo = 'capítulo 1 numeral 6 inciso XIV del Protocolo de Atención, Reacción y Coordinación entre Autoridades Federales,
-            Estatales y Municipales en Caso de Desaparición de Mujeres, Adolescentes y Niñas para el Estado de Veracruz de Ignacio de
-            la Llave, (Protocolo Alba) publicado en la Gaceta Oficial Extraordinaria número 480 del 30 Nov. 2018, ';
-        } else {
-            $sexo = '';
-        }
-
-        $mediodifusion = 'PENDIENTE';
-
-        return Pdf::loadView("reportes.documentos.oficio-para-ssa", [
-            'numerooficio' => $numerooficio,
-            'year' => $year,
+        return Pdf::loadView("reportes.documentos.oficio-ssa", [
+            'desaparecido' => $desaparecido,
             'folio' => $folio,
             'fecha' => $fecha,
-            'edad' => $edad,
-            'nombreServidorPublicEnv' => $nombreservenvia,
-            'firmaAusencia' => $firmaporausencia,
-            'sexo' => $sexo,
-            'carpeta' => $carpeta,
-            'nombrecompleto' => $nombrecompleto,
             'fechaDesaparicion' => $fechaDesaparicion,
-            'lugarDesaparicion' => $lugardesaparicion,
-            'medioDifusion' => $mediodifusion,
-            'carpeta1' => $carpeta1,
-            'nombreServidorPublico' => $nombreservpubcebv,
-            'iniciales' => $iniciales,
-        ])->stream();
+            'lugarDesaparicion' => $lugarDesaparicion,
+            'numeroRastreo' => $numeroRastreo,
+            'medioDifusion' => $medioDifusion,
+            'numeroCarpeta' => $numeroCarpeta,
+            'firmaAusencia' => $firmaAusencia,
+            'fundamentoMujeres72h' => $fundamentoMujeres72h,
+        ])->stream("Oficio para SSA " . $folioLimpio . ".pdf");
     }
 
-    public
-    function fichaDatos(string $desaparecido_id)
+    public function fichaDatos(string $desaparecido_id)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecido_id);
         $reporte = Reporte::findOrFail($desaparecido->reporte->id);

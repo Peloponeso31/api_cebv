@@ -1,4 +1,4 @@
-@extends('layouts.oficio-c4-layout')
+@extends('layouts.oficio-cei-layout')
 
 @section('encabezado')
     <x-encabezado :desaparecido="$desaparecido" :fecha="$fecha" :folio="$folio"/>
@@ -40,4 +40,14 @@
 
 @section('articulo-carpeta-investigacion')
     <x-articulo-carpeta-investigacion :numero-carpeta="$numeroCarpeta"/>
+@endsection
+
+@section('nombre-completo', $desaparecido->persona->nombreCompleto())
+
+@section('curp', $desaparecido?->persona?->curp)
+
+@section('senas-particulares')
+    @foreach($desaparecido?->persona?->senasParticulares as $sena)
+        <p>{{ $sena->descripcion }}</p>
+    @endforeach
 @endsection

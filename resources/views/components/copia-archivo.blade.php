@@ -1,4 +1,5 @@
-<div style="font-size: x-small; margin-top: 2cm">
+<div style="font-size: x-small; opacity: 80%;">
+    <br>
     C.c.p. Archivo.
     <br>
     @auth

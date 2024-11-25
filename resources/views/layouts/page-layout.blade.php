@@ -16,7 +16,24 @@
         }
 
         html {
-            font-family: 'Verdana';
+            font-family: 'Verdana', sans-serif;
+            text-align: justify;
+            font-weight: normal;
+            font-size: 12pt;
+            line-height: 14pt;
+        }
+
+        .titulo {
+            font-weight: bold;
+            font-size: 14pt;
+            line-height: 14pt;
+        }
+
+        /* Subtítulo: Verdana Regular 12 pt; interlineado 11 pt */
+        .subtitulo {
+            font-weight: normal;
+            font-size: 12pt;
+            line-height: 11pt;
         }
 
         body {
@@ -33,16 +50,11 @@
         }
 
         p {
-            text-align: justify;
             z-index: 2;
         }
 
         mark {
             background-color: #FEF2CD;
-        }
-
-        .texto-centrado {
-            text-align: center;
         }
     </style>
 </head>

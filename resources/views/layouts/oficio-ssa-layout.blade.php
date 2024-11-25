@@ -1,16 +1,17 @@
 @extends('layouts.page-layout')
 
-@section('title', 'Oficio para C4')
+@section('title', 'Oficio para SSA')
 
 @section('content')
 
     @yield('encabezado')
 
-    <x-dirigido-c4 class="subtitulo"/>
+    <x-dirigido-ssa class="subtitulo"/>
 
     <p>
-        Por medio del presente, con fundamento en los artículos 1, @yield('es-menor') 30, 31, 33 fracciones I, III, IX,
-        XI, XIV,XXIII, XLIX y LII, 34 fracción I, 62, 63 y demás relativos y aplicables de la Ley Número 677 en
+        Por medio del presente, con fundamento en los artículos 1, 2, @yield('es-menor') fracciones I, III,
+        IX,
+        XI, XIV,XXIII, XLIX y LII, 34 fracción I, 46 fracción I, 46 fracción III y demás relativos y aplicables de la Ley Número 677 en
         Materia de Desaparición de Personas para el Estado de Veracruz de Ignacio de la Llave, 3 fracción IV inciso g),
         42 Bis, @yield('firma-ausencia') del Reglamento Interior de la Secretaría de Gobierno del Estado de Veracruz de
         Ignacio de la Llave y Transitorio Tercero del Decreto por el que se Reforman y Adicionan diversas disposiciones
@@ -27,37 +28,20 @@
     </p>
 
     <p>
-        Al respecto, con fundamento en los artículos 33 fracciones III, XIII y XLIX 47 de la Ley Número 677 en Materia
-        de Desaparición de Personas para el Estado de Veracruz de Ignacio de la Llave, solicito a usted de la manera más
-        atenta y respetuosa,su invaluable apoyo a fin de girar sus apreciables instrucciones a quien corresponda a
-        efecto de que se realicen las siguientes acciones:
+        Al respecto, solicito a usted de la manera más atenta y respetuosa, su invaluable apoyo a fin de girar sus
+        apreciables instrucciones a quien corresponda a efecto de que se realicen las siguientes acciones:
     </p>
 
     <p style="margin: 0 1cm 0 1cm">
-        <strong>PRIMERO: </strong>Informe a esta Comisión sí en su base de datos cuenta con llamadas de Auxilio a nombre
-        @yield('pronombre-completo-desaparecido')
-        o en su caso
-        <mark>llamadas de auxilio del número @yield('numero-rastreo')</mark>
-        , en la fecha de desaparición, siendo esta en fecha
+        <strong>ÚNICO: </strong> Se realice una búsqueda en las bases de datos de la Secretaría a su digno cargo,
+        incluyendo Centros de rehabilitación, Clínicas, Hospitales, Centros de Salud y Albergues, para conocer si se
+        cuenta con registro alguno a nombre
+        <mark>@yield('pronombre-completo-desaparecido')</mark>
+        , quien se encuentra como desaparecido desde fecha
         <mark>@yield('fecha-desaparicion')</mark>
-        .
-    </p>
-    <br>
-    <p style="margin: 0 1cm 0 1cm">
-        <strong>SEGUNDO: </strong> Sea difundida
+        ,
         <mark>@yield('medio-difusion')</mark>
-        , realizada por esta Comisión, en la red interna con el personal operativo,
-        @yield('difusion-digital') con la finalidad de intensificar las acciones de búsqueda y
-        localización.
-    </p>
-
-    <p>
-        Solicitándole que, de manera urgente, remita un informe a esta Comisión respecto de los avances de las acciones
-        implementadas, así como de los datos que arrojen las mismas, y los nombres de los servidores públicos
-        responsables de realizarlas, ello con fundamento en lo que disponen los artículos 5 fracciones I y II, 19
-        fracción IV, de la Ley Número 677 en Materia de Desaparición de Personas para el Estado de Veracruz de Ignacio
-        de la Llave, de no cumplir con dicha disposición, se considerará como un grave incumplimiento negligente como lo
-        establece el artículo 22 de lo dispuesto por la ley en materia antes mencionada.
+        elaborado por esta Comisión de Búsqueda.
     </p>
 
     <p>
@@ -77,4 +61,5 @@
     <x-atentamente-usuario/>
 
     <x-copia-archivo/>
+
 @endsection

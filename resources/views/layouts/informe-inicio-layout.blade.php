@@ -3,9 +3,9 @@
 @section('title', 'Informe de Inicio')
 
 @section('content')
-    <div class="texto-centrado">INFORME DE INICIO</div>
+    <div class="titulo" style="text-align: center">INFORME DE INICIO</div>
 
-    <div class="texto-centrado">
+    <div class="subtitulo" style="text-align: center;">
         <mark>@yield('nombre-completo-desaparecido') - @yield('folio')</mark>
     </div>
 
@@ -35,12 +35,12 @@
 
     <p>
         Se lleva a cabo una búsqueda remota en la base de datos del Registro Nacional de Detenciones (RND), consultada
-        en <b>consultasdetenciones.sspc.gob.mx</b> obteniendo resultado @yield('resultado-RND'), respecto a la
-        búsqueda @yield('pronombre-completo-desaparecido')
+        en <b>consultasdetenciones.sspc.gob.mx</b> obteniendo resultado @yield('resultado-RND'),
+        respecto a la búsqueda @yield('pronombre-completo-desaparecido')
     </p>
-    <div class="texto-centrado">
+    <p class="titulo" style="text-align: center">
         <u>Despliegue Operativo</u>
-    </div>
+    </p>
 
     <p>
         El mismo día que inició la presente, se alertó a la Secretaría de Seguridad Pública (SSP), sobre la No

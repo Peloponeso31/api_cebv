@@ -22,9 +22,9 @@ use App\Models\Reportes\Reporte;
 Route::controller(DocumentoController::class)->prefix('documentos')->group(function () {
     Route::get('/informes-inicio/{desaparecido_id}', 'informeInicio');
     Route::get('/oficio-c4/{id}', 'oficioC4');
-    Route::get('/oficio-cei/{id}', 'oficioparacei');
-    Route::get('/oficio-fiscalia/{id}', 'oficioparafiscalia');
-    Route::get('/oficio-ssa/{id}', 'oficioparassa');
+    Route::get('/oficio-cei/{id}', 'oficioCei');
+    Route::get('/oficio-fiscalia/{id}', 'oficioFiscalia');
+    Route::get('/oficio-ssa/{id}', 'oficioSsa');
     Route::get('/ficha-datos/{id}', 'fichaDatos');
     Route::get('/ficha-busqueda-inmediata/{id}', 'fichaBusquedaInmediata');
 });

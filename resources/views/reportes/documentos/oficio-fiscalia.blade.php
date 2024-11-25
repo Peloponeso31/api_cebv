@@ -1,4 +1,4 @@
-@extends('layouts.oficio-c4-layout')
+@extends('layouts.oficio-fiscalia-layout')
 
 @section('encabezado')
     <x-encabezado :desaparecido="$desaparecido" :fecha="$fecha" :folio="$folio"/>

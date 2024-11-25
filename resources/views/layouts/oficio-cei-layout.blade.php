@@ -1,12 +1,12 @@
 @extends('layouts.page-layout')
 
-@section('title', 'Oficio para C4')
+@section('tile', 'Oficio para C4')
 
 @section('content')
 
     @yield('encabezado')
 
-    <x-dirigido-c4 class="subtitulo"/>
+    <x-dirigido-cei class="subtitulo"/>
 
     <p>
         Por medio del presente, con fundamento en los artículos 1, @yield('es-menor') 30, 31, 33 fracciones I, III, IX,
@@ -34,40 +34,57 @@
     </p>
 
     <p style="margin: 0 1cm 0 1cm">
-        <strong>PRIMERO: </strong>Informe a esta Comisión sí en su base de datos cuenta con llamadas de Auxilio a nombre
-        @yield('pronombre-completo-desaparecido')
-        o en su caso
-        <mark>llamadas de auxilio del número @yield('numero-rastreo')</mark>
-        , en la fecha de desaparición, siendo esta en fecha
-        <mark>@yield('fecha-desaparicion')</mark>
-        .
+        <strong>ÚNICO: </strong> Se realice una búsqueda del
+        <mark>C.@yield('pronombre-completo-desaparecido')</mark>
+        , en sus bases de datos y remita a esta Comisión
+        toda aquella información que obre en ellas, a fin de aportar elementos para la búsqueda y localización de la
+        persona
+        antes mencionada.
     </p>
     <br>
-    <p style="margin: 0 1cm 0 1cm">
-        <strong>SEGUNDO: </strong> Sea difundida
+    <table border="1" cellpadding="5" cellspacing="0" style="width: 100%; border-collapse: collapse">
+        <thead>
+        <tr>
+            <th style="background-color: lightgray; width: 30%">Nombre</th>
+            <th style="background-color: lightgray; width: 30%">CURP</th>
+            <th style="background-color: lightgray; width: 40%">Señas particulares</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <mark>@yield('nombre-completo')</mark>
+            </td>
+            <td>
+                <mark>@yield('curp')</mark>
+            </td>
+            <td>
+                <mark>@yield('senas-particulares')</mark>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        Se anexa a la presente:
         <mark>@yield('medio-difusion')</mark>
-        , realizada por esta Comisión, en la red interna con el personal operativo,
-        @yield('difusion-digital') con la finalidad de intensificar las acciones de búsqueda y
-        localización.
+        elaborada por la Comisión Estatal de Búsqueda, el cual contiene
+        los datos generales y fotografía de la(s) persona(s) desaparecida(s) y/o no localizada(s).
     </p>
 
     <p>
         Solicitándole que, de manera urgente, remita un informe a esta Comisión respecto de los avances de las acciones
-        implementadas, así como de los datos que arrojen las mismas, y los nombres de los servidores públicos
-        responsables de realizarlas, ello con fundamento en lo que disponen los artículos 5 fracciones I y II, 19
-        fracción IV, de la Ley Número 677 en Materia de Desaparición de Personas para el Estado de Veracruz de Ignacio
-        de la Llave, de no cumplir con dicha disposición, se considerará como un grave incumplimiento negligente como lo
-        establece el artículo 22 de lo dispuesto por la ley en materia antes mencionada.
+        implementadas.
     </p>
 
     <p>
         No omito mencionar que, dicha información deberá tratarse confidencialmente de acuerdo a lo dispuesto por los
-        artículos 6º apartado A y 16, segundo párrafo, de la Constitución Política de los Estados Unidos Mexicanos,
-        @yield('articulo-carpeta-investigacion')72 de la Ley Número 875 de Transparencia y Acceso a la Información
-        Pública para el Estado de Veracruz de Ignacio de la Llave, 14 fracción III y 16 fracción IX de la Ley Número 316
-        de Protección de Datos Personales en Posesión de Sujetos Obligados para el Estado de Veracruz de Ignacio de la
-        Llave; así como el 92 de la Ley Número 677 en Materia de Desaparición de para el Estado de Veracruz, y lo
-        dispuesto por el artículo 348 segundo párrafo del Código Penal para el Estado de Veracruz.
+        artículos 6º apartado A y 16, segundo párrafo, de la Constitución Política de los Estados Unidos Mexicanos, 68
+        fracción @yield('articulo-carpeta-investigacion'), 72 de la Ley Número 875 de Transparencia y Acceso a la
+        Información Pública para el Estado de Veracruz de Ignacio de la Llave, 14 fracción III y 16 fracción IX de la
+        Ley Número 316 de Protección de Datos Personales en Posesión de Sujetos Obligados para el Estado de Veracruz de
+        Ignacio de la Llave; así como el 92 de la Ley Número 677 en Materia de Desaparición de Personas para el Estado
+        de Veracruz, y lo dispuesto por el artículo 348 segundo párrafo del Código Penal para el Estado de Veracruz.
     </p>
 
     <x-obligaciones-derechos-humanos/>

@@ -13,6 +13,7 @@ class FotosDesaparecidoController extends Controller
     public function index($desaparecido_id)
     {
         $desaparecido = Desaparecido::findOrFail($desaparecido_id);
+
         //Storage para acceder al repositorio del servidor,
         $files = Storage::files($desaparecido->persona->id);
         $content = [];
@@ -42,7 +43,7 @@ class FotosDesaparecidoController extends Controller
 
         $paths = [];
         foreach ($request->allFiles() as $key => $file) {
-            $paths[] = $file->storeAs($desaparecido->persona->id, $file->getClientOriginalName());
+            $paths[] = Storage::put($desaparecido->persona->id, $file->getClientOriginalName());
             if ($key == "boletin") {
                 $desaparecido->boletin_img_path = end($paths);
                 $desaparecido->save();

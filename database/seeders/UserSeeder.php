@@ -73,7 +73,7 @@ class UserSeeder extends Seeder
                 'apellido_paterno' => 'Arguello',
                 'apellido_materno' => 'Hernandez',
             ])->id,
-            'email' => 'jon@cebv.com',
+            'email' => 'luis@cebv.com',
         ]);
     }
 }

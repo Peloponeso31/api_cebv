@@ -12,6 +12,7 @@ use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
 use App\Models\Expediente;
 use App\Models\ExpedienteFisico;
+use App\Models\GeneracionDocumento;
 use App\Models\Localizacion;
 use App\Models\Perpetrador;
 use App\Models\Reportes\Hechos\HechoDesaparicion;
@@ -146,6 +147,11 @@ class SyncReporteController extends Controller
         if (isset($request[A::ExpedienteFisico]) && !is_null($request[A::ExpedienteFisico])) {
             $data = ArrayHelpers::setArrayValue($request[A::ExpedienteFisico], A::ReporteId, $reporteId);
             ArrayHelpers::asyncHandler(ExpedienteFisico::class, $data, config('patterns.expediente_fisico'));
+        }
+
+        if (isset($request[A::GeneracionDocumento]) && !is_null($request[A::GeneracionDocumento])) {
+            $data = ArrayHelpers::setArrayValue($request[A::GeneracionDocumento], A::ReporteId, $reporteId);
+            ArrayHelpers::asyncHandler(GeneracionDocumento::class, $data, config('patterns.generacion_documento'));
         }
 
         return ReporteResource::make(Reporte::findOrFail($reporteId));

@@ -14,6 +14,7 @@ class PuestoSeeder extends Seeder
     public function run(): void
     {
         $puestos = [
+            'Analista Administrativo', // Importante ser el primero en la lista, usuario predeterminado.
             'Comisionado Estatal de Búsqueda de Personas',
             'Jefe de Departamento Especializado de Búsqueda',
             'Jefe de Departamento de Análisis de Contexto',
@@ -24,7 +25,6 @@ class PuestoSeeder extends Seeder
             'Jefe de Oficina de Análisis de Contexto',
             'Jefe de Oficina de Vinculación Interinstitucional',
             'Jefe de Oficina de Asuntos Jurídicos',
-            'Analista Administrativo',
         ];
 
         foreach ($puestos as $puesto) {

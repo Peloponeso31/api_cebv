@@ -514,12 +514,12 @@
 @section('desaparecido-senas')
     @foreach($desaparecido->persona->senasParticulares as $senasParticulares)
         <b> {{"Seña: "}}</b> <br>
-         {{"Región: "}} {{$senasParticulares->region_cuerpo->nombre}} <br>
-         {{"Vista: "}} {{$senasParticulares->vista->nombre}} <br>
-         {{"Lado: "}} {{$senasParticulares->lado->nombre}} <br>
-         {{"Tipo: "}} {{$senasParticulares->tipo->nombre}} <br>
-         {{"Cantidad: "}} {{$senasParticulares->cantidad}} <br>
-         {{"Descripción: "}} {{$senasParticulares->descripcion}} <br>
+         {{"Región: "}} {{$senasParticulares?->region_cuerpo?->nombre}} <br>
+         {{"Vista: "}} {{$senasParticulares?->vista?->nombre}} <br>
+         {{"Lado: "}} {{$senasParticulares?->lado?->nombre}} <br>
+         {{"Tipo: "}} {{$senasParticulares?->tipo?->nombre}} <br>
+         {{"Cantidad: "}} {{$senasParticulares?->cantidad}} <br>
+         {{"Descripción: "}} {{$senasParticulares?->descripcion}} <br>
 
     @endforeach
 @endsection

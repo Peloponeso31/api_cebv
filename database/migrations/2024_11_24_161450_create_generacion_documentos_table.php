@@ -18,9 +18,9 @@ return new class extends Migration {
                 ->constrained(table: 'cat_medios_difusion', indexName: 'gd_medio_difusion_id_foreign');
 
             $table->enum('resultado_rnd', EnumHelper::toList(OpcionesCebv::class))
+                ->nullable()
                 ->default(OpcionesCebv::NoEspecifica->value);
             $table->boolean('firma_ausencia')->default(false);
-            $table->string('numero_rastreo')->nullable();
 
             $table->timestamps();
         });

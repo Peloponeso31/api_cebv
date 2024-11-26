@@ -14,7 +14,6 @@ class GeneracionDocumento extends Model
         'medio_difusion_id',
         'resultado_rnd',
         'firma_ausencia',
-        'numero_rastreo',
     ];
 
     protected $casts = [
@@ -31,6 +30,6 @@ class GeneracionDocumento extends Model
 
     public function medioDifusion(): BelongsTo
     {
-        return $this->belongsTo(MedioDifusion::class, 'medio_difusion_id', 'gd_medio_difusion_id_foreign');
+        return $this->belongsTo(MedioDifusion::class, 'medio_difusion_id');
     }
 }

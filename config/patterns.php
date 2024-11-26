@@ -193,4 +193,8 @@ return [
     'control_ogpi' => [
         'estatus_rndpno_id' => 'estatus_rndpno.id',
     ],
+
+    'generacion_documento' => [
+        'medio_difusion_id' => 'medio_difusion.id',
+    ],
 ];

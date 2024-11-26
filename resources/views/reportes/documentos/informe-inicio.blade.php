@@ -16,5 +16,5 @@
 
 @section('hechos-desaparicion', $reporte?->hechosDesaparicion?->hechos_desaparicion)
 @section('resultado-RND')
-    {{ strtoupper($reporte?->hechosDesaparicion?->resultado_rnd?->value) }}
+    {{ strtoupper($reporte?->generacionDocumento?->resultado_rnd?->value) }}
 @endsection

@@ -14,6 +14,7 @@ class GeneracionDocumentoResource extends JsonResource
         return [
             'id' => $this->id,
             'reporte_id' => $this->reporte_id,
+            'medio_difusion' => CatalogoResource::make($this->medioDifusion),
             'resultado_rnd' => $this->resultado_rnd,
             'firma_ausencia' => $this->firma_ausencia,
         ];

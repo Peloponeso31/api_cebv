@@ -62,4 +62,6 @@ class JsonAttributes
 
     const Localizacion = 'localizacion';
     const Folios = 'folios';
+
+    const GeneracionDocumento = 'generacion_documento';
 }

@@ -146,7 +146,7 @@ class DatabaseSeeder extends Seeder
          * Reportes seeders
          */
         $this->call([
-            ReporteSeeder::class,
+            //ReporteSeeder::class,
         ]);
     }
 }

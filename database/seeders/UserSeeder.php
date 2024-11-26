@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'empleado_id' => Empleado::create([
                 'sexo_id' => 1,
-                'puesto_id' => Puesto::inRandomOrder()->first()->id,
+                'puesto_id' => 1,
                 'oficina_id' => Oficina::inRandomOrder()->first()->id,
                 'nombre' => 'Armando',
                 'apellido_paterno' => 'Luna',
@@ -55,7 +55,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'empleado_id' => Empleado::create([
                 'sexo_id' => 1,
-                'puesto_id' => Puesto::inRandomOrder()->first()->id,
+                'puesto_id' => 1,
                 'oficina_id' => Oficina::inRandomOrder()->first()->id,
                 'nombre' => 'Luz',
                 'apellido_paterno' => 'Uribe',
@@ -67,7 +67,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'empleado_id' => Empleado::create([
                 'sexo_id' => 1,
-                'puesto_id' => Puesto::inRandomOrder()->first()->id,
+                'puesto_id' => 1,
                 'oficina_id' => Oficina::inRandomOrder()->first()->id,
                 'nombre' => 'Luis',
                 'apellido_paterno' => 'Arguello',

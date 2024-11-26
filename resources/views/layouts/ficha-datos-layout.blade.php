@@ -174,7 +174,7 @@
 
     <tr>
         <td class="etiqueta"> Domicilio: </td>
-        <td colspan="3" class="dato"> {{ "IUCT910921HVZZRN08" }} </td>
+        <td colspan="3" class="dato">  </td>
     </tr>
 
     <tr>
@@ -557,23 +557,23 @@
         <td  colspan="2" class="dato"> @yield('desaparecido-tratamiento-dental') </td>
     </tr>
     <tr>
-        <td colspan="2" class="etiqueta">Región del bello facial:</td>
+        <td colspan="2" class="etiqueta">Región del vello facial:</td>
         <td  colspan="2" class="dato"> @yield('desaparecido-region-vellofacial') </td>
     </tr>
     <tr>
-        <td colspan="2" class="etiqueta">Color del bello facial:</td>
+        <td colspan="2" class="etiqueta">Color del vello facial:</td>
         <td  colspan="2" class="dato"> @yield('desaparecido-color-vellofacial') </td>
     </tr>
     <tr>
-        <td colspan="2" class="etiqueta">Volumen del bello facial:</td>
+        <td colspan="2" class="etiqueta">Volumen del vello facial:</td>
         <td  colspan="2" class="dato"> @yield('desaparecido-volumen-vellofacial') </td>
     </tr>
     <tr>
-        <td colspan="2" class="etiqueta">Corte o estilo del bello facial:</td>
+        <td colspan="2" class="etiqueta">Corte o estilo del vello facial:</td>
         <td  colspan="2" class="dato"> @yield('desaparecido-corte-vellofacial') </td>
     </tr>
     <tr>
-        <td colspan="2" class="etiqueta">Modificaciones del bello facial:</td>
+        <td colspan="2" class="etiqueta">Modificaciones del vello facial:</td>
         <td  colspan="2" class="dato"> @yield('desaparecido-modificaciones-vellofacial') </td>
     </tr>
     <tr>

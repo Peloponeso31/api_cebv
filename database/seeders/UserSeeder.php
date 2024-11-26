@@ -39,5 +39,41 @@ class UserSeeder extends Seeder
             ])->id,
             'email' => 'tanil@cebv.com',
         ]);
+
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'sexo_id' => 1,
+                'puesto_id' => Puesto::inRandomOrder()->first()->id,
+                'oficina_id' => Oficina::inRandomOrder()->first()->id,
+                'nombre' => 'Armando',
+                'apellido_paterno' => 'Luna',
+                'apellido_materno' => 'Sanchez',
+            ])->id,
+            'email' => 'armando@cebv.com',
+        ]);
+
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'sexo_id' => 1,
+                'puesto_id' => Puesto::inRandomOrder()->first()->id,
+                'oficina_id' => Oficina::inRandomOrder()->first()->id,
+                'nombre' => 'Luz',
+                'apellido_paterno' => 'Uribe',
+                'apellido_materno' => 'Vargas',
+            ])->id,
+            'email' => 'luz@cebv.com',
+        ]);
+
+        User::factory()->create([
+            'empleado_id' => Empleado::create([
+                'sexo_id' => 1,
+                'puesto_id' => Puesto::inRandomOrder()->first()->id,
+                'oficina_id' => Oficina::inRandomOrder()->first()->id,
+                'nombre' => 'Luis',
+                'apellido_paterno' => 'Arguello',
+                'apellido_materno' => 'Hernandez',
+            ])->id,
+            'email' => 'luis@cebv.com',
+        ]);
     }
 }

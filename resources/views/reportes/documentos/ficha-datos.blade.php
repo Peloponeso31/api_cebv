@@ -9,7 +9,7 @@
     @isset($reportante->persona->apellido_materno) {{ $reportante->persona->apellido_materno . " " }} @endisset
 @endsection
 
-@section('sexo-reportante', $reportante->persona->sexo->nombre)
+@section('sexo-reportante', $reportante->persona?->sexo?->nombre)
 @section('curp-reportante', $reportante->persona->curp)
 @section('religion-reportante', $reportante->persona->religion->nombre ?? '')
 @section('lengua-reportante', $reportante->persona->lengua->nombre ?? '')
@@ -47,7 +47,7 @@
 
 @section('fecha-nacimiento-desaparecido', \Carbon\Carbon::parse($desaparecido->persona->fecha_nacimiento)->translatedFormat("d \d\\e F \d\\e Y"))
 
-@section('parentesco-reportante-desaparecido',$reportante->parentesco->nombre)
+@section('parentesco-reportante-desaparecido',$reportante->parentesco?->nombre)
 
 @section('escolaridad-reportante')
     @isset($reportante->persona->estudio->escolaridad)
@@ -125,11 +125,7 @@
     @endisset
 @endsection
 
-@section('desaparecido-sexo')
-    @isset($desaparecido->persona->sexo->nombre)
-        {{ $desaparecido->persona->sexo->nombre}} <br/>
-    @endisset
-@endsection
+@section('desaparecido-sexo', $desaparecido->persona?->sexo?->nombre)
 
 @section('desaparecido-genero')
     @isset($desaparecido->persona->genero->nombre)
@@ -153,7 +149,7 @@
 
 
 @section('desaparecido-lugarNacimiento')
-    {{"NO HAY CATALOGO DE PAISES XD"}}
+    {{"NO HAY CATALOGO DE PAISES"}}
 @endsection
 
 @section('fecha-nacimiento-desaparecido')
@@ -518,24 +514,24 @@
 @section('desaparecido-senas')
     @foreach($desaparecido->persona->senasParticulares as $senasParticulares)
         <b> {{"Seña: "}}</b> <br>
-         {{"Región: "}} {{$senasParticulares->region_cuerpo->nombre}} <br>
-         {{"Vista: "}} {{$senasParticulares->vista->nombre}} <br>
-         {{"Lado: "}} {{$senasParticulares->lado->nombre}} <br>
-         {{"Tipo: "}} {{$senasParticulares->tipo->nombre}} <br>
-         {{"Cantidad: "}} {{$senasParticulares->cantidad}} <br>
-         {{"Descripción: "}} {{$senasParticulares->descripcion}} <br>
+         {{"Región: "}} {{$senasParticulares?->region_cuerpo?->nombre}} <br>
+         {{"Vista: "}} {{$senasParticulares?->vista?->nombre}} <br>
+         {{"Lado: "}} {{$senasParticulares?->lado?->nombre}} <br>
+         {{"Tipo: "}} {{$senasParticulares?->tipo?->nombre}} <br>
+         {{"Cantidad: "}} {{$senasParticulares?->cantidad}} <br>
+         {{"Descripción: "}} {{$senasParticulares?->descripcion}} <br>
 
     @endforeach
 @endsection
 @section('desaparecido-tatuajes')
     @foreach($desaparecido->persona->senasParticulares as $senasParticulares)
         <!--Aca son puros tatuajes y en el de arriba todas las señas -->
-        @if($senasParticulares->tipo->id==10)
+        @if($senasParticulares?->tipo?->id==10)
         <b> {{"Tatuaje: "}}</b> <br>
-        {{"Región: "}} {{$senasParticulares->region_cuerpo->nombre}} <br>
-        {{"Vista: "}} {{$senasParticulares->vista->nombre}} <br>
-        {{"Lado: "}} {{$senasParticulares->lado->nombre}} <br>
-        {{"Descripción: "}} {{$senasParticulares->descripcion}} <br>
+        {{"Región: "}} {{$senasParticulares?->region_cuerpo?->nombre}} <br>
+        {{"Vista: "}} {{$senasParticulares?->vista?->nombre}} <br>
+        {{"Lado: "}} {{$senasParticulares?->lado?->nombre}} <br>
+        {{"Descripción: "}} {{$senasParticulares?->descripcion}} <br>
         @endif
     @endforeach
 @endsection

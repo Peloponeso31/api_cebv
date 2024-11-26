@@ -526,12 +526,12 @@
 @section('desaparecido-tatuajes')
     @foreach($desaparecido->persona->senasParticulares as $senasParticulares)
         <!--Aca son puros tatuajes y en el de arriba todas las señas -->
-        @if($senasParticulares->tipo->id==10)
+        @if($senasParticulares?->tipo?->id==10)
         <b> {{"Tatuaje: "}}</b> <br>
-        {{"Región: "}} {{$senasParticulares->region_cuerpo->nombre}} <br>
-        {{"Vista: "}} {{$senasParticulares->vista->nombre}} <br>
-        {{"Lado: "}} {{$senasParticulares->lado->nombre}} <br>
-        {{"Descripción: "}} {{$senasParticulares->descripcion}} <br>
+        {{"Región: "}} {{$senasParticulares?->region_cuerpo?->nombre}} <br>
+        {{"Vista: "}} {{$senasParticulares?->vista?->nombre}} <br>
+        {{"Lado: "}} {{$senasParticulares?->lado?->nombre}} <br>
+        {{"Descripción: "}} {{$senasParticulares?->descripcion}} <br>
         @endif
     @endforeach
 @endsection

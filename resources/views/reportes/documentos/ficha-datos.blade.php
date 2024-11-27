@@ -55,9 +55,7 @@
     @endisset
 @endsection
 @section('reportante-ocupacion')
-    @foreach($reportante->persona->ocupaciones as $ocupaciones)
-        {{ $ocupaciones->nombre }}<br>
-    @endforeach
+ {{"NO SE ENCUENTRA EN EL FORMULARIO"}}
 @endsection
 
 @section('grupo-vulnerable-reportante')
@@ -491,10 +489,10 @@
 @endsection
 
 @section('desaparecido-amistades-red-social')
-    @foreach($desaparecido->persona->amistades as $amistades)
-        <b> {{"Telefono: "}}</b> {{$amistades->telefono}} <br>
-        <b> {{"Red social: "}}</b> {{$amistades->tipoRedSocial->nombre}} <br>
-        <b> {{"Nombre en red social: "}}</b> {{$amistades->usuario_red_social}} <br>
+    @foreach($desaparecido->persona->redesSociales as $redes)
+        <b> {{"Red social: "}}</b> {{$redes->tipoRedSocial->nombre}} <br>
+        <b> {{"Nombre en red social: "}}</b> {{$redes->usuario}} <br>
+        <b> {{"Observaciones: "}}</b> {{$redes->observaciones}} <br>
 
     @endforeach
 @endsection

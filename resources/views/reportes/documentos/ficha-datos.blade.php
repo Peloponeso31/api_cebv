@@ -29,14 +29,14 @@
 
 @section('telefonos-reportante')
     @foreach($reportante->persona->telefonos as $telefono)
-        <b>{{ $telefono->numero }}:</b> {{ $telefono->observaciones }} <br>
+        <b>{{ $telefono?->numero }}:</b> {{ $telefono?->observaciones }} <br>
     @endforeach
 @endsection
 
 @section('correos-reportante')
     @foreach($reportante->persona->contactos as $contacto)
         @if($contacto->tipo ="Correo Electronico" )
-            <b>{{ $contacto->nombre }}:</b> {{ $contacto->observaciones }} <br>
+            <b>{{ $contacto?->nombre }}:</b> {{ $contacto?->observaciones }} <br>
         @endif
     @endforeach
 @endsection
@@ -56,7 +56,7 @@
 @endsection
 @section('reportante-ocupacion')
     @foreach($reportante->persona->ocupaciones as $ocupaciones)
-        {{ $ocupaciones->nombre }}<br>
+        {{ $ocupaciones?->nombre }}<br>
     @endforeach
 @endsection
 
@@ -137,7 +137,7 @@
     <!-- No entiendo como esto funciono, y no se porque esto es una coleccion LMAO -->
 
     @foreach($desaparecido->persona->nacionalidades as $nacionalidad)
-        {{ $nacionalidad->nombre }}
+        {{ $nacionalidad?->nombre }}
 @endforeach
 @endsection
 
@@ -216,11 +216,11 @@
 @section('desaparecido-direccion-residencia')
 
     @foreach($desaparecido->persona->direcciones as $direcciones)
-        <b>{{ "Colonia" }}:</b>{{$direcciones->colonia}}<br>
-    <b>{{ "Calle" }}:</b> {{$direcciones->calle}}<br>
-    <b>{{ "No. Exterior" }}:</b> {{$direcciones->numero_exterior}}<br>
-    <b>{{ "No. Interior" }}:</b>  {{$direcciones->numero_interior}}<br>
-    <b>{{ "Código Postal" }}:</b> {{ $direcciones->codigo_postal}} <br>
+        <b>{{ "Colonia" }}:</b>{{$direcciones?->colonia}}<br>
+    <b>{{ "Calle" }}:</b> {{$direcciones?->calle}}<br>
+    <b>{{ "No. Exterior" }}:</b> {{$direcciones?->numero_exterior}}<br>
+    <b>{{ "No. Interior" }}:</b>  {{$direcciones?->numero_interior}}<br>
+    <b>{{ "Código Postal" }}:</b> {{ $direcciones?->codigo_postal}} <br>
     @endforeach
 @endsection
 
@@ -240,11 +240,11 @@
 @endsection
 @section('lugar-desaparicion')
        @isset($desaparecido->reporte->hechosDesaparicion->lugarHechos)
-           <b>{{ "Colonia" }}:</b>{{$desaparecido->reporte->hechosDesaparicion->lugarHechos->colonia}}<br>
-           <b>{{ "Calle" }}:</b> {{$desaparecido->reporte->hechosDesaparicion->lugarHechos->calle}}<br>
-           <b>{{ "No. Exterior" }}:</b> {{$desaparecido->reporte->hechosDesaparicion->lugarHechos->numero_exterior}}<br>
-           <b>{{ "No. Interior" }}:</b>  {{$desaparecido->reporte->hechosDesaparicion->lugarHechos->numero_interior}}<br>
-           <b>{{ "Código Postal" }}:</b> {{ $desaparecido->reporte->hechosDesaparicion->lugarHechos->codigo_postal}} <br>
+           <b>{{ "Colonia" }}:</b>{{$desaparecido?->reporte?->hechosDesaparicion?->lugarHechos?->colonia}}<br>
+           <b>{{ "Calle" }}:</b> {{$desaparecido?->reporte?->hechosDesaparicion?->lugarHechos?->calle}}<br>
+           <b>{{ "No. Exterior" }}:</b> {{$desaparecido?->reporte?->hechosDesaparicion?->lugarHechos?->numero_exterior}}<br>
+           <b>{{ "No. Interior" }}:</b>  {{$desaparecido?->reporte?->hechosDesaparicion?->lugarHechos?->numero_interior}}<br>
+           <b>{{ "Código Postal" }}:</b> {{ $desaparecido?->reporte?->hechosDesaparicion?->lugarHechos?->codigo_postal}} <br>
        @endisset
 @endsection
 
@@ -287,11 +287,11 @@
 @section('vehiculos-involucrados')
 @foreach($desaparecido->reporte->vehiculos as $vehiculos)
 
-        <b>{{ "Tipo de vehículo:" }}</b> {{$vehiculos->tipoVehiculo->nombre}}<br>
-        <b>{{ "Número de serie:" }}</b> {{$vehiculos->numero_serie}}<br>
-        <b>{{ "Placas:" }}</b>{{$vehiculos->placa}}<br>
-        <b>{{ "Insignia: " }}</b> {{$vehiculos->marcaVehiculo->nombre}}<br>
-        <b>{{ "Características: " }}</b>{{$vehiculos->descripcion}}<br>
+        <b>{{ "Tipo de vehículo:" }}</b> {{$vehiculos?->tipoVehiculo?->nombre}}<br>
+        <b>{{ "Número de serie:" }}</b> {{$vehiculos?->numero_serie}}<br>
+        <b>{{ "Placas:" }}</b>{{$vehiculos?->placa}}<br>
+        <b>{{ "Insignia: " }}</b> {{$vehiculos?->marcaVehiculo?->nombre}}<br>
+        <b>{{ "Características: " }}</b>{{$vehiculos?->descripcion}}<br>
 
 @endforeach
 @endsection
@@ -326,10 +326,10 @@
 @section('perpetradores')
     @foreach($desaparecido->reporte->perpetradores as $perpetradores)
         <b>{{"Perpetrador"}}</b><br>
-        {{ "Nombre:" }} {{$perpetradores->nombre}}<br>
-        {{ "Estatus:" }} {{$perpetradores->estatusPerpetrador->nombre}}<br>
-        {{ "Sexo:" }}{{$perpetradores->sexo->nombre}}<br>
-        {{ "Descripción: " }} {{$perpetradores->descripcion}}<br>
+        {{ "Nombre:" }} {{$perpetradores?->nombre}}<br>
+        {{ "Estatus:" }} {{$perpetradores?->estatusPerpetrador?->nombre}}<br>
+        {{ "Sexo:" }}{{$perpetradores?->sexo?->nombre}}<br>
+        {{ "Descripción: " }} {{$perpetradores?->descripcion}}<br>
 
     @endforeach
 @endsection
@@ -342,8 +342,8 @@
 @section('documentos-legales')
     @foreach($desaparecido->documentosLegales as $documentosLegales)
         <b>{{"Documento:"}}</b><br>
-        {{ "Tipo:" }} {{$documentosLegales->tipo_documento}}<br>
-        {{ "Número:" }} {{$documentosLegales->numero_documento}}<br>
+        {{ "Tipo:" }} {{$documentosLegales?->tipo_documento}}<br>
+        {{ "Número:" }} {{$documentosLegales?->numero_documento}}<br>
     @endforeach
 @endsection
 
@@ -395,24 +395,24 @@
 @section('desaparecido-hijos')
     @foreach($desaparecido->persona->familiares as $familiares)
         @if($familiares->parentesco->id==16||$familiares->parentesco->id==17||$familiares->parentesco->id==18)
-            <b>{{"Parentesco: "}}</b>  {{$familiares->parentesco->nombre}}<br>
-        {{"Nombre: "}} {{$familiares->nombre}}<br>
+            <b>{{"Parentesco: "}}</b>  {{$familiares?->parentesco?->nombre}}<br>
+        {{"Nombre: "}} {{$familiares?->nombre}}<br>
         @endif
     @endforeach
 @endsection
 @section('desaparecido-familiares-cercanos')
     @foreach($desaparecido->persona->familiares as $familiares)
         @if($familiares->es_familiar_cercano==1)
-            <b>{{"Parentesco: "}}</b>  {{$familiares->parentesco->nombre}}<br>
-            {{"Nombre: "}} {{$familiares->nombre}}<br>
+            <b>{{"Parentesco: "}}</b>  {{$familiares?->parentesco?->nombre}}<br>
+            {{"Nombre: "}} {{$familiares?->nombre}}<br>
         @endif
     @endforeach
 @endsection
 @section('desaparecido-familiares-violencia')
     @foreach($desaparecido->persona->familiares as $familiares)
         @if($familiares->ha_ejercido_violencia==1)
-            <b>{{"Parentesco: "}}</b>  {{$familiares->parentesco->nombre}}<br>
-            {{"Nombre: "}} {{$familiares->nombre}}<br>
+            <b>{{"Parentesco: "}}</b>  {{$familiares?->parentesco?->nombre}}<br>
+            {{"Nombre: "}} {{$familiares?->nombre}}<br>
         @endif
     @endforeach
 @endsection
@@ -482,7 +482,7 @@
 @section('desaparecido-amistades')
     @foreach($desaparecido->persona->amistades as $amistades)
         <b> {{"Nombre: "}}</b> {{$amistades->nombre}} {{$amistades->apellido_paterno}} {{$amistades->apellido_materno}} <br>
-          <b> {{"Apodo: "}}</b> {{$amistades->apodo}} <br>
+          <b> {{"Apodo: "}}</b> {{$amistades?->apodo}} <br>
 
     @endforeach
 @endsection
@@ -492,9 +492,9 @@
 
 @section('desaparecido-amistades-red-social')
     @foreach($desaparecido->persona->amistades as $amistades)
-        <b> {{"Telefono: "}}</b> {{$amistades->telefono}} <br>
-        <b> {{"Red social: "}}</b> {{$amistades->tipoRedSocial->nombre}} <br>
-        <b> {{"Nombre en red social: "}}</b> {{$amistades->usuario_red_social}} <br>
+        <b> {{"Telefono: "}}</b> {{$amistades?->telefono}} <br>
+        <b> {{"Red social: "}}</b> {{$amistades?->tipoRedSocial?->nombre}} <br>
+        <b> {{"Nombre en red social: "}}</b> {{$amistades?->usuario_red_social}} <br>
 
     @endforeach
 @endsection
@@ -502,11 +502,11 @@
 @section('desaparecido-vestimenta')
     @foreach($desaparecido->prendasVestir as $prendasvestir)
         <b> {{"Prenda: "}}</b> <br>
-        {{"Grupo pertenencia: "}} {{$prendasvestir->pertenencia->grupoPertenencia->nombre}} <br>
-         {{"Tipo: "}} {{$prendasvestir->pertenencia->nombre}} <br>
-         {{"Color: "}} {{$prendasvestir->color->nombre}} <br>
-        {{"Marca: "}} {{$prendasvestir->marca}} <br>
-        {{"Descripción: "}} {{$prendasvestir->descripcion}} <br>
+        {{"Grupo pertenencia: "}} {{$prendasvestir?->pertenencia?->grupoPertenencia?->nombre}} <br>
+         {{"Tipo: "}} {{$prendasvestir?->pertenencia?->nombre}} <br>
+         {{"Color: "}} {{$prendasvestir?->color?->nombre}} <br>
+        {{"Marca: "}} {{$prendasvestir?->marca}} <br>
+        {{"Descripción: "}} {{$prendasvestir?->descripcion}} <br>
 
     @endforeach
 @endsection
@@ -759,7 +759,7 @@
 
 @section('desaparecido-intervenciones-quirurgicas')
     @foreach($desaparecido->persona->intervencionesQuirurgicas as $intervencionesQuirurgicas)
-    {{$intervencionesQuirurgicas->tipoIntervencionQuirurgica->nombre}}<br>
+        {{$intervencionesQuirurgicas?->tipoIntervencionQuirurgica?->nombre}}<br>
     @endforeach
 
 @endsection

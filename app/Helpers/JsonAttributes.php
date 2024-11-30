@@ -64,4 +64,6 @@ class JsonAttributes
     const Folios = 'folios';
 
     const GeneracionDocumento = 'generacion_documento';
+
+    const EsFavorito = 'es_favorito';
 }

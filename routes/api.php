@@ -124,6 +124,14 @@ use App\Http\Resources\UserAdminResource;
 |
 */
 
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return response()->json(['message' => 'Cache cleared successfully!']);
+});
+
 Route::get('/excel/', [ReporteController::class, 'exportExcell']);
 
 /**
@@ -325,6 +333,8 @@ Route::middleware('auth:sanctum')->group(callback: function () {
 
     Route::get('personas/{persona}/folios', [PersonaController::class, 'getFolios']);
     Route::get('/filtrar-hechos', [HechoDesaparicionController::class, 'filtrarPersonas']);
+    Route::get('/reportes/{reporteId}/toggle', [ReporteController::class, 'toggleReport']);
+    Route::get('/favoritos', [ReporteController::class, 'getFavoritos']);
 
 
     /**

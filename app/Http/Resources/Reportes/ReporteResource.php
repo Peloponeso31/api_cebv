@@ -34,6 +34,7 @@ class ReporteResource extends JsonResource
             /**
              * Relaciones
              */
+            'es_favorito' => $this->esFavorito(),
             'medio_conocimiento' => MedioResource::make($this->medioConocimiento),
             'institucion_origen' => CatalogoResource::make($this->institucion),
             'tipo_reporte' => BasicResource::make($this->tipoReporte),

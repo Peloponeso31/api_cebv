@@ -20,6 +20,7 @@ class ReporteCompactedResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'es_favorito' => $this->esFavorito(),
             'medio_conocimiento_generico' => $this->medioConocimiento->tipoMedio->nombre ?? null,
             'medio_conocimiento_especifico' => $this->medioConocimiento->nombre ?? null,
             'tipo_reporte' => $this->tipoReporte->nombre ?? null,

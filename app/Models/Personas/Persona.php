@@ -56,10 +56,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Scout\Searchable;
 
 class Persona extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $table = 'personas';
 

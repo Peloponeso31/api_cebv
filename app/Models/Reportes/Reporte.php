@@ -57,6 +57,14 @@ class Reporte extends Model
         'esta_terminado' => 'boolean',
     ];
 
+    public function toSearchableArray(): array
+    {
+        return [
+            'nombre_desaparecido' => $this->desaparecidos->persona->nombre,
+            'estado' => $this->estado->nombre,
+        ];
+    }
+
     /**
      * Get the tipo de reporte that owns the reporte.
      *

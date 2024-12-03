@@ -81,4 +81,17 @@ class ReporteController extends Controller
     {
         return Excel::download(new ReportesExport, 'reportes.xlsx');
     }
+
+    public function toggleReport($reporteId)
+    {
+        auth()->user()->favoritos()->toggle($reporteId);
+        $esFavorito = auth()->user()->favoritos()->where('reporte_id', $reporteId)->exists();
+        return response()->json(['es_favorito' => $esFavorito]);
+    }
+
+    public function getFavoritos()
+    {
+        $favoritos = auth()->user()->favoritos()->orderByPivot('id', 'desc')->paginate();
+        return ReporteCompactedResource::collection($favoritos);
+    }
 }

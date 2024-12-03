@@ -3,11 +3,9 @@
 namespace App\Models\Reportes;
 
 use App\Enums\TipoDesaparicion;
-use App\Http\Resources\ExpedienteResource;
 use App\Models\ControlOgpi;
 use App\Models\DatoComplementario;
 use App\Models\DesaparicionForzada;
-use App\Models\Expediente;
 use App\Models\ExpedienteFisico;
 use App\Models\FusionRegistro;
 use App\Models\GeneracionDocumento;
@@ -23,15 +21,14 @@ use App\Models\Reportes\Relaciones\Desaparecido;
 use App\Models\Reportes\Relaciones\Reportante;
 use App\Models\Ubicaciones\Estado;
 use App\Models\Ubicaciones\ZonaEstado;
+use App\Models\User;
 use App\Models\Vehiculo;
-use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
 
@@ -204,6 +201,11 @@ class Reporte extends Model
         return $this->hasOne(GeneracionDocumento::class, 'reporte_id');
     }
 
+    public function favoritos(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favoritos');
+    }
+
     /**
      * Funciones de ayuda para consultar información de la persona
      * de manera más sencilla
@@ -216,6 +218,11 @@ class Reporte extends Model
     public function getFechaActualizacion(): string
     {
         return $this->updated_at->locale('es')->isoFormat(config('constants.date_iso_format'));
+    }
+
+    public function esFavorito(): bool
+    {
+        return auth()->user()->favoritos()->where('reporte_id', $this->id)->exists();
     }
 
 }
